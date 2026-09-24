@@ -1,0 +1,114 @@
+
+去重 44，初筛后 37
+
+ 83130★  fighting41love/funNLP   [K 中文知识图谱]
+         中英文敏感词、语言检测、中外手机/电话归属地/运营商查询、名字推断性别、手机号抽取、身份证抽取、邮箱抽取、中日文人名库、中文缩写库、拆字词典、词汇情感值、停用词、反动词表、暴恐词表、繁简体转换、英文模拟中文发音、汪峰歌词生成器、职业名称词库、同义词库、反义词库、否定词库、汽车品牌词库、汽车零件词库、连续英文切割、各种中文词向量、公司名字大全、古诗词库、IT词库、财经词库、成语词
+         Python · 2024-05-10 · 无许可
+   263★  Sfedfcv/redesigned-pancake   [G 深链接/分享状态]
+         Skip to content github / docs Code Issues 80 Pull requests 35 Discussions Actions Projects 2 Security Insights Merge branch 'main' into 1862-Add-Travis-CI-migration-table  1862-Add-Travis-CI
+         ? · 2021-05-16 · 无许可
+    36★  Xww-coder/pep-math-taxonomy   [K 中文知识图谱]
+         初中数学教材的知识图谱
+         HTML · 2026-07-31 · 无许可
+    32★  jiangnanboy/llm-knowledge-graph   [K 中文知识图谱]
+         利用大模型LLM对中文文本、图片以及pdf中的非结构化文本内容进行分析，并提取主-谓-宾（SPO）三元组的知识形式，以及将这些关系可视化为知识图谱。The large LLM model is used to analyze the unstructured text content in Chinese text, picture and pdf, extract the k
+         Python · 2025-04-16 · Apache-2.0
+    30★  InfinityUniverse0/Mathematical-Courses-Knowledge-Graph   [K 中文知识图谱]
+         高等教育数学课程体系知识图谱
+         JavaScript · 2024-04-23 · GPL-3.0
+    25★  bcefghj/math-education-agent   [K 中文知识图谱]
+         📐 K12数学教育智能Agent - 智能解题/拍照解题/一题多解/错题本/知识图谱/智能出题/口诀助记/真题练习
+         Python · 2026-04-05 · 无许可
+    22★  Jia-Yee/math-knowledge-graph   [K 中文知识图谱]
+         数学知识图谱 是由龙虾QClaw打造的覆盖从小学到大学、研究级别的结构化数学知识体系项目。该项目用于建模数学概念、定理、公式、分支之间的依赖关系，支持个性化学习路径规划和智能辅导。
+         Python · 2026-05-25 · MIT
+     8★  reppertj/philosophical-graphiti   [H 路径查找]
+         A webapp for exploring and visualizing subgraphs induced on the shortest paths between two nodes. Originally used with data from the Stanford Encyclopedia of Philosophy.
+         Python · 2022-12-08 · NOASSERTION
+     7★  graph-genome/graph_summarization   [I 语义缩放/LOD]
+         Browser for Graph Genomes built with VG based on Graph Summarization to provide semantic zoom.  As a user zooms in on a graph genome, the topology becomes more complex. Provides visualizatio
+         Jupyter Notebook · 2019-12-05 · NOASSERTION
+     6★  enggiqbal/mlgd   [I 语义缩放/LOD]
+         multi level tree based approach for interactive graph visualization with semantic zoom
+         Jupyter Notebook · 2024-02-11 · 无许可
+     5★  NafeesMansoor/CodeCortex   [J 焦点+上下文]
+         CodeCortex is an adaptive semantic intelligence engine for large-scale code understanding. It builds a persistent local knowledge graph of your codebase so AI tools can focus only on what ma
+         Python · 2026-08-30 · NOASSERTION
+     4★  coldfruits/2018tradenetworkgraphs   [H 路径查找]
+         Visualizing major trade relations between countries in 2018 using social network analytics in R. R analysis includes: density, average path length, transitivity, global clustering, reciproci
+         R · 2021-02-18 · 无许可
+     4★  cns-iu/map4sci   [I 语义缩放/LOD]
+         Implementation of a graph algorithm that uses a multi level tree based approach for interactive graph visualization with semantic zoom (ZMLT).
+         C++ · 2025-01-07 · MIT
+     4★  LHMdanchaofan/ChineseJadeKnowledgeGraph   [K 中文知识图谱]
+         使用sigma.js完成的中文玉器知识图谱的可视化展示
+         JavaScript · 2022-09-17 · 无许可
+     2★  Grey00000/shortest-distance-between-two-nodes-in-a-graph-visualization   [H 路径查找]
+         makes a visualization of shortest path algorithm functions in a graph
+         C++ · 2026-08-24 · 无许可
+     2★  ShivPrashant777/graph-visualization   [H 路径查找]
+         Create custom graphs, generate BFS, DFS animations and find path between nodes using best first search or A* Algorithm.
+         JavaScript · 2025-07-11 · 无许可
+     2★  Sharvesh93/OptiPath   [H 路径查找]
+         OptiPath is a Python-based graph optimization tool that implements Dijkstra's algorithm to calculate and visualize the shortest path between nodes. It supports CSV-based graph data, generate
+         Python · 2026-08-24 · 无许可
+     2★  TruecoderSri/Delhi-Dijkstras-Path   [H 路径查找]
+         In this project we use dijkstras algorithm to find the nearest distance between any 2 places in the city which're visualized as graph nodes.
+         JavaScript · 2024-06-17 · 无许可
+     2★  rahamoosavi1378/UCS-algorithm-visualization   [H 路径查找]
+         A graph editor with UCS (Uniform Cost Search) algorithm visualization. Built with HTML, CSS, and JavaScript, this tool allows users to create nodes, edges, and run step-by-step UCS to find t
+         JavaScript · 2025-04-04 · MIT
+     2★  Ishpreet-ux/frog_jump   [H 路径查找]
+         Frog Jump Path Finder is an interactive visualization project that demonstrates shortest path concepts using graph traversal. Lily pads represent nodes and connections represent edges. Using
+         HTML · 2026-05-17 · 无许可
+     2★  chauhansachin13/Dijkstra-s_Algorithm_Demonstrator   [H 路径查找]
+         This Java GUI application visualizes Dijkstra's algorithm, allowing users to generate random graphs, input start and end nodes, and display the shortest path between them. The interface dyna
+         Java · 2024-09-04 · MIT
+     2★  lordalisat/property-graph-schema-zooming   [I 语义缩放/LOD]
+         An initial concept for Semantic Zooming on Property Graph Schemas
+         TypeScript · 2022-11-29 · 无许可
+     1★  prathamesh-bhujbal/Path-Vizualizer-Dijkstra_CPP   [H 路径查找]
+         a C++ application that uses Dijkstra's algorithm to find the shortest path between two nodes in a graph, with an optional graphical user interface for visualization
+         C++ · 2023-09-27 · 无许可
+     1★  ivanferrier55/SpecuLoop   [I 语义缩放/LOD]
+         Persistent semantic state engine for AI agents — knowledge graphs, dynamic RAG, semantic zoom, bidirectional natural language translation, provenance tracking, self-extending graph.
+         Python · 2026-09-15 · MIT
+     1★  Kaiserhuang/ujtl-knowledge-graph   [K 中文知识图谱]
+         美国通用联合任务清单(UJTL)中文知识图谱 — 1453个任务全量中译 + OWL本体 + RDF图谱 + 本地可视化应用
+         Python · 2026-07-31 · NOASSERTION
+     1★  zengzhechun/stats-distribution-app   [K 中文知识图谱]
+         交互式统计分布图解：面向临床医生的零依赖单文件 HTML 应用（随机变量、离散/连续分布、联合分布、矩、中心极限定理、分布关系网络、公式符号与级数可视化）
+         HTML · 2026-07-11 · 无许可
+     0★  Jenak26/deterministic-algorithm-execution-debugger   [G 深链接/分享状态]
+         Interactive algorithm debugger for sorting, pathfinding, graphs, BSTs & DP — 60 FPS hardware-accelerated Canvas renderer, zero-allocation step recorder, LZ-String URL state sharing & Web Aud
+         TypeScript · 2026-07-01 · MIT
+     0★  pakhibansal/Google-Maps-Path-Finder   [H 路径查找]
+         Applied the knowledge of Graph Algorithms to find out shortest paths between cities
+         C · 2020-01-06 · 无许可
+     0★  PerzivaL099/NeuralMap   [I 语义缩放/LOD]
+         A self-hosted, neural-inspired knowledge graph with semantic zoom and AI-driven connection analysis. Built with FastAPI, Neo4j, and Tauri.
+         Python · 2026-05-04 · 无许可
+     0★  pranavajy/graphmind   [I 语义缩放/LOD]
+         Transform PDFs, slide decks, and web clips into a living 3D knowledge graph. Semantic chunking turns static    documents into interconnected nodes. Navigate your second brain spatially — rot
+         TypeScript · 2026-03-26 · 无许可
+     0★  dihannahdi/mycelium   [I 语义缩放/LOD]
+         A bio-inspired context protocol for DataHub agents: budgeted foraging over the lineage graph, three-level semantic zoom, working memory that prunes itself, and reflex answers that never call
+         Python · 2026-07-28 · Apache-2.0
+     0★  MuhammadMalik297/Interactive-Data-Visualizations   [J 焦点+上下文]
+         Processed text data with NLTK and visualized insights using D3.js. Built a Flask backend to serve interactive graph/tree visualizations with brushing, linking, and Focus+Context techniques.
+         Python · 2025-04-26 · 无许可
+     0★  VJ627/Data-visualization   [J 焦点+上下文]
+         introduction to data visualization for effective communication of information. Topics include context understanding, selecting appropriate graphs/visuals, and conveying data effectively. The
+         ? · 2026-01-22 · 无许可
+     0★  Prashant-hub02/Risk-Relationship-Visualizer   [J 焦点+上下文]
+         This is a Python application that demonstrates graph database concepts using Neo4j to visualize relationships between risks, controls, regulations, and processes in a risk management context
+         HTML · 2025-09-11 · 无许可
+     0★  chiradeep-varma/codemap   [J 焦点+上下文]
+         Local-first codebase visualizer. Map any project as an interactive graph, focus on any feature to see its full connection trace, and export structural trace maps as markdown for LLM context.
+         JavaScript · 2026-05-02 · MIT
+     0★  KeyPlus666/multidimensional-map-view   [K 中文知识图谱]
+         多维映射视图 — 飞书多维表格配置可视化插件（公式/引用/关联透视、依赖关系图、变更影响分析、AI 诊断）
+         TypeScript · 2026-09-03 · 无许可
+     0★  lcx0cd/X2fanyingdui   [K 中文知识图谱]
+         一个基于React的智能公式演化系统，通过AI对话和数据可视化帮助用户探索数据关系和公式演化。集成OpenAI和Google Gemini API，支持多目标优化。
+         ? · 2025-03-17 · Apache-2.0

@@ -1,0 +1,161 @@
+Problems solved since 2015 ==
+
+
+=== Algebra ===
+Jacobian conjecture for more than 2 dimensions (Levent Alpöge, 2026 using Claude Fable 5).
+Dixmier conjecture for 
+  
+    
+      
+        n
+        ≥
+        3
+      
+    
+    {\displaystyle n\geq 3}
+  
+, stably equivalent to the Jacobian conjecture.
+Mazur's conjecture B (Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020).
+Suita conjecture (Qi'an Guan and Xiangyu Zhou, 2015).
+
+
+==== Group theory ====
+Existence of a non-sofic, discrete, countable group (solution in an anonymized paper published by OpenAI, 2026).
+Umbral moonshine conjecture (John F. R. Duncan, Michael J. Griffin, Ken Ono, 2015).
+
+
+=== Analysis ===
+Sendov's conjecture and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).
+Crouzeix's conjecture (Shanmu Jin using GPT-5.6 Sol, 2026. Independent proof by Emiel Lorist and Felix Schwenninger, 2026).
+Heil–Ramanathan–Topiwala conjecture (Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using GPT-5.6 Pro, 2026).
+Mizohata–Takeuchi conjecture (Hannah Cairo, 2025).
+
+
+=== Combinatorics ===
+Erdős unit distance conjecture (published in an anonymized paper by OpenAI, 2026).
+Bunkbed conjecture (Nikita Gladkov, Igor Pak, Alexander Zimin, 2025).
+Erdős sumset conjecture (Joel Moreira, Florian Richter, Donald Robertson, 2018).
+McMullen's g-conjecture on the possible numbers of faces of different dimensions in a simplicial sphere (also Grünbaum conjecture, several conjectures of Kühnel). (Karim Adiprasito, 2018).
+Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016).
+Erdős discrepancy problem (Terence Tao, 2015)
+
+
+=== Dynamical systems ===
+Eremenko's conjecture: every component of the escaping set of an entire transcendental function is unbounded. (David Martí-Pete, Lasse Rempe, and James Waterman, 2025).
+Zimmer's conjecture (Aaron Brown, David Fisher, and Sebastián Hurtado-Salazar, 2017).
+
+
+=== Game theory ===
+Existence of a non-terminating game of beggar-my-neighbour (Brayden Casella, 2024).
+
+
+=== Geometry ===
+Talagrand's convexity conjecture (Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026).
+Carathéodory conjecture for surfaces of smoothness 
+  
+    
+      
+        
+          C
+          
+            4
+          
+        
+      
+    
+    {\displaystyle C^{4}}
+  
+ (Brendan Guilfoyle and Wilhelm Klingenberg, 2025).
+Einstein problem (David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss, 2024).
+Egan conjecture (Sergei Drozdov, 2023).
+Existence of a complex structure on 
+  
+    
+      
+        
+          S
+          
+            6
+          
+        
+      
+    
+    {\displaystyle S^{6}}
+  
+ (Levent Alpöge, 2026 using Claude Fable 5).
+Keller's conjecture (Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019).
+Maximal rank conjecture (Eric Larson, 2018).
+Weibel's conjecture (Moritz Kerz, Florian Strunk, and Georg Tamme, 2018).
+Yau's conjecture (Antoine Song, 2018).
+Pentagonal tiling (Michaël Rao, 2017).
+
+
+=== Graph theory ===
+Dinitz–Garg–Goemans conjecture (Dmitry Rybin using GPT-5.6 Pro, 2026).
+Kahn–Kalai conjecture (Jinyoung Park and Huy Tuan Pham, 2022).
+Blankenship–Oporowski conjecture on the book thickness of subdivisions (Vida Dujmović, David Eppstein, Robert Hickingbotham, Pat Morin, and David Wood, 2021).
+Ringel's conjecture that the complete graph 
+  
+    
+      
+        
+          K
+          
+            2
+            n
+            +
+            1
+          
+        
+      
+    
+    {\displaystyle K_{2n+1}}
+  
+ can be decomposed into 
+  
+    
+      
+        2
+        n
+        +
+        1
+      
+    
+    {\displaystyle 2n+1}
+  
+ copies of any tree with 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+ edges (Richard Montgomery, Benny Sudakov, Alexey Pokrovskiy, 2020).
+Disproof of Hedetniemi's conjecture on the chromatic number of tensor products of graphs (Yaroslav Shitov, 2019).
+Kelmans–Seymour conjecture (Dawei He, Yan Wang, and Xingxing Yu, 2020).
+Goldberg–Seymour conjecture (Guantao Chen, Guangming Jing, and Wenan Zang, 2019).
+Babai's problem (Alireza Abdollahi, Maysam Zallaghi, 2015).
+
+
+=== Number theory ===
+André–Oort conjecture (Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021).
+Duffin–Schaeffer theorem (Dimitris Koukoulopoulos, James Maynard, 2019).
+Main conjecture in Vinogradov's mean-value theorem (Jean Bourgain, Ciprian Demeter, Larry Guth, 2015).
+
+
+=== Ramsey theory ===
+Burr–Erdős conjecture (Choongbum Lee, 2017).
+Boolean Pythagorean triples problem (Marijn Heule, Oliver Kullmann, Victor W. Marek, 2016).
+
+
+=== Theoretical computer science ===
+Sensitivity conjecture for Boolean functions (Hao Huang, 2019).
+
+
+=== Topology ===
+Deciding whether the Conway knot is a slice knot (Lisa Piccirillo, 2020).
+
+
+== 

@@ -1,0 +1,26 @@
+================================================================================
+Dixmier 猜想条目：与雅可比的等价关系 + 2026 后的状态
+================================================================================
+  条目: Dixmier conjecture  2261 字符
+   · In algebra, the Dixmier conjecture, stated by Jacques Dixmier in 1968, originally asked whether any endomorphism of the first Weyl algebra A 1 {\displaystyle A_{1}} over a field of characteristic zero is an automorphism.
+   · The analogous statement for the n {\displaystyle n} -th Weyl algebra A n {\displaystyle A_{n}} was recorded in 1982 by Bass, Connell, and Wright, who attributed it to communications from Leonid Vaserstein and Victor Kac, and was later referred to as the "generalized Dixmier conjecture".
+   · Tsuchimoto in 2005, and independently Belov-Kanel and Kontsevich in 2007, showed that the Dixmier conjecture is stably equivalent to the Jacobian conjecture: the Dixmier conjecture for the n-th Weyl algebra A n {\displaystyle A_{n}} implies the Jacobian conjecture for polynomial maps in n variables, while conversely the Jacobian conjecture in 2 n {\displaystyle 2n} variables implies the Dixmier conjecture for A n {\displaystyle A_{n}} .
+   · In July 2026, a counterexample to the Jacobian conjecture in three variables was found, which by the first of these implications shows that the Dixmier conjecture is false for A n {\displaystyle A_{n}} for all n ≥ 3 {\displaystyle n\geq 3} .
+   · The conjecture remains open for the first and second Weyl algebras, since the Jacobian conjecture is still open in two variables.
+   · The case of the first Weyl algebra A 1 {\displaystyle A_{1}} was the problem originally posed by Dixmier; a proposed proof of this case was announced by Alexander Zheglov in 2024. == References ==
+
+================================================================================
+雅可比条目里讲 Dixmier 的全部原句（核对指标 n 的对应）
+================================================================================
+   · {{Short description|About polynomials in several variables}} {{Use American English|date=July 2026}} {{Use mdy dates|date=July 2026}} {{Infobox mathematical statement | name = Planar Jacobian conjecture | image = | caption = | field = [[Algebraic geometry]] | conjectured by = [[Ludwig Kraus]] | conjecture date = 1884 | open problem = Yes | implied by = | equivalent to = | generalizations = | consequences = }} {{Infobox mathematical statement | name = Jacobian conjecture | image = | caption = | field = [[Algebraic geometry]] | conjectured by = [[Ott-Heinrich Keller]] | conjecture date = 1939 | open problem = Only 
+
+   · For n\ge 1, the [[Dixmier conjecture]] \mathrm{DC}_n states that every [[endomorphism]] of the n-th [[Weyl algebra]] A_n over a field of characteristic zero is an [[automorphism]].
+
+   · For each n, the Dixmier conjecture for A_n implies the n-dimensional Jacobian conjecture. and, independently, Alexei Belov-Kanel and [[Maxim Kontsevich]] showed that the Jacobian conjecture in 2n variables implies the Dixmier conjecture for A_n.
+
+   · Kossivi Adjamagbo and Arno van den Essen gave a self-contained algebraic proof and established the more precise chain of implications :\mathrm{JC}_{2n}\Longrightarrow\mathrm{PC}_n\Longrightarrow\mathrm{DC}_n\Longrightarrow\mathrm{JC}_n, where \mathrm{PC}_n denotes the Poisson conjecture for the canonical complex Poisson algebra in 2n variables. Consequently, the all-dimensional forms of the Jacobian, Poisson, and Dixmier conjectures are equivalent.
+
+================================================================================
+「2015 年以来已解决」里 Dixmier 那一条（原文，去掉公式噪声）
+================================================================================
+    == === Algebra === Jacobian conjecture for more than 2 dimensions (Levent Alpöge, 2026 using Claude Fable 5). Dixmier conjecture for n ≥ 3 {\displaystyle n\geq 3} , stably equivalent to the Jacobian conjecture. Mazur's conjecture B (Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020). Suita conjecture (

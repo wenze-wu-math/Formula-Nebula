@@ -1,0 +1,61 @@
+
+================================================================================
+《Locally nilpotent derivation》  39503 字符
+================================================================================
+  · Choose a local slice, i.e. an element r ∈ ker ⁡ ∂ 2 ∖ ker ⁡ ∂ {\displaystyle r\in \ker \partial ^{2}\setminus \ker \partial } and put f = ∂ r ∈ ker ⁡ ∂ {\displaystyle f=\partial r\in \ker \partial } .
+  · Finding the generators of each B i {\displaystyle B_{i}} and checking whether B i = B i + 1 {\displaystyle B_{i}=B_{i+1}} is a standard computation using Gröbner bases. == Slice theorem == Assume that ∂ ∈ LND ⁡ ( A ) {\displaystyle \partial \in \operatorname {LND} (A)} admits a slice, i.e. s ∈ A {\displaystyle s\in A} such that ∂ s = 1 {\displaystyle \partial s=1} .
+  · The slice theorem asserts that A {\displaystyle A} is a polynomial algebra ( ker ⁡ ∂ ) [ s ] {\displaystyle (\ker \partial )[s]} and ∂ = d d s {\displaystyle \partial ={\tfrac {d}{ds}}} .
+  · For any local slice r ∈ ker ⁡ ∂ ∖ ker ⁡ ∂ 2 {\displaystyle r\in \ker \partial \setminus \ker \partial ^{2}} we can apply the slice theorem to the localization A ∂ r {\displaystyle A_{\partial r}} , and thus obtain that A {\displaystyle A} is locally a polynomial algebra with a standard derivation.
+  · However, it is conjectured that Γ {\displaystyle \Gamma } is always contractible. == Examples == === Example 1 === The standard coordinate derivations ∂ ∂ x i {\displaystyle {\tfrac {\partial }{\partial x_{i}}}} of a polynomial algebra k [ x 1 , … , x n ] {\displaystyle k[x_{1},\dots ,x_{n}]} are locally nilpotent.
+  · The corresponding G a {\displaystyle \mathbb {G} _{a}} -actions are translations: t ⋅ x i = x i + t {\displaystyle t\cdot x_{i}=x_{i}+t} , t ⋅ x j = x j {\displaystyle t\cdot x_{j}=x_{j}} for j ≠ i {\displaystyle j\neq i} . === Example 2 (Freudenburg's (2,5)-homogeneous derivation) === Source: Let f 1 = x 1 x 3 − x 2 2 {\displaystyle f_{1}=x_{1}x_{3}-x_{2}^{2}} , f 2 = x 3 f 1 2 + 2 x 1 2 x 2 f 1 + x 5 {\displaystyle f_{2}=x_{3}f_{1}^{2}+2x_{1}^{2}x_{2}f_{1}+x^{5}} , and let ∂ {\displaystyle \partial } be the Jacobian derivation ∂ ( f 3 ) = det [ ∂ f i ∂ x j ] i , j = 1 , 2 , 3 {\textstyle \partial (f_{3})=\det \left[{\tfrac {\partial f_{i}}{\partial x_{j}}}\right]_{i,j=1,2,3}} .
+  · The locally nilpotent derivation a ∂ ∂ b + c ∂ ∂ d {\displaystyle a{\tfrac {\partial }{\partial b}}+c{\tfrac {\partial }{\partial d}}} of its coordinate ring corresponds to a natural action of G a {\displaystyle \mathbb {G} _{a}} on S l 2 ( k ) {\displaystyle Sl_{2}(k)} via right multiplication of upper triangular matrices.
+  · A derivation of A {\displaystyle A} is called triangular with respect to this system of variables, if ∂ f 1 ∈ k {\displaystyle \partial f_{1}\in k} and ∂ f i ∈ k [ f 1 , … , f i − 1 ] {\displaystyle \partial f_{i}\in k[f_{1},\dots ,f_{i-1}]} for i = 2 , … , n {\displaystyle i=2,\dots ,n} .
+  · A derivation is called triangulable if it is conjugate to a triangular one, or, equivalently, if it is triangular with respect to some system of variables.
+  · Every triangular derivation is locally nilpotent.
+  · The converse is true for ≤ 2 {\displaystyle \leq 2} by Rentschler's theorem above, but it is not true for n ≥ 3 {\displaystyle n\geq 3} .
+
+================================================================================
+《Nagata's conjecture》  2161 字符
+================================================================================
+  · In algebra, Nagata's conjecture states that Nagata's automorphism of the polynomial ring k[x,y,z] is wild.
+  · The conjecture was proposed by Nagata (1972) and proved by Ualbai U.
+  · Ltd., MR 0337962 Umirbaev, Ualbai U.; Shestakov, Ivan P.
+  · (2004), "The tame and the wild automorphisms of polynomial rings in three variables", Journal of the American Mathematical Society, 17 (1): 197–227, doi:10.1090/S0894-0347-03-00440-5, ISSN 0894-0347, MR 2015334
+
+================================================================================
+《Tame automorphism》  0 字符
+================================================================================
+
+================================================================================
+《Shestakov–Umirbaev theorem》  0 字符
+================================================================================
+
+================================================================================
+《Jung–van der Kulk theorem》  0 字符
+================================================================================
+
+================================================================================
+《Affine space》  87693 字符
+================================================================================
+  （无相关句子）
+
+================================================================================
+《Cremona group》  19362 字符
+================================================================================
+  （无相关句子）
+
+================================================================================
+《Polynomial automorphism》  0 字符
+================================================================================
+
+================================================================================
+Wikipedia 全文搜索：insource 找 linearization problem / conjecture
+================================================================================
+
+查询: insource:"linearization problem" additive group affine   命中 0
+
+查询: insource:"triangularization problem" derivation   命中 0
+
+查询: "linearization conjecture" affine space   命中 1
+  · Koras–Russell cubic threefold
+      and proving that the Linearization Conjecture for n = 3 {\displaystyle n=3} holds if all those threefolds are exotic affine 3-spaces, that is, none of them

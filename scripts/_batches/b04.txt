@@ -1,0 +1,135 @@
+ 540|a-cohen-macaulay>singularity|0.6|related|非 CM 是一类重要的坏奇点
+ 541|a-regular-sequence>krull-dim|0.62|related|正则序列用来切割维数
+ 542|a-ext-tor>derived-functor|0.95|related|Ext 与 Tor 是最基本的导出函子
+ 543|a-ext-tor>coherent-sheaf|0.6|defines|层的 Ext 刻画形变与扩张
+ 544|a-ext-tor>intersection-number|0.58|related|Tor₁ 度量相交的重数
+ 545|a-spectral-sequence>derived-category|0.7|computes|谱序列是导出范畴计算的具体工具
+ 546|a-spectral-sequence>a-base-change-thm|0.68|related|基变换谱序列是它的重要应用
+ 547|a-injective-resolution>derived-functor|0.9|defines|内射消解用来定义右导出函子
+ 548|a-injective-resolution>a-ext-tor|0.82|defines|Ext 由内射消解定义
+ 549|a-koszul>a-cohen-macaulay|0.7|defines|Koszul 复形用来判定 CM 性
+ 550|a-koszul>a-regular-sequence|0.86|related|是正则序列的标准消解
+ 551|a-formal-power-series>a-completion|0.82|related|形式幂级数环是完备化的结果
+ 552|a-formal-power-series>regular-local-ring|0.75|generalizes|完备正则局部环是它的原型
+ 553|a-formal-power-series>formal-scheme|0.62|related|给出形式概形的局部模型
+ 554|a-flatness-criterion>flat-morphism|0.92|related|平坦态射的判定定理
+ 555|a-flatness-criterion>a-faithfully-flat|0.8|generalizes|忠实平坦是平坦的加强
+ 556|a-flatness-criterion>a-base-change-thm|0.7|property|平坦性是基变换成立的关键条件
+ 557|a-flatness-criterion>a-ext-tor|0.72|related|用 Tor₁ 消没来判别
+ 558|a-faithfully-flat>flat-morphism|0.78|related|是平坦态射中更强的一类
+ 559|a-faithfully-flat>etale-cohomology|0.55|related|下降理论是平展层的技术基础
+ 560|a-faithfully-flat>fibred-product|0.6|related|下降沿纤维积进行
+ 561|a-kahler-differential>smooth-morphism|0.9|related|Ω 局部自由是光滑性判定的核心
+ 562|a-kahler-differential>tangent-space|0.86|related|Kähler 微分是余切空间的代数版
+ 563|a-kahler-differential>formal-scheme|0.66|defines|刻画形式几何中的无穷小结构
+ 564|a-kahler-differential>a-smooth-criterion|0.88|defines|是光滑判据的组成部分
+ 565|a-smooth-criterion>smooth-morphism|0.9|related|给出光滑态射的完整判别
+ 566|a-formal-smooth>formal-scheme|0.8|related|形式几何的核心概念
+ 567|a-formal-smooth>smooth-morphism|0.68|implies|光滑蕴含形式光滑
+ 568|a-formal-smooth>a-smooth-criterion|0.7|equivalent|与光滑判据互为补充
+ 569|a-stalk>sheaf|0.92|related|茎是层最基本的局部不变量
+ 570|a-stalk>structure-sheaf|0.82|equivalent|结构层的茎即局部环
+ 571|a-stalk>localization|0.8|equivalent|茎正是局部化的结果
+ 572|a-stalk>coherent-sheaf|0.7|defines|凝聚性可以用茎逐点检验
+ 573|a-oyama>coherent-sheaf|0.85|defines|给出凝聚性的局部判据
+ 574|a-oyama>a-stalk|0.8|defines|判据完全依赖茎
+ 575|a-skyscraper>sheaf|0.6|related|最简单的非零层
+ 576|a-skyscraper>a-stalk|0.7|related|只在单点茎非零
+ 577|a-skyscraper>long-exact-sequence|0.55|defines|常用来检验正合性
+ 578|a-quasi-coherent>coherent-sheaf|0.9|generalizes|凝聚层是拟凝聚层的特例
+ 579|a-quasi-coherent>spec-functor|0.8|equivalent|给出仿射概形上的模—层等价
+ 580|a-quasi-coherent>structure-sheaf|0.72|related|结构层是最基本的拟凝聚层
+ 581|a-quasi-coherent>a-serre-affine|0.75|equivalent|等价性导致仿射上上同调消没
+ 582|a-serre-affine>sheaf-cohomology|0.85|defines|刻画高阶上同调全消没的概形
+ 583|a-serre-affine>serre-vanishing|0.6|analogy|与 Serre 消没定理呼应
+ 584|a-cech-to-derived>cech-cohomology|0.95|equivalent|证明 Čech 上同调等于层上同调
+ 585|a-cech-to-derived>sheaf-cohomology|0.88|computes|给出可计算的层上同调
+ 586|a-cech-to-derived>a-serre-affine|0.72|depends|依赖仿射片上无高阶上同调
+ 587|a-godement>sheaf-cohomology|0.82|defines|用来定义层上同调
+ 588|a-godement>derived-functor|0.75|defines|通过消解定义导出函子
+ 589|a-godement>a-injective-resolution|0.7|related|松层扮演内射对象的角色
+ 590|a-hypercohomology>derived-category|0.78|equivalent|导出范畴中上同调即超上同调
+ 591|a-hypercohomology>a-spectral-sequence|0.75|related|滤复形给出收敛到它的谱序列
+ 592|a-hypercohomology>hodge-theory|0.6|related|de Rham 复形的超上同调
+ 593|a-leray-ss>sheaf-cohomology|0.85|computes|计算层上同调的标准工具
+ 594|a-leray-ss>a-spectral-sequence|0.85|related|是最常用的谱序列
+ 595|a-leray-ss>a-pushforward-pullback|0.76|related|以高阶直接像为 E₂ 项
+ 596|a-leray-ss>cohomology-base-change|0.62|related|与基变换定理密切相关
+ 597|a-hodge-de-rham>hodge-theory|0.85|depends|Hodge 理论的出发点
+ 598|a-hodge-de-rham>sheaf-cohomology|0.8|related|联系微分形式与层上同调
+ 599|a-hodge-de-rham>a-hypercohomology|0.7|related|用超上同调表述
+ 600|a-pushforward-pullback>sheaf|0.8|related|层论操作的总纲
+ 601|a-pushforward-pullback>morphism|0.72|related|沿态射的函子性
+ 602|a-pushforward-pullback>derived-functor|0.78|implies|推前不正合导致高阶直接像
+ 603|a-base-change-thm>cohomology-base-change|0.95|related|即上同调基变换定理
+ 604|a-base-change-thm>a-pushforward-pullback|0.72|related|涉及推前与拉回的交换
+ 605|a-base-change-thm>flat-morphism|0.7|property|平坦时基变换成立
+ 606|a-cartier-divisor>divisor|0.92|defines|是除子的两种定义之一
+ 607|a-cartier-divisor>invertible-sheaf|0.9|equivalent|Cartier 除子与可逆层一一对应
+ 608|a-cartier-divisor>a-ample|0.7|related|正性通过可逆层表述
+ 609|a-cartier-divisor>normalization|0.6|related|正规性使 Cartier 可嵌入 Weil
+ 610|a-ample>invertible-sheaf|0.85|property|丰沛性是可逆层的性质
+ 611|a-ample>serre-vanishing|0.72|related|丰沛层有高阶上同调消没
+ 612|a-ample>projective-cohomology|0.7|related|给出到射影空间的嵌入
+ 613|a-ample>nakai-moishezon|0.8|defines|Nakai–Moishezon 判据刻画丰沛性
+ 614|a-ample>intersection-number|0.68|defines|判据以自交数为条件
+ 615|a-line-bundle-degree>divisor|0.8|related|度即所伴随除子的次数
+ 616|a-line-bundle-degree>riemann-roch|0.78|related|度是 Riemann–Roch 的输入
+ 617|a-line-bundle-degree>jacobian|0.7|related|次数为 0 的部分构成 Jacobian
+ 618|a-line-bundle-degree>invertible-sheaf|0.75|related|线丛的基本数值不变量
+ 619|a-verdier-duality>derived-category|0.85|related|在导出范畴中表述
+ 620|a-verdier-duality>serre-duality|0.8|generalizes|Serre 对偶是它的特例
+ 621|a-verdier-duality>a-dualizing-complex|0.82|computes|对偶化复形实现该对偶
+ 622|a-dualizing-complex>serre-duality|0.88|computes|Serre 对偶由它实现
+ 623|a-dualizing-complex>canonical-sheaf|0.8|related|CM 情形退化为典范层
+ 624|a-dualizing-complex>a-cohen-macaulay|0.7|related|CM 时结构最简洁
+ 625|a-stein-factorization>coherent-sheaf|0.75|related|有限性定理针对凝聚层
+ 626|a-stein-factorization>serre-finiteness|0.72|related|与 Serre 有限性定理同源
+ 627|a-stein-factorization>morphism|0.65|related|是态射的结构分解
+ 628|a-stein-factorization>a-pushforward-pullback|0.7|related|研究高阶直接像的有限性
+ 629|b-riemann-roch-curve>riemann-roch|0.95|related|即经典 Riemann–Roch 定理
+ 630|b-riemann-roch-curve>genus|0.85|related|公式以亏格为核心参数
+ 631|b-riemann-roch-curve>b-serre-duality-curve|0.82|related|对偶项提供公式的另一半
+ 632|b-riemann-roch-curve>canonical-sheaf|0.8|related|典范除子出现在修正项中
+ 633|b-riemann-roch-curve>linear-system|0.72|equivalent|ℓ(D) 即线性系统的维数加一
+ 634|b-serre-duality-curve>serre-duality|0.92|related|是 Serre 对偶在曲线上的形态
+ 635|b-serre-duality-curve>sheaf-cohomology|0.7|related|用上同调表述
+ 636|b-serre-duality-curve>canonical-sheaf|0.75|related|以典范层为对偶对象
+ 637|b-hurwitz>genus|0.88|computes|计算亏格的标准工具
+ 638|b-hurwitz>riemann-surface|0.82|related|分歧覆盖理论
+ 639|b-hurwitz>b-hyperelliptic|0.7|equivalent|超椭圆曲线即到 ℙ¹ 的分歧覆盖
+ 640|b-canonical-embedding>canonical-sheaf|0.88|related|典范除子给出的嵌入
+ 641|b-canonical-embedding>b-hyperelliptic|0.8|depends|非超椭圆是嵌入的前提
+ 642|b-canonical-embedding>linear-system|0.72|related|典范系统
+ 643|b-canonical-embedding>genus|0.7|related|嵌入到 ℙ^{g−1}
+ 644|b-hyperelliptic>genus|0.72|defines|由亏格与方程刻画
+ 645|b-weil-pairing>elliptic-curve|0.88|related|椭圆曲线上最重要的配对
+ 646|b-weil-pairing>b-tate-module|0.8|defines|刻画挠点结构
+ 647|b-weil-pairing>abelian-variety|0.62|generalizes|可推广到 Abel 簇
+ 648|b-tate-module>elliptic-curve|0.82|computes|椭圆曲线的 ℓ-adic 实现
+ 649|b-tate-module>abelian-variety|0.72|related|Abel 簇的 Tate 模
+ 650|b-tate-module>langlands|0.68|related|Galois 表示是 Langlands 的语言
+ 651|b-mordell-weil>elliptic-curve|0.9|related|椭圆曲线有理点群的结构定理
+ 652|b-mordell-weil>b-tate-module|0.6|related|算术信息的线性化
+ 653|b-mordell-weil>abelian-variety|0.7|generalizes|可推广到 Abel 簇
+ 654|b-elliptic-integral>elliptic-curve|0.92|related|曲线得名的来源
+ 655|b-elliptic-integral>canonical-sheaf|0.7|equivalent|全纯微分即典范层
+ 656|b-elliptic-integral>b-weil-pairing|0.55|sameFamily|同属椭圆曲线理论
+ 657|b-chow-variety>jacobian|0.85|equivalent|零维 Chow 群同构于 Jacobian
+ 658|b-chow-variety>chow-ring|0.82|related|Chow 群是 Chow 环的分次片
+ 659|b-chow-variety>abelian-variety|0.65|related|Albanese 是 Abel 簇
+ 660|b-blowup-surface>blowup|0.92|computes|即爆破构造
+ 661|b-blowup-surface>b-enriques-kodaira|0.7|related|曲面分类的基本操作
+ 662|b-blowup-surface>resolution|0.72|related|用于消解奇点
+ 663|b-blowup-surface>b-adjunction-formula|0.68|computes|用伴随公式计算例外曲线
+ 664|b-castelnuovo-criterion>b-blowup-surface|0.88|defines|是爆破的逆运算判据
+ 665|b-castelnuovo-criterion>mmp|0.78|related|维数 2 极小模型纲领的基石
+ 666|b-castelnuovo-criterion>b-adjunction-formula|0.75|defines|判据依赖伴随公式
+ 667|b-castelnuovo-criterion>intersection-number|0.7|related|以自交数 −1 为条件
+ 668|b-enriques-kodaira>surface-classification|0.95|related|即曲面分类定理
+ 669|b-enriques-kodaira>kodaira-dimension|0.88|related|按 Kodaira 维数分类
+ 670|b-enriques-kodaira>k3-surface|0.8|equivalent|K3 是 κ = 0 类中的代表
+ 671|b-enriques-kodaira>mmp|0.7|related|是高维 MMP 的范式
+ 672|b-adjunction-formula>adjunction|0.95|related|即伴随公式
+ 673|b-adjunction-formula>intersection-number|0.82|related|把自交数与亏格联系起来
+ 674|b-adjunction-formula>canonical-sheaf|0.8|related|典范层是公式的核心

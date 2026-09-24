@@ -1,0 +1,2786 @@
+[
+ {
+  "id": "zariski-topology",
+  "imp": 0.91,
+  "rank": 0.8596491228070176,
+  "aspect": 13.4737
+ },
+ {
+  "id": "ideal-variety",
+  "imp": 0.93,
+  "rank": 0.894736842105263,
+  "aspect": 5.0128
+ },
+ {
+  "id": "nullstellensatz",
+  "imp": 0.97,
+  "rank": 0.9649122807017544,
+  "aspect": 15.7538
+ },
+ {
+  "id": "noetherian",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 16.7869
+ },
+ {
+  "id": "localization",
+  "imp": 0.89,
+  "rank": 0.8245614035087719,
+  "aspect": 11.2527
+ },
+ {
+  "id": "nakayama",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 11.6364
+ },
+ {
+  "id": "krull-dim",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 14.0274
+ },
+ {
+  "id": "noether-normalization",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 12.8
+ },
+ {
+  "id": "going-up",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 10.8936
+ },
+ {
+  "id": "valuation-ring",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 11.3778
+ },
+ {
+  "id": "sheaf",
+  "imp": 0.98,
+  "rank": 0.9824561403508771,
+  "aspect": 6.9189
+ },
+ {
+  "id": "structure-sheaf",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 14.0274
+ },
+ {
+  "id": "scheme",
+  "imp": 0.99,
+  "rank": 1,
+  "aspect": 11.1304
+ },
+ {
+  "id": "spec-functor",
+  "imp": 0.92,
+  "rank": 0.8771929824561403,
+  "aspect": 11.7701
+ },
+ {
+  "id": "prime-spectrum",
+  "imp": 0.94,
+  "rank": 0.9122807017543859,
+  "aspect": 12.8
+ },
+ {
+  "id": "coherent-sheaf",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 9.7524
+ },
+ {
+  "id": "invertible-sheaf",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 6.1783
+ },
+ {
+  "id": "ideal-sheaf",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 13.1282
+ },
+ {
+  "id": "fibred-product",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 11.907
+ },
+ {
+  "id": "flat-morphism",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 34.1333
+ },
+ {
+  "id": "smooth-morphism",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 14.6286
+ },
+ {
+  "id": "etale-morphism",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 5.5207
+ },
+ {
+  "id": "formal-scheme",
+  "imp": 0.64,
+  "rank": 0.3859649122807018,
+  "aspect": 3.4247
+ },
+ {
+  "id": "morphism",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 13.1282
+ },
+ {
+  "id": "coordinate-ring",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 11.7701
+ },
+ {
+  "id": "rational-map",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 11.907
+ },
+ {
+  "id": "blowup",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 12.0471
+ },
+ {
+  "id": "tangent-space",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 5.7321
+ },
+ {
+  "id": "singularity",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 15.0588
+ },
+ {
+  "id": "regular-local-ring",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 7.6992
+ },
+ {
+  "id": "dimension",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 9.3091
+ },
+ {
+  "id": "normalization",
+  "imp": 0.69,
+  "rank": 0.47368421052631565,
+  "aspect": 8.9825
+ },
+ {
+  "id": "dimension-fiber",
+  "imp": 0.61,
+  "rank": 0.3333333333333333,
+  "aspect": 17.6552
+ },
+ {
+  "id": "sheaf-cohomology",
+  "imp": 0.96,
+  "rank": 0.9473684210526315,
+  "aspect": 8.9825
+ },
+ {
+  "id": "cech-cohomology",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 3.9385
+ },
+ {
+  "id": "long-exact-sequence",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 18.963
+ },
+ {
+  "id": "serre-vanishing",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 10.449
+ },
+ {
+  "id": "serre-finiteness",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 17.9649
+ },
+ {
+  "id": "projective-cohomology",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 20.898
+ },
+ {
+  "id": "serre-duality",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 12.642
+ },
+ {
+  "id": "canonical-sheaf",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 4.902
+ },
+ {
+  "id": "riemann-roch",
+  "imp": 0.89,
+  "rank": 0.8245614035087719,
+  "aspect": 9.1429
+ },
+ {
+  "id": "euler-characteristic",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 7.1608
+ },
+ {
+  "id": "derived-functor",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 16.7869
+ },
+ {
+  "id": "derived-category",
+  "imp": 0.67,
+  "rank": 0.4385964912280702,
+  "aspect": 17.3559
+ },
+ {
+  "id": "serre-cartan",
+  "imp": 0.58,
+  "rank": 0.28070175438596484,
+  "aspect": 6.321
+ },
+ {
+  "id": "cohomology-base-change",
+  "imp": 0.6,
+  "rank": 0.31578947368421045,
+  "aspect": 15.5152
+ },
+ {
+  "id": "riemann-surface",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 8.5254
+ },
+ {
+  "id": "genus",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 13.6533
+ },
+ {
+  "id": "divisor",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 10.3434
+ },
+ {
+  "id": "linear-system",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 8.192
+ },
+ {
+  "id": "bezout",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 5.7853
+ },
+ {
+  "id": "intersection-number",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 20.898
+ },
+ {
+  "id": "adjunction",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 8.7521
+ },
+ {
+  "id": "elliptic-curve",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 14.6286
+ },
+ {
+  "id": "abelian-variety",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 13.4737
+ },
+ {
+  "id": "jacobian",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 7.3143
+ },
+ {
+  "id": "castelnuovo",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 17.3559
+ },
+ {
+  "id": "surface-classification",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 8.9043
+ },
+ {
+  "id": "k3-surface",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 11.5056
+ },
+ {
+  "id": "chow-ring",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 6.6928
+ },
+ {
+  "id": "chern-class",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 20.0784
+ },
+ {
+  "id": "chern-character",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 4.4912
+ },
+ {
+  "id": "todd-class",
+  "imp": 0.65,
+  "rank": 0.4035087719298246,
+  "aspect": 4
+ },
+ {
+  "id": "grothendieck-riemann-roch",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 12.3373
+ },
+ {
+  "id": "k-theory",
+  "imp": 0.63,
+  "rank": 0.3684210526315789,
+  "aspect": 14.4225
+ },
+ {
+  "id": "hodge-theory",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 8.3252
+ },
+ {
+  "id": "hodge-conjecture",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 9.4815
+ },
+ {
+  "id": "standard-conjectures",
+  "imp": 0.48,
+  "rank": 0.10526315789473682,
+  "aspect": 8.5333
+ },
+ {
+  "id": "birational",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 15.2836
+ },
+ {
+  "id": "resolution",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 12.1905
+ },
+ {
+  "id": "mmp",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 15.2836
+ },
+ {
+  "id": "nakai-moishezon",
+  "imp": 0.69,
+  "rank": 0.47368421052631565,
+  "aspect": 14.4225
+ },
+ {
+  "id": "cone-theorem",
+  "imp": 0.64,
+  "rank": 0.3859649122807018,
+  "aspect": 6.1317
+ },
+ {
+  "id": "fano",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 12.0471
+ },
+ {
+  "id": "flip",
+  "imp": 0.58,
+  "rank": 0.28070175438596484,
+  "aspect": 12.4878
+ },
+ {
+  "id": "kodaira-dimension",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 6.4403
+ },
+ {
+  "id": "abundance",
+  "imp": 0.44,
+  "rank": 0.03508771929824564,
+  "aspect": 18.6182
+ },
+ {
+  "id": "moduli-space",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 13.8378
+ },
+ {
+  "id": "representable-functor",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 9.5701
+ },
+ {
+  "id": "hilbert-scheme",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 19.3208
+ },
+ {
+  "id": "stable-sheaf",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 8.678
+ },
+ {
+  "id": "git",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 6.0952
+ },
+ {
+  "id": "etale-cohomology",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 6.6065
+ },
+ {
+  "id": "weil-conjectures",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 8.063
+ },
+ {
+  "id": "lefschetz",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 7.8769
+ },
+ {
+  "id": "motive",
+  "imp": 0.52,
+  "rank": 0.17543859649122812,
+  "aspect": 8.3934
+ },
+ {
+  "id": "mirror-symmetry",
+  "imp": 0.6,
+  "rank": 0.31578947368421045,
+  "aspect": 8.5333
+ },
+ {
+  "id": "gromov-witten",
+  "imp": 0.57,
+  "rank": 0.26315789473684204,
+  "aspect": 8.127
+ },
+ {
+  "id": "stack",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 12.8
+ },
+ {
+  "id": "derived-algebraic-geometry",
+  "imp": 0.55,
+  "rank": 0.22807017543859656,
+  "aspect": 6.7368
+ },
+ {
+  "id": "fukaya-category",
+  "imp": 0.5,
+  "rank": 0.14035087719298248,
+  "aspect": 18.2857
+ },
+ {
+  "id": "langlands",
+  "imp": 0.58,
+  "rank": 0.28070175438596484,
+  "aspect": 13.4737
+ },
+ {
+  "id": "k-stability",
+  "imp": 0.47,
+  "rank": 0.087719298245614,
+  "aspect": 16
+ },
+ {
+  "id": "minimal-model-open",
+  "imp": 0.42,
+  "rank": 0,
+  "aspect": 18.963
+ },
+ {
+  "id": "a-krull-pit",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 14.8406
+ },
+ {
+  "id": "a-artin-rees",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 11.2527
+ },
+ {
+  "id": "a-krull-intersection",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 2.4388
+ },
+ {
+  "id": "a-associated-primes",
+  "imp": 0.64,
+  "rank": 0.3859649122807018,
+  "aspect": 12.1905
+ },
+ {
+  "id": "a-primary-decomposition",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 4.4912
+ },
+ {
+  "id": "a-integral-closure",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 14.4225
+ },
+ {
+  "id": "a-dedekind",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 5.391
+ },
+ {
+  "id": "a-dvr",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 18.6182
+ },
+ {
+  "id": "a-completion",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 2.2736
+ },
+ {
+  "id": "a-depth",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 14.4225
+ },
+ {
+  "id": "a-cohen-macaulay",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 12.642
+ },
+ {
+  "id": "a-regular-sequence",
+  "imp": 0.69,
+  "rank": 0.47368421052631565,
+  "aspect": 10.24
+ },
+ {
+  "id": "a-ext-tor",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 11.2527
+ },
+ {
+  "id": "a-spectral-sequence",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 4.9714
+ },
+ {
+  "id": "a-injective-resolution",
+  "imp": 0.6,
+  "rank": 0.31578947368421045,
+  "aspect": 12.0471
+ },
+ {
+  "id": "a-koszul",
+  "imp": 0.67,
+  "rank": 0.4385964912280702,
+  "aspect": 15.5152
+ },
+ {
+  "id": "a-formal-power-series",
+  "imp": 0.58,
+  "rank": 0.28070175438596484,
+  "aspect": 6.2061
+ },
+ {
+  "id": "a-flatness-criterion",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 12.962
+ },
+ {
+  "id": "a-faithfully-flat",
+  "imp": 0.65,
+  "rank": 0.4035087719298246,
+  "aspect": 12.0471
+ },
+ {
+  "id": "a-kahler-differential",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 13.4737
+ },
+ {
+  "id": "a-smooth-criterion",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 18.2857
+ },
+ {
+  "id": "a-formal-smooth",
+  "imp": 0.5,
+  "rank": 0.14035087719298248,
+  "aspect": 14.8406
+ },
+ {
+  "id": "a-stalk",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 2.7587
+ },
+ {
+  "id": "a-oyama",
+  "imp": 0.52,
+  "rank": 0.17543859649122812,
+  "aspect": 15.0588
+ },
+ {
+  "id": "a-skyscraper",
+  "imp": 0.5,
+  "rank": 0.14035087719298248,
+  "aspect": 6.4
+ },
+ {
+  "id": "a-quasi-coherent",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 6.4214
+ },
+ {
+  "id": "a-serre-affine",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 15.2836
+ },
+ {
+  "id": "a-cech-to-derived",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 7.6418
+ },
+ {
+  "id": "a-godement",
+  "imp": 0.55,
+  "rank": 0.22807017543859656,
+  "aspect": 12.1905
+ },
+ {
+  "id": "a-hypercohomology",
+  "imp": 0.6,
+  "rank": 0.31578947368421045,
+  "aspect": 9.8462
+ },
+ {
+  "id": "a-leray-ss",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 14.4225
+ },
+ {
+  "id": "a-hodge-de-rham",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 8.4628
+ },
+ {
+  "id": "a-pushforward-pullback",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 12.8
+ },
+ {
+  "id": "a-base-change-thm",
+  "imp": 0.63,
+  "rank": 0.3684210526315789,
+  "aspect": 8.9043
+ },
+ {
+  "id": "a-cartier-divisor",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 6.1687
+ },
+ {
+  "id": "a-ample",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 17.0667
+ },
+ {
+  "id": "a-line-bundle-degree",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 4.8075
+ },
+ {
+  "id": "a-verdier-duality",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 12.962
+ },
+ {
+  "id": "a-dualizing-complex",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 13.6533
+ },
+ {
+  "id": "a-stein-factorization",
+  "imp": 0.54,
+  "rank": 0.21052631578947376,
+  "aspect": 10.449
+ },
+ {
+  "id": "b-riemann-roch-curve",
+  "imp": 0.93,
+  "rank": 0.894736842105263,
+  "aspect": 14.6286
+ },
+ {
+  "id": "b-serre-duality-curve",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 12.0471
+ },
+ {
+  "id": "b-hurwitz",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 11.907
+ },
+ {
+  "id": "b-canonical-embedding",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 6.0515
+ },
+ {
+  "id": "b-hyperelliptic",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 7.5294
+ },
+ {
+  "id": "b-weil-pairing",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 9.5701
+ },
+ {
+  "id": "b-tate-module",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 3.0072
+ },
+ {
+  "id": "b-mordell-weil",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 9.7524
+ },
+ {
+  "id": "b-elliptic-integral",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 3.0872
+ },
+ {
+  "id": "b-chow-variety",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 7.336
+ },
+ {
+  "id": "b-blowup-surface",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 11.5056
+ },
+ {
+  "id": "b-castelnuovo-criterion",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 18.963
+ },
+ {
+  "id": "b-enriques-kodaira",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 13.6533
+ },
+ {
+  "id": "b-adjunction-formula",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 11.7701
+ },
+ {
+  "id": "b-noether-formula",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 5.5652
+ },
+ {
+  "id": "b-hodge-index",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 14.2222
+ },
+ {
+  "id": "b-nakai-surface",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 13.6533
+ },
+ {
+  "id": "b-hirzebruch-rr",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 5.1457
+ },
+ {
+  "id": "b-chern-class-axioms",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 9.3945
+ },
+ {
+  "id": "b-splitting-principle",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 2.7154
+ },
+ {
+  "id": "b-stable-bundle",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 5.3057
+ },
+ {
+  "id": "b-birkhoff-grothendieck",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 6.321
+ },
+ {
+  "id": "b-narasimhan",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 23.814
+ },
+ {
+  "id": "b-grothendieck-quot",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 4.2029
+ },
+ {
+  "id": "b-hilbert-polynomial",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 8.9043
+ },
+ {
+  "id": "b-flattening",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 21.7872
+ },
+ {
+  "id": "b-coherent-duality",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 10.7789
+ },
+ {
+  "id": "b-todd-genus",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 4
+ },
+ {
+  "id": "b-gysin",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 9.5701
+ },
+ {
+  "id": "b-localization",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 3.5433
+ },
+ {
+  "id": "b-riemann-roch-surface",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 13.2987
+ },
+ {
+  "id": "b-noether-inequality",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 4.9592
+ },
+ {
+  "id": "b-bogomolov",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 3.156
+ },
+ {
+  "id": "b-k3-properties",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 9.3945
+ },
+ {
+  "id": "b-abelian-polarization",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 12.0471
+ },
+ {
+  "id": "b-blowup-local",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 14.2222
+ },
+ {
+  "id": "b-normal-cone",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 3.9537
+ },
+ {
+  "id": "b-todd-euler",
+  "imp": 0.64,
+  "rank": 0.3859649122807018,
+  "aspect": 7.5294
+ },
+ {
+  "id": "b-picard-group",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 14.6286
+ },
+ {
+  "id": "b-mori-cone",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 5.9191
+ },
+ {
+  "id": "b-kodaira-vanishing",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 14.6286
+ },
+ {
+  "id": "b-semicontinuity",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 13.8378
+ },
+ {
+  "id": "b-grauert",
+  "imp": 0.6,
+  "rank": 0.31578947368421045,
+  "aspect": 19.6923
+ },
+ {
+  "id": "b-adjunction-general",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 9.7524
+ },
+ {
+  "id": "b-hodge-diamond",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 8.605
+ },
+ {
+  "id": "b-hodge-moduli",
+  "imp": 0.64,
+  "rank": 0.3859649122807018,
+  "aspect": 6.9189
+ },
+ {
+  "id": "b-grassmannian",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 13.2987
+ },
+ {
+  "id": "b-chern-weil",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 4.785
+ },
+ {
+  "id": "b-linear-system-dim",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 8.3252
+ },
+ {
+  "id": "b-projective-bundle",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 8
+ },
+ {
+  "id": "c-zariski-main",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 13.8378
+ },
+ {
+  "id": "c-termination",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 12.8
+ },
+ {
+  "id": "c-abundance-conjecture",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 19.3208
+ },
+ {
+  "id": "c-singularities-mmp",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 18.6182
+ },
+ {
+  "id": "c-discrepancy",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 7.6418
+ },
+ {
+  "id": "c-lc-threshold",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 13.2987
+ },
+ {
+  "id": "c-adjunction-mmp",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 10.5567
+ },
+ {
+  "id": "c-klt-base-point-free",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 17.9649
+ },
+ {
+  "id": "c-rational-singularities",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 13.1282
+ },
+ {
+  "id": "c-log-resolution",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 9.1429
+ },
+ {
+  "id": "c-hironaka",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 21.7872
+ },
+ {
+  "id": "c-weak-factorization",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 21.3333
+ },
+ {
+  "id": "c-torelli",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 11.5056
+ },
+ {
+  "id": "c-deligne-mumford",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 10.0392
+ },
+ {
+  "id": "c-psi-classes",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 19.3208
+ },
+ {
+  "id": "c-witten-conjecture",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 4.5511
+ },
+ {
+  "id": "c-gw-invariants",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 7.1608
+ },
+ {
+  "id": "c-quantum-cohomology",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 4.3207
+ },
+ {
+  "id": "c-wdvv",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 12.1905
+ },
+ {
+  "id": "c-kontsevich-formula",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 4.3761
+ },
+ {
+  "id": "c-mirror-map",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 16.7869
+ },
+ {
+  "id": "c-hms",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 8.3934
+ },
+ {
+  "id": "c-syz",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 12.8
+ },
+ {
+  "id": "c-dt-theory",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 4.9231
+ },
+ {
+  "id": "c-mnop",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 16
+ },
+ {
+  "id": "c-hilbert-scheme-points",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 10.7789
+ },
+ {
+  "id": "c-dbp",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 11.907
+ },
+ {
+  "id": "c-bridgeland-stability",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 11.907
+ },
+ {
+  "id": "c-wall-crossing",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 14.4225
+ },
+ {
+  "id": "c-k-moduli",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 18.2857
+ },
+ {
+  "id": "c-test-configuration",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 10.0392
+ },
+ {
+  "id": "c-git-quotient",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 6.4
+ },
+ {
+  "id": "c-hilbert-mumford",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 17.9649
+ },
+ {
+  "id": "c-moduli-fano",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 1.8944
+ },
+ {
+  "id": "c-boundedness",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 17.3559
+ },
+ {
+  "id": "c-good-moduli",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 15.5152
+ },
+ {
+  "id": "c-deformation-theory",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 10.0392
+ },
+ {
+  "id": "c-kodaira-spencer",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 8.7521
+ },
+ {
+  "id": "c-obstruction",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 7.4203
+ },
+ {
+  "id": "c-atiyah-singer",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 5.5054
+ },
+ {
+  "id": "c-index-to-rr",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 12.8
+ },
+ {
+  "id": "c-hirzebruch-signature",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 3.1922
+ },
+ {
+  "id": "c-cobordism",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 10.3434
+ },
+ {
+  "id": "c-chow-lemma",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 8.605
+ },
+ {
+  "id": "c-alterations",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 19.3208
+ },
+ {
+  "id": "c-stack-quotient",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 12.642
+ },
+ {
+  "id": "c-dm-stack",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 17.6552
+ },
+ {
+  "id": "c-atiyah-bott-fixed",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 14.2222
+ },
+ {
+  "id": "c-equivariant-k",
+  "imp": 0.6,
+  "rank": 0.31578947368421045,
+  "aspect": 5.3057
+ },
+ {
+  "id": "c-hodge-structure-vhs",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 10.24
+ },
+ {
+  "id": "c-gauss-manin",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 8.678
+ },
+ {
+  "id": "c-periods",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 2.4667
+ },
+ {
+  "id": "c-tt-geometry",
+  "imp": 0.62,
+  "rank": 0.3508771929824561,
+  "aspect": 10.0392
+ },
+ {
+  "id": "c-hyperkaehler",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 12.4878
+ },
+ {
+  "id": "c-beauville-bogomolov",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 5.3333
+ },
+ {
+  "id": "c-lattice-torelli",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 15.2836
+ },
+ {
+  "id": "c-tropical",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 14.4225
+ },
+ {
+  "id": "c-berkovich",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 19.6923
+ },
+ {
+  "id": "c-padic-hodge",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 6.8725
+ },
+ {
+  "id": "c-perfectoid",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 12.8
+ },
+ {
+  "id": "c-condensed",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 15.7538
+ },
+ {
+  "id": "c-condensed-analytic",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 15.0588
+ },
+ {
+  "id": "c-derived-scheme",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 7.8168
+ },
+ {
+  "id": "c-virtual-fundamental",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 6.1135
+ },
+ {
+  "id": "c-perfect-complex",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 25.6
+ },
+ {
+  "id": "c-riemann-hilbert",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 9.3945
+ },
+ {
+  "id": "c-d-module",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 14.4225
+ },
+ {
+  "id": "c-perverse",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 15.7538
+ },
+ {
+  "id": "c-fourier-mukai",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 9.4815
+ },
+ {
+  "id": "c-orlov",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 12.0471
+ },
+ {
+  "id": "c-bondal-orlov",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 14.4225
+ },
+ {
+  "id": "c-mukai-pair",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 13.1282
+ },
+ {
+  "id": "hilbert-basis-theorem",
+  "imp": 0.89,
+  "rank": 0.8245614035087719,
+  "aspect": 19.3208
+ },
+ {
+  "id": "krull-height",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 9.3945
+ },
+ {
+  "id": "lying-over",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 17.9649
+ },
+ {
+  "id": "going-down",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 17.9649
+ },
+ {
+  "id": "hensels-lemma",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 28.4444
+ },
+ {
+  "id": "excellent-ring",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 26.2564
+ },
+ {
+  "id": "auslander-buchsbaum",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 13.4737
+ },
+ {
+  "id": "gorenstein-ring",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 15.7538
+ },
+ {
+  "id": "serre-normality-criterion",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 6.8267
+ },
+ {
+  "id": "rees-algebra",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 4.511
+ },
+ {
+  "id": "graded-ring",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 6.2061
+ },
+ {
+  "id": "local-cohomology",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 5.4468
+ },
+ {
+  "id": "grothendieck-vanishing",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 20.898
+ },
+ {
+  "id": "castelnuovo-mumford-regularity",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 13.6533
+ },
+ {
+  "id": "formal-functions-theorem",
+  "imp": 0.69,
+  "rank": 0.47368421052631565,
+  "aspect": 4.5919
+ },
+ {
+  "id": "artin-approximation",
+  "imp": 0.67,
+  "rank": 0.4385964912280702,
+  "aspect": 17.0667
+ },
+ {
+  "id": "schlessinger",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 14.6286
+ },
+ {
+  "id": "cotangent-complex",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 13.6533
+ },
+ {
+  "id": "obstruction-theory",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 10.8936
+ },
+ {
+  "id": "formal-deformation",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 5.7528
+ },
+ {
+  "id": "bertini-theorem",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 17.9649
+ },
+ {
+  "id": "generic-smoothness",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 29.2571
+ },
+ {
+  "id": "lefschetz-hyperplane",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 15.0588
+ },
+ {
+  "id": "nagata-compactification",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 14.4225
+ },
+ {
+  "id": "valuative-criterion",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 21.7872
+ },
+ {
+  "id": "proper-morphism",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 28.4444
+ },
+ {
+  "id": "separated-morphism",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 19.6923
+ },
+ {
+  "id": "yoneda-lemma",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 10.449
+ },
+ {
+  "id": "grothendieck-topology",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 20.898
+ },
+ {
+  "id": "descent",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 14.0274
+ },
+ {
+  "id": "ruled-surface",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 13.6533
+ },
+ {
+  "id": "rational-surface",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 12.1905
+ },
+ {
+  "id": "del-pezzo",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 12.3373
+ },
+ {
+  "id": "iitaka-fibration",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 15.7538
+ },
+ {
+  "id": "canonical-model",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 6.7815
+ },
+ {
+  "id": "flop",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 21.3333
+ },
+ {
+  "id": "kahler-manifold",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 20.898
+ },
+ {
+  "id": "hodge-decomposition",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 8.3252
+ },
+ {
+  "id": "theta-functions",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 4.5714
+ },
+ {
+  "id": "neron-severi",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 15.0588
+ },
+ {
+  "id": "modular-curve",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 14.0274
+ },
+ {
+  "id": "donaldson-uhlenbeck-yau",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 24.9756
+ },
+ {
+  "id": "hitchin-fibration",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 3.9385
+ },
+ {
+  "id": "serre-finiteness-thm",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 17.0667
+ },
+ {
+  "id": "ample-line-bundle",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 19.6923
+ },
+ {
+  "id": "mori-cone-theorem",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 7.2113
+ },
+ {
+  "id": "e-derived-pushforward",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 17.3559
+ },
+ {
+  "id": "e-push-pull-adjunction",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 16
+ },
+ {
+  "id": "e-projection-formula",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 7.7576
+ },
+ {
+  "id": "e-base-change-cohomology",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 21.3333
+ },
+ {
+  "id": "e-semicontinuity",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 21.3333
+ },
+ {
+  "id": "e-grauert-theorem",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 17.9649
+ },
+ {
+  "id": "e-coherent-sheaf",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 28.4444
+ },
+ {
+  "id": "e-quasi-coherent-locality",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 10.7789
+ },
+ {
+  "id": "e-sheafification",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 8.3252
+ },
+ {
+  "id": "e-local-system",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 22.7556
+ },
+ {
+  "id": "e-monodromy-weight",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 16.7869
+ },
+ {
+  "id": "e-vanishing-cycle",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 16
+ },
+ {
+  "id": "e-nearby-cycle-functor",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 8.7521
+ },
+ {
+  "id": "e-perverse-t-structure",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 14.2222
+ },
+ {
+  "id": "e-decomposition-theorem",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 8.7521
+ },
+ {
+  "id": "e-intersection-cohomology",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 12.1905
+ },
+ {
+  "id": "e-d-module-direct-image",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 10.5567
+ },
+ {
+  "id": "e-riemann-hilbert",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 20.898
+ },
+ {
+  "id": "e-holonomic-d-module",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 17.0667
+ },
+ {
+  "id": "e-spectral-sequence-degeneration",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 14.4225
+ },
+ {
+  "id": "e-hodge-to-de-rham",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 11.7701
+ },
+ {
+  "id": "e-frobenius-split",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 18.963
+ },
+ {
+  "id": "e-kodaira-vanishing-proof",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 22.2609
+ },
+ {
+  "id": "e-ample-vanishing",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 18.2857
+ },
+ {
+  "id": "e-cohomology-finite-dim",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 21.3333
+ },
+ {
+  "id": "f-discrepancy-divisor",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 9.6604
+ },
+ {
+  "id": "f-log-canonical-threshold",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 19.3208
+ },
+ {
+  "id": "f-rational-singularity",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 20.0784
+ },
+ {
+  "id": "f-du-bois-singularity",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 14.4225
+ },
+ {
+  "id": "f-spectrum-singularity",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 8.9043
+ },
+ {
+  "id": "f-jet-scheme",
+  "imp": 0.68,
+  "rank": 0.45614035087719307,
+  "aspect": 13.8378
+ },
+ {
+  "id": "f-nash-transform",
+  "imp": 0.66,
+  "rank": 0.4210526315789474,
+  "aspect": 14.2222
+ },
+ {
+  "id": "f-strong-resolution",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 20.898
+ },
+ {
+  "id": "f-weak-factorization",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 27.6757
+ },
+ {
+  "id": "f-embedded-resolution",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 22.7556
+ },
+ {
+  "id": "f-alterations",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 24.381
+ },
+ {
+  "id": "f-de-jong-modifications",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 22.7556
+ },
+ {
+  "id": "f-nash-conjecture",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 26.2564
+ },
+ {
+  "id": "f-iitaka-fibration",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 23.2727
+ },
+ {
+  "id": "f-canonical-ring-fg",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 9.9417
+ },
+ {
+  "id": "f-severi-iitaka",
+  "imp": 0.7,
+  "rank": 0.4912280701754385,
+  "aspect": 10.5567
+ },
+ {
+  "id": "f-kodaira-dimension-fibration",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 15.5152
+ },
+ {
+  "id": "f-mori-fiber-space",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 21.3333
+ },
+ {
+  "id": "f-extremal-contraction",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 15.0588
+ },
+ {
+  "id": "f-contraction-algebraicity",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 8.678
+ },
+ {
+  "id": "f-special-mmp",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 24.9756
+ },
+ {
+  "id": "f-nonvanishing",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 26.9474
+ },
+ {
+  "id": "f-abundance-log",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 18.2857
+ },
+ {
+  "id": "f-lc-center",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 18.6182
+ },
+ {
+  "id": "f-dlt-model",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 24.9756
+ },
+ {
+  "id": "f-minimal-lc-center",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 29.2571
+ },
+ {
+  "id": "f-threefold-mmp",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 26.2564
+ },
+ {
+  "id": "f-surface-classification-algorithm",
+  "imp": 0.75,
+  "rank": 0.5789473684210525,
+  "aspect": 23.2727
+ },
+ {
+  "id": "g-schubert-calculus",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 3.9119
+ },
+ {
+  "id": "g-schubert-variety",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 11.1304
+ },
+ {
+  "id": "g-enumerative-invariant",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 4.6972
+ },
+ {
+  "id": "g-deformation-invariance",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 7.8168
+ },
+ {
+  "id": "g-quantum-cohomology-ring",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 5.3057
+ },
+ {
+  "id": "g-gromov-witten-motivation",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 14.8406
+ },
+ {
+  "id": "g-virtual-localization",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 4.7189
+ },
+ {
+  "id": "g-localization",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 3.4712
+ },
+ {
+  "id": "g-virtual-fundamental-class",
+  "imp": 0.89,
+  "rank": 0.8245614035087719,
+  "aspect": 14.6286
+ },
+ {
+  "id": "g-chow-ring-relations",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 28.4444
+ },
+ {
+  "id": "g-chern-class-integral",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 8.605
+ },
+ {
+  "id": "g-intersection-toric",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 12.962
+ },
+ {
+  "id": "g-k-theoretic-integral",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 10.3434
+ },
+ {
+  "id": "g-multiplicative-genus",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 9.6604
+ },
+ {
+  "id": "g-hom-scheme",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 18.963
+ },
+ {
+  "id": "g-birational-morphism-decomposition",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 31.0303
+ },
+ {
+  "id": "g-fibration-construction",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 24.381
+ },
+ {
+  "id": "g-separated-proper-diagonal",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 29.2571
+ },
+ {
+  "id": "g-stein-factorization-technique",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 11.0108
+ },
+ {
+  "id": "g-quot-scheme",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 17.0667
+ },
+ {
+  "id": "g-blowup-along-ideal",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 4.0797
+ },
+ {
+  "id": "g-normalization-technique",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 24.381
+ },
+ {
+  "id": "g-relative-ample",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 24.9756
+ },
+ {
+  "id": "g-rational-map-resolution",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 22.2609
+ },
+ {
+  "id": "h-enriques-surface",
+  "imp": 0.76,
+  "rank": 0.5964912280701754,
+  "aspect": 17.9649
+ },
+ {
+  "id": "h-kodaira-dimension-compute",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 8.063
+ },
+ {
+  "id": "h-kappa-negative",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 20.898
+ },
+ {
+  "id": "h-cubic-27-lines",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 17.0667
+ },
+ {
+  "id": "h-aut-minimal-surface",
+  "imp": 0.72,
+  "rank": 0.5263157894736842,
+  "aspect": 18.6182
+ },
+ {
+  "id": "h-birational-aut-representation",
+  "imp": 0.78,
+  "rank": 0.631578947368421,
+  "aspect": 16.254
+ },
+ {
+  "id": "h-terminal-flop",
+  "imp": 0.88,
+  "rank": 0.8070175438596491,
+  "aspect": 20.898
+ },
+ {
+  "id": "h-noether-formula-general",
+  "imp": 0.74,
+  "rank": 0.5614035087719298,
+  "aspect": 17.9649
+ },
+ {
+  "id": "h-formal-completion",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 4.1301
+ },
+ {
+  "id": "h-nagata-compactification",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 11.7701
+ },
+ {
+  "id": "h-chevalley-constructible",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 20.48
+ },
+ {
+  "id": "h-constructible-sheaf",
+  "imp": 0.77,
+  "rank": 0.6140350877192983,
+  "aspect": 28.4444
+ },
+ {
+  "id": "h-stein-factorization",
+  "imp": 0.81,
+  "rank": 0.6842105263157895,
+  "aspect": 11.0108
+ },
+ {
+  "id": "h-zariski-main",
+  "imp": 0.83,
+  "rank": 0.719298245614035,
+  "aspect": 9.1429
+ },
+ {
+  "id": "h-separated-diagonal",
+  "imp": 0.8,
+  "rank": 0.6666666666666667,
+  "aspect": 23.814
+ },
+ {
+  "id": "h-flat-descent",
+  "imp": 0.87,
+  "rank": 0.7894736842105262,
+  "aspect": 21.3333
+ },
+ {
+  "id": "h-finite-type-vs-presentation",
+  "imp": 0.71,
+  "rank": 0.5087719298245613,
+  "aspect": 29.2571
+ },
+ {
+  "id": "h-spectral-ag-motivation",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 15.2836
+ },
+ {
+  "id": "h-einfinity-derived-rings",
+  "imp": 0.84,
+  "rank": 0.7368421052631577,
+  "aspect": 19.6923
+ },
+ {
+  "id": "h-derived-analytic-geometry",
+  "imp": 0.73,
+  "rank": 0.5438596491228069,
+  "aspect": 20.898
+ },
+ {
+  "id": "h-condensed-motivation",
+  "imp": 0.85,
+  "rank": 0.7543859649122806,
+  "aspect": 17.9649
+ },
+ {
+  "id": "h-perfectoid-tilting",
+  "imp": 0.9,
+  "rank": 0.8421052631578947,
+  "aspect": 17.0667
+ },
+ {
+  "id": "h-derived-stack",
+  "imp": 0.79,
+  "rank": 0.6491228070175439,
+  "aspect": 21.7872
+ },
+ {
+  "id": "h-dg-enhancement",
+  "imp": 0.82,
+  "rank": 0.7017543859649121,
+  "aspect": 19.3208
+ },
+ {
+  "id": "h-model-infty-categories",
+  "imp": 0.86,
+  "rank": 0.7719298245614035,
+  "aspect": 21.7872
+ },
+ {
+  "id": "cn-hodge",
+  "imp": 0.95,
+  "rank": 0.9487179487179487,
+  "aspect": 10.24
+ },
+ {
+  "id": "cn-tate",
+  "imp": 0.91,
+  "rank": 0.8461538461538463,
+  "aspect": 7.0137
+ },
+ {
+  "id": "cn-standard",
+  "imp": 0.89,
+  "rank": 0.7948717948717949,
+  "aspect": 16.254
+ },
+ {
+  "id": "cn-canonical-model",
+  "imp": 0.81,
+  "rank": 0.58974358974359,
+  "aspect": 17.9649
+ },
+ {
+  "id": "cn-resolution-charp",
+  "imp": 0.83,
+  "rank": 0.641025641025641,
+  "aspect": 25.6
+ },
+ {
+  "id": "cn-rationally-connected",
+  "imp": 0.76,
+  "rank": 0.4615384615384617,
+  "aspect": 17.6552
+ },
+ {
+  "id": "cn-fujita",
+  "imp": 0.77,
+  "rank": 0.48717948717948734,
+  "aspect": 12.962
+ },
+ {
+  "id": "cn-zariski-lipman",
+  "imp": 0.69,
+  "rank": 0.282051282051282,
+  "aspect": 7.0137
+ },
+ {
+  "id": "cn-linearization",
+  "imp": 0.64,
+  "rank": 0.15384615384615397,
+  "aspect": 12.1905
+ },
+ {
+  "id": "cn-jacobian",
+  "imp": 0.86,
+  "rank": 0.717948717948718,
+  "aspect": 9.3945
+ },
+ {
+  "id": "cn-yau-tian",
+  "imp": 0.87,
+  "rank": 0.7435897435897436,
+  "aspect": 15.2836
+ },
+ {
+  "id": "cn-hartshorne-ample",
+  "imp": 0.62,
+  "rank": 0.10256410256410266,
+  "aspect": 16.5161
+ },
+ {
+  "id": "cn-riemann",
+  "imp": 0.97,
+  "rank": 1,
+  "aspect": 12.642
+ },
+ {
+  "id": "cn-grh",
+  "imp": 0.92,
+  "rank": 0.8717948717948719,
+  "aspect": 13.6533
+ },
+ {
+  "id": "cn-bsd",
+  "imp": 0.94,
+  "rank": 0.923076923076923,
+  "aspect": 7.2624
+ },
+ {
+  "id": "cn-abc",
+  "imp": 0.88,
+  "rank": 0.7692307692307693,
+  "aspect": 12.4878
+ },
+ {
+  "id": "cn-goldbach",
+  "imp": 0.9,
+  "rank": 0.8205128205128206,
+  "aspect": 19.3208
+ },
+ {
+  "id": "cn-twin-prime",
+  "imp": 0.89,
+  "rank": 0.7948717948717949,
+  "aspect": 7.5294
+ },
+ {
+  "id": "cn-collatz",
+  "imp": 0.84,
+  "rank": 0.6666666666666666,
+  "aspect": 11.6364
+ },
+ {
+  "id": "cn-sato-tate",
+  "imp": 0.8,
+  "rank": 0.5641025641025643,
+  "aspect": 14.4225
+ },
+ {
+  "id": "cn-fermat",
+  "imp": 0.93,
+  "rank": 0.8974358974358976,
+  "aspect": 15.7538
+ },
+ {
+  "id": "cn-mordell",
+  "imp": 0.9,
+  "rank": 0.8205128205128206,
+  "aspect": 10.7789
+ },
+ {
+  "id": "cn-class-number",
+  "imp": 0.78,
+  "rank": 0.512820512820513,
+  "aspect": 9.6604
+ },
+ {
+  "id": "cn-szpiro",
+  "imp": 0.74,
+  "rank": 0.4102564102564103,
+  "aspect": 4.2189
+ },
+ {
+  "id": "cn-schanuel",
+  "imp": 0.71,
+  "rank": 0.3333333333333333,
+  "aspect": 13.1282
+ },
+ {
+  "id": "cn-poincare",
+  "imp": 0.93,
+  "rank": 0.8974358974358976,
+  "aspect": 16
+ },
+ {
+  "id": "cn-geometrization",
+  "imp": 0.91,
+  "rank": 0.8461538461538463,
+  "aspect": 28.4444
+ },
+ {
+  "id": "cn-novikov",
+  "imp": 0.78,
+  "rank": 0.512820512820513,
+  "aspect": 20.0784
+ },
+ {
+  "id": "cn-borel",
+  "imp": 0.76,
+  "rank": 0.4615384615384617,
+  "aspect": 15.5152
+ },
+ {
+  "id": "cn-farrell-jones",
+  "imp": 0.79,
+  "rank": 0.5384615384615387,
+  "aspect": 10.7789
+ },
+ {
+  "id": "cn-four-dim-poincare",
+  "imp": 0.82,
+  "rank": 0.6153846153846153,
+  "aspect": 13.1282
+ },
+ {
+  "id": "cn-hsiang",
+  "imp": 0.61,
+  "rank": 0.07692307692307698,
+  "aspect": 24.9756
+ },
+ {
+  "id": "cn-thurston-norm",
+  "imp": 0.66,
+  "rank": 0.20512820512820532,
+  "aspect": 13.8378
+ },
+ {
+  "id": "cn-virtual-fibering",
+  "imp": 0.77,
+  "rank": 0.48717948717948734,
+  "aspect": 26.2564
+ },
+ {
+  "id": "cn-navier-stokes",
+  "imp": 0.93,
+  "rank": 0.8974358974358976,
+  "aspect": 15.0588
+ },
+ {
+  "id": "cn-yang-mills",
+  "imp": 0.89,
+  "rank": 0.7948717948717949,
+  "aspect": 24.381
+ },
+ {
+  "id": "cn-kakeya",
+  "imp": 0.85,
+  "rank": 0.6923076923076923,
+  "aspect": 31.0303
+ },
+ {
+  "id": "cn-restriction",
+  "imp": 0.8,
+  "rank": 0.5641025641025643,
+  "aspect": 12.962
+ },
+ {
+  "id": "cn-bochner-riesz",
+  "imp": 0.72,
+  "rank": 0.358974358974359,
+  "aspect": 12.3373
+ },
+ {
+  "id": "cn-lusin",
+  "imp": 0.68,
+  "rank": 0.2564102564102566,
+  "aspect": 15.0588
+ },
+ {
+  "id": "cn-connes-rigidity",
+  "imp": 0.79,
+  "rank": 0.5384615384615387,
+  "aspect": 14.6286
+ },
+ {
+  "id": "cn-baum-connes",
+  "imp": 0.81,
+  "rank": 0.58974358974359,
+  "aspect": 7.3669
+ },
+ {
+  "id": "cn-idempotent",
+  "imp": 0.7,
+  "rank": 0.30769230769230765,
+  "aspect": 15.0588
+ },
+ {
+  "id": "cn-kadison-kaplansky",
+  "imp": 0.67,
+  "rank": 0.23076923076923098,
+  "aspect": 23.814
+ },
+ {
+  "id": "cn-lagarias",
+  "imp": 0.58,
+  "rank": 0,
+  "aspect": 8.9825
+ },
+ {
+  "id": "cn-sat",
+  "imp": 0.96,
+  "rank": 0.9743589743589743,
+  "aspect": 2.5495
+ },
+ {
+  "id": "cn-continuum",
+  "imp": 0.92,
+  "rank": 0.8717948717948719,
+  "aspect": 15.0588
+ },
+ {
+  "id": "cn-finite-simple",
+  "imp": 0.9,
+  "rank": 0.8205128205128206,
+  "aspect": 25.6
+ },
+ {
+  "id": "cn-langlands-functoriality",
+  "imp": 0.93,
+  "rank": 0.8974358974358976,
+  "aspect": 21.7872
+ },
+ {
+  "id": "cn-artin",
+  "imp": 0.82,
+  "rank": 0.6153846153846153,
+  "aspect": 23.2727
+ },
+ {
+  "id": "cn-kazhdan-lusztig",
+  "imp": 0.84,
+  "rank": 0.6666666666666666,
+  "aspect": 7.1608
+ },
+ {
+  "id": "cn-lusztig",
+  "imp": 0.76,
+  "rank": 0.4615384615384617,
+  "aspect": 7.8168
+ },
+ {
+  "id": "cn-howe",
+  "imp": 0.71,
+  "rank": 0.3333333333333333,
+  "aspect": 21.3333
+ },
+ {
+  "id": "cn-gross-prasad",
+  "imp": 0.78,
+  "rank": 0.512820512820513,
+  "aspect": 14.4225
+ },
+ {
+  "id": "cn-modularity",
+  "imp": 0.91,
+  "rank": 0.8461538461538463,
+  "aspect": 20.48
+ },
+ {
+  "id": "cn-bass",
+  "imp": 0.73,
+  "rank": 0.38461538461538464,
+  "aspect": 12.962
+ },
+ {
+  "id": "cn-zero-divisor",
+  "imp": 0.72,
+  "rank": 0.358974358974359,
+  "aspect": 11.907
+ },
+ {
+  "id": "cn-novikov-word",
+  "imp": 0.66,
+  "rank": 0.20512820512820532,
+  "aspect": 14.0274
+ },
+ {
+  "id": "cn-group-iso",
+  "imp": 0.64,
+  "rank": 0.15384615384615397,
+  "aspect": 4.2513
+ }
+]

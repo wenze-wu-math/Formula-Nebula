@@ -1,0 +1,217 @@
+{{Short description|Shape containing unit line segments in all directions}}
+[[Image:Kakeya needle.gif|right|thumb|The [[deltoid curve|deltoid]] (black) together with its interior is a ''Kakeya needle set'': a needle (blue) of length 1 can perform a complete rotation within it.|208px]]
+
+In [[mathematics]], a '''Kakeya set''', or '''Besicovitch set''', is a set of points in [[Euclidean space]] which contains a unit [[line segment]] in every direction. For instance, a [[Disk (mathematics)|disk]] of radius 1/2 in the [[Euclidean plane]], or a ball of radius 1/2 in three-dimensional space, forms a Besicovitch set. 
+
+A '''Kakeya needle set''' (sometimes also known as a Kakeya set) is a set in the plane with a stronger property, that a unit line segment can be rotated continuously through 360 degrees within it, returning to its original position. Again, the disk of radius 1/2 is an example of a Kakeya needle set.
+
+Much of the research in this area has studied the problem of how small such sets can be, first asked by [[Sōichi Kakeya]] in 1917. [[Abram Samoilovitch Besicovitch|Abram Besicovitch]] proved in 1920 that there are Besicovitch sets in the plane of [[measure zero]] and in 1928 that there are Kakeya needle sets in the plane of arbitrarily small positive measure.<ref name=":0" /> There are no Kakeya needle sets of measure 0. The '''Kakeya conjecture''' states that Besicovitch sets in ''n-''dimensional space must have [[Hausdorff dimension]] ''n''; it remains open for ''n>3.'' These questions belong to [[geometric measure theory]]. 
+
+==Besicovitch sets of measure zero==
+In 1920, while considering a problem of integration, Besicovitch showed that there are Besicovitch sets in the plane of measure zero.<ref name=":0" /><ref name=":2" /> Such sets can be constructed using the Perron tree method explained below, without the need for Pál joins.<ref>{{Cite book |last=Falconer |first=K. J. |url= |title=The Geometry of Fractal Sets |date= |publisher=Cambridge University Press |year=1985 |isbn=978-0-521-33705-2 |pages=96-99 |language=en}}</ref> There are also other methods; for example, [[Jean-Pierre Kahane|Kahane]] uses [[Cantor set]]s to construct a Besicovitch set of measure zero in the plane.<ref>{{cite journal  | last = Kahane | first = Jean-Pierre | author-link = Jean-Pierre Kahane  | title = Trois notes sur les ensembles parfaits linéaires  | journal = Enseignement Mathématique | volume = 15 | pages = 185–192 | year = 1969
+}}</ref>
+
+==Kakeya needle problem==
+The '''Kakeya needle problem''' asks whether there is a minimum area of a region <math>D</math> in the plane, in which a needle of unit length can be turned through 360°. This question was first posed, for [[Convex set|convex]] regions, by {{harvs|txt|author-link=Sōichi Kakeya|first=Sōichi|last= Kakeya|year=1917}}. The minimum area for convex sets is achieved by an [[equilateral triangle]] of height&nbsp;1 and area 1/{{radic|3}}, as [[Gyula Pál]] showed in 1920.<ref>{{cite journal| last = Pal | first = Julius  | title = Ueber ein elementares variationsproblem  | journal = Kongelige Danske Videnskabernes Selskab Math.-Fys. Medd.  | volume = 2 | pages = 1&ndash;35 | year = 1920 }}</ref>
+
+Kakeya seems to have suggested that the Kakeya set <math>D</math> of minimum area, without the convexity restriction, would be a three-pointed [[deltoid curve|deltoid]] shape. However, this is false; there are smaller non-convex Kakeya sets.
+
+=== Kakeya needle sets of arbitrarily small measure ===
+<!-- "Perron tree" redirects here. -->
+[[Image:Perron tree.svg|thumb|"Sprouting the Perron tree": a method for constructing a Kakeya set of small measure. Shown here are two possible ways of dividing a triangle and overlapping the pieces to get a smaller set, the first with two triangles, and the second with eight. The method can be used to construct an arbitrarily small set by cutting up the original triangle to <math>2^n</math> pieces. See <ref name=":0">{{Cite journal |last=Besicovitch |first=A. S. |date=August 1963 |title=The Kakeya Problem |url=http://dx.doi.org/10.2307/2312249 |journal=The American Mathematical Monthly |volume=70 |issue=7 |pages=697–706 |doi=10.2307/2312249 |jstor=2312249 |issn=0002-9890|url-access=subscription }}</ref> for details.]]
+
+[[Abram Samoilovitch Besicovitch|Abram Besicovitch]] was able to show in 1928 that there is no lower bound > 0 for the area of such a region <math>D</math>, in which a needle of unit length can be turned around. That is, for every <math>\varepsilon>0</math>, there is region of area <math>\varepsilon</math> within which the needle can move through a continuous motion that rotates it a full 360 degrees.<ref name=":2">{{cite journal | last=Besicovitch | first=Abram | author-link=Abram Samoilovitch Besicovitch | title=Sur deux questions d'integrabilite des fonctions | journal=J. Soc. Phys. Math. | pages=105–123 | volume=2 | year=1919}}<br>{{cite journal | last=Besicovitch | first=Abram | author-link=Abram Samoilovitch Besicovitch | title=On Kakeya's problem and a similar one | journal=Mathematische Zeitschrift | volume=27 | pages=312–320 | year=1928 | doi=10.1007/BF01171101| s2cid=121781065 }}</ref> The AMS produced a film in 1962 in which Besicovitch explains a construction of such a set.<ref>{{Cite AV media |url=https://www.youtube.com/watch?v=JIBLBsNoVA0 |title=Besicovitch on the Kakeya problem |date= |last= |access-date=2026-07-27 |via=YouTube}}</ref>
+
+One method of constructing a Kakeya needle set of arbitrary small area (and also of a Besicovitch set of measure zero) is known as a "Perron tree", named after [[Oskar Perron]] who simplified Besicovitch's original construction.<ref>{{cite journal | last=Perron | first=O. | title=Über einen Satz von Besicovitch | journal=Mathematische Zeitschrift | volume=28 | pages=383–386 | year=1928 | doi=10.1007/BF01181172| s2cid=120768630 }}<br>{{cite book | last=Falconer | first=K. J. | title=The Geometry of Fractal Sets | publisher=Cambridge University Press | year=1985 | pages=96–99}}</ref> The precise construction and numerical bounds are given in Besicovitch's popularization.<ref name=":0" />
+
+The first observation to make is that the needle can move in a straight line as far as it wants without sweeping any area. This is because the needle is a zero width line segment. The second trick of [[Gyula Pál|Pál]], known as '''Pál joins''',<ref>[http://www.mathematik.uni-muenchen.de/~lerdos/Stud/furtner.pdf The Kakeya Problem] {{Webarchive|url=https://web.archive.org/web/20150715012335/http://www.mathematik.uni-muenchen.de/~lerdos/Stud/furtner.pdf |date=2015-07-15 }} by Markus Furtner</ref> describes how to move the needle between any two locations that are parallel while sweeping negligible area. The needle will follow the shape of an "N". It moves from the first location some distance <math>r</math> up the left of the "N", sweeps out the angle to the middle diagonal, moves down the diagonal, sweeps out the second angle, and then moves up the parallel right side of the "N" until it reaches the required second location. The only non-zero area regions swept are the two circle segments at the corners of the "N".  The swept area is proportional to the angle which is proportional to <math>1/r</math>, and thus the swept out area can be made arbitrarily small by choosing an appropriately large <math>r</math>.
+
+The construction starts with any triangle with height 1 and some substantial angle at the top through which the needle can easily sweep. (See figure to the right.) The goal is to do many operations on this triangle to make its area smaller while keeping the directions through which the needle can sweep the same. First, consider dividing the triangle into two and translating the pieces over each other so that their bases overlap in a way that minimizes the total area. The needle is able to sweep out the same directions by sweeping out those given by the first triangle, jumping over to the second, and then sweeping out the directions given by the second. The needle can jump triangles using the "N" technique because the two lines at which the original triangle was cut are parallel. In this construction, the line segment actually leaves the original overlapping triangle area and sweeps out new additional (arbitrarily small) area.
+
+Now, we divide our triangle into 2<sup>''n''</sup> subtriangles. The figure shows eight. For each consecutive pair of triangles, perform the same overlapping operation we described before to get half as many new shapes, each consisting of two overlapping triangles. Next, overlap consecutive pairs of these new shapes by shifting them so that their bases overlap in a way that minimizes the total area. Repeat this ''n'' times until there is only one shape. Again, the needle is able to sweep out the same directions by sweeping those out in each of the 2<sup>''n''</sup> subtriangles in order of their direction.  The needle can jump consecutive triangles using the "N" technique because the two lines at which these triangle were cut are parallel.
+
+[[Image:KakeyaNeedleSet3.GIF|thumb|A Kakeya needle set constructed from Perron trees.]]
+
+A detailed analysis of the emerging figure shows that its area shrinks to zero as ''n'' grows. A Besicovitch set can be created by combining six rotations of a Perron tree created from an equilateral triangle.  
+
+In 1941, H. J. Van Alphen<ref>{{cite journal |last=Alphen |first=H. J. |title=Uitbreiding van een stelling von Besicovitch |journal=Mathematica Zutphen B |volume=10 |pages=144–157 |year=1942}}</ref> showed that there are arbitrary small Kakeya needle sets inside a circle with radius 2 + ε (arbitrary ε > 0). [[Simply connected]] Kakeya needle sets with smaller area than the deltoid were found in 1965. Melvin Bloom and [[Isaac Jacob Schoenberg|I. J. Schoenberg]] independently presented simply connected Kakeya needle sets with areas approaching to <math>\tfrac{\pi}{24}(5 - 2\sqrt{2})</math>, the '''Bloom-Schoenberg number''' (≈0.2843). Schoenberg conjectured that this number is the lower bound for the area of simply connected Kakeya needle sets. However, in 1971, F. Cunningham<ref>{{cite journal | last = Cunningham | first = F. | title = The Kakeya problem for simply connected and for star-shaped sets | journal = American Mathematical Monthly | volume = 78 | pages = 114–129 | year = 1971 | url = https://www.maa.org/sites/default/files/pdf/upload_library/22/Ford/Cunningham.pdf | doi = 10.2307/2317619 | issue = 2 | jstor = 2317619 | publisher = The American Mathematical Monthly, Vol. 78, No. 2 | archive-date = 2020-09-21 | access-date = 2017-09-19 | archive-url = https://web.archive.org/web/20200921011044/https://www.maa.org/sites/default/files/pdf/upload_library/22/Ford/Cunningham.pdf | url-status = dead }}</ref> showed that, given ε > 0, there is a simply connected Kakeya needle set of area less than ε contained in a circle of radius 1.
+
+Although there are Kakeya needle sets of arbitrarily small positive measure and Besicovitch sets of measure 0, there are no Kakeya needle sets of measure 0.
+
+==Kakeya conjecture==
+
+===Statement===
+The same question of how small these Besicovitch sets could be was then posed in higher dimensions, giving rise to a number of conjectures known collectively as the ''Kakeya conjectures'', and have helped initiate the field of mathematics known as [[geometric measure theory]].  In particular, if there exist Besicovitch sets of measure zero, could they also have s-dimensional [[Hausdorff measure]] zero for some dimensions less than the dimension of the space in which they lie? This question gives rise to the following conjecture:
+
+{{block indent|left=1.6|'''Kakeya set conjecture''': A subset of Euclidean space <math>\Bbb{R}^n</math> that contains a unit line segment in every direction must have Hausdorff dimension <math>n</math>.}}
+
+This is known to be true for ''n'' = 1, 2, 3 but only partial results are known in higher dimensions.
+
+The Kakeya conjecture is closely related to the [[restriction conjecture]], [[Bochner-Riesz conjecture]] and the [[local smoothing conjecture]].<ref>{{Cite web |date=2024-11-17 |first=Terence |last=Tao |title=Terence Tao (@tao@mathstodon.xyz) |url=https://mathstodon.xyz/@tao/113496016545909911 |access-date=2025-07-20 |website=Mathstodon |language=en}}</ref><ref>{{Cite web |last=Cepelewicz |first=Jordana |date=2023-09-12 |title=A Tower of Conjectures That Rests Upon a Needle |url=https://www.quantamagazine.org/a-tower-of-conjectures-that-rests-upon-a-needle-20230912/ |access-date=2025-07-20 |website=Quanta Magazine |language=en}}</ref>
+
+In February 2025, a proof for the case ''n'' = 3 was posted on [[arXiv]] by [[Hong Wang]] and Joshua Zahl.<ref name=":1">{{cite arXiv |eprint=2502.17655 |class=math.CA |author1=Hong Wang |author2=Joshua Zahl |title=Volume estimates for unions of convex sets, and the Kakeya set conjecture in three dimensions |date=2025-02-24}}</ref> The Kakeya conjecture in three dimensions is described as "one of the most sought-after open problems in geometric measure theory", and in 2026 Hong Wang was awarded the [[Fields Medal]] in part due to this work.<ref>{{cite web |title=Chinese maths star Wang Hong solves 'infamous' geometry problem |url=https://www.scmp.com/news/china/science/article/3300958/chinese-maths-star-wang-hong-solves-infamous-geometry-problem?module=perpetual_scroll_0&pgtype=article |archive-url=https://archive.today/20250304114650/https://www.scmp.com/news/china/science/article/3300958/chinese-maths-star-wang-hong-solves-infamous-geometry-problem |archive-date=4 March 2025 |date=4 March 2025|publisher=[[South China Morning Post]]}}</ref><ref>{{cite web |title=Century-Old Math Enigma Finally Solved: How Chinese Student Cracked An 'Impossible' Geometry Mystery |url=https://www.thedailyjagran.com/world/chinese-student-wang-hong-cracked-an-impossible-geometry-puzzle-that-stumped-mathematicians-for-over-a-century-10221886 |website=[[Dainik Jagran]] |archive-url=https://archive.today/20250304154738/https://english.jagran.com/world/chinese-student-wang-hong-cracked-an-impossible-geometry-puzzle-that-stumped-mathematicians-for-over-a-century-10221886 |archive-date=4 March 2025 |url-status=live |date=4 March 2025}}</ref><ref>{{Cite web |last=Howlett |first=Joseph |date=2025-03-14 |title='Once in a Century' Proof Settles Math's Kakeya Conjecture |url=https://www.quantamagazine.org/once-in-a-century-proof-settles-maths-kakeya-conjecture-20250314/ |access-date=2025-03-21 |website=Quanta Magazine |language=en}}</ref>
+
+===Kakeya maximal function===
+A modern way of approaching this problem is to consider a particular type of [[maximal function]], which we construct as follows: Denote '''S'''<sup>''n''−1</sup> ⊂ '''R'''<sup>''n''</sup> to be the unit sphere in ''n''-dimensional space. Define <math>T_{e}^{\delta}(a)</math> to be the cylinder of length 1, radius δ > 0, centered at the point ''a'' ∈ '''R'''<sup>''n''</sup>, and whose long side is parallel to the direction of the [[unit vector]] ''e'' ∈ '''S'''<sup>''n''−1</sup>. Then for a [[locally integrable]] function ''f'', we define the '''Kakeya maximal function''' of ''f'' to be
+<math display=block>
+f_{*}^{\delta}(e) = \sup_{a\in\mathbf{R}^{n}}\frac{1}{m(T_{e}^{\delta}(a))}\int_{T_{e}^{\delta}(a)}|f(y)|dm(y),
+</math>
+where ''m'' denotes the ''n''-dimensional [[Lebesgue measure]]. Notice that <math>f_{*}^{\delta}</math> is defined for vectors ''e'' in the sphere '''S'''<sup>''n''−1</sup>.
+
+Then there is a conjecture for these functions that, if true, will imply the Kakeya set conjecture for higher dimensions:
+
+{{block indent|left=1.6|1=<p>'''Kakeya maximal function conjecture''': For all ε > 0, there exists a constant ''C<sub>ε</sub>'' > 0 such that for any function ''f'' and all δ > 0, (see [[lp space]] for notation)</p><math display=block>
+\left \|f_{*}^{\delta} \right \|_{L^n(\mathbf{S}^{n-1})} \leqslant C_{\epsilon} \delta^{-\epsilon}\left\|f\right\|_{L^n(\mathbf{R}^{n})}.
+</math>}}
+
+=== Results===
+Some results toward proving the Kakeya conjecture are the following:
+
+* The Kakeya conjecture is true for ''n'' = 1 (trivially) and ''n'' = 2 (Davies<ref>{{cite journal| last = Davies | first = Roy  | title =Some remarks on the Kakeya problem | journal =[[Mathematical Proceedings of the Cambridge Philosophical Society]] | volume = 69 | pages = 417&ndash;421 | year = 1971  | doi = 10.1017/S0305004100046867 | issue = 3| bibcode = 1971PCPS...69..417D}}</ref>).
+* In any ''n''-dimensional space, Wolff<ref>{{cite journal  | last = Wolff | first = Thomas | author-link = Thomas Wolff| title = An improved bound for Kakeya type maximal functions  | journal = Rev. Mat. Iberoamericana | volume = 11 | pages = 651&ndash;674 | year = 1995 | issue = 3 | doi=10.4171/rmi/188| doi-access = free }}</ref> showed that the dimension of a Kakeya set must be at least (''n''+2)/2.
+* In 2002, [[Nets Hawk Katz|Katz]] and [[Terence Tao|Tao]]<ref>{{cite journal | last1=Katz | first1=Nets Hawk| authorlink1=Nets Hawk Katz|last2=Tao | first2=Terence | authorlink2=Terence Tao | title = New bounds for Kakeya problems  | journal = [[Journal d'Analyse Mathématique]] | volume = 87 | pages = 231&ndash;263 | year = 2002 | doi=10.1007/BF02868476|doi-access=free| arxiv=math/0102135| s2cid=119644987}}</ref> improved Wolff's bound to <math>(2-\sqrt{2})(n-4)+3</math>, which is better for ''n'' > 4.
+* In 2000, Katz,  [[Izabella Łaba|Łaba]], and Tao<ref>{{cite journal|last1=Katz|first1=Nets Hawk|last2=Łaba|first2=Izabella|last3=Tao|first3=Terence|title=An Improved Bound on the Minkowski Dimension of Besicovitch Sets in <math>\mathbb{R}^3</math>|journal=The Annals of Mathematics|date=September 2000|volume=152|issue=2|pages=383&ndash; 446 |doi=10.2307/2661389|jstor=2661389|arxiv=math/0004015|s2cid=17007027}}</ref> proved that the [[Minkowski–Bouligand dimension|Minkowski dimension]] of Kakeya sets in 3 dimensions is strictly greater than 5/2.
+* In 2000, [[Jean Bourgain]] connected the Kakeya problem to [[arithmetic combinatorics]]<ref>J. Bourgain, Harmonic analysis and combinatorics: How much may they contribute to each other?, Mathematics: Frontiers and Perspectives, IMU/Amer. Math. Soc., 2000, pp. 13–32.</ref><ref>{{cite journal | last = Tao | first = Terence | author-link = Terence Tao  | title = From Rotating Needles to Stability of Waves: Emerging Connections between Combinatorics, Analysis and PDE| url=https://www.ams.org/notices/200103/fea-tao.pdf | journal = Notices of the AMS | volume = 48 | issue = 3 | pages = 297&ndash;303 |date=March 2001}}</ref> which involves [[harmonic analysis]] and [[additive number theory]].
+* In 2017, Katz and Zahl<ref>{{cite journal|last1=Katz|first1=Nets Hawk|last2=Zahl|first2=Joshua|title=An improved bound on the Hausdorff dimension of Besicovitch sets in <math>\mathbb{R}^3</math>|journal=Journal of the American Mathematical Society|date=2019|volume=32|issue=1|pages= 195&ndash; 259 |doi=10.1090/jams/907 |arxiv=1704.07210|s2cid=119322412}}</ref> improved the lower bound on the [[Hausdorff dimension]] of Besicovitch sets in 3 dimensions to <math>5/2+\epsilon</math> for an absolute constant <math>\epsilon>0</math>.
+* In 2025, [[Hong Wang]] and Zahl<ref name=":1" /> proved the Kakeya conjecture in three dimensions, building on their earlier proof of the sticky case.<ref>{{cite journal |last1=Wang |first1=Hong |author1-link=Hong Wang |last2=Zahl |first2=Joshua |title=Sticky Kakeya sets and the sticky Kakeya conjecture |journal=Journal of the American Mathematical Society |year=2025 |arxiv=2210.09581}}</ref>
+
+==Applications to analysis==
+Somewhat surprisingly, these conjectures have been shown to be connected to a number of questions in other fields, notably in [[harmonic analysis]].  For instance, in 1971, [[Charles Fefferman]] was able to use the Besicovitch set construction to show that in dimensions greater than 1, truncated Fourier integrals taken over balls centered at the origin with radii tending to infinity need not converge in [[Lp space|''L''<sup>''p''</sup> norm]] when ''p'' ≠ 2 (this is in contrast to the one-dimensional case where such truncated integrals do converge).<ref>{{cite journal
+  | last = Fefferman | first = Charles | author-link = Charles Fefferman
+  | title = The multiplier problem for the ball
+  | journal = Annals of Mathematics | volume = 94 | pages = 330&ndash;336 | year = 1971
+  | doi = 10.2307/1970864
+  | issue = 2
+  | jstor = 1970864
+}}</ref>
+
+==Analogues and generalizations of the Kakeya problem==
+
+===Sets containing circles and spheres===
+Analogues of the Kakeya problem include considering sets containing more general shapes than lines, such as circles.
+
+* In 1997<ref>{{cite journal
+  | last = Wolff | first = Thomas
+  | title = A Kakeya problem for circles
+  | journal = American Journal of Mathematics | volume = 119 | pages = 985&ndash;1026 | year = 1997
+  | doi = 10.1353/ajm.1997.0034|author-link =Thomas Wolff
+  | issue = 5
+| s2cid = 120122372
+ }}</ref> and 1999,<ref>{{cite journal
+  | last1 = Wolff | first1 = Thomas
+  | title = On some variants of the Kakeya problem
+  | journal = Pacific Journal of Mathematics| volume = 190 | pages = 111&ndash;154 | year = 1999
+  | doi = 10.2140/pjm.1999.190.111|author-link =Thomas Wolff
+  | last2 = Wolff
+  | first2 = Thomas
+| url = https://authors.library.caltech.edu/710/1/KOLpjm99.pdf| doi-access = free}}</ref> Wolff proved that sets containing a sphere of every radius must have full dimension, that is, the dimension is equal to the dimension of the space it is lying in, and proved this by proving bounds on a circular maximal function analogous to the Kakeya maximal function.
+
+* It was conjectured that there existed sets of measure zero containing a sphere around every point. Results of [[Elias Stein]]<ref>{{cite journal  | last = Stein | first = Elias
+ | title = Maximal functions: Spherical means
+ | journal =Proc. Natl. Acad. Sci. U.S.A. | volume = 73 | pages = 2174&ndash;2175 | year = 1976
+ | doi = 10.1073/pnas.73.7.2174
+ | pmid = 16592329  | issue = 7  | pmc = 430482|author-link =Elias Stein
+| bibcode = 1976PNAS...73.2174S| doi-access = free
+ }}</ref> proved all such sets must have positive measure when ''n'' ≥ 3, and Marstrand<ref>{{cite journal
+ | last = Marstrand | first = J. M.
+| title = Packing circles in the plane | volume = 55 | pages = 37&ndash;58 | year = 1987
+| journal = Proceedings of the London Mathematical Society
+| doi = 10.1112/plms/s3-55.1.37|author-link =J. M. Marstrand
+}}</ref> proved the same for the case ''n=2''.
+
+===Sets containing ''k''-dimensional disks===
+A generalization of the Kakeya conjecture is to consider sets that contain, instead of segments of lines in every direction, but, say, portions of ''k''-dimensional subspaces. Define an '''(''n'', ''k'')-Besicovitch set''' ''K'' to be a compact set in '''R'''<sup>''n''</sup> containing a translate of every ''k''-dimensional [[unit disk]] which has Lebesgue measure zero. That is, if ''B'' denotes the unit ball centered at zero, for every ''k''-dimensional subspace ''P'', there exists ''x'' ∈ '''R'''<sup>''n''</sup> such that (''P'' ∩ ''B'') + ''x'' ⊆ ''K''. Hence, a (''n'', 1)-Besicovitch set is the standard Besicovitch set described earlier.
+
+{{block indent|left=1.6|<p>'''The (''n'', ''k'')-Besicovitch conjecture:''' There are no (''n'', ''k'')-Besicovitch sets for ''k'' > 1.</p>}}
+
+In 1979, Marstrand<ref>{{cite journal | last = Marstrand | first = J. M.| title = Packing Planes in <math>\mathbb{R}^3</math> | journal = [[Mathematika]] | volume = 26 | pages = 180&ndash;183 | year = 1979|author-link =J. M. Marstrand| doi = 10.1112/S0025579300009748
+| issue = 2}}</ref>  proved that there were no (3, 2)-Besicovitch sets. At around the same time, however, [[Kenneth Falconer (mathematician)|Falconer]]<ref>{{cite journal | last = Falconer | first = K. J. | author-link=Kenneth Falconer (mathematician)| title = Continuity properties of k-plane integrals and Besicovitch sets | journal = [[Mathematical Proceedings of the Cambridge Philosophical Society]] | volume = 87 | pages = 221&ndash;226 | year = 1980 | doi = 10.1017/S0305004100056681| issue = 2| bibcode = 1980MPCPS..87..221F}}</ref>  proved that there were no (''n'', ''k'')-Besicovitch sets for 2''k'' > ''n''. The best bound to date is by Bourgain,<ref>{{cite journal
+ | last = Bourgain | first = Jean | title = Besicovitch type maximal operators and applications to Fourier analysis | journal = [[Geometric and Functional Analysis]] | volume = 1 | pages = 147&ndash;187 | year = 1997 | doi = 10.1007/BF01896376|doi-access=|author-link =Jean Bourgain
+ | issue = 2| s2cid = 122038469 }}</ref> who proved in that no such sets exist when 2<sup>''k''−1</sup> + ''k'' > ''n''.
+
+===Kakeya sets in vector spaces over finite fields===
+In 1999, Wolff posed the [[finite field]] analogue to the Kakeya problem, in hopes that the techniques for solving this conjecture could be carried over to the Euclidean case.
+
+{{block indent|left=1.6|'''Finite Field Kakeya Conjecture''': Let '''F''' be a finite field, let ''K'' ⊆ '''F'''<sup>n</sup> be a Kakeya set, i.e. for each vector ''y'' ∈ '''F'''<sup>''n''</sup> there exists ''x'' ∈ '''F'''<sup>''n''</sup> such that ''K'' contains a line {''x'' + ''ty'' : ''t'' ∈ '''F'''}. Then the set ''K'' has size at least ''c<sub>n</sub>''|'''F'''|<sup>''n''</sup> where ''c<sub>n</sub>''>0 is a constant that only depends on ''n''.}}
+
+[[Zeev Dvir]] proved this conjecture in 2008, showing that the statement holds for ''c<sub>n</sub>'' = 1/''n''!.<ref>{{cite journal |first=Z. |last=Dvir |title=On the size of Kakeya sets in finite fields |journal=Journal of the American Mathematical Society |volume=22 |pages=1093–1097 |year=2009 |issue=4 |doi=10.1090/S0894-0347-08-00607-3 |arxiv=0803.2336 |bibcode=2009JAMS...22.1093D |s2cid=3358826 }}</ref><ref>{{cite web |url=http://terrytao.wordpress.com/2008/03/24/dvirs-proof-of-the-finite-field-kakeya-conjecture/ |title=Dvir's proof of the finite field Kakeya conjecture |access-date=2008-04-08 |author=Terence Tao |author-link=Terence Tao |date=2008-03-24|work=What's New}}</ref> In his proof, he observed that any polynomial in ''n'' variables of degree less than |'''F'''| vanishing on a Kakeya set must be identically zero. On the other hand, the polynomials in ''n'' variables of degree less than |'''F'''| form a [[vector space]] of dimension
+<math display=block>{|\mathbf{F}|+n-1\choose n}\ge \frac{|\mathbf{F}|^n}{n!}.</math>
+
+Therefore, there is at least one non-trivial polynomial of degree less than |'''F'''| that vanishes on any given set with less than this number of points. Combining these two observations shows that Kakeya sets must have at least |'''F'''|<sup>''n''</sup>/''n''! points.
+
+It is not clear whether the techniques will extend to proving the original Kakeya conjecture but this proof does lend credence to the original conjecture by making essentially algebraic counterexamples unlikely. Dvir has written a survey article on progress on the finite field Kakeya problem and its relationship to [[randomness extractor]]s.<ref>{{Cite journal
+|id={{ECCC|2009|09|077}} |title=From Randomness Extraction to Rotating Needles |year=2009|first=Zeev|last=Dvir|journal=ACM SIGACT News}}.</ref>
+
+==See also==
+* [[Nikodym set]]
+* [[Cantor set]]
+
+==Notes==
+{{reflist|colwidth=30em}}
+
+==References==
+*{{cite journal
+  | last = Besicovitch | first = Abram | author-link = Abram Samoilovitch Besicovitch
+  | title = The Kakeya Problem
+  | journal = American Mathematical Monthly | volume = 70 | pages = 697&ndash;706 | year = 1963
+  | doi = 10.2307/2312249
+  | issue = 7
+  | jstor = 2312249
+  | mr=0157266
+}}
+*{{Cite journal | last1=Dvir | first1=Zeev | title=On the size of Kakeya sets in finite fields | arxiv=0803.2336  | doi=10.1090/S0894-0347-08-00607-3 | mr=2525780 | year=2009 | journal=[[Journal of the American Mathematical Society]] | volume=22 | issue=4 | pages=1093–1097| bibcode=2009JAMS...22.1093D | s2cid=3358826 }}
+* {{cite book
+  | last = Falconer | first = Kenneth J.  | author-link = Kenneth Falconer (mathematician)
+  | title = The Geometry of Fractal Sets
+  | publisher = Cambridge University Press | year = 1985
+  | mr=0867284
+  | location = Cambridge
+  | series=Cambridge Tracts in Mathematics
+  | volume=85
+  | isbn=0-521-25694-1}}
+*{{Cite journal | last1=Kakeya | first1=Soichi | author-link = Sōichi Kakeya
+| title=Some problems on maximum and minimum regarding ovals | year=1917 | journal=Tohoku Science Reports | volume=6 | pages=71–88 }}
+*{{cite journal
+  | last1 = Katz | first1 = Nets Hawk | author1-link = Nets Katz
+  | last2 = Łaba | first2 = Izabella | author2-link = Izabella Łaba
+  | last3 = Tao | first3 = Terence | author3-link = Terence Tao
+  | title = An improved bound on the Minkowski dimension of Besicovitch sets in <math>\mathbf{R}^3</math>
+  | journal = Annals of Mathematics | volume = 152 | pages = 383–446 | year = 2000
+  | url = http://www.emis.de/journals/Annals/152_2/laba.pdf
+  | doi = 10.2307/2661389
+  | issue = 2
+  | jstor = 2661389
+  | mr=1804528
+ | s2cid = 17007027 }}
+
+* {{cite book
+  | last = Wolff | first = Thomas | author-link = Thomas Wolff
+  | chapter = Recent work connected with the Kakeya problem
+  | pages=129–162
+  | title = Prospects in Mathematics: Invited Talks on the Occasion of the 250th Anniversary of Princeton University | editor-first = Hugo | editor-last = Rossi
+  | publisher = American Mathematical Society | location=Providence, RI | year = 1999 | isbn=978-0-8218-0975-4
+  | mr=1660476}}
+* {{cite book
+  | last = Wolff | first = Thomas | author-link = Thomas Wolff
+  | title = Lectures on Harmonic Analysis
+  | others = With a foreword by Charles Fefferman and preface by Izabella Łaba
+  | editor1-last = Łaba | editor1-first = Izabella | editor1-link = Izabella Łaba
+  | editor2-last = Shubin | editor2-first = Carol
+  | series = University Lecture Series
+  | volume = 29
+  | publisher = American Mathematical Society | location=Providence, RI| year = 2003
+  | mr=2003254
+  | isbn=0-8218-3449-5
+  | doi=10.1090/ulect/029}}
+
+==External links==
+*[http://www.math.ubc.ca/~ilaba/kakeya.html Kakeya at University of British Columbia ]
+*[https://www.math.ucla.edu/~tao/java/Besicovitch.html Besicovitch at UCLA]
+*[http://terrytao.wordpress.com/2008/03/24/dvirs-proof-of-the-finite-field-kakeya-conjecture/ Dvir's proof of the finite field Kakeya conjecture at Terence Tao's blog]
+*[https://www.math.stonybrook.edu/~bishop/lectures/UW.pdf An Introduction to Besicovitch-Kakeya Sets]
+*[https://math.uchicago.edu/~may/REU2021/REUPapers/Fox.pdf Besicovitch Sets, Kakeya Sets, and their Properties]
+
+{{DEFAULTSORT:Kakeya Set}}
+[[Category:Harmonic analysis]]
+[[Category:Real analysis]]
+[[Category:Discrete geometry]]

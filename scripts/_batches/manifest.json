@@ -1,0 +1,74 @@
+[
+  {
+    "batch": 0,
+    "from": 0,
+    "to": 134,
+    "file": "b00.txt"
+  },
+  {
+    "batch": 1,
+    "from": 135,
+    "to": 269,
+    "file": "b01.txt"
+  },
+  {
+    "batch": 2,
+    "from": 270,
+    "to": 404,
+    "file": "b02.txt"
+  },
+  {
+    "batch": 3,
+    "from": 405,
+    "to": 539,
+    "file": "b03.txt"
+  },
+  {
+    "batch": 4,
+    "from": 540,
+    "to": 674,
+    "file": "b04.txt"
+  },
+  {
+    "batch": 5,
+    "from": 675,
+    "to": 809,
+    "file": "b05.txt"
+  },
+  {
+    "batch": 6,
+    "from": 810,
+    "to": 944,
+    "file": "b06.txt"
+  },
+  {
+    "batch": 7,
+    "from": 945,
+    "to": 1079,
+    "file": "b07.txt"
+  },
+  {
+    "batch": 8,
+    "from": 1080,
+    "to": 1214,
+    "file": "b08.txt"
+  },
+  {
+    "batch": 9,
+    "from": 1215,
+    "to": 1349,
+    "file": "b09.txt"
+  },
+  {
+    "batch": 10,
+    "from": 1350,
+    "to": 1484,
+    "file": "b10.txt"
+  },
+  {
+    "batch": 11,
+    "from": 1485,
+    "to": 1619,
+    "file": "b11.txt"
+  }
+]

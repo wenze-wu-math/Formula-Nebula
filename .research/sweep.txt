@@ -1,0 +1,245 @@
+﻿清单全文 106074 字符（来源：缓存 raw.json）
+
+未解决部分 95290 字符 / 已解决段 10784 字符
+
+====================================================================================
+甲、在「未解决清单」里命中的条目（→ 支持保持 open/partial）
+====================================================================================
+
+[cn-standard]  status=open  ← 命中: Grothendieck, Standard, standard
+   § Algebra
+     …e Clifford index of a non-hyperelliptic curve is determined by the extent to which it, as a canonical curve, has linear syzygies. Grothendieck–Katz p-curvature conjecture: a conjectured local–global principle for linear ordinary differential equations. Hadamard conjecture: for every positive integer …
+   § Algebraic geometry
+     … k {\displaystyle k} to the Galois group of k {\displaystyle k} . Standard conjectures on algebraic cycles Tate conjecture on the connection between algebraic cycles on algebraic varieties and Galois representations on étale cohomology groups. Vi…
+
+[cn-canonical-model]  status=open  ← 命中: Canonical, Models
+   § Algebra
+     …ivic complexes. Green's conjecture: the Clifford index of a non-hyperelliptic curve is determined by the extent to which it, as a canonical curve, has linear syzygies. Grothendieck–Katz p-curvature conjecture: a conjectured local–global principle for linear ordinary differential equations. Hadamard conjecture…
+   § Model theory and formal languages
+     … ℵ 1 {\displaystyle \aleph _{1}} -saturated models of a countable theory. Shelah's categoricity conjecture for L ω 1 …
+
+[cn-resolution-charp]  status=open  ← 命中: Resolution, Singularities, Positive, Characteristic
+   § Algebraic geometry
+     …arity and equimultiplicity of varieties at singular points Are infinite sequences of flips possible in dimensions greater than 3? Resolution of singularities in characteristic p {\displaystyle p} ==== Covering and packing ==== Borsuk's problem on upper and lower bo…
+   § Algebra
+     …ature conjecture: a conjectured local–global principle for linear ordinary differential equations. Hadamard conjecture: for every positive integer k {\displaystyle k} , a Hadamard matrix of order 4 k {\displaystyle 4k} …
+
+[cn-rationally-connected]  status=open  ← 命中: Rational, Varieties
+   § Algebra
+     … Q ) > 0 {\displaystyle \chi (R/P,R/Q)>0} . Uniform boundedness conjecture for rational points: do algebraic curves of genus g ≥ 2 {\displaystyle g\geq 2} over number fields K…
+   § Algebraic geometry
+     …laystyle k} . Standard conjectures on algebraic cycles Tate conjecture on the connection between algebraic cycles on algebraic varieties and Galois representations on étale cohomology groups. Virasoro conjecture: a certain generating function encoding the Gromov–Witten invariants of a smooth projective var…
+
+[cn-fujita]  status=open  ← 命中: Fujita
+   § Algebraic geometry
+     … {\displaystyle A_{2}} is an automorphism. Fröberg conjecture on the Hilbert functions of a set of forms. Fujita conjecture regarding the line bundle K M ⊗ L …
+
+[cn-zariski-lipman]  status=open  ← 命中: Zariski, Lipman
+   § Algebra
+     … n × n {\displaystyle n\times n} matrices under simultaneous conjugation. Zariski–Lipman conjecture: for a complex algebraic variety V {\displaystyle V} with coordinate ring R …
+
+[cn-jacobian]  status=disproved  ← 命中: Jacobian, jacobian
+   § Algebraic geometry
+     …'s conjectures In spherical or hyperbolic geometry, must polyhedra with the same volume and Dehn invariant be scissors-congruent? Jacobian conjecture for two-dimensional spaces: if a two-dimensional polynomial mapping over a characteristic-0 field has a constant nonzero Jacobian determinant, then does it have…
+
+[cn-hartshorne-ample]  status=open  ← 命中: Hartshorne, Subvariety
+   § Algebraic geometry
+     … M {\displaystyle M} General elephant problem: do general elephants have at most Du Val singularities? Hartshorne's conjectures In spherical or hyperbolic geometry, must polyhedra with the same volume and Dehn invariant be scissors-congruent? Jacobian conjecture for two-dimensional …
+   § Arithmetic geometry
+     …ystyle \mathbb {C} } , and V ⊆ X {\displaystyle V\subseteq X} is a subvariety, then V {\displaystyle V} contains only finitely many maximal atypical subvarieties. ==== Computational number theory ==== …
+
+[cn-riemann]  status=open  ← 命中: Riemann, riemann
+   § Millennium Prize Problems
+     …emain unsolved to date: Birch and Swinnerton-Dyer conjecture Hodge conjecture Navier–Stokes existence and smoothness P versus NP Riemann hypothesis Yang–Mills existence and mass gap The seventh problem, the Poincaré conjecture, was solved by Grigori Perelman in 2003. However, a generalization called the smoo…
+
+[cn-grh]  status=open  ← 命中: Riemann
+   § Millennium Prize Problems
+     …emain unsolved to date: Birch and Swinnerton-Dyer conjecture Hodge conjecture Navier–Stokes existence and smoothness P versus NP Riemann hypothesis Yang–Mills existence and mass gap The seventh problem, the Poincaré conjecture, was solved by Grigori Perelman in 2003. However, a generalization called the smoo…
+
+[cn-bsd]  status=open  ← 命中: Swinnerton
+   § Millennium Prize Problems
+     …riginal seven Millennium Prize Problems listed by the Clay Mathematics Institute in 2000, six remain unsolved to date: Birch and Swinnerton-Dyer conjecture Hodge conjecture Navier–Stokes existence and smoothness P versus NP Riemann hypothesis Yang–Mills existence and mass gap The seventh problem, the Poincar…
+
+[cn-goldbach]  status=partial  ← 命中: Goldbach, goldbach
+   § Additive number theory
+     … Gilbreath's conjecture on consecutive applications of the unsigned forward difference operator to the sequence of prime numbers. Goldbach's conjecture: every even natural number greater than 2 {\displaystyle 2} is the sum of two prime numbers. Lander, Parkin, and S…
+
+[cn-collatz]  status=open  ← 命中: Collatz, collatz
+   § Dynamical systems
+     …ue spectrum? Birkhoff conjecture – if a billiard table is strictly convex and integrable, is its boundary necessarily an ellipse? Collatz conjecture (also known as the 3 n + 1 {\displaystyle 3n+1} conjecture) Eden's conjecture that the suprem…
+
+[cn-fermat]  status=proved  ← 命中: Fermat
+   § Diophantine equations
+     … y + 1 / z {\displaystyle 4/n=1/x+1/y+1/z} . Fermat–Catalan conjecture: there are finitely many distinct solutions ( a m , …
+
+[cn-class-number]  status=proved  ← 命中: Number
+   § (顶部)
+     …lysis, combinatorics, algebraic, differential, discrete and Euclidean geometries, graph theory, group theory, mathematical logic, number theory, set theory, Ramsey theory, dynamical systems, and partial differential equations. Some problems belong to more than one discipline and are studied using techniques f…
+
+[cn-szpiro]  status=open  ← 命中: Szpiro
+   § Arithmetic geometry
+     …a,b,c} such that a + b = c {\displaystyle a+b=c} . Szpiro's conjecture: for any ε > 0 {\displaystyle \varepsilon >0} , there is some constant C …
+
+[cn-schanuel]  status=open  ← 命中: Schanuel, schanuel
+   § Diophantine approximation and transcendental number theory
+     …e \Vert x\Vert } is the distance from x {\displaystyle x} to the nearest integer. Schanuel's conjecture on the transcendence degree of certain field extensions of the rational numbers. In particular: Are π {\displaystyle \…
+
+[cn-poincare]  status=proved  ← 命中: Poincaré
+   § Millennium Prize Problems
+     … Navier–Stokes existence and smoothness P versus NP Riemann hypothesis Yang–Mills existence and mass gap The seventh problem, the Poincaré conjecture, was solved by Grigori Perelman in 2003. However, a generalization called the smooth four-dimensional Poincaré conjecture—that is, whether a four-dimensional to…
+
+[cn-novikov]  status=open  ← 命中: Novikov, novikov
+   § Topology
+     … group has a continuous, faithful group action on a topological manifold, then the group must be a Lie group. Mazur's conjectures Novikov conjecture on the homotopy invariance of certain polynomials in the Pontryagin classes of a manifold, arising from the fundamental group. Quadrisecants of wild knots: it ha…
+
+[cn-farrell-jones]  status=open  ← 命中: Farrell
+   § Algebra
+     …ane space K ( G , 1 ) {\displaystyle K(G,1)} . Farrell–Jones conjecture on whether certain assembly maps are isomorphisms. Bost conjecture: a specific case of the Farrell–Jones conjecture Finite lattice representation problem: …
+
+[cn-four-dim-poincare]  status=open  ← 命中: Dimensional, Poincaré
+   § Millennium Prize Problems
+     …eventh problem, the Poincaré conjecture, was solved by Grigori Perelman in 2003. However, a generalization called the smooth four-dimensional Poincaré conjecture—that is, whether a four-dimensional topological sphere can have two or more inequivalent smooth structures—is unsolved. === Notebooks === The Kou…
+
+[cn-hsiang]  status=partial  ← 命中: Minimal, Hypersurface
+   § Combinatorial games
+     …==== Combinatorial games ==== Sudoku: How many puzzles have exactly one solution? How many puzzles with exactly one solution are minimal? What is the maximum number of givens for a minimal puzzle? Tic-tac-toe variants: Given the width of a tic-tac-toe board, what is the smallest dimension such that X is guar…
+   § Differential geometry
+     … Chern's conjecture (affine geometry) that the Euler characteristic of a compact affine manifold vanishes. Chern's conjecture for hypersurfaces in spheres, a number of closely related conjectures. Closed curve problem: find (explicit) necessary and sufficient conditions that determine when, given two periodic…
+
+[cn-navier-stokes]  status=open  ← 命中: Navier, Stokes, Smoothness
+   § Millennium Prize Problems
+     …ed by the Clay Mathematics Institute in 2000, six remain unsolved to date: Birch and Swinnerton-Dyer conjecture Hodge conjecture Navier–Stokes existence and smoothness P versus NP Riemann hypothesis Yang–Mills existence and mass gap The seventh problem, the Poincaré conjecture, was solved by Grigori Perelman…
+
+[cn-kakeya]  status=partial  ← 命中: Kakeya
+   § Euclidean geometry
+     …re problem, also known as Toeplitz' conjecture and the square peg problem – does every Jordan curve have an inscribed square? The Kakeya conjecture – do n {\displaystyle n} -dimensional sets that contain a unit line segment in every direction necessarily have Hausdor…
+
+[cn-restriction]  status=partial  ← 命中: Restriction, restriction
+   § Graph drawing and embedding
+     …with fewer crossings than the number given by his upper bound? Universal point sets of subquadratic size for planar graphs ==== Restriction of graph parameters ==== Does there exist a conference graph for every number of vertices v > 1 {\displaystyle v…
+
+[cn-connes-rigidity]  status=open  ← 命中: Connes
+   § Algebra
+     … {\displaystyle f} be the d {\displaystyle d} -th power of a linear polynomial? Connes embedding problem in Von Neumann algebra theory Determinantal conjecture on the determinant of the sum of two normal matrices. Eilenberg–Ganea conjecture: a group with cohom…
+
+[cn-baum-connes]  status=open  ← 命中: Connes
+   § Algebra
+     … {\displaystyle f} be the d {\displaystyle d} -th power of a linear polynomial? Connes embedding problem in Von Neumann algebra theory Determinantal conjecture on the determinant of the sum of two normal matrices. Eilenberg–Ganea conjecture: a group with cohom…
+
+[cn-kadison-kaplansky]  status=open  ← 命中: Kaplansky
+   § Algebra
+     …Jacobson's conjecture: the intersection of all powers of the Jacobson radical of a left-and-right Noetherian ring is precisely 0. Kaplansky's conjectures Köthe conjecture: if a ring has no nil ideal other than { 0 } {\displaystyle \{0\}} , then it has…
+
+[cn-sat]  status=open  ← 命中: versus
+   § Millennium Prize Problems
+     …000, six remain unsolved to date: Birch and Swinnerton-Dyer conjecture Hodge conjecture Navier–Stokes existence and smoothness P versus NP Riemann hypothesis Yang–Mills existence and mass gap The seventh problem, the Poincaré conjecture, was solved by Grigori Perelman in 2003. However, a generalization calle…
+
+[cn-continuum]  status=disproved  ← 命中: Continuum, continuum
+   § Model theory and formal languages
+     … {\displaystyle \aleph _{\omega _{1}}} does it have a model of cardinality continuum? Do the Henson graphs have the finite model property? Does a finitely presented homogeneous structure for a finite relational language have finitely many reducts? Does th…
+
+[cn-finite-simple]  status=proved  ← 命中: Finite, Simple, Groups
+   § Algebra
+     …es conjecture on whether certain assembly maps are isomorphisms. Bost conjecture: a specific case of the Farrell–Jones conjecture Finite lattice representation problem: is every finite lattice isomorphic to the congruence lattice of some finite algebra? Goncharov conjecture on the cohomology of certain motivi…
+   § Group theory
+     … free Burnside group B(m,n) finite? In particular, is B(2, 5) finite? Guralnick–Thompson conjecture on the composition factors of groups in genus-0 systems Herzog–Schönheim conjecture: if a finite system of left cosets of subgroups of a group G {\displaystyle G} for…
+
+[cn-kazhdan-lusztig]  status=proved  ← 命中: Kazhdan, Lusztig
+   § Representation theory
+     …numbers of characters of blocks of local subgroups. Demazure conjecture on representations of algebraic groups over the integers. Kazhdan–Lusztig conjectures relating the values of the Kazhdan–Lusztig polynomials at 1 with representations of complex semisimple Lie groups and Lie algebras. McKay conjecture: in…
+
+[cn-lusztig]  status=partial  ← 命中: Lusztig, lusztig
+   § Representation theory
+     …of characters of blocks of local subgroups. Demazure conjecture on representations of algebraic groups over the integers. Kazhdan–Lusztig conjectures relating the values of the Kazhdan–Lusztig polynomials at 1 with representations of complex semisimple Lie groups and Lie algebras. McKay conjecture: in a group…
+
+[cn-gross-prasad]  status=partial  ← 命中: Prasad
+   § Algebraic number theory
+     …rization? Fontaine–Mazur conjecture: actually numerous conjectures, all proposed by Jean-Marc Fontaine and Barry Mazur. Gan–Gross–Prasad conjecture: a restriction problem in representation theory of real or p-adic Lie groups. Greenberg's conjectures Hermite's problem: is it possible, for any natural number …
+
+[cn-zero-divisor]  status=open  ← 命中: Divisor
+   § Analytic number theory
+     …ween pairs of zeros of the Riemann zeta function is the same as the pair correlation function of random Hermitian matrices. Piltz divisor problem on bounding Δ k ( x ) = D …
+
+[cn-group-iso]  status=open  ← 命中: Isomorphism
+   § Algebra
+     … , 1 ) {\displaystyle K(G,1)} . Farrell–Jones conjecture on whether certain assembly maps are isomorphisms. Bost conjecture: a specific case of the Farrell–Jones conjecture Finite lattice representation problem: is every finite lattice isomorphic to the congruence lattice o…
+
+>>> 命中未解决清单的节点数: 36 / 59
+
+====================================================================================
+乙、在「2015 年以来已解决」段里命中的条目（→ 支持改 status ★ 重点）
+====================================================================================
+
+[cn-jacobian]  status=disproved  ← 关键词 "Jacobian"
+   § Algebra
+     …Problems solved since 2015 == === Algebra === Jacobian conjecture for more than 2 dimensions (Levent Alpöge, 2026 using Claude Fable 5). Dixmier conjecture for n ≥ 3 {\displaystyle n\geq 3} , stably equivalent to the Jacobian conjecture. Mazur's conjecture B (Vessilin Dimitrov, Ziyang Gao, and Philipp Habe…
+
+[cn-riemann]  status=open  ← 关键词 "Riemann"
+   § Books discussing unsolved problems
+     …s: Searching to Solve the Greatest Mystery in Mathematics. Harper Collins. ISBN 978-0-06-093558-0. Derbyshire, John (2003). Prime Obsession: Bernhard Riemann and the Greatest Unsolved Problem in Mathematics. Joseph Henry Press. ISBN 978-0-309-08549-6. Devlin, Keith (2006). The Millennium Problems – The Seven Greatest Unsolved* Mathematical Puzzles Of Our Time. Barnes & Noble. ISBN 978-0-7607-8659-8. Blondel, Vincent D.; Megrestski, Alexandre (2004). Unsolved problem…
+
+[cn-grh]  status=open  ← 关键词 "Riemann"
+   § Books discussing unsolved problems
+     …s: Searching to Solve the Greatest Mystery in Mathematics. Harper Collins. ISBN 978-0-06-093558-0. Derbyshire, John (2003). Prime Obsession: Bernhard Riemann and the Greatest Unsolved Problem in Mathematics. Joseph Henry Press. ISBN 978-0-309-08549-6. Devlin, Keith (2006). The Millennium Problems – The Seven Greatest Unsolved* Mathematical Puzzles Of Our Time. Barnes & Noble. ISBN 978-0-7607-8659-8. Blondel, Vincent D.; Megrestski, Alexandre (2004). Unsolved problem…
+
+[cn-fermat]  status=proved  ← 关键词 "Fermat"
+   § Books discussing problems solved since 1995
+     …ematical Problems == Notes == == References == == Further reading == === Books discussing problems solved since 1995 === Singh, Simon (2002). Fermat's Last Theorem. Fourth Estate. ISBN 978-1-84115-791-7. O'Shea, Donal (2007). The Poincaré Conjecture. Penguin. ISBN 978-1-84614-012-9. Szpiro, George G. (2003). Kepler's Conjecture. Wiley. ISBN 978-0-471-08601-7. Ronan, Mark (2006). Symmetry and the Monster. Oxford. ISBN 978-0-19-280722-9. === Books discussing…
+
+[cn-class-number]  status=proved  ← 关键词 "Number"
+   § Combinatorics
+     …Pak, Alexander Zimin, 2025). Erdős sumset conjecture (Joel Moreira, Florian Richter, Donald Robertson, 2018). McMullen's g-conjecture on the possible numbers of faces of different dimensions in a simplicial sphere (also Grünbaum conjecture, several conjectures of Kühnel). (Karim Adiprasito, 2018). Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016). Erdős discrepancy problem (Terence Tao, 2015) === Dynamical systems === Eremenko's conjectur…
+
+[cn-szpiro]  status=open  ← 关键词 "Szpiro"
+   § Books discussing problems solved since 1995
+     …(2002). Fermat's Last Theorem. Fourth Estate. ISBN 978-1-84115-791-7. O'Shea, Donal (2007). The Poincaré Conjecture. Penguin. ISBN 978-1-84614-012-9. Szpiro, George G. (2003). Kepler's Conjecture. Wiley. ISBN 978-0-471-08601-7. Ronan, Mark (2006). Symmetry and the Monster. Oxford. ISBN 978-0-19-280722-9. === Books discussing unsolved problems === Chung, Fan; Graham, Ron (1999). Erdös on Graphs: His Legacy of Unsolved Problems. AK Peters. ISBN 978-1-56881-111-6. Cr…
+
+[cn-poincare]  status=proved  ← 关键词 "Poincaré"
+   § Books discussing problems solved since 1995
+     …iscussing problems solved since 1995 === Singh, Simon (2002). Fermat's Last Theorem. Fourth Estate. ISBN 978-1-84115-791-7. O'Shea, Donal (2007). The Poincaré Conjecture. Penguin. ISBN 978-1-84614-012-9. Szpiro, George G. (2003). Kepler's Conjecture. Wiley. ISBN 978-0-471-08601-7. Ronan, Mark (2006). Symmetry and the Monster. Oxford. ISBN 978-0-19-280722-9. === Books discussing unsolved problems === Chung, Fan; Graham, Ron (1999). Erdös on Graphs: His Legacy of Un…
+
+[cn-four-dim-poincare]  status=open  ← 关键词 "Dimensional"
+   § Books discussing unsolved problems
+     …n Mathematics of Data Science The Open Problems Project (TOPP), discrete and computational geometry problems Kirby's list of unsolved problems in low-dimensional topology FrontierMath: Open Problems Erdős' Problems on Graphs Fenn, Roger; Ilyutko, Denis P.; Kauffman, Louis H.; Manturov, Vassily O. (2014-09-09). "Unsolved Problems in Virtual Knot Theory and Combinatorial Knot Theory". arXiv:1409.2823 [math.GT]. Open problems from the 12th International Conference on F…
+
+[cn-virtual-fibering]  status=proved  ← 关键词 "Virtual"
+   § Books discussing unsolved problems
+     … Open Problems Erdős' Problems on Graphs Fenn, Roger; Ilyutko, Denis P.; Kauffman, Louis H.; Manturov, Vassily O. (2014-09-09). "Unsolved Problems in Virtual Knot Theory and Combinatorial Knot Theory". arXiv:1409.2823 [math.GT]. Open problems from the 12th International Conference on Fuzzy Set Theory and Its Applications List of open problems in inner model theory Open problems in operator algebras Aizenman, Michael. "Open Problems in Mathematical Physics". Simon, B…
+
+[cn-navier-stokes]  status=open  ← 关键词 "Smoothness"
+   § Geometry
+     …try === Talagrand's convexity conjecture (Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026). Carathéodory conjecture for surfaces of smoothness C 4 {\displaystyle C^{4}} (Brendan Guilfoyle and Wilhelm Klingenberg, 2025). Einstein problem (David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss, 2024). Egan conjecture (Sergei Drozdov, 20…
+
+[cn-finite-simple]  status=proved  ← 关键词 "Finite"
+   § Books discussing unsolved problems
+     … (1990-01-18). "Conformal dynamics problem list". arXiv:math/9201271. Bolsinov, A.; et al. (2020-01-14). "Open Problems, Questions, and Challenges in Finite-Dimensional Integrable Systems". arXiv:1804.03737v2 [math.DS]. Deift, Percy (2017-03-15). "Some Open Problems in Random Matrix Theory and the Theory of Integrable Systems. II". arXiv:1703.04931 [math-ph]. Bolsinov, Alexey V.; et al. (2024-10-05). "Research problems on relations between Nijenhuis geometry and int…
+
+>>> 命中已解决段的节点数: 11 / 59
+
+====================================================================================
+丙、既不在未解决清单、也不在已解决段的节点（中性，保持原状）
+====================================================================================
+open      cn-hodge                 Hodge Conjecture
+open      cn-tate                  Tate Conjecture
+open      cn-linearization         Linearization Conjecture
+proved    cn-yau-tian              Yau–Tian Conjecture
+open      cn-abc                   abc Conjecture
+partial   cn-twin-prime            Twin Prime Conjecture
+proved    cn-sato-tate             Sato–Tate Conjecture
+proved    cn-mordell               Mordell Conjecture
+proved    cn-geometrization        Thurston Geometrization Conjecture
+open      cn-borel                 Borel Conjecture
+proved    cn-thurston-norm         Thurston Norm Conjecture
+open      cn-yang-mills            Yang–Mills Existence and Mass Gap
+partial   cn-bochner-riesz         Bochner–Riesz Conjecture
+open      cn-lusin                 Carleson\
+open      cn-idempotent            Idempotent Conjecture
+open      cn-lagarias              Lagarias\
+partial   cn-langlands-functorialityLanglands Functoriality
+partial   cn-artin                 Artin Conjecture
+proved    cn-howe                  Howe Duality Conjecture
+proved    cn-modularity            Modularity Theorem
+open      cn-bass                  Bass Conjecture
+proved    cn-novikov-word          Dehn\
+
+合计: 22 条中性

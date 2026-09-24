@@ -1,0 +1,135 @@
+ 135|jacobian>moduli-space|0.7|related|Torelli 映射映入模空间
+ 136|castelnuovo>mmp|0.85|related|收缩例外曲线是 MMP 的第一步
+ 137|castelnuovo>birational|0.78|related|收缩是双有理操作
+ 138|castelnuovo>surface-classification|0.8|related|极小曲面模型由收缩得到
+ 139|surface-classification>kodaira-dimension|0.9|related|按小平维数分四大类
+ 140|surface-classification>mmp|0.82|related|曲面分类是 MMP 的二维范例
+ 141|k3-surface>surface-classification|0.88|equivalent|K3 是 κ = 0 类的代表
+ 142|k3-surface>hodge-theory|0.78|related|K3 的霍奇菱形
+ 143|k3-surface>mirror-symmetry|0.7|related|K3 的镜像对称
+ 144|k3-surface>moduli-space|0.72|related|K3 的 19 维模空间
+ 145|chow-ring>intersection-number|0.9|computes|相交数在周环中计算
+ 146|chow-ring>motive|0.85|related|周 motive 以周群为原料
+ 147|chow-ring>hodge-conjecture|0.82|related|霍奇猜想关于周群与上同调
+ 148|chow-ring>k-theory|0.68|sameFamily|两者都是广义上同调
+ 149|chern-class>chern-character|0.92|related|陈特征是陈类的组合
+ 150|chern-class>grothendieck-riemann-roch|0.85|related|GRR 用陈类表达
+ 151|chern-class>chow-ring|0.75|related|陈类可用闭链表示
+ 152|chern-class>intersection-number|0.78|computes|陈数由相交数计算
+ 153|chern-character>grothendieck-riemann-roch|0.88|related|ch 是 GRR 的核心
+ 154|chern-character>k-theory|0.8|related|ch 是 K → 上同调的环同态
+ 155|chern-character>riemann-roch|0.85|related|ch 使 RR 成为积分形式
+ 156|todd-class>grothendieck-riemann-roch|0.85|related|td 是 GRR 的修正因子
+ 157|todd-class>riemann-roch|0.82|related|HRR 右端的 td(X)
+ 158|todd-class>chern-class|0.8|related|td 由陈类组合而成
+ 159|riemann-roch>grothendieck-riemann-roch|0.95|generalizes|GRR 是 RR 的相对推广
+ 160|riemann-roch>hodge-theory|0.7|related|χ 与霍奇数
+ 161|grothendieck-riemann-roch>k-theory|0.85|related|GRR 是 K-理论的定理
+ 162|grothendieck-riemann-roch>intersection-number|0.78|related|右端是相交数
+ 163|grothendieck-riemann-roch>chow-ring|0.72|related|相交理论的公理基础
+ 164|k-theory>derived-category|0.6|related|K-理论与导出范畴相关
+ 165|hodge-theory>hodge-conjecture|0.92|related|霍奇猜想关于霍奇类
+ 166|hodge-theory>mirror-symmetry|0.78|related|镜像对称交换霍奇数
+ 167|hodge-theory>lefschetz|0.8|related|莱夫谢茨定理是霍奇理论的定理
+ 168|hodge-conjecture>standard-conjectures|0.78|implies|标准猜想蕴含霍奇型结果
+ 169|standard-conjectures>motive|0.8|property|标准猜想关于 motive 的性质
+ 170|standard-conjectures>weil-conjectures|0.78|implies|标准猜想可推出韦伊猜想
+ 171|standard-conjectures>chow-ring|0.85|analogy|关于代数对应的猜想
+ 172|birational>resolution|0.85|related|消解在双有理类内进行
+ 173|birational>mmp|0.88|related|MMP 在双有理类中找标准形
+ 174|birational>kodaira-dimension|0.8|related|小平维数是双有理不变量
+ 175|birational>flip|0.78|related|翻转是双有理映射
+ 176|resolution>mmp|0.82|related|消解是 MMP 的前置手术
+ 177|mmp>cone-theorem|0.92|related|锥定理给出 MMP 的算法起点
+ 178|mmp>flip|0.9|related|翻转是 MMP 的核心步骤
+ 179|mmp>fano|0.85|related|MMP 的另一终点是法诺纤维空间
+ 180|mmp>kodaira-dimension|0.82|related|按 κ 决定 MMP 走向
+ 181|mmp>abundance|0.78|related|丰沛性猜想是 MMP 的遗留问题
+ 182|nakai-moishezon>fano|0.7|defines|−K_X 丰沛定义法诺
+ 183|nakai-moishezon>cone-theorem|0.72|related|丰沛锥与有效锥对偶
+ 184|nakai-moishezon>linear-system|0.68|equivalent|丰沛性 ⇔ 线性系给出嵌入
+ 185|cone-theorem>fano|0.78|related|K 负射线与法诺纤维
+ 186|cone-theorem>flip|0.82|analogy|每条极端射线对应一次操作
+ 187|fano>flip|0.7|related|法诺纤维是翻转的输出之一
+ 188|fano>k-stability|0.85|related|法诺簇上的 KE 度量与 K-稳定性
+ 189|fano>gromov-witten|0.78|related|法诺簇上的 GW 不变量
+ 190|fano>mirror-symmetry|0.8|related|法诺簇是镜像对称的主战场
+ 191|flip>minimal-model-open|0.7|related|高维翻转存在性的遗留问题
+ 192|kodaira-dimension>abundance|0.85|related|κ 最大时猜想典范模型存在
+ 193|abundance>minimal-model-open|0.72|related|丰沛性是公开问题
+ 194|abundance>canonical-sheaf|0.82|related|关于 mK_X 的丰沛性
+ 195|moduli-space>representable-functor|0.9|defines|模空间由可表示函子定义
+ 196|moduli-space>hilbert-scheme|0.85|related|希尔伯特概形是模空间的范例
+ 197|moduli-space>stable-sheaf|0.85|related|稳定层的模空间
+ 198|moduli-space>git|0.82|computes|GIT 是构造模空间的机器
+ 199|moduli-space>stack|0.88|equivalent|叠解决带自同构的模空间
+ 200|representable-functor>stack|0.85|related|叠是取值群胚的层
+ 201|representable-functor>hilbert-scheme|0.8|related|希尔伯特函子的可表示性
+ 202|representable-functor>spec-functor|0.75|related|Spec 是函子观点的起点
+ 203|hilbert-scheme>gromov-witten|0.75|related|枚举几何的模空间
+ 204|hilbert-scheme>git|0.7|computes|用 GIT 构造商
+ 205|stable-sheaf>git|0.85|defines|稳定性由 GIT 定义
+ 206|stable-sheaf>k-stability|0.6|related|两者的稳定性思想相通
+ 207|git>stack|0.72|related|叠是 GIT 商的精细版本
+ 208|etale-cohomology>weil-conjectures|0.95|related|平展上同调是证明韦伊猜想的工具
+ 209|etale-cohomology>lefschetz|0.75|related|莱夫谢茨迹公式
+ 210|etale-cohomology>motive|0.78|computes|平展实现是 motive 的一个实现
+ 211|etale-cohomology>sheaf-cohomology|0.85|related|平展上同调是层上同调
+ 212|weil-conjectures>motive|0.75|related|韦伊上同调与 motive
+ 213|weil-conjectures>hodge-theory|0.7|related|有限域上的黎曼假设
+ 214|lefschetz>weil-conjectures|0.78|related|迹公式证明黎曼假设部分
+ 215|motive>derived-category|0.72|related|motive 的范畴化
+ 216|motive>k-theory|0.65|related|motivic 上同调与 K-理论
+ 217|mirror-symmetry>gromov-witten|0.88|computes|镜像公式计算 GW 不变量
+ 218|mirror-symmetry>fukaya-category|0.9|related|同调镜像对称
+ 219|mirror-symmetry>derived-category|0.82|equivalent|导出范畴等价
+ 220|gromov-witten>moduli-space|0.8|related|稳定映射的模空间
+ 221|gromov-witten>chow-ring|0.68|related|虚拟基本类在周群中
+ 222|stack>derived-algebraic-geometry|0.78|related|导出叠
+ 223|derived-algebraic-geometry>derived-category|0.85|related|导出范畴是基础语言
+ 224|derived-algebraic-geometry>formal-scheme|0.7|related|形变理论的自然框架
+ 225|fukaya-category>derived-category|0.75|related|𝔸∞-范畴与导出范畴
+ 226|langlands>etale-cohomology|0.72|computes|伽罗瓦表示的实现
+ 227|langlands>moduli-space|0.75|related|希钦模空间与几何朗兰兹
+ 228|langlands>motive|0.68|related|朗兰兹与 motive 的联系
+ 229|k-stability>moduli-space|0.7|related|K-稳定模空间
+ 230|minimal-model-open>resolution|0.72|related|正特征消解仍未解决
+ 231|minimal-model-open>mmp|0.78|related|高维 MMP 的遗留问题
+ 232|cn-hodge>cn-tate|0.94|depends|算术上的镜像：都有"不变类是否来自代数圈"的形式
+ 233|cn-hodge>cn-standard|0.9|implies|标准猜想蕴含 Hodge 猜想
+ 234|cn-hodge>cn-hartshorne-ample|0.58|computes|同属"上同调类能否由代数对象实现"这一族
+ 235|cn-tate>cn-standard|0.9|implies|标准猜想蕴含 Tate 猜想
+ 236|cn-tate>cn-bsd|0.86|analogy|秩的解析–代数对应是 Tate 猜想的算术形式
+ 237|cn-standard>cn-canonical-model|0.62|related|两者都以 MMP 的框架为背景
+ 238|cn-canonical-model>cn-rationally-connected|0.7|related|都在 MMP 的终点处提出问题
+ 239|cn-canonical-model>cn-resolution-charp|0.66|depends|都需要消解或它的替代品
+ 240|cn-resolution-charp>cn-jacobian|0.6|related|特征 p 的困难跨越多个领域
+ 241|cn-rationally-connected>cn-jacobian|0.64|sameFamily|都是关于"映射是否足够多"的问题
+ 242|cn-jacobian>cn-linearization|0.88|implies|线性化猜想蕴含雅可比猜想
+ 243|cn-yau-tian>cn-fujita|0.7|related|都关乎典范除子的正性与丰饶性
+ 244|cn-hartshorne-ample>cn-fujita|0.68|defines|都是关于正性与消没的判据
+ 245|cn-fujita>cn-canonical-model|0.74|depends|丰饶性是典范模型存在的前提
+ 246|cn-hartshorne-ample>cn-standard|0.55|sameFamily|同属"上同调消没与代数性"这一族
+ 247|cn-zariski-lipman>cn-jacobian|0.62|related|都用微分模探测正则性
+ 248|cn-zariski-lipman>cn-resolution-charp|0.58|related|正特征下都因微分失效而困难
+ 249|cn-yau-tian>cn-canonical-model|0.66|related|都与典范除子的正性相关
+ 250|cn-rationally-connected>cn-yau-tian|0.55|related|都以 Fano 簇为对象
+ 251|cn-riemann>cn-grh|0.93|generalizes|GRH 是 RH 的推广，单个 L 函数推广到全体
+ 252|cn-riemann>cn-bsd|0.84|related|BSD 是 L 函数零点阶的算术解释
+ 253|cn-riemann>cn-class-number|0.76|related|类数问题的证明用 L 函数零点排斥
+ 254|cn-riemann>cn-schanuel|0.58|sameFamily|都属"分析对象与算术对象的关系"
+ 255|cn-grh>cn-class-number|0.78|implies|GRH 蕴含类数问题的有效版本
+ 256|cn-grh>cn-artin|0.8|property|Artin L 函数的解析性质在 GRH 框架下讨论
+ 257|cn-bsd>cn-szpiro|0.82|sameFamily|Szpiro 控制判别式，与 BSD 的不变量同族
+ 258|cn-bsd>cn-mordell|0.74|related|Faltings 的证明是 BSD 解析秩 ≤ 1 情形的基础
+ 259|cn-abc>cn-szpiro|0.95|equivalent|Szpiro 猜想与 abc 猜想等价
+ 260|cn-abc>cn-fermat|0.88|implies|abc 蕴含足够大指数的费马大定理
+ 261|cn-abc>cn-mordell|0.66|sameFamily|两者都属"丢番图方程解的有限性"
+ 262|cn-fermat>cn-mordell|0.72|related|都通过 Galois 表示与自守形式解决
+ 263|cn-fermat>cn-modularity|0.94|related|费马大定理的证明归结为模性定理
+ 264|cn-fermat>cn-artin|0.76|related|二维 Artin 猜想是 Wiles 证明的关键工具
+ 265|cn-modularity>cn-sato-tate|0.86|related|佐藤–泰特的证明用模性提升
+ 266|cn-modularity>cn-kazhdan-lusztig|0.54|related|自守形式与 Hecke 代数的表示论
+ 267|cn-modularity>cn-gross-prasad|0.68|related|自守表示的周期与 L 值
+ 268|cn-sato-tate>cn-langlands-functoriality|0.82|implies|等分布是函子性的推论
+ 269|cn-sato-tate>cn-grh|0.6|sameFamily|都属于 L 函数在临界带的行为

@@ -1,0 +1,135 @@
+ 810|c-discrepancy>mmp|0.85|related|MMP 的核心度量
+ 811|c-discrepancy>c-log-resolution|0.85|depends|需要对数消解才能读出差异
+ 812|c-discrepancy>singularity|0.82|related|量化奇点的严重程度
+ 813|c-lc-threshold>c-discrepancy|0.85|defines|由差异定义阈值
+ 814|c-lc-threshold>singularity|0.78|related|奇点的数值不变量
+ 815|c-lc-threshold>c-log-resolution|0.7|computes|计算需要消解
+ 816|c-adjunction-mmp>adjunction|0.88|related|MMP 形式的伴随
+ 817|c-adjunction-mmp>mmp|0.85|related|归纳法的技术核心
+ 818|c-adjunction-mmp>c-discrepancy|0.8|defines|由差异公式给出 Δ_S
+ 819|c-klt-base-point-free>mmp|0.85|computes|构造翻转的核心输入
+ 820|c-klt-base-point-free>c-singularities-mmp|0.82|related|针对 klt 配对
+ 821|c-klt-base-point-free>a-ample|0.7|related|要求 nef 且 big
+ 822|c-rational-singularities>singularity|0.88|property|一类性质良好的奇点
+ 823|c-rational-singularities>resolution|0.82|defines|用消解定义
+ 824|c-rational-singularities>c-singularities-mmp|0.75|sameFamily|terminal 与 canonical 都是有理的
+ 825|c-log-resolution>resolution|0.9|related|对数版本的消解
+ 826|c-log-resolution>c-hironaka|0.85|property|存在性由 Hironaka 保证
+ 827|c-hironaka>resolution|0.95|related|即奇点消解定理
+ 828|c-hironaka>birational|0.8|related|双有理几何的基石
+ 829|c-hironaka>blowup|0.75|computes|用爆破实现消解
+ 830|c-weak-factorization>birational|0.85|related|双有理映射的分解
+ 831|c-weak-factorization>blowup|0.85|related|分解为爆破与收缩
+ 832|c-weak-factorization>c-hironaka|0.75|generalizes|是消解定理的加强
+ 833|c-torelli>jacobian|0.9|defines|曲线由 Jacobian 决定
+ 834|c-torelli>moduli-space|0.82|related|给出 𝓜_g → 𝒜_g 的单射
+ 835|c-torelli>abelian-variety|0.75|related|涉及极化 Abel 簇
+ 836|c-deligne-mumford>moduli-space|0.9|related|曲线模空间的紧化
+ 837|c-deligne-mumford>stack|0.85|related|是 Deligne–Mumford 栈
+ 838|c-deligne-mumford>c-gw-invariants|0.8|related|GW 理论的几何基础
+ 839|c-psi-classes>c-deligne-mumford|0.82|defines|定义在紧化模空间上
+ 840|c-psi-classes>c-witten-conjecture|0.88|computes|Witten 猜想的计算对象
+ 841|c-psi-classes>intersection-number|0.75|equivalent|相交数即其积分
+ 842|c-witten-conjecture>c-kontsevich-formula|0.85|related|由 Kontsevich 证明
+ 843|c-witten-conjecture>c-gw-invariants|0.75|related|GW 理论的亏格 0 情形
+ 844|c-gw-invariants>gromov-witten|0.95|related|即 Gromov–Witten 不变量
+ 845|c-gw-invariants>c-virtual-fundamental|0.88|defines|由虚拟基本类定义
+ 846|c-gw-invariants>mirror-symmetry|0.8|related|镜像对称的 A 模型侧
+ 847|c-quantum-cohomology>c-gw-invariants|0.88|related|由 GW 不变量变形 cup 积
+ 848|c-quantum-cohomology>gromov-witten|0.8|related|GW 理论的代数结构
+ 849|c-quantum-cohomology>mirror-symmetry|0.78|related|镜像对称预言的环结构
+ 850|c-wdvv>c-quantum-cohomology|0.88|related|结合律的解析形式
+ 851|c-wdvv>c-gw-invariants|0.85|related|给出跨亏格递推
+ 852|c-wdvv>mirror-symmetry|0.72|related|镜像对称中的预势函数
+ 853|c-kontsevich-formula>c-psi-classes|0.82|computes|计算 psi 类相交数
+ 854|c-kontsevich-formula>moduli-space|0.7|related|模空间的组合模型
+ 855|c-mirror-map>mirror-symmetry|0.92|computes|镜像对称的计算字典
+ 856|c-mirror-map>c-periods|0.85|defines|由周期积分给出
+ 857|c-mirror-map>c-gw-invariants|0.8|related|把周期翻译为 GW 不变量
+ 858|c-mirror-map>c-gauss-manin|0.75|depends|依赖 Gauss–Manin 联络
+ 859|c-hms>mirror-symmetry|0.92|related|镜像对称的范畴化
+ 860|c-hms>fukaya-category|0.9|related|辛侧是 Fukaya 范畴
+ 861|c-hms>derived-category|0.88|related|复侧是凝聚层导出范畴
+ 862|c-hms>c-syz|0.78|related|SYZ 提供几何图景
+ 863|c-syz>mirror-symmetry|0.85|related|镜像对称的几何猜想
+ 864|c-syz>c-tropical|0.65|related|与热带几何相关
+ 865|c-dt-theory>gromov-witten|0.8|analogy|GW 理论的代数对应物
+ 866|c-dt-theory>hilbert-scheme|0.85|related|在 Hilbert 概形上积分
+ 867|c-dt-theory>stable-sheaf|0.78|related|涉及稳定层的模空间
+ 868|c-mnop>c-dt-theory|0.9|related|统一 DT 与 GW
+ 869|c-mnop>c-gw-invariants|0.85|analogy|建立两种计数理论的对应
+ 870|c-mnop>c-hilbert-scheme-points|0.7|related|与 Hilbert 概形上的计数相关
+ 871|c-hilbert-scheme-points>hilbert-scheme|0.9|related|在 Hilbert 概形上积分
+ 872|c-hilbert-scheme-points>c-dt-theory|0.75|computes|DT 理论的计算实例
+ 873|c-hilbert-scheme-points>b-localization|0.8|computes|用等变局部化计算
+ 874|c-dbp>derived-category|0.85|analogy|D-膜对应导出范畴对象
+ 875|c-dbp>c-bridgeland-stability|0.8|related|稳定性条件描述 D-膜
+ 876|c-dbp>c-hms|0.78|related|同调镜像对称的物理来源
+ 877|c-bridgeland-stability>stable-sheaf|0.88|related|把稳定层理论范畴化
+ 878|c-bridgeland-stability>derived-category|0.85|defines|定义在三角范畴上
+ 879|c-wall-crossing>c-bridgeland-stability|0.88|related|稳定性穿过墙时的跳变
+ 880|c-wall-crossing>c-dt-theory|0.82|related|DT 不变量的穿墙行为
+ 881|c-wall-crossing>stable-sheaf|0.72|related|与稳定性条件相关
+ 882|c-k-moduli>k-stability|0.95|related|即 K-稳定性理论
+ 883|c-k-moduli>c-test-configuration|0.85|defines|用测试配置定义
+ 884|c-k-moduli>c-moduli-fano|0.85|related|Fano 模空间的基础
+ 885|c-k-moduli>c-hilbert-mumford|0.72|analogy|是 GIT 稳定性的类比
+ 886|c-test-configuration>k-stability|0.88|defines|定义 K-稳定性的对象
+ 887|c-test-configuration>c-git-quotient|0.75|analogy|类比 GIT 的单参数子群
+ 888|c-test-configuration>c-moduli-fano|0.78|computes|Fano 模空间的构造工具
+ 889|c-git-quotient>git|0.95|related|即几何不变量理论
+ 890|c-git-quotient>moduli-space|0.9|computes|构造模空间的标准技术
+ 891|c-git-quotient>c-hilbert-mumford|0.85|defines|稳定性判据
+ 892|c-git-quotient>c-good-moduli|0.78|property|决定商的性质
+ 893|c-hilbert-mumford>git|0.88|defines|GIT 中的稳定性判据
+ 894|c-hilbert-mumford>k-stability|0.78|defines|与 K-稳定性的判据平行
+ 895|c-moduli-fano>k-stability|0.9|related|以 K-半稳定为稳定性条件
+ 896|c-moduli-fano>fano|0.88|related|Fano 簇的模空间
+ 897|c-moduli-fano>moduli-space|0.85|related|高维模空间的最新成果
+ 898|c-moduli-fano>c-boundedness|0.82|depends|依赖有界性
+ 899|c-boundedness>moduli-space|0.85|depends|模空间存在的前提
+ 900|c-boundedness>b-grothendieck-quot|0.7|related|有界性与 Quot 概形
+ 901|c-good-moduli>moduli-space|0.92|related|模空间的两种意义
+ 902|c-good-moduli>representable-functor|0.88|related|细模空间表示模函子
+ 903|c-good-moduli>stack|0.85|related|用栈解决万有族问题
+ 904|c-deformation-theory>moduli-space|0.85|related|模空间的局部理论
+ 905|c-deformation-theory>tangent-space|0.82|equivalent|一阶形变即切空间
+ 906|c-deformation-theory>derived-algebraic-geometry|0.78|related|导出形变理论
+ 907|c-kodaira-spencer>c-deformation-theory|0.88|related|形变理论的映射
+ 908|c-kodaira-spencer>moduli-space|0.8|defines|模空间切空间的定义
+ 909|c-kodaira-spencer>sheaf-cohomology|0.72|related|以 H¹ 为靶
+ 910|c-obstruction>c-deformation-theory|0.88|related|形变的障碍
+ 911|c-obstruction>c-kodaira-spencer|0.82|related|延拓一阶形变
+ 912|c-obstruction>moduli-space|0.75|related|解释模空间的奇点
+ 913|c-atiyah-singer>c-index-to-rr|0.85|generalizes|RR 是其特例
+ 914|c-atiyah-singer>c-hirzebruch-signature|0.82|related|符号差定理是其范例
+ 915|c-atiyah-singer>chern-class|0.8|related|用示性类表达拓扑指标
+ 916|c-atiyah-singer>c-cobordism|0.7|related|示性类分类流形的应用
+ 917|c-index-to-rr>grothendieck-riemann-roch|0.88|analogy|与 GRR 对应
+ 918|c-index-to-rr>sheaf-cohomology|0.75|related|对上同调维数计数
+ 919|c-hirzebruch-signature>intersection-number|0.78|depends|符号差来自相交型
+ 920|c-hirzebruch-signature>c-cobordism|0.7|related|与配边分类相关
+ 921|c-cobordism>chern-class|0.85|related|用示性类分类配边类
+ 922|c-chow-lemma>morphism|0.8|related|真态射的投影化
+ 923|c-chow-lemma>b-normal-cone|0.65|computes|与法锥构造相关
+ 924|c-chow-lemma>c-deligne-mumford|0.55|related|模空间技术中的工具
+ 925|c-alterations>c-hironaka|0.8|related|正特征下的替代工具
+ 926|c-alterations>resolution|0.78|related|与消解的关系
+ 927|c-alterations>birational|0.72|related|双有理几何中的技术
+ 928|c-stack-quotient>stack|0.92|related|商栈是最基本的栈
+ 929|c-stack-quotient>c-good-moduli|0.85|related|解决万有族不存在的问题
+ 930|c-stack-quotient>c-git-quotient|0.8|related|与 GIT 商的关系
+ 931|c-dm-stack>stack|0.9|equivalent|自同构有限的代数栈
+ 932|c-dm-stack>c-deligne-mumford|0.85|related|曲线模空间是 DM 栈
+ 933|c-dm-stack>moduli-space|0.78|equivalent|带自同构的模空间
+ 934|c-atiyah-bott-fixed>b-localization|0.9|related|局部化定理的几何版
+ 935|c-atiyah-bott-fixed>c-equivariant-k|0.85|related|K 理论版本
+ 936|c-atiyah-bott-fixed>c-gw-invariants|0.72|computes|用于计算 GW 不变量
+ 937|c-equivariant-k>b-localization|0.85|related|K 理论局部化
+ 938|c-equivariant-k>c-hilbert-scheme-points|0.75|related|用于 Hilbert 概形积分
+ 939|c-hodge-structure-vhs>hodge-theory|0.88|related|Hodge 理论的族版本
+ 940|c-hodge-structure-vhs>c-gauss-manin|0.85|related|由 Gauss–Manin 联络描述
+ 941|c-hodge-structure-vhs>moduli-space|0.75|related|周期映射与模空间
+ 942|c-gauss-manin>c-periods|0.85|property|周期积分满足其平坦性
+ 943|c-gauss-manin>sheaf-cohomology|0.75|related|相对 de Rham 上同调
+ 944|c-periods>mirror-symmetry|0.8|computes|镜像对称计算的核心

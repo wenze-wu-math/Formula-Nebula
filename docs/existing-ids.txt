@@ -1,0 +1,29 @@
+# 现有 303 个公式 id（按族分组）+ 948 条关联
+# 新文件里的 id 必须以 e- 或 cn- 开头，保证不与这些冲突。
+
+## foundation (52)
+zariski-topology ideal-variety nullstellensatz noetherian localization nakayama krull-dim noether-normalization going-up valuation-ring a-krull-pit a-artin-rees a-krull-intersection a-associated-primes a-primary-decomposition a-integral-closure a-dedekind a-dvr a-completion a-depth a-cohen-macaulay a-regular-sequence a-formal-power-series a-flatness-criterion a-faithfully-flat a-kahler-differential c-chow-lemma c-alterations c-hodge-structure-vhs c-gauss-manin c-periods c-tt-geometry c-tropical c-berkovich c-padic-hodge c-perfectoid c-condensed c-condensed-analytic c-derived-scheme c-virtual-fundamental c-perfect-complex hilbert-basis-theorem krull-height lying-over going-down hensels-lemma excellent-ring auslander-buchsbaum gorenstein-ring serre-normality-criterion rees-algebra graded-ring
+
+## scheme (29)
+sheaf structure-sheaf scheme spec-functor prime-spectrum coherent-sheaf invertible-sheaf ideal-sheaf fibred-product flat-morphism smooth-morphism etale-morphism formal-scheme a-stalk a-oyama a-skyscraper a-quasi-coherent a-pushforward-pullback b-hilbert-polynomial b-flattening formal-functions-theorem bertini-theorem generic-smoothness nagata-compactification valuative-criterion proper-morphism separated-morphism descent ample-line-bundle
+
+## map (17)
+morphism coordinate-ring rational-map blowup tangent-space singularity regular-local-ring dimension normalization dimension-fiber a-smooth-criterion a-formal-smooth a-stein-factorization b-blowup-local cotangent-complex obstruction-theory formal-deformation
+
+## cohomology (49)
+sheaf-cohomology cech-cohomology long-exact-sequence serre-vanishing serre-finiteness projective-cohomology serre-duality canonical-sheaf derived-functor derived-category serre-cartan cohomology-base-change a-ext-tor a-spectral-sequence a-injective-resolution a-koszul a-serre-affine a-cech-to-derived a-godement a-hypercohomology a-leray-ss a-hodge-de-rham a-base-change-thm a-dualizing-complex b-coherent-duality b-todd-genus b-gysin b-todd-euler b-kodaira-vanishing b-semicontinuity b-grauert b-hodge-diamond b-chern-weil c-hyperkaehler c-beauville-bogomolov c-lattice-torelli c-riemann-hilbert c-d-module c-perverse c-fourier-mukai c-orlov c-bondal-orlov c-mukai-pair local-cohomology grothendieck-vanishing castelnuovo-mumford-regularity lefschetz-hyperplane hodge-decomposition serre-finiteness-thm
+
+## intersect (45)
+riemann-roch euler-characteristic divisor linear-system bezout intersection-number adjunction chow-ring chern-class chern-character todd-class grothendieck-riemann-roch k-theory hodge-theory hodge-conjecture standard-conjectures a-cartier-divisor a-ample b-blowup-surface b-castelnuovo-criterion b-enriques-kodaira b-adjunction-formula b-noether-formula b-hodge-index b-nakai-surface b-hirzebruch-rr b-chern-class-axioms b-splitting-principle b-localization b-riemann-roch-surface b-noether-inequality b-bogomolov b-k3-properties b-normal-cone b-picard-group b-adjunction-general b-grassmannian b-projective-bundle c-atiyah-singer c-index-to-rr c-hirzebruch-signature c-cobordism c-atiyah-bott-fixed c-equivariant-k neron-severi
+
+## curve (25)
+riemann-surface genus elliptic-curve abelian-variety jacobian castelnuovo surface-classification k3-surface a-line-bundle-degree b-riemann-roch-curve b-serre-duality-curve b-hurwitz b-canonical-embedding b-hyperelliptic b-weil-pairing b-tate-module b-mordell-weil b-elliptic-integral b-chow-variety b-birkhoff-grothendieck b-narasimhan b-abelian-polarization b-linear-system-dim theta-functions modular-curve
+
+## birational (29)
+birational resolution mmp nakai-moishezon cone-theorem fano flip kodaira-dimension abundance b-mori-cone c-zariski-main c-termination c-abundance-conjecture c-singularities-mmp c-discrepancy c-lc-threshold c-adjunction-mmp c-klt-base-point-free c-rational-singularities c-log-resolution c-hironaka c-weak-factorization ruled-surface rational-surface del-pezzo iitaka-fibration canonical-model flop mori-cone-theorem
+
+## modern (57)
+moduli-space representable-functor hilbert-scheme stable-sheaf git etale-cohomology weil-conjectures lefschetz motive mirror-symmetry gromov-witten stack derived-algebraic-geometry fukaya-category langlands k-stability minimal-model-open a-verdier-duality b-stable-bundle b-grothendieck-quot b-hodge-moduli c-torelli c-deligne-mumford c-psi-classes c-witten-conjecture c-gw-invariants c-quantum-cohomology c-wdvv c-kontsevich-formula c-mirror-map c-hms c-syz c-dt-theory c-mnop c-hilbert-scheme-points c-dbp c-bridgeland-stability c-wall-crossing c-k-moduli c-test-configuration c-git-quotient c-hilbert-mumford c-moduli-fano c-boundedness c-good-moduli c-deformation-theory c-kodaira-spencer c-obstruction c-stack-quotient c-dm-stack artin-approximation schlessinger yoneda-lemma grothendieck-topology kahler-manifold donaldson-uhlenbeck-yau hitchin-fibration
+
+## 现有重要度分布（供参考，新节点请落在 0.55~0.93）
+min 0.42 p25 0.7 中位 0.76 p75 0.82 max 0.99

@@ -1,0 +1,106 @@
+================================================================================
+① 未解决清单里的「Representation theory」段全文
+================================================================================
+Arthur's conjectures
+Dade's conjecture relating the numbers of characters of blocks of a finite group to the numbers of characters of blocks of local subgroups.
+Demazure conjecture on representations of algebraic groups over the integers.
+Kazhdan–Lusztig conjectures relating the values of the Kazhdan–Lusztig polynomials at 1 with representations of complex semisimple Lie groups and Lie algebras.
+McKay conjecture: in a group 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+, the number of irreducible complex characters of degree not divisible by a prime number 
+  
+    
+      
+        p
+      
+    
+    {\displaystyle p}
+  
+ is equal to the number of irreducible complex characters of the normalizer of any Sylow 
+  
+    
+      
+        p
+      
+    
+    {\displaystyle p}
+  
+-subgroup within 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+.
+
+  >>> 该段出现 "Lusztig" 的次数: 2
+  >>> 是否出现独立的 "Lusztig conjecture"（非 Kazhdan–Lusztig）: 未出现
+
+================================================================================
+② 线性化猜想 ↔ 雅可比猜想：蕴含方向（arXiv 摘要）
+================================================================================
+
+  查询: all:"linearization conjecture" AND all:Jacobian
+  命中总数 0，取回 0 条
+
+  查询: abs:"linearization conjecture" AND abs:"Jacobian conjecture"
+  命中总数 0，取回 0 条
+
+  查询: ti:"linearization conjecture"
+  命中总数 2，取回 2 条
+   · Complete Classification of Traveling Waves and Resolution of Linear Conjecture in Monostable Systems
+     http://arxiv.org/abs/2409.12463v2
+   · A proof of the linearity conjecture for k-blocking sets in PG(n, p3), p prime
+     http://arxiv.org/abs/1201.3296v1
+
+================================================================================
+③ arXiv 上关于 Lusztig 正特征猜想"小特征失效/界"的摘要
+================================================================================
+
+  查询: abs:"Lusztig's conjecture" AND abs:characteristic
+  命中总数 26，取回 14 条
+   · [2025-11-23] Equivariant Koszul Duality, Modular Category $\mathcal{O}$, and Periodic Kazhdan--Lusztig Polynomials
+     Let $G$ be a connected reductive algebraic group over an algebraically closed field of positive characteristic, $\mathfrak{g}$ be its Lie algebra, and $B$ be a Borel subgroup. We prove a formula for the dimensions of extension groups, in the principal block of the category of strongly $B$-equivariant $\mathfrak{g}$-modules (also called modular category $\mathcal{O}$), from a simple object to a cos
+   · [2025-05-21] On parameters of Hecke algebras for $p$-adic groups
+     Let $F$ be a non-archimedean local field with residue characteristic $p$ and $G$ be a connected reductive group defined over $F$. In earlier joint works with Jeffrey D. Adler, Jessica Fintzen, and Manish Mishra, we proved that the Hecke algebras attached to types constructed by Kim and Yu are isomorphic to the Hecke algebras attached to depth-zero types. Note that if $G$ splits over a tamely ramif
+   · [2021-02-28] Quasi-simple modules and Loewy lengths in modular representations of reductive Lie algebras
+     Let $\frak g$ be a reductive Lie algebra over an algebraically closed field of characteristic $p&gt;0$. In this paper, we study the representations of $\frak g$ with a $p$-character $χ$ of standard Levi form associated with a given subset $I$ of the simple root system $Π$ of $\frak g$. Let $U_χ({\frak g})$ be the reduced enveloping algebra of $\frak g$. A notion "quasi-simple module" (denoted by $
+   · [2019-04-17] A simple character formula
+     In this paper we prove a character formula expressing the classes of simple representations in the principal block of a simply-connected semisimple algebraic group G in terms of baby Verma modules, under the assumption that the characteristic of the base field is bigger than 2h-1, where h is the Coxeter number of G. This provides a replacement for Lusztig's conjecture, valid under a reasonable ass
+   · [2018-09-01] Lusztig Induction, Unipotent Supports, and Character Bounds
+     Recently, a strong exponential character bound has been established in [3] for all elements $g \in \mathbf{G}^F$ of a finite reductive group $\mathbf{G}^F$ which satisfy the condition that the centraliser $C_{\mathbf{G}}(g)$ is contained in a $(\mathbf{G},F)$-split Levi subgroup $\mathbf{M}$ of $\mathbf{G}$ and that $\mathbf{G}$ is defined over a field of good characteristic. In this paper, assumi
+   · [2017-07-25] A non-perverse Soergel bimodule in type A
+     A basic question concerning indecomposable Soergel bimodules is to understand their endomorphism rings. In characteristic zero all degree-zero endomorphisms are isomorphisms (a fact proved by Elias and the second author) which implies the Kazhdan-Lusztig conjectures. More recently, many examples in positive characteristic have been discovered with larger degree zero endomorphisms. These give count
+   · [2017-06-21] Modular decomposition numbers of cyclotomic Hecke and diagrammatic Cherednik algebras: A path theoretic approach
+     We introduce a path-theoretic framework for understanding the representation theory of (quantum) symmetric and general linear groups and their higher level generalisations over fields of arbitrary characteristic. Our first main result is a "super-strong linkage principle" which provides degree-wise upper bounds for graded decomposition numbers (this is new even in the case of symmetric groups). Ne
+   · [2016-12-21] Categorification via blocks of modular representations for sl(n)
+     Bernstein, Frenkel, and Khovanov have constructed a categorification of tensor products of the standard representation of $\mathfrak{sl}_2$, where they use singular blocks of category $\mathcal{O}$ for $\mathfrak{sl}_n$ and translation functors. Here we construct a positive characteristic analogue using blocks of representations of $\mathfrak{sl}_n$ over a field $\textbf{k}$ of characteristic $p$ 
+   · [2016-10-20] Algebraic representations and constructible sheaves
+     These are notes for my Takagi lecture at the University of Tokyo in November, 2016. I survey what is known about simple modules for reductive algebraic groups. The emphasis is on characteristic p&gt;0 and Lusztig's character formula. I explain ideas connecting representations and constructible sheaves (Finkelberg-Mirkovic conjecture) in the spirit of the Kazhdan-Lusztig conjecture. I also discuss 
+   · [2015-01-28] Loewy structure of $G_1T$-Verma modules of singular highest weights
+     Let $G$ be a reductive algebraic group over an algebraically closed field of positive characteristic, $G_1$ the Frobenius kernel of $G$, and $T$ a maximal torus of $G$. We show that the $G_1T$-Verma modules of singular highest weights are all rigid, determine their Loewy length, and describe their Loewy structure using the periodic Kazhdan-Lusztig $Q$-polynomials. We assume that the characteristic
+   · [2013-09-19] Schubert calculus and torsion explosion
+     We observe that certain numbers occurring in Schubert calculus for SL_n also occur as entries in intersection forms controlling decompositions of Soergel bimodules and parity sheaves in higher rank. These numbers grow exponentially. This observation gives many counterexamples to Lusztig's conjecture on the characters of simple rational modules for SL_n over a field of positive characteristic. We e
+   · [2012-11-29] First cohomology groups for finite groups of Lie type in defining characteristic
+     Let G be a finite group of Lie type, defined over a field k of characteristic p &gt; 0. We find explicit bounds for the dimension of the first cohomology group for G with coefficients in a simple kG-module. We proceed by bounding the number of composition factors of Weyl modules for simple algebraic groups independently of p and using this to deduce bounds for the 1-cohomology of simple algebraic 
+   · [2012-10-05] Loewy series of parabolically induced $G_1T$-Verma modules
+     Assuming the Lusztig conjecture on the irreducible characters for reductive algebraic groups in positive characteristic $p$, which is now a theorem for large $p$, we show that the modules for their Frobenius kernels induced from the simple modules of $p$-regular highest weights for their parabolic subgroups are rigid and determine their Loewy series.
+   · [2012-09-17] Modular Koszul duality
+     We prove an analogue of Koszul duality for category $\mathcal{O}$ of a reductive group $G$ in positive characteristic $\ell$ larger than 1 plus the number of roots of $G$. However there are no Koszul rings, and we do not prove an analogue of the Kazhdan--Lusztig conjectures in this context. The main technical result is the formality of the dg-algebra of extensions of parity sheaves on the flag var
+
+  查询: all:"Lusztig conjecture" AND all:"small characteristic"
+  命中总数 2，取回 2 条
+   · [2011-08-30] The Hesselink stratification of nullcones and base change
+     Let $G$ be a connected reductive algebraic group over an algebraically closed field of characteristic $p \ge 0$. We give a case-free proof of Lusztig's conjectures [Unipotent elements in small characteristic, {\em Transform. Groups} 10 (2005), 449--487] on so-called unipotent pieces. This presents a uniform picture of the unipotent elements of $G$ which can be viewed as an extension of the Dynkin-
+   · [2011-02-17] Cohomology for quantum groups via the geometry of the nullcone
+     Let $ζ$ be a complex $\ell$th root of unity for an odd integer $\ell&gt;1$. For any complex simple Lie algebra $\mathfrak g$, let $u_ζ=u_ζ({\mathfrak g})$ be the associated "small" quantum enveloping algebra. In general, little is known about the representation theory of quantum groups (resp., algebraic groups) when $l$ (resp., $p$) is smaller than the Coxeter number $h$ of the underlying root sys

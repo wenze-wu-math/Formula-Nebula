@@ -1,0 +1,55 @@
+====================================================================================
+1. 《Locally nilpotent derivation》原文：三角化与线性化
+====================================================================================
+
+── 段 ──
+Let <math>f_1=x_1x_3-x_2^2</math>, <math>f_2=x_3f_1^2+2x_1^2x_2f_1+x^5</math>, and let <math>\partial</math> be the Jacobian derivation <math display="inline">\partial(f_{3})=\det \left[\tfrac{\partial f_{i}}{\partial x_{j}}\right]_{i,j=1,2,3}</math>. Then <math>\partial\in \operatorname{LND}(k[x_1,x_2,x_3])</math> and <math>\operatorname{rank}\partial=3</math> (see [[#Triangular derivations|below]]); that is, <math>\partial</math> annihilates no variable. The fixed point set of the corresponding <math>\mathbb{G}_{a}</math>-action equals <math>\{x_1=x_2=0\}</math>.
+
+── 段 ──
+=== Example 3 === Consider <math>Sl_2(k)=\{ad-bc=1\}\subseteq k^{4}</math>. The locally nilpotent derivation <math>a\tfrac{\partial}{\partial b}+c\tfrac{\partial}{\partial d}</math> of its coordinate ring corresponds to a natural action of <math>\mathbb{G}_a</math> on <math>Sl_2(k)</math> via right multiplication of upper triangular matrices. This action gives a nontrivial <math>\mathbb{G}_a</math>-bundle over <math>\mathbb{A}^{2}\setminus \{(0,0)\}</math>. However, if <math>k=\mathbb{C}</math> then this bundle is trivial in the smooth category
+
+── 段 ──
+=== ( -actions on an affine plane)===
+
+── 段 ──
+In other words, for every <math>0\neq \partial \in \operatorname{LND}(A)</math> there exist <math>f_{1},f_{2}\in A</math> such that <math>\ker\partial=k[f_{1},f_{2}]</math> (but, in contrast to the case <math>n=2</math>, <math>A</math> is not necessarily a polynomial ring over <math>\ker \partial</math>). In this case, <math>\partial</math> is a Jacobian derivation: <math display="inline">\partial(f_{3}) = \det\left[\tfrac{\partial f_{i}}{\partial x_{j}}\right]_{i,j=1,2,3}</math>.}}
+
+── 段 ──
+{{math theorem | name = Principal ideal theorem | math_statement = Let <math>\partial\in\operatorname{LND}(A)</math>. Then <math>A</math> is [[flat morphism|faithfully flat]] over <math>\ker\partial</math>. Moreover, the ideal <math>\ker \partial \cap \operatorname{im}\partial</math> is [[Principal ideal|principal]] in <math>A</math>. Indeed, the fixed-point set of the corresponding <math>\mathbb{G}_{a}</math>-action is a quadric cone <math>x_2x_3=x_2^2</math>, while by the result of Popov, a fixed point set of a triangulable <math>\mathbb{G}_{a}</math>-action is isomorphic to <math>Z\times \mathbb{A}^{1}</math> for some affine variety <math>Z</math>; and thus cannot have an isolated singularity.
+
+
+====================================================================================
+2. 搜索 Kraft–Popov 猜想的确切表述
+====================================================================================
+
+查询: insource:"Kraft" insource:"Popov" linearization additive group   命中 0
+
+查询: "Kraft-Popov" conjecture linearization   命中 0
+
+查询: insource:"linearizable" insource:"additive group"   命中 0
+
+查询: insource:/[Ll]inearization/ insource:"polynomial automorphism"   命中 0
+
+
+====================================================================================
+3. Nagata 自同构条目原文（wild 的证明后果）
+====================================================================================
+{{Short description|Mathematical theorem in algebra}} {{for|the conjecture about curves|Nagata's conjecture on curves}} {{Too abstract|date=April 2022}} {{Infobox mathematical statement | name = Nagata's conjecture | image = | caption = | type = | field = [[Algebraic geometry]] | conjectured by = [[Masayoshi Nagata]] | conjecture date = 1972 | open problem = | first proof by = Ualbai Umirbaev and Ivan Shestakov | first proof date = 2004 | implied by = | generalizations = | consequences = }} In [[algebra]], '''Nagata's conjecture''' states that '''Nagata's automorphism''' of the [[polynomial ring]] ''k''[''x'',''y'',''z''] is [[wild automorphism|wild]]. The [[conjecture]] was proposed by {{harvs|txt|last=Nagata|authorlink= Masayoshi Nagata|year=1972}} and [[mathematical proof|proved]] by {{harvs|txt| last1=Umirbaev | first1=Ualbai U. | last2=Shestakov | first2=Ivan P. | title=The tame and the wild automorphisms of polynomial rings in three variables | url=https://dx.doi.org/10.1090/S0894-0347-03-00440-5 | doi=10.1090/S0894-0347-03-00440-5 |mr=2015334 | year=2004 | journal=[[Journal of the American Mathematical Society]] | issn=0894-0347 | volume=17 | issue=1 | pages=197–227}}. Nagata's [[automorphism]] is given by :<math>\phi(x,y,z) = (x-2\Delta y-\Delta^2z, y+\Delta z, z),</math> where <math>\Delta = xz+y^2</math>. For the [[inverse function|inverse]], let <math>(a,b,c)=\phi(x,y,z)</math> Then <math>z=c</math> and <math>\Delta= b^2+ac</math>. With this <math>y=b-\Delta c</math> and <math>x=a+2\Delta y+\Delta^2 z</math>. ==References== *{{Citation | last1=Nagata | first1=Masayoshi | author1-link=Masayoshi Nagata | title=<nowiki>On automorphism group of k[x,y]</nowiki> | url=https://books.google.com/books?id=qvruAAAAMAAJ | publisher=Kinokuniya Book-Store Co. Ltd. | location=Tokyo |mr=0337962 | year=1972}} *{{Citation | last1=Umirbaev | first1=Ualbai U. | last2=Shestakov | first2=Ivan P. | title=The tame and the wild automorphisms of polynomial rings in three variables
+
+
+====================================================================================
+4. arXiv 摘要检索
+====================================================================================
+
+查询: abs:"linearization problem" AND abs:"affine space"
+总数 2
+  · [2012-01-20] Note on the candidate counter-example in the cancellation problem for affine spaces posed by Arno Van den Essen
+  · [1997-06-24] Painlevé - Calogero correpondence
+
+查询: abs:"additive group" AND abs:"linearizable" AND abs:"affine"
+总数 0
+
+查询: abs:"triangularizable" AND abs:"locally nilpotent derivation"
+总数 2
+  · [2022-06-13] A note on homogeneous rank $2$ locally nilpotent derivations on $k[X,Y,Z]$
+  · [2023-06-01] On locally nilpotent derivations of polynomial algebra in three variables

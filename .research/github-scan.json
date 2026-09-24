@@ -1,0 +1,3530 @@
+[
+  {
+    "full": "3b1b/manim",
+    "stars": 93947,
+    "desc": "Animation engine for explanatory math videos",
+    "lang": "Python",
+    "push": "2026-09-09",
+    "topics": [
+      "3b1b-videos",
+      "animation",
+      "explanatory-math-videos",
+      "python"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/3b1b/manim",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ManimCommunity/manim",
+    "stars": 40856,
+    "desc": "A community-maintained Python framework for creating mathematical animations. ",
+    "lang": "Python",
+    "push": "2026-09-14",
+    "topics": [
+      "animations",
+      "hacktoberfest",
+      "manim",
+      "math",
+      "python"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/ManimCommunity/manim",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Dujltqzv/Some-Many-Books",
+    "stars": 23600,
+    "desc": "个人收藏书籍列表　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　",
+    "lang": null,
+    "push": "2026-06-18",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/Dujltqzv/Some-Many-Books",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "vasturiano/3d-force-graph",
+    "stars": 6400,
+    "desc": "3D force-directed graph component using ThreeJS/WebGL",
+    "lang": "HTML",
+    "push": "2026-04-05",
+    "topics": [
+      "3d",
+      "3d-force-graph",
+      "d3js",
+      "data-visualization",
+      "force-directed-graphs",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/vasturiano/3d-force-graph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "brianpetro/obsidian-smart-connections",
+    "stars": 5453,
+    "desc": "Find related notes and excerpts while writing. Your link building copilot displays relevant content in graph + list view. A local embedding model powers semantic search. Zero setup. No API key.",
+    "lang": "JavaScript",
+    "push": "2026-09-15",
+    "topics": [
+      "chatgpt",
+      "claude",
+      "embeddings",
+      "gemini",
+      "obsidian",
+      "obsidian-md",
+      "obsidian-plugin",
+      "related-items",
+      "semantic-search",
+      "vectors"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/brianpetro/obsidian-smart-connections",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "cirosantilli/x86-bare-metal-examples",
+    "stars": 5364,
+    "desc": "Dozens of minimal operating systems to learn x86 system programming. Tested on Ubuntu 17.10 host in QEMU 2.10 and real hardware. Userland cheat at: https://github.com/cirosantilli/linux-kernel-module-",
+    "lang": "Assembly",
+    "push": "2022-07-18",
+    "topics": [
+      "assembly",
+      "bare-metal",
+      "baremetal",
+      "x64",
+      "x86",
+      "x86-64"
+    ],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/cirosantilli/x86-bare-metal-examples",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "vasturiano/react-force-graph",
+    "stars": 3299,
+    "desc": "React component for 2D, 3D, VR and AR force directed graphs",
+    "lang": "HTML",
+    "push": "2026-02-04",
+    "topics": [
+      "3d",
+      "augmented-reality",
+      "canvas",
+      "d3-force",
+      "force-directed-graphs",
+      "react",
+      "vr",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/vasturiano/react-force-graph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "cirosantilli/china-dictatorship",
+    "stars": 3205,
+    "desc": "反中共政治宣传库。Anti Chinese government propaganda. 住在中国真名用户的网友请别给星星，不然你要被警察请喝茶。常见问答集，新闻集和饭店和音乐建议。卐习万岁卐。冠状病毒审查郝海东新疆改造中心六四事件法轮功 996.ICU709大抓捕巴拿马文件邓家贵低端人口西藏骚乱。Friends who live in China and have real name on ac",
+    "lang": "HTML",
+    "push": "2026-02-05",
+    "topics": [
+      "996",
+      "censorship",
+      "censorship-circumvention",
+      "china",
+      "china-dictatorship",
+      "chinese-communist-party",
+      "covid-19",
+      "covid-19-china",
+      "dictator",
+      "dictatorship",
+      "falun-gong",
+      "gfw",
+      "great-firewall",
+      "human-rights",
+      "shadowsocks",
+      "socks5",
+      "tiananmen",
+      "totalitarian",
+      "xi-jinping",
+      "xinjiang"
+    ],
+    "cats": [
+      "A 诗云/诗词星系",
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/cirosantilli/china-dictatorship",
+    "arch": false,
+    "license": "CC-BY-SA-4.0"
+  },
+  {
+    "full": "HarleyCoops/Math-To-Manim",
+    "stars": 2605,
+    "desc": "Create Epic Math and Physics Animations & Study Notes From Text and Images.",
+    "lang": "Python",
+    "push": "2026-08-28",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/HarleyCoops/Math-To-Manim",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "gege-circle/.github",
+    "stars": 2007,
+    "desc": "这里是GitHub的草场，也是戈戈圈爱好者的交流地，主要讨论动漫、游戏、科技、人文、生活等所有话题，欢迎各位小伙伴们在此讨论趣事。This is GitHub grassland, and the community place for Gege circle lovers, mainly discusses anime, games, technology, lifing and other t",
+    "lang": null,
+    "push": "2025-10-04",
+    "topics": [
+      "a-soul",
+      "acfun",
+      "bilibili",
+      "china",
+      "gege-circle",
+      "message-board",
+      "vtuber",
+      "vup"
+    ],
+    "cats": [
+      "A 诗云/诗词星系",
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/gege-circle/.github",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "iqiqiya/iqiqiya-API",
+    "stars": 1742,
+    "desc": "API接口大全不断更新中~欢迎Fork和Star(✎ 1.一言(古诗句版)api  ✎ 2.必应每日一图api  ✎ 3.在线ip查询  ✎ 4.m3u8视频在线解析api  ✎ 5.随机生成二次元图片api  ✎ 6.快递查询api-支持国内百家快递  ✎ 7.flv视频在线解析api ✎ 8.抖音视频无水印解析api✎ 9.一句话随机图片api✎ 10.QQ用户信息获取api✎11.哔哩哔哩封",
+    "lang": "PHP",
+    "push": "2023-05-27",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/iqiqiya/iqiqiya-API",
+    "arch": true,
+    "license": "MIT"
+  },
+  {
+    "full": "Developer-Mike/obsidian-advanced-canvas",
+    "stars": 1519,
+    "desc": "⚡ Supercharge your canvas experience! Graph view integration and unlimited styling options empower flowcharts, dynamic presentations, and interconnected knowledge. ",
+    "lang": "TypeScript",
+    "push": "2026-09-09",
+    "topics": [
+      "obsidian",
+      "obsidian-canvas",
+      "obsidian-md",
+      "obsidian-plugin",
+      "obsidian-plugins"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/Developer-Mike/obsidian-advanced-canvas",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "creativelifeform/three-nebula",
+    "stars": 1224,
+    "desc": "WebGL based particle system engine for three.js",
+    "lang": "JavaScript",
+    "push": "2026-09-14",
+    "topics": [
+      "javascript",
+      "particles",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/creativelifeform/three-nebula",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "zsviczian/excalibrain",
+    "stars": 995,
+    "desc": "A graph view to navigate your Obsidian vault",
+    "lang": "TypeScript",
+    "push": "2026-05-31",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/zsviczian/excalibrain",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "voicetreelab/voicetree",
+    "stars": 921,
+    "desc": "The spatial IDE for recursive multi-agent orchestration. It's like an Obsidian graph-view that you work directly inside of. ",
+    "lang": "TypeScript",
+    "push": "2026-06-07",
+    "topics": [
+      "agents",
+      "claude-code",
+      "codex"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/voicetreelab/voicetree",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "IdreesInc/Waypoint",
+    "stars": 860,
+    "desc": "Obsidian plugin that gives you the power to generate dynamic MOCs in your folder notes. Enables folders to show up in the graph view and removes the need for messy tags!",
+    "lang": "TypeScript",
+    "push": "2025-12-29",
+    "topics": [
+      "obsidian",
+      "obsidian-md",
+      "obsidian-plugin"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/IdreesInc/Waypoint",
+    "arch": false,
+    "license": "MPL-2.0"
+  },
+  {
+    "full": "HEmile/juggl",
+    "stars": 820,
+    "desc": "An interactive, stylable and expandable graph view for Obsidian. Juggl is designed as an advanced 'local' graph view, where you can juggle all your thoughts with ease. ",
+    "lang": "TypeScript",
+    "push": "2025-02-27",
+    "topics": [
+      "graph-visualization",
+      "markdown",
+      "obsidian",
+      "obsidian-md",
+      "obsidian-plugin"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/HEmile/juggl",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "lyon-industries/graphrag-workbench",
+    "stars": 721,
+    "desc": "Interactive 3D visualization of knowledge graphs generated by Microsoft GraphRAG. Explore entities, relationships, and communities with immersive visual analytics.",
+    "lang": "TypeScript",
+    "push": "2026-07-18",
+    "topics": [
+      "graphrag",
+      "microsoft",
+      "nextjs",
+      "visualization"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/lyon-industries/graphrag-workbench",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "pxvr-official/1",
+    "stars": 520,
+    "desc": "無許諾配信 企業理念剽窃 動物の森収益化 大神ミオ権利者削除 戌神権利侵害発言 常闇トワ炎上 夜空メルストーカー被害 建築王サポーター放置 赤十字マーク 魔乃アロエ卒業 一つの中國支持声明 大空昴3Dライブ 無限延期清掃員職業差別 日清コラボ楽曲 musedash非公開 rog案件取り消し 壁画ライブ 丁真 Ding Zhen 郑爽 Zheng Shuang 防护林 与朵小天使w 伊月猫凛 本主萌",
+    "lang": null,
+    "push": "2021-03-15",
+    "topics": [
+      "996icu",
+      "ao3",
+      "archive-of-our-own",
+      "cierra-runis",
+      "ding-zhen",
+      "hiseki-erio",
+      "kagura-nana",
+      "kyou-ka",
+      "markdown",
+      "mia-runis",
+      "musedash",
+      "niconico",
+      "overidea",
+      "paryi",
+      "pixiv",
+      "shaco",
+      "shen-xiaoya",
+      "shinka-musume",
+      "youtube",
+      "zheng-shuang"
+    ],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/pxvr-official/1",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Wing900/ManimCat",
+    "stars": 458,
+    "desc": "EN: ManimCat: AI-generated math animations from natural language. High-quality Manim rendering with LaTeX support and auto-code fixing. 中: ManimCat：AI 数学动画生成器。支持描述即视频，内置 LaTeX 与代码纠错，让数学动效触手可及。",
+    "lang": "TypeScript",
+    "push": "2026-08-08",
+    "topics": [
+      "3blue1brown",
+      "ai",
+      "ai-agents",
+      "educational-project",
+      "generative-ai",
+      "llm",
+      "manim",
+      "manim-video",
+      "math",
+      "mathematics-visualization",
+      "text2manim",
+      "web",
+      "webapp"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/Wing900/ManimCat",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "JazonJiao/Manim.js",
+    "stars": 453,
+    "desc": "Replicating 3Blue1Brown's math animation engine in JavaScript (p5.js)",
+    "lang": "JavaScript",
+    "push": "2026-08-22",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/JazonJiao/Manim.js",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "cirosantilli/china-dictatroship-7",
+    "stars": 362,
+    "desc": "反中共政治宣传库。Anti Chinese government propaganda. https://github.com/cirosantilli/china-dictatorship 的备份backup. 住在中国真名用户的网友请别给星星，不然你要被警察请喝茶。常见问答集，新闻集和饭店和音乐建议。卐习万岁卐。冠状病毒审查郝海东新疆改造中心六四事件法轮功 996.ICU709大抓捕巴拿马文件",
+    "lang": "HTML",
+    "push": "2026-02-05",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系",
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/cirosantilli/china-dictatroship-7",
+    "arch": false,
+    "license": "CC-BY-SA-4.0"
+  },
+  {
+    "full": "cirosantilli/cirosantilli",
+    "stars": 304,
+    "desc": "小粉红小朋友们，新issue 在这儿开： https://github.com/cirosantilli/china-dictatorship/issues # 21世纪新政宣言（2020年4月5曰笫四次修改稿)（2020年6月19曰第七次修改，以下“【】”内文字为非正文内容的说明）20世纪苏联的消亡和东欧的大变革，使这21世纪初的现中国大陆成为世界关注的最主要焦点和影响新世纪文明发展的关键。特别",
+    "lang": "JavaScript",
+    "push": "2026-08-04",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/cirosantilli/cirosantilli",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "vasturiano/three-forcegraph",
+    "stars": 303,
+    "desc": "Force-directed graph as a ThreeJS 3d object",
+    "lang": "JavaScript",
+    "push": "2026-04-16",
+    "topics": [
+      "3d",
+      "3d-force-graph",
+      "d3js",
+      "data-visualization",
+      "force-directed-graphs",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/vasturiano/three-forcegraph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Cohenjikan/shiyun",
+    "stars": 258,
+    "desc": "把中国三千年的诗放进一片可漫游的三维星系：每位诗人是一颗星，每首诗都有坐标，星与星之间的虚空是「一切可能的诗」。32,657 位诗人 / 933,857 首。灵感来自刘慈欣《诗云》。",
+    "lang": "TypeScript",
+    "push": "2026-09-04",
+    "topics": [
+      "chinese-poetry",
+      "data-visualization",
+      "generative-art",
+      "library-of-babel",
+      "poetry",
+      "react",
+      "react-three-fiber",
+      "threejs",
+      "typescript",
+      "vibecoding",
+      "vite",
+      "webgl"
+    ],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/Cohenjikan/shiyun",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "vasturiano/3d-force-graph-vr",
+    "stars": 251,
+    "desc": "3D force-directed graph component in VR",
+    "lang": "HTML",
+    "push": "2026-08-22",
+    "topics": [
+      "3d",
+      "aframe",
+      "d3js",
+      "data-visualization",
+      "graph-theory",
+      "graphviz",
+      "vr",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/vasturiano/3d-force-graph-vr",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ElsaTam/obsidian-extended-graph",
+    "stars": 233,
+    "desc": "Community plugin to add features to the graph view.",
+    "lang": "TypeScript",
+    "push": "2026-02-13",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/ElsaTam/obsidian-extended-graph",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "jaredmcqueen/analytics",
+    "stars": 211,
+    "desc": "3D force-directed graph using ThreeJS / WebGL GPU accelerated",
+    "lang": "JavaScript",
+    "push": "2021-06-29",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/jaredmcqueen/analytics",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "mRFWq7LwNPZjaVv5v6eo/cihna-dictattorshrip-8",
+    "stars": 206,
+    "desc": "反中共政治宣传库。Anti Chinese government propaganda. https://github.com/cirosantilli/china-dictatorship 的备份backup. 住在中国真名用户的网友请别给星星，不然你要被警察请喝茶。常见问答集，新闻集和饭店和音乐建议。卐习万岁卐。冠状病毒审查郝海东新疆改造中心六四事件法轮功 996.ICU709大抓捕巴拿马文件",
+    "lang": "HTML",
+    "push": "2026-02-05",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系",
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/mRFWq7LwNPZjaVv5v6eo/cihna-dictattorshrip-8",
+    "arch": false,
+    "license": "CC-BY-SA-4.0"
+  },
+  {
+    "full": "xyjigsaw/Knowledge-Graph-And-Visualization-Demo",
+    "stars": 200,
+    "desc": "There are 2D-Search and 3D-Graph-View for knowledge graph visualization.",
+    "lang": "Python",
+    "push": "2023-11-05",
+    "topics": [
+      "javascript",
+      "knowledge-graph",
+      "neo4j",
+      "python"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/xyjigsaw/Knowledge-Graph-And-Visualization-Demo",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "panbinibn/OpenPacketFix_",
+    "stars": 196,
+    "desc": "大陆修宪香港恶法台湾武统朝鲜毁约美中冷战等都是王沪宁愚弄习思想极左命运共同体的大策划中共窃国这半个多世纪所犯下的滔天罪恶，前期是毛泽东策划的，中期6.4前后是邓小平策划的，黄牛数据分析后期是毛的极左追随者三朝罪恶元凶王沪宁策划的。王沪宁高小肆业因文革政治和情报需要保送“学院外语班“红色仕途翻身，所以王的本质是极左的。他是在上海底层弄堂长大的，因其本性也促成其瘪三下三滥个性，所以也都说他有易主“变色",
+    "lang": null,
+    "push": "2022-08-12",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系",
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/panbinibn/OpenPacketFix_",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "quiet-node/gesture-lab",
+    "stars": 180,
+    "desc": "A fun & cinematic 3D interaction laboratory. Features a high-fidelity Iron Man armor workshop, interactive galaxy simulations, and gamified gesture experiments. Powered by MediaPipe, Three.js, and Typ",
+    "lang": "TypeScript",
+    "push": "2026-05-11",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/quiet-node/gesture-lab",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "noduslabs/infranodus-obsidian-plugin",
+    "stars": 171,
+    "desc": "Advanced graph view for Obsidian: text analysis, topic modeling, and AI with InfraNodus AI text analysis tool: https://infranodus.com",
+    "lang": "TypeScript",
+    "push": "2026-08-04",
+    "topics": [
+      "graph-visualization",
+      "infranodus",
+      "obsidian",
+      "obsidian-graph",
+      "obsidian-plugin",
+      "obsidian-plugins",
+      "pkm",
+      "text-analysis",
+      "text-visualization",
+      "thinking-tool",
+      "thinking-tools"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/noduslabs/infranodus-obsidian-plugin",
+    "arch": false,
+    "license": "AGPL-3.0"
+  },
+  {
+    "full": "N0rvel/galaxy_sim",
+    "stars": 159,
+    "desc": "This project is a simulation of thousands of particles that reproduce gravity to simulate galaxies. It uses ThreeJS for 3D rendering and shaders to calculate the movement of particles in real-time.",
+    "lang": "JavaScript",
+    "push": "2026-08-21",
+    "topics": [
+      "simulation",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/N0rvel/galaxy_sim",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "natefrisch01/Graph-Link-Types",
+    "stars": 150,
+    "desc": "Link types for Obsidian graph view.",
+    "lang": "TypeScript",
+    "push": "2026-05-16",
+    "topics": [
+      "obsidian-graph",
+      "obsidian-plugin",
+      "obsidian-plugins"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/natefrisch01/Graph-Link-Types",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Sanqui/obsidian-persistent-graph",
+    "stars": 145,
+    "desc": "An Obsidian plugin for saving and restoring the positions of nodes on the global graph view",
+    "lang": "TypeScript",
+    "push": "2026-05-24",
+    "topics": [
+      "obsidian",
+      "obsidian-plugin"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/Sanqui/obsidian-persistent-graph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "leishufei/JS-Crack-Records",
+    "stars": 143,
+    "desc": "各大网站逆向demo。企名片、震坤行工业超市、天翼云登录、物超所值、瓜子二手车、马蜂窝、中华诗词库、澳门彩票、药智网、福建省招标投标在线监管平台、全国公共资源交易平台、问卷星、中国人民银行条法司、中华人民共和国公安部、AqiStudy、巨量星图、HeyTap、掌上高考、船讯网、百度指数、今日头条、知乎、七麦数据、途牛、七猫小说、企查查、同花顺、网易云音乐、拉勾招聘、玩物得志、房天下",
+    "lang": "JavaScript",
+    "push": "2022-02-08",
+    "topics": [
+      "js-reverse",
+      "python",
+      "spider"
+    ],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/leishufei/JS-Crack-Records",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "HarleyCoops/KimiK3Manim",
+    "stars": 143,
+    "desc": "Create epic math and physics explainer animations with Kimi K3.",
+    "lang": "Python",
+    "push": "2026-07-29",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/HarleyCoops/KimiK3Manim",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "zpc1314521/PCL2",
+    "stars": 123,
+    "desc": "[stays mad] 反PCL宣传库。Anti PCL propaganda. 大陆修宪香港恶法台湾武统朝鲜毁约美中冷战等都是王沪宁愚弄习思想极左命运共同体的大策划中共窃国这半个多世纪所犯下的滔天罪恶，前期是毛泽东策划的，中期6.4前后是邓小平策划的，黄牛数据分析后期是毛的极左追随者三朝罪恶元凶王沪宁策划的。王沪宁高小肆业因文革政治和情报需要保送“学院外语班“红色仕途翻身，所以王的本质是极左的。",
+    "lang": null,
+    "push": "2022-08-12",
+    "topics": [],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/zpc1314521/PCL2",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "HEmile/obsidian-neo4j-graph-view",
+    "stars": 120,
+    "desc": "",
+    "lang": "TypeScript",
+    "push": "2021-04-19",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/HEmile/obsidian-neo4j-graph-view",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "vasturiano/3d-force-graph-ar",
+    "stars": 115,
+    "desc": "3D force-directed graph component in AR",
+    "lang": "HTML",
+    "push": "2025-07-03",
+    "topics": [
+      "3d",
+      "aframe",
+      "arjs",
+      "augmented-reality",
+      "data-visualization",
+      "graph-theory",
+      "graphviz",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/vasturiano/3d-force-graph-ar",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "anvaka/ngraph.forcelayout3d",
+    "stars": 110,
+    "desc": "Force directed graph layout in 3d",
+    "lang": "JavaScript",
+    "push": "2023-03-04",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/anvaka/ngraph.forcelayout3d",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "zjoooooo/galaxy-explorer",
+    "stars": 94,
+    "desc": "🌌 An interactive, procedurally-generated Milky Way galaxy in the browser — WebGL / three.js, no backend, no build step. MIT licensed.",
+    "lang": "HTML",
+    "push": "2026-08-04",
+    "topics": [
+      "astronomy",
+      "creative-coding",
+      "galaxy",
+      "generative-art",
+      "procedural-generation",
+      "shaders",
+      "space",
+      "threejs",
+      "visualization",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/zjoooooo/galaxy-explorer",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "drPilman/obsidian-graph-nested-tags",
+    "stars": 81,
+    "desc": "A small plugin for Obsidian that links nested tags in graph view",
+    "lang": "TypeScript",
+    "push": "2025-07-23",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/drPilman/obsidian-graph-nested-tags",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "AmitDigga/threejs-galaxy-shader",
+    "stars": 71,
+    "desc": "A performant Three.js galaxy shader with customizable colors, spiral patterns, and black hole effects",
+    "lang": "TypeScript",
+    "push": "2026-03-27",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/AmitDigga/threejs-galaxy-shader",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "beltoforion/Galaxy-Renderer-Typescript",
+    "stars": 60,
+    "desc": "Procedural generation of a 2D spiral galaxy with the density wave theory",
+    "lang": "TypeScript",
+    "push": "2025-04-16",
+    "topics": [
+      "educational",
+      "galaxy",
+      "galaxy-simulator",
+      "simulation",
+      "typescript",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/beltoforion/Galaxy-Renderer-Typescript",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "patrik-cihal/lean-graph",
+    "stars": 54,
+    "desc": "Theorem relational dependencies automatic extraction and visualization as a graph for Lean4.",
+    "lang": "Rust",
+    "push": "2026-02-15",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/patrik-cihal/lean-graph",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "pickles976/GalaxyThreeJS",
+    "stars": 51,
+    "desc": "",
+    "lang": "JavaScript",
+    "push": "2023-03-09",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/pickles976/GalaxyThreeJS",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "DrA1ex/JS_ParticleSystem",
+    "stars": 51,
+    "desc": "Gravity Simulation (Galaxy Birth) in real time, N-Body and 1-Body",
+    "lang": "JavaScript",
+    "push": "2026-07-12",
+    "topics": [
+      "canvas",
+      "galaxy-birth",
+      "galaxy-evolution",
+      "gravity-simulation",
+      "javascript",
+      "n-body",
+      "physics",
+      "physics-simulation",
+      "simulation",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/DrA1ex/JS_ParticleSystem",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "vasturiano/r3f-forcegraph",
+    "stars": 50,
+    "desc": "Force-directed graph as a React Three Fiber component",
+    "lang": "HTML",
+    "push": "2025-07-03",
+    "topics": [
+      "3d",
+      "data-visualization",
+      "force-directed-graphs",
+      "react-three-fiber",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/vasturiano/r3f-forcegraph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Manim-Notebook/manim-notebook",
+    "stars": 48,
+    "desc": "💫 ManimGL with interactive previewing in VSCode",
+    "lang": "TypeScript",
+    "push": "2026-08-05",
+    "topics": [
+      "3b1b",
+      "animation",
+      "education",
+      "manim",
+      "math",
+      "vscode"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/Manim-Notebook/manim-notebook",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "the-halfbloodprince/GalaxyM1199",
+    "stars": 46,
+    "desc": "A cool galaxy simulation using THREE JS particles. ",
+    "lang": "JavaScript",
+    "push": "2023-05-21",
+    "topics": [
+      "galaxy",
+      "particles",
+      "three-js",
+      "threejs",
+      "threejs-example"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/the-halfbloodprince/GalaxyM1199",
+    "arch": false,
+    "license": "Unlicense"
+  },
+  {
+    "full": "abhijithmuthyala/manim-projects",
+    "stars": 46,
+    "desc": "Code for the animations made with Manim",
+    "lang": "Python",
+    "push": "2022-06-21",
+    "topics": [
+      "animations",
+      "manim",
+      "math",
+      "pragyaan",
+      "python"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/abhijithmuthyala/manim-projects",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "magwo/fullofstars",
+    "stars": 39,
+    "desc": "Real-time N-body galaxy toy simulation, rendered using webgl.",
+    "lang": "JavaScript",
+    "push": "2015-11-02",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/magwo/fullofstars",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "HarleyCoops/Math-To-Manim.backup",
+    "stars": 39,
+    "desc": "Create Epic Math and Physics Animations & Study Notes From Text and Images.",
+    "lang": "Python",
+    "push": "2026-08-26",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/HarleyCoops/Math-To-Manim.backup",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "andrewdcampbell/galaxy-sim",
+    "stars": 36,
+    "desc": "A real-time N-body galaxy formation simulation in WebGL.",
+    "lang": "JavaScript",
+    "push": "2019-06-09",
+    "topics": [
+      "galaxy",
+      "n-body",
+      "simulation",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/andrewdcampbell/galaxy-sim",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "vercel-labs/nextjs-nights-shader",
+    "stars": 35,
+    "desc": "WebGPU galaxy shader — Next.js + Three.js TSL (WebGPURenderer)",
+    "lang": "TypeScript",
+    "push": "2026-06-03",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/vercel-labs/nextjs-nights-shader",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "HoltzTomas/claiss",
+    "stars": 35,
+    "desc": "Transform ideas into visual learning with AI-powered educational videos. Create stunning Manim animations from simple prompts for algorithms, math concepts, and more.",
+    "lang": "TypeScript",
+    "push": "2026-04-03",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/HoltzTomas/claiss",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "AmitSubhash/3brown1blue",
+    "stars": 35,
+    "desc": "First-principles Manim skill for Claude Code — mathematical animation from scratch, paper-explainer patterns, 21 rule files.",
+    "lang": "Python",
+    "push": "2026-06-27",
+    "topics": [
+      "3blue1brown",
+      "ai-agents",
+      "animation",
+      "claude-code",
+      "explainer",
+      "manim",
+      "math"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/AmitSubhash/3brown1blue",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "BlommeJan/Manim-Motion",
+    "stars": 34,
+    "desc": "So I built Manim Motion Editor. It's a visual, browser-based editor that lets you drag shapes onto a canvas, set up animations in a timeline, write LaTeX math, and render a proper MP4 — all powered by",
+    "lang": "Vue",
+    "push": "2026-04-06",
+    "topics": [
+      "docker",
+      "editor",
+      "gui",
+      "manim",
+      "vue"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/BlommeJan/Manim-Motion",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "patrickrb/elite-dangerous-galaxy-map",
+    "stars": 31,
+    "desc": "Interactive 3D Webgl Galaxy Map for the game Elite Dangerous built with Nextjs and Three.js",
+    "lang": "JavaScript",
+    "push": "2025-08-29",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/patrickrb/elite-dangerous-galaxy-map",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "rainner/wormhole-extreme",
+    "stars": 28,
+    "desc": "This is an experimental interactive space scene rendered on the browser using WebGL and Three.js with Javascript. The 3D scene contains planets, stars and a nebula effect that changes color and warps ",
+    "lang": "JavaScript",
+    "push": "2018-09-15",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/rainner/wormhole-extreme",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "splunk/splunk-3D-graph-network-topology-viz",
+    "stars": 28,
+    "desc": "Plot relationships between objects with force directed graph based on ThreeJS/WebGL.",
+    "lang": "JavaScript",
+    "push": "2026-05-27",
+    "topics": [
+      "force-directed-graph",
+      "machine-learning",
+      "modular-viz",
+      "splunk",
+      "splunk-application",
+      "splunk-cloud",
+      "splunk-enterprise",
+      "splunk-visualization",
+      "splunkbase",
+      "visualization"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/splunk/splunk-3D-graph-network-topology-viz",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "ggwzrd/threejs-galaxy",
+    "stars": 18,
+    "desc": "Three.js Galaxy generator",
+    "lang": "JavaScript",
+    "push": "2024-01-29",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/ggwzrd/threejs-galaxy",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "gml4gtk/demekgraph",
+    "stars": 18,
+    "desc": "This is a C++ graph library for directed graph layout visualization using sugiyama algorithm",
+    "lang": "C++",
+    "push": "2021-09-29",
+    "topics": [
+      "graph",
+      "graph-algorithms",
+      "graph-drawing",
+      "graph-layout",
+      "graph-theory",
+      "graphs",
+      "graphviz",
+      "layout",
+      "layout-engine",
+      "sugiyama-drawings",
+      "visualisation",
+      "visualization"
+    ],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/gml4gtk/demekgraph",
+    "arch": false,
+    "license": "BSD-3-Clause"
+  },
+  {
+    "full": "lucas-tulio/spiral-galaxy",
+    "stars": 16,
+    "desc": "3D spiral galaxy in three.js",
+    "lang": "JavaScript",
+    "push": "2020-07-21",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/lucas-tulio/spiral-galaxy",
+    "arch": false,
+    "license": "GPL-2.0"
+  },
+  {
+    "full": "Aprillllllw/obsidian-galaxy-dashboard",
+    "stars": 14,
+    "desc": "Turn your Obsidian vault into an explorable 3D galaxy 🌌 Folders become glowing planets you can orbit, zoom and fly into. Single static HTML, Three.js + bloom, no build, no plugin.",
+    "lang": "JavaScript",
+    "push": "2026-07-08",
+    "topics": [
+      "3d-visualization",
+      "dashboard",
+      "knowledge-management",
+      "obsidian",
+      "obsidian-md",
+      "pkm",
+      "second-brain",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Aprillllllw/obsidian-galaxy-dashboard",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ethanplusai/codeorb",
+    "stars": 14,
+    "desc": "3D interactive knowledge graph for any codebase. JARVIS-style particle visualization.",
+    "lang": "TypeScript",
+    "push": "2026-03-28",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/ethanplusai/codeorb",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "fbreuer/threejs-examples",
+    "stars": 12,
+    "desc": "Collection of small Three.js examples relevant to math visualization",
+    "lang": "CoffeeScript",
+    "push": "2014-08-27",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/fbreuer/threejs-examples",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "mihirp1998/Disentangling-3D-Prototypical-Nets",
+    "stars": 11,
+    "desc": "We present neural architectures that disentangle RGB-D images into objects' shapes and styles and a map of the background scene, and explore their applications for few-shot 3D object detection and few",
+    "lang": "Python",
+    "push": "2021-07-26",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/mihirp1998/Disentangling-3D-Prototypical-Nets",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "skateboard1991/WordCloudView",
+    "stars": 11,
+    "desc": "android 3D球体文字云",
+    "lang": "Kotlin",
+    "push": "2021-05-16",
+    "topics": [],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/skateboard1991/WordCloudView",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "SRO-SA/galaxy-threejs",
+    "stars": 10,
+    "desc": "A Galaxy created with Three.js",
+    "lang": "JavaScript",
+    "push": "2020-06-11",
+    "topics": [
+      "3d",
+      "astrology",
+      "astronomy",
+      "es6",
+      "galaxy",
+      "spiral-galaxy",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/SRO-SA/galaxy-threejs",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Eridanus-Multiverse/Observatory-Ridge",
+    "stars": 10,
+    "desc": "Turn notes, memories, and relationships into an explorable star system — 3D near-focus, 2D orrery, and a community-clustered Galaxy View. React + three.js, backend-agnostic.",
+    "lang": "TypeScript",
+    "push": "2026-07-17",
+    "topics": [
+      "data-visualization",
+      "galaxy",
+      "knowledge-graph",
+      "memory",
+      "react",
+      "react-three-fiber",
+      "threejs"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Eridanus-Multiverse/Observatory-Ridge",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "MbullHexScript/Cosmograph",
+    "stars": 10,
+    "desc": "Knowledge Graph 3D Visualisasi mind map interaktif berbasis WebGL menggunakan React + Three.js (frontend) dan Python FastAPI (backend).",
+    "lang": "JavaScript",
+    "push": "2026-04-16",
+    "topics": [
+      "projectiseng"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/MbullHexScript/Cosmograph",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Eluvade/cosmos",
+    "stars": 9,
+    "desc": "Procedural celestial body and nebula generator for the web; deterministic, shader-driven, and real-time.  Render planets, gas giants, stars, black holes, galaxies, and nebulae using WebGL and Canvas. ",
+    "lang": "TypeScript",
+    "push": "2026-08-07",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Eluvade/cosmos",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Ankit-ku-panda/Terrapath-3d-route-planner",
+    "stars": 8,
+    "desc": "TerraPath is an open-source 3D terrain route planner featuring cone geodesics, slope-constrained pathfinding, uphill/downhill analysis, elevation profiles, custom height-map imports, and construction ",
+    "lang": "JavaScript",
+    "push": "2026-09-08",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/Ankit-ku-panda/Terrapath-3d-route-planner",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "qbb84/ThreeJS-Particle-Animations-Demo",
+    "stars": 8,
+    "desc": "Examples of Particle Animations rendered with three.js",
+    "lang": null,
+    "push": "2024-01-20",
+    "topics": [
+      "animations",
+      "code",
+      "demo",
+      "examples",
+      "fun",
+      "javascript",
+      "math",
+      "particles",
+      "three",
+      "threejs",
+      "tutorial",
+      "visualization",
+      "web"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/qbb84/ThreeJS-Particle-Animations-Demo",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "sairamkiran9/TagCloud-reactJS",
+    "stars": 8,
+    "desc": "3D word cloud animation using reactJS",
+    "lang": "JavaScript",
+    "push": "2022-01-11",
+    "topics": [
+      "reactjs"
+    ],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/sairamkiran9/TagCloud-reactJS",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "leungjch/fudge",
+    "stars": 7,
+    "desc": "3D force-directed graph explorer written in C++, OpenGL/WebGL",
+    "lang": "C++",
+    "push": "2022-09-06",
+    "topics": [
+      "cpp",
+      "force-directed-graphs",
+      "graph-theory",
+      "opengl",
+      "visualization",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/leungjch/fudge",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "holdenlee/depgraph",
+    "stars": 7,
+    "desc": "Draw dependency graphs for math theorems",
+    "lang": "Haskell",
+    "push": "2022-03-13",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/holdenlee/depgraph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "CK42BB/procedural-stars-threejs",
+    "stars": 6,
+    "desc": "Generate stunning procedural night skies, starfields, nebulae, and celestial phenomena in Three.js using WebGPU compute with WebGL2 fallback.",
+    "lang": null,
+    "push": "2026-02-09",
+    "topics": [
+      "claude",
+      "claude-code",
+      "claude-skills",
+      "nebula",
+      "night",
+      "skies",
+      "space",
+      "stars",
+      "three-js",
+      "threejs",
+      "threejs-learning",
+      "webgl",
+      "webgpu",
+      "webgpu-shaders"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/CK42BB/procedural-stars-threejs",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "SnakeEye-sudo/particle-galaxy-3d",
+    "stars": 6,
+    "desc": "🌌 An interactive 3D particle galaxy with real-time physics simulation, mouse controls, and stunning visual effects. Explore a universe of particles with gravity, orbital mechanics, and collision dete",
+    "lang": "HTML",
+    "push": "2025-12-01",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/SnakeEye-sudo/particle-galaxy-3d",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "TheSethRose/Memory-Knowledge-Graph-3D",
+    "stars": 6,
+    "desc": "A 3D visualization tool for memory knowledge graphs using Force Graph 3D. This project visualizes captured memories from the Knowledge Graph Memory MCP",
+    "lang": "JavaScript",
+    "push": "2025-03-12",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/TheSethRose/Memory-Knowledge-Graph-3D",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "salonyranjan/neural-portfolio",
+    "stars": 6,
+    "desc": "3D Interactive Portfolio & Knowledge Graph. Tech: React, Three.js, Next.js, Python, AWS. Features: Real-time GitHub API integration, force-directed graph physics, modular data engine, and automated CI",
+    "lang": "TypeScript",
+    "push": "2026-09-16",
+    "topics": [
+      "knowledge-graph",
+      "nextjs",
+      "python-automation",
+      "react-three-fiber",
+      "threejs"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/salonyranjan/neural-portfolio",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ryanmcdermott/webvr-n-body",
+    "stars": 5,
+    "desc": " WebVR n-body galaxy simulation using Barnes-Hut Tree and AFrame powered by WebGL",
+    "lang": "TypeScript",
+    "push": "2018-04-28",
+    "topics": [
+      "aframe",
+      "barnes-hut",
+      "galaxy",
+      "nbody",
+      "nbody-simulation",
+      "webvr"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/ryanmcdermott/webvr-n-body",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "CodeWithBasu/3D-Galaxy",
+    "stars": 5,
+    "desc": "🚀 3D Galaxy Viewer: Dive into a mesmerizing simulation of the universe! Featuring realistic spiral physics, real-time customization, and high-performance WebGL rendering. ",
+    "lang": "TypeScript",
+    "push": "2026-02-28",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/CodeWithBasu/3D-Galaxy",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ArjunSNair00/NodeScape",
+    "stars": 5,
+    "desc": "🌌 NodeScape — Explore knowledge in 3D / 2D. An interactive AI-powered knowledge graph explorer built with Three.js, combining visualization, note-taking, and idea exploration in a dynamic network of ",
+    "lang": "TypeScript",
+    "push": "2026-03-24",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/ArjunSNair00/NodeScape",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "chuong1224/ton618",
+    "stars": 5,
+    "desc": "3D cockpit for markdown knowledge vaults — synthwave force graph, reader, finder, workspace, and real-time AI-agent activity replay & analytics. Zero deps, no build step.",
+    "lang": "Python",
+    "push": "2026-09-15",
+    "topics": [
+      "ai-agents",
+      "claude",
+      "force-graph",
+      "knowledge-base",
+      "obsidian",
+      "pkm",
+      "python",
+      "threejs",
+      "visualization"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/chuong1224/ton618",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "johnymontana/sigma-graph-examples",
+    "stars": 5,
+    "desc": "Gallery of graph visualizations using Sigma.js, React Sigma, Graphology",
+    "lang": "TypeScript",
+    "push": "2025-08-19",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/johnymontana/sigma-graph-examples",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "DanElias/Kurve",
+    "stars": 5,
+    "desc": "3D Force Directed Graph Data Visualizer with JavaScript and WebGL",
+    "lang": "JavaScript",
+    "push": "2021-05-30",
+    "topics": [
+      "cannonjs",
+      "computer-graphics",
+      "data-visualization",
+      "force-directed-graphs",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/DanElias/Kurve",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "deckarep/Nebula",
+    "stars": 4,
+    "desc": "Three.js Chrome visual experiment by Airtight",
+    "lang": "JavaScript",
+    "push": "2011-05-13",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/deckarep/Nebula",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "samee0102/Nebula-Heart",
+    "stars": 4,
+    "desc": "Cosmic Nebula Heart is a small web experiment that turns a 3D heart-shaped particle cloud into an interactive nebula using Three.js and bloom effects.​ Click or tap the screen to explode the particles",
+    "lang": "JavaScript",
+    "push": "2025-12-09",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/samee0102/Nebula-Heart",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Ilyasuuu/Live-galaxy",
+    "stars": 4,
+    "desc": "A conversational, audio-reactive particle simulation where AI speech drives stunning WebGL visuals and synchronized kinetic text.",
+    "lang": "TypeScript",
+    "push": "2026-02-19",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Ilyasuuu/Live-galaxy",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "a-funk/3dGraph",
+    "stars": 4,
+    "desc": "Three.js knowledge graph exploration with 6DoF flight controls",
+    "lang": "JavaScript",
+    "push": "2026-07-08",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/a-funk/3dGraph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "c-elvira/rumbaa",
+    "stars": 4,
+    "desc": "Parsing Latex document to draw graph of dependencies between Theorems",
+    "lang": "Rust",
+    "push": "2019-04-22",
+    "topics": [
+      "graphviz",
+      "latex",
+      "mathematics",
+      "rust"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/c-elvira/rumbaa",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Sunil56224972/GreenBow---The-Intro",
+    "stars": 4,
+    "desc": "Immersive 3D Experiences: Integrated WebGL and Three.js elements for a captivating user journey. Dynamic Animations: Custom animations, including interactive word clouds and smooth scroll effects. Res",
+    "lang": "HTML",
+    "push": "2026-04-26",
+    "topics": [
+      "3d-portfolio",
+      "creative-developer",
+      "frontend-developer",
+      "interactive-design",
+      "javascript",
+      "responsive-design",
+      "scroll-animations",
+      "threejs",
+      "web-developer",
+      "webgl"
+    ],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/Sunil56224972/GreenBow---The-Intro",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "JuruoMP/PoemWorld",
+    "stars": 3,
+    "desc": "A visualized knowledge graph on Chinese ancient poetry.",
+    "lang": "Python",
+    "push": "2016-05-07",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/JuruoMP/PoemWorld",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "Jupiter0818/Solaris-Explorer",
+    "stars": 3,
+    "desc": "🌌 An immersive real-time 3D solar system and galaxy explorer built with Three.js. Features procedural shaders, warp effects, and interactive deep sky objects.",
+    "lang": "HTML",
+    "push": "2025-12-14",
+    "topics": [
+      "3d",
+      "astronomy",
+      "javascript",
+      "physics",
+      "simulation",
+      "solar-system",
+      "space-exploration",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Jupiter0818/Solaris-Explorer",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "shaileshai/karna-ai",
+    "stars": 3,
+    "desc": "Karna — interactive 3D knowledge-graph visualization with agentic exploration, live view, and experiments.",
+    "lang": "Python",
+    "push": "2026-09-07",
+    "topics": [
+      "ai",
+      "data-visualization",
+      "knowledge-graph",
+      "python"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/shaileshai/karna-ai",
+    "arch": false,
+    "license": "Apache-2.0"
+  },
+  {
+    "full": "iamdevinhill/KLoG",
+    "stars": 3,
+    "desc": "A knowledge graph note-taking app with 3D graph visualization, multi-provider AI, and WebXR VR mode",
+    "lang": "HTML",
+    "push": "2026-03-22",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/iamdevinhill/KLoG",
+    "arch": false,
+    "license": "AGPL-3.0"
+  },
+  {
+    "full": "wasxy47/Smart_Career_Advisor",
+    "stars": 3,
+    "desc": "AI Career Advisor agent using GraphRAG (Knowledge Graphs + Vectors) & Google Gemini 2.0. Features interactive 3D path visualization and local embeddings.",
+    "lang": "Python",
+    "push": "2026-01-19",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/wasxy47/Smart_Career_Advisor",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "rodspeed/heartwood",
+    "stars": 3,
+    "desc": "A personal knowledge graph that compounds over time. Local-first, Three.js visualization, reasoning engine with belief revision and link prediction.",
+    "lang": "HTML",
+    "push": "2026-03-29",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/rodspeed/heartwood",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "emiax/continuous-rough-prototype",
+    "stars": 3,
+    "desc": "This is a prototype of the math visualization software Continuous. Written in 2012 and early 2013, using THREE.js.",
+    "lang": "JavaScript",
+    "push": "2013-04-26",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/emiax/continuous-rough-prototype",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "CreatorSaWiX/apunts-pro2",
+    "stars": 3,
+    "desc": "Interactive educational platform for UPC-FIB students featuring real-time mathematical visualizers and algorithmic simulations built with React 19, Three.js, and Mafs.",
+    "lang": "TypeScript",
+    "push": "2026-09-16",
+    "topics": [
+      "education",
+      "framer-motion",
+      "mafs",
+      "math",
+      "react",
+      "threejs",
+      "typescript",
+      "upc-fib",
+      "webgl"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/CreatorSaWiX/apunts-pro2",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ArindamTripathi619/ai_calculator",
+    "stars": 3,
+    "desc": "A Flask-based web app that uses the Gemini AI API to process images of mathematical expressions and provide step-by-step solutions. Users upload images, and the app generates solutions in MathJax-comp",
+    "lang": "Python",
+    "push": "2025-09-25",
+    "topics": [
+      "ai",
+      "api",
+      "calculator",
+      "canvas",
+      "educational-project",
+      "flask",
+      "gemini",
+      "generative-ai",
+      "image-processing",
+      "machine-learning",
+      "math",
+      "mathjax",
+      "python"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/ArindamTripathi619/ai_calculator",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "VAIXLNS/VAIXLNS",
+    "stars": 3,
+    "desc": "╔════════════════════════════════════أرى أن هذا أصبح أقرب إلى Blueprint سيادي وليس مجرد مخطط نظام. ومع ذلك، إذا كان الهدف أن يكون هذا الرسم المرجعي النهائي (Master Architecture Blueprint) فلا تزال هنا",
+    "lang": "Python",
+    "push": "2026-09-02",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/VAIXLNS/VAIXLNS",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "fdjingliu/Decision-Tree",
+    "stars": 3,
+    "desc": "Task - 1 Apply Decision Tree Classifier(DecisionTreeClassifier) on these feature sets Set 1: categorical, numerical features + preprocessed_essay (TFIDF) + Sentiment scores(preprocessed_essay) Set 2: ",
+    "lang": null,
+    "push": "2021-05-16",
+    "topics": [],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/fdjingliu/Decision-Tree",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "VicVisjA/galaxiaparati",
+    "stars": 2,
+    "desc": "This project is an immersive 3D interactive galaxy built with Three.js and WebGL. It renders a dynamic spiral galaxy composed of animated text sprites, particle stars, a simulated black hole core, amb",
+    "lang": "HTML",
+    "push": "2026-03-03",
+    "topics": [
+      "css",
+      "e2e",
+      "galaxy",
+      "html",
+      "js",
+      "romantic",
+      "template",
+      "test",
+      "three"
+    ],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/VicVisjA/galaxiaparati",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "tbdavid2019/fe-3d-cinema",
+    "stars": 2,
+    "desc": "3d three.js 字幕特效（右手控制文字/Catch，左手控制 Nebula/Physics，雙手 Open 召喚大火球） https://tbdavid2019.github.io/fe-3d-cinema/",
+    "lang": "HTML",
+    "push": "2026-04-02",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/tbdavid2019/fe-3d-cinema",
+    "arch": false,
+    "license": "AGPL-3.0"
+  },
+  {
+    "full": "shellcat-com/formwork-nebula",
+    "stars": 2,
+    "desc": "Free website template — space / astronomy site with a 95k-particle three.js galaxy. MIT, no build step, ready for GitHub Pages. Demo + build guide inside.",
+    "lang": "HTML",
+    "push": "2026-07-15",
+    "topics": [
+      "awwwards",
+      "creative-coding",
+      "formwork",
+      "free-template",
+      "html-template",
+      "landing-page",
+      "template",
+      "web-design",
+      "webgl",
+      "website-template"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/shellcat-com/formwork-nebula",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "andrewfarm/macro",
+    "stars": 2,
+    "desc": "WebGL galaxy simulation using GPGPU computation",
+    "lang": "JavaScript",
+    "push": "2020-03-09",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/andrewfarm/macro",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "siddarth123456/GraphAnatomy",
+    "stars": 2,
+    "desc": "Interactive medical anatomy platform combining 3D visualization, Neo4j knowledge graphs, GraphRAG, ontology validation, and AI-ready medical intelligence.",
+    "lang": "TypeScript",
+    "push": "2026-06-12",
+    "topics": [
+      "anatomy",
+      "anatomy-dictionary",
+      "anatomy-learning",
+      "anatomy-ontology",
+      "anatomy-preprocessing",
+      "anatomy-ui",
+      "graphql",
+      "knowledge-graph",
+      "neo4j",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/siddarth123456/GraphAnatomy",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "cdeust/neural-graph-visualizer",
+    "stars": 2,
+    "desc": "Generic neural graph visualization — configurable 3D knowledge graph with Three.js, bloom, flow particles, and analytics. Industry presets for healthcare, pharma, food safety.",
+    "lang": "JavaScript",
+    "push": "2026-07-07",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/cdeust/neural-graph-visualizer",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "lz1834career/r3f-rag-viz",
+    "stars": 2,
+    "desc": "Editable 3D visualization for RAG & knowledge graphs — React Three Fiber. Drag nodes, inspect chunks, export view state & scene events.",
+    "lang": "TypeScript",
+    "push": "2026-06-05",
+    "topics": [
+      "3d",
+      "d3",
+      "graph-visualization",
+      "interactive",
+      "knowledge-graph",
+      "nextjs",
+      "rag",
+      "react",
+      "react-three-fiber",
+      "retrieval-augmented-generation",
+      "threejs",
+      "typescript",
+      "visualization",
+      "zustand"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/lz1834career/r3f-rag-viz",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "inferagraph/core",
+    "stars": 2,
+    "desc": "Domain-agnostic knowledge graph platform with AI reasoning, WebGL visualization, and 3D force-directed layouts. Framework-agnostic core with optional React bindings.",
+    "lang": "TypeScript",
+    "push": "2026-05-12",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱",
+      "E 布局算法"
+    ],
+    "url": "https://github.com/inferagraph/core",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "whashi44/MatlabFEA",
+    "stars": 2,
+    "desc": "Approximates the solution of time-dependent second-order partial differential equation. PDE (Strong) form is converted to Integral (Weak) form using divergent theorem, then approximated using discreti",
+    "lang": "MATLAB",
+    "push": "2019-09-18",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/whashi44/MatlabFEA",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "ArchFrosty/3D-Word-Cloud",
+    "stars": 2,
+    "desc": "Attempt to visualize word clouds in 3D.",
+    "lang": "JavaScript",
+    "push": "2020-11-06",
+    "topics": [
+      "3d-graphics",
+      "three-js",
+      "visualization",
+      "wordcloud"
+    ],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/ArchFrosty/3D-Word-Cloud",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "ashah-aanya/interactive-embedding-visualizer",
+    "stars": 2,
+    "desc": "Finding Nearest Neighbors: a real-time interactive art installation that maps words into a live 3D embedding space (sentence-transformers + t-SNE + Three.js). Type a word, watch it join the semantic c",
+    "lang": "Python",
+    "push": "2026-08-30",
+    "topics": [
+      "embeddings",
+      "interactive-art",
+      "nlp",
+      "sentence-transformers",
+      "threejs",
+      "tsne",
+      "visualization",
+      "webgl"
+    ],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/ashah-aanya/interactive-embedding-visualizer",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "gdw118/Poetry_Recitation",
+    "stars": 1,
+    "desc": "A simple Python-based poetry recitation demo leveraging web scraping, data analysis, and visualization to help students efficiently memorize and understand Chinese poetry.",
+    "lang": "Python",
+    "push": "2025-01-21",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/gdw118/Poetry_Recitation",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "atou42/cosmic-nebula",
+    "stars": 1,
+    "desc": "Interactive Three.js Cosmic Nebula - particle galaxy with bloom post-processing",
+    "lang": "HTML",
+    "push": "2026-05-04",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/atou42/cosmic-nebula",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "VictorZakharov/NebReck",
+    "stars": 1,
+    "desc": "Nebula Reckoning - a fast arcade space dogfighter built with three.js",
+    "lang": "TypeScript",
+    "push": "2026-09-07",
+    "topics": [
+      "arcade-game",
+      "browser-game",
+      "game-development",
+      "mit-license",
+      "mobile-game",
+      "open-source-game",
+      "procedural-generation",
+      "space-game",
+      "space-shooter",
+      "threejs",
+      "typescript",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/VictorZakharov/NebReck",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "SECRET4422/nebula-01",
+    "stars": 1,
+    "desc": "Immersive 3D web experience with cinematic visuals and interactive spatial design — built with Three.js and TypeScript.",
+    "lang": "TypeScript",
+    "push": "2026-08-26",
+    "topics": [
+      "3d",
+      "interactive",
+      "threejs",
+      "typescript",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/SECRET4422/nebula-01",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Noggurix/Nebularis-Engine",
+    "stars": 1,
+    "desc": "A space simulation engine with Three.js, designed for creating immersive and dynamic 3D cosmic scenes for study, entertainment or education.",
+    "lang": "TypeScript",
+    "push": "2025-08-21",
+    "topics": [
+      "html",
+      "javascript",
+      "nodejs",
+      "threejs",
+      "typescript"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Noggurix/Nebularis-Engine",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "NeeliSaiHakesh/project-nebula",
+    "stars": 1,
+    "desc": "Project Nebula — AI-Native Memory Operating System. Navigate digital objects by meaning, not location. Built with React, Three.js, Tauri, SQLite & Ollama.",
+    "lang": "TypeScript",
+    "push": "2026-07-21",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/NeeliSaiHakesh/project-nebula",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "LeatherFire/GLB-Viewer",
+    "stars": 1,
+    "desc": "Modern GLB/GLTF viewer built with Three.js + React. Lighting, post-processing, material inspector, and presets.",
+    "lang": "TypeScript",
+    "push": "2025-12-21",
+    "topics": [
+      "3d-viewer",
+      "bloom",
+      "glb",
+      "gltf",
+      "gtao",
+      "hdri",
+      "ibl",
+      "n8ao",
+      "pbr",
+      "postprocessing",
+      "react",
+      "ssao",
+      "ssr",
+      "threejs",
+      "typescript",
+      "vite",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/LeatherFire/GLB-Viewer",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Veba-n/advent-calendar-3d",
+    "stars": 1,
+    "desc": "Interactive 3D Winter Village Advent Calendar with real-time countdown, dynamic lighting, procedural snowfall, and camera transitions built with Three.js, React Three Fiber, and TypeScript.",
+    "lang": "TypeScript",
+    "push": "2026-08-12",
+    "topics": [
+      "3d-graphics",
+      "advent-calendar",
+      "bloom",
+      "interactive",
+      "postprocessing",
+      "procedural-generation",
+      "r3f",
+      "react",
+      "react-three-fiber",
+      "shaders",
+      "tailwindcss",
+      "threejs",
+      "typescript",
+      "vite",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Veba-n/advent-calendar-3d",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Veba-n/procedural-christmas-tree",
+    "stars": 1,
+    "desc": "GPU-accelerated interactive 3D procedural Christmas tree with dynamic spiral light particle physics, glowing trails, reflective ice floor, and real-time scene customization built with Three.js and Rea",
+    "lang": "JavaScript",
+    "push": "2026-08-12",
+    "topics": [
+      "bloom",
+      "creative-coding",
+      "instanced-mesh",
+      "math-art",
+      "particle-system",
+      "postprocessing",
+      "procedural-animation",
+      "r3f",
+      "react",
+      "react-three-fiber",
+      "shaders",
+      "threejs",
+      "vite",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Veba-n/procedural-christmas-tree",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "prutxvi/GraphMind",
+    "stars": 1,
+    "desc": "3D AI knowledge graph — extract entities from PDFs using LLMs and visualize as interactive 3D graph. FastAPI + React 19 + Three.js + NVIDIA Nemotron.",
+    "lang": "JavaScript",
+    "push": "2026-09-07",
+    "topics": [
+      "agentic-ai",
+      "fastapi",
+      "full-stack",
+      "knowledge-graph",
+      "llm",
+      "nvidia",
+      "python",
+      "react",
+      "three-js",
+      "visualization"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/prutxvi/GraphMind",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "hershbumrah/NeuroGraph",
+    "stars": 1,
+    "desc": "A real-time knowledge graph system (Python + Neo4j) with a Three.js “neural network” visualization: nodes pulse like neurons, edges grow like axons, and queries send animated signals through the graph",
+    "lang": null,
+    "push": "2025-12-27",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/hershbumrah/NeuroGraph",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "CocoRoF/graphier",
+    "stars": 1,
+    "desc": "Lightweight React + Three.js WebGL graph renderer — 2D/3D force layout in a Web Worker, instanced meshes (2 draw calls), reheat-free filtering, minimap, trackball navigation. Obsidian-style knowledge ",
+    "lang": "TypeScript",
+    "push": "2026-07-13",
+    "topics": [
+      "3d",
+      "d3-force",
+      "force-directed-graph",
+      "graph-visualization",
+      "knowledge-graph",
+      "minimap",
+      "network-visualization",
+      "npm-package",
+      "obsidian",
+      "react",
+      "threejs",
+      "typescript",
+      "web-worker",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/CocoRoF/graphier",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "NoahRolli/pallas",
+    "stars": 1,
+    "desc": "AI-native personal knowledge management system (Second Brain). Knowledge graph, encrypted journal with fuzzy logic insights, ontology, notes with WikiLinks, and 3D concept sphere. Built with FastAPI, ",
+    "lang": "Python",
+    "push": "2026-07-14",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/NoahRolli/pallas",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "SandroHub013/UnaBetting",
+    "stars": 1,
+    "desc": "Tennis analytics where sixteen fields meet: leak-free ML, market microstructure, a desktop app with real PTY terminals, local LLM agents, a three.js knowledge graph, Ed25519-signed updates. The model ",
+    "lang": "HTML",
+    "push": "2026-09-11",
+    "topics": [
+      "cross-platform",
+      "data-engineering",
+      "desktop-app",
+      "elo-rating",
+      "fastapi",
+      "knowledge-graph",
+      "lightgbm",
+      "llm-agents",
+      "machine-learning",
+      "ollama",
+      "python",
+      "pytorch",
+      "quantitative-finance",
+      "scikit-learn",
+      "sports-analytics",
+      "tennis",
+      "textual",
+      "threejs",
+      "tui",
+      "xgboost"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/SandroHub013/UnaBetting",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "h3587729196-cyber/math-problem-bank",
+    "stars": 1,
+    "desc": "Math Problem Bank (难题库) v1.10 - a local-first, fully offline math problem library: image-based problems, multi-solution walkthroughs, FSRS-Lite spaced review, a three.js method knowledge graph, dynami",
+    "lang": "TypeScript",
+    "push": "2026-08-16",
+    "topics": [
+      "fsrs",
+      "indexeddb",
+      "knowledge-graph",
+      "local-first",
+      "math",
+      "math-education",
+      "react",
+      "spaced-repetition",
+      "study-tool",
+      "threejs",
+      "typescript",
+      "vite"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/h3587729196-cyber/math-problem-bank",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "bitmosh/lumaweave",
+    "stars": 1,
+    "desc": "Local-first graph visualization. Sigma.js + custom WebGL, GWells physics, source adapters for filesystems and knowledge vaults",
+    "lang": "TypeScript",
+    "push": "2026-07-12",
+    "topics": [
+      "data",
+      "graph",
+      "graphing",
+      "graphology",
+      "local-first",
+      "physics-simulation",
+      "react",
+      "sigma",
+      "tauri",
+      "vizualisation",
+      "webgl"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/bitmosh/lumaweave",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "blackwell-systems/knowing-viz",
+    "stars": 1,
+    "desc": "React graph visualization for knowing. Sigma.js 2D + Three.js 3D, 6 grouping algorithms, provenance/edge-type/blame filtering, timeline snapshot diff, Zustand state, framer-motion animations.",
+    "lang": "TypeScript",
+    "push": "2026-07-08",
+    "topics": [
+      "code-intelligence",
+      "graph-visualization",
+      "graphology",
+      "react",
+      "sigma-js",
+      "software-architecture",
+      "static-site",
+      "threejs",
+      "visualization",
+      "zustand"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/blackwell-systems/knowing-viz",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "lguibr/wolfram-physics-explorer",
+    "stars": 1,
+    "desc": "A high-performance 3D visualization engine for the Wolfram Physics Project. Features GPU-accelerated graph rewriting, interactive force-directed layouts, and a custom rule playground. Built with React",
+    "lang": "TypeScript",
+    "push": "2026-09-14",
+    "topics": [
+      "complex-systems",
+      "d3-force",
+      "emergent-behavior",
+      "graph-theory",
+      "physics-simulation",
+      "react",
+      "threejs",
+      "typescript",
+      "visualization",
+      "web-worker",
+      "webgl",
+      "wolfram-physics"
+    ],
+    "cats": [
+      "C 3D 知识图谱",
+      "E 布局算法"
+    ],
+    "url": "https://github.com/lguibr/wolfram-physics-explorer",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "DEdgamer1123/MatrixViz",
+    "stars": 1,
+    "desc": "Matrix Visualizer - React + Three.js + Math.js",
+    "lang": "TypeScript",
+    "push": "2026-08-18",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/DEdgamer1123/MatrixViz",
+    "arch": false,
+    "license": "NOASSERTION"
+  },
+  {
+    "full": "zym9863/Advanced-Math-Visual-Explorer",
+    "stars": 1,
+    "desc": "An interactive mathematical function visualization tool based on Three.js, supporting the plotting and exploration of 2D and 3D function graphs.",
+    "lang": "JavaScript",
+    "push": "2025-05-08",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/zym9863/Advanced-Math-Visual-Explorer",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Greenlake-hash/Math-Studio",
+    "stars": 1,
+    "desc": "Interactive Mathematics Visualization Dashboard featuring 2D graphing, 3D surface plots, probability simulations, and linear algebra visualizations using JavaScript, Three.js, Chart.js, Math.js, and K",
+    "lang": "JavaScript",
+    "push": "2026-06-17",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/Greenlake-hash/Math-Studio",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "mhhridoy7907/MathOrbit-3D",
+    "stars": 1,
+    "desc": "MathOrbit-3D is an interactive 3D math visualization tool built with Three.js. It allows users to explore and manipulate Sin and Cos wave graphs in real-time with custom parameters and a dynamic 3D en",
+    "lang": "JavaScript",
+    "push": "2026-04-28",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/mhhridoy7907/MathOrbit-3D",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "piyushraj001/Ss",
+    "stars": 1,
+    "desc": "Interactive 3D rooftop solar and shadow visualization tool built with React, Three.js, and NOAA solar geometry math. Features real location search via OpenStreetMap & climate data from NASA POWER.",
+    "lang": "JavaScript",
+    "push": "2026-08-29",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/piyushraj001/Ss",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "iammadab/lean-extract",
+    "stars": 1,
+    "desc": "Extract the dependency graph for a given theorem + populates graph structure with git history",
+    "lang": "Python",
+    "push": "2025-08-08",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/iammadab/lean-extract",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "MahmoudSedky147/papergraph-mcp",
+    "stars": 1,
+    "desc": "Turn local and arXiv LaTeX papers into queryable theorem-proof dependency graphs for AI agents via MCP.",
+    "lang": "Python",
+    "push": "2026-09-14",
+    "topics": [
+      "agentic-ai",
+      "aws",
+      "browser-automation",
+      "browser-extension",
+      "claude",
+      "copilot",
+      "cursor",
+      "documentation",
+      "fastapi",
+      "grafana",
+      "knowledge-graph",
+      "learn-cli",
+      "mcp",
+      "mcp-client",
+      "mcp-host",
+      "prometheus",
+      "pydantic",
+      "python",
+      "qdrant"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/MahmoudSedky147/papergraph-mcp",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "justinbrianhwang/CDG-QGAN",
+    "stars": 1,
+    "desc": "Planting a clinical dependency graph into the entanglement topology of a shallow quantum circuit, to generate synthetic MIMIC-IV ICU data. A light-cone theorem forces the circuit to be shallow, and ma",
+    "lang": "Python",
+    "push": "2026-07-14",
+    "topics": [
+      "electronic-health-records",
+      "generative-adversarial-network",
+      "graphical-lasso",
+      "graphical-models",
+      "healthcare",
+      "mimic-iv",
+      "partial-correlation",
+      "pytorch",
+      "quantum-computing",
+      "quantum-machine-learning",
+      "reproducible-research",
+      "synthetic-data",
+      "tabular-data",
+      "variational-quantum-circuits",
+      "wgan-gp"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/justinbrianhwang/CDG-QGAN",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Ambar-13/ClampAI",
+    "stars": 1,
+    "desc": "Formal safety framework for AI agents. Pluggable LLM reasoning constrained by mathematically proven budget, invariant, and termination guarantee. 7 theorems enforced by construction, not by prompting.",
+    "lang": "Python",
+    "push": "2026-03-04",
+    "topics": [
+      "agent-safety-frameworks",
+      "agentic-ai",
+      "agentic-ai-security",
+      "ai-safety",
+      "autonomous-agents",
+      "bayesian-inference",
+      "cybersecurity",
+      "formal-verification",
+      "python"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/Ambar-13/ClampAI",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "xingwangzhe/force-rs",
+    "stars": 1,
+    "desc": "Fast force-directed 3D graph layout powered by Rust + Barnes-Hut octree. Fully compatible with d3-force-3d force model.",
+    "lang": "Rust",
+    "push": "2026-09-09",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/xingwangzhe/force-rs",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "alexayu1204/Shiying",
+    "stars": 0,
+    "desc": "诗影 ShiYing — Classical Chinese Poetry Visualization",
+    "lang": null,
+    "push": "2026-02-26",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/alexayu1204/Shiying",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "D-Fate/chi_rus_visualization",
+    "stars": 0,
+    "desc": "Russophone Translations of Contemporary Chinese Poetry. Data and Visualization with Plotly",
+    "lang": "HTML",
+    "push": "2026-01-23",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/D-Fate/chi_rus_visualization",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "kaiger666888/mengjing-cihua",
+    "stars": 0,
+    "desc": "🌙 梦境词话 - AI还原古诗词中的梦境意境 | Dream Poetry - AI visualization of classical Chinese poetry dreamscapes",
+    "lang": null,
+    "push": "2026-04-13",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/kaiger666888/mengjing-cihua",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "3451449381/Probing-Era-and-Genre-Separability-in-Chinese-Classical-Poetry-Embedding-Spaces",
+    "stars": 0,
+    "desc": "We probe whether off-the-shelf Chinese text embeddings encode separable signals of poetic era (Tang vs. Song) and genre (e.g., jueju, lüshi), using logistic regression and t-SNE/UMAP visualization.",
+    "lang": "Jupyter Notebook",
+    "push": "2025-11-30",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/3451449381/Probing-Era-and-Genre-Separability-in-Chinese-Classical-Poetry-Embedding-Spaces",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "ViviSun01/The-Pseudo-poetry-Machine",
+    "stars": 0,
+    "desc": "A machine-learning project that extracts and cleans poems from the Chinese-Poetry dataset in Google Colab, classifies each line using SnowNLP sentiment analysis, and outputs scored “pseudo-poems.” The",
+    "lang": null,
+    "push": "2025-11-16",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/ViviSun01/The-Pseudo-poetry-Machine",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "QTE1/eternal-blossoms",
+    "stars": 0,
+    "desc": "蔡徐坤花海记忆 · 永恒绽放 —— 一款为致敬蔡徐坤而打造的 3D 沉浸式交互纪念页面。二十余张精选记忆卡片悬浮于深邃星空之中，随页面滚动穿越爱心粒子隧道，经历「晨曦初临」「交错穿行」「向心汇聚」「花开圆盘」「万千星辰」等十三个精心编排的视觉篇章。每张卡片承载一段独家记忆，双击即可展开详情弹窗，阅读专属旁白文字。支持拖拽卡片自由移动、点击更换任意卡面图片、上传个人照片构建专属图库、背景音乐开关等丰",
+    "lang": "HTML",
+    "push": "2026-06-16",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/QTE1/eternal-blossoms",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "QTE1/IKUN-",
+    "stars": 0,
+    "desc": "蔡徐坤花海记忆 · 永恒绽放 —— 一款为致敬蔡徐坤而打造的 3D 沉浸式交互纪念页面。二十余张精选记忆卡片悬浮于深邃星空之中，随页面滚动穿越爱心粒子隧道，经历「晨曦初临」「交错穿行」「向心汇聚」「花开圆盘」「万千星辰」等十三个精心编排的视觉篇章。每张卡片承载一段独家记忆，双击即可展开详情弹窗，阅读专属旁白文字。支持拖拽卡片自由移动、点击更换任意卡面图片、上传个人照片构建专属图库、背景音乐开关等丰",
+    "lang": null,
+    "push": "2026-06-16",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/QTE1/IKUN-",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Ali-khan1816/Ali-Muhammad-khan-portfolio",
+    "stars": 0,
+    "desc": "A modern, responsive 3D portfolio website built with React.js, Three.js, and OGL. Features galaxy animations, liquid chrome shaders, 3D light beams, an infinite auto-rotating menu, and animated text e",
+    "lang": "JavaScript",
+    "push": "2025-10-20",
+    "topics": [],
+    "cats": [
+      "A 诗云/诗词星系"
+    ],
+    "url": "https://github.com/Ali-khan1816/Ali-Muhammad-khan-portfolio",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "norat02/threejs-tunnel",
+    "stars": 0,
+    "desc": "Glowing wormhole tunnel scene — Three.js r0.143.0, additive points, bloom postprocessing, scroll-driven warp-fly",
+    "lang": "HTML",
+    "push": "2026-08-20",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/norat02/threejs-tunnel",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "IdhantDoneria/neon-strike",
+    "stars": 0,
+    "desc": "NEON STRIKE ∞ — 3D endless FPS with P2P cloud multiplayer. Three.js, procedural physics, bloom postprocessing, synthwave landing page.",
+    "lang": "JavaScript",
+    "push": "2026-07-19",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/IdhantDoneria/neon-strike",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "m2-md/effectcomposer-to-tsl-postprocessing-port",
+    "stars": 0,
+    "desc": "Side-by-side port of film grain, bloom, and vignette post-processing chain from pmndrs EffectComposer (WebGL) to Three.js RenderPipeline and TSL node graphs (WebGPU).",
+    "lang": "TypeScript",
+    "push": "2026-09-03",
+    "topics": [
+      "bloom",
+      "post-processing",
+      "threejs",
+      "tsl",
+      "typescript",
+      "webgpu"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/m2-md/effectcomposer-to-tsl-postprocessing-port",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Mohd-saquib93/Cylindrical-showcase",
+    "stars": 0,
+    "desc": "3D Rotating Cylinder built with React Three Fiber — a textured, animated cylinder using Three.js, Drei helpers, and postprocessing bloom effects.",
+    "lang": "JavaScript",
+    "push": "2026-01-01",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Mohd-saquib93/Cylindrical-showcase",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "xkhaliil/SolarSystemThreeJS",
+    "stars": 0,
+    "desc": "Interactive 3D solar system built with Three.js, featuring a custom GLSL shader sun, orbiting planets, and a postprocessing bloom/glitch stack",
+    "lang": "JavaScript",
+    "push": "2026-09-06",
+    "topics": [
+      "3d-graphics",
+      "glsl",
+      "javascript",
+      "threejs",
+      "vite",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/xkhaliil/SolarSystemThreeJS",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "nataliaans78-lang/Generative-Torus-Sculpture",
+    "stars": 0,
+    "desc": "Interactive generative WebGL light sculpture with Three.js, audio-reactive lighting, bloom, fog and adaptive performance.",
+    "lang": "JavaScript",
+    "push": "2026-07-06",
+    "topics": [
+      "audio-reactive",
+      "creative-coding",
+      "generative-art",
+      "javascript",
+      "portfolio",
+      "postprocessing",
+      "shader",
+      "threejs",
+      "vite",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/nataliaans78-lang/Generative-Torus-Sculpture",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Waleee7/skyline-arena",
+    "stars": 0,
+    "desc": "Neon-Tokyo WebGL portfolio arena where projects play on interactive jumbotrons — vanilla Three.js, custom post-processing bloom chain, real HDRI lighting, video textures, and reduced-motion + non-WebG",
+    "lang": "JavaScript",
+    "push": "2026-09-07",
+    "topics": [
+      "hdri",
+      "javascript",
+      "portfolio",
+      "postprocessing",
+      "threejs",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/Waleee7/skyline-arena",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "smouj/asciicritters",
+    "stars": 0,
+    "desc": "🎮 The Ultimate 3D Virtual Pet Creator — ASCII art pets rendered in stunning Three.js with AI chat, bloom post-processing, and cinematic effects",
+    "lang": "TypeScript",
+    "push": "2026-07-27",
+    "topics": [
+      "3d",
+      "ai-chat",
+      "ascii-art",
+      "bloom",
+      "cyberpunk",
+      "game",
+      "interactive",
+      "nextjs",
+      "open-source",
+      "pet-simulator",
+      "postprocessing",
+      "prisma",
+      "react",
+      "shader",
+      "sqlite",
+      "tamagotchi",
+      "threejs",
+      "typescript",
+      "virtual-pet",
+      "webgl"
+    ],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/smouj/asciicritters",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "MdMaazAli/abstract_cube",
+    "stars": 0,
+    "desc": "Interactive 3D glowing node cube built with Three.js, featuring points, dynamic line connections, group rotations, and bloom effects. Inspired by a tutorial, with custom tweaks for rotation, colors, a",
+    "lang": "JavaScript",
+    "push": "2025-08-27",
+    "topics": [],
+    "cats": [
+      "B 星系视觉"
+    ],
+    "url": "https://github.com/MdMaazAli/abstract_cube",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "filipelperes/AIMindMap",
+    "stars": 0,
+    "desc": "Interactive 3D mind map exploring AI engineering concepts — LLMs, RAG, Agents, Fine-tuning & more",
+    "lang": "TypeScript",
+    "push": "2026-06-26",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/filipelperes/AIMindMap",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "wyyyrdx/Syntropy",
+    "stars": 0,
+    "desc": "AI-powered app that transforms handwritten notes into explorable 3D concept maps.",
+    "lang": "JavaScript",
+    "push": "2026-09-11",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/wyyyrdx/Syntropy",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "james-julius/latent-space-explorer",
+    "stars": 0,
+    "desc": "A flythrough 3D map of meaning — type any concept and watch it land near related ideas. In-browser embeddings (no install, no key), pre-seeded scenes, and a multi-model knowledge explorer.",
+    "lang": "TypeScript",
+    "push": "2026-06-01",
+    "topics": [
+      "3d-visualization",
+      "ai",
+      "claude",
+      "data-visualization",
+      "embeddings",
+      "gemini",
+      "latent-space",
+      "llm",
+      "machine-learning",
+      "nextjs",
+      "openai",
+      "react-three-fiber",
+      "semantic-search",
+      "text-embeddings",
+      "threejs",
+      "transformers-js",
+      "typescript",
+      "umap",
+      "vector-search",
+      "webgpu"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/james-julius/latent-space-explorer",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "bhaveshbaldaniya8850/Semantic-Universe",
+    "stars": 0,
+    "desc": "Semantic Universe is an interactive 3D visualization tool that allows users to explore the semantic relationships between text data. By converting text into vector embeddings, this application maps co",
+    "lang": "JavaScript",
+    "push": "2025-12-20",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/bhaveshbaldaniya8850/Semantic-Universe",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "wyf910708/vue3-sigma-graphology",
+    "stars": 0,
+    "desc": "A Vue3 interactive network graph visualization with Sigma.js and Graphology",
+    "lang": null,
+    "push": "2026-02-27",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/wyf910708/vue3-sigma-graphology",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "kotulc/graphly",
+    "stars": 0,
+    "desc": "A document knowledge graph generator built with Graphology and Sigma.js",
+    "lang": "JavaScript",
+    "push": "2026-07-20",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/kotulc/graphly",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "julienbusset/docsify-sigma",
+    "stars": 0,
+    "desc": "Visualize a graph in your docsify project using Sigma.js and Graphology.",
+    "lang": "JavaScript",
+    "push": "2026-09-06",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/julienbusset/docsify-sigma",
+    "arch": false,
+    "license": "GPL-3.0"
+  },
+  {
+    "full": "codeprismtechnologies/sigma-react-app",
+    "stars": 0,
+    "desc": "React application for Sigma JS and graphology ",
+    "lang": "TypeScript",
+    "push": "2023-11-10",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/codeprismtechnologies/sigma-react-app",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "henrylawler/process-context-graph",
+    "stars": 0,
+    "desc": "Interactive WebGL process context graphs — sigma.js + graphology, LeveeTech terrain palette, dithered stipple shadows",
+    "lang": "HTML",
+    "push": "2026-03-14",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/henrylawler/process-context-graph",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "negativexq/movie-graph-explorer",
+    "stars": 0,
+    "desc": "Interactive graph engineering project with Neo4j, Cypher, Sigma.js and explainable movie recommendations.",
+    "lang": "Python",
+    "push": "2026-08-08",
+    "topics": [
+      "cypher",
+      "graph-database",
+      "graphology",
+      "neo4j",
+      "sigmajs"
+    ],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/negativexq/movie-graph-explorer",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "tnkundwa/Tabiya",
+    "stars": 0,
+    "desc": "A graph visualization tool with Sigma.js and Graphology, with an AI‑assisted navigation.",
+    "lang": "JavaScript",
+    "push": "2026-06-30",
+    "topics": [],
+    "cats": [
+      "C 3D 知识图谱"
+    ],
+    "url": "https://github.com/tnkundwa/Tabiya",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "yatharth953/gesture-controlled-math-visualization",
+    "stars": 0,
+    "desc": "Interactive mathematical visualisation using particles and hand gestures (Three.js + MediaPipe).",
+    "lang": "HTML",
+    "push": "2026-02-06",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/yatharth953/gesture-controlled-math-visualization",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "yuqiang-yuan/mathbox-next",
+    "stars": 0,
+    "desc": "Lightweight TypeScript math visualization library built on three.js r185",
+    "lang": "TypeScript",
+    "push": "2026-08-03",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/yuqiang-yuan/mathbox-next",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Yerlan110110/3d-math-geo",
+    "stars": 0,
+    "desc": "Interactive 3D Math Geometry Visualizer with Three.js",
+    "lang": "Python",
+    "push": "2026-04-10",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/Yerlan110110/3d-math-geo",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "ap0calypse9/canvas-AI",
+    "stars": 0,
+    "desc": "An interactive math and drawing tool powered by Gemini API. Users can draw freely on the canvas and solve mathematical equations with real-time LaTeX rendering using MathJax. ",
+    "lang": "TypeScript",
+    "push": "2025-03-30",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/ap0calypse9/canvas-AI",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "ap0calypse8/canvas-AI",
+    "stars": 0,
+    "desc": " An interactive math and drawing tool powered by Gemini API. Users can draw freely on the canvas and solve mathematical equations with real-time LaTeX rendering using MathJax.",
+    "lang": "TypeScript",
+    "push": "2025-02-13",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/ap0calypse8/canvas-AI",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "JakeRobertBaker/theorem_dependency_graph",
+    "stars": 0,
+    "desc": "Generate theorem dependency graphs using ELK and TikZ",
+    "lang": "Python",
+    "push": "2026-08-12",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/JakeRobertBaker/theorem_dependency_graph",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "justinlubin/ibl-dependency-map",
+    "stars": 0,
+    "desc": "UChicago Honors Calculus (IBL) Theorem Dependency Map",
+    "lang": "HTML",
+    "push": "2017-06-11",
+    "topics": [
+      "calculus",
+      "dependencies",
+      "graph",
+      "ibl",
+      "theorems"
+    ],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/justinlubin/ibl-dependency-map",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "Mathub-AI/theorem-graph",
+    "stars": 0,
+    "desc": "Extract mathematical dependency graphs from research papers (Mathub-AI)",
+    "lang": "Python",
+    "push": "2026-05-06",
+    "topics": [],
+    "cats": [
+      "D 数学/公式"
+    ],
+    "url": "https://github.com/Mathub-AI/theorem-graph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "RangerMauve/aframe-3d-graph",
+    "stars": 0,
+    "desc": "Rendering 3D graphs with force directed layouts",
+    "lang": "JavaScript",
+    "push": "2017-05-19",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/RangerMauve/aframe-3d-graph",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "maooc/3d-network-graph",
+    "stars": 0,
+    "desc": "3D Network Graph Visualization using Three.js and Force-Directed Layout",
+    "lang": "JavaScript",
+    "push": "2026-04-17",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/maooc/3d-network-graph",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Yorha9e/graphify-viz",
+    "stars": 0,
+    "desc": "Interactive knowledge-graph visualization frontend with 2D force-directed and 3D sphere layouts",
+    "lang": "JavaScript",
+    "push": "2026-07-06",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/Yorha9e/graphify-viz",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "MohammadHossinzehi/webgl-graph-viz",
+    "stars": 0,
+    "desc": "GPU-accelerated 3D graph visualization library withWebGL, force-directed layout, and interactive contros",
+    "lang": null,
+    "push": "2026-08-27",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/MohammadHossinzehi/webgl-graph-viz",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "reztirps/graph-algorithms",
+    "stars": 0,
+    "desc": "Graph algorithms for random graph generation and 3D force-directed layout. Implemented in Typescript.",
+    "lang": "TypeScript",
+    "push": "2023-09-21",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/reztirps/graph-algorithms",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "tak0kada/fruchterman",
+    "stars": 0,
+    "desc": "Implementation of force-directed graph layout for 3d-triangular mesh according to Fruchterman, et al. 1991",
+    "lang": "C++",
+    "push": "2020-04-21",
+    "topics": [],
+    "cats": [
+      "E 布局算法"
+    ],
+    "url": "https://github.com/tak0kada/fruchterman",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "huangcheng/island-portfolio",
+    "stars": 0,
+    "desc": "Animal Crossing style island portfolio — the whole site (UI included) rendered in WebGL. React 19 + TanStack Router + three.js + troika SDF text.",
+    "lang": "TypeScript",
+    "push": "2026-08-11",
+    "topics": [],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/huangcheng/island-portfolio",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "hcschuetz/sphere-texturing",
+    "stars": 0,
+    "desc": "texture layouts for spheres",
+    "lang": "TypeScript",
+    "push": "2024-08-10",
+    "topics": [
+      "geometry",
+      "icosphere",
+      "octasphere",
+      "sphere",
+      "texture-generation",
+      "texture-mapping"
+    ],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/hcschuetz/sphere-texturing",
+    "arch": false,
+    "license": "MIT"
+  },
+  {
+    "full": "hiroshisatoku9-michikusa/whiteboard-3d",
+    "stars": 0,
+    "desc": "3D whiteboard — text notes with arrows, sphere/flat layout toggle",
+    "lang": "HTML",
+    "push": "2026-06-13",
+    "topics": [],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/hiroshisatoku9-michikusa/whiteboard-3d",
+    "arch": false,
+    "license": null
+  },
+  {
+    "full": "Arnav-Bhardwaj1/BlogSphere",
+    "stars": 0,
+    "desc": "BlogSphere is a platform where users can write, edit, and publish blog posts using a WYSIWYG editor, with secure sign-in and complete CRUD functionality. Built with React (frontend) and Node/Express +",
+    "lang": "JavaScript",
+    "push": "2025-09-09",
+    "topics": [],
+    "cats": [
+      "F 文字云/3D 文字"
+    ],
+    "url": "https://github.com/Arnav-Bhardwaj1/BlogSphere",
+    "arch": false,
+    "license": null
+  }
+]

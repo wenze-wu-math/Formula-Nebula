@@ -1,0 +1,74 @@
+==============================================================================
+A. "List of unsolved problems in mathematics" 的 Algebra / 表示论段
+==============================================================================
+=== Algebra 
+
+  >>> 该段是否出现 Lusztig: 未出现
+
+==============================================================================
+B. 全站检索（insource）
+==============================================================================
+
+  检索: insource:"Lusztig conjecture"   → 8 条
+    · Alexander Beilinson [1032 词]
+      journal|last1=Brylinski|first1=Jean-Luc|last2=Kashiwara|first2=Masaki|title=Kazhdan-Lusztig conjecture and holonomic systems|date=October 1981|volume=64|journal=[[Inventiones
+    · David Kazhdan [552 词]
+      [[Israel Gelfand]], [[Victor Kac]], [[George Lusztig]] (on the [[Kazhdan–Lusztig conjecture]] on [[Verma module]]s), with [[Grigory Margulis]] ([[Kazhdan–Margulis
+    · List of Russian mathematicians [1755 词]
+      mathematician, Representation theory, Category theory, [[Kazhdan-Lusztig conjecture]], [[Kazhdan-Margulis theorem]], [[Kazhdan property (T)]]. Held [[MacArthur
+    · D-module [2086 词]
+      the [[Bernstein–Sato polynomial]]. ===Kazhdan–Lusztig conjecture=== The [[Kazhdan–Lusztig conjecture]] was proved using &#039;&#039;D&#039;&#039;-modules. ===Riemann–Hilbert
+    · Masaki Kashiwara [1000 词]
+      base]]s&lt;br&gt;[[Riemann–Hilbert correspondence]]&lt;br&gt;[[Kazhdan–Lusztig conjecture]] | awards = [[Iyanaga Prize]] (1981)&lt;br&gt;[[Asahi Prize]]
+    · Kazhdan–Lusztig polynomial [3454 词]
+      last2=Kashiwara | first2=Masaki | author2-link=Masaki Kashiwara | title=Kazhdan–Lusztig conjecture and holonomic systems |date=October 1981 | volume=64 | journal=[[Inventiones
+    · W-algebra [5509 词]
+      first1=Koos | last2=van Driel | first2=Peter | title=The Kazhdan–Lusztig conjecture for W algebras | journal=Journal of Mathematical Physics | publisher=AIP
+    · Jean-Luc Brylinski [152 词]
+      [[Pennsylvania State University]] in 1988. He proved the [[Kazhdan–Lusztig conjecture]]s with [[Masaki Kashiwara]]. He has also worked on [[gerbe]]s, [[cyclic
+
+  检索: insource:"Lusztig's conjecture"   → 1 条
+    · Geordie Williamson [972 词]
+      of counterexamples to the generally suspected validity limits of Lusztig&#039;s conjecture. He also found counterexamples to a 1990 conjecture of Gordon James
+
+  检索: insource:/Lusztig conjecture/ characteristic   → 8 条
+    · Modular Lie algebra [149 词]
+      algebra|semisimple]] case was advanced only recently due to the influential [[Lusztig conjectures]], which have been partially [[mathematical proof|proved]]. ==References==
+    · D-module [2086 词]
+      the [[Bernstein–Sato polynomial]]. ===Kazhdan–Lusztig conjecture=== The [[Kazhdan–Lusztig conjecture]] was proved using &#039;&#039;D&#039;&#039;-modules. ===Riemann–Hilbert
+    · Jean-Luc Brylinski [152 词]
+      [[Pennsylvania State University]] in 1988. He proved the [[Kazhdan–Lusztig conjecture]]s with [[Masaki Kashiwara]]. He has also worked on [[gerbe]]s, [[cyclic
+    · Geordie Williamson [972 词]
+      theory of the [[Kazhdan–Lusztig polynomial#Kazhdan–Lusztig conjectures|Kazhdan–Lusztig conjectures]] (previously proved in 1981 by both [[Alexander
+    · Lie algebra representation [4312 词]
+      compact Lie group]] *[[Whitehead&#039;s lemma (Lie algebras)]] *[[Kazhdan–Lusztig conjectures]] *[[Quillen&#039;s lemma]] - analog of Schur&#039;s lemma == Notes == {{Reflist}}
+    · List of unsolved problems in mathematics [18842 词]
+      the integers. * [[Kazhdan–Lusztig polynomial#Kazhdan–Lusztig conjectures|Kazhdan–Lusztig conjectures]] relating the values of the [[Kazhdan–Lusztig polynomial]]s
+    · Breakthrough Prize in Mathematics [2049 词]
+      bimodules and the proof of the [[Kazhdan–Lusztig polynomial|Kazhdan-Lusztig conjectures]] for general [[Coxeter group|Coxeter groups]].&quot; **Benjamin Elias
+    · Masaki Kashiwara [1000 词]
+      base]]s&lt;br&gt;[[Riemann–Hilbert correspondence]]&lt;br&gt;[[Kazhdan–Lusztig conjecture]] | awards = [[Iyanaga Prize]] (1981)&lt;br&gt;[[Asahi Prize]]
+
+  检索: Lusztig conjecture failure small characteristic explicit counterexample algebraic group   → 0 条
+
+==============================================================================
+C. 相关条目正文（只看 Lusztig 与特征/界有关的句子）
+==============================================================================
+
+── "Lusztig's conjecture" → Lusztig's conjecture (0 字符)
+
+── "Representation theory of semisimple Lie algebras" → Representation theory of semisimple Lie algebras (45199 字符)
+   （无含 Lusztig 的句子）
+
+── "Algebraic group" → Algebraic group (21709 字符)
+   （无含 Lusztig 的句子）
+
+── "Frobenius twist" → Frobenius twist (0 字符)
+
+── "Henning Haahr Andersen" → Henning Haahr Andersen (355 字符)
+   （无含 Lusztig 的句子）
+
+── "Peter Fiebig" → Peter Fiebig (0 字符)
+
+── "Wolfgang Soergel" → Wolfgang Soergel (3003 字符)
+   · His research in representation theory has important applications to Kazhdan-Lusztig theory and Koszul duality.

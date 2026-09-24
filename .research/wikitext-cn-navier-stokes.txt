@@ -1,0 +1,310 @@
+{{refimprove|date=September 2026}}
+{{Use American English|date = March 2019}}
+{{Use dmy dates|date=September 2026}}
+{{Short description|Millennium Prize Problem}}
+
+[[File:False color image of the far field of a submerged turbulent jet.jpg|thumb|right|Flow visualization of a turbulent jet, made by [[Planar laser-induced fluorescence|laser-induced fluorescence]]. The jet exhibits a wide range of length scales, an important characteristic of turbulent flows.]]
+
+{{Millennium Problems}}
+
+The question of whether the [[Navier–Stokes equations]] always have [[Smoothness|smooth solutions]] in [[Three-dimensional space|three-dimensional Euclidean space]], given some [[Initial condition|initial conditions]], has been a longstanding [[unsolved problem in mathematics]] since the early 20th century. The equations are a system of [[partial differential equation]]s that describe the motion of a [[fluid]] in space. Although [[Computational fluid dynamics|computational solutions]] to the Navier–Stokes equations are used in a large number of practical applications, there is no complete analytical understanding of the solutions. In particular, solutions of the Navier–Stokes equations often include [[turbulence]], which remains one of the greatest [[List of unsolved problems in physics|unsolved problems in physics]], despite its immense importance in science and engineering.
+
+In 2000, the [[Clay Mathematics Institute]] named the existence and smoothness problem as one of seven [[Millennium Prize Problems]] because of the Navier–Stokes equations' critical importance to multiple fields. The institute offered a Millennium Prize to the first person providing a solution for a specific statement of the problem as given by [[Charles Fefferman]].<ref name="problem_statement">{{cite encyclopedia|last1=Fefferman|first1=Charles L.|author-link1=Charles Fefferman|title=Existence and smoothness of the Navier–Stokes equation|url=https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf|pages=57–67|editor1-last = Carlson|editor1-first = James|editor2-last = Jaffe|editor2-first = Arthur|editor2-link = Arthur Jaffe|editor3-last = Wiles|editor3-first = Andrew|editor3-link = Andrew Wiles|encyclopedia= The millennium prize problems|year = 2006  |location = Providence, RI|publisher = American Mathematical Society and Clay Mathematics Institute|isbn = 978-0-8218-3679-8}}</ref>
+
+On 8 September 2026, [[artificial intelligence]] company [[OpenAI]] claimed to have found a solution to the Navier–Stokes equations that develops a singularity in finite time in three-dimensional Euclidean space, along with a formalization in the [[Lean (proof assistant)|Lean]] proof assistant, using a swarm of around 10,000 [[AI agent|AI agents]] running an internal [[frontier model]].<ref name=openai>{{cite web |date=2026-09-08 |title=On the Navier–Stokes Millennium Prize Problem |url=https://openai.com/index/navier-stokes-solution/ |access-date=2026-09-08 |publisher=OpenAI |ref={{sfnref|OpenAI|2026}}}}</ref> The counter-example resembles a spinning top that tightens to a singularity with diverging velocities.
+
+The announcement was accompanied by a [[Navier–Stokes priority controversy|priority dispute]] with [[Levent Alpöge]] (employed at rival AI company [[Anthropic]]) and [[Tristan Buckmaster]], who had derived a set of closely related results on the [[Euler equations (fluid dynamics)|Euler equations]] used in the work.<ref>{{Cite web |url=https://www.theguardian.com/science/2026/sep/08/openai-claims-to-have-solved-maths-problem-that-stumped-humans-for-decades |title=OpenAI claims to have solved maths problem that stumped humans for decades |first1=Ian |last1=Sample |first2=Dan |last2=Milmo |work=The Guardian |date=September 8, 2026 }}</ref><ref name="howlett" /><ref>{{cite news |date=2026-09-08 |title=OpenAI's historic math solution overshadowed by credit controversy |url=https://www.axios.com/2026/09/08/openai-math-solution-navier-stokes-credit |access-date=2026-09-08 |work=Axios}}</ref> The method used to generate the counter-example built upon a method developed by Diego Córdoba and Luis Martínez-Zoroa in 2023 to find blowup phenomena in related fluid equations.<ref>{{Cite web |url=https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/ |title=AI Has Solved One of Math's $1 Million Millennium Prize Problems |first=Konstantin |last=Kakaes |date=September 8, 2026}}</ref> OpenAI stated in its announcement that it would not claim the $1 million Clay Millennium Prize for the solution it posted.<ref name="openai" /> As of September 2026, the Clay Mathematics Institute currently considers the problem "active".<ref>{{Cite web |title=Navier-Stokes Equation |url=https://www.claymath.org/millennium/navier-stokes-equation/ |access-date=2026-09-13 |website=Clay Mathematics Institute |language=en-US}}</ref>
+
+==Navier–Stokes equations==
+{{Main article|Navier–Stokes equations}}
+
+In mathematics, the Navier–Stokes equations are a system of [[Nonlinear system|nonlinear]] [[partial differential equation]]s for abstract [[vector fields]] of any size. In physics and engineering, they are a system of equations that model the motion of liquids or non-[[rarefied]] gases (in which the [[mean free path]] is short enough so that it can be thought of as a continuum mean instead of a collection of particles) using [[continuum mechanics]]. The equations are a statement of [[Newton's second law]], with the forces modeled according to those in a [[viscosity|viscous]] [[Newtonian fluid]]—as the sum of contributions by pressure, viscous stress and an external [[body force]]. Since the setting of the problem proposed by the Clay Mathematics Institute is in three dimensions, for an [[Incompressible flow|incompressible]] and homogeneous fluid, only that case is considered below.
+
+Let <math>\mathbf{v}(\boldsymbol{x},t)</math> be a 3-dimensional vector field, the velocity of the fluid, and let <math>p(\boldsymbol{x},t)</math> be the pressure of the fluid.<ref group="note">More precisely, {{math|''p''('''''x''''', ''t'')}} is the pressure divided by the fluid [[density]], and the density is constant for this incompressible and homogeneous fluid.</ref> The Navier–Stokes equations are:
+
+: <math>\frac{\partial \mathbf{v}}{\partial t} + ( \mathbf{v}\cdot\nabla ) \mathbf{v} = -\frac{1}{\rho}\nabla p + \nu\Delta \mathbf{v} +\mathbf{f}(\boldsymbol{x},t)</math>
+
+where <math>\nu>0</math> is the [[kinematic viscosity]], <math>\mathbf{f}(\boldsymbol{x},t)</math> the external force per unit of mass, <math>\nabla</math> is the [[gradient]] operator and <math>\displaystyle \Delta</math> is the [[Laplacian]] operator, which is also denoted by <math>\nabla\cdot\nabla</math> or <math>\nabla^2</math>. Note that this is a vector equation, i.e. it has three scalar equations. Writing down the coordinates of the velocity and the external force
+
+: <math>\mathbf{v}(\boldsymbol{x},t)=\big(\,v_1(\boldsymbol{x},t),\,v_2(\boldsymbol{x},t),\,v_3(\boldsymbol{x},t)\,\big)\,,\qquad \mathbf{f}(\boldsymbol{x},t)=\big(\,f_1(\boldsymbol{x},t),\,f_2(\boldsymbol{x},t),\,f_3(\boldsymbol{x},t)\,\big)</math>
+
+then for each <math>i=1,2,3</math> there is the corresponding scalar Navier–Stokes equation:
+
+: <math>\frac{\partial v_i}{\partial t} +\sum_{j=1}^{3}\frac{\partial v_i}{\partial x_j}v_j= -\frac{1}{\rho}\frac{\partial p}{\partial x_i} + \nu\sum_{j=1}^{3}\frac{\partial^2 v_i}{\partial x_j^2} +f_i(\boldsymbol{x},t).</math>
+
+The unknowns are the velocity <math>\mathbf{v}(\boldsymbol{x},t)</math> and the pressure <math>p(\boldsymbol{x},t)</math>. Since in three dimensions, there are three equations and four unknowns (three scalar velocities and the pressure), then a supplementary equation is needed. This extra equation is the [[continuity equation]] for [[Incompressible flow|incompressible]] fluids that describes the [[conservation of mass]] of the fluid:
+
+: <math> \nabla\cdot \mathbf{v} = 0.</math>
+
+Due to this last property, the solutions for the Navier–Stokes equations are searched in the set of [[solenoidal vector field|solenoidal]] ("[[divergence]]-free") functions. For this flow of a homogeneous medium, density and viscosity are constants.
+
+Since only its gradient appears, the pressure ''p'' can be eliminated by taking the [[Curl (mathematics)|curl]] of both sides of the Navier–Stokes equations. In this case the Navier–Stokes equations reduce to the [[vorticity equation|vorticity-transport equation]]s.
+
+The Navier–Stokes equations are [[Nonlinear system|nonlinear]], meaning that the terms in the equations do not have a simple linear relationship with each other. This means that the equations cannot be solved using traditional linear techniques, and more advanced methods must be used instead. This nonlinearity allows the equations to describe a wide range of [[fluid dynamics]] phenomena, including the formation of shock waves and other complex flow patterns. 
+
+One way to understand the nonlinearity of the Navier–Stokes equations is to consider the term <math>(\mathbf{v}\cdot\nabla ) \mathbf{v}</math> in the equations. This term represents the acceleration of the fluid, and it is a product of the velocity vector v and the gradient operator ∇. Because the gradient operator is a linear operator, the term (v · ∇)v is nonlinear in the velocity vector v. This means that the acceleration of the fluid depends on the magnitude and direction of the velocity, as well as the spatial distribution of the velocity within the fluid.
+
+(In the case of [[compressible flow]], another source of nonlinearity in the Navier–Stokes equations is the pressure term <math>-\frac{1}{\rho}\nabla p</math>. The pressure in a fluid depends on the density and the gradient of the pressure, and this term is therefore nonlinear in the pressure.)
+
+To see this more explicitly, consider the case of a circular obstacle of radius <math>R</math> placed in a uniform flow with velocity <math>\mathbf{v_0}</math> and density <math>\rho</math>. Let <math>\mathbf{v}(\mathbf{x},t)</math> be the velocity of the fluid at position <math>\mathbf{x}</math> and time <math>t</math>, and let <math>p(\mathbf{x},t)</math> be the pressure at the same position and time.
+
+The Navier–Stokes equations in this case are:
+
+: <math>\frac{\partial \mathbf{v}}{\partial t} + ( \mathbf{v}\cdot\nabla ) \mathbf{v} = -\frac{1}{\rho}\nabla p + \nu\Delta \mathbf{v}</math>
+: <math> \nabla\cdot \mathbf{v} = 0</math>
+
+where <math>\nu</math> is the kinematic viscosity of the fluid.
+
+Assuming that the flow is steady (meaning that the velocity and pressure do not vary with time), we can set the [[time derivative]] terms equal to zero:
+
+: <math> ( \mathbf{v}\cdot\nabla ) \mathbf{v} = -\frac{1}{\rho}\nabla p + \nu\Delta \mathbf{v}</math>
+: <math> \nabla\cdot \mathbf{v} = 0</math>
+
+We can now consider the flow near the circular obstacle. In this region, the velocity of the fluid will be higher than the uniform [[flow velocity]] <math>\mathbf{v_0}</math> due to the presence of the obstacle. This results in a nonlinear term <math>( \mathbf{v}\cdot\nabla ) \mathbf{v}</math> in the Navier–Stokes equations that is proportional to the velocity of the fluid.
+
+At the same time, the presence of the obstacle will also result in a [[pressure gradient]], with higher pressure near the obstacle and lower pressure farther away. This can be seen by considering the continuity equation, which states that the [[mass flow rate]] through any surface must be constant. Since the velocity is higher near the obstacle, the mass flow rate through a surface near the obstacle will be higher than the mass flow rate through a surface farther away from the obstacle. This can be compensated for by a pressure gradient, with higher pressure near the obstacle and lower pressure farther away.
+
+As a result of these nonlinear effects, the Navier–Stokes equations in this case become difficult to solve, and approximations or numerical methods must be used to find the velocity and pressure fields in the flow.
+Consider the case of a two-dimensional fluid flow in a rectangular domain, with a velocity field <math>\mathbf{v}(x,t)</math> and a pressure field <math>p(x,t)</math>. We can use a [[finite element method]] to solve the Navier–Stokes equation for the velocity field:
+
+: <math>\frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial x} + \nu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) + f_x(x,y,t)</math>
+
+To do this, we divide the domain into a series of smaller elements, and represent the velocity field as:
+
+<math>u(x,y,t) = \sum_{i=1}^N U_i(t) \phi_i(x,y)</math>
+
+where <math>N</math> is the number of elements, and <math>\phi_i(x,y)</math> are the shape functions associated with each element. Substituting this expression into the Navier–Stokes equation and applying the finite element method, we can derive a system of ordinary differential equations:
+
+: <math>\frac{d U_i}{d t} = -\frac{1}{\rho} \sum_{j=1}^N \left( \frac{\partial p}{\partial x} \right) j\int{\Omega} \phi_j \frac{\partial \phi_i}{\partial x} d\Omega + \nu \sum_{j=1}^N \int_{\Omega} \left( \frac{\partial^2 u}{\partial x^2} \right)\phi_j \frac{\partial^2 \phi_i}{\partial x^2} d\Omega + \int{\Omega} f_x \phi_i d\Omega</math>
+
+where <math>\Omega</math> is the domain, and the integrals are over the domain. This system of ordinary differential equations can be solved using techniques such as the finite element method or spectral methods.
+
+Here, we will use the [[finite difference]] method. To do this, we can divide the time interval <math>[t_0, t_f]</math> into a series of smaller time steps, and approximate the derivative at each time step using a finite difference formula:
+
+: <math>\frac{U_{i+1} - U_i}{\Delta t} \approx -\frac{1}{\rho} \sum_{j=1}^N \left( \frac{\partial p}{\partial x} \right)j \int{\Omega} \phi_j \frac{\partial \phi_i}{\partial x} d\Omega + \nu \sum_{j=1}^N \int_{\Omega} \left( \frac{\partial^2 u}{\partial x^2} \right)j \phi_j \frac{\partial^2 \phi_i}{\partial x^2} d\Omega + \int{\Omega} f_x \phi_i d\Omega</math>
+
+where <math>\Delta t = t_{i+1} - t_i</math> is the size of the time step, and <math>U_i</math> and <math>t_i</math> are the values of <math>U_i</math> and <math>t</math> at time step <math>i</math>.
+
+Using this approximation, we can iterate through the time steps and compute the value of <math>U_i</math> at each time step. For example, starting at time step <math>i</math> and using the approximation above, we can compute the value of <math>U_i</math> at time step <math>i+1</math>:
+: <math>U_{i+1} = U_i + \Delta t \cdot \left(-\frac{1}{\rho} \sum_{j=1}^N \left( \frac{\partial p}{\partial x} \right)j \int{\Omega} \phi_j \frac{\partial \phi_i}{\partial x} d\Omega + \nu \sum_{j=1}^N \int_{\Omega} \left( \frac{\partial^2 u}{\partial x^2} \right)_j \phi_j \frac{\partial^2 \phi_i}{\partial x^2} d\Omega + \int_{\Omega} f_x \phi_i d\Omega \right)</math>
+
+This process can be repeated until we reach the final time step <math>t_f</math>.
+
+There are many other approaches to solving ordinary differential equations, each with its own advantages and disadvantages. The choice of approach depends on the specific equation being solved, and the desired accuracy and efficiency of the solution.
+
+==Two settings: unbounded and periodic space==
+There are two different settings for the one-million-dollar-prize Navier–Stokes existence and smoothness problem. The original problem is in the whole space <math>\mathbb{R}^3</math>, which needs extra conditions on the growth behavior of the initial condition and the solutions. In order to rule out the problems at infinity, the Navier–Stokes equations can be set in a periodic framework, which implies that they are no longer working on the whole space <math>\mathbb{R}^3</math> but in the 3-dimensional torus <math>\mathbb{T}^3=\mathbb{R}^3/\mathbb{Z}^3</math>. Each case will be treated separately.
+
+==Statement of the problem in the whole space==
+
+===Hypotheses and growth conditions===
+The initial condition <math>\mathbf{v}_0(x)</math> is assumed to be a smooth and divergence-free function (see [[smooth function]]) such that, for every multi-index <math>\alpha</math> (see [[multi-index notation]]) and any <math>K>0</math>, there exists a constant <math>c=c(\alpha,K)>0</math> such that
+
+: <math>\vert \partial^\alpha \mathbf{v_0}(x)\vert\le \frac{c}{(1+\vert x\vert)^K}\qquad</math> for all <math>\qquad x\in\mathbb{R}^3.</math>
+
+The external force <math>\mathbf{f}(x,t)</math> is assumed to be a smooth function as well, and satisfies a very analogous inequality (now the multi-index includes time derivatives as well):
+
+: <math>\vert \partial^\alpha \mathbf{f}(x,t)\vert\le \frac{c}{(1+\vert x\vert + t)^K}\qquad</math> for all <math>\qquad (x,t)\in\mathbb{R}^3\times[0,\infty).</math>
+
+For physically reasonable conditions, the type of solutions expected are smooth functions that do not grow large as <math>\vert x\vert\to\infty</math>. More precisely, the following assumptions are made:
+
+# <math>\mathbf{v}(x,t)\in C^\infty(\mathbb{R}^3\times[0,\infty)),\qquad p(x,t)\in C^\infty(\mathbb{R}^3\times[0,\infty))</math>
+# There exists a constant <math>E\in (0,\infty)</math> such that <math>\int_{\mathbb{R}^3} \vert \mathbf{v}(x,t)\vert^2 \, dx <E</math> for all <math>t\ge 0\,.</math>
+
+Condition 1 implies that the functions are smooth and globally defined (i.e. infinitely differentiable) and condition 2 means that the [[kinetic energy]] of the solution is globally bounded.
+
+===Millennium Prize problem in the whole space===
+'''(A) Existence and smoothness of the Navier–Stokes solutions in <math>\mathbb{R}^3</math>'''
+
+Let <math>\mathbf{f}(x,t)\equiv 0</math>. For any initial condition <math>\mathbf{v}_0(x)</math> satisfying the above hypotheses there exist smooth and globally defined solutions to the Navier–Stokes equations, i.e. there is a velocity vector <math>\mathbf{v}(x,t)</math> and a pressure <math>p(x,t)</math> satisfying conditions 1 and 2 above.
+
+'''(C) Breakdown of the Navier–Stokes solutions in <math>\mathbb{R}^3</math>'''
+
+There exists an initial condition <math>\mathbf{v}_0(x)</math> and an external force <math>\mathbf{f}(x,t)</math> such that there exists no solutions <math>\mathbf{v}(x,t)</math> and <math>p(x,t)</math> satisfying conditions 1 and 2 above.
+
+The Millennium Prize problems were chosen by the Clay Mathematics Institute as the most important unsolved problems in mathematics. One of them concerns the Navier-Stokes equations and requires the prizewinner to have proven one of four statements. The first statement (A), which is known as the "smoothness" problem, states that there should always exist smooth and globally defined solutions to the Navier–Stokes equations in [[three-dimensional space]]. The second statement (C), known as the "breakdown" problem, states that there should be at least one set of initial conditions and external forces for which there are no smooth solutions to the Navier–Stokes equations. The other two statements are the equivalent statements on the torus, see points (B) and (D) below.
+
+The Navier–Stokes equations are a set of partial differential equations that describe the motion of fluids. They are given by:
+
+<math>\frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla) \mathbf{v} = -\frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{v} + \mathbf{f}</math>
+
+<math>\nabla \cdot \mathbf{v} = 0</math>
+
+where <math>\mathbf{v}(x,t)</math> is the velocity field of the fluid, <math>p(x,t)</math> is the pressure, <math>\rho</math> is the density, <math>\nu</math> is the kinematic viscosity, and <math>\mathbf{f}(x,t)</math> is an external force. The first equation is known as the momentum equation, and the second equation is known as the continuity equation.
+
+These equations are typically accompanied by boundary conditions, which describe the behavior of the fluid at the edges of the domain. For example, in the case of a fluid flowing through a pipe, the boundary conditions might specify that the velocity and pressure are fixed at the walls of the pipe.
+
+The Navier–Stokes equations are nonlinear and highly coupled, making them difficult to solve in general. In particular, the difficulty of solving these equations lies in the term <math>(\mathbf{v} \cdot \nabla) \mathbf{v}</math>, which represents the nonlinear [[advection]] of the velocity field by itself. This term makes the Navier–Stokes equations highly sensitive to initial conditions, and it is the main reason why the Millennium Prize conjectures are so challenging.
+
+In addition to the mathematical challenges of solving the Navier–Stokes equations, there are also many practical challenges in applying these equations to real-world situations. For example, the Navier–Stokes equations are often used to model fluid flows that are turbulent, which means that the fluid is highly chaotic and unpredictable. Turbulence is a difficult phenomenon to model and understand, and it adds another layer of complexity to the problem of solving the Navier–Stokes equations.
+To solve the Navier–Stokes equations, we need to find a velocity field <math>\mathbf{v}(x,t)</math> and a pressure field <math>p(x,t)</math> that satisfy the equations and the given boundary conditions. This can be done using a variety of numerical techniques, such as finite element methods, spectral methods, or finite difference methods.
+
+For example, consider the case of a two-dimensional fluid flow in a rectangular domain, with velocity and pressure fields <math>\mathbf{v}(x,t)</math> and a pressure field <math>p(x,t)</math>,respectively. The Navier–Stokes equations can be written as:
+
+:<math>\frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial x} + \nu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) + f_x(x,y,t)</math>
+
+:<math>\frac{\partial v}{\partial t} + u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial y} + \nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right) + f_y(x,y,t)</math>
+
+:<math>\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0</math>
+
+where <math>\rho</math> is the density, <math>\nu</math> is the kinematic viscosity, and <math>\mathbf{f}(x,y,t) = (f_x(x,y,t),f_y(x,y,t))</math> is an external force. The boundary conditions might specify that the velocity is fixed at the walls of the domain, or that the pressure is fixed at certain points.
+
+To solve these equations numerically, we can divide the domain into a series of smaller elements, and solve the equations locally within each element. For example, using a finite element method, we might represent the velocity and pressure fields as:
+
+<math>u(x,y,t) = \sum_{i=1}^N U_i(t) \phi_i(x,y)</math>
+
+<math>v(x,y,t) = \sum_{i=1}^N V_i(t) \phi_i(x,y)</math>
+
+<math>p(x,y,t) = \sum_{i=1}^N P_i(t) \phi_i(x,y)</math>
+
+where <math>N</math> is the number of elements, and <math>\phi_i(x,y)</math> are the shape functions associated with each element. Substituting these expressions into the Navier–Stokes equations and applying the finite element method, we can derive a system of ordinary differential equations.
+
+==Statement of the periodic problem==
+
+===Hypotheses===
+The functions sought now are periodic in the space variables of period 1. More precisely, let <math>e_i</math> be the unitary vector in the ''i''- direction:
+
+: <math>e_1=(1,0,0)\,,\qquad e_2=(0,1,0)\,,\qquad e_3=(0,0,1)</math>
+
+Then <math>\mathbf{v}(x,t)</math> is periodic in the space variables if for any <math>i=1,2,3</math>, then:
+
+: <math>\mathbf{v}(x+e_i,t)=\mathbf{v}(x,t)\text{ for all } (x,t) \in \mathbb{R}^3\times[0,\infty).</math>
+
+Notice that this is considering the coordinates [[Fractional part|mod 1]]. This allows working not on the whole space <math>\mathbb{R}^3</math> but on the [[Quotient space (topology)|quotient space]] <math>\mathbb{R}^3/\mathbb{Z}^3</math>, which turns out to be the 3-dimensional torus:
+
+: <math>\mathbb{T}^3=\{(\theta_1,\theta_2,\theta_3): 0\le \theta_i<1\,,\quad i=1,2,3\}.</math>
+
+Now the hypotheses can be stated properly. The initial condition <math>\mathbf{v}_0(x)</math> is assumed to be a smooth and divergence-free function and the external force <math>\mathbf{f}(x,t)</math> is assumed to be a smooth function as well. The type of solutions that are physically relevant are those who satisfy these conditions: {{ordered list|
+| start=3
+| <math>\mathbf{v}(x,t)\in C^\infty(\mathbb{T}^3\times[0,\infty)),\qquad p(x,t)\in C^\infty(\mathbb{T}^3\times[0,\infty))</math>
+| There exists a constant <math>E\in (0,\infty)</math> such that <math>\int_{\mathbb{T}^3} \vert \mathbf{v}(x,t)\vert^2 \, dx <E</math> for all <math>t\ge 0\,.</math>
+}}
+
+Just as in the previous case, condition 3 implies that the functions are smooth and globally defined and condition 4 means that the [[kinetic energy]] of the solution is globally bounded.
+
+===Periodic Millennium Prize problems===
+'''(B) Existence and smoothness of the Navier–Stokes solutions in <math>\mathbb{T}^3</math>'''
+
+Let <math>\mathbf{f}(x,t)\equiv 0</math>. For any initial condition <math>\mathbf{v}_0(x)</math> satisfying the above hypotheses there exist smooth and globally defined solutions to the Navier–Stokes equations, i.e. there is a velocity vector <math>\mathbf{v}(x,t)</math> and a pressure <math>p(x,t)</math> satisfying conditions 3 and 4 above.
+
+'''(D) Breakdown of the Navier–Stokes solutions in <math>\mathbb{T}^3</math>'''
+
+There exists an initial condition <math>\mathbf{v}_0(x)</math> and an external force <math>\mathbf{f}(x,t)</math> such that there exists no solutions <math>\mathbf{v}(x,t)</math> and <math>p(x,t)</math> satisfying conditions 3 and 4 above.
+
+==Results==
+In 1934, [[Jean Leray]] proved that there are smooth and globally defined solutions to the Navier–Stokes equations under the assumption that the initial velocity <math>\mathbf{v}_0(x)</math> is sufficiently small.<ref name="problem_statement" /> He also proved the existence of so-called [[weak solution]]s to the Navier–Stokes equations, which may not satisfy the equations pointwise but do satisfy them in mean value.<ref>{{cite journal |first=Jean |last=Leray |title=Sur le mouvement d'un liquide visqueux emplissant l'espace |journal=[[Acta Mathematica]] |volume=63 |issue=1 |year=1934 |pages=193–248 |doi=10.1007/BF02547354 |author-link=Jean Leray |language=fr |mr=1555394 |doi-access=free |bibcode=1934AcMa...63..193L }}</ref>
+
+In the 1960s, the finite difference method was proven to be convergent for the Navier–Stokes equations and the equations were numerically solved. It was also proven that there are smooth and globally defined solutions to the Navier–Stokes equations in two dimensions.<ref>{{cite book |first=Olʹga Aleksandrovna |last=Ladyzhenskaya |title=The Mathematical Theory of Viscous Incompressible Flows |edition=2nd |publisher=Gordon and Breach, Science Publishers |year=1969 |location=New York-London-Paris |series=Mathematics and its Applications |volume=2 |mr=0254401 |others=Translated from the Russian by Richard A. Silverman and John Chu.}}</ref>
+
+It is known that given an initial velocity <math>\mathbf{v}_0(x)</math> there exists a finite "blowup time" ''T'', depending on <math>\mathbf{v}_0(x)</math>, such that the Navier–Stokes equations on <math>\mathbb{R}^3\times(0,T)</math> have smooth solutions <math>\mathbf{v}(x,t)</math> and <math>p(x,t)</math>. These solutions may, however, not hold for values of <math>t</math> beyond the blowup time.<ref name=problem_statement />
+
+=== 2016 result by Terence Tao ===
+In 2016, [[Terence Tao]] published a paper titled "Finite time blowup for an averaged three-dimensional Navier–Stokes equation", in which he formalizes the idea of a "supercriticality barrier" for the global regularity problem for the true Navier–Stokes equations, and said that his method of proof hints at a possible route to establishing blowup for the true equations.<ref>{{cite journal |last=Tao |first=Terence |title=Finite time blowup for an averaged three-dimensional Navier–Stokes equation |journal=[[Journal of the American Mathematical Society]] |year=2016 |volume=29 |issue=3 |pages=601–674 |doi=10.1090/jams/838 |arxiv=1402.0290 |mr=3486169 |s2cid=119650746}}</ref>
+
+Tao proved that for <math> \nu>0</math>, through rescaling of time normed to <math> \nu=1</math> [[without loss of generality]], and <math>\mathbf{f}=\mathbf{0}</math>, the existence of a smooth divergence-free (df) velocity <math> \mathbf{v}</math> with given initial velocity <math> \mathbf{v}(-,0)</math>, which solves the Navier–Stokes equations, is equivalent to the existence of a "mild" solution <math> \mathbf{v}\colon[0,\infty)\rightarrow H_\mathrm{df}^{10}(\mathbb{R}^3)</math>. Let <math> \Omega\subset\mathbb{R}^3</math> be an open subset, then <math> H^p(\Omega):=W^{p,2}(\Omega)\subset L^2(\Omega)</math> is the [[Sobolev space]] of [[Square-integrable function|square-integrable functions]], for which up to <math> p</math> partial differentiations are also square-integrable. Through the restriction of the <math> L^2</math>-[[scalar product]]:{{snf|Tao|2016|p=2}}
+
+: <math>\langle-,-\rangle\colon H^p(\Omega)\times H^p(\Omega)\rightarrow\mathbb{R},
+\langle u,v\rangle:=\int_\Omega u(\mathbf{x})\cdot v(\mathbf{x})\mathrm{d}\mathbf{x}</math>
+
+it becomes a [[Hilbert space]]. There is a canonical inclusion <math> C_\mathrm{c}^\infty(\Omega)\subset W^{k,p}(\Omega)</math> of [[smooth functions]] with [[compact support]]. Tao hence weakened the search for solutions with compact support to the larger space of the inclusion <math> C_\mathrm{c,df}^\infty(\mathbb{R}^3)\subset H_\mathrm{df}^{10}(\mathbb{R}^3)</math>. Let:
+
+: <math> B\colon H_\mathrm{df}^{10}(\mathbb{R}^3)\times H_\mathrm{df}^{10}(\mathbb{R}^3)\rightarrow L^2(\mathbb{R}^3)\subset H_\mathrm{df}^{10}(\mathbb{R}^3)^*,
+(u,v)\mapsto-\frac{1}{2}L((u\cdot\nabla)v+(v\cdot\nabla)u)</math>
+
+be the [[Leonhard Euler|Euler]] [[bilinear form]] with <math> \langle B(u,u),u\rangle=0</math> for all <math> u\in H_\mathrm{df}^{10}(\mathbb{R}^3)</math>.{{sfn|Tao|2016|p=2}} <math> L</math> is the [[Leray projection]] onto divergence-free vector fields, which in coordinates is given by <math> Lu_i=u_i-\Delta^{-1}\partial_i\partial_ju_j</math> (using the [[Einstein summation convention]]){{sfn|Tao|2016|p=2}} with the inverted [[Laplace operator]] <math> \Delta^{-1}</math> being defined using the [[Fourier transform]], hence <math> \widehat{Lu_i}(\xi)=\widehat{u_i}(\xi)-\xi^{-2}\xi_i\xi_j\widehat{u}_j</math>. With the normalized pressure <math> p:=-\Delta^{-1}\partial_i\partial_j(u_iu_j)</math>, one has <math> B(u,u)=-(u\cdot\nabla)u-\nabla p</math> and the pressure is removed from the Navier–Stokes equations:{{sfn|Tao|2016|at=Eq. (1.9)}}
+
+: <math> \frac{\partial u}{\partial t}
+=\Delta u+B(u,u). </math>
+Tao now considered this equation with an averaged Euler bilinear form <math> \widetilde{B}\colon H_\mathrm{df}^{10}(\mathbb{R}^3)\times H_\mathrm{df}^{10}(\mathbb{R}^3)\rightarrow H_\mathrm{df}^{10}(\mathbb{R}^3)^*</math> with weaker properties, leading to fulfilling more inequalities, and still <math> \langle\widetilde{B}(u,u),u\rangle=0</math> for all <math> u\in H_\mathrm{df}^{10}(\mathbb{R}^3)</math>.{{sfn|Tao|2016|at=Eq. (1.9)}} In this case there is indeed an initial velocity <math> \mathbf{v}(-,0)</math>, for which no "mild" solution <math> \mathbf{v}\colon[0,\infty)\rightarrow H_\mathrm{df}^{10}(\mathbb{R}^3)</math> exists.{{ref|Tao|2016|at=Theorem 1.5}}
+
+This shows that a successful method to solve Navier–Stokes existence and smoothness must either rely on a finer structure than the simplifications above or on a property of the Euler bilinear form <math> B</math>, which its averaged variant <math> \widetilde{B}</math> does not have.
+
+=== 2026 claims of counter-example ===
+{{main|Navier–Stokes priority controversy
+}}
+
+==== OpenAI claims ====
+On 8 September 2026, [[OpenAI]] stated that it had solved the Navier–Stokes Millennium Prize problem using an internal [[Foundation model#Frontier models|frontier large language model]], demonstrating that there were initial conditions leading to finite time blowup.<ref name="nyt-metz-26">{{cite web |last1=Metz |first1=Cade |title=OpenAI Says It Has Cracked One of Math's 'Millennium Problems' |url=https://www.nytimes.com/2026/09/08/science/openai-proof-millennium-problem.html |website=NY Times |date=8 September 2026 |access-date=8 September 2026}}</ref> The company released a paper as well as a [[Lean (proof assistant)|Lean]] formalization.<ref name="openai"/>
+
+OpenAI stated its research on Millennium Prize problems had begun on 1 September, following later-disproved rumors that rival AI company [[Anthropic]] had solved two Millennium Prize problems. OpenAI researchers used a model they had begun training on 28 August, as a swarm of around 10,000 [[AI agent|AI agents]], partially orchestrated by the [[OpenAI Codex (AI agent)|OpenAI Codex]] tool. The agents initially evaluated all six open Millennium Prize problems before being redirected to focus solely on Navier–Stokes after showing promising results. The swarm produced ~4.9 million messages and ~300 billion output tokens, with ~2.7 million messages and ~130 billion output tokens on Navier–Stokes specifically. The claimed solution was reached on 5 September after 88 hours of work.<ref name="openai"/> ''The New York Times'' estimated that the effort likely cost millions of dollars in computation and electricity costs.<ref name="nyt-metz-26" />
+
+==== Dispute with Alpöge and Buckmaster ====
+Shortly before the announcement, Tristan Buckmaster (a [[New York University]] professor) and [[Levent Alpöge]] (a researcher at Anthropic) had reported advances in Euler equations, a related field.<ref name="howlett" /> A [[Scientific_priority#Priority_disputes|priority dispute]] started immediately.<ref name="y629">{{cite web |last=Brandom |first=Russell |title=OpenAI fought dirty on career-making math problem, says NYU mathematician |website=TechCrunch |date=8 September 2026 |url=https://techcrunch.com/2026/09/08/openai-fought-dirty-on-career-making-math-problem-says-nyu-mathematician/ |access-date=8 September 2026}}</ref> Buckmaster said that OpenAI adopted their research methods to solve the problem and attempted to exclude Alpöge from a joint publication proposal. OpenAI denied this and stated that its model had independently solved the Euler problem with different methods.<ref name="nyt-metz-26" /><ref name="howlett">{{cite news |last1=Howlett |first1=Joseph |title=OpenAI claims blockbuster math breakthrough amid swirl of controversy |url=https://www.scientificamerican.com/article/openai-claims-blockbuster-math-breakthrough-amid-swirl-of-controversy/ |date=8 September 2026 |access-date=8 September 2026 |work=Scientific American |language=en}}</ref>
+
+Also on 8 September 2026, [[OpenAI]] researcher [[Sébastien Bubeck]] wrote that OpenAI had begun work on Navier–Stokes partially following vague tweets by Alpöge, and that he had attempted to coordinate the publication of "concurrent discoveries" with Alpöge.<ref>{{Cite tweet |date=2026-09-08 |title=Some more technical points |number=2097379415747342689 |user=SebastienBubeck |access-date=2026-09-09}}</ref>
+
+Buckmaster suggested that his work, which made extensive use of Codex, could have become [[training data]] for the internal model that OpenAI began training on 28 August and used for the solution. OpenAI acknowledged but downplayed this, announcing:<ref name="y629"/>
+
+{{Blockquote|text=While unlikely, we cannot rule out that de-identified data derived from their usage of our products helped improve our models⁠. However, our proofs differ significantly and even the precise results proved are different in the Euler case (forced vs unforced).}}
+
+==== Construction outline ====
+The following is a rough outline of the construction given in the OpenAI paper. It does not give a direct expression for its solution, but rather constructs it implicitly. It is not yet independently verified as a counterexample{{When|date=September 2026}}{{cn|date=September 2026}}. The construction is a smooth solution, which resembles a [[spinning top]] that gets increasingly thinner as well as shorter and creates a velocity singularity for <math>t=1</math> in a [[Neighbourhood (mathematics)|neighborhood]] around the origin, meaning:
+
+: <math> \lim_{t\rightarrow 1^-}\|\mathbf{v}\|_{L^\infty(\mathbb{R}^3)}
+=\lim_{t\rightarrow 1^-}\max\{|\mathbf{v}(t,\mathbf{x})|\,|\mathbf{x}\in\mathbb{R}^3\}
+=\infty.</math>
+
+Nonetheless, for <math>t=1</math> it is still required to fulfill <math> \|\mathbf{v}\|_{L^2(\mathbb{R}^3)}<\infty</math> for finite [[kinetic energy]]. The basic description uses [[cylindrical coordinates]] <math>(r,\theta,z)</math> with the solution being independent of the azimuthal angle <math>\theta</math>. Let <math>\ell_r</math> be the characteristic radius and <math>\ell_z</math> be the characteristic height, then <math>\ell_r\sim\tau^{1/2}</math> and <math>\ell_z\sim\tau^{1/2-h}</math>{{sfn|OpenAI|2026|p=4}} with the time <math>\tau=1-t</math> to the singularity and a parameter <math>0<h<1/100</math>, with <math>\sim</math> meaning that the expressions can be estimated against each other with just constants. The spinning top gets thinner more rapidly than shorter with <math>\ell_r/\ell_z\sim\tau^h</math>. Let <math>|u_r^{(0)}|</math>, <math>|u_\theta^{(0)}|</math> and <math>|u_z^{(0)}|</math> be the average velocities, then <math>|u_\theta^{(0)}|,|u_z^{(0)}|\sim\tau^{-1/2-h}</math> and <math>|u_r^{(0)}|\in\mathcal{O}(\tau^{-1/2})</math>{{sfn|OpenAI|2026|p=4}} with [[Landau notation]]. For the characteristic volume <math>V</math>, the characteristic velocity square <math>|u|^2</math> and the total kinetic energy <math>T</math>, one has:{{sfn|OpenAI|2026|p=4}}
+: <math>V\sim\ell_r^2\ell_z\sim\tau^{3/2-h};</math>
+: <math>|u|^2=|u_r^{(0)}|^2+|u_\theta^{(0)}|^2+|u_z^{(0)}|^2\sim\tau^{-1-2h};</math>
+: <math>T\sim|u|^2V\sim\tau^{1/2-3h}.</math>
+
+For <math>t\rightarrow 1^-</math>, hence <math>\tau\rightarrow 0^+</math>, the velocities diverge, although the kinetic energy <math>T</math> does not, with <math>T\rightarrow 0^+</math>. The further description then transforms the time <math>t</math> and the cylinder coordinates <math>(r,z)</math> implicitly onto new coordinates <math>\eta\in(-1,+1)</math> and <math>X,q>0</math>, the velocities <math>(u_r^{(0)},u_\theta^{(0)},u_z^{(0)})</math> onto new functions <math>(V_0,E,U)</math> and the pressure <math>p</math> onto a new function <math>\Pi</math> by:{{sfn|OpenAI|2026|at=pgs. 7-8, Eq. (3.2)}}
+
+: <math>A:=\frac{1}{2}+h, D:=\frac{1}{2}-h; </math>
+: <math>\tau=q(1-\eta^2), z=q^D\eta, X=\frac{r^2}{2q}; </math>
+: <math>ru_r^{(0)}=V_0, ru_\theta^{(0)}=q^{-A}E, ru_z^{(0)}=q^{-A}U, p=q^{-2A}\Pi. </math>
+
+These notations are then used throughout the paper, in particular its central theorem 4.6. Translating additional conditions is not straightforward due to implicit coordinate definitions, although some already fit together. For example, the incompressibility becomes <math>\nabla\cdot u^{(0)}
+=\partial_r(ru_r^{(0)})+\partial_z(ru_z^{(0)})=0</math>, in which <math>V_0</math> and <math>q^{-A}U</math> can be directly substituted. The derivations are also not given in detail, only the results for incompressibility and regularity on the axis as well as radial pressure balance and vanishing at infinity:{{sfn|OpenAI|2026|at=pgs. 7-8, Eq. (3.2)}}
+
+: <math>V_0(0,\eta)=0; </math>
+: <math>\Pi(X,\eta)=\int_X^\infty\frac{E(x,\eta)}{2x}\mathrm{d}x. </math>
+
+The construction uses <math> \nu=1</math> [[without loss of generality]], like the 2016 result by Terence Tao, and expresses the forcefield-free Navier–Stokes equations as <math>\mathcal{R}(u,p)=0</math> using the residual:{{sfn|OpenAI|2026|at=Gl. (3.1)}}
+
+: <math>\mathcal{R}(u,p):=\frac{\partial u}{\partial t}+(u\cdot\nabla)u-\Delta u+\nabla p.</math>
+
+It is now required to show that the residual can be extended smoothly through the singular time <math>t=1</math>, although the velocities, which appear in the former three terms, diverge on their own. The proof uses the usual strategy established for [[Partial differential equation|partial differential equations]] to show this by inequalities for the partial derivatives (with respect to both space and time).
+
+For the construction, the not-yet-determined force field <math>\mathbf{f}</math> then allows a reverse approach: Instead of finding a solution of the Navier–Stokes equations with diverging velocities, one can use smooth functions <math>u</math> and <math>p</math> on <math>\mathbb{R}^3\times[0,1)</math> and set <math>\mathbf{f}=\mathcal{R}(u,p)</math> on <math>\mathbb{R}^3\times[0,1)</math> to make them into solutions automatically.{{sfn|OpenAI|2026|at=Eq. (10.5)}} Special functions <math>u</math> and <math>p</math> are constructed, which both have compact support in a compact subset <math>\mathcal{K}\subset\mathbb{R}^3</math>. For every [[Multi-index notation|multi-index]] <math>\alpha\in\mathbb{N}^3</math> and every natural number <math>j\in\mathbb{N}</math>, one then has that <math>\partial_x^\alpha\partial_t^jf</math> for <math>t\rightarrow 1^-</math> [[Uniform convergence|converges uniformly]] on <math>\mathbb{R}^3</math> and there exist smooth functions <math>F_j\in C_\mathrm{c}^\infty(\mathbb{R}^3,\mathbb{R})</math> with compact support in <math>\mathcal{K}</math> and:{{sfn|OpenAI|2026|at=Lemma 10.2}}
+
+: <math>\lim_{t\rightarrow 1^+}\partial_x^\alpha\partial_t^jf(t,x)
+=\partial_x^\alpha F_j(x);</math>
+: <math>\partial_x^\alpha F_j(0)=0.</math>
+
+This can be used to smoothly extend <math>\mathbf{f}</math> onto <math>\mathbb{R}^3\times[0,\infty)</math> with compact support in <math>\mathcal{K}\times[0,2]</math>.{{sfn|OpenAI|2026|at=Lemma 10.3}}
+
+==In popular culture==
+The Navier–Stokes problem features in ''The Mathematician's Shiva'' (2014), a book telling the fictional story of Rachela Karnokovitch, a prestigious mathematician who takes the proof to her grave in protest of academia.<ref>{{Cite journal |last=DeTurck |first=Dennis |date=October 2017 |title=The Mathematician's Shiva |url=https://www.ams.org/publications/journals/notices/201709/rnoti-p1043.pdf |journal=Notices of the AMS |volume=64 |issue=9 |pages=1043–1045}}</ref><ref>{{Cite web |url=http://kasmana.people.cofc.edu/MATHFICT/mfview.php?callnumber=mf1154 |title=MathFiction: The Mathematician's Shiva (Stuart Rojstaczer) |website=kasmana.people.cofc.edu |access-date=2018-09-11}}</ref> The movie ''[[Gifted (2017 film)|Gifted]]'' (2017) referenced the Millennium Prize problems, including the Navier–Stokes problem.<ref>{{Cite web |url=http://www.latimes.com/entertainment/movies/la-et-mn-gifted-review-20170406-story.html |title=Chris Evans raises a young math prodigy in the clever but overly calculating 'Gifted' |last=Chang |first=Justin |website=[[Los Angeles Times]] |access-date=2018-09-11 |date=2017-04-06}}</ref>
+
+== See also ==
+{{Portal|Physics|Mathematics}}
+* [[List of unsolved problems in mathematics]]
+* [[List of unsolved problems in physics]]
+
+==Notes==
+{{Reflist|group=note}}
+
+==References==
+{{Reflist}}
+
+==Further reading==
+*{{cite book |first=Peter |last=Constantin |title=Mathematics Unlimited − 2001 and Beyond |location=Berlin |publisher=Springer |year=2001 |isbn=3-642-63114-2 |pages=353–360 |chapter=Some Open Problems and Research Directions in the Mathematical Study of Fluid Dynamics |doi=10.1007/978-3-642-56478-9_15}}
+
+==External links==
+* {{cite web |last1=Aizenman |first1=Michael |author-link=Michael Aizenman |title=Navier Stokes equations global existence and uniqueness |url=https://web.math.princeton.edu/~aizenman/OpenProblems_MathPhys/9804.NavierStokes.html}} Contributed by: [[Yakov Sinai]]
+* [https://www.claymath.org/millennium/navier-stokes-equation/ The Clay Mathematics Institute's Navier–Stokes equation prize]
+* [https://terrytao.wordpress.com/2007/03/18/why-global-regularity-for-navier-stokes-is-hard/ Why global regularity for Navier–Stokes is hard] − Possible routes to resolution are scrutinized by [[Terence Tao]].
+* [https://vimeo.com/18185364 Navier–Stokes existence and smoothness (Millennium Prize Problem)] A lecture on the problem by [[Luis Caffarelli]].
+* {{cite web |title=Navier Stokes Equation – A Million-Dollar Question in Fluid Mechanics |work=Aleph Zero |date=June 3, 2020 |via=[[YouTube]] |url=https://www.youtube.com/watch?v=XoefjJdFq6k |archive-url=https://ghostarchive.org/varchive/youtube/20211219/XoefjJdFq6k |archive-date=2021-12-19 |url-status=live}}{{cbignore}}
+* [https://www.youtube.com/watch?v=TcEefrWrddA New math + AI developments in fluid mechanics], lecture given 11 September 2026.  Harvard CMSA lecture of Brown Univ. Prof. Javier Gómez-Serrano, reporting on technical main points of the then-very-new OpenAI proof.  
+
+{{DEFAULTSORT:Navier-Stokes existence and smoothness}}
+
+[[Category:Fluid dynamics]]
+[[Category:Millennium Prize Problems]]
+[[Category:Nonlinear partial differential equations]]
+[[Category:Unsolved problems in mathematics]]
+[[Category:Unsolved problems in physics]]
+[[Category:Navier–Stokes]]

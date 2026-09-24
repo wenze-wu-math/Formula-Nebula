@@ -1,0 +1,135 @@
+1215|ample-line-bundle>serre-vanishing|0.8|equivalent|塞尔消没是其等价形式
+1216|ample-line-bundle>intersection-number|0.74|defines|丰沛性可用相交数判定
+1217|ample-line-bundle>b-nakai-surface|0.76|defines|Nakai–Moishezon 判据
+1218|ample-line-bundle>k-stability|0.66|related|斜率稳定性的正性基础
+1219|mori-cone-theorem>b-mori-cone|0.92|related|锥定理是森锥的理论基础
+1220|mori-cone-theorem>cone-theorem|0.94|related|锥定理与收缩定理
+1221|mori-cone-theorem>mmp|0.88|related|启动极小模型纲领
+1222|mori-cone-theorem>flip|0.8|related|极端射线给出 flip
+1223|mori-cone-theorem>fano|0.78|related|Fano 簇必含有理曲线
+1224|mori-cone-theorem>canonical-sheaf|0.76|defines|K 的负性定义极端射线
+1225|mori-cone-theorem>rational-map|0.62|related|有理曲线的来源
+1226|e-derived-pushforward>e-push-pull-adjunction|0.95|property|伴随对是导出推前最基本的性质
+1227|e-derived-pushforward>e-projection-formula|0.9|related|投影公式说明推前如何穿过张量积
+1228|e-derived-pushforward>e-base-change-cohomology|0.92|related|基变换问的是推前与拉回交换
+1229|e-derived-pushforward>derived-functor|0.94|computes|导出推前是导出函子的一般构造在层上的实现
+1230|e-derived-pushforward>derived-category|0.88|related|必须先在导出范畴里才能把长正合列整体化
+1231|e-push-pull-adjunction>e-projection-formula|0.82|implies|投影公式可由伴随与张量积的相容性推出
+1232|e-push-pull-adjunction>a-pushforward-pullback|0.9|related|这是那对函子在高阶情形的精确陈述
+1233|e-base-change-cohomology>a-base-change-thm|0.93|related|基变换定理的高阶与导出版本
+1234|e-base-change-cohomology>e-grauert-theorem|0.8|property|Grauert 定理保证直像凝聚，基变换才有内容
+1235|e-base-change-cohomology>e-semicontinuity|0.88|implies|半连续性是基变换加上 Nakayama 的直接推论
+1236|e-grauert-theorem>e-semicontinuity|0.86|related|凝聚性使纤维维数只能在闭集上跳
+1237|e-grauert-theorem>serre-finiteness|0.89|related|绝对有限性的相对化
+1238|e-grauert-theorem>formal-functions-theorem|0.84|equivalent|格罗滕迪克的证明走的正是形式函数定理
+1239|e-grauert-theorem>e-cohomology-finite-dim|0.85|related|一个给绝对情形，一个给相对情形
+1240|e-semicontinuity>e-cohomology-finite-dim|0.78|related|半连续性的值域是有限维数函数
+1241|e-coherent-sheaf>e-quasi-coherent-locality|0.91|related|凝聚是在拟凝聚之上加有限性条件
+1242|e-coherent-sheaf>coherent-sheaf|0.96|equivalent|与主库的凝聚层条目是同一概念的不同侧面
+1243|e-coherent-sheaf>e-cohomology-finite-dim|0.84|related|有限自由预解是有限维性的来源
+1244|e-coherent-sheaf>noetherian|0.76|related|诺特环上拟凝聚与凝聚合一
+1245|e-quasi-coherent-locality>a-stalk|0.82|property|局部性质化为茎上的局部化
+1246|e-quasi-coherent-locality>a-quasi-coherent|0.94|defines|主库条目讲构造，这里讲局部刻画
+1247|e-quasi-coherent-locality>structure-sheaf|0.8|related|结构层是最基本的拟凝聚层
+1248|e-sheafification>e-quasi-coherent-locality|0.74|related|层化让局部数据得以整体化
+1249|e-sheafification>sheaf|0.9|equivalent|层与预层之别正是层化要补的那一块
+1250|e-sheafification>grothendieck-topology|0.83|depends|层化依赖所选的 Grothendieck 拓扑
+1251|e-sheafification>h-flat-descent|0.79|depends|下降的有效性以层化为前提
+1252|e-sheafification>a-skyscraper|0.62|related|摩天大楼层是层化的简单例子
+1253|e-local-system>e-monodromy-weight|0.9|related|局部系的单值变换是权滤过的载体
+1254|e-local-system>b-tate-module|0.85|analogy|étale 局部系对应 ℓ-进表示
+1255|e-local-system>c-d-module|0.82|equivalent|平坦联络与局部系互为两种描述
+1256|e-local-system>e-push-pull-adjunction|0.63|related|局部系的推前拉回是最好的练习例子
+1257|e-monodromy-weight>c-gauss-manin|0.84|equivalent|Gauss–Manin 联络的单值正是权滤过的来源
+1258|e-monodromy-weight>e-hodge-to-de-rham|0.66|related|权滤过与 Hodge 滤过是两种不同的分次
+1259|e-monodromy-weight>e-perverse-t-structure|0.72|defines|权论是反常 t-结构良定义的前提
+1260|e-monodromy-weight>e-nearby-cycle-functor|0.78|equivalent|幂零部分的对数正是特殊化映射的无穷小
+1261|e-vanishing-cycle>e-nearby-cycle-functor|0.94|related|两者由一个正合三角相连
+1262|e-vanishing-cycle>e-decomposition-theorem|0.86|depends|消没轮的权结构是分解定理的技术前提
+1263|e-vanishing-cycle>e-monodromy-weight|0.92|related|消没轮上带幂零单值作用
+1264|e-nearby-cycle-functor>e-decomposition-theorem|0.8|defines|邻近轮刻画了中间扩张的取法
+1265|e-nearby-cycle-functor>e-holonomic-d-module|0.68|equivalent|全纯 D-模的奇点支撑正是邻近轮的支撑
+1266|e-perverse-t-structure>e-decomposition-theorem|0.95|implies|分解定理是反常 t-结构最重要的推论
+1267|e-perverse-t-structure>e-intersection-cohomology|0.9|generalizes|相交上同调是反常层的原型对象
+1268|e-perverse-t-structure>c-perverse|0.93|provenance|主库的反常层条目与本条互补
+1269|e-perverse-t-structure>c-d-module|0.7|analogy|两套语言通过 Riemann–Hilbert 对应相连
+1270|e-decomposition-theorem>e-intersection-cohomology|0.88|computes|分解定理给出相交上同调的存在与计算
+1271|e-decomposition-theorem>e-hodge-to-de-rham|0.74|depends|纯性假设来自权论，而权论建立在 Hodge 理论之上
+1272|e-decomposition-theorem>c-fourier-mukai|0.72|related|分解定理是 Fourier–Mukai 技术常用的输入
+1273|e-intersection-cohomology>c-hodge-structure-vhs|0.7|related|相交上同调带有自然的 Hodge 结构
+1274|e-intersection-cohomology>motive|0.64|related|相交上同调给出的 Chow 型信息与动机相关
+1275|e-intersection-cohomology>c-tt-geometry|0.6|related|相交上同调是特征 p 几何的常用工具
+1276|e-d-module-direct-image>e-riemann-hilbert|0.89|analogy|推前与解复形的相容性是 RH 对应的函子性
+1277|e-d-module-direct-image>c-d-module|0.95|defines|主库条目讲基本定义，这里讲推前运算
+1278|e-d-module-direct-image>e-holonomic-d-module|0.8|property|全纯条件下推前保持有限性与对偶性
+1279|e-d-module-direct-image>c-gauss-manin|0.84|related|Gauss–Manin 联络是 D-模推前的标准例子
+1280|e-riemann-hilbert>c-riemann-hilbert|0.96|provenance|与主库条目是同一对应的两种陈述
+1281|e-riemann-hilbert>e-holonomic-d-module|0.87|property|对应只在全纯且正则的部分成立
+1282|e-riemann-hilbert>e-derived-pushforward|0.7|defines|解复形在推前下的行为由 RH 对应给出
+1283|e-riemann-hilbert>c-perverse|0.85|equivalent|右边正是反常层
+1284|e-holonomic-d-module>e-coherent-sheaf|0.62|related|好滤过给出的分次模是凝聚的
+1285|e-holonomic-d-module>e-intersection-cohomology|0.7|related|解层为相交上同调复形
+1286|e-spectral-sequence-degeneration>e-hodge-to-de-rham|0.93|equivalent|Hodge 分解正是这个谱序列退化的结果
+1287|e-spectral-sequence-degeneration>a-spectral-sequence|0.94|computes|主库条目讲构造，这里讲何时退化
+1288|e-spectral-sequence-degeneration>a-hypercohomology|0.8|related|超上同调的谱序列是最常遇到的一类
+1289|e-spectral-sequence-degeneration>a-leray-ss|0.84|related|Leray 谱序列的退化条件同样关键
+1290|e-hodge-to-de-rham>hodge-decomposition|0.95|related|Hodge 分解是这次退化的直接产物
+1291|e-hodge-to-de-rham>hodge-theory|0.9|related|整个 Hodge 理论建立在这条退化之上
+1292|e-hodge-to-de-rham>a-hodge-de-rham|0.88|provenance|主库的 Hodge–de Rham 谱序列条目
+1293|e-hodge-to-de-rham>a-cartier-divisor|0.55|related|正特征退化失败与提升问题相关
+1294|e-frobenius-split>e-kodaira-vanishing-proof|0.8|related|Frobenius 分裂给出正特征消没的代数证明
+1295|e-frobenius-split>e-ample-vanishing|0.62|implies|分裂条件常用来推出高阶消没
+1296|e-frobenius-split>h-flat-descent|0.58|related|Frobenius 结构在平坦下降下的行为是技术难点
+1297|e-frobenius-split>c-perfectoid|0.7|equivalent|完美胚空间正是让 Frobenius 可逆的构造
+1298|e-kodaira-vanishing-proof>b-kodaira-vanishing|0.96|related|同一消没定理的证明方法讨论
+1299|e-kodaira-vanishing-proof>e-hodge-to-de-rham|0.78|related|代数证明以 Hodge–de Rham 退化为输入
+1300|e-kodaira-vanishing-proof>hodge-theory|0.68|related|调和积分路线是 Hodge 理论的分析半边
+1301|e-ample-vanishing>serre-vanishing|0.95|related|这就是 Serre 消没定理的另一表述
+1302|e-ample-vanishing>castelnuovo-mumford-regularity|0.8|defines|正则性有界性由高阶消没给出
+1303|e-ample-vanishing>b-hilbert-polynomial|0.78|depends|Hilbert 多项式是多项式，依赖高阶消没
+1304|e-ample-vanishing>e-cohomology-finite-dim|0.72|related|有限维性使 Euler 特征数有意义
+1305|e-cohomology-finite-dim>serre-finiteness|0.95|provenance|与主库条目是同一有限性定理
+1306|e-cohomology-finite-dim>riemann-roch|0.82|related|Euler 特征数是 Riemann–Roch 的左边
+1307|e-cohomology-finite-dim>euler-characteristic|0.85|defines|有限维性是 Euler 特征数可定义的前提
+1308|e-cohomology-finite-dim>c-boundedness|0.66|related|有界性问题的技术基础是有限维性
+1309|f-discrepancy-divisor>c-discrepancy|0.96|equivalent|与主库差异除子条目是同一工具
+1310|f-discrepancy-divisor>f-log-canonical-threshold|0.9|related|lct 是差异系数下界的临界值
+1311|f-discrepancy-divisor>f-rational-singularity|0.86|defines|有理奇点用差异系数与消没同时刻画
+1312|f-discrepancy-divisor>c-singularities-mmp|0.92|related|奇点分类全靠差异系数的符号与大小
+1313|f-discrepancy-divisor>c-klt-base-point-free|0.84|defines|klt 条件的定义就是差异系数大于 −1
+1314|f-discrepancy-divisor>f-lc-center|0.83|related|lc 中心是差异系数达到下界的位置
+1315|f-log-canonical-threshold>c-lc-threshold|0.96|provenance|与主库 log canonical 阈值条目互补
+1316|f-log-canonical-threshold>f-rational-singularity|0.74|related|有理奇点的 lct 为 1
+1317|f-log-canonical-threshold>f-dlt-model|0.7|computes|dlt 条件下 lct 的计算可以局部化
+1318|f-rational-singularity>c-rational-singularities|0.95|equivalent|同一概念的主库条目
+1319|f-rational-singularity>f-du-bois-singularity|0.88|related|有理奇点必是 Du Bois 的
+1320|f-rational-singularity>f-jet-scheme|0.62|related|弧空间的良行为与有理奇点相关
+1321|f-du-bois-singularity>f-log-canonical-threshold|0.72|related|lc 奇点是 Du Bois 的，证明用消没定理
+1322|f-du-bois-singularity>e-hodge-to-de-rham|0.76|generalizes|Du Bois 复形是 de Rham 复形的推广
+1323|f-du-bois-singularity>hodge-theory|0.8|property|Du Bois 奇点上 Hodge 分解以弱形式成立
+1324|f-du-bois-singularity>c-hodge-structure-vhs|0.68|equivalent|极限 Hodge 结构与 Du Bois 条件互为补充
+1325|f-spectrum-singularity>f-rational-singularity|0.7|related|谱把奇点的 Hodge 信息离散化
+1326|f-spectrum-singularity>e-holonomic-d-module|0.66|related|Milnor 纤维的 Hodge 结构由 D-模控制
+1327|f-spectrum-singularity>hodge-theory|0.78|related|谱是 Hodge 滤过在奇点上 Milnor 纤维的痕迹
+1328|f-spectrum-singularity>e-vanishing-cycle|0.64|related|消没上同调是谱的载体
+1329|f-jet-scheme>f-nash-transform|0.88|related|射流概形是弧空间与 Nash 变换的舞台
+1330|f-jet-scheme>c-perfectoid|0.58|related|正特征里射流替代微分算子
+1331|f-nash-transform>f-nash-conjecture|0.94|related|Nash 猜想是 Nash 变换的现代形式
+1332|f-nash-transform>c-hironaka|0.86|related|Nash 变换是 Hironaka 消解证明的骨架
+1333|f-nash-transform>f-strong-resolution|0.78|depends|消解的强形式需要 Nash 型不变量下降
+1334|f-nash-conjecture>f-jet-scheme|0.9|depends|猜想的陈述需要弧空间
+1335|f-nash-conjecture>f-rational-singularity|0.72|depends|证明用到有理奇点与 lct 技术
+1336|f-strong-resolution>c-hironaka|0.95|generalizes|Hironaka 定理的加强形式
+1337|f-strong-resolution>f-embedded-resolution|0.9|generalizes|嵌入消解是强消解最常用的版本
+1338|f-strong-resolution>cn-resolution-charp|0.88|equivalent|正特征强消解正是那条开问题
+1339|f-strong-resolution>resolution|0.92|generalizes|主库消解条目讲基本定理，这里讲加强条件
+1340|f-embedded-resolution>f-weak-factorization|0.84|related|弱分解的证明以嵌入消解为输入
+1341|f-embedded-resolution>f-log-canonical-threshold|0.7|computes|计算 lct 需要同时控制簇与边界
+1342|f-weak-factorization>c-weak-factorization|0.96|provenance|与主库弱分解条目互补
+1343|f-weak-factorization>blowup|0.82|sameFamily|分解成的每一步都是 blowup 或它的逆
+1344|f-weak-factorization>c-wdvv|0.74|defines|弱分解是 motivic 积分良定义的关键输入
+1345|f-weak-factorization>f-alterations|0.68|sameFamily|两者都是"把双有理映射化开"的手段
+1346|f-alterations>c-alterations|0.96|provenance|与主库 alterations 条目互补
+1347|f-alterations>cn-resolution-charp|0.87|related|alterations 是正特征缺消解时的替代品
+1348|f-alterations>f-de-jong-modifications|0.9|related|修改定理是 alterations 的相对形式
+1349|f-alterations>h-flat-descent|0.62|computes|下降论证在构造 alteration 时反复出现

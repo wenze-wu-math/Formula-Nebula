@@ -1,0 +1,3987 @@
+
+
+==============================================================================
+## cn-kakeya   <- Kakeya set
+==============================================================================
+
+In mathematics, a Kakeya set, or Besicovitch set, is a set of points in Euclidean space which contains a unit line segment in every direction. For instance, a disk of radius 1/2 in the Euclidean plane, or a ball of radius 1/2 in three-dimensional space, forms a Besicovitch set. 
+A Kakeya needle set (sometimes also known as a Kakeya set) is a set in the plane with a stronger property, that a unit line segment can be rotated continuously through 360 degrees within it, returning to its original position. Again, the disk of radius 1/2 is an example of a Kakeya needle set.
+Much of the research in this area has studied the problem of how small such sets can be, first asked by Sōichi Kakeya in 1917. Abram Besicovitch proved in 1920 that there are Besicovitch sets in the plane of measure zero and in 1928 that there are Kakeya needle sets in the plane of arbitrarily small positive measure. There are no Kakeya needle sets of measure 0. The Kakeya conjecture states that Besicovitch sets in n-dimensional space must have Hausdorff dimension n; it remains open for n>3. These questions belong to geometric measure theory. 
+
+
+== Besicovitch sets of measure zero ==
+In 1920, while considering a problem of integration, Besicovitch showed that there are Besicovitch sets in the plane of measure zero. Such sets can be constructed using the Perron tree method explained below, without the need for Pál joins. There are also other methods; for example, Kahane uses Cantor sets to construct a Besicovitch set of measure zero in the plane.
+
+
+== Kakeya needle problem ==
+The Kakeya needle problem asks whether there is a minimum area of a region 
+  
+    
+      
+        D
+      
+    
+    {\displaystyle D}
+  
+ in the plane, in which a needle of unit length can be turned through 360°. This question was first posed, for convex regions, by Sōichi Kakeya (1917). The minimum area for convex sets is achieved by an equilateral triangle of height 1 and area 1/√3, as Gyula Pál showed in 1920.
+Kakeya seems to have suggested that the Kakeya set 
+  
+    
+      
+        D
+      
+    
+    {\displaystyle D}
+  
+ of minimum area, without the convexity restriction, would be a three-pointed deltoid shape. However, this is false; there are smaller non-convex Kakeya sets.
+
+
+=== Kakeya needle sets of arbitrarily small measure ===
+
+Abram Besicovitch was able to show in 1928 that there is no lower bound > 0 for the area of such a region 
+  
+    
+      
+        D
+      
+    
+    {\displaystyle D}
+  
+, in which a needle of unit length can be turned around. That is, for every 
+  
+    
+      
+        ε
+        >
+        0
+      
+    
+    {\displaystyle \varepsilon >0}
+  
+, there is region of area 
+  
+    
+      
+        ε
+      
+    
+    {\displaystyle \varepsilon }
+  
+ within which the needle can move through a continuous motion that rotates it a full 360 degrees. The AMS produced a film in 1962 in which Besicovitch explains a construction of such a set.
+One method of constructing a Kakeya needle set of arbitrary small area (and also of a Besicovitch set of measure zero) is known as a "Perron tree", named after Oskar Perron who simplified Besicovitch's original construction. The precise construction and numerical bounds are given in Besicovitch's popularization.
+The first observation to make is that the needle can move in a straight line as far as it wants without sweeping any area. This is because the needle is a zero width line segment. The second trick of Pál, known as Pál joins, describes how to move the needle between any two locations that are parallel while sweeping negligible area. The needle will follow the shape of an "N". It moves from the first location some distance 
+  
+    
+      
+        r
+      
+    
+    {\displaystyle r}
+  
+ up the left of the "N", sweeps out the angle to the middle diagonal, moves down the diagonal, sweeps out the second angle, and then moves up the parallel right side of the "N" until it reaches the required second location. The only non-zero area regions swept are the two circle segments at the corners of the "N".  The swept area is proportional to the angle which is proportional to 
+  
+    
+      
+        1
+        
+          /
+        
+        r
+      
+    
+    {\displaystyle 1/r}
+  
+, and thus the swept out area can be made arbitrarily small by choosing an appropriately large 
+  
+    
+      
+        r
+      
+    
+    {\displaystyle r}
+  
+.
+The construction starts with any triangle with height 1 and some substantial angle at the top through which the needle can easily sweep. (See figure to the right.) The goal is to do many operations on this triangle to make its area smaller while keeping the directions through which the needle can sweep the same. First, consider dividing the triangle into two and translating the pieces over each other so that their bases overlap in a way that minimizes the total area. The needle is able to sweep out the same directions by sweeping out those given by the first triangle, jumping over to the second, and then sweeping out the directions given by the second. The needle can jump triangles using the "N" technique because the two lines at which the original triangle was cut are parallel. In this construction, the line segment actually leaves the original overlapping triangle area and sweeps out new additional (arbitrarily small) area.
+Now, we divide our triangle into 2n subtriangles. The figure shows eight. For each consecutive pair of triangles, perform the same overlapping operation we described before to get half as many new shapes, each consisting of two overlapping triangles. Next, overlap consecutive pairs of these new shapes by shifting them so that their bases overlap in a way that minimizes the total area. Repeat this n times until there is only one shape. Again, the needle is able to sweep out the same directions by sweeping those out in each of the 2n subtriangles in order of their direction.  The needle can jump consecutive triangles using the "N" technique because the two lines at which these triangle were cut are parallel.
+
+A detailed analysis of the emerging figure shows that its area shrinks to zero as n grows. A Besicovitch set can be created by combining six rotations of a Perron tree created from an equilateral triangle.  
+In 1941, H. J. Van Alphen showed that there are arbitrary small Kakeya needle sets inside a circle with radius 2 + ε (arbitrary ε > 0). Simply connected Kakeya needle sets with smaller area than the deltoid were found in 1965. Melvin Bloom and I. J. Schoenberg independently presented simply connected Kakeya needle sets with areas approaching to 
+  
+    
+      
+        
+          
+            
+              π
+              24
+            
+          
+        
+        (
+        5
+        −
+        2
+        
+          
+            2
+          
+        
+        )
+      
+    
+    {\displaystyle {\tfrac {\pi }{24}}(5-2{\sqrt {2}})}
+  
+, the Bloom-Schoenberg number (≈0.2843). Schoenberg conjectured that this number is the lower bound for the area of simply connected Kakeya needle sets. However, in 1971, F. Cunningham showed that, given ε > 0, there is a simply connected Kakeya needle set of area less than ε contained in a circle of radius 1.
+Although there are Kakeya needle sets of arbitrarily small positive measure and Besicovitch sets of measure 0, there are no Kakeya needle sets of measure 0.
+
+
+== Kakeya conjecture ==
+
+
+=== Statement ===
+The same question of how small these Besicovitch sets could be was then posed in higher dimensions, giving rise to a number of conjectures known collectively as the Kakeya conjectures, and have helped initiate the field of mathematics known as geometric measure theory.  In particular, if there exist Besicovitch sets of measure zero, could they also have s-dimensional Hausdorff measure zero for some dimensions less than the dimension of the space in which they lie? This question gives rise to the following conjecture:
+
+This is known to be true for n = 1, 2, 3 but only partial results are known in higher dimensions.
+The Kakeya conjecture is closely related to the restriction conjecture, Bochner-Riesz conjecture and the local smoothing conjecture.
+In February 2025, a proof for the case n = 3 was posted on arXiv by Hong Wang and Joshua Zahl. The Kakeya conjecture in three dimensions is described as "one of the most sought-after open problems in geometric measure theory", and in 2026 Hong Wang was awarded the Fields Medal in part due to this work.
+
+
+=== Kakeya maximal function ===
+A modern way of approaching this problem is to consider a particular type of maximal function, which we construct as follows: Denote Sn−1 ⊂ Rn to be the unit sphere in n-dimensional space. Define 
+  
+    
+      
+        
+          T
+          
+            e
+          
+          
+            δ
+          
+        
+        (
+        a
+        )
+      
+    
+    {\displaystyle T_{e}^{\delta }(a)}
+  
+ to be the cylinder of length 1, radius δ > 0, centered at the point a ∈ Rn, and whose long side is parallel to the direction of the unit vector e ∈ Sn−1. Then for a locally integrable function f, we define the Kakeya maximal function of f to be
+
+  
+    
+      
+        
+          f
+          
+            ∗
+          
+          
+            δ
+          
+        
+        (
+        e
+        )
+        =
+        
+          sup
+          
+            a
+            ∈
+            
+              
+                R
+              
+              
+                n
+              
+            
+          
+        
+        
+          
+            1
+            
+              m
+              (
+              
+                T
+                
+                  e
+                
+                
+                  δ
+                
+              
+              (
+              a
+              )
+              )
+            
+          
+        
+        
+          ∫
+          
+            
+              T
+              
+                e
+              
+              
+                δ
+              
+            
+            (
+            a
+            )
+          
+        
+        
+          |
+        
+        f
+        (
+        y
+        )
+        
+          |
+        
+        d
+        m
+        (
+        y
+        )
+        ,
+      
+    
+    {\displaystyle f_{*}^{\delta }(e)=\sup _{a\in \mathbf {R} ^{n}}{\frac {1}{m(T_{e}^{\delta }(a))}}\int _{T_{e}^{\delta }(a)}|f(y)|dm(y),}
+  
+
+where m denotes the n-dimensional Lebesgue measure. Notice that 
+  
+    
+      
+        
+          f
+          
+            ∗
+          
+          
+            δ
+          
+        
+      
+    
+    {\displaystyle f_{*}^{\delta }}
+  
+ is defined for vectors e in the sphere Sn−1.
+Then there is a conjecture for these functions that, if true, will imply the Kakeya set conjecture for higher dimensions:
+
+
+=== Results ===
+Some results toward proving the Kakeya conjecture are the following:
+
+The Kakeya conjecture is true for n = 1 (trivially) and n = 2 (Davies).
+In any n-dimensional space, Wolff showed that the dimension of a Kakeya set must be at least (n+2)/2.
+In 2002, Katz and Tao improved Wolff's bound to 
+  
+    
+      
+        (
+        2
+        −
+        
+          
+            2
+          
+        
+        )
+        (
+        n
+        −
+        4
+        )
+        +
+        3
+      
+    
+    {\displaystyle (2-{\sqrt {2}})(n-4)+3}
+  
+, which is better for n > 4.
+In 2000, Katz,  Łaba, and Tao proved that the Minkowski dimension of Kakeya sets in 3 dimensions is strictly greater than 5/2.
+In 2000, Jean Bourgain connected the Kakeya problem to arithmetic combinatorics which involves harmonic analysis and additive number theory.
+In 2017, Katz and Zahl improved the lower bound on the Hausdorff dimension of Besicovitch sets in 3 dimensions to 
+  
+    
+      
+        5
+        
+          /
+        
+        2
+        +
+        ϵ
+      
+    
+    {\displaystyle 5/2+\epsilon }
+  
+ for an absolute constant 
+  
+    
+      
+        ϵ
+        >
+        0
+      
+    
+    {\displaystyle \epsil
+
+
+==============================================================================
+## cn-restriction   <- Restriction conjecture
+==============================================================================
+
+In harmonic analysis, the restriction conjecture, also known as the Fourier restriction conjecture, is a conjecture about the behaviour of the Fourier transform on curved hypersurfaces. It was first hypothesized by Elias Stein. The conjecture states that two necessary conditions needed to solve a problem known as the restriction problem in that scenario are also sufficient. 
+The restriction conjecture is closely related to the Kakeya conjecture, Bochner-Riesz conjecture and the local smoothing conjecture.
+
+
+== Statement ==
+The restriction conjecture states that 
+  
+    
+      
+        ‖
+        
+          
+            
+              
+                g
+                
+                d
+                σ
+              
+              ^
+            
+          
+        
+        
+          ‖
+          
+            
+              L
+              
+                q
+              
+            
+            (
+            
+              
+                R
+              
+              
+                n
+              
+            
+            )
+          
+        
+        ≲
+        ‖
+        g
+        
+          ‖
+          
+            
+              L
+              
+                p
+              
+            
+            (
+            
+              S
+              
+                n
+                −
+                1
+              
+            
+            )
+          
+        
+      
+    
+    {\textstyle \|{\widehat {g\,d\sigma }}\|_{L^{q}(\mathbb {R} ^{n})}\lesssim \|g\|_{L^{p}(S^{n-1})}}
+  
+ for certain q and n, where 
+  
+    
+      
+        ‖
+        f
+        
+          ‖
+          
+            
+              L
+              
+                p
+              
+            
+          
+        
+      
+    
+    {\textstyle \|f\|_{L^{p}}}
+  
+ represents the Lp norm, or 
+  
+    
+      
+        
+          ∫
+          
+            −
+            ∞
+          
+          
+            ∞
+          
+        
+        f
+        (
+        x
+        
+          )
+          
+            p
+          
+        
+        
+        d
+        x
+      
+    
+    {\textstyle \int _{-\infty }^{\infty }f(x)^{p}\,dx}
+  
+ and 
+  
+    
+      
+        f
+        ≲
+        g
+      
+    
+    {\textstyle f\lesssim g}
+  
+ means that 
+  
+    
+      
+        f
+        ≤
+        C
+        g
+      
+    
+    {\textstyle f\leq Cg}
+  
+ for some constant 
+  
+    
+      
+        C
+      
+    
+    {\textstyle C}
+  
+.
+The requirements of q and n set by the conjecture are that 
+  
+    
+      
+        
+          
+            1
+            q
+          
+        
+        <
+        
+          
+            
+              n
+              −
+              1
+            
+            
+              2
+              n
+            
+          
+        
+      
+    
+    {\displaystyle {\frac {1}{q}}<{\frac {n-1}{2n}}}
+  
+ and 
+  
+    
+      
+        
+          
+            1
+            q
+          
+        
+        ≤
+        
+          
+            
+              n
+              −
+              1
+            
+            
+              n
+              +
+              1
+            
+          
+        
+        
+          
+            1
+            p
+          
+        
+      
+    
+    {\displaystyle {\frac {1}{q}}\leq {\frac {n-1}{n+1}}{\frac {1}{p}}}
+  
+.
+The restriction conjecture has been proved for dimension 
+  
+    
+      
+        n
+        =
+        2
+      
+    
+    {\textstyle n=2}
+  
+ as of 2021.
+
+
+== References ==
+
+
+==============================================================================
+## cn-goldbach   <- Goldbach conjecture
+==============================================================================
+
+Goldbach's conjecture is one of the oldest and best-known unsolved problems in number theory and all of mathematics. It states that every even natural number greater than 2 is the sum of two prime numbers.
+The conjecture has been shown to hold for all natural numbers less than 4×1018, but remains unproven despite considerable effort.
+
+
+== History ==
+
+
+=== Origins ===
+On 7 June 1742, the Prussian mathematician Christian Goldbach wrote a letter to Leonhard Euler (letter XLIII), in which he proposed the following conjecture:
+
+Every integer that can be written as the sum of two primes can also be written as the sum of as many primes (including unity) as one wishes, until all terms are units.
+Goldbach was following the now-abandoned convention of considering 1 to be a prime number, so that a sum of units would be a sum of primes. He then proposed a second conjecture in the margin of his letter, which implies the first:
+
+It seems at least, that every integer greater than 2 can be written as the sum of three primes.
+Euler replied in a letter dated 30 June 1742 and reminded Goldbach of an earlier conversation they had had ("... so Ew. vormals mit mir communicirt haben ..."), in which Goldbach had remarked that the first of those two conjectures would follow from the statement
+
+This is in fact equivalent to his second, marginal conjecture. In the letter dated 30 June 1742, Euler stated:
+
+That ... every even integer is a sum of two primes, I regard as a completely certain theorem, although I cannot prove it.
+
+
+=== Weaker Descartes' conjecture ===
+René Descartes wrote, "Every even number can be expressed as the sum of at most three primes." This proposition is similar to, but weaker than, Goldbach's conjecture. Paul Erdős said, "Descartes actually discovered this before Goldbach ... but it is better that the conjecture was named for Goldbach because, mathematically speaking, Descartes was infinitely rich and Goldbach was very poor."
+
+
+=== Partial results ===
+Goldbach's conjecture involving the sum of two primes is much more difficult than the weak Goldbach conjecture, which says that every odd integer greater than 5 is the sum of three primes. Using Vinogradov's method, Nikolai Chudakov, Johannes van der Corput, and Theodor Estermann showed (1937–1938) that almost all even numbers can be written as the sum of two primes (in the sense that the fraction of even numbers up to some N which can be so written tends towards 1 as N increases). In 1930, Lev Schnirelmann proved that any natural number greater than 1 can be written as the sum of not more than C prime numbers, where C is an effectively computable constant; see Schnirelmann density. Schnirelmann's constant is the lowest number C with this property. Schnirelmann himself obtained C < 800000. This result was subsequently enhanced by many authors, such as Olivier Ramaré, who in 1995 showed that every even number n ≥ 4 is in fact the sum of at most 6 primes. The best known result stems from the proof of the weak Goldbach conjecture by Harald Helfgott, which directly implies that every even number n ≥ 4 is the sum of at most 4 primes.
+In 1924, Hardy and Littlewood showed under the assumption of the generalized Riemann hypothesis that the number of even numbers up to X violating the Goldbach conjecture is much less than X1⁄2 + c for small c.
+In 1948, using sieve theory methods, Alfréd Rényi showed that every sufficiently large even number can be written as the sum of a prime and an almost prime with at most K factors. Chen Jingrun showed in 1973 using sieve theory that every sufficiently large even number can be written as the sum of either two primes, or a prime and a semiprime (the product of two primes). See Chen's theorem for further information.
+In 1975, Hugh Lowell Montgomery and Bob Vaughan showed that "most" even numbers are expressible as the sum of two primes. More precisely, they showed that there exist positive constants c and C such that for all sufficiently large numbers N, every even number less than N is the sum of two primes, with at most CN1 − c exceptions. In particular, the set of even integers that are not the sum of two primes has density zero.
+In 1951, Yuri Linnik proved the existence of a constant K such that every sufficiently large even number is the sum of two primes and at most K powers of 2. János Pintz and Imre Ruzsa found in 2020 that K = 8 works. Assuming the generalized Riemann hypothesis, K = 7 also works, as shown by Roger Heath-Brown and Jan-Christoph Schlage-Puchta in 2002.
+In 2013, Harald Helfgott submitted a proof of the weak conjecture to the Annals of Mathematics Studies book series. The article was accepted, but Helfgott decided to undertake major modifications suggested by the referee. The weak conjecture is implied by the Goldbach conjecture, as if n − 3 is a sum of two primes, then n is a sum of three primes. But the converse implication and thus the Goldbach conjecture remain unproven even if Helfgott's proof is correct.
+
+
+=== Computational results ===
+For small values of n, the Goldbach conjecture (and hence the weak Goldbach conjecture) can be verified directly. For instance, in 1938, Nils Pipping laboriously verified the conjecture up to n = 100000. With the advent of computers, many more values of n have been checked; T. Oliveira e Silva ran a distributed computer search that has verified the conjecture for n ≤ 4×1018 (and double-checked up to 4×1017) as of 2013. One record from this search is that 3325581707333960528 is the smallest number that cannot be written as a sum of two primes where one is smaller than 9781.
+
+
+== Formal statement ==
+Each of the three conjectures has a natural analog in terms of the modern definition of a prime, under which 1 is excluded. A modern version of the first conjecture is:
+
+A modern version of the marginal conjecture is:
+
+And a modern version of Goldbach's older conjecture of which Euler reminded him is:
+
+These modern versions might not be entirely equivalent to the corresponding original statements. For example, if there were an even integer N = p + 1 larger than 4, for p a prime, that could not be expressed as the sum of two primes in the modern sense, then it would be a counterexample to the modern version of the third conjecture (without being a counterexample to the original version). The modern version is thus probably stronger (but in order to confirm that, one would have to prove that the first version, freely applied to any positive even integer n, could not possibly rule out the existence of such a specific counterexample N). In any case, the modern statements have the same relationships with each other as the older statements did. That is, the second and third modern statements are equivalent, and either implies the first modern statement.
+The third modern statement (equivalent to the second) is the form in which the conjecture is usually expressed today. It is also known as the "strong", "even", or "binary" Goldbach conjecture. A weaker form of the second modern statement, known as "Goldbach's weak conjecture", the "odd Goldbach conjecture", or the "ternary Goldbach conjecture", asserts that 
+
+
+== Heuristic justification ==
+
+Statistical considerations that focus on the probabilistic distribution of prime numbers present informal evidence in favour of the conjecture (in both the weak and strong forms) for sufficiently large integers: the greater the integer, the more ways there are available for that number to be represented as the sum of two or three other numbers and the more "likely" it becomes that at least one of these representations consists entirely of primes.
+
+A very crude version of the heuristic probabilistic argument (for the strong form of the Goldbach conjecture) is as follows. The prime number theorem asserts that an integer m selected at random has roughly a ⁠1/ln m⁠ chance of being prime. Thus if n is a large even integer and m is a number between 3 and ⁠n/2⁠, then one might expect the probability of m and n − m simultaneously being prime to be ⁠1/ln m ln(n − m)⁠. If one pursues this heuristic, one might expect the total number of ways to write a large even integer n as the sum of two odd primes to be roughly
+
+  
+    
+      
+        
+          ∑
+          
+            m
+            =
+            3
+          
+          
+            
+              n
+              2
+            
+          
+        
+        
+          
+            1
+            
+              ln
+              ⁡
+              m
+            
+          
+        
+        
+          
+            1
+            
+              ln
+              ⁡
+              (
+              n
+              −
+              m
+              )
+            
+          
+        
+        ≈
+        
+          
+            n
+            
+              2
+              (
+              ln
+              ⁡
+              n
+              
+                )
+                
+                  2
+                
+              
+            
+          
+        
+        .
+      
+    
+    {\displaystyle \sum _{m=3}^{\frac {n}{2}}{\frac {1}{\ln m}}{\frac {1}{\ln(n-m)}}\approx {\frac {n}{2(\ln n)^{2}}}.}
+  
+
+Since 
+  
+    
+      
+        ln
+        ⁡
+        n
+        ≪
+        
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \ln n\ll {\sqrt {n}}}
+  
+, this quantity goes to infinity as n increases, and one would expect that every large even integer has not just one representation as the sum of two primes, but in fact very many such representations.
+This heuristic argument is actually somewhat inaccurate because it assumes that the events of m and n − m being prime are statistically independent of each other. For instance, if m is odd, then n − m is also odd, and if m is even, then n − m is even, a non-trivial relation because, besides the number 2, only odd numbers can be prime. Similarly, if n is divisible by 3, and m was already a prime other than 3, then n − m would also be coprime to 3 and thus be slightly more likely to be prime than a general number. Pursuing this type of analysis more carefully, G. H. Hardy and John Edensor Littlewood in 1923 conjectured (as part of their Hardy–Littlewood prime tuple conjecture) that for any fixed c ≥ 2, the number of representations of a large integer n as the sum of c primes n = p1 + ⋯ + pc with p1 ≤ ⋯ ≤ pc should be asymptotically equal to
+
+  
+    
+      
+        
+          (
+          
+            
+              ∏
+              
+                p
+              
+            
+            
+              
+                
+                  p
+                  
+                    γ
+                    
+                      c
+                      ,
+                      p
+                    
+                  
+                  (
+                  n
+                  )
+                
+                
+                  (
+                  p
+                  −
+                  1
+                  
+                    )
+                    
+                      c
+                    
+                  
+                
+              
+            
+          
+          )
+        
+        
+          ∫
+          
+            2
+            ≤
+            
+              x
+              
+                1
+              
+            
+            ≤
+            ⋯
+            ≤
+            
+              x
+              
+                c
+              
+            
+            :
+            
+              x
+              
+                1
+              
+            
+            +
+            ⋯
+            +
+            
+              x
+              
+                c
+              
+            
+            =
+            n
+          
+        
+        
+          
+            
+              d
+              
+                x
+                
+                  1
+                
+              
+              ⋯
+              d
+              
+                x
+                
+                  c
+                  −
+                  1
+                
+
+
+
+==============================================================================
+## cn-twin-prime   <- Twin prime conjecture
+==============================================================================
+
+A twin prime is a prime number that is either 2 less or 2 more than another prime number—for example, either member of the twin prime pair  (17, 19)  or (41, 43). In other words, a twin prime is a prime that has a prime gap of two. Sometimes the term twin prime is used for a pair of twin primes; an alternative name for this is prime twin or prime pair.
+Twin primes become increasingly rare as one examines larger ranges, in keeping with the general tendency of gaps between adjacent primes to become larger as the numbers themselves get larger. However, it is unknown whether there are infinitely many twin primes (the so-called twin prime conjecture) or if there is a largest pair. The breakthrough
+work of Yitang Zhang in 2013, as well as work by James Maynard, Terence Tao and others, has made substantial progress towards proving that there are infinitely many twin primes, but at present this remains unsolved.
+
+
+== Properties ==
+Usually the pair (2, 3) is not considered to be a pair of twin primes.
+Since 2 is the only even prime, this pair is the only pair of prime numbers that differ by one; thus twin primes are as closely spaced as possible for any other two primes.
+The first several twin prime pairs are
+
+ (3, 5), (5, 7), (11, 13),  (17, 19), (29, 31), (41, 43),  (59, 61), (71, 73), (101, 103),  (107, 109), (137, 139), ... OEIS: A077800.
+Five is the only prime that belongs to two pairs, as every twin prime pair greater than  (3, 5)  is of the form 
+  
+    
+      
+        (
+        6
+        n
+        −
+        1
+        ,
+        6
+        n
+        +
+        1
+        )
+      
+    
+    {\displaystyle (6n-1,6n+1)}
+  
+ for some natural number n; that is, the number that falls between the two primes is a multiple of 6.
+As a result, the sum of any pair of twin primes (other than 3 and 5) is divisible by 12.
+
+
+=== Brun's theorem ===
+
+In 1915, Viggo Brun showed that the sum of reciprocals of the twin primes was convergent.
+This famous result, called Brun's theorem, was the first use of the Brun sieve and helped initiate the development of modern sieve theory. The modern version of Brun's argument can be used to show that the number of twin primes less than N does not exceed
+
+  
+    
+      
+        
+          
+            
+              C
+              N
+            
+            
+              (
+              log
+              ⁡
+              N
+              
+                )
+                
+                  2
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\frac {CN}{(\log N)^{2}}}}
+  
+
+for some absolute constant C > 0.
+In fact, it is bounded above by 
+
+  
+    
+      
+        
+          
+            
+              8
+              
+                C
+                
+                  2
+                
+              
+              N
+            
+            
+              (
+              log
+              ⁡
+              N
+              
+                )
+                
+                  2
+                
+              
+            
+          
+        
+        
+          [
+          
+            1
+            +
+            
+              
+                O
+              
+            
+            ⁡
+            
+              (
+              
+                
+                  
+                    log
+                    ⁡
+                    log
+                    ⁡
+                    N
+                  
+                  
+                    log
+                    ⁡
+                    N
+                  
+                
+              
+              )
+            
+          
+          ]
+        
+        ,
+      
+    
+    {\displaystyle {\frac {8C_{2}N}{(\log N)^{2}}}\left[1+\operatorname {\mathcal {O}} \left({\frac {\log \log N}{\log N}}\right)\right],}
+  
+
+where 
+  
+    
+      
+        
+          C
+          
+            2
+          
+        
+      
+    
+    {\displaystyle C_{2}}
+  
+ is the twin prime constant (slightly less than 2/3), given below.
+
+
+== Twin prime conjecture ==
+The question of whether there exist infinitely many twin primes has been one of the great open questions in number theory for many years. This is the content of the twin prime conjecture, which states that there are infinitely many primes p such that  p + 2  is also prime. In 1849, de Polignac made the more general conjecture that for every natural number k, there are infinitely many primes p such that  p + 2k  is also prime.
+The case k = 1 of de Polignac's conjecture is the twin prime conjecture.
+A stronger form of the twin prime conjecture, the Hardy–Littlewood conjecture, postulates a distribution law for twin primes akin to the prime number theorem.
+On 17 April 2013, Yitang Zhang announced a proof that there exists an integer N that is less than 70 million, where there are infinitely many pairs of primes that differ by N. Zhang's paper was accepted in early May 2013. Terence Tao subsequently proposed a Polymath Project collaborative effort to improve Zhang's bound.
+One year after Zhang's announcement, the bound had been reduced to 246.
+These improved bounds were discovered independently by James Maynard and Terence Tao, using a different approach that was simpler than Zhang's. This second approach also gave bounds for the smallest  f (m)  needed to guarantee that infinitely many intervals of width f (m) contain at least m primes. Moreover (see also the next section) assuming the Elliott–Halberstam conjecture and its generalized form, the Polymath Project wiki states that the bound is 12 and 6, respectively.
+
+
+== Other theorems weaker than the twin prime conjecture ==
+In 1940, Paul Erdős showed that there is a constant c < 1 and infinitely many primes p such that p′ − p < c ln p where p′ denotes the next prime after p. What this means is that we can find infinitely many intervals that contain two primes (p, p′) as long as we let these intervals grow slowly in size as we move to bigger and bigger primes. Here, "grow slowly" means that the length of these intervals can grow logarithmically. This result was successively improved; in 1986 Helmut Maier showed that a constant c < 0.25 can be used. In 2004 Daniel Goldston and Cem Yıldırım showed that the constant could be improved further to c = 0.085786... . In 2005, Goldston, Pintz, and Yıldırım established that c can be chosen to be arbitrarily small,
+i.e.
+
+  
+    
+      
+        
+          lim inf
+          
+            n
+            →
+            ∞
+          
+        
+        
+          (
+          
+            
+              
+                
+                  p
+                  
+                    n
+                    +
+                    1
+                  
+                
+                −
+                
+                  p
+                  
+                    n
+                  
+                
+              
+              
+                log
+                ⁡
+                
+                  p
+                  
+                    n
+                  
+                
+              
+            
+          
+          )
+        
+        =
+        0
+         
+        .
+      
+    
+    {\displaystyle \liminf _{n\to \infty }\left({\frac {p_{n+1}-p_{n}}{\log p_{n}}}\right)=0~.}
+  
+
+On the other hand, this result does not rule out that there may not be infinitely many intervals that contain two primes if we only allow the intervals to grow in size as, for example, c ln ln p .
+By assuming the Elliott–Halberstam conjecture or a slightly weaker version, they were able to show that there are infinitely many n such that at least two of n, n + 2, n + 6, n + 8, n + 12, n + 18, or n + 20 are prime. Under a stronger hypothesis they showed that for infinitely many n, at least two of n, n + 2, n + 4, and n + 6 are prime.
+The result of Yitang Zhang,
+
+  
+    
+      
+        
+          lim inf
+          
+            n
+            →
+            ∞
+          
+        
+        (
+        
+          p
+          
+            n
+            +
+            1
+          
+        
+        −
+        
+          p
+          
+            n
+          
+        
+        )
+        <
+        N
+         
+        
+          w
+          i
+          t
+          h
+        
+         
+        N
+        =
+        7
+        ×
+        
+          10
+          
+            7
+          
+        
+        ,
+      
+    
+    {\displaystyle \liminf _{n\to \infty }(p_{n+1}-p_{n})<N~\mathrm {with} ~N=7\times 10^{7},}
+  
+
+is a major improvement on the Goldston–Graham–Pintz–Yıldırım result. The Polymath Project improvement of Zhang's bound and the work of Maynard have reduced the bound: the limit inferior is at most 246. This means that there is an infinite set of primes where the next prime is larger by no more than 246. Improving the bound to 2 would be a proof of the twin prime conjecture.
+
+
+== Conjectures ==
+
+
+=== First Hardy–Littlewood conjecture ===
+The first Hardy–Littlewood conjecture (named after G. H. Hardy and John Littlewood) is a generalization of the twin prime conjecture. It is concerned with the distribution of prime constellations, including twin primes, in analogy to the prime number theorem. Let ⁠
+  
+    
+      
+        
+          π
+          
+            2
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle \pi _{2}(x)}
+  
+⁠ denote the number of primes p ≤ x such that p + 2 is also prime. Define the twin prime constant C2 as
+
+  
+    
+      
+        
+          C
+          
+            2
+          
+        
+        =
+        
+          ∏
+          
+            
+              
+                
+                  
+                    p
+                    
+                    
+                      p
+                      r
+                      i
+                      m
+                      e
+                      ,
+                    
+                  
+                  
+                    p
+                    ≥
+                    3
+                  
+                
+              
+            
+          
+        
+        
+          (
+          
+            1
+            −
+            
+              
+                1
+                
+                  (
+                  p
+                  −
+                  1
+                  
+                    )
+                    
+                      2
+                    
+                  
+                
+              
+            
+          
+          )
+        
+        ≈
+        0.660161815846869573927812110014
+        …
+        .
+      
+    
+    {\displaystyle C_{2}=\prod _{\textstyle {p\;\mathrm {prime,}  \atop p\geq 3}}\left(1-{\frac {1}{(p-1)^{2}}}\right)\approx 0.660161815846869573927812110014\ldots .}
+  
+
+(Here the product extends over all prime numbers p ≥ 3.) Then a special case of the first Hardy–Littlewood conjecture is that
+
+  
+    
+      
+        
+          π
+          
+            2
+          
+        
+        (
+        x
+        )
+        ∼
+        2
+        
+          C
+          
+            2
+          
+        
+        
+          
+            x
+            
+              (
+              ln
+              ⁡
+              x
+              
+                )
+                
+                  2
+                
+              
+            
+          
+        
+        ∼
+        2
+        
+          C
+          
+            2
+          
+        
+        
+          ∫
+          
+            2
+          
+          
+            x
+          
+        
+        
+          
+            
+              
+                d
+              
+              t
+            
+            
+              (
+              ln
+              ⁡
+              t
+              
+                )
+                
+                  2
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle \pi _{2}(x)\sim 2C_{2}{\frac {x}{(\ln x)^{2}}}\sim 2C_{2}\int _{2}^{x}{\mathrm {d} t \over (\ln t)^{2}}}
+  
+
+in the sense that the quotient of the two expressions tends to 1 as x approaches infinity. (The second ~ is not part of the con
+
+
+==============================================================================
+## cn-collatz   <- Collatz conjecture
+==============================================================================
+
+The Collatz conjecture is one of the most famous unsolved problems in mathematics. The conjecture asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. It concerns sequences of integers in which each term is obtained from the previous term as follows: if a term is even, the next term is one half of it. If a term is odd, the next term is 3 times the previous term plus 1. The conjecture is that these sequences always reach 1, no matter which positive integer is chosen to start the sequence. The conjecture has been shown to hold for all positive integers up to 2.36×1021, but no general proof has been found.
+It is named after the mathematician Lothar Collatz, who introduced the idea in 1937, two years after receiving his doctorate. The sequence of numbers involved is sometimes referred to as the hailstone sequence, hailstone numbers or hailstone numerals (because the values are usually subject to multiple descents and ascents like hailstones in a cloud), or as wondrous numbers.
+Paul Erdős said about the Collatz conjecture: "Mathematics may not be ready for such problems." Jeffrey Lagarias stated in 2010 that the Collatz conjecture "is an extraordinarily difficult problem, completely out of reach of present day mathematics". However, though the Collatz conjecture itself remains open, efforts to solve the problem have led to new techniques and many partial results.
+
+
+== Statement of the problem ==
+
+Consider the following operation on an arbitrary positive integer:
+
+If the number is even, divide it by two.
+If the number is odd, triple it and add one.
+In modular arithmetic notation, define the function f as follows:
+
+  
+    
+      
+        f
+        (
+        n
+        )
+        =
+        
+          
+            {
+            
+              
+                
+                  n
+                  
+                    /
+                  
+                  2
+                
+                
+                  
+                    if 
+                  
+                  n
+                  ≡
+                  0
+                  
+                    
+                    (
+                    mod
+                    
+                    2
+                    )
+                  
+                  ,
+                
+              
+              
+                
+                  3
+                  n
+                  +
+                  1
+                
+                
+                  
+                    if 
+                  
+                  n
+                  ≡
+                  1
+                  
+                    
+                    (
+                    mod
+                    
+                    2
+                    )
+                  
+                  .
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle f(n)={\begin{cases}n/2&{\text{if }}n\equiv 0{\pmod {2}},\\3n+1&{\text{if }}n\equiv 1{\pmod {2}}.\end{cases}}}
+  
+
+Now form a sequence by performing this operation repeatedly, beginning with any positive integer, and taking the result at each step as the input at the next.
+In notation:
+
+  
+    
+      
+        
+          a
+          
+            i
+          
+        
+        =
+        
+          
+            {
+            
+              
+                
+                  n
+                
+                
+                  
+                    for 
+                  
+                  i
+                  =
+                  0
+                  ,
+                
+              
+              
+                
+                  f
+                  (
+                  
+                    a
+                    
+                      i
+                      −
+                      1
+                    
+                  
+                  )
+                
+                
+                  
+                    for 
+                  
+                  i
+                  >
+                  0
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle a_{i}={\begin{cases}n&{\text{for }}i=0,\\f(a_{i-1})&{\text{for }}i>0\end{cases}}}
+  
+
+(that is: ai is the value of f applied to n recursively i times;  ai = f i(n)).
+The Collatz conjecture is: This process will eventually reach the number 1, regardless of which positive integer is chosen initially. That is, for each 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+, there is some 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+ with 
+  
+    
+      
+        
+          a
+          
+            i
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle a_{i}=1}
+  
+.
+If the conjecture is false, it can only be because there is some starting number which gives rise to a sequence that does not contain 1. Such a sequence would either enter a repeating cycle that excludes 1, or increase without bound. No such sequence has been found.
+The smallest i such that ai < a0  is called the stopping time of n. Similarly, the smallest k such that ak = 1 is called the total stopping time of n. If one of the indexes i or k does not exist, we say that the stopping time or the total stopping time, respectively, is infinite.
+The Collatz conjecture asserts that the total stopping time of every n is finite. It is also equivalent to saying that every n ≥ 2 has a finite stopping time.
+Since 3n + 1 is even whenever n is odd, one may instead use the "shortcut" form of the Collatz function:
+
+  
+    
+      
+        f
+        (
+        n
+        )
+        =
+        
+          
+            {
+            
+              
+                
+                  
+                    
+                      n
+                      2
+                    
+                  
+                
+                
+                  
+                    if 
+                  
+                  n
+                  ≡
+                  0
+                  
+                    
+                    (
+                    mod
+                    
+                    2
+                    )
+                  
+                  ,
+                
+              
+              
+                
+                  
+                    
+                      
+                        3
+                        n
+                        +
+                        1
+                      
+                      2
+                    
+                  
+                
+                
+                  
+                    if 
+                  
+                  n
+                  ≡
+                  1
+                  
+                    
+                    (
+                    mod
+                    
+                    2
+                    )
+                  
+                  .
+                
+              
+            
+            
+          
+        
+      
+    
+    {\displaystyle f(n)={\begin{cases}{\frac {n}{2}}&{\text{if }}n\equiv 0{\pmod {2}},\\{\frac {3n+1}{2}}&{\text{if }}n\equiv 1{\pmod {2}}.\end{cases}}}
+  
+
+This definition yields smaller values for the stopping time and total stopping time without changing the overall dynamics of the process.
+
+
+== Empirical data ==
+For instance, starting with n = 12 and applying the function f without "shortcut", one gets the sequence 12, 6, 3, 10, 5, 16, 8, 4, 2, 1
+.
+The number n = 19 takes longer to reach 1: 19, 58, 29, 88, 44, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1
+.
+The sequence for n = 27, listed and graphed below, takes 111 steps (41 steps through odd numbers, in bold), climbing as high as 9232 before descending to 1.
+
+27, 82, 41, 124, 62, 31, 94, 47, 142, 71, 214, 107, 322, 161, 484, 242, 121, 364, 182, 91, 274, 137, 412, 206, 103, 310, 155, 466, 233, 700, 350, 175, 526, 263, 790, 395, 1186, 593, 1780, 890, 445, 1336, 668, 334, 167, 502, 251, 754, 377, 1132, 566, 283, 850, 425, 1276, 638, 319, 958, 479, 1438, 719, 2158, 1079, 3238, 1619, 4858, 2429, 7288, 3644, 1822, 911, 2734, 1367, 4102, 2051, 6154, 3077, 9232, 4616, 2308, 1154, 577, 1732, 866, 433, 1300, 650, 325, 976, 488, 244, 122, 61, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1
+(sequence A008884 in the OEIS)
+
+Numbers with a total stopping time longer than that of any smaller starting value form a sequence beginning with:
+
+1, 2, 3, 6, 7, 9, 18, 25, 27, 54, 73, 97, 129, 171, 231, 313, 327, 649, 703, 871, 1161, 2223, 2463, 2919, 3711, 6171, ... (sequence A006877 in the OEIS).
+The starting values whose maximum trajectory point is greater than that of any smaller starting value are as follows:
+
+1, 2, 3, 7, 15, 27, 255, 447, 639, 703, 1819, 4255, 4591, 9663, 20895, 26623, 31911, 60975, 77671, 113383, 138367, 159487, 270271, 665215, 704511, ... (sequence A006884 in the OEIS)
+Number of steps for n to reach 1 are
+
+0, 1, 7, 2, 5, 8, 16, 3, 19, 6, 14, 9, 9, 17, 17, 4, 12, 20, 20, 7, 7, 15, 15, 10, 23, 10, 111, 18, 18, 18, 106, 5, 26, 13, 13, 21, 21, 21, 34, 8, 109, 8, 29, 16, 16, 16, 104, 11, 24, 24, ... (sequence A006577 in the OEIS)
+The starting value having the largest total stopping time while being
+
+less than 10 is 9, which has 19 steps,
+less than 100 is 97, which has 118 steps,
+less than 1000 is 871, which has 178 steps,
+less than 104 is 6171, which has 261 steps,
+less than 105 is 77031, which has 350 steps,
+less than 106 is 837799, which has 524 steps,
+less than 107 is 8400511, which has 685 steps,
+less than 108 is 63728127, which has 949 steps,
+less than 109 is 670617279, which has 986 steps,
+less than 1010 is 9780657630, which has 1132 steps,
+less than 1011 is 75128138247, which has 1228 steps,
+less than 1012 is 989345275647, which has 1348 steps. (sequence A284668 in the OEIS)
+These numbers are the lowest ones with the indicated step count, but not necessarily the only ones below the given limit. As an example, 9780657631 has 1132 steps, as does 9780657630.
+The starting values having the smallest total stopping time with respect to their number of digits (in base 2) are the powers of two, since 2n is halved n times to reach 1, and it is never increased. 
+
+
+== Visualizations ==
+
+
+== Supporting arguments ==
+Although the conjecture has not been proven, most mathematicians who have looked into the problem think the conjecture is true because experimental evidence and heuristic arguments support it.
+
+
+=== Experimental evidence ===
+The conjecture has been checked by computer for all starting values up to 271 ≈ 2.36×1021. All values tested so far converge to 1.
+This computer evidence is still not rigorous proof that the conjecture is true for all starting values, as counterexamples may be found when considering very large positive integers, as in the case of the disproven Pólya conjecture and Mertens conjecture.
+However, such verifications may have other implications. Certain constraints on any non-trivial cycle, such as lower bounds on the length of the cycle, can be proven based on the value of the lowest term in the cycle. Therefore, computer searches to rule out cycles that have a small lowest term can strengthen these constraints.
+
+
+=== A probabilistic heuristic ===
+If one considers only the odd numbers in the sequence generated by the Collatz process, then each odd number is on average ⁠3/4⁠ of the previous one. (More precisely, the geometric mean of the ratios of outcomes is ⁠3/4⁠.) This yields a heuristic argument that every Hailstone sequence should decrease in the long run, although this is not evidence against other cycles, only against divergence. The argument is not a proof, however, because it assumes that Hailstone sequences are assembled from uncorrelated probabilistic events. (It does rigorously establish that the 2-adic extension of the Collatz process has two division steps for every multiplication step for almost all 2-adic starting values.)
+
+
+=== Stopping times ===
+As proven by Riho Terras, almost every positive integer has a finite stopping time. In other words, almost every Collatz sequence reac
+
+
+==============================================================================
+## cn-hodge   <- Hodge conjecture
+==============================================================================
+
+In mathematics, the Hodge conjecture is a major unsolved problem in algebraic geometry and complex geometry that relates the algebraic topology of a non-singular complex algebraic variety to its subvarieties.
+In simple terms, the Hodge conjecture asserts that the basic topological information like the number of holes in certain geometric spaces, complex algebraic varieties, can be understood by studying the possible nice shapes sitting inside those spaces, which look like zero sets of polynomial equations. The latter objects can be studied using algebra and the calculus of analytic functions, and this allows one to indirectly understand the broad shape and structure of often higher-dimensional spaces which cannot be otherwise easily visualized.
+More specifically, the conjecture states that certain de Rham cohomology classes are algebraic; that is, they are sums of Poincaré duals of the homology classes of subvarieties. It was formulated by the Scottish mathematician William Vallance Douglas Hodge as a result of work in between 1930 and 1940 to enrich the description of de Rham cohomology to include extra structure that is present in the case of complex algebraic varieties. It received little attention before Hodge presented it in an address during the 1950 International Congress of Mathematicians, held in Cambridge, Massachusetts. The Hodge conjecture is one of the Clay Mathematics Institute's Millennium Prize Problems, with a prize of $1,000,000 US for whoever can prove or disprove the Hodge conjecture.
+
+
+== Motivation ==
+
+Let X be a compact complex manifold of complex dimension n. Then X is an orientable smooth manifold of real dimension 
+  
+    
+      
+        2
+        n
+      
+    
+    {\displaystyle 2n}
+  
+, so its cohomology groups lie in degrees zero through 
+  
+    
+      
+        2
+        n
+      
+    
+    {\displaystyle 2n}
+  
+.  Assume X is a Kähler manifold, so that there is a decomposition on its cohomology with complex coefficients
+
+  
+    
+      
+        
+          H
+          
+            n
+          
+        
+        (
+        X
+        ,
+        
+          C
+        
+        )
+        =
+        
+          ⨁
+          
+            p
+            +
+            q
+            =
+            n
+          
+        
+        
+          H
+          
+            p
+            ,
+            q
+          
+        
+        (
+        X
+        )
+        ,
+      
+    
+    {\displaystyle H^{n}(X,\mathbb {C} )=\bigoplus _{p+q=n}H^{p,q}(X),}
+  
+
+where 
+  
+    
+      
+        
+          H
+          
+            p
+            ,
+            q
+          
+        
+        (
+        X
+        )
+      
+    
+    {\displaystyle H^{p,q}(X)}
+  
+ is the subgroup of cohomology classes which are represented by harmonic forms of type 
+  
+    
+      
+        (
+        p
+        ,
+        q
+        )
+      
+    
+    {\displaystyle (p,q)}
+  
+. That is, these are the cohomology classes represented by differential forms which, in some choice of local coordinates 
+  
+    
+      
+        
+          z
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          z
+          
+            n
+          
+        
+      
+    
+    {\displaystyle z_{1},\ldots ,z_{n}}
+  
+, can be written as a harmonic function times
+
+  
+    
+      
+        d
+        
+          z
+          
+            
+              i
+              
+                1
+              
+            
+          
+        
+        ∧
+        ⋯
+        ∧
+        d
+        
+          z
+          
+            
+              i
+              
+                p
+              
+            
+          
+        
+        ∧
+        d
+        
+          
+            
+              
+                z
+                ¯
+              
+            
+          
+          
+            
+              j
+              
+                1
+              
+            
+          
+        
+        ∧
+        ⋯
+        ∧
+        d
+        
+          
+            
+              
+                z
+                ¯
+              
+            
+          
+          
+            
+              j
+              
+                q
+              
+            
+          
+        
+        .
+      
+    
+    {\displaystyle dz_{i_{1}}\wedge \cdots \wedge dz_{i_{p}}\wedge d{\bar {z}}_{j_{1}}\wedge \cdots \wedge d{\bar {z}}_{j_{q}}.}
+  
+
+Since X is a compact oriented manifold, X has a fundamental class, and so X can be integrated over.
+Let Z be a complex submanifold of X of dimension k, and let 
+  
+    
+      
+        i
+        :
+        Z
+        →
+        X
+      
+    
+    {\displaystyle i\colon Z\to X}
+  
+ be the inclusion map.  Choose a differential form 
+  
+    
+      
+        α
+      
+    
+    {\displaystyle \alpha }
+  
+ of type 
+  
+    
+      
+        (
+        p
+        ,
+        q
+        )
+      
+    
+    {\displaystyle (p,q)}
+  
+.  We can integrate 
+  
+    
+      
+        α
+      
+    
+    {\displaystyle \alpha }
+  
+ over Z using the pullback function 
+  
+    
+      
+        
+          i
+          
+            ∗
+          
+        
+        :
+        X
+        →
+        Z
+      
+    
+    {\displaystyle i^{*}\colon X\to Z}
+  
+,
+
+  
+    
+      
+        
+          ∫
+          
+            Z
+          
+        
+        
+          i
+          
+            ∗
+          
+        
+        α
+      
+    
+    {\displaystyle \int _{Z}i^{*}\alpha }
+  
+
+To evaluate this integral, choose a point of Z and call it 
+  
+    
+      
+        z
+        =
+        (
+        
+          z
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          z
+          
+            k
+          
+        
+        )
+      
+    
+    {\displaystyle z=(z_{1},\ldots ,z_{k})}
+  
+.  The inclusion of Z in X means that we can choose a local basis on X and have 
+  
+    
+      
+        
+          z
+          
+            k
+            +
+            1
+          
+        
+        =
+        ⋯
+        =
+        
+          z
+          
+            n
+          
+        
+        =
+        0
+      
+    
+    {\displaystyle z_{k+1}=\cdots =z_{n}=0}
+  
+ (rank-nullity theorem).  If 
+  
+    
+      
+        p
+        >
+        k
+      
+    
+    {\displaystyle p>k}
+  
+, then 
+  
+    
+      
+        α
+      
+    
+    {\displaystyle \alpha }
+  
+ must contain some 
+  
+    
+      
+        d
+        
+          z
+          
+            i
+          
+        
+      
+    
+    {\displaystyle dz_{i}}
+  
+ where 
+  
+    
+      
+        
+          z
+          
+            i
+          
+        
+      
+    
+    {\displaystyle z_{i}}
+  
+ pulls back to zero on Z.  The same is true for 
+  
+    
+      
+        d
+        
+          
+            
+              
+                z
+                ¯
+              
+            
+          
+          
+            j
+          
+        
+      
+    
+    {\displaystyle d{\bar {z}}_{j}}
+  
+ if 
+  
+    
+      
+        q
+        >
+        k
+      
+    
+    {\displaystyle q>k}
+  
+. Consequently, 
+  
+    
+      
+        k
+        ≥
+        p
+        ,
+        k
+        ≥
+        q
+      
+    
+    {\displaystyle k\geq p,k\geq q}
+  
+ implies 
+  
+    
+      
+        2
+        k
+        ≥
+        p
+        +
+        q
+        =
+        2
+        n
+      
+    
+    {\displaystyle 2k\geq p+q=2n}
+  
+, this integral is zero if 
+  
+    
+      
+        (
+        p
+        ,
+        q
+        )
+        ≠
+        (
+        n
+        ,
+        n
+        )
+      
+    
+    {\displaystyle (p,q)\neq (n,n)}
+  
+.
+The Hodge conjecture then (loosely) asks:
+
+Which cohomology classes in 
+  
+    
+      
+        
+          H
+          
+            k
+            ,
+            k
+          
+        
+        (
+        X
+        )
+      
+    
+    {\displaystyle H^{k,k}(X)}
+  
+ come from complex subvarieties Z?
+
+
+== Statement ==
+Let
+
+  
+    
+      
+        
+          Hdg
+          
+            k
+          
+        
+        ⁡
+        (
+        X
+        )
+        =
+        
+          H
+          
+            2
+            k
+          
+        
+        (
+        X
+        ,
+        
+          Q
+        
+        )
+        ∩
+        
+          H
+          
+            k
+            ,
+            k
+          
+        
+        (
+        X
+        )
+        .
+      
+    
+    {\displaystyle \operatorname {Hdg} ^{k}(X)=H^{2k}(X,\mathbb {Q} )\cap H^{k,k}(X).}
+  
+
+We call this the group of Hodge classes of degree 2k on X.
+The modern statement of the Hodge conjecture is
+
+Hodge conjecture.  Let X be a non-singular complex projective manifold.  Then every Hodge class on X is a linear combination with rational coefficients of the cohomology classes of complex subvarieties of X.
+A projective complex manifold is a complex manifold which can be embedded in complex projective space.  Because projective space carries a Kähler metric, the Fubini–Study metric, such a manifold is always a Kähler manifold.  By Chow's theorem, a projective complex manifold is also a smooth projective algebraic variety, that is, it is the zero set of a collection of homogeneous polynomials.
+
+
+=== Reformulation in terms of algebraic cycles ===
+Another way of phrasing the Hodge conjecture involves the idea of an algebraic cycle.  An algebraic cycle on X is a formal combination of subvarieties of X; that is, it is something of the form
+
+  
+    
+      
+        
+          ∑
+          
+            i
+          
+        
+        
+          c
+          
+            i
+          
+        
+        
+          Z
+          
+            i
+          
+        
+        .
+      
+    
+    {\displaystyle \sum _{i}c_{i}Z_{i}.}
+  
+
+The coefficients are usually taken to be integral or rational.  We define the cohomology class of an algebraic cycle to be the sum of the cohomology classes of its components. This is an example of the cycle class map of de Rham cohomology, see Weil cohomology.  For example, the cohomology class of the above cycle would be
+
+  
+    
+      
+        
+          ∑
+          
+            i
+          
+        
+        
+          c
+          
+            i
+          
+        
+        [
+        
+          Z
+          
+            i
+          
+        
+        ]
+        .
+      
+    
+    {\displaystyle \sum _{i}c_{i}[Z_{i}].}
+  
+
+Such a cohomology class is called algebraic.  With this notation, the Hodge conjecture becomes
+
+Let X be a projective complex manifold.  Then every Hodge class on X is algebraic.
+The assumption in the Hodge conjecture that X be algebraic (projective complex manifold) cannot be weakened. In 1977, Steven Zucker showed that it is possible to construct a counterexample to the Hodge conjecture as complex tori with analytic rational cohomology of type 
+  
+    
+      
+        (
+        p
+        ,
+        p
+        )
+      
+    
+    {\displaystyle (p,p)}
+  
+, which is not projective algebraic. (see appendix B of Zucker (1977))
+
+
+== Known cases ==
+
+
+=== Low dimension and codimension ===
+The first result on the Hodge conjecture is due to Lefschetz (1924).  In fact, it predates the conjecture and provided some of Hodge's motivation.
+
+Theorem (Lefschetz theorem on (1,1)-classes)  Any element of 
+  
+    
+      
+        
+          H
+          
+            2
+          
+        
+        (
+        X
+        ,
+        
+          Z
+        
+        )
+        ∩
+        
+          H
+          
+            1
+            ,
+            1
+          
+        
+        (
+        X
+        )
+      
+    
+    {\displaystyle H^{2}(X,\mathbb {Z} )\cap H^{1,1}(X)}
+  
+ is the cohomology class of a divisor on 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+.  In particular, the Hodge conjecture is true for 
+  
+    
+      
+        
+          H
+          
+            2
+          
+        
+      
+    
+    {\displaystyle H^{2}}
+  
+.
+A very quick proof can be given using sheaf cohomology and the exponential exact sequence.  (The cohomology class of a divisor turns out to be equal to its first Chern class.)  Lefschetz's original proof proceeded by normal functions, which were introduced by Henri Poincaré.  However, the Griffiths transversality the
+
+
+==============================================================================
+## cn-tate   <- Tate conjecture
+==============================================================================
+
+In mathematics, specifically arithmetic geometry, the Tate conjecture is a 1963 conjecture of John Tate that would describe the algebraic cycles on a variety in terms of a more computable invariant, the Galois representation on étale cohomology. The conjecture is a central problem in the theory of algebraic cycles. It can be considered an arithmetic analog of the Hodge conjecture.
+
+
+== Statement of the conjecture ==
+Let 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+  
+ be a smooth projective variety over a field 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+ which is finitely generated over its prime field. Let 
+  
+    
+      
+        
+          k
+          
+            s
+          
+        
+      
+    
+    {\displaystyle k_{s}}
+  
+ be a separable closure of 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+, and let 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+ be the absolute Galois group 
+  
+    
+      
+        Gal
+        ⁡
+        (
+        
+          k
+          
+            s
+          
+        
+        
+          /
+        
+        k
+        )
+      
+    
+    {\displaystyle \operatorname {Gal} (k_{s}/k)}
+  
+ of 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+. Fix a prime number 
+  
+    
+      
+        ℓ
+      
+    
+    {\displaystyle \ell }
+  
+ which is invertible in 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+. Consider the ℓ-adic cohomology groups (coefficients in the ℓ-adic integers 
+  
+    
+      
+        
+          
+            Z
+          
+          
+            ℓ
+          
+        
+      
+    
+    {\displaystyle \mathbb {Z} _{\ell }}
+  
+, scalars then extended to the ℓ-adic numbers 
+  
+    
+      
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+      
+    
+    {\displaystyle \mathbb {Q} _{\ell }}
+  
+) of the base extension of 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+  
+ to 
+  
+    
+      
+        
+          k
+          
+            s
+          
+        
+      
+    
+    {\displaystyle k_{s}}
+  
+; these groups are representations of 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+. For any 
+  
+    
+      
+        i
+        ≥
+        0
+      
+    
+    {\displaystyle i\geq 0}
+  
+, a codimension-
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+ subvariety of 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+  
+ (understood to be defined over 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+) determines an element of the cohomology group
+
+  
+    
+      
+        
+          H
+          
+            2
+            i
+          
+        
+        (
+        
+          V
+          
+            
+              k
+              
+                s
+              
+            
+          
+        
+        ,
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+        (
+        i
+        )
+        )
+        =
+        W
+      
+    
+    {\displaystyle H^{2i}(V_{k_{s}},\mathbb {Q} _{\ell }(i))=W}
+  
+
+which is fixed by 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+. Here 
+  
+    
+      
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+        (
+        i
+        )
+      
+    
+    {\displaystyle \mathbb {Q} _{\ell }(i)}
+  
+ denotes the 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+th Tate twist, which means that this representation of the Galois group 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+ is tensored with the 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+th power of the cyclotomic character.
+The Tate conjecture states that the subspace 
+  
+    
+      
+        
+          W
+          
+            G
+          
+        
+      
+    
+    {\displaystyle W^{G}}
+  
+ of 
+  
+    
+      
+        W
+      
+    
+    {\displaystyle W}
+  
+ fixed by the Galois group 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+ is spanned, as a 
+  
+    
+      
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+      
+    
+    {\displaystyle \mathbb {Q} _{\ell }}
+  
+-vector space, by the classes of codimension-
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+ subvarieties of 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+  
+. An algebraic cycle means a finite linear combination of subvarieties; so an equivalent statement is that every element of 
+  
+    
+      
+        
+          W
+          
+            G
+          
+        
+      
+    
+    {\displaystyle W^{G}}
+  
+ is the class of an algebraic cycle on 
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+  
+ with 
+  
+    
+      
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+      
+    
+    {\displaystyle \mathbb {Q} _{\ell }}
+  
+ coefficients.
+
+
+== Known cases ==
+The Tate conjecture for divisors (algebraic cycles of codimension 1) is a major open problem. For example, let 
+  
+    
+      
+        f
+        :
+        X
+        →
+        C
+      
+    
+    {\displaystyle f:X\to C}
+  
+ be a morphism from a smooth projective surface onto a smooth projective curve over a finite field. Suppose that the generic fiber 
+  
+    
+      
+        F
+      
+    
+    {\displaystyle F}
+  
+ of 
+  
+    
+      
+        f
+      
+    
+    {\displaystyle f}
+  
+, which is a curve over the function field 
+  
+    
+      
+        k
+        (
+        C
+        )
+      
+    
+    {\displaystyle k(C)}
+  
+, is smooth over 
+  
+    
+      
+        k
+        (
+        C
+        )
+      
+    
+    {\displaystyle k(C)}
+  
+. Then the Tate conjecture for divisors on 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ is equivalent to the Birch and Swinnerton-Dyer conjecture for the Jacobian variety of 
+  
+    
+      
+        F
+      
+    
+    {\displaystyle F}
+  
+. By contrast, the Hodge conjecture for divisors on any smooth complex projective variety is known; this is the Lefschetz (1,1)-theorem.
+Probably the most important known case is that the Tate conjecture is true for divisors on abelian varieties. This is a theorem of Tate for abelian varieties over finite fields, and of Faltings for abelian varieties over number fields, part of Faltings' solution of the Mordell conjecture. Zarhin extended these results to any finitely generated base field. The Tate conjecture for divisors on abelian varieties implies the Tate conjecture for divisors on any product of curves 
+  
+    
+      
+        
+          C
+          
+            1
+          
+        
+        ×
+        ⋯
+        ×
+        
+          C
+          
+            n
+          
+        
+      
+    
+    {\displaystyle C_{1}\times \cdots \times C_{n}}
+  
+.
+The (known) Tate conjecture for divisors on abelian varieties is equivalent to a powerful statement about homomorphisms between abelian varieties. Namely, for any abelian varieties 
+  
+    
+      
+        A
+      
+    
+    {\displaystyle A}
+  
+ and 
+  
+    
+      
+        B
+      
+    
+    {\displaystyle B}
+  
+ over a finitely generated field 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+, the natural map
+
+  
+    
+      
+        
+          Hom
+        
+        (
+        A
+        ,
+        B
+        )
+        
+          ⊗
+          
+            
+              Z
+            
+          
+        
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+        →
+        
+          
+            Hom
+          
+          
+            G
+          
+        
+        
+          (
+          
+            
+              H
+              
+                1
+              
+            
+            
+              (
+              
+                
+                  A
+                  
+                    
+                      k
+                      
+                        s
+                      
+                    
+                  
+                
+                ,
+                
+                  
+                    Q
+                  
+                  
+                    ℓ
+                  
+                
+              
+              )
+            
+            ,
+            
+              H
+              
+                1
+              
+            
+            
+              (
+              
+                
+                  B
+                  
+                    
+                      k
+                      
+                        s
+                      
+                    
+                  
+                
+                ,
+                
+                  
+                    Q
+                  
+                  
+                    ℓ
+                  
+                
+              
+              )
+            
+          
+          )
+        
+      
+    
+    {\displaystyle {\text{Hom}}(A,B)\otimes _{\mathbb {Z} }\mathbb {Q} _{\ell }\to {\text{Hom}}_{G}\left(H_{1}\left(A_{k_{s}},\mathbb {Q} _{\ell }\right),H_{1}\left(B_{k_{s}},\mathbb {Q} _{\ell }\right)\right)}
+  
+
+is an isomorphism. In particular, an abelian variety 
+  
+    
+      
+        A
+      
+    
+    {\displaystyle A}
+  
+ is determined up to isogeny by the Galois representation on its Tate module 
+  
+    
+      
+        
+          H
+          
+            1
+          
+        
+        (
+        
+          A
+          
+            
+              k
+              
+                s
+              
+            
+          
+        
+        ,
+        
+          
+            Z
+          
+          
+            ℓ
+          
+        
+        )
+      
+    
+    {\displaystyle H_{1}(A_{k_{s}},\mathbb {Z} _{\ell })}
+  
+.
+The Tate conjecture also holds for K3 surfaces over finitely generated fields of characteristic not 2. (On a surface, the nontrivial part of the conjecture is about divisors.) In characteristic zero, the Tate conjecture for K3 surfaces was proved by André and Tankeev. For K3 surfaces over finite fields of characteristic not 2, the Tate conjecture was proved by Nygaard, Ogus, Charles, Madapusi Pera, and Maulik. 
+Totaro surveys known cases of the Tate conjecture.
+
+
+== Related conjectures ==
+Let 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ be a smooth projective variety over a finitely generated field 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+. The semisimplicity conjecture predicts that the representation of the Galois group 
+  
+    
+      
+        G
+        =
+        Gal
+        ⁡
+        (
+        
+          k
+          
+            s
+          
+        
+        
+          /
+        
+        k
+        )
+      
+    
+    {\displaystyle G=\operatorname {Gal} (k_{s}/k)}
+  
+ on the 
+  
+    
+      
+        ℓ
+      
+    
+    {\displaystyle \ell }
+  
+-adic cohomology of 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ is semisimple (that is, a direct sum of irreducible representations). For 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+ of characteristic 0, Moonen showed that the Tate conjecture (as stated above) implies the semisimplicity of
+
+  
+    
+      
+        
+          H
+          
+            I
+          
+        
+        
+          
+            (
+          
+        
+        X
+        
+          ×
+          
+            k
+          
+        
+        
+          
+            k
+            ¯
+          
+        
+        ,
+        
+          
+            Q
+          
+          
+            ℓ
+          
+        
+        (
+        n
+        )
+        
+          
+            )
+          
+        
+        .
+      
+    
+    {\displaystyle H^{I}{\big (}X\times _{k}{\overline {k}},\mathbb {Q} _{\ell }(n){\big )}.}
+  
+
+For 
+  
+    
+      
+        k
+      
+    
+    {\displaystyle k}
+  
+ finite of order 
+  
+    
+      
+        q
+      
+    
+    {\displaystyle q}
+  
+, Tate showed that the Tate conjecture plus the semisimplicity conjecture would imply the strong Tate conjecture, namely that the order of the pole of
+
+
+==============================================================================
+## cn-riemann   <- Riemann hypothesis
+==============================================================================
+
+In mathematics, the Riemann hypothesis is the conjecture that the Riemann zeta function has its zeros only at the negative even integers and complex numbers with real part ⁠1/2⁠. Many consider it to be the most important unsolved problem in pure mathematics. It is of great interest in number theory because it implies results about the distribution of prime numbers. It was proposed by Bernhard Riemann, after whom it is named. According to a 2026 survey, there is overwhelming numerical evidence for the hypothesis, but no proof is known.
+The Riemann hypothesis and some of its generalizations, along with Goldbach's conjecture and the twin prime conjecture, make up Hilbert's eighth problem in David Hilbert's list of twenty-three unsolved problems; it is also one of the Millennium Prize Problems of the Clay Mathematics Institute, which offers US$1 million for a solution to any of them. The name is also used for some closely related analogues, some of which have been proved, such as the Riemann hypothesis for curves over finite fields, which was proved by André Weil.
+The Riemann zeta function 
+  
+    
+      
+        ζ
+      
+    
+    {\displaystyle \zeta }
+  
+ is a function whose argument may be any complex number other than 1, and whose values are also complex. It has zeros at the negative even integers; that is, 
+  
+    
+      
+        ζ
+        (
+        s
+        )
+        =
+        0
+      
+    
+    {\displaystyle \zeta (s)=0}
+  
+ when 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ is one of 
+  
+    
+      
+        −
+        2
+        ,
+        −
+        4
+        ,
+        −
+        6
+        ,
+        …
+      
+    
+    {\displaystyle -2,-4,-6,\dots }
+  
+ These are called its trivial zeros. The zeta function is also zero for other values of 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+, which are called nontrivial zeros. The Riemann hypothesis is concerned with the locations of these nontrivial zeros, and states that:
+
+The real part of every nontrivial zero of the Riemann zeta function is 
+  
+    
+      
+        
+          
+            1
+            2
+          
+        
+      
+    
+    {\displaystyle {\frac {1}{2}}}
+  
+.
+Thus, the hypothesis states that all the nontrivial zeros lie on the critical line, consisting of the complex numbers 
+  
+    
+      
+        
+          
+            
+              1
+              2
+            
+          
+        
+        +
+        i
+        t
+      
+    
+    {\displaystyle {\tfrac {1}{2}}+it}
+  
+ where 
+  
+    
+      
+        t
+      
+    
+    {\displaystyle t}
+  
+ is a real number and 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+ is the imaginary unit.
+
+
+== Riemann zeta function ==
+The Riemann zeta function is defined for complex 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ with real part greater than 1 by the absolutely convergent infinite series
+
+  
+    
+      
+        ζ
+        (
+        s
+        )
+        =
+        
+          ∑
+          
+            n
+            =
+            1
+          
+          
+            ∞
+          
+        
+        
+          
+            1
+            
+              n
+              
+                s
+              
+            
+          
+        
+        =
+        
+          
+            1
+            
+              1
+              
+                s
+              
+            
+          
+        
+        +
+        
+          
+            1
+            
+              2
+              
+                s
+              
+            
+          
+        
+        +
+        
+          
+            1
+            
+              3
+              
+                s
+              
+            
+          
+        
+        +
+        ⋯
+      
+    
+    {\displaystyle \zeta (s)=\sum _{n=1}^{\infty }{\frac {1}{n^{s}}}={\frac {1}{1^{s}}}+{\frac {1}{2^{s}}}+{\frac {1}{3^{s}}}+\cdots }
+  
+
+Leonhard Euler considered this series in the 1730s for real values of 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+, in conjunction with his solution to the Basel problem. He also proved that it equals the Euler product
+
+  
+    
+      
+        ζ
+        (
+        s
+        )
+        =
+        
+          ∏
+          
+            p
+            
+               prime
+            
+          
+        
+        
+          
+            1
+            
+              1
+              −
+              
+                p
+                
+                  −
+                  s
+                
+              
+            
+          
+        
+        =
+        
+          
+            1
+            
+              1
+              −
+              
+                2
+                
+                  −
+                  s
+                
+              
+            
+          
+        
+        ⋅
+        
+          
+            1
+            
+              1
+              −
+              
+                3
+                
+                  −
+                  s
+                
+              
+            
+          
+        
+        ⋅
+        
+          
+            1
+            
+              1
+              −
+              
+                5
+                
+                  −
+                  s
+                
+              
+            
+          
+        
+        ⋅
+        
+          
+            1
+            
+              1
+              −
+              
+                7
+                
+                  −
+                  s
+                
+              
+            
+          
+        
+        ⋯
+      
+    
+    {\displaystyle \zeta (s)=\prod _{p{\text{ prime}}}{\frac {1}{1-p^{-s}}}={\frac {1}{1-2^{-s}}}\cdot {\frac {1}{1-3^{-s}}}\cdot {\frac {1}{1-5^{-s}}}\cdot {\frac {1}{1-7^{-s}}}\cdots }
+  
+
+where the infinite product extends over all prime numbers 
+  
+    
+      
+        p
+      
+    
+    {\displaystyle p}
+  
+.
+The Riemann hypothesis discusses zeros outside the region of convergence of this series and Euler product. To make sense of the hypothesis, it is necessary to analytically continue the function to obtain a form that is valid for all complex 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+. Because the zeta function is meromorphic, all choices of how to perform this analytic continuation will lead to the same result, by the identity theorem. A first step in this continuation observes that the series for the zeta function and the Dirichlet eta function satisfy the relation
+
+  
+    
+      
+        
+          (
+          
+            1
+            −
+            
+              
+                2
+                
+                  2
+                  
+                    s
+                  
+                
+              
+            
+          
+          )
+        
+        ζ
+        (
+        s
+        )
+        =
+        η
+        (
+        s
+        )
+        =
+        
+          ∑
+          
+            n
+            =
+            1
+          
+          
+            ∞
+          
+        
+        
+          
+            
+              (
+              −
+              1
+              
+                )
+                
+                  n
+                  +
+                  1
+                
+              
+            
+            
+              n
+              
+                s
+              
+            
+          
+        
+        =
+        
+          
+            1
+            
+              1
+              
+                s
+              
+            
+          
+        
+        −
+        
+          
+            1
+            
+              2
+              
+                s
+              
+            
+          
+        
+        +
+        
+          
+            1
+            
+              3
+              
+                s
+              
+            
+          
+        
+        −
+        ⋯
+        ,
+      
+    
+    {\displaystyle \left(1-{\frac {2}{2^{s}}}\right)\zeta (s)=\eta (s)=\sum _{n=1}^{\infty }{\frac {(-1)^{n+1}}{n^{s}}}={\frac {1}{1^{s}}}-{\frac {1}{2^{s}}}+{\frac {1}{3^{s}}}-\cdots ,}
+  
+
+within the region of convergence for both series. But the eta function series on the right converges not just when the real part of 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ is greater than one, but more generally whenever 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ has positive real part. Thus, the zeta function can be redefined as 
+  
+    
+      
+        η
+        (
+        s
+        )
+        
+          /
+        
+        (
+        1
+        −
+        2
+        
+          /
+        
+        
+          2
+          
+            s
+          
+        
+        )
+      
+    
+    {\displaystyle \eta (s)/(1-2/2^{s})}
+  
+, extending it from 
+  
+    
+      
+        Re
+        ⁡
+        (
+        s
+        )
+        >
+        1
+      
+    
+    {\displaystyle \operatorname {Re} (s)>1}
+  
+ to the larger domain 
+  
+    
+      
+        Re
+        ⁡
+        (
+        s
+        )
+        >
+        0
+      
+    
+    {\displaystyle \operatorname {Re} (s)>0}
+  
+, except for the points where 
+  
+    
+      
+        1
+        −
+        2
+        
+          /
+        
+        
+          2
+          
+            s
+          
+        
+      
+    
+    {\displaystyle 1-2/2^{s}}
+  
+ is zero. These are the points 
+  
+    
+      
+        s
+        =
+        1
+        +
+        2
+        π
+        i
+        n
+        
+          /
+        
+        log
+        ⁡
+        2
+      
+    
+    {\displaystyle s=1+2\pi in/\log 2}
+  
+, where 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+ can be any nonzero integer; the zeta function can be extended to these values too by taking limits (see the article on the Dirichlet eta function), giving a finite value for all values of 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ with positive real part except the simple pole at 
+  
+    
+      
+        s
+        =
+        1
+      
+    
+    {\displaystyle s=1}
+  
+.
+In the strip 
+  
+    
+      
+        0
+        <
+        Re
+        ⁡
+        (
+        s
+        )
+        <
+        1
+      
+    
+    {\displaystyle 0<\operatorname {Re} (s)<1}
+  
+ this extension of the zeta function satisfies the functional equation
+
+  
+    
+      
+        ζ
+        (
+        s
+        )
+        =
+        
+          2
+          
+            s
+          
+        
+        
+          π
+          
+            s
+            −
+            1
+          
+        
+         
+        sin
+        ⁡
+        
+          (
+          
+            
+              
+                π
+                s
+              
+              2
+            
+          
+          )
+        
+         
+        Γ
+        (
+        1
+        −
+        s
+        )
+         
+        ζ
+        (
+        1
+        −
+        s
+        )
+        .
+      
+    
+    {\displaystyle \zeta (s)=2^{s}\pi ^{s-1}\ \sin \left({\frac {\pi s}{2}}\right)\ \Gamma (1-s)\ \zeta (1-s).}
+  
+
+One may then define 
+  
+    
+      
+        ζ
+        (
+        s
+        )
+      
+    
+    {\displaystyle \zeta (s)}
+  
+ for all remaining nonzero complex numbers 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ (
+  
+    
+      
+        Re
+        ⁡
+        (
+        s
+        )
+        ≤
+        0
+      
+    
+    {\displaystyle \operatorname {Re} (s)\leq 0}
+  
+ and 
+  
+    
+      
+        s
+        ≠
+        0
+      
+    
+    {\displaystyle s\neq 0}
+  
+) by applying this equation outside the strip, and letting 
+  
+    
+      
+        ζ
+        (
+        s
+        )
+      
+    
+    {\displaystyle \zeta (s)}
+  
+ equal the right side of the equation whenever 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ has non-positive real part (and 
+  
+    
+      
+        s
+        ≠
+        0
+      
+    
+    {\displaystyle s\neq 0}
+  
+).
+If 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ is a negative even integer, then 
+  
+    
+      
+        ζ
+        (
+        s
+        )
+        =
+        0
+      
+    
+    {\displaystyle \zeta (s)=0}
+  
+, because the factor 

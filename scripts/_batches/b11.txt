@@ -1,0 +1,135 @@
+1485|g-multiplicative-genus>hodge-theory|0.76|related|χ_y-亏格把 Hodge 数打包成多项式
+1486|g-hom-scheme>g-quot-scheme|0.88|sameFamily|两者都是可表函子造模空间的范例
+1487|g-hom-scheme>hilbert-scheme|0.86|implies|Hom 概形的存在性由 Hilbert 概形推出
+1488|g-hom-scheme>representable-functor|0.9|related|Hom 概形是可表函子理论的样板
+1489|g-hom-scheme>c-deformation-theory|0.78|related|映射的形变由 H⁰(X, f*T_Y) 控制
+1490|g-hom-scheme>stack|0.72|equivalent|粘掉自同构之后就得到映射栈
+1491|g-quot-scheme>hilbert-scheme|0.94|generalizes|Hilbert 概形是 Quot 的特例
+1492|g-quot-scheme>representable-functor|0.88|related|Quot 函子的可表性是存在性定理的内容
+1493|g-quot-scheme>c-hilbert-scheme-points|0.84|related|点 Hilbert 概形是 Quot 的具体情形
+1494|g-quot-scheme>b-grothendieck-quot|0.92|provenance|主库 Grothendieck Quot 条目
+1495|g-quot-scheme>c-stack-quotient|0.74|generalizes|商栈是 Quot 构造在群作用下的版本
+1496|g-blowup-along-ideal>blowup|0.94|provenance|主库 blowup 条目讲沿子簇，这里讲沿理想
+1497|g-blowup-along-ideal>b-blowup-local|0.86|related|局部 blowup 的显式描述
+1498|g-blowup-along-ideal>b-blowup-surface|0.84|generalizes|曲面上的 blowup 是最经典的情形
+1499|g-blowup-along-ideal>f-strong-resolution|0.82|depends|消解证明需要沿允许的理想爆开
+1500|g-blowup-along-ideal>rees-algebra|0.78|related|Rees 代数是 blowup 的代数核心
+1501|g-normalization-technique>normalization|0.95|provenance|主库正规化条目
+1502|g-normalization-technique>f-dlt-model|0.8|depends|dlt 修正定理需要正规化与取既约结构
+1503|g-normalization-technique>g-fibration-construction|0.84|computes|纤维化的构造流水线以正规化收尾
+1504|g-normalization-technique>a-integral-closure|0.86|related|整闭包是正规化的代数内容
+1505|g-normalization-technique>a-stein-factorization|0.7|related|正规化与 Stein 分解配合使用
+1506|g-stein-factorization-technique>a-stein-factorization|0.96|provenance|主库 Stein 分解条目
+1507|g-stein-factorization-technique>h-stein-factorization|0.94|related|高维批的 Stein 分解条目
+1508|g-stein-factorization-technique>g-fibration-construction|0.88|computes|纤维化的构造以 Stein 分解为一步
+1509|g-stein-factorization-technique>proper-morphism|0.76|related|分解定理要求态射是真态射
+1510|g-separated-proper-diagonal>separated-morphism|0.95|provenance|主库分离态射条目
+1511|g-separated-proper-diagonal>proper-morphism|0.93|provenance|主库真态射条目
+1512|g-separated-proper-diagonal>valuative-criterion|0.9|related|赋值判别法是验证真性的常用手段
+1513|g-separated-proper-diagonal>h-separated-diagonal|0.92|related|高维批的对角态射条目
+1514|g-separated-proper-diagonal>fibred-product|0.78|defines|对角态射的定义用纤维积
+1515|g-relative-ample>a-ample|0.94|provenance|主库丰饶性条目讲绝对情形
+1516|g-relative-ample>nakai-moishezon|0.86|defines|Nakai–Moishezon 的相对判据
+1517|g-relative-ample>b-nakai-surface|0.82|defines|曲面上的丰饶性判据
+1518|g-relative-ample>ample-line-bundle|0.88|related|相对丰饶与绝对丰饶的关系
+1519|g-relative-ample>g-fibration-construction|0.78|computes|相对射影性使纤维化的构造可行
+1520|g-birational-morphism-decomposition>f-weak-factorization|0.95|related|这就是弱分解定理的原始形式
+1521|g-birational-morphism-decomposition>c-weak-factorization|0.92|provenance|主库弱分解条目
+1522|g-birational-morphism-decomposition>g-rational-map-resolution|0.84|related|把一个有理映射化开是分解的第一步
+1523|g-birational-morphism-decomposition>resolution|0.82|depends|分解的每一步都需要消解
+1524|g-fibration-construction>f-iitaka-fibration|0.9|computes|Iitaka 纤维化是最重要的纤维化构造
+1525|g-fibration-construction>iitaka-fibration|0.74|computes|与主库纤维化条目的构造部分对应
+1526|g-fibration-construction>h-kodaira-dimension-compute|0.72|computes|Kodaira 维数的计算依赖纤维化的构造
+1527|g-rational-map-resolution>resolution|0.9|implies|消解定理的直接推论
+1528|g-rational-map-resolution>g-blowup-along-ideal|0.86|related|消解有理映射用的就是沿理想 blowup
+1529|g-rational-map-resolution>rational-map|0.94|provenance|主库有理映射条目
+1530|g-rational-map-resolution>c-hironaka|0.88|property|Hironaka 消解保证可以取光滑的 X′
+1531|g-rational-map-resolution>c-alterations|0.7|related|正特征里只能取 alteration 代替
+1532|h-enriques-surface>b-enriques-kodaira|0.94|related|Enriques–Kodaira 分类中的关键一类曲面
+1533|h-enriques-surface>k3-surface|0.88|computes|由 K3 曲面的自由对合取商构造得到
+1534|h-enriques-surface>h-kodaira-dimension-compute|0.74|related|典范类的挠性使 Kodaira 维数降为零
+1535|h-enriques-surface>h-aut-minimal-surface|0.68|equivalent|极小曲面的自同构群在此为有限群
+1536|h-kodaira-dimension-compute>kodaira-dimension|0.93|defines|给出这一双有理不变量的可计算定义
+1537|h-kodaira-dimension-compute>iitaka-fibration|0.8|equivalent|Kodaira 维数正是 Iitaka 底空间的维数
+1538|h-kodaira-dimension-compute>h-kappa-negative|0.78|defines|计算判据在截面对全为零时的取值约定
+1539|h-kappa-negative>ruled-surface|0.88|related|直纹曲面是负无穷维数的最典型情形
+1540|h-kappa-negative>cone-theorem|0.84|depends|定理证明依赖锥定理寻找负性极端射线
+1541|h-kappa-negative>h-terminal-flop|0.8|defines|非单直纹性由极小模型纲领给出证明
+1542|h-cubic-27-lines>del-pezzo|0.87|related|三次曲面是次数三的 del Pezzo 曲面
+1543|h-cubic-27-lines>blowup|0.83|equivalent|等价于平面沿六个一般位置点作爆破
+1544|h-cubic-27-lines>h-enriques-surface|0.6|related|同为经典曲面几何中的著名构形
+1545|h-aut-minimal-surface>mmp|0.76|equivalent|极小模型下自同构保持典范类不变
+1546|h-aut-minimal-surface>c-rational-singularities|0.6|equivalent|奇点类型直接影响自同构群的结构
+1547|h-aut-minimal-surface>h-birational-aut-representation|0.72|equivalent|自同构群是双有理自同构群的特例
+1548|h-birational-aut-representation>neron-severi|0.85|related|表示作用在 Néron–Severi 群的除子类上
+1549|h-birational-aut-representation>k3-surface|0.8|related|K3 曲面上像落在算术正交群之中
+1550|h-birational-aut-representation>h-terminal-flop|0.7|related|双有理变换由极小模型间的 flop 生成
+1551|h-terminal-flop>flop|0.92|related|flop 是极小模型之间的标准双有理变换
+1552|h-terminal-flop>c-discrepancy|0.83|defines|终端性由 discrepancies 的正性来定义
+1553|h-terminal-flop>c-termination|0.8|related|三维情形终止性已被无条件证明
+1554|h-terminal-flop>h-noether-formula-general|0.66|related|极小模型上的数值不变量需重新核算
+1555|h-terminal-flop>h-zariski-main|0.64|depends|收缩态射的结构分析依赖主定理
+1556|h-noether-formula-general>b-noether-formula|0.9|generalizes|经典 Noether 公式是它的推广起点
+1557|h-noether-formula-general>b-riemann-roch-surface|0.84|related|实为曲面 Riemann–Roch 定理的展开形式
+1558|h-noether-formula-general>h-kodaira-dimension-compute|0.68|defines|数值不变量用于判定典范类的增长阶
+1559|h-noether-formula-general>h-formal-completion|0.6|computes|奇点的局部贡献可由形式完备化计算
+1560|h-formal-completion>formal-scheme|0.93|equivalent|形式概形正是该构造的直接产物
+1561|h-formal-completion>formal-functions-theorem|0.88|related|形式函数定理在此框架下才有意义
+1562|h-formal-completion>h-flat-descent|0.72|related|形式数据的粘合本质上是下降问题
+1563|h-formal-completion>h-finite-type-vs-presentation|0.66|depends|代数化定理要求有限呈示这一前提
+1564|h-nagata-compactification>nagata-compactification|0.94|provenance|Nagata 定理的既有条目与证明思路
+1565|h-nagata-compactification>proper-morphism|0.86|equivalent|真性正是紧化带来的核心收益
+1566|h-nagata-compactification>h-separated-diagonal|0.74|depends|紧化要求原态射分离作为前提条件
+1567|h-nagata-compactification>h-zariski-main|0.68|related|紧化的现代证明使用主定理类工具
+1568|h-chevalley-constructible>b-semicontinuity|0.82|implies|由可构造性进一步推出上半连续性
+1569|h-chevalley-constructible>b-flattening|0.75|computes|平坦化是可构造性论证的重要工具
+1570|h-chevalley-constructible>h-constructible-sheaf|0.8|computes|集合层面的可构造性提升到层层面
+1571|h-chevalley-constructible>h-stein-factorization|0.62|related|纤维的连通性可由像的结构读出
+1572|h-constructible-sheaf>etale-cohomology|0.82|related|平展上同调中的基本对象类之一
+1573|h-constructible-sheaf>c-perverse|0.78|computes|perverse 层建立在可构造层的基础之上
+1574|h-constructible-sheaf>h-stein-factorization|0.64|computes|推前层的可构造性与 Stein 分解有关
+1575|h-stein-factorization>a-stein-factorization|0.9|analogy|该分解在既有批次中的对应条目
+1576|h-stein-factorization>a-pushforward-pullback|0.7|computes|由推前结构层构造出中间概形
+1577|h-stein-factorization>h-zariski-main|0.76|related|分解定理是主定理证明的核心步骤
+1578|h-zariski-main>c-zariski-main|0.93|related|Zariski 主定理的既有详细条目
+1579|h-zariski-main>normalization|0.8|implies|正规化的有限性由主定理直接推出
+1580|h-zariski-main>h-separated-diagonal|0.72|related|主定理要求态射分离且拟有限
+1581|h-zariski-main>h-formal-completion|0.6|related|形式函数定理是主定理的形式版本
+1582|h-separated-diagonal>separated-morphism|0.94|defines|分离态射的基本定义与判别方法
+1583|h-separated-diagonal>fibred-product|0.76|related|对角态射的靶恰为纤维积
+1584|h-separated-diagonal>h-flat-descent|0.68|property|分离性保证下降数据的唯一性
+1585|h-flat-descent>descent|0.93|related|下降理论的总览与一般框架
+1586|h-flat-descent>a-faithfully-flat|0.88|related|忠实平坦是下降有效性的关键条件
+1587|h-flat-descent>grothendieck-topology|0.8|related|下降理论直接催生了 Grothendieck 拓扑
+1588|h-flat-descent>h-finite-type-vs-presentation|0.7|related|下降有效性与有限性假设密切相关
+1589|h-flat-descent>h-derived-stack|0.64|related|下降理论最终发展为叠的语言
+1590|h-finite-type-vs-presentation>noetherian|0.72|equivalent|在诺特基上这两种有限性等价
+1591|h-finite-type-vs-presentation>a-formal-smooth|0.68|depends|形式光滑性需要有限呈示作前提
+1592|h-finite-type-vs-presentation>h-chevalley-constructible|0.64|computes|可构造性论证需要有限呈示条件
+1593|h-spectral-ag-motivation>derived-algebraic-geometry|0.9|related|谱代数几何是导出几何的自然延伸
+1594|h-spectral-ag-motivation>c-derived-scheme|0.84|related|导出概形是其中的经典层面对象
+1595|h-spectral-ag-motivation>h-einfinity-derived-rings|0.88|related|谱概形以 E∞ 环作为结构层
+1596|h-spectral-ag-motivation>h-derived-stack|0.66|computes|谱方法可用于构造导出叠的模型
+1597|h-einfinity-derived-rings>derived-category|0.68|related|同伦群给出分次代数的结构信息
+1598|h-einfinity-derived-rings>c-perfect-complex|0.7|related|完美复形提供所需的有限性条件
+1599|h-einfinity-derived-rings>h-condensed-motivation|0.72|related|两种基底方案目标相近而手段不同
+1600|h-derived-analytic-geometry>c-berkovich|0.78|related|解析侧的底层空间理论来源之一
+1601|h-derived-analytic-geometry>c-kodaira-spencer|0.66|related|复结构形变可由导出方法解释
+1602|h-derived-analytic-geometry>h-condensed-motivation|0.74|related|凝聚态方法为解析侧提供新基底
+1603|h-condensed-motivation>c-condensed|0.94|related|凝聚态数学的既有核心条目
+1604|h-condensed-motivation>c-condensed-analytic|0.86|related|凝聚态解析几何是其主要应用方向
+1605|h-condensed-motivation>h-perfectoid-tilting|0.78|related|凝聚态语言使 tilting 表述更自然
+1606|h-condensed-motivation>h-derived-stack|0.6|defines|凝聚态层可用来定义导出几何对象
+1607|h-perfectoid-tilting>c-perfectoid|0.95|equivalent|完美胚空间正是 tilting 的载体对象
+1608|h-perfectoid-tilting>c-padic-hodge|0.9|related|tilting 技术直接推动了 p 进 Hodge 理论突破
+1609|h-perfectoid-tilting>h-derived-analytic-geometry|0.62|generalizes|完美胚空间是导出解析几何的特例
+1610|h-derived-stack>c-virtual-fundamental|0.88|defines|虚拟基本类在导出叠上得到定义
+1611|h-derived-stack>c-obstruction|0.76|related|切复形编码了形变障碍的信息
+1612|h-derived-stack>h-dg-enhancement|0.8|depends|导出叠上的层需要对 dg 增强
+1613|h-derived-stack>h-model-infty-categories|0.7|defines|导出叠的定义依赖 ∞-范畴语言
+1614|h-dg-enhancement>c-orlov|0.8|related|Orlov 定理在 dg 层面获得更精确表述
+1615|h-dg-enhancement>c-fourier-mukai|0.84|computes|Fourier–Mukai 函子在 dg 范畴中获得实现
+1616|h-dg-enhancement>h-model-infty-categories|0.76|equivalent|两种增强语言在适当条件下彼此等价
+1617|h-model-infty-categories>derived-category|0.86|equivalent|导出范畴由弱等价局部化得到
+1618|h-model-infty-categories>derived-functor|0.84|computes|导出函子在模型范畴中具体构造
+1619|h-model-infty-categories>h-spectral-ag-motivation|0.68|computes|模型范畴为谱几何提供计算框架

@@ -1,0 +1,135 @@
+ 675|b-adjunction-formula>genus|0.75|defines|算术亏格由公式给出
+ 676|b-adjunction-formula>b-adjunction-general|0.8|related|是伴随公式的曲面情形
+ 677|b-noether-formula>chern-class|0.8|related|由 Chern 类的积分得到
+ 678|b-noether-formula>euler-characteristic|0.78|related|连接欧拉示性数
+ 679|b-noether-formula>grothendieck-riemann-roch|0.82|related|是 GRR 在曲面的形态
+ 680|b-noether-formula>surface-classification|0.7|related|分类中的关键约束
+ 681|b-noether-formula>b-hirzebruch-rr|0.78|equivalent|曲面情形即 Noether 公式
+ 682|b-hodge-index>intersection-number|0.88|defines|刻画相交型的符号
+ 683|b-hodge-index>surface-classification|0.7|related|曲面理论的基本定理
+ 684|b-nakai-surface>nakai-moishezon|0.95|defines|即 Nakai–Moishezon 判据
+ 685|b-nakai-surface>b-hodge-index|0.8|depends|依赖 Hodge 指标定理
+ 686|b-nakai-surface>intersection-number|0.75|defines|以自交数为判据
+ 687|b-nakai-surface>a-ample|0.78|defines|刻画丰沛性
+ 688|b-hirzebruch-rr>grothendieck-riemann-roch|0.92|related|是 GRR 的经典形态
+ 689|b-hirzebruch-rr>chern-character|0.88|related|以 Chern 特征为被积项
+ 690|b-hirzebruch-rr>todd-class|0.88|related|以 Todd 类为权重
+ 691|b-hirzebruch-rr>b-riemann-roch-curve|0.8|equivalent|曲线情形即经典 RR
+ 692|b-hirzebruch-rr>b-riemann-roch-surface|0.82|related|曲面情形由它展开
+ 693|b-chern-class-axioms>chern-class|0.95|defines|给出 Chern 类的公理刻画
+ 694|b-chern-class-axioms>invertible-sheaf|0.7|equivalent|线丛情形 c₁ 即除子类
+ 695|b-chern-class-axioms>k-theory|0.72|related|Whitney 公式使 Chern 类成为乘法特征类
+ 696|b-splitting-principle>chern-class|0.85|computes|计算 Chern 类的通用技巧
+ 697|b-splitting-principle>b-chern-class-axioms|0.82|related|用于证明 Whitney 公式
+ 698|b-splitting-principle>b-hirzebruch-rr|0.7|related|GRR 证明中的关键技术
+ 699|b-splitting-principle>b-todd-genus|0.68|computes|使 Todd 类易于计算
+ 700|b-stable-bundle>stable-sheaf|0.95|related|即稳定层的向量丛情形
+ 701|b-stable-bundle>moduli-space|0.85|depends|稳定性是模空间存在的前提
+ 702|b-stable-bundle>git|0.72|related|稳定性与 GIT 稳定相关
+ 703|b-birkhoff-grothendieck>invertible-sheaf|0.78|related|分解为线丛之和
+ 704|b-birkhoff-grothendieck>b-stable-bundle|0.7|related|ℙ¹ 上分类退化为离散
+ 705|b-birkhoff-grothendieck>b-narasimhan|0.65|related|是 HN 滤链的极端情形
+ 706|b-narasimhan>b-stable-bundle|0.85|related|由稳定块构成的滤链
+ 707|b-narasimhan>stable-sheaf|0.75|depends|依赖稳定性概念
+ 708|b-narasimhan>moduli-space|0.65|computes|构造模空间的路线图
+ 709|b-grothendieck-quot>hilbert-scheme|0.9|generalizes|Hilbert 概形是 Quot 的特例
+ 710|b-grothendieck-quot>moduli-space|0.85|computes|构造模空间的技术支柱
+ 711|b-grothendieck-quot>git|0.78|related|配合 GIT 取出模空间
+ 712|b-grothendieck-quot>b-hilbert-polynomial|0.8|related|按 Hilbert 多项式分解
+ 713|b-hilbert-polynomial>hilbert-scheme|0.88|related|Hilbert 概形按它分片
+ 714|b-hilbert-polynomial>euler-characteristic|0.75|defines|定义为上同调的交错和
+ 715|b-hilbert-polynomial>coherent-sheaf|0.7|defines|针对凝聚层定义
+ 716|b-flattening>flat-morphism|0.85|related|把层化为平坦
+ 717|b-flattening>moduli-space|0.7|computes|构造平坦族的技术
+ 718|b-flattening>b-hilbert-polynomial|0.65|related|与 Hilbert 多项式分层相关
+ 719|b-coherent-duality>serre-duality|0.9|related|Serre 对偶的层化形式
+ 720|b-coherent-duality>a-dualizing-complex|0.82|related|对偶化复形的应用
+ 721|b-coherent-duality>sheaf-cohomology|0.75|related|用上同调表述
+ 722|b-todd-genus>todd-class|0.95|related|即 Todd 类的积分
+ 723|b-todd-genus>b-hirzebruch-rr|0.82|related|出现在 RR 的右侧
+ 724|b-todd-genus>chern-character|0.7|related|与 Chern 特征配对
+ 725|b-gysin>intersection-number|0.8|related|推前给出相交数
+ 726|b-gysin>chow-ring|0.72|related|Chow 群上的推前
+ 727|b-gysin>b-coherent-duality|0.6|related|与其他对偶理论并列
+ 728|b-localization>gromov-witten|0.85|computes|枚举几何的标准计算工具
+ 729|b-localization>chern-class|0.75|related|以等变 Euler 类为分母
+ 730|b-localization>hilbert-scheme|0.68|related|Hilbert 概形上的积分
+ 731|b-riemann-roch-surface>riemann-roch|0.88|related|曲面版的 Riemann–Roch
+ 732|b-riemann-roch-surface>intersection-number|0.85|related|公式完全由相交数表达
+ 733|b-riemann-roch-surface>surface-classification|0.72|computes|分类中的计算主力
+ 734|b-riemann-roch-surface>b-adjunction-formula|0.7|related|常与伴随公式配合使用
+ 735|b-noether-inequality>surface-classification|0.82|related|界定一般型曲面的区域
+ 736|b-noether-inequality>b-bogomolov|0.75|related|与 BMY 不等式并列的约束
+ 737|b-noether-inequality>kodaira-dimension|0.68|equivalent|一般型即 κ = 2
+ 738|b-bogomolov>surface-classification|0.78|related|给出 Chern 数的强约束
+ 739|b-bogomolov>chern-class|0.75|related|不等式以 Chern 数表述
+ 740|b-bogomolov>k3-surface|0.72|related|K3 上取等号
+ 741|b-k3-properties>k3-surface|0.95|property|即 K3 曲面的基本性质
+ 742|b-k3-properties>b-enriques-kodaira|0.78|equivalent|属于 κ = 0 类
+ 743|b-k3-properties>b-bogomolov|0.7|property|满足 BMY 等号
+ 744|b-k3-properties>mirror-symmetry|0.65|related|镜像对称中的核心对象
+ 745|b-abelian-polarization>abelian-variety|0.92|related|Abel 簇的极化
+ 746|b-abelian-polarization>jacobian|0.8|related|Jacobian 是主极化 Abel 簇
+ 747|b-abelian-polarization>a-ample|0.72|defines|极化由丰沛线丛给出
+ 748|b-abelian-polarization>moduli-space|0.68|related|给出 Siegel 模空间
+ 749|b-blowup-local>blowup|0.92|related|爆破的局部模型
+ 750|b-blowup-local>resolution|0.8|related|消解奇点的基本操作
+ 751|b-blowup-local>rational-map|0.72|related|把有理映射化为态射
+ 752|b-normal-cone>intersection-number|0.82|related|法锥控制相交重数
+ 753|b-normal-cone>chern-class|0.72|related|法丛的 Chern 类进入相交论
+ 754|b-todd-euler>chern-class|0.85|equivalent|最高 Chern 类即 Euler 类
+ 755|b-todd-euler>b-noether-formula|0.72|related|解释其中的 c₂ 项
+ 756|b-todd-euler>euler-characteristic|0.75|related|积分为拓扑欧拉数
+ 757|b-picard-group>invertible-sheaf|0.9|equivalent|Picard 群即可逆层的同构类
+ 758|b-picard-group>divisor|0.82|analogy|除子类与线丛对应
+ 759|b-picard-group>jacobian|0.78|equivalent|Pic⁰ 即 Jacobian
+ 760|b-picard-group>intersection-number|0.75|related|NS 群带相交型
+ 761|b-mori-cone>cone-theorem|0.95|related|即锥定理
+ 762|b-mori-cone>mmp|0.9|related|MMP 的引擎
+ 763|b-mori-cone>a-ample|0.72|analogy|极射线对应收缩态射
+ 764|b-mori-cone>intersection-number|0.7|defines|曲线锥由相交数定义
+ 765|b-kodaira-vanishing>serre-vanishing|0.85|related|同为重要的消没定理
+ 766|b-kodaira-vanishing>canonical-sheaf|0.82|related|以典范层为核心
+ 767|b-kodaira-vanishing>a-ample|0.78|related|要求丰沛性
+ 768|b-kodaira-vanishing>mmp|0.68|related|MMP 中的基本工具
+ 769|b-semicontinuity>cohomology-base-change|0.82|equivalent|基变换与半连续性互为表里
+ 770|b-semicontinuity>moduli-space|0.7|related|模空间分层的基础
+ 771|b-semicontinuity>b-grauert|0.78|implies|Grauert 定理的推论
+ 772|b-grauert>serre-finiteness|0.78|analogy|有限性定理的对应物
+ 773|b-grauert>cohomology-base-change|0.75|property|保证基变换成立
+ 774|b-adjunction-general>adjunction|0.92|related|伴随公式的一般形式
+ 775|b-adjunction-general>canonical-sheaf|0.85|related|典范层的相对版本
+ 776|b-adjunction-general>b-normal-cone|0.7|related|涉及法丛
+ 777|b-hodge-diamond>hodge-theory|0.92|related|Hodge 理论的基本对象
+ 778|b-hodge-diamond>hodge-conjecture|0.75|related|Hodge 猜想的表述框架
+ 779|b-hodge-diamond>sheaf-cohomology|0.72|defines|用层上同调定义
+ 780|b-hodge-moduli>moduli-space|0.75|related|模空间的紧化
+ 781|b-hodge-moduli>hodge-theory|0.82|related|用变化的 Hodge 结构描述
+ 782|b-hodge-moduli>stable-sheaf|0.55|related|稳定曲线填充边界
+ 783|b-grassmannian>gromov-witten|0.78|related|GW 理论的经典起点
+ 784|b-grassmannian>chow-ring|0.72|related|Schubert 类生成上同调环
+ 785|b-grassmannian>chern-class|0.68|related|tautological 丛的 Chern 类
+ 786|b-chern-weil>chern-class|0.9|computes|用曲率实现 Chern 类
+ 787|b-chern-weil>b-chern-class-axioms|0.8|computes|验证并实现公理
+ 788|b-chern-weil>b-stable-bundle|0.72|analogy|Kobayashi–Hitchin 对应
+ 789|b-chern-weil>mirror-symmetry|0.6|related|与镜像对称中的曲率条件相关
+ 790|b-linear-system-dim>linear-system|0.92|related|线性系统的维数
+ 791|b-linear-system-dim>b-riemann-roch-curve|0.8|defines|由 RR 给出维数
+ 792|b-linear-system-dim>projective-cohomology|0.65|related|射影空间的技巧
+ 793|b-projective-bundle>invertible-sheaf|0.72|equivalent|线丛的射影丛即原空间
+ 794|b-projective-bundle>chern-class|0.82|computes|计算 Chern 类的通用框架
+ 795|b-projective-bundle>b-splitting-principle|0.68|related|与分裂原理配合
+ 796|c-zariski-main>birational|0.9|related|双有理映射的基本定理
+ 797|c-zariski-main>rational-map|0.85|defines|刻画有理映射的不确定集
+ 798|c-zariski-main>flip|0.7|depends|解释了高维为何需要翻转
+ 799|c-termination>mmp|0.9|related|MMP 终止性的核心问题
+ 800|c-termination>flip|0.88|related|翻转序列的有限性
+ 801|c-termination>c-discrepancy|0.78|related|用差异的上升证明终止
+ 802|c-abundance-conjecture>abundance|0.95|related|即丰沛性猜想
+ 803|c-abundance-conjecture>mmp|0.85|related|MMP 的最后一块拼图
+ 804|c-abundance-conjecture>kodaira-dimension|0.8|related|与 Kodaira 维数密切相关
+ 805|c-abundance-conjecture>c-good-moduli|0.6|related|决定分类的完成度
+ 806|c-singularities-mmp>mmp|0.88|related|MMP 允许操作的奇点范围
+ 807|c-singularities-mmp>c-discrepancy|0.92|related|用差异对奇点分级
+ 808|c-singularities-mmp>singularity|0.8|related|奇点分类的精细版本
+ 809|c-singularities-mmp>c-lc-threshold|0.75|related|阈值衡量奇点严重程度

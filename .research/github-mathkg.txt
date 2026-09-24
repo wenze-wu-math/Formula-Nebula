@@ -1,0 +1,676 @@
+
+================================================================================
+▶ Jia-Yee/math-knowledge-graph
+================================================================================
+★ 22   Python   2026-05-25   MIT
+  数学知识图谱 是由龙虾QClaw打造的覆盖从小学到大学、研究级别的结构化数学知识体系项目。该项目用于建模数学概念、定理、公式、分支之间的依赖关系，支持个性化学习路径规划和智能辅导。
+
+── README（4381 字符）──
+
+# 📚 Math Knowledge Graph - 数学知识图谱 🦞
+
+![Math Knowledge Graph](images/math-graph.png)
+
+> 由 **龙虾 QClaw** 智能生成 ✨
+---
+
+## 📖 项目介绍
+
+**数学知识图谱** 是一个全面覆盖从小学到大学、研究级别的结构化数学知识体系项目。该项目用于建模数学概念、定理、公式、分支之间的依赖关系，支持个性化学习路径规划和智能辅导。
+
+### 🎯 项目目的与规划
+
+本项目的核心目标是打造一个**智能数学学习伙伴**，帮助学生更高效地学习和掌握数学知识：
+
+1. **每日知识同步** 📚  
+   每天从 QQ 同步学生学习的知识内容，自动构建个人知识图谱
+
+2. **智能对话辅导** 💬  
+   与学生对话，聊聊每天学到的知识点，加深理解和记忆
+
+3. **个性化指导** 🎓  
+   - 如果学生想增强某方面的知识，可以自动生成类似的练习题目
+   - 根据同步的学习进度，智能推荐下一步应该学习的内容
+
+4. **学习路径规划** 🛤️  
+   基于知识点的依赖关系，为每个学生规划最优学习路径
+
+---
+
+> **更新时间**: 2026-04-07  
+---
+
+## 📊 图谱概览
+
+| 指标 | 数量 |
+|------|------|
+| **总节点** | 25,355 |
+| **总边数** | 105,736 |
+| **知识分支** | 50+ |
+| **前沿问题** | 1,092 |
+| **数学家** | 77 |
+
+---
+
+## 🗂️ 数据结构
+
+### 节点类型分布
+| 类型 | 数量 | 说明 |
+|------|------|------|
+| concept | 21,421 | 核心概念知识点 |
+| problem | 1,022 | 数学问题 |
+| conjecture | 70 | 数学猜想 |
+| mathematician | 77 | 数学家 |
+| chapter | 426 | 章节 |
+| section | 627 | 小节 |
+| theorem | 119 | 定理 |
+| formula | 82 | 公式 |
+
+### 边类型分布
+| 类型 | 数量 | 说明 |
+|------|------|------|
+| relates_to | 20,921 | 相关联 |
+| prerequisite | 15,790 | 前置知识 |
+| follows | 14,295 | 后续知识 |
+| belongs_to | 5,296 | 属于 |
+| contains | 1,513 | 包含 |
+| contributes_to | 554 | 贡献关联 |
+| depends_on | 289 | 依赖 |
+| influences | 85 | 师承影响 |
+| related_to | 42 | 关联 |
+| proved_by | 38 | 证明关联 |
+
+---
+
+## 🚀 功能模块
+
+### 1. 知识图谱可视化
+- 节点关系可视化
+- 分支筛选
+- 难度排序
+- 前置/后续知识查看
+
+### 2. 🚀 前沿问题 (1,092个)
+- **猜想**: 70个（28已证明 🔶23部分证明 ❓16未解决）
+- **问题**: 1,022个
+- 状态筛选：全部 / 猜想 / 未解 / 已解决
+- 详情查看与图谱关联
+
+### 3. 👨‍🔬 数学家 (77位)
+- 🏛️ 古代: 2人（欧几里得、阿基米德）
+- 📜 近代: 35人（费马、牛顿、欧拉到黎曼）
+- 🌟 现代: 24人（希尔伯特、诺特到格罗滕迪克）
+- 师承关系可视化
+- 贡献领域关联
+
+### 4. 📝 同步学习
+- 知识点掌握状态
+- 进度追踪
+- 复习提醒
+
+### 5. 📊 统计面板
+- 年级分布
+- 分支覆盖率
+- 掌握进度
+
+---
+
+## 📈 分支节点 Top15
+
+| 排名 | 分支 | 节点数 |
+|------|------|--------|
+| 1 | 小学数学 | 2,215 |
+| 2 | 代数 | 1,701 |
+| 3 | 信息论深入 | 1,585 |
+| 4 | 编码理论深入 | 1,179 |
+| 5 | 数学问题 | 1,091 |
+| 6 | 数理统计 | 1,051 |
+| 7 | 高等数学 | 1,012 |
+| 8 | 几何 | 779 |
+| 9 | 微分几何 | 736 |
+| 10 | 模型论 | 735 |
+
+---
+
+## 🔗 关联增强
+
+### 数学家与问题
+- **proved_by**: 38条（怀尔斯→费马大定理、庞加莱→庞加莱猜想等）
+- **contributes_to**: 554条（数学家→知识分支）
+
+### 师承关系
+- **influences**: 85条
+- 示例：欧几里得→高斯、牛顿→欧拉、伽罗瓦→诺特
+
+---
+
+## 🛠️ 技术栈
+
+- **前端**: 原生 JavaScript + D3.js 可视化
+- **后端**: Python FastAPI
+- **数据**: JSON 图谱文件
+- **端口**: 8088
+
+---
+
+## 🚦 启动服务
+
+### 方式一 导入 QClaw（推荐）🦞
+
+将知识图谱导入到 **龙虾 QClaw** 中，通过自然语言对话来进行学习：
+
+1. **导入知识图谱**  
+   下载项目， 直接放入～/.qclaw/workspace/
+
+   
+2. **启动服务**
+   对话加载/启动知识图谱，
+   对话开始使用
+
+### 方式二 本地Web服务
+
+```bash
+cd ~/.qclaw/workspace/math-knowledge-graph
+uvicorn app.api.main:app --host 0.0.0.0 --port 8088
+```
+
+访问：http://localhost:8088/web
+
+---
+
+## 📁 关键文件
+
+- `data/core-nodes.json` - 图谱数据
+- `app/web/index.html` - 前端页面
+- `knowledge_points/` - 知识点文档
+- `docs/` - 文档和资料
+
+---
+
+**版本**: 2.0  
+**更新**: 2026-04-07
+
+---
+
+## 🙏 开源项目致谢
+
+本项目参考和使用了以下开源项目及技术，感谢它们的贡献：
+
+### 📊 知识图谱参考
+| 项目 | 描述 | 链接 |
+|------|------|------|
+| **Wikidata** | 开放的协作知识库 | https://www.wikidata.org |
+| **DBpedia** | 从Wikipedia提取的结构化知识 | https://www.dbpedia.org |
+| **Google Knowledge Graph** | 搜索引擎知识图谱 | Google |
+| **mathGPT_graph_data** | 数学知识图谱数据结构参考 | GitHub |
+| **Label Studio** | 开源数据标注平台 | https://labelstud.io |
+
+### 📚 数学学习资源
+| 项目 | 描述 | 链接 |
+|------|------|------|
+| **Pkmer-Math** | Obsidian数学笔记知识库 | https://github.com/PKM-er/Pkmer-Math |
+| **MathWorld** | Wolfram数学百科全书 | https://mathworld.wolfram.com |
+| **Wolfram Alpha** | 数学计算与知识引擎 | https://www.wolframalpha.com |
+| **Wikipedia** | 数学概念参考来源 | https://wikipedia.org |
+| **OEIS** | 整数数列在线百科 | https://oeis.org |
+| **arXiv** | 数学预印本论文库 | https://arxiv.org |
+| **Khan Academy** | 可汗学院数学课程 | https://www.khanacademy.org |
+
+### 📊 可视化 & 前端
+| 项目 | 用途 | 链接 |
+|------|------|------|
+| **D3.js** | 知识图谱交互式可视化 | https://d3js.org |
+| **SVG.js** | 矢量图形渲染 | https://svgjs.com |
+
+### 🐍 后端 & 数据
+| 项目 | 用途 | 链接 |
+|------|------|------|
+| **FastAPI** | API 服务框架 | h
+
+── 文件树（56）──
+   .DS_Store
+   .gitignore
+   LICENSE
+   README.md
+   RUNNING.md
+   app/api/auth_api.py
+   app/api/database.py
+   app/api/knowledge_api.py
+   app/api/knowledge_state_api.py
+   app/api/learning_path_api.py
+   app/api/main.py
+   app/api/models_user.py
+   app/api/wrong_question_api.py
+   app/api/wrong_question_image.py
+   app/web/admin.html
+   app/web/index.html
+   app/web/js/app.js
+   app/web/js/detail.js
+   app/web/js/render-conjectures.js
+   app/web/js/render-graph.js
+   app/web/js/render-list.js
+   app/web/js/render-mathematicians.js
+   app/web/js/render-quiz.js
+   app/web/js/render-stats.js
+   app/web/js/render-tree.js
+   app/web/js/render-wrong-questions.js
+   app/web/js/state.js
+   app/web/login.html
+   app/web/quiz-enhanced-v2.js
+   app/web/static/detail-panel.html
+   app/web/static/kg-api.js
+   app/web/user-api.js
+   app/web/wrong-questions-v2.js
+   data/core-nodes.json
+   data/descriptions.json
+   data/user-profiles.json
+   images/math-graph.png
+   requirements.txt
+   schema/dependency-edge.json
+   schema/knowledge-node.json
+   scripts/add_combo_nodes.py
+   scripts/add_logic_nodes.py
+   scripts/add_nodes.py
+   scripts/add_primary_nodes.py
+   scripts/build_university_relations.py
+   scripts/connect_knowledge_graph.py
+   scripts/expand_algebra.py
+   scripts/expand_algebra_nodes.py
+   scripts/expand_analysis_prob_physics.py
+   scripts/gen_grade_nodes.py
+   scripts/generate_descriptions.py
+   scripts/generate_nodes.py
+   scripts/rebuild_correct_nodes.py
+   scripts/rebuild_k12.py
+   scripts/restructure_chapters.py
+   scripts/tag_grade_levels.py
+
+================================================================================
+▶ InfinityUniverse0/Mathematical-Courses-Knowledge-Graph
+================================================================================
+★ 30   JavaScript   2024-04-23   GPL-3.0
+  高等教育数学课程体系知识图谱
+
+── README（2448 字符）──
+# Mathematical-Courses-Knowledge-Graph
+
+<p align="center">
+    <img src="https://img.shields.io/badge/License-GPL--3.0-yellow" alt="License">
+</p>
+
+## 项目名称
+
+高等教育数学课程体系知识图谱
+
+## 项目介绍
+
+本项目构建了一个高等教育数学课程体系知识图谱的Web系统（Demo版），以方便学生、教师、研究人员等人群对高等教育数学课程体系有一个更加直观的认识。
+
+## 项目展示
+
+![image-20240424010725459](README.assets/image-20240424010725459.png)
+
+![image-20240424010739677](README.assets/image-20240424010739677.png)
+
+![image-20240424010757102](README.assets/image-20240424010757102.png)
+
+![image-20240424010816079](README.assets/image-20240424010816079.png)
+
+![image-20240424010805777](README.assets/image-20240424010805777.png)
+
+![image-20240424010842901](README.assets/image-20240424010842901.png)
+
+## 项目结构
+
+```
+.
+├── README.md
+├── neo4j_db // neo4j图数据库
+│   ├── data // 数据文件
+│   │   ├── 课程模块.csv
+│   │   ├── 课程.csv
+│   │   ├── 知识模块.csv
+│   │   ├── 知识要点.csv
+│   ├── __init__.py
+│   └── course_graph.py // 生成并初始化图数据库, 并用于后续操作数据库
+└── Web // Django Web项目
+    ├── manage.py
+    ├── Web // Django项目
+    │   ├── __init__.py
+    │   ├── asgi.py
+    │   ├── settings.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    ├── static // 静态文件
+    │   ├── css
+    │   ├── fonts
+    │   ├── img
+    │   └── js
+    ├── templates // 模板文件
+    │   ├── welcome.html
+    │   ├── index.html
+    │   ├── info_query.html
+    │   ├── study_route.html
+    │   ├── question_answer.html
+    │   ├── courses_overview.html
+    │   ├── 404.html
+    │   └── 500.html
+    ├── Base // Django应用: 基础应用，用于处理一些基础的请求，包括欢迎页面、404、500等
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── migrations
+    │   ├── models.py
+    │   ├── tests.py
+    │   ├── urls.py // 路由
+    │   ├── backend.py // 复杂的后端处理函数
+    │   └── views.py // 视图函数
+    ├── KG // Django应用: KnowledgeGraph，用于处理知识图谱相关的基本请求，包括基于知识图谱的实体查询、关系查询等
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── migrations
+    │   ├── models.py
+    │   ├── tests.py
+    │   ├── urls.py // 路由
+    │   ├── backend.py // 复杂的后端处理函数
+    │   └── views.py // 视图函数
+    └── QA // Django应用: Question Answering System，用于处理问答系统相关的基本请求
+        ├── __init__.py
+        ├── admin.py
+        ├── apps.py
+        ├── migrations
+        ├── models.py
+        ├── tests.py
+        ├── urls.py // 路由
+        ├── backend.py // 复杂的后端处理函数
+        └── views.py // 视图函数
+```
+
+## 项目依赖项
+
+> - Django 4.2.3
+> - pandas 2.0.3
+> - py2neo 2021.2.3
+> - mysqlclient 2.2.0
+> - D3.js v5
+> - jieba 0.42.1
+> - openai 0.27.8
+> - urllib3 1.26.16
+
+
+── 文件树（69）──
+   LICENSE
+   README.assets/image-20240424010725459.png
+   README.assets/image-20240424010739677.png
+   README.assets/image-20240424010757102.png
+   README.assets/image-20240424010805777.png
+   README.assets/image-20240424010816079.png
+   README.assets/image-20240424010842901.png
+   README.md
+   Web/Base/__init__.py
+   Web/Base/admin.py
+   Web/Base/apps.py
+   Web/Base/backend.py
+   Web/Base/migrations/__init__.py
+   Web/Base/models.py
+   Web/Base/tests.py
+   Web/Base/urls.py
+   Web/Base/views.py
+   Web/KG/__init__.py
+   Web/KG/admin.py
+   Web/KG/apps.py
+   Web/KG/backend.py
+   Web/KG/migrations/__init__.py
+   Web/KG/models.py
+   Web/KG/tests.py
+   Web/KG/urls.py
+   Web/KG/views.py
+   Web/QA/__init__.py
+   Web/QA/admin.py
+   Web/QA/apps.py
+   Web/QA/backend.py
+   Web/QA/migrations/__init__.py
+   Web/QA/models.py
+   Web/QA/tests.py
+   Web/QA/urls.py
+   Web/QA/views.py
+   Web/Web/__init__.py
+   Web/Web/asgi.py
+   Web/Web/settings.py
+   Web/Web/urls.py
+   Web/Web/wsgi.py
+   Web/manage.py
+   Web/static/css/button.css
+   Web/static/css/option.css
+   Web/static/fonts/fonts2.woff2
+   Web/static/fonts/glyphicons-halflings-regular.woff
+   Web/static/img/index.jpg
+   Web/static/img/math.jpg
+   Web/static/js/chat.js
+   Web/static/js/createreq.js
+   Web/static/js/entityRecognition.js
+   Web/static/js/graph.js
+   Web/static/js/graph_get.js
+   Web/static/js/relationExtraction.js
+   Web/static/js/tables.js
+   Web/static/js/toggle.js
+   Web/templates/404.html
+   Web/templates/500.html
+   Web/templates/courses_overview.html
+   Web/templates/index.html
+   Web/templates/info_query.html
+   Web/templates/question_answer.html
+   Web/templates/study_route.html
+   Web/templates/welcome.html
+   neo4j_db/__init__.py
+   neo4j_db/course_graph.py
+   neo4j_db/data/知识模块.csv
+   neo4j_db/data/知识要点.csv
+   neo4j_db/data/课程.csv
+   neo4j_db/data/课程模块.csv
+
+================================================================================
+▶ cns-iu/map4sci
+================================================================================
+★ 4   C++   2025-01-07   MIT
+  Implementation of a graph algorithm that uses a multi level tree based approach for interactive graph visualization with semantic zoom (ZMLT).
+
+── README（17062 字符）──
+# map4sci
+
+## Introduction
+
+Welcome to the implementation of the graph algorithm that uses a multi-level tree-based approach for interactive graph visualization with semantic zoom, also known as ZMLT. This project is based on a research paper which can be found at the link provided in the project description.
+
+The ZMLT algorithm is designed to provide an efficient and interactive way to visualize large graphs by using a multi-level tree-based approach. This approach is particularly useful for graphs with complex structures, where traditional force-directed layout algorithms may not produce the desired results.
+
+This implementation of the ZMLT algorithm uses three layout algorithms - [BatchTree](https://github.com/cns-iu/map4sci-BatchTree), [CG](https://github.com/cns-iu/map4sci-CG), and [DELG](https://github.com/cns-iu/map4sci-DELG) - to generate layouts for the input graphs. These algorithms are known for their efficiency and ability to handle large graphs.
+
+The ZMLT algorithm also provides semantic zoom functionality, which enables users to zoom in and out of the graph while maintaining the integrity of the graph structure. This functionality is especially useful when exploring large graphs that have multiple levels of detail.
+
+This implementation of the ZMLT algorithm is designed to be user-friendly and easy to use. We hope that this project will be a useful resource for researchers, developers, and anyone who needs to visualize large graphs in an interactive and efficient way.
+
+## Quick Start
+
+Users of map4sci should use the `map4sci-project-template` as a template for their data projects. See <https://github.com/cns-iu/map4sci-project-template> for more information.
+
+## Change Log
+
+See [Changelog](CHANGELOG.md)
+
+## Getting Started
+
+### Creating a Dataset
+
+To create a dataset, follow these steps:
+
+1. Create a folder with the name of the dataset inside `map4sci/data-processor/datasets`.
+2. Inside the folder, create a `config.sh` file and a `network.dot` file.
+
+`Note that you can create multiple datasets to be processed.`
+
+### Configuring the Dataset
+
+The config.sh file contains the configuration parameters for the dataset, which are used by the layout algorithm to generate the visualization. Here's a brief overview of the parameters:
+
+All the `config.sh` files should follow the format as given in the [config.example.sh](data-processor/datasets/config.example.sh).
+
+The `network.dot` file plays a crucial role in generating the graph layout, as it provides input graph data to the ZMLT algorithm. To generate a DOT file from JSON data with networkx, the JSON data should contain a list of nodes and a list of edges, where each node and edge has specific properties.
+
+The nodes should have the following properties:
+
+`id`: A numeric ID from 1 to N, where N is the total number of nodes in the graph.
+`label`: A string label that represents the name or description of the node.
+`weight`: A numeric value that represents the importance or significance of the node. Higher weights indicate more important nodes.
+
+The edges should have the following properties:
+
+`weight`: A numeric value that represents the strength or importance of the edge. Higher weights indicate stronger or more important edges.
+`level`: An integer value typically from 1 to 7, which points to where we generate the levels ourselves in map4sci. This property represents the level or hierarchy of the edge, with lower levels indicating more important edges.
+`source`: The numeric ID of the source node for the edge.
+`target`: The numeric ID of the target node for the edge.
+
+Creating and editing the network.dot file is recommended to be done by using NetworkX, a popular Python package for creating, manipulating, and analyzing graphs and networks. NetworkX provides a wide range of func
+
+── 文件树（427）──
+   .dockerignore
+   .gitattributes
+   .github/workflows/build-container.yml
+   .github/workflows/build-previews.yml
+   .github/workflows/production-build.yml
+   .github/workflows/staging-build.yml
+   .github/workflows/tests.yml
+   .gitignore
+   .vscode/settings.json
+   CHANGELOG.md
+   DOCKER.md
+   Dockerfile
+   LICENSE
+   README.md
+   data-processor/.gitignore
+   data-processor/constants.sh
+   data-processor/datasets/config.example.sh
+   data-processor/datasets/google-topics-full/README.md
+   data-processor/datasets/google-topics-full/Topics_Graph.dot
+   data-processor/datasets/google-topics-full/config.sh
+   data-processor/datasets/google-topics-full/make-network.py
+   data-processor/datasets/google-topics-full/network.dot
+   data-processor/datasets/lastfm/README.md
+   data-processor/datasets/lastfm/config.sh
+   data-processor/datasets/lastfm/lastfmw_original.dot
+   data-processor/datasets/lastfm/make-network.py
+   data-processor/datasets/lastfm/network.dot
+   data-processor/datasets/sample/config.sh
+   data-processor/datasets/sample/network.dot
+   data-processor/env.example.sh
+   data-processor/libs/eba/Makefile
+   data-processor/libs/eba/src/clustering.cpp
+   data-processor/libs/eba/src/clustering.h
+   data-processor/libs/eba/src/common/cmd_options.h
+   data-processor/libs/eba/src/common/common.cpp
+   data-processor/libs/eba/src/common/common.h
+   data-processor/libs/eba/src/common/geometry/circle.h
+   data-processor/libs/eba/src/common/geometry/delaunay_triangulation.cpp
+   data-processor/libs/eba/src/common/geometry/delaunay_triangulation.h
+   data-processor/libs/eba/src/common/geometry/grid_index.cpp
+   data-processor/libs/eba/src/common/geometry/grid_index.h
+   data-processor/libs/eba/src/common/geometry/point.h
+   data-processor/libs/eba/src/common/geometry/rectangle.h
+   data-processor/libs/eba/src/common/geometry/segment.h
+   data-processor/libs/eba/src/common/geometry/triangle.h
+   data-processor/libs/eba/src/common/graph/dot_graph.cpp
+   data-processor/libs/eba/src/common/graph/dot_graph.h
+   data-processor/libs/eba/src/common/graph/dot_parser.h
+   data-processor/libs/eba/src/common/random_utils.cpp
+   data-processor/libs/eba/src/common/random_utils.h
+   data-processor/libs/eba/src/geometrichierarchical.cpp
+   data-processor/libs/eba/src/geomkmeans.cpp
+   data-processor/libs/eba/src/graphhierarchical.cpp
+   data-processor/libs/eba/src/graphkmeans.cpp
+   data-processor/libs/eba/src/infomap.cpp
+   data-processor/libs/eba/src/infomap/greedy.cpp
+   data-processor/libs/eba/src/infomap/greedy.h
+   data-processor/libs/eba/src/infomap/imnode.h
+   data-processor/libs/eba/src/infomap/infohiermap.cpp
+   data-processor/libs/eba/src/infomap/infohiermap.h
+   data-processor/libs/eba/src/main.cpp
+   data-processor/libs/eba/src/metrics.cpp
+   data-processor/libs/eba/src/metrics.h
+   data-processor/libs/eba/src/metrics_contiguity.cpp
+   data-processor/libs/eba/src/modularity.cpp
+   data-processor/libs/eba/src/modularity/binary_graph.h
+   data-processor/libs/eba/src/modularity/cluster.cpp
+   data-processor/libs/eba/src/modularity/cluster.h
+   data-processor/libs/eba/src/modularity/community.cpp
+   data-processor/libs/eba/src/modularity/community.h
+   … 另有 357
+
+================================================================================
+▶ reppertj/philosophical-graphiti
+================================================================================
+★ 8   Python   2022-12-08   NOASSERTION
+  A webapp for exploring and visualizing subgraphs induced on the shortest paths between two nodes. Originally used with data from the Stanford Encyclopedia of Philosophy.
+
+── README（2213 字符）──
+# Philosophical Graphiti
+> Explore relationships among philosophical topics
+
+[Philosophical Graphiti](https://www.philosophy.graphics) shows you paths between and neighbors of philosophical topics generated from a directed graph formed by the "related" links on [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/index.html) (SEP) articles. It's general enough that it could do the same for other graphs of modest size without much modification.
+
+The site currently works by keeping a single [Networkx](https://networkx.github.io/documentation/stable/index.html) digraph object (basically a dict of dicts) in memory and only querying the database to return metadata. Node attributes (like titles and links to articles) are stored in the database, but edges are not. Because the SEP graph is relatively small, this has worked surprisingly well, even during modest load testing on a "hobby" heroku dyno.
+
+The server generates a [Vega](https://vega.github.io/vega/) visualization specification, which, thanks to [Vega-Embed](https://github.com/vega/vega-embed) on the front end, results in an interactive [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) element in the browser. One of my goals was to allow the user to manipulate the way the graph appears to their liking (and save the result), while still coming up with a pretty good "default" presentation most of the time. Vega includes a basic particle simulation (based on [d3-force](https://github.com/d3/d3-force)), which allowed me to get pretty close to what I had in mind; I can also use Django's template system to easily change specifications in the JSON based on the graph structure, user-agent, etc. For instance, I initially present touch users with bigger nodes to make it easier for them to manipulate the graph. The specifications are flexible and deep, and once you get used to the grammar model behind its design, you can express a wide range of user, data, and mark interactions in a relatively small JSON string passed as a variable to the renderer.
+
+![Animation of the Philosophical Graphiti website](header.gif)
+
+---
+
+Justin Reppert
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+
+── 文件树（43）──
+   .gitattributes
+   .gitignore
+   LICENSE
+   Procfile
+   bacon/__init__.py
+   bacon/asgi.py
+   bacon/urls.py
+   bacon/wsgi.py
+   graph/__init__.py
+   graph/admin.py
+   graph/apps.py
+   graph/forms.py
+   graph/migrations/0001_initial.py
+   graph/migrations/0002_auto_20200627_1326.py
+   graph/migrations/0003_auto_20200710_1211.py
+   graph/migrations/0004_auto_20201003_1435.py
+   graph/migrations/__init__.py
+   graph/models.py
+   graph/static/graph/favicon.ico
+   graph/static/graph/styles.css
+   graph/templates/graph/base.html
+   graph/templates/graph/index.html
+   graph/templates/graph/loaderio-a6835b730a78a1b0817b48d09474984e.txt
+   graph/templates/graph/more.html
+   graph/templates/graph/neighbors.html
+   graph/templates/graph/result.html
+   graph/templates/graph/vega_graph_spec.json
+   graph/templates/graph/vega_neighborhood_spec.json
+   graph/tests.py
+   graph/urls.py
+   graph/utils/20201003_related.jsonlines
+   graph/utils/__init__.py
+   graph/utils/neighbors.py
+   graph/utils/network.py
+   graph/utils/render_subgraph.py
+   graph/utils/subgraph.py
+   graph/utils/test_utils.py
+   graph/views.py
+   header.gif
+   readme.md
+   requirements.txt
+   runtime.txt
+   static/static

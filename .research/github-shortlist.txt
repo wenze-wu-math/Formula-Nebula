@@ -1,0 +1,261 @@
+
+==============================================================================
+① 同题材：文字/诗歌星系   （12 个）
+==============================================================================
+  1742★  iqiqiya/iqiqiya-API
+         API接口大全不断更新中~欢迎Fork和Star(✎ 1.一言(古诗句版)api  ✎ 2.必应每日一图api  ✎ 3.在线ip查询  ✎ 4.m3u8视频在线解析api  ✎ 5.随机生成二次元图片api  ✎ 6.快递查询api-支持国内百家快递  ✎ 7.flv视频在线解析api ✎ 8.抖
+         PHP · 更新 2023-05-27 · MIT · 已归档
+   258★  Cohenjikan/shiyun
+         把中国三千年的诗放进一片可漫游的三维星系：每位诗人是一颗星，每首诗都有坐标，星与星之间的虚空是「一切可能的诗」。32,657 位诗人 / 933,857 首。灵感来自刘慈欣《诗云》。
+         TypeScript · 更新 2026-09-04 · NOASSERTION
+   143★  leishufei/JS-Crack-Records
+         各大网站逆向demo。企名片、震坤行工业超市、天翼云登录、物超所值、瓜子二手车、马蜂窝、中华诗词库、澳门彩票、药智网、福建省招标投标在线监管平台、全国公共资源交易平台、问卷星、中国人民银行条法司、中华人民共和国公安部、AqiStudy、巨量星图、HeyTap、掌上高考、船讯网、百度指数、今日头条、知
+         JavaScript · 更新 2022-02-08 · MIT
+     8★  sairamkiran9/TagCloud-reactJS
+         3D word cloud animation using reactJS
+         JavaScript · 更新 2022-01-11 · 无许可
+     4★  Sunil56224972/GreenBow---The-Intro
+         Immersive 3D Experiences: Integrated WebGL and Three.js elements for a captivating user journey. Dynamic Animations: Custom animations, including inte
+         HTML · 更新 2026-04-26 · 无许可
+     3★  JuruoMP/PoemWorld
+         A visualized knowledge graph on Chinese ancient poetry.
+         Python · 更新 2016-05-07 · GPL-3.0
+     2★  ArchFrosty/3D-Word-Cloud
+         Attempt to visualize word clouds in 3D.
+         JavaScript · 更新 2020-11-06 · MIT
+     1★  gdw118/Poetry_Recitation
+         A simple Python-based poetry recitation demo leveraging web scraping, data analysis, and visualization to help students efficiently memorize and under
+         Python · 更新 2025-01-21 · 无许可
+     0★  alexayu1204/Shiying
+         诗影 ShiYing — Classical Chinese Poetry Visualization
+         ? · 更新 2026-02-26 · 无许可
+     0★  D-Fate/chi_rus_visualization
+         Russophone Translations of Contemporary Chinese Poetry. Data and Visualization with Plotly
+         HTML · 更新 2026-01-23 · 无许可
+     0★  kaiger666888/mengjing-cihua
+         🌙 梦境词话 - AI还原古诗词中的梦境意境 | Dream Poetry - AI visualization of classical Chinese poetry dreamscapes
+         ? · 更新 2026-04-13 · 无许可
+     0★  ViviSun01/The-Pseudo-poetry-Machine
+         A machine-learning project that extracts and cleans poems from the Chinese-Poetry dataset in Google Colab, classifies each line using SnowNLP sentimen
+         ? · 更新 2025-11-16 · 无许可
+
+==============================================================================
+② 数学定理依赖图   （11 个）
+==============================================================================
+    54★  patrik-cihal/lean-graph
+         Theorem relational dependencies automatic extraction and visualization as a graph for Lean4.
+         Rust · 更新 2026-02-15 · 无许可
+     7★  holdenlee/depgraph
+         Draw dependency graphs for math theorems
+         Haskell · 更新 2022-03-13 · MIT
+     4★  c-elvira/rumbaa
+         Parsing Latex document to draw graph of dependencies between Theorems
+         Rust · 更新 2019-04-22 · MIT
+     2★  whashi44/MatlabFEA
+         Approximates the solution of time-dependent second-order partial differential equation. PDE (Strong) form is converted to Integral (Weak) form using d
+         MATLAB · 更新 2019-09-18 · 无许可
+     1★  iammadab/lean-extract
+         Extract the dependency graph for a given theorem + populates graph structure with git history
+         Python · 更新 2025-08-08 · 无许可
+     1★  MahmoudSedky147/papergraph-mcp
+         Turn local and arXiv LaTeX papers into queryable theorem-proof dependency graphs for AI agents via MCP.
+         Python · 更新 2026-09-14 · MIT
+     1★  justinbrianhwang/CDG-QGAN
+         Planting a clinical dependency graph into the entanglement topology of a shallow quantum circuit, to generate synthetic MIMIC-IV ICU data. A light-con
+         Python · 更新 2026-07-14 · 无许可
+     1★  Ambar-13/ClampAI
+         Formal safety framework for AI agents. Pluggable LLM reasoning constrained by mathematically proven budget, invariant, and termination guarantee. 7 th
+         Python · 更新 2026-03-04 · MIT
+     0★  JakeRobertBaker/theorem_dependency_graph
+         Generate theorem dependency graphs using ELK and TikZ
+         Python · 更新 2026-08-12 · 无许可
+     0★  justinlubin/ibl-dependency-map
+         UChicago Honors Calculus (IBL) Theorem Dependency Map
+         HTML · 更新 2017-06-11 · MIT
+     0★  Mathub-AI/theorem-graph
+         Extract mathematical dependency graphs from research papers (Mathub-AI)
+         Python · 更新 2026-05-06 · MIT
+
+==============================================================================
+③ 3D 知识图谱与交互   （14 个）
+==============================================================================
+  5453★  brianpetro/obsidian-smart-connections
+         Find related notes and excerpts while writing. Your link building copilot displays relevant content in graph + list view. A local embedding model powe
+         JavaScript · 更新 2026-09-15 · NOASSERTION
+  2605★  HarleyCoops/Math-To-Manim
+         Create Epic Math and Physics Animations & Study Notes From Text and Images.
+         Python · 更新 2026-08-28 · MIT
+  1519★  Developer-Mike/obsidian-advanced-canvas
+         ⚡ Supercharge your canvas experience! Graph view integration and unlimited styling options empower flowcharts, dynamic presentations, and interconnect
+         TypeScript · 更新 2026-09-09 · GPL-3.0
+   995★  zsviczian/excalibrain
+         A graph view to navigate your Obsidian vault
+         TypeScript · 更新 2026-05-31 · MIT
+   921★  voicetreelab/voicetree
+         The spatial IDE for recursive multi-agent orchestration. It's like an Obsidian graph-view that you work directly inside of. 
+         TypeScript · 更新 2026-06-07 · NOASSERTION
+   860★  IdreesInc/Waypoint
+         Obsidian plugin that gives you the power to generate dynamic MOCs in your folder notes. Enables folders to show up in the graph view and removes the n
+         TypeScript · 更新 2025-12-29 · MPL-2.0
+   820★  HEmile/juggl
+         An interactive, stylable and expandable graph view for Obsidian. Juggl is designed as an advanced 'local' graph view, where you can juggle all your th
+         TypeScript · 更新 2025-02-27 · GPL-3.0
+   721★  lyon-industries/graphrag-workbench
+         Interactive 3D visualization of knowledge graphs generated by Microsoft GraphRAG. Explore entities, relationships, and communities with immersive visu
+         TypeScript · 更新 2026-07-18 · MIT
+   233★  ElsaTam/obsidian-extended-graph
+         Community plugin to add features to the graph view.
+         TypeScript · 更新 2026-02-13 · NOASSERTION
+   200★  xyjigsaw/Knowledge-Graph-And-Visualization-Demo
+         There are 2D-Search and 3D-Graph-View for knowledge graph visualization.
+         Python · 更新 2023-11-05 · MIT
+   171★  noduslabs/infranodus-obsidian-plugin
+         Advanced graph view for Obsidian: text analysis, topic modeling, and AI with InfraNodus AI text analysis tool: https://infranodus.com
+         TypeScript · 更新 2026-08-04 · AGPL-3.0
+   150★  natefrisch01/Graph-Link-Types
+         Link types for Obsidian graph view.
+         TypeScript · 更新 2026-05-16 · MIT
+   145★  Sanqui/obsidian-persistent-graph
+         An Obsidian plugin for saving and restoring the positions of nodes on the global graph view
+         TypeScript · 更新 2026-05-24 · MIT
+   120★  HEmile/obsidian-neo4j-graph-view
+         
+         TypeScript · 更新 2021-04-19 · GPL-3.0
+
+==============================================================================
+④ 图布局与力导向   （14 个）
+==============================================================================
+  6400★  vasturiano/3d-force-graph
+         3D force-directed graph component using ThreeJS/WebGL
+         HTML · 更新 2026-04-05 · MIT
+  3299★  vasturiano/react-force-graph
+         React component for 2D, 3D, VR and AR force directed graphs
+         HTML · 更新 2026-02-04 · MIT
+   303★  vasturiano/three-forcegraph
+         Force-directed graph as a ThreeJS 3d object
+         JavaScript · 更新 2026-04-16 · MIT
+   251★  vasturiano/3d-force-graph-vr
+         3D force-directed graph component in VR
+         HTML · 更新 2026-08-22 · MIT
+   211★  jaredmcqueen/analytics
+         3D force-directed graph using ThreeJS / WebGL GPU accelerated
+         JavaScript · 更新 2021-06-29 · GPL-3.0
+   115★  vasturiano/3d-force-graph-ar
+         3D force-directed graph component in AR
+         HTML · 更新 2025-07-03 · MIT
+   110★  anvaka/ngraph.forcelayout3d
+         Force directed graph layout in 3d
+         JavaScript · 更新 2023-03-04 · MIT
+    51★  DrA1ex/JS_ParticleSystem
+         Gravity Simulation (Galaxy Birth) in real time, N-Body and 1-Body
+         JavaScript · 更新 2026-07-12 · MIT
+    50★  vasturiano/r3f-forcegraph
+         Force-directed graph as a React Three Fiber component
+         HTML · 更新 2025-07-03 · MIT
+    39★  magwo/fullofstars
+         Real-time N-body galaxy toy simulation, rendered using webgl.
+         JavaScript · 更新 2015-11-02 · 无许可
+    36★  andrewdcampbell/galaxy-sim
+         A real-time N-body galaxy formation simulation in WebGL.
+         JavaScript · 更新 2019-06-09 · 无许可
+    28★  splunk/splunk-3D-graph-network-topology-viz
+         Plot relationships between objects with force directed graph based on ThreeJS/WebGL.
+         JavaScript · 更新 2026-05-27 · 无许可
+     5★  ryanmcdermott/webvr-n-body
+          WebVR n-body galaxy simulation using Barnes-Hut Tree and AFrame powered by WebGL
+         TypeScript · 更新 2018-04-28 · 无许可
+     5★  DanElias/Kurve
+         3D Force Directed Graph Data Visualizer with JavaScript and WebGL
+         JavaScript · 更新 2021-05-30 · GPL-3.0
+
+==============================================================================
+⑤ 星系/星云视觉   （14 个）
+==============================================================================
+  1224★  creativelifeform/three-nebula
+         WebGL based particle system engine for three.js
+         JavaScript · 更新 2026-09-14 · MIT
+   180★  quiet-node/gesture-lab
+         A fun & cinematic 3D interaction laboratory. Features a high-fidelity Iron Man armor workshop, interactive galaxy simulations, and gamified gesture ex
+         TypeScript · 更新 2026-05-11 · MIT
+   159★  N0rvel/galaxy_sim
+         This project is a simulation of thousands of particles that reproduce gravity to simulate galaxies. It uses ThreeJS for 3D rendering and shaders to ca
+         JavaScript · 更新 2026-08-21 · MIT
+    94★  zjoooooo/galaxy-explorer
+         🌌 An interactive, procedurally-generated Milky Way galaxy in the browser — WebGL / three.js, no backend, no build step. MIT licensed.
+         HTML · 更新 2026-08-04 · NOASSERTION
+    71★  AmitDigga/threejs-galaxy-shader
+         A performant Three.js galaxy shader with customizable colors, spiral patterns, and black hole effects
+         TypeScript · 更新 2026-03-27 · MIT
+    60★  beltoforion/Galaxy-Renderer-Typescript
+         Procedural generation of a 2D spiral galaxy with the density wave theory
+         TypeScript · 更新 2025-04-16 · 无许可
+    51★  pickles976/GalaxyThreeJS
+         
+         JavaScript · 更新 2023-03-09 · 无许可
+    46★  the-halfbloodprince/GalaxyM1199
+         A cool galaxy simulation using THREE JS particles. 
+         JavaScript · 更新 2023-05-21 · Unlicense
+    35★  vercel-labs/nextjs-nights-shader
+         WebGPU galaxy shader — Next.js + Three.js TSL (WebGPURenderer)
+         TypeScript · 更新 2026-06-03 · MIT
+    18★  ggwzrd/threejs-galaxy
+         Three.js Galaxy generator
+         JavaScript · 更新 2024-01-29 · MIT
+    16★  lucas-tulio/spiral-galaxy
+         3D spiral galaxy in three.js
+         JavaScript · 更新 2020-07-21 · GPL-2.0
+    10★  SRO-SA/galaxy-threejs
+         A Galaxy created with Three.js
+         JavaScript · 更新 2020-06-11 · 无许可
+     6★  SnakeEye-sudo/particle-galaxy-3d
+         🌌 An interactive 3D particle galaxy with real-time physics simulation, mouse controls, and stunning visual effects. Explore a universe of particles w
+         HTML · 更新 2025-12-01 · 无许可
+     5★  CodeWithBasu/3D-Galaxy
+         🚀 3D Galaxy Viewer: Dive into a mesmerizing simulation of the universe! Featuring realistic spiral physics, real-time customization, and high-perform
+         TypeScript · 更新 2026-02-28 · MIT
+
+==============================================================================
+⑥ 数学可视化   （14 个）
+==============================================================================
+ 93947★  3b1b/manim
+         Animation engine for explanatory math videos
+         Python · 更新 2026-09-09 · MIT
+ 40856★  ManimCommunity/manim
+         A community-maintained Python framework for creating mathematical animations. 
+         Python · 更新 2026-09-14 · MIT
+   458★  Wing900/ManimCat
+         EN: ManimCat: AI-generated math animations from natural language. High-quality Manim rendering with LaTeX support and auto-code fixing. 中: ManimCat：AI
+         TypeScript · 更新 2026-08-08 · NOASSERTION
+   453★  JazonJiao/Manim.js
+         Replicating 3Blue1Brown's math animation engine in JavaScript (p5.js)
+         JavaScript · 更新 2026-08-22 · 无许可
+   143★  HarleyCoops/KimiK3Manim
+         Create epic math and physics explainer animations with Kimi K3.
+         Python · 更新 2026-07-29 · MIT
+    46★  abhijithmuthyala/manim-projects
+         Code for the animations made with Manim
+         Python · 更新 2022-06-21 · 无许可
+    35★  HoltzTomas/claiss
+         Transform ideas into visual learning with AI-powered educational videos. Create stunning Manim animations from simple prompts for algorithms, math con
+         TypeScript · 更新 2026-04-03 · MIT
+    35★  AmitSubhash/3brown1blue
+         First-principles Manim skill for Claude Code — mathematical animation from scratch, paper-explainer patterns, 21 rule files.
+         Python · 更新 2026-06-27 · MIT
+    34★  BlommeJan/Manim-Motion
+         So I built Manim Motion Editor. It's a visual, browser-based editor that lets you drag shapes onto a canvas, set up animations in a timeline, write La
+         Vue · 更新 2026-04-06 · 无许可
+    12★  fbreuer/threejs-examples
+         Collection of small Three.js examples relevant to math visualization
+         CoffeeScript · 更新 2014-08-27 · 无许可
+     3★  emiax/continuous-rough-prototype
+         This is a prototype of the math visualization software Continuous. Written in 2012 and early 2013, using THREE.js.
+         JavaScript · 更新 2013-04-26 · 无许可
+     3★  CreatorSaWiX/apunts-pro2
+         Interactive educational platform for UPC-FIB students featuring real-time mathematical visualizers and algorithmic simulations built with React 19, Th
+         TypeScript · 更新 2026-09-16 · MIT
+     3★  ArindamTripathi619/ai_calculator
+         A Flask-based web app that uses the Gemini AI API to process images of mathematical expressions and provide step-by-step solutions. Users upload image
+         Python · 更新 2025-09-25 · MIT
+     1★  DEdgamer1123/MatrixViz
+         Matrix Visualizer - React + Three.js + Math.js
+         TypeScript · 更新 2026-08-18 · NOASSERTION

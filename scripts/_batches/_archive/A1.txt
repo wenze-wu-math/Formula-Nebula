@@ -1,0 +1,270 @@
+   0|nullstellensatz>ideal-variety|1||零点定理正是这一对应的代数根据
+   1|nullstellensatz>zariski-topology|0.8||零点集定义了扎里斯基闭集
+   2|nullstellensatz>prime-spectrum|0.75||极大理想 = 点的观念推广为素理想
+   3|ideal-variety>zariski-topology|0.9||理想与闭集的反变对应
+   4|ideal-variety>coordinate-ring|0.85||坐标环的商结构来自理想
+   5|noetherian>localization|0.6||局部化保持诺特性
+   6|noetherian>krull-dim|0.65||诺特环上维数理论才良好
+   7|noetherian>nullstellensatz|0.6||零点定理的证明依赖诺特性
+   8|localization>structure-sheaf|0.85||结构层由局部化构造
+   9|localization>prime-spectrum|0.7||R_𝔭 对应点 𝔭 的局部信息
+  10|nakayama>invertible-sheaf|0.55||局部自由性判据常用中山引理
+  11|nakayama>regular-local-ring|0.5||极小生成元个数的论证
+  12|krull-dim>dimension|0.9||环维数即簇维数
+  13|krull-dim>coordinate-ring|0.7||维数由坐标环的素理想链给出
+  14|noether-normalization>dimension|0.85||超越次数定义维数的依据
+  15|noether-normalization>krull-dim|0.7||整扩张保持维数
+  16|going-up>noether-normalization|0.7||整扩张的链论性质
+  17|going-up>normalization|0.6||正规化是整扩张的典型
+  18|valuation-ring>normalization|0.85||整闭性用赋值环刻画
+  19|valuation-ring>regular-local-ring|0.6||正则 ⇒ 正规
+  20|valuation-ring>divisor|0.55||赋值对应除子的赋值向量
+  21|sheaf>structure-sheaf|0.95||结构层是最基本的层
+  22|sheaf>coherent-sheaf|0.9||凝聚层是层的核心子类
+  23|sheaf>sheaf-cohomology|0.92||层的上同调理论
+  24|structure-sheaf>scheme|0.96||概形 = 拓扑空间 + 结构层
+  25|structure-sheaf>spec-functor|0.8||Spec A 上装备 O_{Spec A}
+  26|scheme>spec-functor|0.95||概形的局部模型由 Spec 给出
+  27|scheme>prime-spectrum|0.93||素谱是概形的底层空间
+  28|scheme>coherent-sheaf|0.88||概形上的凝聚层理论
+  29|scheme>morphism|0.9||概形间的态射必须保结构层
+  30|spec-functor>coordinate-ring|0.85||反变等价的核心是坐标环
+  31|spec-functor>fibred-product|0.72||张量积对偶于纤维积
+  32|prime-spectrum>zariski-topology|0.9||素谱的拓扑
+  33|prime-spectrum>krull-dim|0.72||素理想链给出维数
+  34|coherent-sheaf>invertible-sheaf|0.8||可逆层是秩 1 的局部自由层
+  35|coherent-sheaf>ideal-sheaf|0.85||理想层是凝聚层
+  36|coherent-sheaf>serre-finiteness|0.8||凝聚层的有限性定理
+  37|coherent-sheaf>cohomology-base-change|0.6||基变换定理对凝聚层陈述
+  38|invertible-sheaf>divisor|0.9||可逆层与除子类群同构
+  39|invertible-sheaf>linear-system|0.82||线性系来自整体截面
+  40|ideal-sheaf>blowup|0.75||爆破由理想层的 blowing up 定义
+  41|ideal-sheaf>long-exact-sequence|0.8||理想层的短正合列
+  42|fibred-product>moduli-space|0.7||族的语言是模空间的基础
+  43|fibred-product>flat-morphism|0.72||平坦性保证族的纤维连续
+  44|flat-morphism>moduli-space|0.8||通用族必须平坦
+  45|flat-morphism>cohomology-base-change|0.75||平坦性使基变换同构成立
+  46|flat-morphism>smooth-morphism|0.7||光滑 = 平坦 + 纤维正则
+  47|smooth-morphism>etale-morphism|0.85||平展是相对维数 0 的光滑
+  48|smooth-morphism>singularity|0.75||光滑态射的纤维无奇点
+  49|etale-morphism>etale-cohomology|0.92||平展拓扑由此定义
+  50|etale-morphism>tangent-space|0.6||非分歧等价于切空间消没
+  51|formal-scheme>flat-morphism|0.5||形式光滑性判据
+  52|formal-scheme>moduli-space|0.62||形变理论计算模空间切空间
+  53|morphism>coordinate-ring|0.88||态射对偶于环同态
+  54|morphism>rational-map|0.85||有理映射是部分定义的态射
+  55|morphism>fibred-product|0.78||态射的基变换
+  56|morphism>dimension-fiber|0.7||支配态射的纤维维数
+  57|coordinate-ring>dimension|0.85||坐标环维数即簇维数
+  58|coordinate-ring>tangent-space|0.8||切空间由极大理想给出
+  59|rational-map>birational|0.92||双有理等价由有理映射定义
+  60|rational-map>blowup|0.85||爆破软化有理映射的不定点
+  61|blowup>singularity|0.88||爆破用于消解奇点
+  62|blowup>resolution|0.9||反复爆破实现消解
+  63|blowup>intersection-number|0.7||例外除子的自交数
+  64|tangent-space>singularity|0.92||切空间维数刻画奇点
+  65|tangent-space>regular-local-ring|0.9||正则 = 切空间维数最小
+  66|singularity>regular-local-ring|0.88||正则局部环对应光滑点
+  67|singularity>resolution|0.9||奇点消解的目标
+  68|singularity>normalization|0.7||正规化是温和的改良
+  69|regular-local-ring>normalization|0.72||正则 ⇒ 正规
+  70|dimension>dimension-fiber|0.8||纤维维数定理分解维数
+  71|normalization>birational|0.78||正规化是双有理操作
+  72|sheaf-cohomology>cech-cohomology|0.88||Čech 是具体计算方法
+  73|sheaf-cohomology>long-exact-sequence|0.9||短正合列导出长正合列
+  74|sheaf-cohomology>derived-functor|0.92||上同调即导出函子
+  75|sheaf-cohomology>serre-vanishing|0.8||高维消没
+  76|sheaf-cohomology>serre-duality|0.85||对偶定理
+  77|sheaf-cohomology>euler-characteristic|0.82||交替和定义欧拉示性数
+  78|cech-cohomology>projective-cohomology|0.85||射影空间上同调用 Čech 计算
+  79|cech-cohomology>coherent-sheaf|0.7||凝聚层的 Čech 计算
+  80|long-exact-sequence>projective-cohomology|0.72||正合列是计算的机制
+  81|long-exact-sequence>riemann-roch|0.68||欧拉示性数在正合列中可加
+  82|long-exact-sequence>serre-duality|0.65||对偶与正合列配合使用
+  83|serre-vanishing>euler-characteristic|0.75||消没保证欧拉示性数是有限和
+  84|serre-vanishing>projective-cohomology|0.7||射影空间的高阶消没
+  85|serre-finiteness>projective-cohomology|0.78||有限性在射影空间上验证
+  86|projective-cohomology>linear-system|0.8||整体截面给出线性系
+  87|projective-cohomology>serre-duality|0.75||H^n(O(-n-1)) ≅ k 是对偶关键
+  88|serre-duality>canonical-sheaf|0.9||典范层是对偶的核心
+  89|serre-duality>riemann-roch|0.82||曲线情形：H¹ 对偶于 H⁰
+  90|serre-duality>genus|0.78||g = h⁰(ω) = h¹(O)
+  91|canonical-sheaf>genus|0.85||亏格即全纯微分维数
+  92|canonical-sheaf>adjunction|0.88||伴随公式联系 ω_C 与 ω_X
+  93|canonical-sheaf>kodaira-dimension|0.9||小平维数由 ω 的增长决定
+  94|canonical-sheaf>surface-classification|0.82||按典范除子分类曲面
+  95|canonical-sheaf>k3-surface|0.8||K3 的定义是 K_X = 0
+  96|euler-characteristic>riemann-roch|0.92||RR 计算欧拉示性数
+  97|euler-characteristic>intersection-number|0.7||曲面上的 χ 用相交数表达
+  98|derived-functor>derived-category|0.85||导出范畴是导出函子的舞台
+  99|serre-cartan>sheaf-cohomology|0.78||塞尔把层论引入代数几何
+ 100|serre-cartan>coherent-sheaf|0.72||凝聚层的解析—代数比较
+ 101|cohomology-base-change>moduli-space|0.78||半连续性是模空间分层的基础
+ 102|riemann-surface>genus|0.9||亏格是紧黎曼面的根本不变量
+ 103|riemann-surface>divisor|0.8||黎曼面上的除子理论
+ 104|riemann-surface>canonical-sheaf|0.78||全纯微分即 ω
+ 105|riemann-surface>jacobian|0.85||雅可比簇是黎曼面的环面
+ 106|riemann-surface>etale-morphism|0.55||覆盖空间与平展类比
+ 107|genus>riemann-roch|0.92||RR 的核心是 g 与次数
+ 108|genus>moduli-space|0.85||M_g 按亏格分类曲线
+ 109|genus>elliptic-curve|0.82||g = 1 即椭圆曲线
+ 110|genus>adjunction|0.88||伴随公式计算亏格
+ 111|genus>jacobian|0.8||J(C) 的维数等于 g
+ 112|divisor>intersection-number|0.85||相交数由除子次数定义
+ 113|divisor>linear-system|0.9||线性系由除子构造
+ 114|divisor>riemann-roch|0.9||RR 是关于除子维数的定理
+ 115|divisor>chern-class|0.78||c₁(L) 对应除子类
+ 116|divisor>bezout|0.65||贝祖定理是除子相交的原型
+ 117|linear-system>bezout|0.6||平面曲线的线性系
+ 118|bezout>intersection-number|0.9||贝祖是相交数的特例
+ 119|bezout>chow-ring|0.8||相交积的经典情形
+ 120|bezout>projective-cohomology|0.7||射影平面上的次数
+ 121|intersection-number>adjunction|0.9||伴随公式用相交数
+ 122|intersection-number>castelnuovo|0.8||E² = −1 是收缩判据
+ 123|intersection-number>nakai-moishezon|0.85||丰沛性由相交数判定
+ 124|intersection-number>riemann-roch|0.82||曲面 RR 用相交数表达
+ 125|adjunction>castelnuovo|0.7||收缩判据用伴随计算
+ 126|adjunction>riemann-roch|0.8||伴随给出 RR 中的 K·C
+ 127|elliptic-curve>abelian-variety|0.88||椭圆曲线是一维阿贝尔簇
+ 128|elliptic-curve>jacobian|0.85||椭圆曲线自同构于自己的雅可比
+ 129|elliptic-curve>riemann-roch|0.62||RR 用于给出 Weierstrass 模型
+ 130|elliptic-curve>moduli-space|0.65||椭圆曲线的模空间是模形式
+ 131|abelian-variety>jacobian|0.92||雅可比簇是阿贝尔簇的典型
+ 132|abelian-variety>hodge-theory|0.75||阿贝尔簇的霍奇结构
+ 133|abelian-variety>moduli-space|0.7||极化阿贝尔簇的模空间
+ 134|jacobian>hodge-theory|0.68||H¹ 上的霍奇结构
+ 135|jacobian>moduli-space|0.7||Torelli 映射映入模空间
+ 136|castelnuovo>mmp|0.85||收缩例外曲线是 MMP 的第一步
+ 137|castelnuovo>birational|0.78||收缩是双有理操作
+ 138|castelnuovo>surface-classification|0.8||极小曲面模型由收缩得到
+ 139|surface-classification>kodaira-dimension|0.9||按小平维数分四大类
+ 140|surface-classification>mmp|0.82||曲面分类是 MMP 的二维范例
+ 141|k3-surface>surface-classification|0.88||K3 是 κ = 0 类的代表
+ 142|k3-surface>hodge-theory|0.78||K3 的霍奇菱形
+ 143|k3-surface>mirror-symmetry|0.7||K3 的镜像对称
+ 144|k3-surface>moduli-space|0.72||K3 的 19 维模空间
+ 145|chow-ring>intersection-number|0.9||相交数在周环中计算
+ 146|chow-ring>motive|0.85||周 motive 以周群为原料
+ 147|chow-ring>hodge-conjecture|0.82||霍奇猜想关于周群与上同调
+ 148|chow-ring>k-theory|0.68||两者都是广义上同调
+ 149|chern-class>chern-character|0.92||陈特征是陈类的组合
+ 150|chern-class>grothendieck-riemann-roch|0.85||GRR 用陈类表达
+ 151|chern-class>chow-ring|0.75||陈类可用闭链表示
+ 152|chern-class>intersection-number|0.78||陈数由相交数计算
+ 153|chern-character>grothendieck-riemann-roch|0.88||ch 是 GRR 的核心
+ 154|chern-character>k-theory|0.8||ch 是 K → 上同调的环同态
+ 155|chern-character>riemann-roch|0.85||ch 使 RR 成为积分形式
+ 156|todd-class>grothendieck-riemann-roch|0.85||td 是 GRR 的修正因子
+ 157|todd-class>riemann-roch|0.82||HRR 右端的 td(X)
+ 158|todd-class>chern-class|0.8||td 由陈类组合而成
+ 159|riemann-roch>grothendieck-riemann-roch|0.95||GRR 是 RR 的相对推广
+ 160|riemann-roch>hodge-theory|0.7||χ 与霍奇数
+ 161|grothendieck-riemann-roch>k-theory|0.85||GRR 是 K-理论的定理
+ 162|grothendieck-riemann-roch>intersection-number|0.78||右端是相交数
+ 163|grothendieck-riemann-roch>chow-ring|0.72||相交理论的公理基础
+ 164|k-theory>derived-category|0.6||K-理论与导出范畴相关
+ 165|hodge-theory>hodge-conjecture|0.92||霍奇猜想关于霍奇类
+ 166|hodge-theory>mirror-symmetry|0.78||镜像对称交换霍奇数
+ 167|hodge-theory>lefschetz|0.8||莱夫谢茨定理是霍奇理论的定理
+ 168|hodge-conjecture>standard-conjectures|0.78||标准猜想蕴含霍奇型结果
+ 169|standard-conjectures>motive|0.8||标准猜想关于 motive 的性质
+ 170|standard-conjectures>weil-conjectures|0.78||标准猜想可推出韦伊猜想
+ 171|standard-conjectures>chow-ring|0.85||关于代数对应的猜想
+ 172|birational>resolution|0.85||消解在双有理类内进行
+ 173|birational>mmp|0.88||MMP 在双有理类中找标准形
+ 174|birational>kodaira-dimension|0.8||小平维数是双有理不变量
+ 175|birational>flip|0.78||翻转是双有理映射
+ 176|resolution>mmp|0.82||消解是 MMP 的前置手术
+ 177|mmp>cone-theorem|0.92||锥定理给出 MMP 的算法起点
+ 178|mmp>flip|0.9||翻转是 MMP 的核心步骤
+ 179|mmp>fano|0.85||MMP 的另一终点是法诺纤维空间
+ 180|mmp>kodaira-dimension|0.82||按 κ 决定 MMP 走向
+ 181|mmp>abundance|0.78||丰沛性猜想是 MMP 的遗留问题
+ 182|nakai-moishezon>fano|0.7||−K_X 丰沛定义法诺
+ 183|nakai-moishezon>cone-theorem|0.72||丰沛锥与有效锥对偶
+ 184|nakai-moishezon>linear-system|0.68||丰沛性 ⇔ 线性系给出嵌入
+ 185|cone-theorem>fano|0.78||K 负射线与法诺纤维
+ 186|cone-theorem>flip|0.82||每条极端射线对应一次操作
+ 187|fano>flip|0.7||法诺纤维是翻转的输出之一
+ 188|fano>k-stability|0.85||法诺簇上的 KE 度量与 K-稳定性
+ 189|fano>gromov-witten|0.78||法诺簇上的 GW 不变量
+ 190|fano>mirror-symmetry|0.8||法诺簇是镜像对称的主战场
+ 191|flip>minimal-model-open|0.7||高维翻转存在性的遗留问题
+ 192|kodaira-dimension>abundance|0.85||κ 最大时猜想典范模型存在
+ 193|abundance>minimal-model-open|0.72||丰沛性是公开问题
+ 194|abundance>canonical-sheaf|0.82||关于 mK_X 的丰沛性
+ 195|moduli-space>representable-functor|0.9||模空间由可表示函子定义
+ 196|moduli-space>hilbert-scheme|0.85||希尔伯特概形是模空间的范例
+ 197|moduli-space>stable-sheaf|0.85||稳定层的模空间
+ 198|moduli-space>git|0.82||GIT 是构造模空间的机器
+ 199|moduli-space>stack|0.88||叠解决带自同构的模空间
+ 200|representable-functor>stack|0.85||叠是取值群胚的层
+ 201|representable-functor>hilbert-scheme|0.8||希尔伯特函子的可表示性
+ 202|representable-functor>spec-functor|0.75||Spec 是函子观点的起点
+ 203|hilbert-scheme>gromov-witten|0.75||枚举几何的模空间
+ 204|hilbert-scheme>git|0.7||用 GIT 构造商
+ 205|stable-sheaf>git|0.85||稳定性由 GIT 定义
+ 206|stable-sheaf>k-stability|0.6||两者的稳定性思想相通
+ 207|git>stack|0.72||叠是 GIT 商的精细版本
+ 208|etale-cohomology>weil-conjectures|0.95||平展上同调是证明韦伊猜想的工具
+ 209|etale-cohomology>lefschetz|0.75||莱夫谢茨迹公式
+ 210|etale-cohomology>motive|0.78||平展实现是 motive 的一个实现
+ 211|etale-cohomology>sheaf-cohomology|0.85||平展上同调是层上同调
+ 212|weil-conjectures>motive|0.75||韦伊上同调与 motive
+ 213|weil-conjectures>hodge-theory|0.7||有限域上的黎曼假设
+ 214|lefschetz>weil-conjectures|0.78||迹公式证明黎曼假设部分
+ 215|motive>derived-category|0.72||motive 的范畴化
+ 216|motive>k-theory|0.65||motivic 上同调与 K-理论
+ 217|mirror-symmetry>gromov-witten|0.88||镜像公式计算 GW 不变量
+ 218|mirror-symmetry>fukaya-category|0.9||同调镜像对称
+ 219|mirror-symmetry>derived-category|0.82||导出范畴等价
+ 220|gromov-witten>moduli-space|0.8||稳定映射的模空间
+ 221|gromov-witten>chow-ring|0.68||虚拟基本类在周群中
+ 222|stack>derived-algebraic-geometry|0.78||导出叠
+ 223|derived-algebraic-geometry>derived-category|0.85||导出范畴是基础语言
+ 224|derived-algebraic-geometry>formal-scheme|0.7||形变理论的自然框架
+ 225|fukaya-category>derived-category|0.75||𝔸∞-范畴与导出范畴
+ 226|langlands>etale-cohomology|0.72||伽罗瓦表示的实现
+ 227|langlands>moduli-space|0.75||希钦模空间与几何朗兰兹
+ 228|langlands>motive|0.68||朗兰兹与 motive 的联系
+ 229|k-stability>moduli-space|0.7||K-稳定模空间
+ 230|minimal-model-open>resolution|0.72||正特征消解仍未解决
+ 231|minimal-model-open>mmp|0.78||高维 MMP 的遗留问题
+ 232|cn-hodge>cn-tate|0.94||算术上的镜像：都有"不变类是否来自代数圈"的形式
+ 233|cn-hodge>cn-standard|0.9||标准猜想蕴含 Hodge 猜想
+ 234|cn-hodge>cn-hartshorne-ample|0.58||同属"上同调类能否由代数对象实现"这一族
+ 235|cn-tate>cn-standard|0.9||标准猜想蕴含 Tate 猜想
+ 236|cn-tate>cn-bsd|0.86||秩的解析–代数对应是 Tate 猜想的算术形式
+ 237|cn-standard>cn-canonical-model|0.62||两者都以 MMP 的框架为背景
+ 238|cn-canonical-model>cn-rationally-connected|0.7||都在 MMP 的终点处提出问题
+ 239|cn-canonical-model>cn-resolution-charp|0.66||都需要消解或它的替代品
+ 240|cn-resolution-charp>cn-jacobian|0.6||特征 p 的困难跨越多个领域
+ 241|cn-rationally-connected>cn-jacobian|0.64||都是关于"映射是否足够多"的问题
+ 242|cn-jacobian>cn-linearization|0.88||线性化猜想蕴含雅可比猜想
+ 243|cn-yau-tian>cn-fujita|0.7||都关乎典范除子的正性与丰饶性
+ 244|cn-hartshorne-ample>cn-fujita|0.68||都是关于正性与消没的判据
+ 245|cn-fujita>cn-canonical-model|0.74||丰饶性是典范模型存在的前提
+ 246|cn-hartshorne-ample>cn-standard|0.55||同属"上同调消没与代数性"这一族
+ 247|cn-zariski-lipman>cn-jacobian|0.62||都用微分模探测正则性
+ 248|cn-zariski-lipman>cn-resolution-charp|0.58||正特征下都因微分失效而困难
+ 249|cn-yau-tian>cn-canonical-model|0.66||都与典范除子的正性相关
+ 250|cn-rationally-connected>cn-yau-tian|0.55||都以 Fano 簇为对象
+ 251|cn-riemann>cn-grh|0.93||GRH 是 RH 的推广，单个 L 函数推广到全体
+ 252|cn-riemann>cn-bsd|0.84||BSD 是 L 函数零点阶的算术解释
+ 253|cn-riemann>cn-class-number|0.76||类数问题的证明用 L 函数零点排斥
+ 254|cn-riemann>cn-schanuel|0.58||都属"分析对象与算术对象的关系"
+ 255|cn-grh>cn-class-number|0.78||GRH 蕴含类数问题的有效版本
+ 256|cn-grh>cn-artin|0.8||Artin L 函数的解析性质在 GRH 框架下讨论
+ 257|cn-bsd>cn-szpiro|0.82||Szpiro 控制判别式，与 BSD 的不变量同族
+ 258|cn-bsd>cn-mordell|0.74||Faltings 的证明是 BSD 解析秩 ≤ 1 情形的基础
+ 259|cn-abc>cn-szpiro|0.95||Szpiro 猜想与 abc 猜想等价
+ 260|cn-abc>cn-fermat|0.88||abc 蕴含足够大指数的费马大定理
+ 261|cn-abc>cn-mordell|0.66||两者都属"丢番图方程解的有限性"
+ 262|cn-fermat>cn-mordell|0.72||都通过 Galois 表示与自守形式解决
+ 263|cn-fermat>cn-modularity|0.94||费马大定理的证明归结为模性定理
+ 264|cn-fermat>cn-artin|0.76||二维 Artin 猜想是 Wiles 证明的关键工具
+ 265|cn-modularity>cn-sato-tate|0.86||佐藤–泰特的证明用模性提升
+ 266|cn-modularity>cn-kazhdan-lusztig|0.54||自守形式与 Hecke 代数的表示论
+ 267|cn-modularity>cn-gross-prasad|0.68||自守表示的周期与 L 值
+ 268|cn-sato-tate>cn-langlands-functoriality|0.82||等分布是函子性的推论
+ 269|cn-sato-tate>cn-grh|0.6||都属于 L 函数在临界带的行为

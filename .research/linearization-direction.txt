@@ -1,0 +1,39 @@
+================================================================================
+(a) "Jacobian conjecture" infobox 的 implied by / equivalent to
+================================================================================
+   | implied by =
+   | implied by =
+   | implied by =
+   | equivalent to =
+   | equivalent to = [[Dixmier conjecture]]
+   | equivalent to =
+   | known cases = Counterexample found by [[Levent Alpöge]] in 2026 for all ''n'' > 2
+   | known cases = Counterexamples found for all positive characteristic <math>p</math> in dimensions <math>n \geq 2</math>.
+   | open problem = Yes
+   | open problem = Only for ''n'' = 2 (planar Jacobian conjecture)
+   | open problem = Only for characteristic zero, ''n'' = 2 (planar Jacobian conjecture)
+   | conjectured by = [[Ludwig Kraus]]
+   | conjectured by = [[Ott-Heinrich Keller]]
+   | conjectured by = Kossivi Adjamagbo
+   | conjecture date = 1884
+   | conjecture date = 1939
+   | conjecture date = 1995
+
+   正文中所有含 "lineariz" 的行（截断）:
+     （正文无 lineariz）
+
+================================================================================
+(b) "Locally nilpotent derivation" 条目：linearization / Jacobian 的关系
+================================================================================
+   （39503 字符）
+   （无相关句子）
+
+================================================================================
+(c) arXiv 摘要（all: 全文检索，找 implies 句）
+================================================================================
+
+  查询: all:"linearization conjecture" AND all:"Jacobian conjecture"
+  总数 0，取回 0
+
+  查询: all:"Kraft-Popov" AND all:Jacobian
+  总数 0，取回 0

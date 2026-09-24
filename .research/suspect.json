@@ -1,0 +1,50 @@
+[
+ {
+  "id": "cn-rationally-connected",
+  "why": "词重叠 33%",
+  "resolved": "Rational variety",
+  "query": "Rationally connected variety"
+ },
+ {
+  "id": "cn-zariski-lipman",
+  "why": "词重叠 0%",
+  "resolved": "Nakai conjecture",
+  "query": "Zariski–Lipman conjecture"
+ },
+ {
+  "id": "cn-linearization",
+  "why": "词重叠 0%",
+  "resolved": "Spherical space form conjecture",
+  "query": "Linearization conjecture"
+ },
+ {
+  "id": "cn-hartshorne-ample",
+  "why": "列表页",
+  "resolved": "List of unsolved problems in mathematics",
+  "query": "Hartshorne's conjecture"
+ },
+ {
+  "id": "cn-virtual-fibering",
+  "why": "词重叠 0%",
+  "resolved": "Virtually fibered conjecture",
+  "query": "Virtual fibering conjecture"
+ },
+ {
+  "id": "cn-idempotent",
+  "why": "词重叠 0%",
+  "resolved": "Kaplansky's conjectures",
+  "query": "Idempotent conjecture"
+ },
+ {
+  "id": "cn-howe",
+  "why": "词重叠 0%",
+  "resolved": "Reductive dual pair",
+  "query": "Howe duality"
+ },
+ {
+  "id": "cn-zero-divisor",
+  "why": "词重叠 0%",
+  "resolved": "Kaplansky's conjectures",
+  "query": "Zero divisor conjecture"
+ }
+]

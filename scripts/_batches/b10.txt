@@ -1,0 +1,135 @@
+1350|f-de-jong-modifications>c-alterations|0.86|provenance|与主库条目分享同一套技术
+1351|f-de-jong-modifications>c-padic-hodge|0.76|related|半稳定模型是 p 进 Hodge 理论的输入
+1352|f-de-jong-modifications>f-embedded-resolution|0.72|depends|相对版本需要与给定边界相容
+1353|f-de-jong-modifications>c-berkovich|0.6|related|Berkovich 空间的半稳定约化
+1354|f-nash-conjecture>resolution|0.7|defines|猜想给消解一个不依赖存在性的定义
+1355|f-iitaka-fibration>h-kodaira-dimension-compute|0.82|computes|纤维化给出 Kodaira 维数的实际计算路径
+1356|f-iitaka-fibration>iitaka-fibration|0.96|computes|与主库的 Iitaka 纤维化条目是同一构造
+1357|f-iitaka-fibration>f-kodaira-dimension-fibration|0.92|related|加法公式是 Iitaka 纤维化的核心猜想
+1358|f-iitaka-fibration>kodaira-dimension|0.88|related|纤维化的基维数就是 Kodaira 维数
+1359|f-iitaka-fibration>c-abundance-conjecture|0.82|depends|纤维化的存在依赖丰饶性的部分结果
+1360|f-iitaka-fibration>f-canonical-ring-fg|0.8|related|典范环有限生成给出典范模型与纤维化
+1361|f-kodaira-dimension-fibration>kodaira-dimension|0.9|equivalent|加法公式正是关于 Kodaira 维数的
+1362|f-kodaira-dimension-fibration>h-kodaira-dimension-compute|0.74|computes|高维批的 Kodaira 维数计算条目
+1363|f-kodaira-dimension-fibration>k3-surface|0.55|equivalent|κ = 0 的纤维是最难的一般纤维
+1364|f-canonical-ring-fg>cn-canonical-model|0.93|equivalent|有限生成性与典范模型存在性等价
+1365|f-canonical-ring-fg>c-abundance-conjecture|0.88|related|两者一起给出 MMP 的终点
+1366|f-canonical-ring-fg>canonical-model|0.85|provenance|主库典范模型条目
+1367|f-canonical-ring-fg>c-termination|0.78|depends|有限生成的论证依赖 MMP 终止性
+1368|f-severi-iitaka>moduli-space|0.74|depends|有界性论证依赖模空间理论
+1369|f-severi-iitaka>f-iitaka-fibration|0.8|sameFamily|都是关于纤维化有多少个的问题
+1370|f-severi-iitaka>c-boundedness|0.78|related|与有界性问题共享技术
+1371|f-severi-iitaka>ruled-surface|0.62|related|直纹面是基亏格 0 的经典例子
+1372|f-mori-fiber-space>fano|0.9|related|Mori 纤维空间的纤维是 Fano 簇
+1373|f-mori-fiber-space>mori-cone-theorem|0.88|property|圆锥定理保证极射线存在，才谈得上纤维空间
+1374|f-mori-fiber-space>b-mori-cone|0.86|provenance|主库 Mori 锥条目
+1375|f-mori-fiber-space>cn-rationally-connected|0.76|equivalent|纤维的 Fano 性正是那条猜想的场景
+1376|f-mori-fiber-space>c-moduli-fano|0.72|related|Fano 纤维的模空间是有界性问题
+1377|f-extremal-contraction>mori-cone-theorem|0.94|related|收缩定理是圆锥定理的另一半
+1378|f-extremal-contraction>f-mori-fiber-space|0.88|related|低维收缩的输出就是 Mori 纤维空间
+1379|f-extremal-contraction>flip|0.86|related|双有理收缩的两端是 flip 或 flop
+1380|f-extremal-contraction>b-mori-cone|0.84|related|极射线是 Mori 锥的面
+1381|f-extremal-contraction>h-terminal-flop|0.7|related|三维 flop 是极收缩的显式例子
+1382|f-contraction-algebraicity>f-canonical-ring-fg|0.92|equivalent|代数性等价于相对典范环有限生成
+1383|f-contraction-algebraicity>flip|0.86|related|flip 的存在性就是收缩代数性的一个情形
+1384|f-contraction-algebraicity>c-termination|0.68|property|收缩之后还要保证过程会停
+1385|f-contraction-algebraicity>e-coherent-sheaf|0.6|related|相对典范环的有限性论证用凝聚性
+1386|f-contraction-algebraicity>c-log-resolution|0.64|depends|对数情形下代数性论证需要边界控制
+1387|f-special-mmp>c-termination|0.95|provenance|与主库终止性条目互补
+1388|f-special-mmp>flip|0.88|property|终止性是关于 flip 序列的性质
+1389|f-special-mmp>f-threefold-mmp|0.84|related|三维的终止性已完整证明
+1390|f-special-mmp>f-abundance-log|0.7|related|终止性与丰饶性共同决定 MMP 终点
+1391|f-nonvanishing>c-abundance-conjecture|0.9|depends|non-vanishing 是丰饶性的前提
+1392|f-nonvanishing>f-abundance-log|0.93|related|两者是 MMP 转折处的两个卡点
+1393|f-nonvanishing>abundance|0.86|provenance|主库丰饶性条目
+1394|f-nonvanishing>f-canonical-ring-fg|0.8|defines|一般型情形由有限生成性给出
+1395|f-abundance-log>abundance|0.96|generalizes|对数版本是主库丰饶性条目的推广
+1396|f-abundance-log>c-abundance-conjecture|0.94|provenance|与主库猜想条目互补
+1397|f-abundance-log>kodaira-dimension|0.78|related|丰饶性决定 Kodaira 维数的取值
+1398|f-lc-center>f-dlt-model|0.92|equivalent|dlt 条件正是对 lc 中心的要求
+1399|f-lc-center>f-minimal-lc-center|0.9|related|极小 lc 中心是中心里的极小元
+1400|f-lc-center>c-discrepancy|0.86|defines|中心的定义用差异系数
+1401|f-lc-center>f-log-canonical-threshold|0.74|defines|lct 的值由 lc 中心决定
+1402|f-dlt-model>f-minimal-lc-center|0.88|related|dlt 使中心的链上可以做归纳
+1403|f-dlt-model>c-singularities-mmp|0.84|related|dlt 是 MMP 归纳的标准框架
+1404|f-dlt-model>c-adjunction-mmp|0.8|related|伴随公式在 dlt 框架下最好用
+1405|f-minimal-lc-center>c-adjunction-mmp|0.88|defines|极小中心上的 klt 对由伴随给出
+1406|f-minimal-lc-center>c-klt-base-point-free|0.76|related|归约到 klt 之后可以用基点自由定理
+1407|f-minimal-lc-center>flip|0.78|related|flips 存在性证明的第一步就是这个归约
+1408|f-threefold-mmp>flip|0.94|related|三维 flip 存在且序列终止
+1409|f-threefold-mmp>mmp|0.9|generalizes|三维是 MMP 唯一完整解决的情形
+1410|f-threefold-mmp>c-termination|0.88|related|三维终止性已证
+1411|f-threefold-mmp>abundance|0.82|related|三维丰饶性由宫冈–森解决
+1412|f-threefold-mmp>c-singularities-mmp|0.86|related|三维奇点分类是证明的基础
+1413|f-threefold-mmp>h-terminal-flop|0.78|related|三维终端奇点与 flop 的完整分类
+1414|f-surface-classification-algorithm>surface-classification|0.95|related|曲面分类的算法化
+1415|f-surface-classification-algorithm>b-castelnuovo-criterion|0.92|defines|−1 曲线的收缩判据是算法的每一步
+1416|f-surface-classification-algorithm>b-blowup-surface|0.84|related|收缩的逆操作就是 blowup
+1417|f-surface-classification-algorithm>b-enriques-kodaira|0.8|related|Enriques–Kodaira 分类是算法的输出
+1418|f-surface-classification-algorithm>h-aut-minimal-surface|0.66|equivalent|极小模型的自同构群依赖于算法结果
+1419|g-enumerative-invariant>g-virtual-fundamental-class|0.95|defines|枚举不变量的定义依赖虚拟基本类
+1420|g-enumerative-invariant>g-gromov-witten-motivation|0.92|related|两者的动机与框架完全一致
+1421|g-enumerative-invariant>g-deformation-invariance|0.9|equivalent|定义成积分正是为了保证形变不变
+1422|g-enumerative-invariant>intersection-number|0.88|defines|"个数"最终被定义为相交数
+1423|g-enumerative-invariant>c-gw-invariants|0.94|provenance|主库 GW 不变量条目
+1424|g-gromov-witten-motivation>c-gw-invariants|0.93|provenance|与主库条目讲同一套框架的来历
+1425|g-gromov-witten-motivation>c-deligne-mumford|0.85|related|稳定映射的靶空间是 DM 栈
+1426|g-gromov-witten-motivation>c-quantum-cohomology|0.88|related|动机的直接产物是量子上同调
+1427|g-gromov-witten-motivation>c-mirror-map|0.82|related|五次超曲面的计数是镜像对称的起点
+1428|g-virtual-fundamental-class>c-virtual-fundamental|0.96|provenance|与主库虚拟基本类条目互补
+1429|g-virtual-fundamental-class>c-perfect-complex|0.9|computes|虚拟基本类由完美复形（障碍理论）造出
+1430|g-virtual-fundamental-class>c-obstruction|0.88|related|障碍空间决定虚拟维数
+1431|g-virtual-fundamental-class>c-deformation-theory|0.86|computes|形变–障碍理论是构造的输入
+1432|g-virtual-fundamental-class>g-localization|0.78|related|有了虚拟类才能谈在奇异模空间上积分
+1433|g-deformation-invariance>g-localization|0.84|computes|局部化是形变不变性的计算实现
+1434|g-deformation-invariance>g-virtual-localization|0.86|property|虚拟局部化保证奇异情形也不变
+1435|g-deformation-invariance>c-dt-theory|0.74|depends|DT 不变量同样依赖形变不变性
+1436|g-localization>c-atiyah-bott-fixed|0.96|provenance|与主库 Atiyah–Bott 条目是同一技术
+1437|g-localization>g-virtual-localization|0.93|generalizes|虚拟局部化是经典局部化的奇异推广
+1438|g-localization>b-localization|0.9|provenance|主库局部化条目
+1439|g-localization>c-equivariant-k|0.82|equivalent|等变 K-理论的局部化是同一原理
+1440|g-localization>g-intersection-toric|0.76|equivalent|toric 簇上的积分正是用不动点求和
+1441|g-virtual-localization>c-virtual-fundamental|0.88|related|虚拟局部化必须在虚拟基本类上做
+1442|g-virtual-localization>g-k-theoretic-integral|0.7|analogy|K-理论局部化是平行技术
+1443|g-quantum-cohomology-ring>c-quantum-cohomology|0.95|provenance|与主库量子上同调条目互补
+1444|g-quantum-cohomology-ring>c-wdvv|0.92|equivalent|结合律正是 WDVV 方程
+1445|g-quantum-cohomology-ring>c-gw-invariants|0.9|related|结构常数就是三点 GW 不变量
+1446|g-quantum-cohomology-ring>c-mirror-map|0.88|related|镜像映射在量子环上有显式形式
+1447|g-quantum-cohomology-ring>g-enumerative-invariant|0.84|defines|环的乘法由计数给出
+1448|g-quantum-cohomology-ring>c-hms|0.8|equivalent|同调镜像对称在量子环层面化为同构
+1449|g-schubert-calculus>g-schubert-variety|0.92|equivalent|演算的基正是 Schubert 簇的类
+1450|g-schubert-calculus>b-grassmannian|0.9|related|Grassmann 簇是演算的舞台
+1451|g-schubert-calculus>b-splitting-principle|0.8|related|演算的推导常用分裂原理
+1452|g-schubert-calculus>g-localization|0.82|related|Schubert 计数可用局部化重算
+1453|g-schubert-calculus>g-chow-ring-relations|0.78|computes|演算就是 Chow 环里的一种计算
+1454|g-schubert-variety>g-localization|0.74|related|不动点集给出 Schubert 胞腔分解
+1455|g-schubert-variety>cn-kazhdan-lusztig|0.85|equivalent|Schubert 簇的相交上同调正是那条猜想的来源
+1456|g-schubert-variety>c-perverse|0.78|related|Schubert 簇上的反常层是表示论的几何载体
+1457|g-schubert-variety>b-grassmannian|0.88|related|旗簇与 Grassmann 簇上的 Schubert 簇
+1458|g-chow-ring-relations>chow-ring|0.94|defines|主库 Chow 环条目讲定义，这里讲计算
+1459|g-chow-ring-relations>b-chow-variety|0.9|related|Chow 簇是 Chow 环的几何载体
+1460|g-chow-ring-relations>intersection-number|0.88|related|乘积的几何意义就是相交数
+1461|g-chow-ring-relations>g-chern-class-integral|0.82|related|Chern 类的积分是相交积的常见形式
+1462|g-chow-ring-relations>g-virtual-fundamental-class|0.76|depends|奇异空间需要虚拟类才能做相交积
+1463|g-chern-class-integral>chern-class|0.92|provenance|主库 Chern 类条目
+1464|g-chern-class-integral>b-hirzebruch-rr|0.9|related|Hirzebruch–Riemann–Roch 是核心恒等式
+1465|g-chern-class-integral>b-todd-genus|0.86|related|Todd 亏格是 Td 类的积分
+1466|g-chern-class-integral>b-chern-weil|0.84|computes|Chern–Weil 理论给出用曲率计算的方法
+1467|g-chern-class-integral>euler-characteristic|0.82|related|Gauss–Bonnet 把 Euler 数写成积分
+1468|g-chern-class-integral>g-multiplicative-genus|0.86|related|乘性亏格就是 Chern 类积分的系统化
+1469|g-intersection-toric>c-tropical|0.82|related|toric 几何的现代延伸是热带几何
+1470|g-intersection-toric>b-projective-bundle|0.66|computes|射影丛上的相交计算是 toric 之外的样板
+1471|g-intersection-toric>g-virtual-fundamental-class|0.62|related|toric 情形是检验虚拟类猜想的试验场
+1472|g-intersection-toric>cone-theorem|0.58|analogy|扇形与锥的对应是 toric 理论的核心
+1473|g-intersection-toric>b-mori-cone|0.6|computes|toric 情形下 Mori 锥可以完全算出
+1474|g-k-theoretic-integral>k-theory|0.94|provenance|主库 K-理论条目
+1475|g-k-theoretic-integral>riemann-roch|0.92|equivalent|Riemann–Roch 正是这座桥的原始形式
+1476|g-k-theoretic-integral>b-chern-class-axioms|0.84|computes|Chern 特征的构造依赖 Chern 类的公理
+1477|g-k-theoretic-integral>c-equivariant-k|0.82|computes|等变 K-理论的积分同样由局部化计算
+1478|g-k-theoretic-integral>c-dt-theory|0.76|related|DT 理论的 K-理论提升（K-theoretic DT）
+1479|g-k-theoretic-integral>g-quantum-cohomology-ring|0.74|related|量子 K-理论是量子上同调的 K-理论版
+1480|g-multiplicative-genus>b-todd-genus|0.9|generalizes|Todd 亏格是乘性亏格的原型
+1481|g-multiplicative-genus>todd-class|0.86|defines|特征幂级数由 Todd 类给出
+1482|g-multiplicative-genus>c-hirzebruch-signature|0.84|related|Hirzebruch 签名定理是 L-亏格的陈述
+1483|g-multiplicative-genus>c-cobordism|0.8|equivalent|乘性亏格与协边环的环同态一一对应
+1484|g-multiplicative-genus>c-atiyah-singer|0.74|related|指标定理是乘性亏格的分析解释

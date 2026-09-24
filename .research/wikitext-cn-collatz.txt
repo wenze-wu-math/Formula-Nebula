@@ -1,0 +1,425 @@
+{{short description|Open problem on 3x+1 and x/2 functions}}
+{{pp|small=yes}}
+{{unsolved|mathematics|{{bulleted list|For even numbers, divide by 2;|For odd numbers, multiply by 3 and add 1.}}With enough repetition, do all positive integers converge to 1?}}
+[[File:Collatz-graph-50-no27.svg|thumb|upright=0.6|[[Directed graph]] showing the [[Orbit (dynamics)|orbits]] of small numbers under the Collatz map, skipping even numbers. The Collatz conjecture states that all paths eventually lead to 1.]]
+The '''Collatz conjecture'''{{efn|It is also known as the '''{{math|3''n'' + 1}} problem''' (or '''conjecture'''), the '''{{math|3''x'' + 1}} problem''' (or '''conjecture'''), the '''Ulam conjecture''' (after [[Stanisław Ulam]]), '''Kakutani's problem''' (after [[Shizuo Kakutani]]), the '''Thwaites conjecture''' (after [[Bryan Thwaites]]), '''Hasse's algorithm''' (after [[Helmut Hasse]]), or the '''Syracuse problem''' (after [[Syracuse University]]).<ref>{{cite book |last1=Maddux |first1=Cleborne D. |last2=Johnson |first2=D. Lamont |year=1997 |title=Logo: A Retrospective |publisher=Haworth Press |location=New York |isbn=0-7890-0374-0 |page=160 |quote=The problem is also known by several other names, including: Ulam's conjecture, the Hailstone problem, the Syracuse problem, Kakutani's problem, Hasse's algorithm, and the Collatz problem.}}</ref>{{refn|According to {{named ref|name=Lagarias (1985)}} p.&nbsp;4, the name "Syracuse problem" was proposed by Hasse in the 1950s, during a visit to [[Syracuse University]].}}}} is one of the most famous [[List of unsolved problems in mathematics|unsolved problems in mathematics]]. The [[conjecture]] asks whether repeating two simple arithmetic operations will eventually transform every [[positive integer]] into 1. It concerns [[integer sequence|sequences of integers]] in which each term is obtained from the previous term as follows: if a term is [[Parity (mathematics)|even]], the next term is one half of it. If a term is odd, the next term is 3 times the previous term plus 1. The conjecture is that these sequences always reach 1, no matter which positive integer is chosen to start the sequence. The conjecture has been shown to hold for all positive integers up to {{val|2.36e21}}, but no general proof has been found.
+
+It is named after the mathematician [[Lothar Collatz]], who introduced the idea in 1937, two years after receiving his doctorate.<ref>{{mactutor|title=Lothar Collatz|id=Collatz}}</ref> The sequence of numbers involved is sometimes referred to as the '''hailstone sequence''', '''hailstone numbers''' or '''hailstone numerals''' (because the values are usually subject to multiple descents and ascents like [[hailstones]] in a cloud),<ref>{{cite book |last=Pickover |first=Clifford A. |year=2001 |title=Wonders of Numbers |url=https://archive.org/details/wondersnumbersad00pick |url-access=limited |publisher=Oxford University Press |location=Oxford |isbn=0-19-513342-0 |pages=[https://archive.org/details/wondersnumbersad00pick/page/n136 116]–118}}</ref> or as '''wondrous numbers'''.<ref>{{cite book |last=Hofstadter |first=Douglas R. |author-link=Douglas Hofstadter |year=1979 |title=Gödel, Escher, Bach |publisher=Basic Books |location=New York |isbn=0-465-02685-0 |pages=[https://archive.org/details/godelescherbach00doug/page/400 400–2]|title-link=Gödel, Escher, Bach }}</ref>
+
+[[Paul Erdős]] said about the Collatz conjecture: "Mathematics may not be ready for such problems."<ref name="Guy (2004)"/> [[Jeffrey Lagarias]] stated in 2010 that the Collatz conjecture "is an extraordinarily difficult problem, completely out of reach of present day mathematics".<ref name="Lagarias (2010)"/> However, though the Collatz conjecture itself remains open, efforts to solve the problem have led to new techniques and many partial results.<ref name="Lagarias (2010)"/><ref name="Tao">{{Cite journal |last=Tao |first=Terence |date=2022 |title=Almost all orbits of the Collatz map attain almost bounded values |journal=Forum of Mathematics, Pi |language=en |volume=10 |article-number=e12 |doi=10.1017/fmp.2022.8 |issn=2050-5086|doi-access=free |arxiv=1909.03562 }}</ref>
+
+==Statement of the problem==
+[[File:Collatz-stopping-time.svg|thumb|Numbers from 1 to 9999 and their corresponding total stopping time]]
+[[File:CollatzStatistic100million.png|thumb|Histogram of total stopping times for the numbers 1 to 10<sup>8</sup>. Total stopping time is on the {{mvar|x}} axis, frequency on the {{mvar|y}} axis.]]
+[[File:CollatzStatistic1billion.png|thumb|Histogram of total stopping times for the numbers 1 to 10<sup>9</sup>. Total stopping time is on the {{mvar|x}} axis, frequency on the {{mvar|y}} axis.]]
+[[File:Collatz-10Million.png|thumb|Iteration time for inputs of 2 to 10<sup>7</sup>.]]
+[[File:Collatz Gif.gif|alt=Total Stopping Time: numbers up to 250, 1000, 4000, 20000, 100000, 500000|thumb|Total stopping time of numbers up to 250, 1000, 4000, 20000, 100000, 500000]]
+Consider the following operation on an arbitrary [[positive integer]]:
+
+* If the number is even, divide it by two.
+* If the number is odd, triple it and add one.
+
+In [[modular arithmetic]] notation, define the [[function (mathematics)|function]] {{mvar|f}} as follows:
+<math display="block"> f(n) = \begin{cases} n/2 &\text{if } n \equiv 0 \pmod{2},\\
+ 3n+1 & \text{if } n\equiv 1 \pmod{2} .\end{cases}</math>
+
+Now form a sequence by performing this operation repeatedly, beginning with any positive integer, and taking the result at each step as the input at the next.
+
+In notation:
+<math display="block"> a_i = \begin{cases}n & \text{for } i = 0, \\ f(a_{i-1}) & \text{for } i > 0 \end{cases}</math>
+(that is: {{math|''a<sub>i</sub>''}} is the value of {{mvar|f}} applied to {{mvar|n}} recursively {{mvar|i}} times;  {{math|''a<sub>i</sub>'' {{=}} ''f''{{hsp}}{{isup|''i''}}(''n'')}}).
+
+The Collatz conjecture is: ''This process will eventually reach the number 1, regardless of which positive integer is chosen initially. That is, for each'' <math>n</math>, there is some <math>i</math> with <math>a_i = 1</math>.
+
+If the conjecture is false, it can only be because there is some starting number which gives rise to a sequence that does not contain 1. Such a sequence would either enter a repeating cycle that excludes 1, or increase without bound. No such sequence has been found.
+
+The smallest {{mvar|i}} such that {{math|''a<sub>i</sub>'' < ''a''<sub>0</sub> }} is called the '''stopping time''' of {{mvar|n}}. Similarly, the smallest {{mvar|k}} such that {{math|''a<sub>k</sub>'' {{=}} 1}} is called the '''total stopping time''' of {{mvar|n}}.<ref name="Lagarias (1985)"/> If one of the indexes {{mvar|i}} or {{mvar|k}} does not exist, we say that the stopping time or the total stopping time, respectively, is infinite.
+
+The Collatz conjecture asserts that the total stopping time of every {{mvar|n}} is finite. It is also equivalent to saying that every {{math|''n'' ≥ 2}} has a finite stopping time.
+
+Since {{math|3''n'' + 1}} is even whenever {{mvar|n}} is odd, one may instead use the "shortcut" form of the Collatz function:
+<math display = "block"> f(n) = \begin{cases} \frac{n}{2} &\text{if } n \equiv 0 \pmod{2},\\ \frac{3n+1}{2} & \text{if } n\equiv 1 \pmod{2}. \end{cases}</math>
+This definition yields smaller values for the stopping time and total stopping time without changing the overall dynamics of the process.
+
+==Empirical data==
+For instance, starting with {{math|''n'' {{=}} 12}} and applying the function {{math|''f''}} without "shortcut", one gets the sequence {{CSG|12}}.
+
+The number {{math|''n'' {{=}} 19}} takes longer to reach 1: {{CSG|19}}.
+
+<!-- NOTICE TO EDITORS...  Please note that the number of steps is one less than the number of elements of the sequence!  So the number of 111 steps is CORRECT for n=27.  Thanks for paying attention to this factoid! -->
+The sequence for {{math|''n'' {{=}} 27}}, listed and graphed below, takes 111 steps (41 steps through odd numbers, in bold), climbing as high as 9232 before descending to 1.
+
+: {{CSG|27|bold= odd}}{{OEIS|id=A008884}}
+
+[[File:Collatz5.svg|frameless|upright=2|center]]
+
+Numbers with a total stopping time longer than that of any smaller starting value form a sequence beginning with:
+:1, 2, 3, 6, 7, 9, 18, 25, 27, 54, 73, 97, 129, 171, 231, 313, 327, 649, 703, 871, 1161, 2223, 2463, 2919, 3711, 6171, ... {{OEIS|A006877}}.
+
+The starting values whose [[maximum]] trajectory point is greater than that of any smaller starting value are as follows:
+:1, 2, 3, 7, 15, 27, 255, 447, 639, 703, 1819, 4255, 4591, 9663, 20895, 26623, 31911, 60975, 77671, 113383, 138367, 159487, 270271, 665215, 704511, ... {{OEIS|id=A006884}}
+
+Number of steps for {{mvar|n}} to reach 1 are
+:0, 1, 7, 2, 5, 8, 16, 3, 19, 6, 14, 9, 9, 17, 17, 4, 12, 20, 20, 7, 7, 15, 15, 10, 23, 10, 111, 18, 18, 18, 106, 5, 26, 13, 13, 21, 21, 21, 34, 8, 109, 8, 29, 16, 16, 16, 104, 11, 24, 24, ... {{OEIS|id=A006577}}
+
+The starting value having the largest total stopping time while being
+:less than 10 is 9, which has 19 steps,
+:less than 100 is 97, which has 118 steps,
+:less than 1000 is 871, which has 178 steps,
+:less than 10<sup>4</sup> is 6171, which has 261 steps,
+:less than 10<sup>5</sup> is {{val|77031}}, which has 350 steps,
+:less than 10<sup>6</sup> is {{val|837799}}, which has 524 steps,
+:less than 10<sup>7</sup> is {{val|8400511}}, which has 685 steps,
+:less than 10<sup>8</sup> is {{val|63728127}}, which has 949 steps,
+:less than 10<sup>9</sup> is {{val|670617279}}, which has 986 steps,
+:less than 10<sup>10</sup> is {{val|9780657630}}, which has 1132 steps,<ref>{{cite journal |last1=Leavens |first1=Gary T. |last2=Vermeulen |first2=Mike |date=December 1992 |title=3''x'' + 1 search programs |journal=Computers & Mathematics with Applications |volume=24 |issue=11 |pages=79–99 |doi=10.1016/0898-1221(92)90034-F|doi-access=  |url=https://lib.dr.iastate.edu/cs_techreports/125 }}</ref>
+:less than 10<sup>11</sup> is {{val|75128138247}}, which has 1228 steps,
+:less than 10<sup>12</sup> is {{val|989345275647}}, which has 1348 steps.<ref name=Roosendaal>{{cite web |last=Roosendaal |first=Eric |title=3x+1 delay records |url=http://www.ericr.nl/wondrous/delrecs.html |access-date=14 March 2020 |archive-date=27 March 2023 |archive-url=https://web.archive.org/web/20230327064659/http://www.ericr.nl/wondrous/delrecs.html |url-status=live }} (Note: "Delay records" are total stopping time records.)</ref> {{OEIS|id=A284668}}
+
+These numbers are the lowest ones with the indicated step count, but not necessarily the only ones below the given limit. As an example, {{val|9780657631}} has 1132 steps, as does {{val|9780657630}}.
+
+The starting values having the smallest total stopping time with respect to their number of digits (in base 2) are the [[Power of two|powers of two]], since {{math|2<sup>''n''</sup>}} is halved {{mvar|n}} times to reach 1, and it is never increased. 
+
+==Visualizations==
+<gallery mode=packed heights="250">
+File:Collatz orbits of the all integers up to 1000.svg|Directed graph showing the orbits of the first 1000 numbers.
+File:CollatzConjectureGraphMaxValues.jpg|The {{mvar|x}} axis represents starting number, the {{mvar|y}} axis represents the highest number reached during the chain to&nbsp;1. This plot shows a restricted {{mvar|y}} axis: some {{mvar|x}} values produce intermediates as high as {{val|2.7e7}} (for {{math|''x'' {{=}} 9663}})
+File:Collatz-max.png|The same plot as the previous one but on log scale, so all {{mvar|y}} values are shown. The first thick line towards the middle of the plot corresponds to the tip at 27, which reaches a maximum at 9232.
+File:All Collatz sequences of a length inferior to 20.svg|The tree of all the numbers having fewer than 20 steps.
+File:Collatz Conjecture 100M.jpg|alt=Collatz Conjecture 100M|The number of iterations it takes to get to one for the first 100 million numbers.
+File:Collatz_conjecture_tree_visualization.png|Collatz conjecture paths for 5000 random starting points below 1 million.
+</gallery>
+
+==Supporting arguments==
+Although the conjecture has not been proven, most mathematicians{{Citation needed|date=April 2025}} who have looked into the problem think the conjecture is true because experimental evidence and heuristic arguments support it.
+
+===Experimental evidence===
+The conjecture has been checked by computer for all starting values up to 2<sup>71</sup> ≈ {{val|2.36e21}}. All values tested so far converge to 1.<ref name=Barina>{{cite journal | last = Barina | first = David | title = Improved verification limit for the convergence of the Collatz conjecture | journal = The Journal of Supercomputing | year = 2025 | volume = 81 | issue = 7 | article-number = 810 | doi = 10.1007/s11227-025-07337-0 | s2cid = 220294340 |url=https://link.springer.com/content/pdf/10.1007/s11227-025-07337-0.pdf }}</ref>
+
+This computer evidence is still not rigorous proof that the conjecture is true for all starting values, as [[counterexamples]] may be found when considering very large positive integers, as in the case of the disproven [[Pólya conjecture]] and [[Mertens conjecture]].
+
+However, such verifications may have other implications. Certain constraints on any non-trivial cycle, such as [[lower bound]]s on the length of the cycle, can be proven based on the value of the lowest term in the cycle. Therefore, computer searches to rule out cycles that have a small lowest term can strengthen these constraints.<ref name="Garner (1981)"/><ref name="Eliahou (1993)"/><ref name="Simons & de Weger (2005)"/>
+
+===A probabilistic heuristic===
+If one considers only the ''odd'' numbers in the sequence generated by the Collatz process, then each odd number is on average {{sfrac|3|4}} of the previous one.{{refn|{{named ref|name=Lagarias (1985)}} section "[http://www.cecm.sfu.ca/organics/papers/lagarias/paper/html/node3.html A heuristic argument"].}} (More precisely, the geometric mean of the ratios of outcomes is {{sfrac|3|4}}.) This yields a heuristic argument that every Hailstone sequence should decrease in the long run, although this is not evidence against other cycles, only against divergence. The argument is not a proof, however, because it assumes that Hailstone sequences are assembled from uncorrelated probabilistic events. (It does rigorously establish that the [[p-adic numbers|2-adic]] extension of the Collatz process has two division steps for every multiplication step for [[almost all]] 2-adic starting values.)
+
+===Stopping times===
+As proven by [[Riho Terras (mathematician)|Riho Terras]], almost every positive integer has a finite stopping time.{{efn|Here "almost every" means that the [[natural density]] of the set of integers with finite stopping times is 1.}}<ref name="Terras (1976)"/> In other words, almost every Collatz sequence reaches a point that is strictly below its initial value. The proof is based on the distribution of [[#As a parity sequence|parity vectors]] and uses the [[central limit theorem]].
+
+In 2019, [[Terence Tao]] improved this result by showing, using [[logarithmic density]], that [[almost all]] (in the sense of logarithmic density) Collatz orbits descend below any given function of the starting point, provided that this function diverges to infinity, no matter how slowly. Responding to this work, ''[[Quanta Magazine]]'' wrote that Tao "came away with one of the most significant results on the Collatz conjecture in decades".<ref name="Tao"/><ref>{{Cite web |last=Hartnett |first=Kevin |date=December 11, 2019 |title=Mathematician Proves Huge Result on 'Dangerous' Problem |url=https://www.quantamagazine.org/mathematician-proves-huge-result-on-dangerous-problem-20191211/ |website=Quanta Magazine |access-date=December 22, 2022 |archive-date=January 16, 2024 |archive-url=https://web.archive.org/web/20240116114346/https://www.quantamagazine.org/mathematician-proves-huge-result-on-dangerous-problem-20191211/ |url-status=live }}</ref>
+
+===Lower bounds===
+In a [[computer-aided proof]], Krasikov and Lagarias showed that the number of integers in the interval {{math|[1,''x'']}} that eventually reach 1 is at least equal to {{math|''x''<sup>0.84</sup>}} for all sufficiently large {{mvar|x}}.<ref>{{Cite journal
+ | last1 = Krasikov
+ | first1 = Ilia
+ | last2 = Lagarias
+ | first2 = Jeffrey C.
+ | author-link2 = Jeffrey Lagarias
+ | year = 2003
+ | title = Bounds for the 3''x''&nbsp;+&nbsp;1 problem using difference inequalities
+ | journal = Acta Arithmetica
+ | url = https://www.impan.pl/download/pdf/aa109-3-4
+ | doi = 10.4064/aa109-3-4
+ | mr = 1980260
+ | volume = 109
+ | issue = 3
+ | pages = 237–258
+ | arxiv = math/0205002
+ | bibcode = 2003AcAri.109..237K
+ | s2cid = 18467460
+ }}{{Dead link|date=July 2026 |bot=InternetArchiveBot }}</ref>
+
+==Cycles==
+In this part, consider the shortcut form of the Collatz function
+<math display="block"> f(n) = \begin{cases} \frac{n}{2} &\text{if } n \equiv 0 \pmod{2},\\ \frac{3n+1}{2} & \text{if } n \equiv 1 \pmod{2}. \end{cases}</math>
+A [[Periodic sequence|cycle]] is a sequence {{math|(''a''<sub>0</sub>, ''a''<sub>1</sub>, ..., ''a<sub>q</sub>'')}} of distinct positive integers where {{math|''f''(''a''<sub>0</sub>) {{=}} ''a''<sub>1</sub>}}, {{math|''f''(''a''<sub>1</sub>) {{=}} ''a''<sub>2</sub>}}, ..., and {{math|''f''(''a<sub>q</sub>'') {{=}} ''a''<sub>0</sub>}}.
+
+The only known cycle is {{math|(1,2)}} of period 2, called the trivial cycle.
+
+===Cycle length===
+As of 2025, the best known bound on cycle length is {{val|217976794617}} ({{val|355504839929}} without shortcut).<ref name=Barina/> In 1993, Eliahou proved that the period {{mvar|p}} of any non-trivial cycle is of the form
+<math display="block">p = 301994 a + 17087915 b + 85137581 c</math>
+where {{mvar|a}}, {{mvar|b}} and {{mvar|c}} are non-negative integers, {{math|''b'' ≥ 1}} and {{math|1=''ac'' = 0}}. This result is based on the [[simple continued fraction]] expansion of {{math|{{sfrac|ln 3|ln 2}}}}.<ref name="Eliahou (1993)"/>
+
+==={{mvar|k}}-cycles===
+A {{mvar|k}}-cycle is a cycle that can be partitioned into {{math|''k''}} contiguous subsequences, each consisting of an increasing sequence of odd numbers, followed by a decreasing sequence of even numbers.<ref name="Simons & de Weger (2005)"/> For instance, if the cycle consists of a single increasing sequence of odd numbers followed by a decreasing sequence of even numbers, it is called a ''1-cycle''.
+
+Steiner (1977) proved that there is no 1-cycle other than the trivial {{math|(1; 2)}}.<ref name="Steiner (1977)"/> Simons (2005) used Steiner's method to prove that there is no 2-cycle.<ref>{{cite journal |last=Simons |first=John L. |year=2005 |title=On the nonexistence of 2-cycles for the 3''x'' + 1 problem |journal=Math. Comp. |volume=74 |pages=1565–72 |mr=2137019 |doi=10.1090/s0025-5718-04-01728-4|bibcode=2005MaCom..74.1565S |doi-access=free }}</ref> Simons and de Weger (2005) extended this proof up to 68-cycles; there is no {{mvar|k}}-cycle up to {{math|''k'' {{=}} 68}}.<ref name="Simons & de Weger (2005)"/> Hercher extended the method further and proved that there exists no ''k''-cycle with {{math|''k'' ≤ 91}}.<ref name="Hercher (2023)"/> As exhaustive computer searches continue, larger {{math|''k''}} values may be ruled out. To state the argument more intuitively; we do not have to search for cycles that have less than 92 subsequences, where each subsequence consists of consecutive ups followed by consecutive downs.{{clarify|date=September 2024}}
+
+==Other formulations of the conjecture==
+
+===In reverse===
+[[File:Collatz-tree, depth=20.svg|thumb|upright=2|The first 21 levels of the ''Collatz [[Graph (discrete mathematics)|graph]]'' generated in bottom-up fashion. The graph includes all numbers with an orbit length of 21 or less.]]
+There is another approach to prove the conjecture, which considers the bottom-up
+method of growing the so-called ''Collatz graph'', a [[Graph (discrete mathematics)|graph]] defined by the inverse [[relation (mathematics)|relation]]
+<math display="block"> R(n) = \begin{cases} \{2n\} & \text{if } n\equiv 0,1,2,3,5 \\ \left\{2n,\frac{n-1}{3}\right\} & \text{if } n\equiv 4 \end{cases} \pmod 6. </math>
+
+So, instead of proving that all positive integers eventually lead to 1, we can try to prove that 1 leads backwards to all positive integers. For any integer {{mvar|n}}, {{math|''n'' ≡ 1 (mod 2)}} [[if and only if]] {{math|3''n'' + 1 ≡ 4 (mod 6)}}. Equivalently, {{math|{{sfrac|''n'' − 1|3}} ≡ 1 (mod 2)}} if and only if {{math|''n'' ≡ 4 (mod 6)}}. Conjecturally, this inverse relation forms a [[tree (graph theory)|tree]] for positive integers except for the 1–2–4 loop (the inverse of the 4–2–1 loop of the unaltered function {{mvar|f}} defined in the [[#Statement of the problem|Statement of the problem]] section of this article).
+
+When the relation {{math|3''n'' + 1}} of the function {{mvar|f}} is replaced by the common substitute "shortcut" relation {{math|{{sfrac|3''n'' + 1|2}}}}, the Collatz graph is defined by the inverse relation,
+<math display="block"> R(n) = \begin{cases} \{2n\} & \text{if } n\equiv 0,1 \\ \left\{2n,\frac{2n-1}{3}\right\} & \text{if } n\equiv 2 \end{cases} \pmod 3. </math>
+
+For any integer {{mvar|n}}, {{math|''n'' ≡ 1 (mod 2)}} if and only if {{math|{{sfrac|3''n'' + 1|2}} ≡ 2 (mod 3)}}. Equivalently, {{math|{{sfrac|2''n'' − 1|3}} ≡ 1 (mod 2)}} if and only if {{math|''n'' ≡ 2 (mod 3)}}. Conjecturally, this inverse relation forms a tree for positive integers except for a 1–2 loop (the inverse of the 1–2 loop of the function f(n) revised as indicated above).
+
+Alternatively, replace the {{math|3''n'' + 1}} with {{math|{{sfrac|''n''{{prime}}|''H''(''n''{{prime}})}}}} where {{math|''n''{{prime}} {{=}} 3''n'' + 1}} and {{math|''H''(''n''{{prime}})}} is the highest [[power of 2]] that divides {{math|''n''{{prime}}}} (with no [[remainder]]). The resulting function {{mvar|f}} maps from [[odd number]]s to odd numbers. Now suppose that for some odd number {{mvar|n}}, applying this operation {{mvar|k}} times yields the number 1 (that is, {{math|''f''{{isup|''k''}}(''n'') {{=}} 1}}). Then in [[Binary number|binary]], the number {{mvar|n}} can be written as the concatenation of [[String (computer science)|strings]] {{math|''w''<sub>''k''</sub> ''w''<sub>''k''−1</sub> ... ''w''<sub>1</sub>}} where each {{math|''w''<sub>''h''</sub>}} is a finite and contiguous extract from the representation of {{math|{{sfrac|1|3<sup>''h''</sup>}}}}.<ref name="Colussi2011">{{cite journal |last=Colussi |first=Livio |date=9 September 2011 |title=The convergence classes of Collatz function |journal=Theoretical Computer Science |doi=10.1016/j.tcs.2011.05.056 |volume=412 |issue=39 |pages=5409–5419|doi-access=free |hdl=11577/106892 |hdl-access=free }}</ref> The representation of {{mvar|n}} therefore holds the [[Repeating decimal|repetends]] of {{math|{{sfrac|1|3<sup>''h''</sup>}}}}, where each repetend is optionally rotated and then replicated up to a finite number of bits. It is only in binary that this occurs.<ref name="Hew2016">{{cite journal |last=Hew |first=Patrick Chisan |date=7 March 2016 |title=Working in binary protects the repetends of 1/3<sup>''h''</sup>: Comment on Colussi's 'The convergence classes of Collatz function' |journal=Theoretical Computer Science |doi=10.1016/j.tcs.2015.12.033 |volume=618 |pages=135–141|doi-access=free }}</ref> Conjecturally, every binary string {{mvar|s}} that ends with a '1' can be reached by a representation of this form (where we may add or delete leading '0's to&nbsp;{{mvar|s}}).
+
+===As an abstract machine that computes in base two===
+Repeated applications of the Collatz function can be represented as an [[abstract machine]] that handles [[string (computer science)|strings]] of [[bit]]s. The machine will perform the following three steps on any odd number until only one {{mono|1}} remains:
+
+# Append {{mono|1}} to the (right) end of the number in binary (giving {{math|2''n'' + 1}});
+# Add this to the original number by binary addition (giving {{math|2''n'' + 1 + ''n'' {{=}} 3''n'' + 1}});
+# Remove all trailing {{mono|0}}s (that is, repeatedly divide by 2 until the result is odd).
+
+====Example====
+The starting number 7 is written in [[Binary numeral system|binary]] as {{mono|111}}. The resulting Collatz sequence is:
+
+<div style="font-family:monospace">
+          111
+         <u>111'''1'''</u>
+        1011<s>0</s>
+       <u>1011'''1'''</u>
+      10001<s>0</s>
+     <u>10001'''1'''</u>
+     1101<s>00</s>
+    <u>1101'''1'''</u>
+   101<s>000</s>
+  <u>101'''1'''</u>
+ 1<s>0000</s>
+</div>
+
+===As a parity sequence===
+For this section, consider the shortcut form of the Collatz function
+<math display="block"> f(n) = \begin{cases} \frac{n}{2} &\text{if } n \equiv 0 \\ \frac{3n + 1}{2} & \text{if } n \equiv 1 \end{cases} \pmod{2}.</math>
+
+If {{math|P(...)}} is the parity of a number, that is {{math|P(2''n'') {{=}} 0}} and {{math|P(2''n'' + 1) {{=}} 1}}, then we can define the Collatz parity sequence (or parity vector) for a number {{mvar|n}} as {{math|''p<sub>i</sub>'' {{=}} P(''a<sub>i</sub>'')}}, where {{math|''a''<sub>0</sub> {{=}} ''n''}}, and {{math|''a''<sub>''i''+1</sub> {{=}} ''f''(''a''<sub>''i''</sub>)}}.
+
+Which operation is performed, {{math|{{sfrac|3''n'' + 1|2}}}} or {{math|{{sfrac|''n''|2}}}}, depends on the parity. The parity sequence is the same as the sequence of operations.
+
+Using this form for {{math|''f''(''n'')}}, it can be shown that the parity sequences for two numbers {{mvar|m}} and {{mvar|n}} will agree in the first {{mvar|k}} terms if and only if {{mvar|m}} and {{mvar|n}} are equivalent modulo {{math|2<sup>''k''</sup>}}. This implies that every number is uniquely identified by its parity sequence, and moreover that if there are multiple Hailstone cycles, then their corresponding parity cycles must be different.<ref name="Lagarias (1985)"/><ref name="Terras (1976)"/>
+
+Applying the {{mvar|f}} function {{mvar|k}} times to the number {{math|''n'' {{=}} 2<sup>''k''</sup>''a'' + ''b''}} will give the result {{math|3<sup>''c''</sup>''a'' + ''d''}}, where {{mvar|d}} is the result of applying the {{mvar|f}} function {{mvar|k}} times to {{mvar|b}}, and {{mvar|c}} is how many increases were encountered during that sequence. For example, for {{math|2<sup>5</sup>''a'' + 1}} there are 3 increases as 1 iterates to 2, 1, 2, 1, and finally to 2 so the result is {{math|3<sup>3</sup>''a'' + 2}}; for {{math|2<sup>2</sup>''a'' + 1}} there is only 1 increase as 1 rises to 2 and falls to 1 so the result is {{math|3''a'' + 1}}. When {{mvar|b}} is {{math|2<sup>''k''</sup> − 1}} then there will be {{mvar|k}} rises and the result will be {{math|3<sup>''k''</sup>''a'' + 3<sup>''k''</sup> − 1}}. The power of 3 multiplying {{mvar|a}} is independent of the value of {{mvar|a}}; it depends only on the behavior of {{mvar|b}}. This allows one to predict that certain forms of numbers will always lead to a smaller number after a certain number of iterations: for example, {{math|4''a'' + 1}} becomes {{math|3''a'' + 1}} after two applications of {{mvar|f}} and {{math|16''a'' + 3}} becomes {{math|9''a'' + 2}} after four applications of {{mvar|f}}. Whether those smaller numbers continue to 1, however, depends on the value of {{mvar|a}}.
+
+===As a tag system===
+For the Collatz function in the shortcut form
+
+<math> f(n) = \begin{cases} \frac{n}{2} &\text{if } n \equiv 0 \\ \frac{3n+1}{2} & \text{if } n \equiv 1. \end{cases} \pmod{2}</math>
+
+Hailstone sequences can be computed by the [[Tag system#Example: Computation of Collatz sequences|2-tag system]] with production rules
+
+:{{math|''a'' → ''bc''}}, {{math|''b'' → ''a''}}, {{math|''c'' → ''aaa''}}.
+
+In this system, the positive integer {{mvar|n}} is represented by a string of {{mvar|n}} copies of {{mvar|a}}, and iteration of the tag operation halts on any word of length less than&nbsp;2. (Adapted from De Mol.)
+
+The Collatz conjecture equivalently states that this tag system, with an arbitrary finite string of {{mvar|a}} as the initial word, eventually halts (see ''[[Tag system#Example: Computation of Collatz sequences|Tag system]]'' for a worked example).
+
+==Extensions to larger domains==
+
+===Iterating on all integers===
+An extension to the Collatz conjecture is to include all integers, not just positive integers. Leaving aside the cycle 0 → 0 which cannot be entered from outside, there are a total of four known cycles, which all nonzero integers seem to eventually fall into under iteration of {{mvar|f}}. These cycles are listed here, starting with the well-known cycle for positive&nbsp;{{mvar|n}}:
+
+Odd values are listed in large bold. Each cycle is listed with its member of least absolute value (which is always odd) first.
+
+{| class="wikitable" style="text-align: center;"
+! Cycle !! Odd-value cycle length !! Full cycle length
+|-
+|style="text-align: left;"| <big>'''1'''</big> → 4 → 2 → <big>'''1'''</big> '''...''' || 1 || 3
+|-
+|style="text-align: left;"| <big>'''−1'''</big> → −2 → <big>'''−1'''</big> '''...''' || 1 || 2
+|-
+|style="text-align: left;"| <big>'''−5'''</big> → −14 → <big>'''−7'''</big> → −20 → −10 → <big>'''−5'''</big> '''...''' || 2 || 5
+|-
+|style="text-align: left;"| <big>'''−17'''</big> → −50 → <big>'''−25'''</big> → −74 → <big>'''−37'''</big> → −110 → <big>'''−55'''</big> → −164 → −82 → <big>'''−41'''</big> → −122 → <big>'''−61'''</big> → −182 → <big>'''−91'''</big> → −272 → −136 → −68 → −34 → <big>'''−17'''</big> '''...''' || 7 || 18
+|}
+
+The generalized Collatz conjecture is the assertion that every integer, under iteration by {{mvar|f}}, eventually falls into one of the four cycles above or the cycle 0 → 0.
+
+=== Iterating on rationals with odd denominators ===
+The Collatz map can be extended to (positive or negative) rational numbers which have odd denominators when written in lowest terms.
+The number is taken to be 'odd' or 'even' according to whether its numerator is odd or even. Then the formula for the map is exactly the same as when the domain is the integers: an 'even' such rational is divided by 2; an 'odd' such rational is multiplied by 3 and then 1 is added. A closely related fact is that the Collatz map extends to the ring of [[2-adic integers]], which contains the ring of rationals with odd denominators as a subring.
+
+When using the "shortcut" definition of the Collatz map, it is known that any periodic [[#As a parity sequence|parity sequence]] is generated by exactly one rational.<ref>{{Cite journal|last=Lagarias|first=Jeffrey|date=1990|title=The set of rational cycles for the 3x+1 problem|url=https://eudml.org/doc/206298|journal=Acta Arithmetica|volume=56|issue=1|pages=33–53|issn=0065-1036|doi=10.4064/aa-56-1-33-53|doi-access=free|archive-date=2023-03-27|access-date=2019-06-10|archive-url=https://web.archive.org/web/20230327065345/https://eudml.org/doc/206298|url-status=live}}</ref> Conversely, it is conjectured that every rational with an odd denominator has an eventually cyclic parity sequence (Periodicity Conjecture<ref name="Lagarias (1985)"/>).
+
+If a parity cycle has length {{mvar|n}} and includes odd numbers exactly {{mvar|m}} times at indices {{math|''k''<sub>0</sub> < ⋯ < ''k''<sub>''m''−1</sub>}}, then the unique rational which generates immediately and periodically this parity cycle is
+{{NumBlk|:|<math>\frac{3^{m-1} 2^{k_0} + \cdots + 3^0 2^{k_{m-1}}}{2^n - 3^m}.</math>|{{EquationRef|1}}}}
+
+For example, the parity cycle {{nowrap|(1 0 1 1 0 0 1)}} has length 7 and four odd terms at indices 0, 2, 3, and 6. It is repeatedly generated by the fraction
+<math display="block">\frac{3^3 2^0 + 3^2 2^2 + 3^1 2^3 + 3^0 2^6}{2^7 - 3^4} = \frac{151}{47}</math>
+as the latter leads to the rational cycle
+<math display="block">\frac{151}{47} \rightarrow \frac{250}{47} \rightarrow \frac{125}{47} \rightarrow \frac{211}{47} \rightarrow \frac{340}{47} \rightarrow \frac{170}{47} \rightarrow \frac{85}{47} \rightarrow \frac{151}{47} .</math>
+
+Any cyclic permutation of {{nowrap|(1 0 1 1 0 0 1)}} is associated to one of the above fractions. For instance, the cycle {{nowrap|(0 1 1 0 0 1 1)}} is produced by the fraction
+<math display="block">\frac{3^3 2^1 + 3^2 2^2 + 3^1 2^5 + 3^0 2^6}{2^7 - 3^4} = \frac{250}{47} . </math>
+
+For a one-to-one correspondence, a parity cycle should be ''irreducible'', that is, not partitionable into identical sub-cycles. As an illustration of this, the parity cycle {{nowrap|(1 1 0 0 1 1 0 0)}} and its sub-cycle {{nowrap|(1 1 0 0)}} are associated to the same fraction {{sfrac|5|7}} when reduced to lowest terms.
+
+In this context, assuming the validity of the Collatz conjecture implies that {{nowrap|(1 0)}} and {{nowrap|(0 1)}} are the only parity cycles generated by positive whole numbers (1 and 2, respectively).
+
+If the odd denominator {{mvar|d}} of a rational is not a multiple of 3, then all the iterates have the same denominator and the sequence of numerators can be obtained by applying the "{{math|3''n'' + ''d''}}&nbsp;" generalization<ref name="Belaga (1998a)"/> of the Collatz function
+<math display="block"> T_d(x) = \begin{cases}
+ \frac{x}{2} &\text{if } x \equiv 0 \pmod{2},\\
+ \frac{3x+d}{2} & \text{if } x\equiv 1 \pmod{2}.
+\end{cases}</math>
+
+===2-adic extension===
+The function
+<math display="block"> T(x) = \begin{cases} \frac{x}{2} &\text{if } x \equiv 0 \pmod{2}\\ \frac{3x+1}{2} & \text{if } x\equiv 1 \pmod{2} \end{cases}</math>
+is well-defined on the ring <math>\mathbb{Z}_2</math> of [[2-adic integers]], where it is continuous and [[Measure-preserving transformation|measure-preserving]] with respect to the 2-adic measure. Moreover, its dynamics is known to be [[Ergodic theory|ergodic]].<ref name="Lagarias (1985)"/>
+
+Define the ''parity vector'' function {{mvar|Q}} acting on <math>\mathbb{Z}_2</math> as
+<math display="block"> Q(x) = \sum_{k=0}^{\infty} \left( T^k (x) \bmod 2 \right) 2^k .</math>
+
+The function {{mvar|Q}} is a 2-adic [[isometry]].<ref>{{Cite journal|last1=Bernstein|first1=Daniel J.|last2=Lagarias|first2=Jeffrey C.|date=1996|title=The 3''x'' + 1 conjugacy map|journal=[[Canadian Journal of Mathematics]]|language=en|volume=48|issue=6|pages=1154–1169|doi=10.4153/CJM-1996-060-x|doi-access=free|issn=0008-414X}}</ref> Consequently, every infinite parity sequence occurs for exactly one 2-adic integer, so that [[almost all]] trajectories are acyclic in <math>\mathbb{Z}_2</math>.
+
+An equivalent formulation of the Collatz conjecture is that
+<math display="block"> Q\left(\mathbb{Z}^{+}\right) \subset \tfrac13 \mathbb{Z}.</math>
+
+===<span class="anchor" id="Collatz_fractal"></span>Iterating on real or complex numbers===
+[[File:Collatz Cobweb.svg|thumb|[[Cobweb plot]] of the orbit 10 → 5 → 8 → 4 → 2 → 1 → ... in an extension of the Collatz map to the real line.]]
+
+The Collatz map can be extended to the [[real line]] by choosing any function which evaluates to <math>x/2</math> when <math>x</math> is an even integer, and to either <math>3x + 1</math> or <math>(3x + 1)/2</math> (for the "shortcut" version) when <math>x</math> is an odd integer. This is called an [[interpolating]] function. A simple way to do this is to pick two functions <math>g_1</math> and <math>g_2</math>, where:
+:<math>g_1(n) = \begin{cases}1, &n\text{ is even,}\\ 0, &n\text{ is odd,}\end{cases}</math>
+:<math>g_2(n) = \begin{cases}0, &n\text{ is even,}\\1, &n\text{ is odd,}\end{cases}</math>
+and use them as switches for our desired values:
+:<math>f(x) = \frac{x}{2}\cdot g_1(x) \,+\, \frac{3x + 1}{2}\cdot g_2(x)</math>.
+One such choice is <math>g_1(x) = \cos^2\left(\tfrac{\pi}{2} x\right)</math> and <math>g_2(x) = \sin^2\left(\tfrac{\pi}{2} x\right)</math>. The [[iterations]] of this map lead to a [[dynamical system]], further investigated by Marc Chamberland.<ref name="Chamberland (1996)"/> He showed that the conjecture does not hold for positive real numbers since there are infinitely many [[Fixed point (mathematics)|fixed points]], as well as [[Orbit (dynamics)|orbits]] escaping [[monotonic function|monotonically]] to infinity. The function <math>f</math> has two [[attractor|attracting]] cycles of period <math>2</math>: <math>(1;\,2)</math> and <math>(1.1925...;\,2.1386...)</math>. Moreover, the set of unbounded orbits is conjectured to be of [[Lebesgue measure|measure]] <math>0</math>.
+
+Letherman, Schleicher, and Wood extended the study to the [[complex plane]].<ref name="Letherman, Schleicher, and Wood (1999)"/> They used Chamberland's function for [[Trigonometric_functions#In_the_complex_plane|complex sine and cosine]] and added the extra term <math>\tfrac{1}{\pi}\left(\tfrac12 - \cos(\pi z)\right)\sin(\pi z)\,+</math>
+<math>h(z)\sin^2(\pi z)</math>, where <math>h(z)</math> is any [[entire function]]. Since this expression evaluates to zero for real integers, the extended function
+:<math>\begin{align}f(z) = \;&\frac{z}{2}\cos^2\left(\frac{\pi}{2} z\right) + \frac{3z + 1}{2}\sin^2\left(\frac{\pi}{2} z\right) \, + \\
+ &\frac{1}{\pi}\left(\frac12 - \cos(\pi z)\right)\sin(\pi z) + h(z)\sin^2(\pi z)\end{align}</math>
+
+is an interpolation of the Collatz map to the complex plane. The reason for adding the extra term is to make all integers [[Critical point (mathematics)|critical points]] of <math>f</math>. With this, they show that no integer is in a [[Classification_of_Fatou_components#Baker_domain|Baker domain]], which implies that any integer is either eventually periodic or belongs to a [[wandering set|wandering domain]]. They conjectured that the latter is not the case, which would make all integer orbits finite.
+
+[[File:Collatz Fractal.jpg|thumb|left|A Collatz [[fractal]] centered at the origin, with real parts from –5 to 5.]]
+
+Most of the points have orbits that diverge to infinity. Coloring these points based on how fast they diverge produces the image on the left, for <math>h(z) = 0</math>. The inner black regions and the outer region are the [[Classification of Fatou components|Fatou components]], and the boundary between them is the [[Julia set]] of <math>f</math>, which forms a [[fractal]] pattern, sometimes called a "Collatz fractal".
+
+[[File:Exponential Collatz Fractal.jpg|thumb|right|Julia set of the exponential interpolation.]]
+
+There are many other ways to define a complex interpolating function, such as using the [[Exponential_function#Complex_plane|complex exponential]] instead of sine and cosine:
+:<math>f(z) = \frac{z}{2} + \frac14(2z + 1)\left(1 - e^{i\pi z}\right)</math>,
+which exhibit different dynamics. In this case, for instance, if <math>\operatorname{Im}(z) \gg 1</math>, then <math>f(z) \approx z + \tfrac14</math>. The corresponding Julia set, shown on the right, consists of uncountably many curves, called ''hairs'', or ''rays''.
+
+{{clear}}
+
+==Optimizations==
+===Time–space tradeoff===
+The section ''[[#As a parity sequence|As a parity sequence]]'' above gives a way to speed up simulation of the sequence. To jump ahead {{mvar|k}} steps on each iteration (using the {{mvar|f}} function from that section), break up the current number into two parts, {{mvar|b}} (the {{mvar|k}} least significant bits, interpreted as an integer), and {{mvar|a}} (the rest of the bits as an integer). The result of jumping ahead {{mvar|k}} is given by
+:{{math|''f''{{isup|''k''}}(2<sup>''k''</sup>''a'' + ''b'') {{=}} 3<sup>''c''(''b'', ''k'')</sup>''a'' + ''d''(''b'', ''k'')}}.
+The values of {{mvar|c}} (or better {{math|3<sup>''c''</sup>}}) and {{mvar|d}} can be precalculated for all possible {{mvar|k}}-bit numbers {{mvar|b}}, where {{math|''d''(''b'', ''k'')}} is the result of applying the {{mvar|f}} function {{mvar|k}} times to {{mvar|b}}, and {{math|''c''(''b'', ''k'')}} is the number of odd numbers encountered on the way.<ref>{{cite web |last=Scollo |first=Giuseppe |year=2007 |title=Looking for class records in the 3''x'' + 1 problem by means of the COMETA grid infrastructure |work=Grid Open Days at the University of Palermo |url=http://www.dmi.unict.it/~scollo/seminars/gridpa2007/CR3x+1paper.pdf |access-date=2018-05-18 |archive-date=2023-12-09 |archive-url=https://web.archive.org/web/20231209184321/https://www.dmi.unict.it/~scollo/seminars/gridpa2007/CR3x+1paper.pdf |url-status=live }}</ref> For example, if {{math|''k'' {{=}} 5}}, one can jump ahead 5 steps on each iteration by separating out the 5 least significant bits of a number and using
+
+: {{mvar|c}}(0...31, 5) = { 0, 3, 2, 2, 2, 2, 2, 4, 1, 4, 1, 3, 2, 2, 3, 4, 1, 2, 3, 3, 1, 1, 3, 3, 2, 3, 2, 4, 3, 3, 4, 5 },
+: {{mvar|d}}(0...31, 5) = { 0, 2, 1, 1, 2, 2, 2, 20, 1, 26, 1, 10, 4, 4, 13, 40, 2, 5, 17, 17, 2, 2, 20, 20, 8, 22, 8, 71, 26, 26, 80, 242 }.
+
+This requires {{math|2<sup>''k''</sup>}} [[precomputation]] and storage to speed up the resulting calculation by a factor of {{mvar|k}}, a [[space–time tradeoff]].
+
+===Modular restrictions===
+For the special purpose of searching for a counterexample to the Collatz conjecture, this precomputation leads to an even more important acceleration, used by Tomás Oliveira e Silva in his computational confirmations of the Collatz conjecture up to large values of&nbsp;{{mvar|n}}. If, for some given {{mvar|b}} and {{mvar|k}}, the inequality
+
+:{{math|''f''{{isup|''k''}}(2<sup>''k''</sup>''a'' + ''b'') {{=}} 3<sup>''c''(''b'')</sup>''a'' + ''d''(''b'') < 2<sup>''k''</sup>''a'' + ''b''}}
+
+holds for all {{mvar|a}}, then the first counterexample, if it exists, cannot be {{mvar|b}} modulo {{math|2<sup>''k''</sup>}}.<ref name="Garner (1981)"/> For instance, the first counterexample must be odd because {{math|''f''(2''n'') {{=}} ''n''}}, smaller than {{math|2''n''}}; and it must be 3 mod 4 because {{math|''f''{{isup|2}}(4''n'' + 1) {{=}} 3''n'' + 1}}, smaller than {{math|4''n'' + 1}}. For each starting value {{mvar|a}} which is not a counterexample to the Collatz conjecture, there is a {{mvar|k}} for which such an inequality holds, so checking the Collatz conjecture for one starting value is as good as checking an entire congruence class. As {{mvar|k}} increases, the search only needs to check those residues {{mvar|b}} that are not eliminated by lower values of&nbsp;{{mvar|k}}. Only an exponentially small fraction of the residues survive.{{refn|{{named ref|name=Lagarias (1985)}} Theorem D.}} For example, the only surviving residues mod 32 are 7, 15, 27, and 31.
+
+Integers divisible by 3 cannot form a cycle, so these integers do not need to be checked as counterexamples.<ref name=Clay>{{cite web|last=Clay|first=Oliver Keatinge|title=The Long Search for Collatz Counterexamples|url=https://scholarship.claremont.edu/cgi/viewcontent.cgi?article=2052&context=jhm|pages=208|access-date=26 July 2024|archive-date=9 March 2024|archive-url=https://web.archive.org/web/20240309084321/https://scholarship.claremont.edu/cgi/viewcontent.cgi?article=2052&context=jhm|url-status=live}}</ref>
+
+==Syracuse function==
+If {{mvar|k}} is an odd integer, then {{math|3''k'' + 1}} is even, so {{math|3''k'' + 1 {{=}} 2<sup>''a''</sup>''k''{{prime}}}} with {{math|''k''{{prime}}}} odd and {{math|''a'' ≥ 1}}. The '''Syracuse function''' is the function {{mvar|f}} from the set {{mvar|I}} of positive odd integers into itself, for which {{math|''f''(''k'') {{=}} ''k''{{prime}}}} {{OEIS|id=A075677}}.
+
+Some properties of the Syracuse function are:
+
+* For all {{math|''k'' ∈ ''I''}}, {{math|''f''(4''k'' + 1) {{=}} ''f''(''k'')}}. (Because {{math|3(4''k'' + 1) + 1 {{=}} 12''k'' + 4 {{=}} 4(3''k'' + 1)}}.)
+* In more generality: For all {{math|''p'' ≥ 1}} and odd {{mvar|h}}, {{math|''f''{{isup|''p'' − 1}}(2<sup>''p''</sup>''h'' − 1) {{=}} 2 × 3<sup>''p'' − 1</sup>''h'' − 1}}. (Here {{math|''f''{{isup|''p'' − 1}}}} is [[Functional power|function iteration notation]].)
+* For all odd {{mvar|h}}, {{math|''f''(2''h'' − 1) ≤ {{sfrac|3''h'' − 1|2}}}}
+
+The Collatz conjecture is equivalent to the statement that, for all {{mvar|k}} in {{mvar|I}}, there exists an integer {{math|''n'' ≥ 1}} such that {{math|''f''{{isup|''n''}}(''k'') {{=}} 1}}.
+
+== Undecidable generalizations ==
+In 1972, [[John Horton Conway]] proved that a natural generalization of the Collatz problem is algorithmically [[undecidable problem|undecidable]].<ref>{{cite conference |last=Conway |first=John H. |year=1972 |contribution=Unpredictable iterations |title=Proc. 1972 Number Theory Conf., Univ. Colorado, Boulder |pages=49–52}}</ref>
+
+Specifically, he considered functions of the form
+<math display="block"> {g(n) = a_i n + b_i} \text{ when } {n\equiv i \pmod P},</math>
+where {{math|''a''<sub>0</sub>, ''b''<sub>0</sub>, ..., ''a''<sub>''P'' − 1</sub>, ''b''<sub>''P'' − 1</sub>}} are rational numbers which are so chosen that {{math|''g''(''n'')}} is always an integer. The standard Collatz function is given by {{math|''P'' {{=}} 2}}, {{math|''a''<sub>0</sub> {{=}} {{sfrac|1|2}}}}, {{math|''b''<sub>0</sub> {{=}} 0}}, {{math|''a''<sub>1</sub> {{=}} 3}}, {{math|''b''<sub>1</sub> {{=}} 1}}. Conway proved that the problem
+
+: Given {{mvar|g}} and {{mvar|n}}, does the sequence of iterates {{math|''g<sup>k</sup>''(''n'')}} reach {{math|1}}?
+
+is undecidable, by representing the [[halting problem]] in this way.
+
+Closer to the Collatz problem is the following ''universally quantified'' problem:
+
+: Given {{mvar|g}}, does the sequence of iterates {{math|''g<sup>k</sup>''(''n'')}} reach {{math|1}}, for all {{math|''n'' > 0}}?
+
+Modifying the condition in this way can make a problem either harder or easier to solve (intuitively, it is harder to justify a positive answer but might be easier to justify a negative one). Kurtz and Simon<ref name=KurtzSimon>{{cite book |last1=Kurtz |first1=Stuart A. |last2=Simon |first2=Janos |editor1-last=Cai |editor1-first=J.-Y. |editor2-last=Cooper |editor2-first=S. B. |editor3-last=Zhu |editor3-first=H. |year=2007 |chapter-url=https://books.google.com/books?id=mhrOkx-xyJIC&pg=PA542 |chapter=The undecidability of the generalized Collatz problem |title=Proceedings of the 4th International Conference on Theory and Applications of Models of Computation, TAMC 2007, held in Shanghai, China in May 2007 |isbn=978-3-540-72503-9 |doi=10.1007/978-3-540-72504-6_49 |pages=542–553}} As [http://www.cs.uchicago.edu/~simon/RES/collatz.pdf PDF]</ref> proved that the universally quantified problem is, in fact, undecidable and even higher in the [[arithmetical hierarchy]]; specifically, it is {{math|Π{{su|b=2|p=0}}}}-complete. This hardness result holds even if one restricts the class of functions {{mvar|g}} by fixing the modulus {{mvar|P}} to 6480.<ref>{{cite journal |last=Ben-Amram |first=Amir M. |year=2015 |title=Mortality of iterated piecewise affine functions over the integers: Decidability and complexity |journal=Computability |doi=10.3233/COM-150032 |volume=1 |issue=1 |pages=19–56}}</ref>
+
+Iterations of {{mvar|g}} in a simplified version of this form, with all <math>b_i</math> equal to zero, are formalized in an [[esoteric programming language]] called [[FRACTRAN]].
+
+==In computational complexity==
+The Collatz and related conjectures are often used when studying computational complexity.<ref>{{cite journal |author=Michel, Pascal |title=Busy beaver competition and Collatz-like problems |journal=Archive for Mathematical Logic |volume=32 |issue=5 |year=1993 |pages=351–367|doi=10.1007/BF01409968 }}</ref><ref>{{cite web |url=https://arxiv.org/html/2107.12475v2 |title=Hardness of busy beaver value BB(15)}}</ref>  The connection is made through the [[busy beaver]] function, where BB(n) is the maximum number of steps taken by any ''n''-state [[Turing machine]] that halts. There is a 15-state Turing machine that halts if and only if the following conjecture by [[Paul Erdős]] (closely related to the Collatz conjecture) is false: for all n > 8 there is at least one digit 2 in the base 3 representation of 2<sup>''n''</sup>.<ref>{{cite arXiv |last1=Stérin |first1=Tristan |last2=Woods |first2=Damien |title=Hardness of busy beaver value BB(15) |date=2021 |class=cs.LO |eprint=2107.12475}}</ref><ref>{{cite journal |last=Erdös |first=Paul |author-link=Paul Erdős |date=1979 |title=Some unconventional problems in number theory |url=https://jstor.org/stable/2689842 |journal=[[Mathematics Magazine]] |volume=52 |issue=2 |pages=67–70 |doi=10.1080/0025570X.1979.11976756 |jstor=2689842 |archive-date=2022-06-13 |access-date=2022-07-07 |archive-url=https://web.archive.org/web/20220613231912/https://www.jstor.org/stable/2689842 |url-status=live }}</ref> Hence if BB(15) was known, and this machine did not stop in that number of steps, it would be known to run forever and hence no counterexamples exist (which proves the conjecture true). This is a completely impractical way to settle the conjecture; instead it is used to suggest that BB(15) will be very hard to compute, at least as difficult as settling this Collatz-like conjecture.
+
+In 2024, a six-state machine was found for which determining whether it halts involves solving a Collatz-like problem called the antihydra problem.  As proofs of even simple conjectures of this nature  are not currently known, this suggests that BB(6) will be very hard to compute.<ref>{{cite magazine|magazine=Quanta|title=With Fifth Busy Beaver, Researchers Approach Computation's Limits|date=July 2, 2024|first=Ben|last=Brubaker|url=https://www.quantamagazine.org/amateur-mathematicians-find-fifth-busy-beaver-turing-machine-20240702/|access-date=2025-08-24|archive-date=2025-05-09|archive-url=https://web.archive.org/web/20250509092257/https://www.quantamagazine.org/amateur-mathematicians-find-fifth-busy-beaver-turing-machine-20240702/|url-status=live}}</ref><ref>{{cite OEIS|A386792|Antihydra, a BB(6) Turing machine (values of a)}}</ref>
+==In proofs of correctness==
+Errors in proofs are a serious concern in mathematics.  To address this, and to help avoid subtle errors sneaking through, software such as [[Lean (proof assistant)|Lean]] formally verifies that every step in a proof is correct.  This formal verification of each step means a Lean-verified proof is considered the 'gold standard', the strongest known evidence that a theorem is true.  Such proofs are considered even more trustworthy than proofs that have passed peer review by expert humans, the previous best check.
+
+In July 2026, a disproof of the Collatz conjecture was verified not only by Lean, but another formal verification system ''Nanoda''.  However, investigation quickly revealed that the proof exploited bug(s) in these verifiers.  Once the bugs were fixed, the proof was shown invalid (by both verifiers), and {{asof|2026|lc=true}} the Collatz problem remains a conjecture.<ref>{{cite web |url=https://lawrencecpaulson.github.io/2026/07/30/Collatz.html |title=Why is it all in the kernel?}}</ref><ref>{{cite web |url=https://www.youtube.com/watch?v=RnfFC_LowtU |title=The Collatz Conjecture was FALSE (for 2.5 days in July) |website=[[YouTube]] }}</ref>
+
+==See also==
+{{portal|Mathematics}}
+{{commons category}}
+* [[3x + 1 semigroup|{{math|3''x'' + 1}} semigroup]]
+* [[Arithmetic dynamics#Other areas in which number theory and dynamics interact|Arithmetic dynamics]]
+* [[Juggler sequence]]
+* [[Modular arithmetic]]
+* [[Residue-class-wise affine group]]
+
+== Notes ==
+{{notelist}}
+
+==References==
+{{Reflist|30em|refs=
+
+<ref name="Lagarias (1985)">{{cite journal |first=Jeffrey C. |last=Lagarias |title=The 3''x'' + 1 problem and its generalizations |journal=[[The American Mathematical Monthly]] |volume=92 |issue=1 |pages=3–23 |year=1985 |jstor=2322189|doi=10.1080/00029890.1985.11971528 }}</ref>
+<!--<ref name="Lagarias (2001)">{{SpringerEOM | urlname=S/s110330 | title=Syracuse problem | author=Jeffrey C. Lagarias}}.</ref>-->
+<ref name="Chamberland (1996)">{{cite journal |first=Marc |last=Chamberland |title=A continuous extension of the 3''x''&nbsp;+&nbsp;1 problem to the real line |journal=Dynam. Contin. Discrete Impuls Systems |volume=2 |issue=4 |pages=495–509 |year=1996 }}</ref>
+<ref name="Garner (1981)">{{cite journal |last=Garner |first=Lynn E. |year=1981 |title=On the Collatz 3''n''&nbsp;+&nbsp;1 algorithm |journal=[[Proceedings of the American Mathematical Society]] |volume=82 |issue=1 |pages=19–22 |doi=10.1090/S0002-9939-1981-0603593-2 |doi-access=free |jstor=2044308}}</ref>
+<ref name="Hercher (2023)">{{cite journal |first1=C. |last1=Hercher |title=There are no Collatz ''m''-cycles with ''m'' ≤ 91 |journal=Journal of Integer Sequences |volume=26 |issue=3 |pages=Article 23.3.5 |year=2023 |url=https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.pdf |archive-date=2023-12-08 |access-date=2023-03-27 |archive-url=https://web.archive.org/web/20231208101612/https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.pdf |url-status=live }}  With corrigendum {{cite journal|last=Hercher| first=Christian | title = Corrigendum to Article 23.3.5: There are no Collatz-''m''-Cycles with ''m'' ≤ 91| journal = Journal of Integer Sequences |url = https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/corrigendum.pdf | date = June 14, 2026}}</ref>
+<ref name="Letherman, Schleicher, and Wood (1999)">{{cite journal |first1=Simon |last1=Letherman |first2=Dierk |last2=Schleicher |first3=Reg |last3=Wood |title=The (3''n''&nbsp;+&nbsp;1)-problem and holomorphic dynamics |journal=Experimental Mathematics |volume=8 |issue=3 |pages=241–252 |year=1999 |doi= 10.1080/10586458.1999.10504402}}</ref>
+<ref name="Eliahou (1993)">{{Cite journal|last=Eliahou|first=Shalom|year=1993|title=The 3''x'' + 1 problem: new lower bounds on nontrivial cycle lengths|journal=Discrete Mathematics|volume=118|issue=1|pages=45–56|doi=10.1016/0012-365X(93)90052-U|doi-access=free}}</ref>
+<!--<ref name="Andrei (1998)">{{cite journal |author1=Andrei, Stefan |author2=Masalagiu, Cristian |doi=10.1007/s002360050117 |title=About the Collatz conjecture |year=1998 |journal=Acta Informatica |volume=35 |issue=2 |pages=167–179}}</ref>-->
+<!--<ref name="Van Bendegem (2005)">{{cite journal |first=Jean Paul |last=Van Bendegem |title=The Collatz Conjecture: A Case Study in Mathematical Problem Solving |journal=Logic and Logical Philosophy |volume=14 |pages=7–23 |year=2005 |doi= 10.12775/llp.2005.002|url=https://compmath.files.wordpress.com/2008/08/jpvb_collatz.pdf |archive-url=https://ghostarchive.org/archive/20221009/https://compmath.files.wordpress.com/2008/08/jpvb_collatz.pdf |archive-date=2022-10-09 |url-status=live |format=PDF}}</ref>-->
+<!--<ref name="Belaga (2006)">{{cite book |first=Edward G. |last=Belaga |last2=Mignotte |first2=Maurice |chapter=Walking Cautiously into the Collatz Wilderness: Algorithmically, Number Theoretically, Randomly |chapter-url=http://www-irma.u-strasbg.fr/~belaga/a8*BelagaMathInfo06Presentation060920.ppt |format=PowerPoint |title=Fourth Colloquium on Mathematics and Computer Science : Algorithms, Trees, Combinatorics and Probabilities, September 18–22, 2006, Institut Élie Cartan, Nancy, France }}</ref>-->
+<ref name="Belaga (1998a)">{{cite journal |first1=Edward G. |last1=Belaga |last2=Mignotte |first2=Maurice |title=Embedding the 3x+1 Conjecture in a 3x+d Context |journal=Experimental Mathematics |volume=7 |issue=2 |year=1998 |pages=145–151 |doi=10.1080/10586458.1998.10504364 |s2cid=17925995 |url=http://www.emis.de/journals/EM/expmath/volumes/7/7.html |archive-date=2023-06-09 |access-date=2009-05-20 |archive-url=https://web.archive.org/web/20230609111925/https://www.emis.de/journals/EM/expmath/volumes/7/7.html |url-status=live }}</ref>-->
+<ref name="Steiner (1977)">{{cite book |first=R. P. |last=Steiner |chapter=A theorem on the syracuse problem |title=Proceedings of the 7th Manitoba Conference on Numerical Mathematics |year=1977 |pages=553–9 |mr=535032}}</ref>
+<ref name="Simons & de Weger (2005)">{{cite journal |first1=J. |last1=Simons |first2=B. |last2=de Weger |title=Theoretical and computational bounds for ''m''-cycles of the 3''n''&nbsp;+&nbsp;1 problem |journal=Acta Arithmetica |volume=117 |issue=1 |pages=51–70 |year=2005 |doi=10.4064/aa117-1-3 |url=http://deweger.xs4all.nl/papers/[35]SidW-3n+1-ActaArith[2005].pdf |bibcode=2005AcAri.117...51S |doi-access=free |access-date=2023-03-28 |archive-date=2022-03-18 |archive-url=https://web.archive.org/web/20220318094356/http://deweger.xs4all.nl/papers/&#91;35&#93;SidW-3n+1-ActaArith&#91;2005&#93;.pdf |url-status=bot: unknown }}</ref>
+<ref name="Terras (1976)">{{cite journal | last = Terras | first = Riho | year = 1976 | title = A stopping time problem on the positive integers | journal = Acta Arithmetica | mr = 0568274 | volume = 30 | issue = 3 | pages = 241–252 | url = http://matwbn.icm.edu.pl/ksiazki/aa/aa30/aa3034.pdf | doi = 10.4064/aa-30-3-241-252 | doi-access = free | archive-date = 2023-12-04 | access-date = 2014-01-23 | archive-url = https://web.archive.org/web/20231204130944/http://matwbn.icm.edu.pl/ksiazki/aa/aa30/aa3034.pdf | url-status = live }}</ref>
+<!--<ref name="Sinyor (2010)">Sinyor, J.; [http://downloads.hindawi.com/journals/ijmms/2010/458563.pdf "The 3x+1 Problem as a String Rewriting System"], ''International Journal of Mathematics and Mathematical Sciences'', volume 2010 (2010), Article ID 458563, 6 pages.</ref>-->
+
+<!--<ref name="Belaga (1998b)">{{cite paper | author1-link = Edward Belaga | author1-last = Belaga | author1-first = Edward G. | citeseerx = 10.1.1.54.483 | title = Reflecting on the 3x+1 Mystery | publisher = [[University of Strasbourg]] | date = 1998 }}</ref>
+<ref name="Bruschi (2008)">{{cite arXiv |author=Bruschi, Mario |eprint=0810.5169 |title=A generalization of the Collatz problem and conjecture |class=math.NT |year=2008}}</ref>
+<ref name="De Mol (2008)">{{cite journal | last = De Mol | first = Liesbeth | title = Tag systems and Collatz-like functions | journal = Theoretical Computer Science | volume = 390 | issue = 1 | pages =92–101 | date = January 2008 | url = http://logica.ugent.be/liesbeth/TagColOK.pdf | doi=10.1016/j.tcs.2007.10.020}}</ref>
+<ref name="Lagarias (2006)">{{cite arXiv |author=Jeffrey C. Lagarias |eprint=math.NT/0608208 |title=The 3''x''&nbsp;+&nbsp;1 problem: An annotated bibliography, II (2000–) |class=math.NT |year=2006}}</ref>
+<ref name="Ohira">{{cite paper | last1 = Ohira | first1 = Reiko | last2 = Yamashita | first2 = Michinori | url = http://risweb2.ris.ac.jp/faculty/earth_env/yamasita/open/p-col.pdf | title = A generalization of the Collatz problem | language = ja }}</ref>
+<ref name="Sinisalo (2003)">{{cite paper | first = Matti K. | last = Sinisalo | archive-date = 2009-10-24 | archive-url = https://web.archive.org/web/20091024183537/http://geocities.com/mattiksinisalo/collatz.doc | url = http://geocities.com/mattiksinisalo/collatz.doc | title = On the minimal cycle lengths of the Collatz sequences | date = June 2003 | publisher = University of Oulu }}</ref>
+<ref name="Stadfeld">{{cite paper | first = Paul | last = Stadfeld | url = http://home.versatel.nl/galien8/blueprint/blueprint.html | title = Blueprint for Failure: How to Construct a Counterexample to the Collatz Conjecture }}</ref>
+<ref name="Urata">{{cite paper | last = Urata | first = Toshio | url = http://auemath.aichi-edu.ac.jp/~turata/Fall.files/CTZVI.pdf | archive-url = https://web.archive.org/web/20041128171946/http://auemath.aichi-edu.ac.jp/~turata/Fall.files/CTZVI.pdf | url-status = dead | archive-date = 2004-11-28 | title = Some Holomorphic Functions connected with the Collatz Problem }}</ref>-->
+
+<!--<ref name="Everest (2003)">{{cite book | last1=Everest | first1=Graham | last2=van der Poorten | first2=Alf | author2-link=Alfred van der Poorten | last3=Shparlinski | first3=Igor | last4=Ward | first4=Thomas | title=Recurrence sequences | series=Mathematical Surveys and Monographs | volume=104 | location=[[Providence, RI|Providence]], Rhode Island, USA | publisher=[[American Mathematical Society]] | year=2003 | isbn=0-8218-3387-1 | zbl=1033.11006 | at=Chapter 3.4 }}</ref>-->
+<ref name="Guy (2004)">{{cite book |last=Guy | first=Richard K. | author-link=Richard K. Guy | title=Unsolved Problems in Number Theory | publisher=[[Springer-Verlag]] |edition=3rd | year=2004 |isbn=0-387-20860-7 | zbl=1058.11001 | chapter="E16: The 3x+1 problem" |pages=330–6 |chapter-url=https://books.google.com/books?id=1AP2CEGxTkgC&pg=PA330}}</ref>
+<ref name="Lagarias (2010)">{{cite book |editor1-last=Lagarias |editor1-first=Jeffrey C. |editor1-link=Jeffrey Lagarias |year=2010 |title=The Ultimate Challenge: The 3''x'' + 1 Problem |publisher=[[American Mathematical Society]] |isbn=978-0-8218-4940-8 |zbl=1253.11003}}</ref>
+}}
+
+==External links==
+* {{cite web |url=http://www.numbertheory.org/3x+1/ |first=Keith |last=Matthews |title={{nobr|3 {{mvar|x}} + 1}} page}}
+* An ongoing volunteer computing [http://www.ericr.nl/wondrous/index.html project] by Eric Roosendaal verifies the Collatz conjecture for larger and larger values.
+* Another ongoing volunteer computing [http://sweet.ua.pt/tos/3x+1.html project] by Tomás Oliveira e Silva continues to verify the Collatz conjecture (with fewer statistics than Eric Roosendaal's page but with further progress made).
+* {{MathWorld | urlname=CollatzProblem | title=Collatz Problem}}
+* {{PlanetMath | urlname=CollatzProblem | title=Collatz Problem}}
+* {{cite web |first=Jesse |last=Nochella |title=Collatz Paths |work=[[Wolfram Demonstrations Project]] |url=http://demonstrations.wolfram.com/CollatzPaths/ }}
+* {{cite AV media |medium=short video |people=[[David Eisenbud|Eisenbud, D.]] |title=Uncrackable? The Collatz conjecture |series=Numberphile |date=8 August 2016 |via=YouTube |url=https://www.youtube.com/watch?v=5mFpVDpKX70 |archive-url=https://ghostarchive.org/varchive/youtube/20211211/5mFpVDpKX70| archive-date=2021-12-11 |url-status=live}}{{cbignore}}
+* {{cite AV media |people=[[David Eisenbud|Eisenbud, D.]] |title=Uncrackable? Collatz conjecture |medium=extra footage |series=Numberphile |date=August 9, 2016 |via=YouTube |url=https://www.youtube.com/watch?v=O2_h3z1YgEU |archive-url=https://ghostarchive.org/varchive/youtube/20211211/O2_h3z1YgEU| archive-date=2021-12-11 |url-status=live}}{{cbignore}}
+* {{cite AV media |medium=short video |people=[[Alex Kontorovich]] (featuring) |title=The simplest math problem no one can solve |date=30 July 2021 |series=Veritasium |via=YouTube |url=https://www.youtube.com/watch?v=094y1Z2wpJg}}
+* [https://www.technologyreview.com/2021/07/02/1027475/computers-ready-solve-this-notorious-math-problem/ Are computers ready to solve this notoriously unwieldy math problem?]
+
+
+[[Category:Conjectures]]
+[[Category:Arithmetic dynamics]]
+[[Category:Integer sequences]]
+[[Category:Unsolved problems in number theory]]

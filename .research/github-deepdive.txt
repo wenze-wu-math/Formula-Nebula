@@ -1,0 +1,479 @@
+
+================================================================================
+▶ Cohenjikan/shiyun
+================================================================================
+★ 258   TypeScript   更新 2026-09-04   NOASSERTION
+  把中国三千年的诗放进一片可漫游的三维星系：每位诗人是一颗星，每首诗都有坐标，星与星之间的虚空是「一切可能的诗」。32,657 位诗人 / 933,857 首。灵感来自刘慈欣《诗云》。
+  homepage: https://shiyun.cohenjikan.com   topics: chinese-poetry, data-visualization, generative-art, library-of-babel, poetry, react, react-three-fiber, threejs, typescript, vibecoding, vite, webgl
+
+── README（7060 字符，取前 4500）──
+<div align="center">
+
+<img src="docs/assets/hero.jpg" alt="诗云 · Poetry Cloud —— 把中国三千年的诗放进一片三维星系" width="100%" />
+
+# 诗云 · Poetry Cloud
+
+**中文** · [English](README.en.md)
+
+### 把中国全历史的诗，放进一片可以漫游的三维星系。<br/>每位诗人是一颗星，每首诗都有自己的坐标 —— 星与星之间的虚空，是「一切可能的诗」。
+
+*灵感来自刘慈欣《诗云》与博尔赫斯《巴别图书馆》：诗不被储存 —— 给一个编号就能算出第几首诗，反之亦然。*
+
+[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-orange.svg?style=flat-square)](LICENSE)
+[![Three.js](https://img.shields.io/badge/Three.js-r169-000000.svg?style=flat-square&logo=three.js&logoColor=white)](https://threejs.org)
+[![React](https://img.shields.io/badge/React-18-61DAFB.svg?style=flat-square&logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![100% Static](https://img.shields.io/badge/100%25-Static-15803d.svg?style=flat-square)](#-快速开始)
+[![Stars](https://img.shields.io/github/stars/Cohenjikan/shiyun?style=flat-square&logo=github)](https://github.com/Cohenjikan/shiyun/stargazers)
+
+<br/>
+
+[![在线体验 · shiyun.cohenjikan.com](https://img.shields.io/badge/▶_在线体验-shiyun.cohenjikan.com-e9b850?style=for-the-badge)](https://shiyun.cohenjikan.com)
+
+<img src="docs/assets/galaxy.jpg" alt="诗云主界面：一整片由真实诗人构成的星系，顶栏可按诗体 / 朝代 / 格律筛选" width="92%" />
+
+<sub>▶ 介绍视频：<a href="docs/assets/promo.mp4">docs/assets/promo.mp4</a>　·　<a href="https://b23.tv/5lPqfvm">哔哩哔哩</a>　·　<a href="https://v.douyin.com/ZOGhSElhG-4/">抖音</a>　·　<a href="http://xhslink.com/o/5FNxYo4EDPh">小红书</a></sub>
+
+</div>
+
+---
+
+## 这是什么
+
+**33,458 位诗人、970,319 首诗**，我把中国全历史的诗歌放进了一片三维星系。灵感来自刘慈欣的短篇《诗云》—— 那本书讲述了一个想用穷举写尽所有诗的超级文明，我做的这个也叫「诗云」。
+
+每位诗人是一颗星，每首诗都有自己的空间坐标，可以缩放、漫游整片星空，随手点开一颗星就是一首诗，还能看到诗人之间的关系网络。从《诗经》到近现代，三千年的诗都在这一片宇宙里。**李白是很亮的一颗星，但更多的是那些你从没听过名字的人，也各自占着一个坐标。**
+
+而星与星之间的**虚空**，藏着比这更大的东西 —— 它是「一切可能的近体诗」。点一下空处，就从噪声里 `unrank` 出一首诗，并显示它在「全集目录」里那个长达 **82–229 位**的编号：地址几乎和诗本身一样长（目录即图书馆）。诗不被储存，给一个编号就能算出它是第几首诗，反之亦然 —— 杰作只是噪声海里的零测度亮点。
+
+> 🖥 **PC 端体验最完整。** 移动端可用（触控漫游 + 自适应画质），但飞行、拾取与关系网在大屏鼠标下最舒服。
+
+<div align="center">
+
+### ▶ [打开 shiyun.cohenjikan.com，到星海里捞一首诗](https://shiyun.cohenjikan.com)
+
+</div>
+
+---
+
+## 截图
+
+<table>
+<tr>
+<td width="50%"><img src="docs/assets/poem.jpg" alt="点开一颗星：李白《望庐山瀑布》竖排呈现，并显示它在全集目录里的完整编号" /><br/><sub><b>随手点开一颗星，就是一首诗</b> —— 连同它在「全集目录」里那个长长的唯一地址。</sub></td>
+<td width="50%"><img src="docs/assets/network.jpg" alt="选中李白：金色弧线汇出他与其他诗人的赠答网络，右侧列出全部作品" /><br/><sub><b>赠诗网络</b> —— 解析诗题与字号别名连出 5,165 条赠答弧线，选中一位即勾出其往来。</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/assets/compose.jpg" alt="探诗：左侧填字成诗实时算出编号，右侧可凭编号反查回一首诗" /><br/><sub><b>探诗</b> —— 填字成诗实时算出编号，或凭一串编号反查回唯一的那首诗。</sub></td>
+<td width="50%"><img src="docs/assets/poet.jpg" alt="选中杜甫：他的作品系统与赠答关系在星系中点亮" /><br/><sub><b>每位诗人都是一个小星系</b> —— 作品越多，星系越大；点定位即可飞到任意一首。</sub></td>
+</tr>
+</table>
+
+---
+
+## 它能做什么
+
+| 能力 | 说明 |
+|---|---|
+| **全朝代 + 新诗** | 先秦 → 当代，15 个朝代同心壳，可按朝代筛选；并收入**现代新诗**（徐志摩《再别康桥》、海子、北岛、顾城、戴望舒…，自由体归入「其它」）。 |
+| **五种诗体** | 五绝 / 七绝 / 五律 / 七律，外加**自由格式 / 词**（变长断句，换行也由编号决定）；**格律开关**让你只在「合律子目录」里漫游。 |
+| **寻诗 · 逐句搜索** | 输入任意一句（不限开头）→ 它在「真实诗人」里属于谁（疑是地上霜 → 李白《静夜思》，非首句也命中），同时给出「纯随机」目录里那个被诗句锁定的**半编号**。 |
+| **探诗 · 编号反查** | 把一个长编号 `unrank` 回它的诗，核对行索引与全文，告诉你这串数字是否对应一首**真实存在**的诗 —— 目录 ↔ 诗的闭环，全程显示未截断的完整编号，一键复制。 |
+| **赠诗网络** | 解析诗题（寄 / 赠 / 和 / 次韵…）与 ~250 条字号别名（少陵 → 杜甫、子瞻 → 苏轼、香山 → 白居易…）连出 **5,165** 条赠答弧线，束状汇向银心，沿弧涌动柔光脉冲。 |
+| **可分享的永久链接** | `#a=<诗人id>` / `#p=<诗体>.<编号>`，诗与诗人面板均有 🔗 分享，打开即从链接重建那首诗、复位那片星空。 |
+| **纯静态** | 所有索引运算与渲染都在浏览器里完成，服务器只发静态文件，**永不加后端**（唯一可选后端是匿名反馈收集）。 |
+
+**三种 pull 模式，感受这个项目：** 纯随机「牛蝛茙漂綵」→ 格律「趰㵎憣烔岆」→ 格律+常用字「思伦要锁馆」；再加自由格式的词式变行，以及「寻诗」从一句话找回一首真实的诗。
+
+---
+
+## 背后的想法
+
+诗云不存诗 —— 它存的是一个**双射**。每一首近体诗，都对应一个巨大的整数编号；给定编号能精确还原出诗，给定诗也能算回编号（base-N「巴别」进制 + 格律混合基数 rank/unrank，叠加可逆的 BigInt Feistel 置乱做空间散布）。索引引擎是**纯 TypeScript、零依赖**的，往返可逆，单元测试全绿。
+
+于是「写出所有可能的诗」不是收藏，而是**计算**：星海里的每一个坐标都是一首诗，绝大多数是噪声，偶尔一颗恰好是李白。真实诗人的真实作品，则是这片噪声海里被点亮的、有名有姓的亮点。
+
+更多细节见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)（分层架构）、[docs/ENGINE_API.md](docs/ENGINE_API.md)（引擎接口与不变量）、[docs/DATA_CONTRACT.md](docs/DATA_CONTRACT.md)（数据契约）。
+
+---
+
+## 🚀 快速开始
+
+```bash
+npm install
+npm run dev      # 开发预览（Vite）
+npm test         # 引擎往返 + 数据加载等单元测试
+npm run build    # 类型检查 + 静态构建 → dist/
+```
+
+> Node 20+。技术栈：**Vite + React 18 + TypeScript + three.js / @react-three（fiber · drei · postprocessing）+ zustand**。
+
+仓库自带轻量数据（星系、作者搜索、格律、半编号、赠诗网络都能跑）；**逐首诗的全文**与**逐句搜索索引**是体量很大的衍生数据（git-ignore），需要时按 [docs/PIPELINE.md](docs/PIPELINE.md) 从开放语料重新生成。部署到静态主机的完整教程见 **[docs/DEPLOY.md](docs/DEPLOY.m
+
+── 文件树（164 个文件）──
+   README.en.md
+   README.md
+   deploy/claim-server.mjs
+   deploy/claim-server.test.mjs
+   deploy/feedback-server.mjs
+   deploy/maintenance-worker.js
+   deploy/og-inject.mjs
+   deploy/og-inject.test.mjs
+   deploy/precompress.mjs
+   deploy/sync-mediapipe.mjs
+   docs/ARCHITECTURE.md
+   docs/CORPUS_DB_GUIDE.md
+   docs/DATA_AUDIT.md
+   docs/DATA_CONTRACT.md
+   docs/DATA_ERRATA.md
+   docs/DATA_SUPPLEMENT.md
+   docs/DEPLOY.md
+   docs/DEVLOG.md
+   docs/ENGINE_API.md
+   docs/FRONTEND_GUIDE.md
+   docs/GESTURE_CONTROLS.md
+   docs/MAINTENANCE.md
+   docs/OPS_GESTURE_ROLLOUT.md
+   docs/OPS_GESTURE_ROLLOUT_PROMPT.md
+   docs/PIPELINE.md
+   docs/corpus-db-PROMPT.md
+   docs/devlog/CHANGELOG-2026-06.md
+   docs/devlog/CHARSET-GAP-2026-06-27.md
+   docs/devlog/CORPUS-SWITCH-2026-06-27-dryrun.md
+   docs/devlog/DEPLOY-2026-06-13-poem-hit-area.md
+   docs/devlog/DEPLOY-2026-06-13-search-fix.md
+   docs/devlog/DEPLOY-2026-06-28-corpus-refound.md
+   docs/devlog/DEV-2026-06-13-poem-hit-area.md
+   docs/devlog/DEV-2026-06-28-claim-feature.md
+   docs/devlog/HANDOFF-2026-06-13-loading-progress.md
+   docs/devlog/HANDOFF-2026-06-27-merge-deploy.md
+   docs/devlog/HANDOFF-2026-06-28-claim.md
+   docs/devlog/HANDOFF-2026-06-28-corpus-refound.md
+   docs/devlog/HANDOFF.md
+   docs/devlog/README.md
+   docs/devlog/UPDATE-2026-06-27-merge.md
+   pipeline/build-data.mjs
+   pipeline/build-fuzzy.mjs
+   pipeline/build-lexicon.mjs
+   pipeline/build-lines.mjs
+   pipeline/build-search.mjs
+   pipeline/build-sidecars.mjs
+   pipeline/canonicalRules.mjs
+   pipeline/canonicalRules.test.mjs
+   pipeline/pack-data.mjs
+   public/gesture-worker.js
+   src/App.tsx
+   src/data/charsetHash.test.ts
+   src/data/charsetHash.ts
+   src/data/collectionStatus.test.ts
+   src/data/collectionStatus.ts
+   src/data/contract.ts
+   src/data/dynasties.ts
+   src/data/famousPoets.ts
+   src/data/giftGraph.ts
+   src/data/load.test.ts
+   src/data/load.ts
+   src/data/placeholderLexicon.ts
+   src/data/poetAliases.test.ts
+   src/data/poetAliases.ts
+   src/data/poetPoemsLoader.ts
+   src/data/provider.ts
+   src/data/shardHash.contract.test.ts
+   src/engine/engine.test.ts
+   src/engine/engine.ts
+   src/engine/engineApi.test.ts
+   src/engine/engineApi.ts
+   src/engine/lexicon.fixture.ts
+   src/gesture/GestureControls.tsx
+   src/gesture/gestureEngine.test.ts
+   src/gesture/gestureEngine.ts
+   src/gesture/gestureMath.test.ts
+   src/gesture/gestureMath.ts
+   src/gesture/oneEuro.test.ts
+   src/gesture/oneEuro.ts
+   src/main.tsx
+   src/state/claims.test.ts
+   src/state/claims.ts
+   src/state/feedback.ts
+   src/state/permalink.test.ts
+   src/state/permalink.ts
+   src/state/shiyi.test.ts
+   src/state/shiyi.ts
+   src/state/store.ts
+   src/three/FlyControls.tsx
+   … 另有 46 个
+
+================================================================================
+▶ beltoforion/Galaxy-Renderer-Typescript
+================================================================================
+★ 60   TypeScript   更新 2025-04-16   无许可
+  Procedural generation of a 2D spiral galaxy with the density wave theory
+  homepage: https://beltoforion.de/en/spiral_galaxy_renderer/spiral-galaxy-renderer.html   topics: educational, galaxy, galaxy-simulator, simulation, typescript, webgl
+
+── README（1105 字符，取前 4500）──
+# Galaxy-Renderer-Typescript
+ Procedural generation of a 2D spiral galaxy with the density wave theory, typescript and webgl2.
+ 
+A Program for modelling a two dimensional galaxy based on the density wave theory. This archive contains the source code for an 
+article at beltoforion.de about simulating a galaxy with the density wave theory. For more Details please read the Articles:
+
+* https://beltoforion.de/en/spiral_galaxy_renderer [english]
+* https://beltoforion.de/de/rendern_von_spiralgalaxien [german]
+
+An online demo of the typescript version can be viewed here:
+
+ [![applet image](https://beltoforion.de/github_images/galaxy-renderer-typescript.jpg)](https://beltoforion.de/en/spiral_galaxy_renderer/spiral-galaxy-renderer.html)
+
+A C++ implementation of this code is available here:
+
+* https://github.com/beltoforion/Galaxy-Renderer
+
+## Prerequisites:
+
+This program has the following dependencies:
+  * webpack
+  * webpack-cli
+  * gl-matrix
+
+To install the dependencies go to the project folder and type:
+
+```npm install```
+
+You should then be able to compile the project with Visual Studio Code.
+
+
+── 文件树（24 个文件）──
+   README.md
+   src/CumulativeDistributionFunction.ts
+   src/Galaxy.ts
+   src/GalaxyRenderer.ts
+   src/Helper.ts
+   src/Types.ts
+   src/UiController.ts
+   src/VertexBufferBase.ts
+   src/VertexBufferLines.ts
+   src/VertexBufferStars.ts
+   src/index.ts
+   webpack.config.js
+
+================================================================================
+▶ patrik-cihal/lean-graph
+================================================================================
+★ 54   Rust   更新 2026-02-15   无许可
+  Theorem relational dependencies automatic extraction and visualization as a graph for Lean4.
+  homepage: —   topics: —
+
+── README（1274 字符，取前 4500）──
+# Lean Graph
+
+Interactive visualization of dependencies for any theorem/definitions in your Lean project.
+
+
+![Fermat last theorem four](fermat-last-theorem-4-example.png)
+
+## How to use
+
+### Run in your browser: [patrik-cihal.github.io/lean-graph](https://patrik-cihal.github.io/lean-graph/)
+
+### Run locally
+1. Get [Rustup](https://rustup.rs/)
+2. Install `Lean Graph` by executing this command in your terminal: ```cargo install --git "https://github.com/patrik-cihal/lean-graph"```
+3. Run `Lean Graph` from the terminmal under the name `lean-graph`
+
+### Extracting graph from `.lean` files
+1. Copy the `DependencyExtractor.lean` into your project folder (either from GitHub, or download it in the web app)
+2. In the top of the file import the files where are the theorems/definitions you want to extract the graph for
+3. In the bottom of the file there is an #eval line where you can specify your own custom theorem/definition name
+4. Uncomment that same line to get the `.json` file
+
+## What's next
+
+### Additional features
+- After clicking on node, allow for seeing the documentation
+- Lazy loading of depending nodes
+- Option to visualize any Mathlib constant, without the need of running script locally
+
+If you want to see these features, any contribution is welcome.
+
+
+── 文件树（26 个文件）──
+   README.md
+
+================================================================================
+▶ lyon-industries/graphrag-workbench
+================================================================================
+★ 721   TypeScript   更新 2026-07-18   MIT
+  Interactive 3D visualization of knowledge graphs generated by Microsoft GraphRAG. Explore entities, relationships, and communities with immersive visual analytics.
+  homepage: https://graphrag-workbench-web.vercel.app   topics: graphrag, microsoft, nextjs, visualization
+
+── README（6688 字符，取前 4500）──
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lyon-industries/.github/main/profile/lyon-industries-banner.svg" alt="Lyon Industries" width="100%">
+</p>
+
+# GraphRAG Workbench
+
+A local workbench for turning documents into an inspectable 3D knowledge graph.
+
+GraphRAG Workbench wraps [Microsoft GraphRAG](https://github.com/microsoft/graphrag) with local document preparation, indexing controls, a live terminal, project management, and the original Three.js graph. It is a dedicated open-source desktop-style web app: clone it, run it, and configure local or cloud models inside the Builder.
+
+https://github.com/user-attachments/assets/1f588a45-07ca-4953-92ed-fc888fe28cff
+
+## Version 2.0
+
+![GraphRAG Workbench 2.0 showing an isolated lunar-surface community and entity inspector in a front-on MacBook render](docs/screenshots/graphrag-workbench-2.0-community-macbook.webp)
+
+*Inspect entity evidence, community hierarchy, and strongest relationships without leaving the live graph.*
+
+- Microsoft GraphRAG 3.1.0, pinned with `uv`
+- per-build Local / Ollama and Cloud / OpenAI presets configured in the interface
+- full-screen 3D graph with search and community isolation
+- contextual Inspector for selected entities and their strongest connections
+- local Projects sheet for naming, loading, renaming, deleting, files, statistics, builds, and terminal output
+- native GraphRAG output-directory import plus portable Workbench bundle import/export
+- cancellable server-owned indexing with persisted workflow status; builds survive closing the Builder
+- live constellation population while a build runs: entities and relationships appear as extraction completes, communities as clustering completes
+- engine-log surfacing with fast failure on fatal provider errors (quota, authentication, missing model)
+- text-backed PDF validation and transactional file removal
+- no account, hosted database, or remote document service
+
+![GraphRAG Workbench 2.0 with the Inspector and Projects workspace open in a 45-degree MacBook render](docs/screenshots/graphrag-workbench-2.0-projects-macbook.webp)
+
+*Manage projects and monitor indexing while retaining the graph and selected-entity context.*
+
+Chat is intentionally absent from 2.0 while its next interaction model is designed.
+
+## Requirements
+
+- Node.js 20.9 or later
+- pnpm
+- Python 3.12
+- [uv](https://docs.astral.sh/uv/)
+- no model provider is required before first launch; the Builder walks through Ollama or OpenAI setup
+
+## Install
+
+```bash
+git clone https://github.com/lyon-industries/graphrag-workbench.git
+cd graphrag-workbench
+pnpm install
+uv sync --frozen
+pnpm dev
+```
+
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000). Development and production commands bind to the local interface.
+
+## Configure builds in the interface
+
+Open **Projects → Build providers**. Both presets can remain configured at the same time:
+
+- **Local / Ollama** detects the Ollama installation and service, links to the official installer when absent, and pulls the selected completion and embedding models with visible progress. The default preset is Gemma 4 plus EmbeddingGemma at 768 dimensions.
+- **Cloud / OpenAI** accepts the API key and model names in a modal. The key is saved in the workbench-wide `.graphrag/providers.json`, restricted to the operating-system account (`0600`). It is outside every project, excluded from Git, and never returned to browser code.
+
+The Ollama and OpenAI bindings are workbench-wide settings, reused by every GraphRAG project. Each indexing run has an explicit **Run with Ollama** or **Run with OpenAI** command. Ollama avoids provider token charges and keeps model processing on the workstation; OpenAI is normally faster and can use a stronger extraction model. OpenAI indexing sends document content to the configured provider and can consume substantial model tokens.
+
+During a build the engine log is tailed into the Terminal. Fatal provider failures such as exhausted quota, a rejected key, or a missing model stop the run with the cause and recovery action named.
+
+## Build and inspect a graph
+
+1. Open **Projects**.
+2. Give the project a human-readable name.
+3. Add one or more text-backed PDFs.
+4. Select **Run with Ollama** or **Run with OpenAI** and follow each workflow in the Terminal. If that repository binding is not ready, the setup modal opens at the missing step.
+5. Close Projects to explore the graph.
+6. Select a node to open its Inspector; select a connected entity to traverse the graph.
+
+`Cm
+
+── 文件树（130 个文件）──
+   .github/ISSUE_TEMPLATE/bug_report.md
+   .github/ISSUE_TEMPLATE/feature_request.md
+   .github/PULL_REQUEST_TEMPLATE.md
+   CHANGELOG.md
+   README.md
+   app/api/chat/route.ts
+   app/api/chat/stream/route.ts
+   app/api/corpus/archive/create/route.ts
+   app/api/corpus/archive/delete/route.ts
+   app/api/corpus/archive/list/route.ts
+   app/api/corpus/archive/rename/route.ts
+   app/api/corpus/archive/restore/route.ts
+   app/api/corpus/export/route.ts
+   app/api/corpus/file/route.ts
+   app/api/corpus/import/route.ts
+   app/api/corpus/index/status/route.ts
+   app/api/corpus/index/stop/route.ts
+   app/api/corpus/index/stream/route.ts
+   app/api/corpus/kg/rename/route.ts
+   app/api/corpus/logs/route.ts
+   app/api/corpus/nuke/route.ts
+   app/api/corpus/project/delete/route.ts
+   app/api/corpus/remove/route.ts
+   app/api/corpus/state/route.ts
+   app/api/corpus/upload/route.ts
+   app/api/data/[name]/route.ts
+   app/api/providers/ollama/pull/route.ts
+   app/api/providers/route.ts
+   app/icon.tsx
+   app/layout.tsx
+   app/page.tsx
+   components/ChatPanel.tsx
+   components/Controls.tsx
+   components/CorpusPanel.tsx
+   components/GalaxyBackground.tsx
+   components/GraphVisualizer.tsx
+   components/Inspector.tsx
+   components/LoadingState.tsx
+   components/ProviderSetupDialog.tsx
+   components/ui/accordion.tsx
+   components/ui/alert-dialog.tsx
+   components/ui/alert.tsx
+   components/ui/aspect-ratio.tsx
+   components/ui/avatar.tsx
+   components/ui/badge.tsx
+   components/ui/breadcrumb.tsx
+   components/ui/button.tsx
+   components/ui/calendar.tsx
+   components/ui/card.tsx
+   components/ui/carousel.tsx
+   components/ui/chart.tsx
+   components/ui/checkbox.tsx
+   components/ui/collapsible.tsx
+   components/ui/command.tsx
+   components/ui/context-menu.tsx
+   components/ui/dialog.tsx
+   components/ui/drawer.tsx
+   components/ui/dropdown-menu.tsx
+   components/ui/form.tsx
+   components/ui/hover-card.tsx
+   components/ui/input-otp.tsx
+   components/ui/input.tsx
+   components/ui/label.tsx
+   components/ui/menubar.tsx
+   components/ui/navigation-menu.tsx
+   components/ui/pagination.tsx
+   components/ui/popover.tsx
+   components/ui/progress.tsx
+   components/ui/radio-group.tsx
+   components/ui/resizable.tsx
+   components/ui/scroll-area.tsx
+   components/ui/select.tsx
+   components/ui/separator.tsx
+   components/ui/sheet.tsx
+   components/ui/sidebar.tsx
+   components/ui/skeleton.tsx
+   components/ui/slider.tsx
+   components/ui/sonner.tsx
+   components/ui/switch.tsx
+   components/ui/table.tsx
+   components/ui/tabs.tsx
+   components/ui/textarea.tsx
+   components/ui/toggle-group.tsx
+   components/ui/toggle.tsx
+   components/ui/tooltip.tsx
+   eslint.config.mjs
+   hooks/use-mobile.ts
+   lib/forceSimulation.ts
+   lib/graphData.ts
+   lib/server/converters.ts
+   … 另有 10 个

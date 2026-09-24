@@ -1,0 +1,610 @@
+
+============================================================================
+## cn-cn-rationally-connected  [现行 status = undefined]  undefined
+   维基条目: Rational variety
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Unirational varieties are rationally connected, but it is not known if the converse holds. == Stably rational varieties == A variety V is called stably rational if V × P m {\displaystyle V\times \mathbf {P} ^{m}} is rational for some m ≥ 0 {\displaystyle m\geq 0} .
+  · (1971), "Exp. 372 Un contre-exemple à une conjecture d'E.
+
+
+============================================================================
+## cn-continuum  [现行 status = disproved]  连续统假设
+   维基条目: Continuum hypothesis
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In 1923, Thoralf Skolem conjectured that CH could not be settled by the axioms of Zermelo set theory.
+  · As a result of its independence, many substantial conjectures in those fields have subsequently been shown to be independent as well.
+
+
+============================================================================
+## cn-hodge  [现行 status = open]  Hodge 猜想
+   维基条目: Hodge conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Hodge conjecture is a major unsolved problem in algebraic geometry and complex geometry that relates the algebraic topology of a non-singular complex algebraic variety to its subvarieties.
+  · In simple terms, the Hodge conjecture asserts that the basic topological information like the number of holes in certain geometric spaces, complex algebraic varieties, can be understood by studying the possible nice shapes sitting inside those spaces, which look like zero sets of polynomial equations.
+
+
+============================================================================
+## cn-tate  [现行 status = open]  Tate 猜想
+   维基条目: Tate conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, specifically arithmetic geometry, the Tate conjecture is a 1963 conjecture of John Tate that would describe the algebraic cycles on a variety in terms of a more computable invariant, the Galois representation on étale cohomology.
+  · The conjecture is a central problem in the theory of algebraic cycles.
+
+
+============================================================================
+## cn-standard  [现行 status = open]  Grothendieck 标准猜想
+   维基条目: Standard conjectures on algebraic cycles
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the standard conjectures about algebraic cycles are several conjectures describing the relationship of algebraic cycles and Weil cohomology theories.
+  · One of the original applications of these conjectures, envisaged by Alexander Grothendieck, was to prove that his construction of pure motives gave an abelian category that is semisimple.
+
+
+============================================================================
+## cn-canonical-model  [现行 status = open]  典范模型存在性
+   维基条目: Minimal model program
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The conjectural solution to this problem is the flip, a kind of codimension-2 surgery operation on X i {\displaystyle X_{i}} .
+  · The problem of termination of log flips in higher dimensions remains the subject of active research. == See also == Abundance conjecture Minimal rational surface == References == Birkar, Caucher; Cascini, Paolo; Hacon, Christopher; McKernan, James (2010), "Existence of minimal models for varieties of log general type", Journal of the American Mathematical Society, 23 (2): 405–468, arXiv:math/0610203, Bibcode:2010JAMS...23..405B, doi:10.1090/S0894-0347-09-00649-3, MR 2601039 Clemens, Herbert; Kollár, János; Mori, Shigefumi (1988), "Higher-dimensional complex geometry", Astérisque (166): 144 pp.
+
+
+============================================================================
+## cn-resolution-charp  [现行 status = open]  正特征奇点消解
+   维基条目: Resolution of singularities
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · For varieties over fields of characteristic 0, this was proved by Heisuke Hironaka in 1964; while for varieties of dimension at least 4 over fields of characteristic p, it is an open problem. == Definitions == Originally the problem of resolution of singularities was to find a nonsingular model for the function field of a variety X, in other words a complete non-singular variety X′ with the same function field.
+  · Hauser (2010) gave a survey of work on the unsolved characteristic p resolution problem. == Method of proof in characteristic zero == There are many constructions of strong desingularization but all of them give essentially the same result.
+
+
+============================================================================
+## cn-rationally-connected  [现行 status = open]  有理连通性猜想
+   维基条目: Rational variety
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Unirational varieties are rationally connected, but it is not known if the converse holds. == Stably rational varieties == A variety V is called stably rational if V × P m {\displaystyle V\times \mathbf {P} ^{m}} is rational for some m ≥ 0 {\displaystyle m\geq 0} .
+  · (1971), "Exp. 372 Un contre-exemple à une conjecture d'E.
+
+
+============================================================================
+## cn-fujita  [现行 status = open]  Fujita 猜想
+   维基条目: Fujita conjecture
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * (2000), "A tight closure proof of Fujita's freeness conjecture for very ample line bundles" (PDF), Mathematische Annalen, 317 (2): 285–293, doi:10.1007/s002080000094, hdl:2027.42/41935, MR 1764238, S2CID 55051810.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, Fujita's conjecture is a problem in the theories of algebraic geometry and complex manifolds.
+  · It is named after Takao Fujita, who formulated it in 1985. == Statement == In complex geometry, the conjecture states that for a positive holomorphic line bundle L {\displaystyle L} on a compact complex manifold M {\displaystyle M} , the line bundle K M ⊗ L ⊗ m {\displaystyle K_{M}\otimes L^{\otimes m}} (where K M {\displaystyle K_{M}} is a canonical line bundle of M {\displaystyle M} ) is spanned by sections when m ≥ n + 1 {\displaystyle m\geq n+1} ; very ample when m ≥ n + 2 {\displaystyle m\geq n+2} , where n {\displaystyle n} is the complex dimension of M {\displaystyle M} .
+
+
+============================================================================
+## cn-zariski-lipman  [现行 status = open]  Zariski–Lipman 猜想
+   维基条目: Nakai conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Nakai conjecture is an unproven characterization of smooth algebraic varieties, conjectured by Japanese mathematician Yoshikazu Nakai in 1961.
+  · The Nakai conjecture is known to be true for algebraic curves and Stanley–Reisner rings.
+
+
+============================================================================
+## cn-linearization  [现行 status = open]  线性化猜想
+   维基条目: Spherical space form conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In geometric topology, the spherical space form conjecture (now a theorem) states that a finite group acting on the 3-sphere is conjugate to a group of isometries of the 3-sphere. == History == The conjecture was posed by Heinz Hopf in 1926 after determining the fundamental groups of three-dimensional spherical space forms as a generalization of the Poincaré conjecture to the non-simply connected case. == Status == The conjecture is implied by Thurston's geometrization conjecture, which was proven by Grigori Perelman in 2003.
+  · The conjecture was independently proven for groups whose actions have fixed points—this special case is known as the Smith conjecture.
+
+
+============================================================================
+## cn-jacobian  [现行 status = open]  雅可比猜想
+   维基条目: Jacobian conjecture
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * The case n = 2 {\displaystyle n=2} (two variables), also called the plane Jacobian conjecture or planar Jacobian conjecture, is the only case that remains unresolved as of 2026.
+  * On July 19, 2026, Levent Alpöge presented an explicit counterexample in three variables which he credited to the large language model Claude Fable 5, disproving the conjecture for ⁠ n > 2 {\displaystyle n>2} ⁠.
+  * For nearly a century, Keller was considered to be the first person to formulate the conjecture, until a 2025 search of the zbMATH database revealed that the two-dimensional case had already been stated by Kraus.
+  * After the counterexample in three dimensions was discovered in 2026 only the conjecture in two dimensions remains open. == Formulation of the conjecture == Let n > 1 {\displaystyle n>1} be a fixed integer and consider polynomials f 1 , … , f n {\displaystyle f_{1},\dots ,f_{n}} in variables X 1 , … , X n {\displaystyle X_{1},\dots ,X_{n}} with coefficients in a field K {\displaystyle \mathbb {K} } .
+  * Many special cases and reductions of the Jacobian conjecture were established in the decades before it was disproved in 2026 for n > 2 {\displaystyle n>2} .
+  * No counterexample can therefore be birational or define a Galois extension; consistent with this, the 2026 counterexample is generically three-to-one.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Jacobian conjecture is a conjecture concerning polynomials in several variables that states that if a polynomial function from an n {\displaystyle n} -dimensional space to itself has a Jacobian determinant that is a non-zero constant, then the function has a polynomial inverse.
+  · For fields of positive characteristic, the usual Jacobian conjecture is false in one dimension, so the separable Jacobian conjecture, also called Adjamagbo's Jacobian conjecture, adds a separability premise to make the conjecture true in one dimension.
+
+
+============================================================================
+## cn-hartshorne-ample  [现行 status = open]  Hartshorne 丰饶性猜想
+   维基条目: List of unsolved problems in mathematics
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * Nearby Lagrangian conjecture: prove or find a counter-example to the statement: Any closed exact Lagrangian submanifold of the cotangent bundle of a closed manifold is Hamiltonian isotopic to the zero section. == Problems solved since 2015 == === Algebra === Jacobian conjecture for more than 2 dimensions (Levent Alpöge, 2026 using Claude Fable 5).
+  * Suita conjecture (Qi'an Guan and Xiangyu Zhou, 2015). ==== Group theory ==== Existence of a non-sofic, discrete, countable group (solution in an anonymized paper published by OpenAI, 2026).
+  * Griffin, Ken Ono, 2015). === Analysis === Sendov's conjecture and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).
+  * Crouzeix's conjecture (Shanmu Jin using GPT-5.6 Sol, 2026.
+  * Independent proof by Emiel Lorist and Felix Schwenninger, 2026).
+  * Heil–Ramanathan–Topiwala conjecture (Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using GPT-5.6 Pro, 2026).
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Prizes are often awarded for the solution to a long-standing problem, and some lists of unsolved problems, such as the Millennium Prize Problems, receive considerable attention.
+  · This list is a composite of notable unsolved problems mentioned in previously published lists, including but not limited to lists considered authoritative, and the problems listed here vary widely in both difficulty and importance. == Notable lists == For over a century, various mathematicians and organizations have published and promoted lists of unsolved mathematical problems.
+
+
+============================================================================
+## cn-riemann  [现行 status = open]  黎曼猜想
+   维基条目: Riemann hypothesis
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * According to a 2026 survey, there is overwhelming numerical evidence for the hypothesis, but no proof is known.
+  * In August 2026, an unreleased research version of the Anthropic's large language model Claude working interactively with human researchers, proved unconditionally that at least two-thirds (66.6%) of the non-trivial zeros of the Riemann zeta function lie on the critical line.
+  * In September 2026, Youness Lamzouri published a shorter and simpler proof of the same bounds.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Riemann hypothesis is the conjecture that the Riemann zeta function has its zeros only at the negative even integers and complex numbers with real part ⁠1/2⁠.
+  · Many consider it to be the most important unsolved problem in pure mathematics.
+
+
+============================================================================
+## cn-grh  [现行 status = open]  广义黎曼猜想
+   维基条目: Riemann hypothesis
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * According to a 2026 survey, there is overwhelming numerical evidence for the hypothesis, but no proof is known.
+  * In August 2026, an unreleased research version of the Anthropic's large language model Claude working interactively with human researchers, proved unconditionally that at least two-thirds (66.6%) of the non-trivial zeros of the Riemann zeta function lie on the critical line.
+  * In September 2026, Youness Lamzouri published a shorter and simpler proof of the same bounds.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Riemann hypothesis is the conjecture that the Riemann zeta function has its zeros only at the negative even integers and complex numbers with real part ⁠1/2⁠.
+  · Many consider it to be the most important unsolved problem in pure mathematics.
+
+
+============================================================================
+## cn-bsd  [现行 status = open]  Birch–Swinnerton-Dyer 猜想
+   维基条目: Birch and Swinnerton-Dyer conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Birch and Swinnerton-Dyer conjecture (often called the Birch–Swinnerton-Dyer conjecture) describes the set of rational solutions to equations defining an elliptic curve.
+  · It is an open problem in the field of number theory and is widely recognized as one of the most challenging mathematical problems.
+
+
+============================================================================
+## cn-abc  [现行 status = open]  abc 猜想
+   维基条目: Abc conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The abc conjecture (also known as the Oesterlé–Masser conjecture) is a conjecture in number theory that arose out of a discussion of Joseph Oesterlé and David Masser in 1985.
+  · The conjecture essentially states that the product of the distinct prime factors of a b c {\displaystyle abc} cannot often be much smaller than c {\displaystyle c} .
+
+
+============================================================================
+## cn-collatz  [现行 status = open]  考拉兹猜想
+   维基条目: Collatz conjecture
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * In July 2026, a disproof of the Collatz conjecture was verified not only by Lean, but another formal verification system Nanoda.
+  * Once the bugs were fixed, the proof was shown invalid (by both verifiers), and as of 2026 the Collatz problem remains a conjecture. == See also == 3x + 1 semigroup Arithmetic dynamics Juggler sequence Modular arithmetic Residue-class-wise affine group == Notes == == References == == External links == Matthews, Keith. "3 x + 1 page".
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The Collatz conjecture is one of the most famous unsolved problems in mathematics.
+  · The conjecture asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1.
+
+
+============================================================================
+## cn-szpiro  [现行 status = open]  Szpiro 猜想
+   维基条目: Szpiro's conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In number theory, Szpiro's conjecture relates the conductor of an elliptic curve to its discriminant.
+  · In a slightly modified form, it is equivalent to the well-known abc conjecture.
+
+
+============================================================================
+## cn-schanuel  [现行 status = open]  Schanuel 猜想
+   维基条目: Schanuel's conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, specifically transcendental number theory, Schanuel's conjecture is a conjecture about the transcendence degree of certain field extensions of the rational numbers Q {\displaystyle \mathbb {Q} } , which would establish the transcendence of a large class of numbers, for which this is currently unknown.
+  · It is due to Stephen Schanuel and was published by Serge Lang in 1966. == Statement == Schanuel's conjecture can be given as follows: == Consequences == Schanuel's conjecture, if proven, would generalize most known results in transcendental number theory and establish a large class of numbers transcendental.
+
+
+============================================================================
+## cn-novikov  [现行 status = open]  Novikov 猜想
+   维基条目: Novikov conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The Novikov conjecture is one of the most important unsolved problems in topology.
+  · It is named for Sergei Novikov who originally posed the conjecture in 1965.
+
+
+============================================================================
+## cn-borel  [现行 status = open]  Borel 猜想
+   维基条目: Borel conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In geometric topology, the Borel conjecture (named for Armand Borel) asserts that an aspherical closed manifold is determined by its fundamental group, up to homeomorphism.
+  · It is a rigidity conjecture, asserting that a weak, algebraic notion of equivalence (namely, homotopy equivalence) should imply a stronger, topological notion (namely, homeomorphism). == Precise formulation of the conjecture == Let M {\displaystyle M} and N {\displaystyle N} be closed and aspherical topological manifolds, and let f : M → N {\displaystyle f\colon M\to N} be a homotopy equivalence.
+
+
+============================================================================
+## cn-farrell-jones  [现行 status = open]  Farrell–Jones 猜想
+   维基条目: Farrell–Jones conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Farrell–Jones conjecture, named after F.
+  · So assuming the Farrell–Jones conjecture is true, it is possible to restrict computations to virtually cyclic subgroups to get information on complicated objects such as K n ( R G ) {\displaystyle K_{n}(RG)} or L n ( R G ) {\displaystyle L_{n}(RG)} .
+
+
+============================================================================
+## cn-four-dim-poincare  [现行 status = open]  四维光滑庞加莱猜想
+   维基条目: Generalized Poincaré conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In the mathematical area of topology, the generalized Poincaré conjecture is a statement that a manifold that is a homotopy sphere is a sphere.
+  · The name derives from the Poincaré conjecture, which was made for (topological or PL) manifolds of dimension 3, where being a homotopy sphere is equivalent to being simply connected and closed.
+
+
+============================================================================
+## cn-navier-stokes  [现行 status = open]  Navier–Stokes 存在性与光滑性
+   维基条目: Navier–Stokes existence and smoothness
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * On 8 September 2026, artificial intelligence company OpenAI claimed to have found a solution to the Navier–Stokes equations that develops a singularity in finite time in three-dimensional Euclidean space, along with a formalization in the Lean proof assistant, using a swarm of around 10,000 AI agents running an internal frontier model.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The question of whether the Navier–Stokes equations always have smooth solutions in three-dimensional Euclidean space, given some initial conditions, has been a longstanding unsolved problem in mathematics since the early 20th century.
+  · In particular, solutions of the Navier–Stokes equations often include turbulence, which remains one of the greatest unsolved problems in physics, despite its immense importance in science and engineering.
+
+
+============================================================================
+## cn-yang-mills  [现行 status = open]  Yang–Mills 存在性与质量间隙
+   维基条目: Yang–Mills existence and mass gap
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The Yang–Mills existence and mass gap problem is an unsolved problem in mathematical physics and mathematics, and one of the seven Millennium Prize Problems defined by the Clay Mathematics Institute, which has offered a prize of US$1,000,000 for its solution.
+
+
+============================================================================
+## cn-lusin  [现行 status = open]  Carleson 猜想
+   维基条目: Carleson's theorem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Luzin, and the problem was known as Luzin's conjecture up until its proof by Carleson.
+  · Kolmogorov (1923) showed that the analogue of Luzin's conjecture for L1 is false by finding such a function whose Fourier series diverges almost everywhere (improved slightly in 1926 to diverging everywhere).
+
+
+============================================================================
+## cn-connes-rigidity  [现行 status = open]  Connes 刚性猜想
+   维基条目: Connes embedding problem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Notably, it is equivalent to the following long-standing problems: Kirchberg's QWEP conjecture in C*-algebra theory Tsirelson's problem in quantum information theory The predual of any (separable) von Neumann algebra is finitely representable in the trace class.
+  · The isomorphism class of R ω {\displaystyle R^{\omega }} is independent of the ultrafilter if and only if the continuum hypothesis is true (Ge-Hadwin and Farah-Hart-Sherman), but such an embedding property does not depend on the ultrafilter because von Neumann algebras acting on separable Hilbert spaces are, roughly speaking, very small. == References == == Further reading == Capraro, Valerio (2010). "A Survey on Connes' Embedding Conjecture". arXiv:1003.2076 [math.OA].
+
+
+============================================================================
+## cn-idempotent  [现行 status = open]  Idempotent 猜想
+   维基条目: Kaplansky's conjectures
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The mathematician Irving Kaplansky is notable for proposing numerous conjectures in several branches of mathematics, including a list of ten conjectures on Hopf algebras.
+  · They are usually known as Kaplansky's conjectures. == Group rings == Let K be a field, and G a torsion-free group.
+
+
+============================================================================
+## cn-kadison-kaplansky  [现行 status = open]  Kadison–Kaplansky 猜想
+   维基条目: Kaplansky's conjectures
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The mathematician Irving Kaplansky is notable for proposing numerous conjectures in several branches of mathematics, including a list of ten conjectures on Hopf algebras.
+  · They are usually known as Kaplansky's conjectures. == Group rings == Let K be a field, and G a torsion-free group.
+
+
+============================================================================
+## cn-lagarias  [现行 status = open]  Lagarias 判据（RH 等价形式）
+   维基条目: Li's criterion
+============================================================================
+  （正文里没有 2024+ 的结论句）
+
+
+============================================================================
+## cn-sat  [现行 status = open]  P vs NP
+   维基条目: P versus NP problem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The P versus NP problem is a major unsolved problem in theoretical computer science.
+  · The problem has been called the most important open problem in computer science.
+
+
+============================================================================
+## cn-bass  [现行 status = open]  Bass 猜想
+   维基条目: Bass conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, especially algebraic geometry, the Bass conjecture says that certain algebraic K-groups are supposed to be finitely generated.
+  · The conjecture was proposed by Hyman Bass. == Statement of the conjecture == Any of the following equivalent statements is referred to as the Bass conjecture.
+
+
+============================================================================
+## cn-zero-divisor  [现行 status = open]  零因子猜想
+   维基条目: Kaplansky's conjectures
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The mathematician Irving Kaplansky is notable for proposing numerous conjectures in several branches of mathematics, including a list of ten conjectures on Hopf algebras.
+  · They are usually known as Kaplansky's conjectures. == Group rings == Let K be a field, and G a torsion-free group.
+
+
+============================================================================
+## cn-group-iso  [现行 status = open]  群同构问题
+   维基条目: Group isomorphism problem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+
+
+============================================================================
+## cn-baum-connes  [现行 status = open]  Baum–Connes 猜想
+   维基条目: Baum–Connes conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, specifically in operator K-theory, the Baum–Connes conjecture suggests a link between the K-theory of the reduced C*-algebra of a group and the K-homology of the classifying space of proper actions of that group.
+  · The conjecture sets up a correspondence between different areas of mathematics, with the K-homology of the classifying space being related to geometry, differential operator theory, and homotopy theory, while the K-theory of the group's reduced C*-algebra is a purely analytical object.
+
+
+============================================================================
+## cn-goldbach  [现行 status = partial]  哥德巴赫猜想
+   维基条目: Goldbach's conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Goldbach's conjecture is one of the oldest and best-known unsolved problems in number theory and all of mathematics.
+  · The conjecture has been shown to hold for all natural numbers less than 4×1018, but remains unproven despite considerable effort. == History == === Origins === On 7 June 1742, the Prussian mathematician Christian Goldbach wrote a letter to Leonhard Euler (letter XLIII), in which he proposed the following conjecture: Every integer that can be written as the sum of two primes can also be written as the sum of as many primes (including unity) as one wishes, until all terms are units.
+
+
+============================================================================
+## cn-twin-prime  [现行 status = partial]  孪生素数猜想
+   维基条目: Twin prime
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · However, it is unknown whether there are infinitely many twin primes (the so-called twin prime conjecture) or if there is a largest pair.
+  · The breakthrough work of Yitang Zhang in 2013, as well as work by James Maynard, Terence Tao and others, has made substantial progress towards proving that there are infinitely many twin primes, but at present this remains unsolved. == Properties == Usually the pair (2, 3) is not considered to be a pair of twin primes.
+
+
+============================================================================
+## cn-hsiang  [现行 status = partial]  极小超曲面存在性纲领
+   维基条目: Minimal surface
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · One cause was the discovery in 1982 by Celso Costa of a surface that disproved the conjecture that the plane, the catenoid, and the helicoid are the only complete embedded minimal surfaces in R 3 {\displaystyle \mathbb {R} ^{3}} of finite topological type.
+
+
+============================================================================
+## cn-kakeya  [现行 status = partial]  Kakeya 猜想
+   维基条目: Kakeya set
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * In February 2025, a proof for the case n = 3 was posted on arXiv by Hong Wang and Joshua Zahl.
+  * The Kakeya conjecture in three dimensions is described as "one of the most sought-after open problems in geometric measure theory", and in 2026 Hong Wang was awarded the Fields Medal in part due to this work. === Kakeya maximal function === A modern way of approaching this problem is to consider a particular type of maximal function, which we construct as follows: Denote Sn−1 ⊂ Rn to be the unit sphere in n-dimensional space.
+  * In 2025, Hong Wang and Zahl proved the Kakeya conjecture in three dimensions, building on their earlier proof of the sticky case. == Applications to analysis == Somewhat surprisingly, these conjectures have been shown to be connected to a number of questions in other fields, notably in harmonic analysis.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The Kakeya conjecture states that Besicovitch sets in n-dimensional space must have Hausdorff dimension n; it remains open for n>3.
+  · Schoenberg conjectured that this number is the lower bound for the area of simply connected Kakeya needle sets.
+
+
+============================================================================
+## cn-restriction  [现行 status = partial]  Restriction 猜想
+   维基条目: Restriction conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In harmonic analysis, the restriction conjecture, also known as the Fourier restriction conjecture, is a conjecture about the behaviour of the Fourier transform on curved hypersurfaces.
+  · The conjecture states that two necessary conditions needed to solve a problem known as the restriction problem in that scenario are also sufficient.
+
+
+============================================================================
+## cn-bochner-riesz  [现行 status = partial]  Bochner–Riesz 猜想
+   维基条目: Bochner–Riesz mean
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Here, establishing almost everywhere convergence becomes correspondingly more difficult. == Bochner–Riesz conjecture == Another question is that of for which δ {\displaystyle \delta } and which p {\displaystyle p} the Bochner–Riesz means of an L p {\displaystyle L^{p}} function converge in norm.
+  · Then the Bochner–Riesz conjecture states that δ > δ ( p ) {\displaystyle \delta >\delta (p)} is the necessary and sufficient condition for a L p {\displaystyle L^{p}} bounded Fourier multiplier operator.
+
+
+============================================================================
+## cn-langlands-functoriality  [现行 status = partial]  Langlands 函子性
+   维基条目: Langlands program
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * In 2024, a 9-person collaborative project led by Dennis Gaitsgory announced a proof of the (categorical, unramified) geometric Langlands conjecture leveraging Hecke eigensheaves as part of the proof. == Status == The Langlands correspondence for GL(1, K) follows from (and is essentially equivalent to) class field theory.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Langlands program is a set of conjectures about connections between number theory, the theory of automorphic forms, and geometry.
+  · From the perspective of modular forms, examples such as Hilbert modular forms, Siegel modular forms, and theta-series had been developed. == Objects == The conjectures have evolved since Langlands first stated them.
+
+
+============================================================================
+## cn-artin  [现行 status = partial]  Artin 猜想
+   维基条目: Artin L-function
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Robert Langlands and Pierre Deligne established a factorisation of Artin root number into Langlands–Deligne local constants; this is significant in conjectural relationships to automorphic representations.
+  · Functional equation guarantees that nontrivial zeros and possible poles (conjectured to not exist) must lie in critical strip: 0 ≤ Re ⁡ ( s ) ≤ 1 {\displaystyle 0\leq \operatorname {Re} (s)\leq 1} and are symmetric with respect to critical line Re ⁡ ( s ) = 1 2 {\displaystyle \operatorname {Re} (s)={\tfrac {1}{2}}} . === Artin reciprocity === A key result in class field theory, Artin reciprocity usually is expressed as existence of certain homomorphism between idele class group and abelianization of Galois group.
+
+
+============================================================================
+## cn-gross-prasad  [现行 status = partial]  Gan–Gross–Prasad 猜想
+   维基条目: Gan–Gross–Prasad conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Gan–Gross–Prasad conjecture is a restriction problem in the representation theory of real or p-adic Lie groups posed by Gan Wee Teck, Benedict Gross, and Dipendra Prasad.
+  · The problem originated from a conjecture of Gross and Prasad for special orthogonal groups but was later generalized to include all four classical groups.
+
+
+============================================================================
+## cn-yau-tian  [现行 status = proved]  Yau–Tian 猜想
+   维基条目: Tian Gang
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Shing-Tung Yau, in his renowned resolution of the Calabi conjecture, had settled the case of closed Kähler manifolds with nonpositive first Chern class.
+  · His work in applying the method of continuity showed that C0 control of the Kähler potentials would suffice to prove existence of Kähler-Einstein metrics on closed Kähler manifolds with positive first Chern class, also known as "Fano manifolds." Tian and Yau extended Yau's analysis of the Calabi conjecture to non-compact settings, where they obtained partial results.[TY90] They also extended their work to allow orbifold singularities.[TY91] Tian introduced the "α-invariant," which is essentially the optimal constant in the Moser-Trudinger inequality when applied to Kähler potentials with a supremal value of 0.
+
+
+============================================================================
+## cn-sato-tate  [现行 status = proved]  Sato–Tate 猜想
+   维基条目: Sato–Tate conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, the Sato–Tate conjecture is a statistical statement about the family of elliptic curves Ep obtained from an elliptic curve E over the rational numbers by reduction modulo almost all prime numbers p.
+  · Mikio Sato and John Tate independently posed the conjecture around 1960.
+
+
+============================================================================
+## cn-mordell  [现行 status = proved]  Mordell 猜想
+   维基条目: Mordell–Weil theorem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Meaning of the rank: see Birch and Swinnerton-Dyer conjecture.
+  · This is the elliptic curve case of the torsion conjecture.
+
+
+============================================================================
+## cn-class-number  [现行 status = proved]  类数问题
+   维基条目: Class number problem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · The difficulty is in effective computation of bounds: for a given discriminant, it is easy to compute the class number, and there are several ineffective lower bounds on class number (meaning that they involve a constant that is not computed), but effective bounds (and explicit proofs of completeness of lists) are harder. == Gauss's original conjectures == The problems are posed in Gauss's Disquisitiones Arithmeticae of 1801 (section V, articles 303 and 304).
+  · Gauss discusses imaginary quadratic fields in Article 303, stating the first two conjectures, and discusses real quadratic fields in Article 304, stating the third conjecture.
+
+
+============================================================================
+## cn-poincare  [现行 status = proved]  庞加莱猜想
+   维基条目: Poincaré conjecture
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * As of 2026, the Poincaré conjecture is the only Millennium Prize Problem with a verified solution. == Overview == The Poincaré conjecture was a mathematical problem in the field of geometric topology.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In the mathematical field of geometric topology, the Poincaré conjecture (UK: , US: , French: [pwɛ̃kaʁe]) is a theorem about the characterization of the 3-sphere (the hypersphere that bounds the 4-ball in four-dimensional space).
+  · Originally conjectured by Henri Poincaré in 1904, the theorem concerns spaces that locally look like ordinary three-dimensional Euclidean space but which are finite in extent.
+
+
+============================================================================
+## cn-geometrization  [现行 status = proved]  Thurston 几何化猜想
+   维基条目: Geometrization conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In mathematics, Thurston's geometrization conjecture (now a theorem) states that each of certain three-dimensional topological spaces has a unique geometric structure that can be associated with it.
+  · Instead, the geometrization conjecture states that every closed 3-manifold can be decomposed in a canonical way into pieces that each have one of eight types of geometric structure.
+
+
+============================================================================
+## cn-thurston-norm  [现行 status = proved]  Thurston 范数猜想
+   维基条目: Thurston norm
+============================================================================
+  （正文里没有 2024+ 的结论句）
+
+
+============================================================================
+## cn-virtual-fibering  [现行 status = proved]  虚拟纤维化猜想
+   维基条目: Virtually fibered conjecture
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In the mathematical subfield of 3-manifolds, the virtually fibered conjecture, formulated by American mathematician William Thurston, states that every closed, irreducible, atoroidal 3-manifold with infinite fundamental group has a finite cover which is a surface bundle over the circle.
+  · The hypotheses of the conjecture are satisfied by hyperbolic 3-manifolds.
+
+
+============================================================================
+## cn-finite-simple  [现行 status = proved]  有限单群分类
+   维基条目: Classification of finite simple groups
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Because the conclusion was unknown, the first generation proof consists of many stand-alone theorems, dealing with important special cases.
+  · A breakthrough in the best known theoretical algorithm for the graph isomorphism problem in 1982 The Schreier conjecture The Signalizer functor theorem The B conjecture The Schur–Zassenhaus theorem for all groups (though this only uses the Feit–Thompson theorem).
+
+
+============================================================================
+## cn-kazhdan-lusztig  [现行 status = proved]  Kazhdan–Lusztig 猜想
+   维基条目: Kazhdan–Lusztig polynomial
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · This analogy, and the work of Jens Carsten Jantzen and Anthony Joseph relating primitive ideals of enveloping algebras to representations of Weyl groups, led to the Kazhdan–Lusztig conjectures. == Definition == Fix a Coxeter group W with generating set S, and write ℓ ( w ) {\displaystyle \ell (w)} for the length of an element w (the smallest length of an expression for w as a product of elements of S).
+  · The Inventiones paper also put forth two equivalent conjectures, known now as Kazhdan–Lusztig conjectures, which related the values of their polynomials at 1 with representations of complex semisimple Lie groups and Lie algebras, addressing a long-standing problem in representation theory.
+
+
+============================================================================
+## cn-lusztig  [现行 status = proved]  Lusztig 猜想
+   维基条目: Kazhdan–Lusztig polynomial
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · This analogy, and the work of Jens Carsten Jantzen and Anthony Joseph relating primitive ideals of enveloping algebras to representations of Weyl groups, led to the Kazhdan–Lusztig conjectures. == Definition == Fix a Coxeter group W with generating set S, and write ℓ ( w ) {\displaystyle \ell (w)} for the length of an element w (the smallest length of an expression for w as a product of elements of S).
+  · The Inventiones paper also put forth two equivalent conjectures, known now as Kazhdan–Lusztig conjectures, which related the values of their polynomials at 1 with representations of complex semisimple Lie groups and Lie algebras, addressing a long-standing problem in representation theory.
+
+
+============================================================================
+## cn-modularity  [现行 status = proved]  模性定理
+   维基条目: Modularity theorem
+============================================================================
+  --- 提到 2024+ 的结论句 ---
+  * In 2025, modularity was extended to over 10% of abelian surfaces by Boxer, Calegari, Gee and Pilloni. == Generalizations == The modularity theorem is a special case of more general conjectures due to Robert Langlands.
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · Before that, the statement was known as the Taniyama–Shimura conjecture, Taniyama–Shimura–Weil conjecture, or the modularity conjecture for elliptic curves. == Statement == The theorem states that any elliptic curve over Q {\displaystyle \mathbb {Q} } can be obtained via a rational map with integer coefficients from the classical modular curve X0(N) for some integer N; this is a curve with integer coefficients with an explicit definition.
+  · The function obtained in this way is, remarkably, a cusp form of weight two and level N and is also an eigenform (an eigenvector of all Hecke operators); this is the Hasse–Weil conjecture, which follows from the modularity theorem.
+
+
+============================================================================
+## cn-novikov-word  [现行 status = proved]  Dehn 算法与字问题
+   维基条目: Word problem for groups
+============================================================================
+  （正文里没有 2024+ 的结论句）
+
+
+============================================================================
+## cn-fermat  [现行 status = proved]  费马大定理
+   维基条目: Fermat's Last Theorem
+============================================================================
+  （正文里没有 2024+ 的结论句）
+  --- 讲"开放/未解决"的句子（取前 2 条）---
+  · In number theory, Fermat's Last Theorem (sometimes called Fermat's conjecture, especially in older texts) states that there are no positive integers a , b , c , n {\displaystyle a,b,c,n} with n > 2 {\displaystyle n>2} such that a n + b n = c n {\displaystyle a^{n}+b^{n}=c^{n}} .
+  · Consequently, the proposition became known as a conjecture rather than a theorem.
+
+
+============================================================================
+## cn-howe  [现行 status = proved]  Howe 对偶猜想
+   维基条目: Reductive dual pair
+============================================================================
+  （正文里没有 2024+ 的结论句）

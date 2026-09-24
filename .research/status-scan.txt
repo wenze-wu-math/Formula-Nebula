@@ -1,0 +1,134 @@
+﻿================================================================================
+全部 59 条 —— status 分布: {"open":33,"disproved":2,"proved":14,"partial":10}
+================================================================================
+open      arith    1985  0.88 cn-abc                   abc Conjecture
+open      algebra  1964  0.73 cn-bass                  Bass Conjecture
+open      analysis 1982  0.81 cn-baum-connes           Baum–Connes Conjecture
+open      topo     1983  0.76 cn-borel                 Borel Conjecture
+open      arith    1965  0.94 cn-bsd                   Birch and Swinnerton-Dyer Conjecture
+open      ag       1980  0.81 cn-canonical-model       Existence of Canonical Models
+open      arith    1937  0.84 cn-collatz               Collatz Conjecture
+open      analysis 1980  0.79 cn-connes-rigidity       Connes Rigidity Conjecture
+open      topo     1993  0.79 cn-farrell-jones         Farrell–Jones Conjecture
+open      topo     1982  0.82 cn-four-dim-poincare     Smooth 4-Dimensional Poincaré Conjecture
+open      ag       1985  0.77 cn-fujita                Fujita Conjecture
+open      arith    1884  0.92 cn-grh                   Generalized Riemann Hypothesis
+open      logic    1992  0.64 cn-group-iso             Group Isomorphism Problem
+open      ag       1970  0.62 cn-hartshorne-ample      Hartshorne Ample Subvariety Conjecture
+open      ag       1950  0.95 cn-hodge                 Hodge Conjecture
+open      analysis 1983  0.70 cn-idempotent            Idempotent Conjecture
+open      analysis 1967  0.67 cn-kadison-kaplansky     Kadison–Kaplansky Conjecture
+open      analysis 2000  0.58 cn-lagarias              Lagarias\
+open      ag       1977  0.64 cn-linearization         Linearization Conjecture
+open      analysis 1915  0.68 cn-lusin                 Carleson\
+open      analysis 1934  0.93 cn-navier-stokes         Navier–Stokes Existence and Smoothness
+open      topo     1965  0.78 cn-novikov               Novikov Conjecture
+open      ag       1992  0.76 cn-rationally-connected  Rational Connectivity of Fano Varieties
+open      ag       1964  0.83 cn-resolution-charp      Resolution of Singularities in Positive Characteristic
+open      arith    1859  0.97 cn-riemann               Riemann Hypothesis
+open      logic    1971  0.96 cn-sat                   P versus NP Problem
+open      arith    1960  0.71 cn-schanuel              Schanuel\
+open      ag       1968  0.89 cn-standard              Grothendieck Standard Conjectures
+open      arith    1981  0.74 cn-szpiro                Szpiro Conjecture
+open      ag       1963  0.91 cn-tate                  Tate Conjecture
+open      analysis 1954  0.89 cn-yang-mills            Yang–Mills Existence and Mass Gap
+open      ag       1965  0.69 cn-zariski-lipman        Zariski–Lipman Conjecture
+open      algebra  1956  0.72 cn-zero-divisor          Zero Divisor Conjecture
+partial   algebra  1923  0.82 cn-artin                 Artin Conjecture
+partial   analysis 1936  0.72 cn-bochner-riesz         Bochner–Riesz Conjecture
+partial   arith    1742  0.90 cn-goldbach              Goldbach Conjecture
+partial   algebra  2012  0.78 cn-gross-prasad          Gan–Gross–Prasad Conjecture
+partial   topo     1971  0.61 cn-hsiang                Minimal Hypersurface Existence (Hsiang–Lawson program)
+partial   analysis 1917  0.85 cn-kakeya                Kakeya Conjecture
+partial   algebra  1967  0.93 cn-langlands-functorialityLanglands Functoriality
+partial   algebra  1980  0.76 cn-lusztig               Lusztig Conjecture
+partial   analysis 1967  0.80 cn-restriction           Restriction Conjecture
+partial   arith    1849  0.89 cn-twin-prime            Twin Prime Conjecture
+proved    arith    1801  0.78 cn-class-number          Class Number Problem
+proved    arith    1637  0.93 cn-fermat                Fermat\
+proved    algebra  1955  0.90 cn-finite-simple         Classification of Finite Simple Groups
+proved    topo     1982  0.91 cn-geometrization        Thurston Geometrization Conjecture
+proved    algebra  1989  0.71 cn-howe                  Howe Duality Conjecture
+proved    algebra  1979  0.84 cn-kazhdan-lusztig       Kazhdan–Lusztig Conjecture
+proved    algebra  1955  0.91 cn-modularity            Modularity Theorem
+proved    arith    1922  0.90 cn-mordell               Mordell Conjecture
+proved    logic    1911  0.66 cn-novikov-word          Dehn\
+proved    topo     1904  0.93 cn-poincare              Poincaré Conjecture
+proved    arith    1963  0.80 cn-sato-tate             Sato–Tate Conjecture
+proved    topo     1986  0.66 cn-thurston-norm         Thurston Norm Conjecture
+proved    topo     1982  0.77 cn-virtual-fibering      Virtual Fibering Conjecture
+proved    ag       1990  0.87 cn-yau-tian              Yau–Tian Conjecture
+disproved logic    1878  0.92 cn-continuum             Continuum Hypothesis
+disproved ag       1939  0.86 cn-jacobian              Jacobian Conjecture
+
+================================================================================
+缓存正文里的新近信号（年份 ≥ 2024 或 recent/recently 等）
+================================================================================
+
+[cn-fujita] status=open  resolved=Fujita conjecture
+   · (2000), "A tight closure proof of Fujita's freeness conjecture for very ample line bundles" (PDF), Mathematische Annalen, 317 (2): 285–293, doi:10.1007/s002080000094, hdl:2027.42/41935, MR 1764238, S2CID 55051810.
+
+[cn-jacobian] status=disproved  resolved=Jacobian conjecture
+   · The case n = 2 {\displaystyle n=2} (two variables), also called the plane Jacobian conjecture or planar Jacobian conjecture, is the only case that remains unresolved as of 2026.
+   · On July 19, 2026, Levent Alpöge presented an explicit counterexample in three variables which he credited to the large language model Claude Fable 5, disproving the conjecture for ⁠ n > 2 {\displaystyle n>2} ⁠.
+   · For nearly a century, Keller was considered to be the first person to formulate the conjecture, until a 2025 search of the zbMATH database revealed that the two-dimensional case had already been stated by Kraus.
+   · After the counterexample in three dimensions was discovered in 2026 only the conjecture in two dimensions remains open. == Formulation of the conjecture == Let n > 1 {\displaystyle n>1} be a fixed integer and consider polynomials f 1 , … , f n {\displaystyle f_{1},\dots ,f_{n}} in variables X 1 , … , X n {\displaystyle X_{1},\dots ,X_{n}} with coefficients in a field K {\displaystyle \mathbb {K} } .
+
+[cn-yau-tian] status=proved  resolved=Tian Gang
+   · More recently, however, Paul, Sun, Zhang constructed explicit counterexamples to the generalized numerical criterion (see Theorem 1.3 and Remark 1.4 in ), showing that the criterions, as originally stated, is false.
+
+[cn-hartshorne-ample] status=open  resolved=List of unsolved problems in mathematics
+   · Nearby Lagrangian conjecture: prove or find a counter-example to the statement: Any closed exact Lagrangian submanifold of the cotangent bundle of a closed manifold is Hamiltonian isotopic to the zero section. == Problems solved since 2015 == === Algebra === Jacobian conjecture for more than 2 dimensions (Levent Alpöge, 2026 using Claude Fable 5).
+   · Suita conjecture (Qi'an Guan and Xiangyu Zhou, 2015). ==== Group theory ==== Existence of a non-sofic, discrete, countable group (solution in an anonymized paper published by OpenAI, 2026).
+   · Griffin, Ken Ono, 2015). === Analysis === Sendov's conjecture and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).
+   · Crouzeix's conjecture (Shanmu Jin using GPT-5.6 Sol, 2026.
+
+[cn-riemann] status=open  resolved=Riemann hypothesis
+   · According to a 2026 survey, there is overwhelming numerical evidence for the hypothesis, but no proof is known.
+   · In August 2026, an unreleased research version of the Anthropic's large language model Claude working interactively with human researchers, proved unconditionally that at least two-thirds (66.6%) of the non-trivial zeros of the Riemann zeta function lie on the critical line.
+   · In September 2026, Youness Lamzouri published a shorter and simpler proof of the same bounds.
+
+[cn-grh] status=open  resolved=Riemann hypothesis
+   · According to a 2026 survey, there is overwhelming numerical evidence for the hypothesis, but no proof is known.
+   · In August 2026, an unreleased research version of the Anthropic's large language model Claude working interactively with human researchers, proved unconditionally that at least two-thirds (66.6%) of the non-trivial zeros of the Riemann zeta function lie on the critical line.
+   · In September 2026, Youness Lamzouri published a shorter and simpler proof of the same bounds.
+
+[cn-goldbach] status=partial  resolved=Goldbach's conjecture
+   · Archived (PDF) from the original on 2024-09-17.
+
+[cn-twin-prime] status=partial  resolved=Twin prime
+   · As of January 2025, the current largest twin prime pair known is 2996863034895 × 21290000 ± 1 , with 388,342 decimal digits.
+
+[cn-collatz] status=open  resolved=Collatz conjecture
+   · The only known cycle is (1,2) of period 2, called the trivial cycle. === Cycle length === As of 2025, the best known bound on cycle length is 217976794617 (355504839929 without shortcut).
+   · In 2024, a six-state machine was found for which determining whether it halts involves solving a Collatz-like problem called the antihydra problem.
+   · In July 2026, a disproof of the Collatz conjecture was verified not only by Lean, but another formal verification system Nanoda.
+   · Once the bugs were fixed, the proof was shown invalid (by both verifiers), and as of 2026 the Collatz problem remains a conjecture. == See also == 3x + 1 semigroup Arithmetic dynamics Juggler sequence Modular arithmetic Residue-class-wise affine group == Notes == == References == == External links == Matthews, Keith. "3 x + 1 page".
+
+[cn-poincare] status=proved  resolved=Poincaré conjecture
+   · As of 2026, the Poincaré conjecture is the only Millennium Prize Problem with a verified solution. == Overview == The Poincaré conjecture was a mathematical problem in the field of geometric topology.
+
+[cn-navier-stokes] status=open  resolved=Navier–Stokes existence and smoothness
+   · On 8 September 2026, artificial intelligence company OpenAI claimed to have found a solution to the Navier–Stokes equations that develops a singularity in finite time in three-dimensional Euclidean space, along with a formalization in the Lean proof assistant, using a swarm of around 10,000 AI agents running an internal frontier model.
+   · As of September 2026, the Clay Mathematics Institute currently considers the problem "active". == Navier–Stokes equations == In mathematics, the Navier–Stokes equations are a system of nonlinear partial differential equations for abstract vector fields of any size.
+   · Also on 8 September 2026, OpenAI researcher Sébastien Bubeck wrote that OpenAI had begun work on Navier–Stokes partially following vague tweets by Alpöge, and that he had attempted to coordinate the publication of "concurrent discoveries" with Alpöge.
+   · New math + AI developments in fluid mechanics, lecture given 11 September 2026.
+
+[cn-kakeya] status=partial  resolved=Kakeya set
+   · In February 2025, a proof for the case n = 3 was posted on arXiv by Hong Wang and Joshua Zahl.
+   · In 2025, Hong Wang and Zahl proved the Kakeya conjecture in three dimensions, building on their earlier proof of the sticky case. == Applications to analysis == Somewhat surprisingly, these conjectures have been shown to be connected to a number of questions in other fields, notably in harmonic analysis.
+
+[cn-lusin] status=open  resolved=Carleson's theorem
+   · The theorem was formalized in Lean 4 in 2025.
+
+[cn-continuum] status=disproved  resolved=Continuum hypothesis
+   · More recently, Matthew Foreman has pointed out that ontological maximalism can actually be used to argue in favor of CH, because among models that have the same reals, models with "more" sets of reals have a better chance of satisfying CH.
+
+[cn-langlands-functoriality] status=partial  resolved=Langlands program
+   · In 2024, a 9-person collaborative project led by Dennis Gaitsgory announced a proof of the (categorical, unramified) geometric Langlands conjecture leveraging Hecke eigensheaves as part of the proof. == Status == The Langlands correspondence for GL(1, K) follows from (and is essentially equivalent to) class field theory.
+
+[cn-modularity] status=proved  resolved=Modularity theorem
+   · In 2025, modularity was extended to over 10% of abelian surfaces by Boxer, Calegari, Gee and Pilloni. == Generalizations == The modularity theorem is a special case of more general conjectures due to Robert Langlands.
+
+[cn-fermat] status=proved  resolved=Fermat's Last Theorem
+   · In response, he approached colleagues to seek out any hints of cutting-edge research and new techniques, and discovered an Euler system recently developed by Victor Kolyvagin and Matthias Flach that seemed "tailor made" for the inductive part of his proof.

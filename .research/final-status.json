@@ -1,0 +1,267 @@
+[
+ {
+  "id": "cn-hodge",
+  "title": "Hodge conjecture",
+  "len": 26566,
+  "rev": "2026-09-16T00:44:07Z",
+  "recent": [],
+  "openish": [
+   "In mathematics, the Hodge conjecture is a major unsolved problem in algebraic geometry and complex geometry that relates the algebraic topology of a non-singular complex algebraic variety to its subvarieties.",
+   "The modern statement of the Hodge conjecture is Hodge conjecture."
+  ]
+ },
+ {
+  "id": "cn-tate",
+  "title": "Tate conjecture",
+  "len": 13008,
+  "rev": "2026-09-11T20:33:35Z",
+  "recent": [],
+  "openish": [
+   "In mathematics, specifically arithmetic geometry, the Tate conjecture is a 1963 conjecture of John Tate that would describe the algebraic cycles on a variety in terms of a more computable invariant, the Galois representation on étale cohomology.",
+   "An algebraic cycle means a finite linear combination of subvarieties; so an equivalent statement is that every element of W G {\\displaystyle W^{G}} is the class of an algebraic cycle on V {\\displaystyle V} with Q ℓ {\\displaystyle \\mathbb {Q} _{\\ell }} coefficients. == Known cases == The Tate conjecture for divisors (algebraic cycles of codimension 1) is a major open problem."
+  ]
+ },
+ {
+  "id": "cn-linearization",
+  "title": "Smith conjecture",
+  "len": 2588,
+  "rev": "2026-03-16T12:20:26Z",
+  "recent": [],
+  "openish": [
+   "Deane Montgomery and Leo Zippin (1954) gave an example of a continuous involution of the 3-sphere whose fixed point set is a wildly embedded circle, so the Smith conjecture is false in the topological (rather than the smooth or PL) category."
+  ]
+ },
+ {
+  "id": "cn-hartshorne-ample",
+  "title": "Hartshorne conjecture",
+  "missing": true
+ },
+ {
+  "id": "cn-connes-rigidity",
+  "title": "Connes rigidity conjecture",
+  "missing": true
+ },
+ {
+  "id": "cn-group-iso",
+  "title": "Group isomorphism problem",
+  "len": 1922,
+  "rev": "2025-06-30T03:20:18Z",
+  "recent": [],
+  "openish": []
+ },
+ {
+  "id": "cn-zariski-lipman",
+  "title": "Nakai conjecture",
+  "len": 835,
+  "rev": "2024-05-12T05:40:31Z",
+  "recent": [],
+  "openish": [
+   "In mathematics, the Nakai conjecture is an unproven characterization of smooth algebraic varieties, conjectured by Japanese mathematician Yoshikazu Nakai in 1961."
+  ]
+ },
+ {
+  "id": "cn-rationally-connected",
+  "title": "Rationally connected variety",
+  "len": 12424,
+  "rev": "2026-09-09T17:48:26Z",
+  "recent": [],
+  "openish": []
+ },
+ {
+  "id": "cn-canonical-model",
+  "title": "Minimal model program",
+  "len": 11402,
+  "rev": "2026-03-12T02:45:20Z",
+  "recent": [],
+  "openish": []
+ },
+ {
+  "id": "cn-resolution-charp",
+  "title": "Resolution of singularities",
+  "len": 34757,
+  "rev": "2026-07-08T16:38:33Z",
+  "recent": [],
+  "openish": [
+   "For varieties over fields of characteristic 0, this was proved by Heisuke Hironaka in 1964; while for varieties of dimension at least 4 over fields of characteristic p, it is an open problem. == Definitions == Originally the problem of resolution of singularities was to find a nonsingular model for the function field of a variety X, in other words a complete non-singular variety X′ with the same function field."
+  ]
+ },
+ {
+  "id": "cn-lusin",
+  "title": "Carleson theorem",
+  "len": 7814,
+  "rev": "2026-04-26T03:51:39Z",
+  "recent": [
+   "The theorem was formalized in Lean 4 in 2025."
+  ],
+  "openish": [
+   "Convergence of rectangular partial sums (and indeed general polygonal partial sums) follows from the one-dimensional case, but the spherical summation problem is still open for L2. == The Carleson operator == The Carleson operator C is the non-linear operator defined by C f ( x ) = sup N | ∫ − N N f ^ ( y ) e 2 π i x y d y | {\\displaystyle Cf(x)=\\sup _{N}\\left|\\int _{-N}^{N}{\\hat {f}}(y)e^{2\\pi ixy}\\,dy\\right|} It is relatively easy to show that the Carleson–Hunt theorem follows from the boundedness of the Carleson operator from Lp(R) to itself for 1 < p < ∞."
+  ]
+ },
+ {
+  "id": "cn-fujita",
+  "title": "Fujita conjecture",
+  "len": 3403,
+  "rev": "2025-07-12T07:21:49Z",
+  "recent": [],
+  "openish": []
+ },
+ {
+  "id": "cn-yang-mills",
+  "title": "Yang–Mills existence and mass gap",
+  "len": 12340,
+  "rev": "2026-08-06T13:08:06Z",
+  "recent": [],
+  "openish": [
+   "The Yang–Mills existence and mass gap problem is an unsolved problem in mathematical physics and mathematics, and one of the seven Millennium Prize Problems defined by the Clay Mathematics Institute, which has offered a prize of US$1,000,000 for its solution."
+  ]
+ },
+ {
+  "id": "cn-baum-connes",
+  "title": "Baum–Connes conjecture",
+  "len": 11219,
+  "rev": "2026-01-10T09:40:02Z",
+  "recent": [],
+  "openish": [
+   "For instance, the surjectivity part implies the Kadison–Kaplansky conjecture for discrete torsion-free groups, and the injectivity is closely related to the Novikov conjecture.",
+   "There is also more general form of the conjecture, known as Baum–Connes conjecture with coefficients, where both sides have coefficients in the form of a C ∗ {\\displaystyle C^{*}} -algebra A {\\displaystyle A} on which Γ {\\displaystyle \\Gamma } acts by C ∗ {\\displaystyle C^{*}} -automorphisms."
+  ]
+ },
+ {
+  "id": "cn-farrell-jones",
+  "title": "Farrell–Jones conjecture",
+  "len": 30383,
+  "rev": "2026-08-23T20:41:18Z",
+  "recent": [],
+  "openish": [
+   "For suitable α {\\displaystyle \\alpha } one can use the transitivity principle to reduce the family again. == Connections to other conjectures == === Novikov conjecture === There are also connections from the Farrell–Jones conjecture to the Novikov conjecture.",
+   "It is known that if one of the following maps H ∗ G ( E V C Y C ( G ) , L R ⟨ − ∞ ⟩ ) → H ∗ G ( { ⋅ } , L R ⟨ − ∞ ⟩ ) = L ∗ ⟨ − ∞ ⟩ ( R G ) {\\displaystyle H_{*}^{G}(E_{VCYC}(G),L_{R}^{\\langle -\\infty \\rangle })\\rightarrow H_{*}^{G}(\\{\\cdot \\},L_{R}^{\\langle -\\infty \\rangle })=L_{*}^{\\langle -\\infty \\rangle }(RG)} H ∗ G ( E F I N ( G ) , K t o p ) → H ∗ G ( { ⋅ } , K t o p ) = K n ( C r ∗ ( G ) ) {\\displaystyle H_{*}^{G}(E_{FIN}(G),K^{top})\\rightarrow H_{*}^{G}(\\{\\cdot \\},K^{top})=K_{n}(C_{r}^{*}(G))} is rationally injective, then the Novikov-conjecture holds for G {\\displaystyle G} ."
+  ]
+ },
+ {
+  "id": "cn-borel",
+  "title": "Borel conjecture",
+  "len": 4134,
+  "rev": "2026-05-05T14:35:06Z",
+  "recent": [],
+  "openish": [
+   "It is a rigidity conjecture, asserting that a weak, algebraic notion of equivalence (namely, homotopy equivalence) should imply a stronger, topological notion (namely, homeomorphism). == Precise formulation of the conjecture == Let M {\\displaystyle M} and N {\\displaystyle N} be closed and aspherical topological manifolds, and let f : M → N {\\displaystyle f\\colon M\\to N} be a homotopy equivalence.",
+   "Since aspherical manifolds with isomorphic fundamental groups are homotopy equivalent, the Borel conjecture implies that aspherical closed manifolds are determined, up to homeomorphism, by their fundamental groups."
+  ]
+ },
+ {
+  "id": "cn-novikov",
+  "title": "Novikov conjecture",
+  "err": "重试耗尽"
+ },
+ {
+  "id": "cn-lagarias",
+  "title": "Riemann hypothesis",
+  "len": 134706,
+  "rev": "2026-09-04T06:10:27Z",
+  "recent": [
+   "According to a 2026 survey, there is overwhelming numerical evidence for the hypothesis, but no proof is known.",
+   "Newman noted that this conjecture (now theorem) \"is a quantitative version of the dictum that the Riemann hypothesis, if true, is only barely so.\" As of April 2020 the upper bound is Λ ≤ 0.2. === Consequences of the generalized Riemann hypothesis === Several applications use the generalized Riemann hypothesis for Dirichlet L-series or zeta functions of number fields rather than just the Riemann hypothesis.",
+   "In 2021, Alexander (Alex) Dunn and Maksym Radziwill proved Patterson's conjecture on cubic Gauss sums, under the assumption of the GRH. === Excluded middle === Some consequences of the RH are also consequences of its negation, and are thus theorems."
+  ],
+  "openish": [
+   "In mathematics, the Riemann hypothesis is the conjecture that the Riemann zeta function has its zeros only at the negative even integers and complex numbers with real part ⁠1/2⁠.",
+   "The Riemann hypothesis is equivalent to many other conjectures about the rate of growth of other arithmetic functions aside from μ(n)."
+  ]
+ },
+ {
+  "id": "cn-idempotent",
+  "title": "Kaplansky's conjectures",
+  "len": 5583,
+  "rev": "2025-12-11T14:56:31Z",
+  "recent": [],
+  "openish": [
+   "The mathematician Irving Kaplansky is notable for proposing numerous conjectures in several branches of mathematics, including a list of ten conjectures on Hopf algebras.",
+   "They are usually known as Kaplansky's conjectures. == Group rings == Let K be a field, and G a torsion-free group."
+  ]
+ },
+ {
+  "id": "cn-kadison-kaplansky",
+  "title": "Kaplansky's conjectures",
+  "len": 5583,
+  "rev": "2025-12-11T14:56:31Z",
+  "recent": [],
+  "openish": [
+   "The mathematician Irving Kaplansky is notable for proposing numerous conjectures in several branches of mathematics, including a list of ten conjectures on Hopf algebras.",
+   "They are usually known as Kaplansky's conjectures. == Group rings == Let K be a field, and G a torsion-free group."
+  ]
+ },
+ {
+  "id": "cn-zero-divisor",
+  "title": "Kaplansky's conjectures",
+  "len": 5583,
+  "rev": "2025-12-11T14:56:31Z",
+  "recent": [],
+  "openish": [
+   "The mathematician Irving Kaplansky is notable for proposing numerous conjectures in several branches of mathematics, including a list of ten conjectures on Hopf algebras.",
+   "They are usually known as Kaplansky's conjectures. == Group rings == Let K be a field, and G a torsion-free group."
+  ]
+ },
+ {
+  "id": "cn-bass",
+  "title": "Bass conjecture",
+  "len": 1545,
+  "rev": "2026-09-12T22:01:50Z",
+  "recent": [],
+  "openish": [
+   "The conjecture was proposed by Hyman Bass. == Statement of the conjecture == Any of the following equivalent statements is referred to as the Bass conjecture.",
+   "The (non-regular) ring A = Z[x, y]/x2 has an infinitely generated K1(A). == Implications == The Bass conjecture is known to imply the Beilinson–Soulé vanishing conjecture. == References == Friedlander, Eric M.; Weibel, Charles W."
+  ]
+ },
+ {
+  "id": "cn-artin",
+  "title": "Artin conjecture (L-functions)",
+  "len": 52296,
+  "rev": "2026-09-05T18:28:01Z",
+  "recent": [],
+  "openish": [
+   "Robert Langlands and Pierre Deligne established a factorisation of Artin root number into Langlands–Deligne local constants; this is significant in conjectural relationships to automorphic representations.",
+   "The general icosahedral case is open and is active area of research."
+  ]
+ },
+ {
+  "id": "cn-gross-prasad",
+  "title": "Gan–Gross–Prasad conjecture",
+  "len": 13939,
+  "rev": "2026-06-23T12:14:35Z",
+  "recent": [],
+  "openish": [
+   "In the cases considered, it is known that the multiplicity of the restrictions is at most one and the conjecture describes when the multiplicity is precisely one. == Motivation == A motivating example is the following classical branching problem in the theory of compact Lie groups."
+  ]
+ },
+ {
+  "id": "cn-bochner-riesz",
+  "title": "Bochner–Riesz conjecture",
+  "len": 13243,
+  "rev": "2026-08-18T21:26:49Z",
+  "recent": [],
+  "openish": []
+ },
+ {
+  "id": "cn-hsiang",
+  "title": "Yau's conjecture",
+  "len": 1168,
+  "rev": "2026-09-09T00:39:19Z",
+  "recent": [
+   "A proof for the generic metric case via gluing construction was also later found by Adrian Chun-Pong Chu and Daniel Stern, in which the minimal surfaces constructed have bounded area but unbounded genus. == References == == External links == Carlos Matheus (November 5, 2017). \"Yau's conjecture of abundance of minimal hypersurfaces is generically true (in low dimensions)\"."
+  ],
+  "openish": [
+   "In differential geometry, Yau's conjecture is a mathematical conjecture which states that any closed Riemannian 3-manifold contains infinitely many smooth closed immersed minimal surfaces."
+  ]
+ },
+ {
+  "id": "cn-schanuel",
+  "title": "Schanuel's conjecture",
+  "len": 15962,
+  "rev": "2026-09-15T14:10:24Z",
+  "recent": [],
+  "openish": [
+   "In mathematics, specifically transcendental number theory, Schanuel's conjecture is a conjecture about the transcendence degree of certain field extensions of the rational numbers Q {\\displaystyle \\mathbb {Q} } , which would establish the transcendence of a large class of numbers, for which this is currently unknown.",
+   "MacIntyre showed in 1990 that Schanuel's conjecture implies there are no hidden iterated exponential identities for exponential constants, and the exponential subring of the real numbers generated by 1 is the free exponential ring on no generators. == Related conjectures and results == The converse Schanuel conjecture is the following statement: A version of Schanuel's conjecture for formal power series, also by Schanuel, was proven by James Ax in 1971."
+  ]
+ }
+]

@@ -1,0 +1,427 @@
+{{Short description|About polynomials in several variables}}
+{{Use American English|date=July 2026}}
+{{Use mdy dates|date=July 2026}}
+
+{{Infobox mathematical statement
+| name = Planar Jacobian conjecture
+| image = 
+| caption = 
+| field = [[Algebraic geometry]]
+| conjectured by = [[Ludwig Kraus]]
+| conjecture date = 1884
+| open problem = Yes
+| implied by = 
+| equivalent to = 
+| generalizations = 
+| consequences = 
+}}
+{{Infobox mathematical statement
+| name = Jacobian conjecture
+| image = 
+| caption = 
+| field = [[Algebraic geometry]]
+| conjectured by = [[Ott-Heinrich Keller]]
+| conjecture date = 1939
+| open problem = Only for ''n'' = 2 (planar Jacobian conjecture)
+| known cases = Counterexample found by [[Levent Alpöge]] in 2026 for all ''n'' > 2
+| implied by = 
+| equivalent to = [[Dixmier conjecture]]
+| generalizations = 
+| consequences = 
+}}
+{{Infobox mathematical statement
+| name = Separable Jacobian conjecture
+| image = 
+| caption = 
+| field = [[Algebraic geometry]]
+| conjectured by = Kossivi Adjamagbo
+| conjecture date = 1995
+| open problem = Only for characteristic zero, ''n'' = 2 (planar Jacobian conjecture)
+| known cases = Counterexamples found for all positive characteristic <math>p</math> in dimensions <math>n \geq 2</math>.  
+| implied by = 
+| equivalent to = 
+| generalizations = 
+| consequences = 
+}}
+
+In [[mathematics]], the '''Jacobian conjecture''' is a conjecture concerning [[polynomial]]s in several [[Variable (mathematics)|variables]] that states that if a polynomial function from an <math>n</math>-dimensional space to itself has a [[Jacobian determinant]] that is a non-zero constant, then the function has a polynomial inverse.
+
+The case <math>n = 2</math> (two variables), also called the '''plane Jacobian conjecture'''<ref name="DiazOrlando">{{Cite journal |last=Rodríguez Díaz |first=Lázaro Orlando |date=June 5, 2026 |title=On the origin of the Jacobian conjecture |url=https://comptes-rendus.academie-sciences.fr/mathematique/articles/10.5802/crmath.831/ |journal=Comptes Rendus. Mathématique |language=en |volume=364 |issue=G2 |pages=363–370 |doi=10.5802/crmath.831 |issn=1778-3569|doi-access=free |arxiv=2512.23614 }}</ref> or '''planar Jacobian conjecture''',<ref>{{cite web |last=Tao |first=Terence |date=July 31, 2026 |title=Comment on "A digestion of the Jacobian conjecture counterexample" |url=https://terrytao.wordpress.com/2026/07/21/a-digestion-of-the-jacobian-conjecture-counterexample/comment-page-2/#comment-693732 |website=What's New |access-date=August 3, 2026}}</ref> is the only case that remains unresolved {{As of|2026|lc=y}}.<ref name="TheConversation">{{Cite web|url=https://theconversation.com/hello-there-the-jacobian-conjecture-is-false-thanx-why-a-tiny-social-media-post-has-mathematicians-rethinking-ai-283883|title='hello there the jacobian conjecture is false thanx': why a tiny social media post has mathematicians rethinking AI|author=Melissa Lee|date=July 22, 2026|website=[[The Conversation (website)|The Conversation]]|quote=It shows the conjecture is false for every dimension larger than 2, with the original conjecture in two dimensions remaining open.}}</ref> The case <math>n = 1</math> is trivially true, since the derivative of a polynomial is a nonzero constant only if the degree of the polynomial is <math>1,</math> and linear polynomial functions are invertible. 
+
+On July 19, 2026, [[Levent Alpöge]] presented an explicit [[counterexample]] in three variables which he credited to the [[large language model]] [[Claude Mythos|Claude Fable 5]], disproving the conjecture for {{tmath|n > 2}}.<ref name="Tao">{{cite web|url=https://terrytao.wordpress.com/2026/07/21/a-digestion-of-the-jacobian-conjecture-counterexample/|title=A digestion of the Jacobian conjecture counterexample|author=Tao|date=July 21, 2026|access-date=July 23, 2026|website=WordPress|first=Terence|author-link=Terence Tao}}</ref><ref name="TheConversation"/> The correctness of the counterexample is easy to verify with any [[computer algebra system]]. It has not been revealed, however, how it was found. Nevertheless, it led some mathematicians to elaborate on the mathematical reasons and the implications of the existence of the counterexample.<ref name="Tao" />
+
+For fields of positive characteristic, the usual Jacobian conjecture is false in one dimension, so the '''separable Jacobian conjecture''',<ref name="Huq-Kuruvilla"/><ref name="Mondello"/> also called '''Adjamagbo's Jacobian conjecture''',<ref name="BorisovGabberVasiu"/> adds a [[separable extension|separability]] premise to make the conjecture true in one dimension.<ref name="Adjamagbo"/> The separable Jacobian conjecture has been proven false for all fields of positive characteristic in all dimensions <math>n \geq 2</math>,<ref name="BorisovGabberVasiu"/> with the separable Jacobian conjecture for fields of characteristic zero coinciding with the usual Jacobian conjecture.
+
+==History==
+
+The Jacobian conjecture was originally formulated without being named in two dimensions by [[Ludwig Kraus]] in 1884, who gave a flawed proof in the same paper.<ref>{{Cite journal |last=Kraus |first=Ludwig |date=1884 |title=Ueber Functionaldeterminanten |url=https://www.digitale-sammlungen.de/view/bsb11546882?page=830%2C831 |journal=Sitzungsberichte der Kaiserlichen Akademie der Wissenschaften in Wien, Mathematisch-Naturwissenschaftliche Klasse |language=de |volume=90 |pages=813-826}}</ref><ref name="weyr">{{cite journal |last=Weyr |first=Eduard |author-link=Eduard Weyr |title=Život a působení dra Ludvíka Krause |trans-title=The life and work of Dr. Ludvík Kraus |journal=Časopis pro pěstování mathematiky a fysiky |volume=15 |issue=2 |year=1886 |pages=49–52 |url=https://dml.cz/bitstream/handle/10338.dmlcz/122228/CasPestMatFys_015-1886-2_1.pdf |language=cs |via=Czech Digital Mathematics Library}}</ref><ref name="DiazOrlando"/> Later, the modern version of the Jacobian conjecture in <math>n</math> dimensions was formulated by [[Ott-Heinrich Keller]] in 1939 for the case of polynomials with integer coefficients.<ref name="Keller1939">{{Cite journal
+| last1=Keller | first1=Ott-Heinrich
+| title=Ganze Cremona-Transformationen
+| doi=10.1007/BF01695502 | doi-access=free
+| year=1939
+| journal=[[Monatshefte für Mathematik und Physik]]
+| issn=0026-9255
+| volume=47
+| issue=1
+| pages=299–306|language=de}}</ref> Arno van den Essen has claimed that Keller only talked about the two-dimensional case;<ref name="Kelleris2D">{{citation|last=van den Essen|first=Arno|chapter=Polynomial automorphisms and the Jacobian conjecture|title=Algèbre non commutative, groupes quantiques et invariants (Reims, 1995)|pages=55–81|series=Sémin. Congr.|volume=2|publisher=Soc. Math. France|place=Paris|year=1997|mr=1601194|chapter-url=https://www.emis.de/journals/SC/1997/2/pdf/smf_sem-cong_2_55-81.pdf|archive-url=https://web.archive.org/web/20200710081212/https://www.emis.de/journals/SC/1997/2/pdf/smf_sem-cong_2_55-81.pdf|archive-date=July 10, 2020|quote=The Jacobian Conjecture was first formulated as a question by O. Keller in the case n = 2 for polynomials with integer coefficients ([35], 1939).}}</ref> however, Keller in fact did talk about the general <math>n</math>-dimensional case.<ref name="Keller1939"/> For nearly a century, Keller was considered to be the first person to formulate the conjecture, until a 2025 search of the [[ZbMATH Open|zbMATH]] database revealed that the two-dimensional case had already been stated by Kraus.<ref name="DiazOrlando"/>
+
+The conjecture was unnamed in either of Kraus's or Keller's original papers. It is unclear who coined the name "Jacobian conjecture", but this was because it involves the [[Jacobian determinant]], itself named after  the German mathematician [[Carl Gustav Jacob Jacobi]]. The earliest known published use of the name occurs in Masayoshi Miyanishi's 1973 paper, where it refers to the <math>n</math>-dimensional conjecture.<ref>{{cite journal |last=Miyanishi |first=Masayoshi |title=Some Remarks on Polynomial Rings |journal=Osaka Journal of Mathematics |volume=10 |issue=3 |year=1973 |at=p. 617 |doi=10.18910/12695}}</ref> {{ill|Tzuong-Tsieng Moh|zh|莫宗坚|de|Tzuong-Tsieng Moh}} later recalled that, after [[Oscar Zariski]] pointed out at a seminar at Purdue University in the late 1960s that the assertion remained unproved, "we decided to call it the Jacobian Conjecture".<ref name="Moh98">{{cite book|last=Moh |first=Tzuong-Tsieng|chapter=Jacobian conjecture |editor-last=Kang |editor-first=Ming-Chang |title=Algebra and Geometry (Taipei, 1995) |series=Lectures in Algebra and Geometry |volume=2 |publisher=International Press |location=Cambridge, Massachusetts |year=1998 |page=107
+ |chapter-url=https://www.math.purdue.edu/~ttm/jacobian.pdf
+}}</ref> Alexander Borisov later attributed the coinage specifically to [[Shreeram Abhyankar]],<ref name="Borisov2020"/> whose 1977 lecture notes treated the two-dimensional problem and presented results that he had obtained in 1970–71.<ref name="Abhyankar77">{{cite book |last=Abhyankar |first=Shreeram S. |title=Lectures on Expansion Techniques in Algebraic Geometry |publisher=Tata Institute of Fundamental Research |location=Bombay |year=1977 |at=pp. v, 113–164 |url=https://mathweb.tifr.res.in/Documents/Publications/Lectures/tifr57.pdf}}</ref>
+
+The conjecture, also called '''Jacobian problem''', was subsequently widely publicized by Abhyankar as an example of a difficult question in [[algebraic geometry]] that can be understood using little beyond a knowledge of [[calculus]].<ref name="Abhyankar77"/><ref>{{Cite book |last=Abhyankar |first=Shreeram Shankar |title=Algebraic Geometry for Scientists and Engineers |date=1990 |publisher=American Mathematical Society |isbn=978-0-8218-1535-9 |series=Mathematical surveys and monographs |location=Providence, R.I|author-link=Shreeram Shankar Abhyankar}}</ref> The Jacobian conjecture is number 16 in [[Smale's problems|Stephen Smale's 1998 list of Mathematical Problems for the Next Century]].<ref>{{Cite journal |first=Steve|last=Smale|title=Mathematical Problems for the Next Century|journal=[[The Mathematical Intelligencer]]|year=1998|volume=20|number=2|pages=7–15|doi=10.1007/bf03025291|s2cid=1331144}}</ref> 
+
+According to Alexander Borisov, the conjecture in two dimensions has been especially well studied in the literature on the conjecture.<ref name="Borisov2014">{{cite journal |last=Borisov |first=Alexander |title=On two invariants of divisorial valuations at infinity |journal=Journal of Algebraic Combinatorics |volume=39 |issue=3 |year=2014 |at=p. 692 |doi=10.1007/s10801-013-0462-9 |quote=The two-dimensional case has been especially well studied.
+}}</ref> Historically, some mathematicians, such as Shreeram Abhyankar, Tzuong-Tsieng Moh, and [[Yitang Zhang]], have used the term ''Jacobian conjecture'' or ''Jacobian problem'' to refer to only the conjecture in two dimensions.<ref name="Abhyankar77"/><ref name="degree100">{{cite journal |last=Moh |first=Tzuong-Tsieng |title=On the Jacobian conjecture and the configurations of roots |journal=[[Journal für die reine und angewandte Mathematik]] |volume=1983 |issue=340 |year=1983 |pages=140–212 |doi=10.1515/crll.1983.340.140}}</ref><ref name="ZhangThesis">{{cite thesis|author=[[Yitang Zhang|Zhang, Yitang]]|title=The Jacobian conjecture and the degree of field extension|url=https://www.proquest.com/docview/303919798|year=1991}}</ref><ref name="Hochster2004">{{cite web|last1=Hochster|first1=Mel|title=lectures on Jacobian conjecture|date=November 5, 2004|url=https://groups.google.com/g/sci.math.research/c/zeApl3rDV5o}}</ref><ref name="Wang2005">{{cite journal|last=Wang |first=Lih-Chung |title=On the Jacobian conjecture |journal=Taiwanese Journal of Mathematics |volume=9|issue=3 |year=2005 |pages=421–431 |doi=10.11650/twjm/1500407850 |mr=2162887}}</ref> There have been a large number of false proofs of the conjecture in two dimensions,<ref name="Kelleris2D"/><ref name="Woit2004">{{cite web |last=Woit |first=Peter
+ |title=Proof of the Jacobian Conjecture |website=Not Even Wrong |date=November 10, 2004 |url=https://www.math.columbia.edu/~woit/wordpress/?p=105 |access-date=July 20, 2026 |quote=For more variables, many people believe it is not even true.
+}}</ref> some of them published.<ref name="Wright1981">{{citation |last1 = Wright |first1 = David |year = 1981 |title = On the Jacobian conjecture |journal = [[Illinois Journal of Mathematics]] |volume = 25 |issue = 3 |pages = 423–440 |mr=0620428 |doi=10.1215/ijm/1256047158 |doi-access=free}}</ref><ref name="BassConnellWright">{{cite journal |last=Bass|first=Hyman|last2=Connell|first2=Edwin H.|last3=Wright|first3=David|date=1982|title=The Jacobian conjecture: Reduction of degree and formal expansion of the inverse|url=https://www.ams.org/bull/1982-07-02/S0273-0979-1982-15032-7/|journal=[[Bulletin of the American Mathematical Society]]|language=en|volume=7|issue=2|pages=287–330|doi=10.1090/S0273-0979-1982-15032-7|issn=0273-0979|doi-access=free}}</ref><ref name="Hochster2004"/> Arno van den Essen in 1997, Tzuong-Tsieng Moh in 1998, and Edward Formanek in 2011 all hypothesized that the conjecture could be true in two dimensions and false in the general case.<ref name="VandenEssen1997">{{cite journal |last=van den Essen |first=Arno |title=To Believe or Not to Believe: The Jacobian Conjecture |journal=Rendiconti del Seminario Matematico della Università e Politecnico di Torino |volume=55 |issue=4 |year=1997 |at=p. 287 |url=https://seminariomatematico.polito.it/rendiconti/cartaceo/55-4/283.pdf
+ |quote=For n = 2 the conjecture might be true, however ... there is an enormous difference between <math>n = 2</math> and <math>n\geq 3</math>!
+}}</ref><ref name="Moh98"/><ref name="Formanek2011">{{cite journal |last=Formanek |first=Edward |title=Theorems of W. W. Stothers and the Jacobian Conjecture in two variables |journal=[[Proceedings of the American Mathematical Society]] |volume=139 |issue=4 |year=2011 |at=p. 1140 |doi=10.1090/S0002-9939-2010-10523-3 |quote=There is strong evidence for the two-variable Jacobian Conjecture, but not for the n-variable conjecture.
+|doi-access=free }}</ref> After the counterexample in three dimensions was discovered in 2026 only the conjecture in two dimensions remains open.<ref name="TheConversation"/>
+
+== Formulation of the conjecture ==
+Let <math>n>1</math> be a fixed integer and consider polynomials <math>f_1, \dots, f_n</math> in variables <math>X_1, \dots, X_n</math> with [[coefficient]]s in a [[Field (mathematics)|field]] <math>\mathbb{K}</math>. Then we define a [[vector-valued function]] <math>F : \mathbb{K}^n \to \mathbb{K}^n</math> by setting:
+<math display="block">F(X_1, \dots, X_n) = ( f_1(X_1, \dots, X_n), \dots, f_n(X_1,\dots, X_n))</math>
+
+Any map <math>F : \mathbb{K}^n \to \mathbb{K}^n</math> arising in this way is called a [[polynomial mapping]].
+
+The [[Jacobian matrix and determinant|Jacobian determinant]] of <math>F</math>, denoted by <math>J_F</math>, is defined as the [[determinant]] of the <math>n \times n</math> [[Jacobian matrix]] consisting of the [[partial derivative]]s of <math>f_i</math> with respect to <math>X_j</math>:
+
+: <math>J_F = \left | \begin{matrix} \frac{\partial f_1}{\partial X_1} & \cdots & \frac{\partial f_1}{\partial X_n} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial f_n}{\partial X_1} & \cdots & \frac{\partial f_n}{\partial X_n} \end{matrix} \right |,</math>
+
+then <math>J_F</math> is itself a polynomial function of the <math>n</math> variables <math>X_1, \dots, X_n</math>.
+
+It follows from the multivariable [[chain rule]] that if <math>F</math> has a polynomial inverse function <math>G : \mathbb{K}^n \to \mathbb{K}^n</math>, then <math>J_F</math> has a polynomial reciprocal, so is a nonzero constant. The Jacobian conjecture is the following partial converse:
+
+{{block indent|Jacobian conjecture: Let <math>\mathbb{K}</math> have [[Characteristic (algebra)|characteristic]] <math>0</math>. If <math>J_F</math> is a non-zero constant, then <math>F</math> has an inverse function <math>G : \mathbb{K}^n \to \mathbb{K}^n</math> that is [[regular map (algebraic geometry)|regular]], meaning its components are polynomials.}}
+
+The condition <math>J_F \neq 0</math> is related to the [[inverse function theorem]] in [[multivariable calculus]]. In fact for smooth functions (and so in particular for polynomials) a smooth ''local'' inverse function to <math>F</math> exists at every point where <math>J_F</math> is non-zero. This means there is a neighborhood of each such point that is mapped bijectively onto its image. For example, the real function <math>x \mapsto x + x^3</math> has a smooth global inverse, but the inverse is not polynomial. A differentiable function with a non-zero Jacobian is locally invertible in higher dimensions as well. For example, the function <math>F(x,y) = (e^x\cos(e^{-2x}y),e^x\sin(e^{-2x}y)</math> maps <math>\mathbb R^2</math> to itself (or <math>\mathbb C^2</math> to itself) and has constant Jacobian 1.<ref name="MakarovPodkorytov">{{cite book
+ |last1=Makarov
+ |first1=Boris M.
+ |last2=Podkorytov
+ |first2=Anatolii N.
+ |title=Smooth Functions and Maps
+ |series=Moscow Lectures
+ |volume=7
+ |publisher=Springer
+ |year=2021
+ |page=132
+ |doi=10.1007/978-3-030-79438-5
+ |isbn=978-3-030-79437-8
+}}</ref> This means intuitively that it bends the plane around like a rubber sheet without locally expanding or compressing area, so it cannot create pinches or other kinds of degeneration locally: a small disc around each point is sent one-to-one onto a small domain in the image.<ref>{{cite journal
+ |last=Kuczmarski
+ |first=Fred
+ |title=Rubber Band Calculus
+ |journal=The College Mathematics Journal
+ |volume=47
+ |issue=2
+ |year=2016
+ |pages=82–93
+ |doi=10.4169/college.math.j.47.2.82
+}}</ref><ref>{{cite book
+ |last1=Maad Sasane
+ |first1=Sara
+ |last2=Sasane
+ |first2=Amol
+ |title=A Friendly Approach to Complex Analysis
+ |publisher=World Scientific
+ |year=2014
+ |pages=51–52
+ |doi=10.1142/9047
+ |isbn=978-981-4578-99-8
+}}</ref> Nevertheless, the function maps all points <math>(x,y+2\pi e^{2x}k), k\in\mathbb Z</math> to the same point <math>F(x,y)</math>, and so causes different parts of the plane to overlap in the image.<ref name="MakarovPodkorytov"/> The analog of the Jacobian conjecture is therefore false for analytic maps; the conjecture is hard because the map is required to be a polynomial.<ref>{{cite journal
+ |last1=Gutierrez
+ |first1=Carlos
+ |last2=Nguyen Van Chau
+ |first2=
+ |title=A Note on Properness and the Jacobian Conjecture in R²
+ |journal=Cadernos de Matemática
+ |volume=3
+ |year=2002
+ |pages=285–291
+ |url=https://sites.icmc.usp.br/andcarva/cadernos/toc3.2/gutierrez03.pdf
+}}</ref><ref name="BassConnellWright"/>
+
+Apart from injectivity, the Jacobian conjecture is distinguished from analytic mappings because an injective polynomial mapping of <math>\C^n</math> to itself is automatically surjective. This is not true for analytic mappings, and for <math>n>1</math> an example of [[Pierre Fatou]] and [[Ludwig Bieberbach]] shows that the image of an injective analytic mapping can exclude a nonempty open subset of <math>\C^n</math>.<ref>{{cite book
+ |last1=Bochner
+ |first1=Salomon
+ |last2=Martin
+ |first2=William Ted
+ |title=Several Complex Variables
+ |series=Princeton Mathematical Series
+ |volume=10
+ |publisher=Princeton University Press
+ |location=Princeton, New Jersey
+ |year=1948
+ |p=45
+}}</ref>
+
+== Results ==
+=== General results and reductions ===
+The case of polynomials over a field <math>\mathbb{K}</math> of characteristic zero can be reduced to <math>\mathbb{K}=\mathbb{C}</math> using the [[Lefschetz principle]].<ref name="Kelleris2D" /> Further, if <math>F</math> is [[Injective function|injective]], it can be shown to already be bijective with a regular inverse<ref name="Rudin1995">{{Cite journal |last=Rudin |first=Walter |author-link=Walter Rudin |date=1995 |title=Injective polynomial maps are automorphisms. |journal=Amer. Math. Monthly |volume=102 |issue=6 |pages=540–543 |mr=1336641}}</ref> (cf. the [[Ax–Grothendieck theorem]]). 
+
+Many special cases and reductions of the Jacobian conjecture were established in the decades before it was disproved in 2026 for <math>n > 2</math>. In light of the counterexample, the positive partial results now describe conditions that any counterexample must violate, while the reductions show that counterexamples of quite special forms must exist.
+
+The existence of a polynomial inverse is obvious if <math>F</math> is simply a set of functions linear in the variables, because then the inverse will also be a set of linear functions. However, unlike the 1-dimensional case, in two or more dimensions, there exist nonlinear polynomial maps with constant Jacobian determinant and a polynomial inverse. A simple quadratic example is given by
+
+: <math>u=x^2+y+x</math>
+: <math>v=x^2+y</math>
+
+so that the Jacobian determinant is
+
+: <math>J_F = \left | \begin{matrix} 1+2x & 1 \\
+2x & 1 \end{matrix} \right |
+= (1+2x)(1) - (1)2x = 1.
+</math>
+
+In this case the inverse exists as the polynomials
+
+: <math>x=u-v</math>
+: <math>y=v-(u-v)^2.</math>
+
+Stuart Sui-Sheng Wang proved the Jacobian conjecture for polynomials of [[degree of a polynomial|degree]] 2,<ref name="degree2">{{citation
+| last1=Wang | first1=Stuart Sui-Sheng
+| title=A Jacobian criterion for separability
+| journal=Journal of Algebra
+| volume=65
+| issue=2
+| pages=453–494
+| date=August 1980
+| doi=10.1016/0021-8693(80)90233-1 | doi-access=free }}</ref> so any counterexample must have degree at least 3. [[Hyman Bass]], Edwin Connell, and David Wright showed that the general case follows from the special case where the polynomials are of degree 3, or even more specifically, of cubic homogeneous type, meaning of the form <math>F = (X_1 + H_1, \dots, X_n + H_n)</math>, where each <math>H_i</math> is either zero or a [[Homogeneous polynomial|homogeneous]] cubic.<ref name="BCW1982">{{citation
+| last1=Bass | first1=Hyman
+| last2=Connell | first2=Edwin H.
+| last3=Wright | first3=David
+| title=The Jacobian conjecture: reduction of degree and formal expansion of the inverse
+| doi=10.1090/S0273-0979-1982-15032-7
+| issn=1088-9485
+| mr=663785
+| year=1982
+| journal=Bulletin of the American Mathematical Society
+| series=New Series
+| volume=7
+| issue=2
+| pages=287–330
+| doi-access=free}}</ref> Ludwik Drużkowski showed that one may further assume that the map is of cubic linear type, meaning that the nonzero <math>H_i</math> are cubes of homogeneous linear polynomials.<ref>{{citation
+| last=Drużkowski | first=Ludwik M.
+| title=An effective approach to Keller's Jacobian conjecture
+| journal=[[Mathematische Annalen]]
+| volume= 264
+| year=1983
+| issue=3
+| pages=303–313
+| mr=0714105
+| doi=10.1007/bf01459126 | doi-access=free}}</ref>
+These reductions introduce additional variables and therefore do not preserve a fixed dimension.
+
+Edwin Connell and [[Lou van den Dries]] proved that if the Jacobian conjecture is false, then it has a counterexample with integer coefficients and Jacobian determinant 1.<ref>{{citation
+| last1=Connell | first1=Edwin
+| last2=van den Dries | first2=Lou
+| title=Injective polynomial maps and the Jacobian conjecture
+| journal=Journal of Pure and Applied Algebra
+| volume=28
+| year=1983
+| issue=3
+| pages=235–239
+| mr=0701351
+| doi=10.1016/0022-4049(83)90094-4 | doi-access=free}}</ref>
+
+Let <math>\mathbb{K}[X]</math> denote the [[polynomial ring]] <math>\mathbb{K}[X_1, \dots, X_n]</math> and <math>\mathbb{K}[F]</math> denote the <math>\mathbb{K}</math>-subalgebra generated by <math>f_1, \dots, f_n</math>. For a given <math>F</math>, the Jacobian condition implies invertibility if and only if <math>\mathbb{K}[X] = \mathbb{K}[F]</math>. Keller (1939) proved the [[birational]] case, that is, where the two fields <math>\mathbb{K}(X)</math> and <math>\mathbb{K}(F)</math> are equal. The case where <math>\mathbb{K}(X)</math> is a [[Galois extension]] of <math>\mathbb{K}(F)</math> was proved by Andrew Campbell for complex maps<ref>{{citation
+| last=Campbell | first=L. Andrew
+| title=A condition for a polynomial map to be invertible
+| journal=Mathematische Annalen
+| volume=205
+| issue=3
+| year=1973
+| pages=243–248
+| mr=0324062
+| doi=10.1007/bf01349234 | doi-access=free}}</ref> and in general by Michael Razar<ref>{{citation
+| last1 = Razar | first1 = Michael
+| year = 1979
+| title = Polynomial maps with constant Jacobian
+| journal = [[Israel Journal of Mathematics]]
+| volume = 32
+| issue = 2–3
+| pages = 97–106
+| mr=0531253
+| doi=10.1007/bf02764906 | doi-access=free}}</ref> and, independently, by David Wright.<ref name="Wright1981"/> No counterexample can therefore be birational or define a Galois extension; consistent with this, the 2026 counterexample is generically three-to-one.<ref name="Tao"/>
+
+Michiel de Bondt and Arno van den Essen<ref>{{citation
+| last1=de Bondt | first1=Michiel
+| last2=van den Essen | first2=Arno
+| title=A reduction of the Jacobian conjecture to the symmetric case
+| journal=[[Proceedings of the American Mathematical Society]]
+| volume=133
+| year=2005
+| issue=8
+| pages=2201–2205
+| mr=2138860
+| doi= 10.1090/S0002-9939-05-07570-2 |doi-access=free | hdl=2066/33302
+| hdl-access=free
+}}</ref><ref>{{citation
+| last1=de Bondt | first1=Michiel
+| last2=van den Essen | first2=Arno
+| title=The Jacobian conjecture for symmetric Drużkowski mappings
+| journal=[[Annales Polonici Mathematici]]
+| volume=86
+| year=2005
+| issue=1
+| pages=43–46
+| mr=2183036
+| doi=10.4064/ap86-1-5 | doi-access=free}}</ref> and Ludwik Drużkowski<ref>{{citation
+| last=Drużkowski | first=Ludwik M.
+| title=The Jacobian conjecture: symmetric reduction and solution in the symmetric cubic linear case
+| journal=Annales Polonici Mathematici
+| volume=87
+| year=2005
+| pages=83–92
+| mr=2208537
+| doi=10.4064/ap87-0-7 | doi-access=free}}</ref> independently showed that the general case of the conjecture is equivalent to the special case of complex maps of cubic homogeneous type with a symmetric Jacobian matrix, so counterexamples of this form must also exist. They further showed that the conjecture holds for maps of cubic linear type with a symmetric Jacobian matrix, over any field of characteristic <math>0</math>; no counterexample of this more restricted form is therefore possible, so the cubic-linear and symmetric reductions cannot be combined.
+
+The strong real Jacobian conjecture was the assertion that a real polynomial map with a nowhere vanishing Jacobian determinant has a smooth global inverse. That is equivalent to asking whether such a map is topologically a [[proper map]], in which case it is a covering map of a [[simply connected]] [[manifold]], hence invertible. Sergey Pinchuk constructed a counterexample to the strong real Jacobian conjecture of total degree 35.<ref>{{citation
+| last=Pinchuk | first= Sergey
+| title= A counterexample to the strong real Jacobian conjecture
+| journal= Mathematische Zeitschrift
+| volume= 217
+| year=1994
+| issue= 1
+| pages= 1–4
+| mr=1292168
+| doi=10.1007/bf02571929 | doi-access=free}}</ref> Because Pinchuk's maps have nonconstant Jacobian determinant, they did not disprove the Jacobian conjecture itself.
+
+For <math>n\ge 1</math>, the [[Dixmier conjecture]] <math>\mathrm{DC}_n</math> states that every [[endomorphism]] of the <math>n</math>-th [[Weyl algebra]] <math>A_n</math> over a field of characteristic zero is an [[automorphism]]. For each <math>n</math>, the Dixmier conjecture for <math>A_n</math> implies the <math>n</math>-dimensional Jacobian conjecture.<ref name="BCW1982"/> Conversely, Yoshifumi Tsuchimoto<ref>{{citation | last=Tsuchimoto | first=Yoshifumi | year=2005 | title=Endomorphisms of Weyl algebra and <math>p</math>-curvatures | url=http://projecteuclid.org/euclid.ojm/1153494387 | journal=Osaka Journal of Mathematics | volume=42 | issue=2 | pages=435–452 | issn=0030-6126}}</ref> and, independently, Alexei Belov-Kanel and [[Maxim Kontsevich]]<ref>{{citation | last1=Belov-Kanel | first1=Alexei | last2=Kontsevich | first2=Maxim | title=The Jacobian conjecture is stably equivalent to the Dixmier conjecture | arxiv=math/0512171 | mr=2337879 | year=2007 | journal=Moscow Mathematical Journal | volume=7 | issue=2 | pages=209–218 | bibcode=2005math.....12171B | doi=10.17323/1609-4514-2007-7-2-209-218| s2cid=15150838 }}</ref> showed that the Jacobian conjecture in <math>2n</math> variables implies the Dixmier conjecture for <math>A_n</math>.
+
+Kossivi Adjamagbo and Arno van den Essen gave a self-contained algebraic proof and established the more precise chain of implications
+:<math>\mathrm{JC}_{2n}\Longrightarrow\mathrm{PC}_n\Longrightarrow\mathrm{DC}_n\Longrightarrow\mathrm{JC}_n,</math>
+where <math>\mathrm{PC}_n</math> denotes the Poisson conjecture for the canonical complex Poisson algebra in <math>2n</math> variables.<ref>{{citation | last1=Adjamagbo | first1=Pascal Kossivi | title=A proof of the equivalence of the Dixmier, Jacobian and Poisson conjectures | url=http://journals.math.ac.vn/acta/pdf/0702205.pdf | year=2007 | last2=van den Essen | first2=Arno | journal=Acta Mathematica Vietnamica | volume=32 | pages=205–214 | mr=2368008}}</ref> Consequently, the all-dimensional forms of the Jacobian, Poisson, and Dixmier conjectures are equivalent.
+
+Since the 2026 counterexample disproves <math>\mathrm{JC}_n</math> for every <math>n>2</math>, the above implications show that <math>\mathrm{DC}_n</math> and <math>\mathrm{PC}_n</math> are also false for every <math>n>2</math>, while both conjectures remain open for <math>n=1,2</math>.
+
+=== In two dimensions ===
+The conjecture remains open in two dimensions {{As of|2026|lc=y}}. Much of the study of the two-dimensional conjecture concerns the geometry of a hypothetical counterexample at infinity. In two variables, a pair of polynomials is called a ''Jacobian pair'' if its Jacobian determinant is a nonzero constant. [[Shreeram Shankar Abhyankar|Shreeram Abhyankar]] proved that each component of a Jacobian pair has at most two points at infinity.<ref name="Abhyankar77"/> He also showed that the planar conjecture is equivalent to each of several assertions about all Jacobian pairs, including that each component has only one point at infinity, that the [[Newton polytope|Newton polygon]] of each component is a triangle, and that one of the two component degrees divides the other.<ref name="Abhyankar77"/> Using characteristic sequences and approximate roots, Abhyankar proved the conjecture in the case of two characteristic pairs and later sharpened this to what he called the "two plus epsilon characteristic pairs" case.<ref name="Abhyankar2008I">{{cite journal |last=Abhyankar |first=Shreeram S. |title=Some thoughts on the Jacobian Conjecture, Part I |journal=Journal of Algebra |volume=319 |issue=2 |pages=493–548 |year=2008 |doi=10.1016/j.jalgebra.2006.03.051|doi-access=free}}</ref> His subsequent work developed the more general "three minus epsilon characteristic pairs" setting.<ref name="Abhyankar2008III">{{cite journal |last=Abhyankar |first=Shreeram S. |title=Some thoughts on the Jacobian Conjecture, Part III |journal=Journal of Algebra |volume=320 |issue=7 |pages=2720–2826 |year=2008 |doi=10.1016/j.jalgebra.2008.05.025|doi-access=free}}</ref>
+
+Another line of work has progressively restricted the possible degree pairs and Newton polygons of a counterexample. Raymond C. Heitmann showed that any counterexample <math>(P,Q)</math> must satisfy <math>\gcd(\deg P,\deg Q)\geq 16.</math><ref name="Heitmann1990">{{cite journal |last=Heitmann |first=Raymond C. |title=On the Jacobian conjecture |journal=Journal of Pure and Applied Algebra |volume=64 |issue=1 |pages=35–72 |year=1990 |doi=10.1016/0022-4049(90)90005-3|doi-access=free}}</ref> 
+Jorge A. Guccione, Juan J. Guccione, and Christian Valqui subsequently gave an elementary proof of Heitmann's result using refinements of Abhyankar's methods, proved that <math>\gcd(\deg P,\deg Q)\ne 2p</math> for every prime <math>p</math>, and obtained further restrictions on the possible shape of a counterexample.<ref name="GGV2017">{{cite journal |last1=Guccione |first1=Jorge A. |last2=Guccione |first2=Juan J. |last3=Valqui |first3=Christian |title=On the shape of possible counterexamples to the Jacobian Conjecture |journal=Journal of Algebra |volume=471 |pages=13–74 |year=2017 |doi=10.1016/j.jalgebra.2016.08.039 |doi-access=free}}</ref> Leonid Makar-Limanov later introduced a Newton polyhedron associated with a minimal counterexample, obtaining a sharper estimate for its geometric degree and a new proof of Abhyankar's result for two characteristic pairs.<ref name="MakarLimanov2021">{{cite journal |last=Makar-Limanov |first=Leonid |title=On the Newton polyhedron of a Jacobian pair |journal=Izvestiya: Mathematics |volume=85 |issue=3 |pages=457–467 |year=2021 |doi=10.1070/IM9067|doi-access=free}}</ref>
+
+More recent geometric approaches study hypothetical Jacobian pairs through compactifications of the affine plane. Alexander Borisov formulated the resulting constraints on the maps between the [[Picard group]]s of suitable compactifications as an essentially combinatorial problem and described several possible configurations, which he called "frameworks".<ref name="Borisov2020">{{cite journal |last=Borisov |first=Alexander |title=Frameworks for two-dimensional Keller maps |journal=The Electronic Journal of Combinatorics |volume=27 |issue=3 |year=2020 |at=Paper P3.54 |doi=10.37236/9210|doi-access=free}}</ref> A framework is not itself a counterexample: each gives a system of equations whose solution would produce a Jacobian pair.<ref name="Borisov2020"/>
+
+A complementary line of work concerns the possible covering behavior of a counterexample. In 1971, [[Anatoli Vitushkin]] constructed a three-sheeted branched covering whose regular part is contractible and whose bifurcation set is homeomorphic to a plane.<ref name="Vitushkin1971">{{cite journal |last=Vitushkin |first=Anatoli G. |author-link=Anatoli Vitushkin |title=Certain examples in connection with problems about polynomial transformations of C^n |journal=Mathematics of the USSR-Izvestiya |volume=5 |issue=2 |pages=278–288 |year=1971 |doi=10.1070/IM1971v005n02ABEH001046|doi-access=free}}</ref> The example provided a topological model relevant to the three-sheeted case, but was not a polynomial map. S. Yu. Orevkov subsequently proved that the Jacobian of a three-sheeted polynomial map <math>\mathbb C^2\to\mathbb C^2</math> cannot be a nonzero constant.<ref name="Orevkov1987">{{cite journal |last=Orevkov |first=S. Yu. |title=On three-sheeted polynomial mappings of C² |journal=Mathematics of the USSR-Izvestiya |volume=29 |issue=3 |pages=587–596 |year=1987 |doi=10.1070/IM1987v029n03ABEH000984|doi-access=free}}</ref> Orevkov later constructed an analytic realization of the Vitushkin covering over a ball in <math>\mathbb C^2</math>,<ref name="Orevkov1996">{{cite journal |last=Orevkov |first=S. Yu. |title=Rudolph diagrams and an analytic realization of the Vitushkin covering |journal=Mathematical Notes |volume=60 |issue=2 |pages=153–164 |year=1996|doi=10.1007/BF02305179}}</ref> while Nguyen Van Chau proved that the Vitushkin covering cannot occur in the polynomial case.<ref name="Chau1999">{{cite journal |author=Nguyen Van Chau |title=A remark on Vitushkin's covering |url=https://math.ac.vn/uploads/files/9901109.pdf|journal=Acta Mathematica Vietnamica |volume=24 |issue=1 |pages=109–115 |year=1999}}</ref> Vitushkin also constructed noninvertible rational transformations of <math>\mathbb C^2</math> with nonzero constant Jacobian. One of his examples has a pole along a complex line, but on the complement of that line it defines a two-sheeted [[étale morphism|étale cover]] of the complement of a discriminant curve in <math>\mathbb C^2</math>; in particular, it is generically two-to-one, but is not a polynomial counterexample.<ref name="Vitushkin1999">{{cite journal |last=Vitushkin |first=Anatoli G. |author-link=Anatoli Vitushkin |title=Evaluation of the Jacobian of a rational transformation of C² and some applications |journal=Mathematical Notes |date=August 1999 |volume=66 |issue=2 |pages=245–249 |doi=10.1007/BF02674884}}</ref>
+
+A separate computational line has sought to exclude counterexamples of progressively higher degree. Tzuong-Tsieng Moh's 1983 computer-assisted argument, with its algorithm subsequently revised by Lih-Chung Wang in 2005, verified it for polynomials of degree at most 100.<ref name="degree100"/><ref name="Wang2005"/> This bound was increased to 104 by Thuy Nguyen in 2025.<ref name="Nguyen2025">{{cite journal |last=Nguyen |first=Thuy |title=Some classes satisfying the 2-dimensional Jacobian conjecture and a proof of the complex conjecture until degree 104 |journal=Quaestiones Mathematicae |volume=48 |issue=9 |pages=1291–1305 |year=2025 |doi=10.2989/16073606.2025.2482655|arxiv=1902.05923}}</ref> In a 2022 preprint, Jorge Alberto Guccione, Juan José Guccione, Rodrigo Horruitiner, and Christian Valqui claimed that this bound can be increased to 124 except for the possible degree pair (72,108).<ref name="degree108">{{citation
+| last1 = Guccione | first1 = Jorge Alberto
+| last2 = Guccione | first2 = Juan José
+| last3 = Horruitiner | first3 = Rodrigo
+| last4 = Valqui | first4 = Christian
+| title = Increasing the degree of a possible counterexample to the Jacobian Conjecture from 100 to 108
+| date = April 29, 2022
+| arxiv = 2204.14178
+}}</ref>
+
+=== Counterexample for ''n'' > 2 ===
+On July 19, 2026, mathematician and [[Anthropic]] employee [[Levent Alpöge]] presented an explicit counterexample to the conjecture in three-dimensional space which he credited to [[Claude Mythos|Claude Fable 5]] AI model.<ref name="anthtweet">{{Cite tweet |user=__alpoge__ |number=2079028340955197566 |title=hello there the jacobian conjecture is false}}</ref><ref>{{cite news|url=https://fortune.com/2026/07/21/ai-solves-jacobian-conjecture-levant-alpoge-claude-fable-5/|title=Mathematicians grapple with a ‘very rapid and very unsettling change’ as AI cracks yet another century-old problem|publisher=|date=July 21, 2026|author=Roytburg|first=Eva|access-date=July 23, 2026|work=[[Fortune (magazine)|Fortune]]}}</ref> According to Abhishek Saha of the [[Queen Mary University of London]], the counterexample is simple to verify in itself, but how Alpöge and Fable exactly arrived at it is unclear.<ref name=":1">{{cite news |url=https://www.newscientist.com/article/2580374-ais-solution-to-87-year-old-riddle-takes-mathematicians-by-surprise/ |title=AI’s solution to 87-year-old riddle takes mathematicians by surprise |author=Matthew Sparkes |date=July 20, 2026 |publisher=[[New Scientist]]|archive-url=https://web.archive.org/web/20260721173628/https://www.newscientist.com/article/2580374-ais-solution-to-87-year-old-riddle-takes-mathematicians-by-surprise/|archive-date=July 21, 2026}}</ref>
+
+Given the polynomial map <math>F : \mathbb{C}^3 \to \mathbb{C}^3,</math> where
+<math display="block">\begin{aligned}F(x,y,z)={}\bigl(~\!& (1+xy)^3 z + y^2 (1+xy) (4+3xy),\\ &y + 3x(1+xy)^2 z + 3xy^2 (4+3xy), \\ &2x - 3x^2 y - x^3 z ~\!\bigr).\end{aligned}</math>
+
+The Jacobian determinant of this function is the constant −2. However, the map is not invertible, as it maps multiple distinct points to the same image. For example, Alpöge gives
+<math display="block">\begin{aligned}
+F\bigl(0,0,-\tfrac{1}{4}\bigr) = F\bigl(1,-\tfrac{3}{2},\tfrac{13}{2}\bigr) = F\bigl({-1},\tfrac{3}{2},\tfrac{13}{2}\bigr)
+&= \bigl({-\tfrac{1}{4}},0,0\bigr).
+\end{aligned}</math>
+It was not necessary to find such points explicitly. If a polynomial map
+<math>F:\mathbb C^n\to\mathbb C^n</math> is injective, then it is a polynomial
+automorphism.<ref name="Rudin1995" /> Consequently each component of <math>F</math>
+is a coordinate polynomial, and is therefore irreducible.<ref>{{cite journal
+ |last1=van den Essen |first1=Arno
+ |last2=Shpilrain |first2=Vladimir
+ |title=Some combinatorial questions about polynomial mappings
+ |journal=Journal of Pure and Applied Algebra
+ |volume=119 |year=1997 |pages=47–52
+ |doi=10.1016/S0022-4049(96)00043-6}}</ref>
+Since both <math>F_1</math> and <math>F_3</math> have nontrivial factorizations,
+<math>F</math> cannot be injective.
+
+Given the definition of <math>F</math> above, it follows that for any integer <math>n \ge 4</math>, the polynomial map 
+<math display="block">\mathbb C^n \to \mathbb C^n, \quad (x_1, x_2, x_3, x_4, \dots, x_{n}) \mapsto (F(x_1,x_2,x_3), x_4, \dots, x_{n})</math> then gives a counterexample in <math>n</math> variables. The same holds for any other counterexample in dimension 3.
+
+The day after Alpöge found the counterexample, a geometric reformulation was announced by Andy Jiang, a doctoral student in mathematics at the [[University of Michigan]], who credited it to "GPT".<ref>{{Cite tweet |number=2079175065695035442 |user=davikrehalt |title=GPT: ... π{{!}}X: X → Y is counterexample |first=Andy |last=Jiang |date=July 20, 2026}}</ref> 
+
+[[Terence Tao]], a mathematician from the [[University of California, Los Angeles]] (UCLA), discussed this geometric explanation of the counterexample using multiplication of binary forms. A generic binary cubic has three linear factors, and hence three ways to express it as the product of a distinguished linear factor and the remaining quadratic factor. After imposing a [[resultant]] normalization to remove the scaling ambiguity and restricting to a particular affine slice of the space of binary cubics, Tao obtained an [[étale morphism|étale]], generically three-to-one map <math>X\to\mathbb C^3</math> from a three-fold <math>X</math> inside <math>\mathbb C^5</math> (identified with <math>\mathbb{C}^2\times\operatorname{Sym}^2\mathbb{C}^2</math>, pairs of linear and quadratic binary forms) which is explicitly polynomially isomorphic to <math>\mathbb C^3</math>.<ref name="Tao"/> This cubic factorization construction is thus similar to the earlier quadratic example by [[Anatoli Vitushkin|Vitushkin]].<ref name="Vitushkin1999"/>
+
+There is a 7 page paper on the 3D Jacobian conjecture counterexample and published on July 20, 2026 by Anthropic.<ref name="Ulam.ai">{{citation
+|title=A Counterexample to the Jacobian Conjecture
+|url=https://www.ulam.ai/research/jacobian.pdf
+|date=July 20, 2026
+|website=Ulam.ai
+}}</ref> Adrian Vasiu claims that this 7 page AI paper on the 3D Jacobian conjecture counterexample used notation and concepts from a draft of a paper jointly written with Alexander Borisov and Ofer Gabber, dated to January 14, 2025 and made publicly available on January 16, 2025.<ref name="BorisovGabberVasiu"/> A graduate student on July 23, 2026 sent Adrian Vasiu an AI-written paper explaining the 3D Jacobian conjecture counterexample from the point of view of the Borisov-Gabber-Vasiu framework,<ref>{{citation
+|title=The 2026 Cubic Jacobian Counterexample through the Borisov–Gabber–Vasiu Framework
+|date=July 23, 2026
+|url=https://people.math.binghamton.edu/adrian/AI.pdf
+}}</ref> hence indicating to Vasiu that the January 14, 2025 draft became "a feed of the AI models".<ref name="BorisovGabberVasiu"/> Levent Alpöge said that some credit be given to the trio of authors.<ref name="AlpögesProperCrediting">{{cite tweet |user=__alpoge__ |number=2097698960966049876|title=to the extent that that line to the jacobian conjecture is plausible [...] then they and their method obviously deserves the credit too|last=Alpöge|first=Levent}}</ref>
+
+== Variants of the Jacobian conjecture for fields with positive characteristic ==
+
+The obvious analogue of the Jacobian conjecture fails if <math>\mathbb{K}</math> has characteristic <math>p > 0</math> even for one variable. The characteristic of a field, if it is not zero, must be prime, so at least <math>2</math>. The polynomial <math>x - x^{p}</math> has derivative <math>1 - px^{p-1}</math>, which is <math>1</math> (because <math>p = 0</math> in characteristic <math>p</math>) but it has no inverse function. There are a few ways to modify the Jacobian conjecture to get around this issue. 
+
+=== Separable Jacobian conjecture ===
+{{ill|Kossivi Adjamagbo|ht|Pascal Kossivi Adjamagbo}} suggested extending the Jacobian conjecture to characteristic <math>p > 0</math> by adding the hypothesis that <math>p</math> does not divide the [[Degree of a field extension|degree]] of the [[field extension]] <math>\mathbb{K}(X) / \mathbb{K}(F)</math>.<ref name="Adjamagbo">{{citation
+| mr=1352692
+| last=Adjamagbo | first=Kossivi
+| chapter=On separable algebras over a U.F.D. and the Jacobian conjecture in any characteristic
+| title= Automorphisms of affine spaces (Curaçao, 1994)
+| pages= 89–103
+| publisher= Kluwer Acad. Publ.
+| place= Dordrecht
+| year= 1995
+| doi=10.1007/978-94-015-8555-2_5 | isbn=978-90-481-4566-9 | doi-access=free}}</ref> This conjecture is called '''Adjamagbo's Jacobian conjecture''' after Kossivi Adjamagbo,<ref name="BorisovGabberVasiu"/> or the '''separable Jacobian conjecture''' because Adjamagbo's condition guarantees that the field extension is [[separable extension|separable]].<ref name="Huq-Kuruvilla"/><ref name="Mondello"/> By design, the separable Jacobian conjecture coincides with the usual Jacobian conjecture for fields of characteristic zero, because given a field <math>\mathbb{K}</math> of characteristic zero, zero never divides the [[Degree of a field extension|degree]] of the [[field extension]] <math>\mathbb{K}(X) / \mathbb{K}(F)</math> for any polynomial map <math>F</math> over <math>\mathbb{K}^n</math>.
+
+For the separable Jacobian conjecture in characteristic two, in a 2026 preprint, Irit Huq-Kuruvilla claimed to have produced a counterexample in dimensions <math>n \geq 3</math>,<ref name="Huq-Kuruvilla">{{citation
+| last = Huq-Kuruvilla | first = Irit
+| title = An Explicit Characteristic-2 Counterexample to the Separable Jacobian Conjecture
+| date = July 23, 2026
+| arxiv = 2607.20968
+}}</ref> and in another 2026 preprint, Romy Mondello claimed to have produced a counterexample in two dimensions.<ref name="Mondello">{{citation
+| last = Mondello | first = Romy
+| title = A Dimension-Two Counterexample to the Separable Jacobian Conjecture in Characteristic Two
+| date = July 29, 2026
+| arxiv = 2608.02634
+}}</ref> Finally, in a third 2026 preprint, Alexander Borisov, Ofer Gabber, and Adrian Vasiu claimed to have produced counterexamples to Adjamagbo's separable Jacobian conjecture for all positive characteristics in all dimensions <math>n \geq 2</math>.<ref name="BorisovGabberVasiu">{{citation
+| last1 = Borisov | first1 = Alexander 
+| last2 = Gabber | first2 = Ofer 
+| last3 = Vasiu | first3 = Adrian 
+| title = On endomorphisms of affine spaces and the Jacobian problem 
+| date = 4 Sep 2026 
+| arxiv = 2609.05746
+}}</ref> The case <math>n = 1</math> is true for the separable Jacobian conjecture for any positive characteristic <math>p</math>, since Adjamagbo's hypothesis that <math>p</math> does not divide the [[Degree of a field extension|degree]] of the [[field extension]] <math>\mathbb{K}(X) / \mathbb{K}(F)</math> of the polynomial <math>F</math> guarantees that the derivative of the polynomial is a nonzero constant only if the degree of the polynomial is <math>1,</math> and linear polynomial functions are invertible.
+
+=== Maubach and Rauf's Jacobian Conjecture ===
+Stefan Maubach and Abdul Rauf suggested an alternative to Adjamabgo's Jacobian conjecture, where they extended the Jacobian conjecture to characteristic <math>p > 0</math> by replacing the condition of a Keller map in the premise with what they call a ''strong Keller map''.<ref name="MaubachRauf">{{citation
+| last1 = Maubach | first1 = Stefan
+| last2 = Rauf | first2 = Abdul
+| title = A new formulation of the Jacobian Conjecture in characteristic ''p''
+| date = 11 July 2016
+| journal = Colloquium Mathematicum
+| volume = 146
+| pages = 15-30 
+| doi = 10.4064/cm6692-3-2016 
+| arxiv = 1507.02946
+}}</ref> Maubach and Rauf later in the same article show that for characteristic zero fields, every Keller map is a strong Keller map, and thus that their version of the Jacobian conjecture coincides with the usual Jacobian conjecture for characteristic zero fields.<ref name="MaubachRauf"/>
+
+== See also ==
+* [[Abhyankar–Moh theorem]]
+* [[FrontierMath]]
+* [[List of unsolved problems in mathematics]]
+
+== References ==
+{{reflist}}
+
+== External links ==
+* [https://mathworld.wolfram.com/JacobianConjecture.html Jacobian Conjecture -- from Wolfram MathWorld]
+* [https://teorth.github.io/tao-web/apps/jacobian.html Jacobian counterexample explorer]
+
+{{DEFAULTSORT:Jacobian сonjecture}}
+[[Category:Polynomials]]
+[[Category:Algebraic geometry]]
+[[Category:Partially resolved conjectures]]
+[[Category:Computational mathematics]]

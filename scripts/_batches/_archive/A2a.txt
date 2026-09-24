@@ -1,0 +1,135 @@
+﻿ 270|cn-langlands-functoriality>cn-artin|0.92||Artin 猜想是函子性的算术形式
+ 271|cn-langlands-functoriality>cn-modularity|0.88||模性是函子性的第一个非平凡情形
+ 272|cn-langlands-functoriality>cn-gross-prasad|0.84||相对纲领是函子性在限制问题上的版本
+ 273|cn-artin>cn-kazhdan-lusztig|0.56||Galois 表示与局部表示的对应
+ 274|cn-mordell>cn-class-number|0.62||都属"算术对象的有限性"
+ 275|cn-class-number>cn-goldbach|0.55||都用解析数论工具
+ 276|cn-goldbach>cn-twin-prime|0.86||同属筛法能触及但无法完成的一族
+ 277|cn-goldbach>cn-collatz|0.58||都是"陈述极简但方法不足"的典型
+ 278|cn-twin-prime>cn-schanuel|0.56||都涉及指数/对数型的算术对象
+ 279|cn-collatz>cn-sat|0.6||都是"简单规则产生不可控行为"的例子
+ 280|cn-schanuel>cn-grh|0.62||超越数论与 L 函数的特殊值相关
+ 281|cn-schanuel>cn-goldbach|0.52||都属数论中缺乏一般工具的地带
+ 282|cn-poincare>cn-geometrization|0.95||庞加莱猜想是几何化猜想的特例
+ 283|cn-poincare>cn-thurston-norm|0.7||都用三维流形的组合与几何结构
+ 284|cn-geometrization>cn-virtual-fibering|0.82||虚拟纤维化是几何化的后续纲领
+ 285|cn-geometrization>cn-thurston-norm|0.84||范数与几何化的分解相关
+ 286|cn-geometrization>cn-four-dim-poincare|0.6||三维与四维的方法形成对比
+ 287|cn-thurston-norm>cn-virtual-fibering|0.88||Agol 证明虚拟纤维化时顺带证明了范数猜想
+ 288|cn-virtual-fibering>cn-borel|0.72||立方复形理论也用于拓扑刚性问题
+ 289|cn-poincare>cn-navier-stokes|0.55||都用几何分析的重武器
+ 290|cn-navier-stokes>cn-yang-mills|0.78||同属"存在性与正则性"这一族千禧年问题
+ 291|cn-navier-stokes>cn-restriction|0.62||都依赖调和分析的临界估计
+ 292|cn-navier-stokes>cn-kakeya|0.66||调和分析的临界指数问题
+ 293|cn-yang-mills>cn-connes-rigidity|0.58||都属"构造并分析无穷维对象"
+ 294|cn-yang-mills>cn-baum-connes|0.54||指标理论是两者共同的技术背景
+ 295|cn-kakeya>cn-restriction|0.93||Kakeya 猜想蕴含 restriction 猜想
+ 296|cn-kakeya>cn-bochner-riesz|0.88||同属"欧氏调和分析的枢纽问题"族
+ 297|cn-kakeya>cn-lusin|0.66||都关乎多重平均的收敛性
+ 298|cn-restriction>cn-bochner-riesz|0.9||两者互相蕴含（在某些指标范围）
+ 299|cn-restriction>cn-lusin|0.72||球面平均的收敛性与 restriction 估计相通
+ 300|cn-bochner-riesz>cn-lusin|0.68||乘子估计是收敛性问题的工具
+ 301|cn-lusin>cn-yang-mills|0.48||都属分析中存在性/收敛性的硬问题
+ 302|cn-connes-rigidity>cn-baum-connes|0.86||同属算子代数与几何群论的交界
+ 303|cn-connes-rigidity>cn-farrell-jones|0.74||刚性问题的两种代数化
+ 304|cn-baum-connes>cn-idempotent|0.84||Idempotent 猜想是 Baum–Connes 的推论
+ 305|cn-baum-connes>cn-kadison-kaplansky|0.74||提升问题影响 K-理论类的可实现性
+ 306|cn-idempotent>cn-zero-divisor|0.66||同属 Kaplansky 的群代数猜想族
+ 307|cn-idempotent>cn-kadison-kaplansky|0.8||都是关于群代数中幂等元与酉元的问题
+ 308|cn-borel>cn-farrell-jones|0.88||Borel 猜想是 Farrell–Jones 的推论
+ 309|cn-borel>cn-novikov|0.78||同属手术理论的应用
+ 310|cn-novikov>cn-farrell-jones|0.86||诺维科夫猜想是 Farrell–Jones 的推论
+ 311|cn-novikov>cn-baum-connes|0.82||高阶签名定理是两者的共同场景
+ 312|cn-farrell-jones>cn-bass|0.8||Farrell–Jones 蕴含 Bass 猜想的部分情形
+ 313|cn-farrell-jones>cn-zero-divisor|0.58||都用群环的代数 K-理论
+ 314|cn-bass>cn-zero-divisor|0.7||同属"群环有多像多项式环"这一族
+ 315|cn-bass>cn-kadison-kaplansky|0.62||群代数的同调性质
+ 316|cn-zero-divisor>cn-kadison-kaplansky|0.68||Kaplansky 猜想族的两个成员
+ 317|cn-borel>cn-four-dim-poincare|0.66||四维的拓扑刚性有独特障碍
+ 318|cn-hsiang>cn-four-dim-poincare|0.54||四维与高维的极小曲面/拓扑差异
+ 319|cn-hsiang>cn-navier-stokes|0.52||几何测度论与 PDE
+ 320|cn-hsiang>cn-poincare|0.56||都用几何分析构造与分类结构
+ 321|cn-baum-connes>cn-lagarias|0.5||都属"把难问题翻译成可计算形式"
+ 322|cn-lagarias>cn-riemann|0.9||Lagarias 判据是 RH 的初等等价形式
+ 323|cn-finite-simple>cn-kazhdan-lusztig|0.66||有限群与代数群的表示论技术相通
+ 324|cn-kazhdan-lusztig>cn-lusztig|0.92||Lusztig 猜想是 KL 框架在正特征的推广
+ 325|cn-kazhdan-lusztig>cn-howe|0.62||都是经典群表示论的结构性陈述
+ 326|cn-lusztig>cn-modularity|0.58||正特征表示论与自守形式有通道
+ 327|cn-howe>cn-gross-prasad|0.88||GGP 是重数问题在限制问题上的版本
+ 328|cn-howe>cn-langlands-functoriality|0.76||重数自由性是函子性的推论
+ 329|cn-gross-prasad>cn-bsd|0.72||L 值非零与算术信息的对应
+ 330|cn-gross-prasad>cn-sato-tate|0.58||都在 L 函数的中心值/分布上做文章
+ 331|cn-sat>cn-continuum|0.72||同属数理逻辑与可判定性主题
+ 332|cn-sat>cn-novikov-word|0.68||字问题的不可判定性与 NP 完全性同族
+ 333|cn-sat>cn-group-iso|0.8||群同构问题的复杂度与 P vs NP 直接相关
+ 334|cn-continuum>cn-finite-simple|0.54||独立性现象与分类定理都是"结构的边界"
+ 335|cn-novikov-word>cn-group-iso|0.86||字问题不可判定，而同构问题复杂度未知
+ 336|cn-novikov-word>cn-zero-divisor|0.56||双曲群与群代数的技术相通
+ 337|cn-group-iso>cn-continuum|0.62||都在问"某个分类问题能否有效判定"
+ 338|cn-novikov-word>cn-bass|0.54||几何群论与群环的代数是同一套工具
+ 339|cn-bass>cn-finite-simple|0.48||群论中两个不同层次的结构问题
+ 340|cn-hodge>hodge-conjecture|0.95||主库已有条目，此处是同一猜想的陈述与讨论
+ 341|cn-hodge>hodge-theory|0.92||Hodge 理论是猜想赖以陈述的框架
+ 342|cn-hodge>hodge-decomposition|0.86||Hodge 分解给出 (p,q) 型，猜想以此为起点
+ 343|cn-hodge>lefschetz-hyperplane|0.78||k=1 情形由 Lefschetz (1,1) 定理解决
+ 344|cn-hodge>motive|0.74||Hodge 猜想是动机理论的动机之一
+ 345|cn-hodge>c-hodge-structure-vhs|0.8||Hodge 结构的形变理论
+ 346|cn-hodge>c-alterations|0.62||消解与 alteration 是证明的工具
+ 347|cn-tate>weil-conjectures|0.92||Weil 猜想的证明是 Tate 猜想的背景
+ 348|cn-tate>etale-cohomology|0.9||Tate 猜想在 étale 上同调里陈述
+ 349|cn-tate>b-tate-module|0.86||Tate 模是猜想的对象
+ 350|cn-tate>langlands|0.78||Galois 表示与自守表示的对应
+ 351|cn-tate>abelian-variety|0.76||Abel 簇是唯一已证的主要情形
+ 352|cn-standard>standard-conjectures|0.96||主库条目，同一组猜想
+ 353|cn-standard>motive|0.88||标准猜想是动机理论存在的前提
+ 354|cn-standard>chow-ring|0.8||猜想的陈述用代数圈
+ 355|cn-standard>lefschetz-hyperplane|0.76||Lefschetz 算子是猜想的对象
+ 356|cn-standard>c-perfect-complex|0.56||技术背景在现代同调代数
+ 357|cn-canonical-model>minimal-model-open|0.92||主库条目，同一纲领的开问题
+ 358|cn-canonical-model>canonical-model|0.94||典范模型的定义与构造
+ 359|cn-canonical-model>abundance|0.9||丰饶性与典范模型存在性等价
+ 360|cn-canonical-model>c-abundance-conjecture|0.88||主库丰饶性猜想条目
+ 361|cn-canonical-model>kodaira-dimension|0.82||κ 的取值决定典范模型是否存在
+ 362|cn-canonical-model>mmp|0.86||MMP 的终点问题
+ 363|cn-canonical-model>c-termination|0.7||终止性是纲领的另一半
+ 364|cn-resolution-charp>resolution|0.94||主库消解条目（特征零已解决）
+ 365|cn-resolution-charp>c-hironaka|0.92||Hironaka 定理是特征零的结果
+ 366|cn-resolution-charp>c-alterations|0.84||正特征的替代品
+ 367|cn-resolution-charp>h-flat-descent|0.58||正特征技术中的常用工具
+ 368|cn-resolution-charp>c-perfectoid|0.66||完美胚空间给出部分结果
+ 369|cn-rationally-connected>fano|0.9||Fano 簇是要证明有理连通的对象
+ 370|cn-rationally-connected>mori-cone-theorem|0.7||bend-and-break 技术来自圆锥定理
+ 371|cn-rationally-connected>c-moduli-fano|0.66||Fano 簇的模空间与有界性
+ 372|cn-rationally-connected>abundance|0.52||同属 MMP 框架下的问题
+ 373|cn-fujita>nakai-moishezon|0.82||丰饶性判据
+ 374|cn-fujita>b-nakai-surface|0.86||曲面上的丰饶性判据与 Fujita 猜想相邻
+ 375|cn-fujita>a-ample|0.84||丰饶性的定义
+ 376|cn-fujita>b-kodaira-vanishing|0.72||消没定理是证明 Fujita 猜想的工具
+ 377|cn-fujita>b-mori-cone|0.68||正性与锥的关系
+ 378|cn-hartshorne-ample>a-ample|0.8||丰饶性是猜想的主题
+ 379|cn-hartshorne-ample>coherent-sheaf|0.66||仿射性的上同调刻画用凝聚层
+ 380|cn-hartshorne-ample>serre-vanishing|0.72||消没是仿射性的判据
+ 381|cn-hartshorne-ample>h-nagata-compactification|0.62||紧化与仿射性是同一族问题
+ 382|cn-zariski-lipman>a-kahler-differential|0.92||Kähler 微分模是猜想的对象
+ 383|cn-zariski-lipman>regular-local-ring|0.9||正则局部环是猜想的另一端
+ 384|cn-zariski-lipman>a-smooth-criterion|0.82||光滑性判据与微分模的自由性
+ 385|cn-zariski-lipman>smooth-morphism|0.7||相对版本的背景
+ 386|cn-jacobian>a-kahler-differential|0.72||雅可比行列式与微分模
+ 387|cn-jacobian>a-smooth-criterion|0.68||étale 性与雅可比
+ 388|cn-jacobian>a-formal-smooth|0.62||形式逆定理是问题的起点
+ 389|cn-jacobian>etale-morphism|0.66||雅可比非零 ⟹ étale
+ 390|cn-linearization>git|0.66||线性化与群作用
+ 391|cn-linearization>c-git-quotient|0.62||GIT 商与线性化
+ 392|cn-yau-tian>k-stability|0.95||K-稳定性是猜想的代数一侧
+ 393|cn-yau-tian>c-test-configuration|0.88||检验 K-稳定性的对象
+ 394|cn-yau-tian>c-k-moduli|0.84||K-模空间是猜想的推广
+ 395|cn-yau-tian>c-good-moduli|0.78||好模空间猜想
+ 396|cn-yau-tian>c-moduli-fano|0.8||Fano 簇的模空间
+ 397|cn-yau-tian>kahler-manifold|0.82||Kähler–Einstein 度量的舞台
+ 398|cn-yau-tian>c-dt-theory|0.52||Fano 情形与 DT 理论的联系
+ 399|cn-riemann>b-riemann-roch-curve|0.5||同冠 Riemann 之名但对象不同（zêta 与 Roch 定理）
+ 400|cn-grh>b-tate-module|0.58||L 函数与 Galois 表示
+ 401|cn-grh>modular-curve|0.62||L 函数来自模曲线
+ 402|cn-bsd>elliptic-curve|0.92||椭圆曲线是猜想的对象
+ 403|cn-bsd>b-mordell-weil|0.9||有理点群的秩是猜想的一端
+ 404|cn-bsd>modular-curve|0.8||由模性得到 L 函数

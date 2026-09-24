@@ -1,0 +1,135 @@
+﻿1080|formal-deformation>a-completion|0.78||在 Artin 环上逐阶构造
+1081|formal-deformation>moduli-space|0.74||模空间的局部构造
+1082|formal-deformation>c-kodaira-spencer|0.76||逐阶延拓的映射
+1083|bertini-theorem>b-linear-system-dim|0.78||定理要求线性系统无基点
+1084|bertini-theorem>generic-smoothness|0.86||两者是"通有优先"的搭档
+1085|bertini-theorem>smooth-morphism|0.74||光滑性的通有保证
+1086|bertini-theorem>lefschetz-hyperplane|0.76||莱夫谢茨需要一般超平面
+1087|bertini-theorem>c-hyperkaehler|0.58||超凯勒簇的形变论证
+1088|generic-smoothness>flat-morphism|0.76||与平坦性配合使用
+1089|generic-smoothness>dimension-fiber|0.78||一般纤维的维数定理
+1090|generic-smoothness>b-semicontinuity|0.8||半连续性处理退化纤维
+1091|generic-smoothness>singularity|0.72||奇点只出现在闭子集上
+1092|lefschetz-hyperplane>lefschetz|0.9||莱夫谢茨定理的射影版本
+1093|lefschetz-hyperplane>hodge-theory|0.78||霍奇结构的继承
+1094|lefschetz-hyperplane>projective-cohomology|0.76||射影簇拓扑的刚性
+1095|lefschetz-hyperplane>b-hodge-diamond|0.68||霍奇菱形的关系
+1096|lefschetz-hyperplane>intersection-number|0.64||与相交型的关系
+1097|nagata-compactification>proper-morphism|0.84||把分离概形嵌入紧合概形
+1098|nagata-compactification>separated-morphism|0.76||定理前提是分离
+1099|nagata-compactification>divisor|0.68||补集是除子
+1100|nagata-compactification>a-formal-smooth|0.5||边界处理的技术背景
+1101|valuative-criterion>proper-morphism|0.88||紧合性的赋值判据
+1102|valuative-criterion>separated-morphism|0.86||分离性的赋值判据
+1103|valuative-criterion>valuation-ring|0.9||判据用赋值环陈述
+1104|valuative-criterion>a-dvr|0.78||离散赋值环即可验证
+1105|valuative-criterion>a-base-change-thm|0.62||与基变换的配合
+1106|proper-morphism>separated-morphism|0.84||紧合 = 分离 + 普遍闭
+1107|proper-morphism>serre-finiteness|0.8||紧合才有上同调有限性
+1108|proper-morphism>cohomology-base-change|0.78||基变换定理需要紧合
+1109|proper-morphism>morphism|0.7||态射的基本性质
+1110|proper-morphism>b-grauert|0.72||格劳尔特定理的前提
+1111|separated-morphism>morphism|0.72||态射的基本性质之一
+1112|separated-morphism>fibred-product|0.74||对角线用纤维积定义
+1113|separated-morphism>scheme|0.76||概形的基本分离假设
+1114|yoneda-lemma>representable-functor|0.92||可表性理论的语言基础
+1115|yoneda-lemma>moduli-space|0.84||模空间即分类函子的可表性
+1116|yoneda-lemma>hilbert-scheme|0.76||希尔伯特函子的可表性
+1117|yoneda-lemma>b-picard-group|0.72||皮卡函子的可表性
+1118|yoneda-lemma>stack|0.7||叠是可表性的推广
+1119|grothendieck-topology>etale-cohomology|0.88||平展拓扑给出 ℓ 进上同调
+1120|grothendieck-topology>descent|0.86||拓扑的定义就是为了下降
+1121|grothendieck-topology>sheaf|0.84||层论可以在任意拓扑上定义
+1122|grothendieck-topology>etale-morphism|0.78||平展覆盖是核心例子
+1123|grothendieck-topology>a-faithfully-flat|0.74||fppf 拓扑用忠实平坦覆盖
+1124|grothendieck-topology>derived-algebraic-geometry|0.66||导出几何也用这套语言
+1125|descent>a-faithfully-flat|0.84||忠实平坦下降
+1126|descent>a-quasi-coherent|0.8||拟凝聚层的扎里斯基下降
+1127|descent>cech-cohomology|0.82||障碍落在 Čech H¹
+1128|descent>sheaf|0.86||层的定义就是可下降
+1129|descent>stack|0.78||叠是"下降数据"的几何化
+1130|descent>invertible-sheaf|0.7||向量丛的下降
+1131|ruled-surface>b-enriques-kodaira|0.84||分类中的 κ = −∞ 情形
+1132|ruled-surface>surface-classification|0.82||曲面分类的基本族
+1133|ruled-surface>b-projective-bundle|0.86||直纹面是 ℙ(𝓔)
+1134|ruled-surface>b-noether-formula|0.72||不变量可由公式算出
+1135|ruled-surface>blowup|0.7||𝔽₁ 是 ℙ² 爆破一点
+1136|rational-surface>b-castelnuovo-criterion|0.86||有理性的判据
+1137|rational-surface>birational|0.84||双有理等价于 ℙ²
+1138|rational-surface>castelnuovo|0.76||卡斯泰尔诺沃的工作
+1139|rational-surface>blowup|0.82||所有有理曲面由爆破得到
+1140|rational-surface>ruled-surface|0.8||极小有理曲面是直纹面
+1141|rational-surface>b-riemann-roch-surface|0.68||用 RR 计算不变量
+1142|del-pezzo>fano|0.88||del Pezzo 是二维 Fano
+1143|del-pezzo>c-moduli-fano|0.72||Fano 模空间的最低维情形
+1144|del-pezzo>blowup|0.82||由 ℙ² 爆破点得到
+1145|del-pezzo>canonical-sheaf|0.74||反典范丰沛是其定义
+1146|del-pezzo>b-picard-group|0.7||皮卡群与 (-1) 曲线构型
+1147|iitaka-fibration>kodaira-dimension|0.88||按小平维数纤维化
+1148|iitaka-fibration>abundance|0.78||丰沛猜想与纤维化相关
+1149|iitaka-fibration>mmp|0.74||极小模型纲领的一环
+1150|iitaka-fibration>birational|0.7||双有理意义的纤维化
+1151|iitaka-fibration>c-abundance-conjecture|0.72||加法公式是核心猜想
+1152|canonical-model>kodaira-dimension|0.86||κ ≥ 0 时存在
+1153|canonical-model>c-abundance-conjecture|0.8||有限生成性是 MMP 成果
+1154|canonical-model>mmp|0.78||典范模型是 MMP 的目标
+1155|canonical-model>b-canonical-embedding|0.82||典范嵌入
+1156|canonical-model>adjunction|0.72||伴随公式决定 K 的行为
+1157|canonical-model>b-hodge-moduli|0.6||周期映射的靶空间
+1158|flop>flip|0.9||flop 与 flip 是姊妹操作
+1159|flop>mmp|0.84||极小模型间的连通性
+1160|flop>b-mori-cone|0.8||收缩映射来自极端射线
+1161|flop>c-orlov|0.74||Bondal–Orlov 定理
+1162|flop>c-fourier-mukai|0.78||flop 给出 FM 等价
+1163|flop>b-blowup-surface|0.62||曲面上的例外情形
+1164|flop>c-termination|0.58||纲领中的终止性问题
+1165|kahler-manifold>hodge-theory|0.9||霍奇理论的舞台
+1166|kahler-manifold>hodge-decomposition|0.86||凯勒条件保证分解
+1167|kahler-manifold>a-hodge-de-rham|0.78||de Rham 复形与霍奇滤过
+1168|kahler-manifold>c-hyperkaehler|0.76||超凯勒是特殊凯勒流形
+1169|kahler-manifold>b-hodge-diamond|0.72||霍奇菱形的对称性
+1170|hodge-decomposition>hodge-theory|0.92||霍奇理论的核心定理
+1171|hodge-decomposition>hodge-conjecture|0.84||猜想问的是分解中的代数类
+1172|hodge-decomposition>b-hodge-diamond|0.86||贝蒂数与霍奇数
+1173|hodge-decomposition>c-hodge-structure-vhs|0.78||霍奇结构的形变
+1174|hodge-decomposition>b-hodge-index|0.74||霍奇指标定理
+1175|hodge-decomposition>projective-cohomology|0.72||射影簇的上同调分解
+1176|theta-functions>abelian-variety|0.88||theta 函数给出射影嵌入
+1177|theta-functions>jacobian|0.86||雅可比簇上的 theta 除子
+1178|theta-functions>b-abelian-polarization|0.82||极化与 theta 群
+1179|theta-functions>elliptic-curve|0.76||g = 1 时的经典情形
+1180|theta-functions>c-lattice-torelli|0.66||格与周期的对应
+1181|neron-severi>b-picard-group|0.9||NS 是 Pic 模去 Pic⁰
+1182|neron-severi>hodge-conjecture|0.84||霍奇猜想的比较对象
+1183|neron-severi>intersection-number|0.8||相交型定义在 NS 上
+1184|neron-severi>b-nakai-surface|0.76||Nakai–Moishezon 判据
+1185|neron-severi>k3-surface|0.78||K3 的皮卡数决定模空间
+1186|neron-severi>b-k3-properties|0.72||K3 的格结构
+1187|modular-curve>elliptic-curve|0.86||参数化椭圆曲线
+1188|modular-curve>jacobian|0.74||Hecke 作用在雅可比上
+1189|modular-curve>b-tate-module|0.7||ℓ 进表示来自模曲线
+1190|modular-curve>langlands|0.76||模性定理与朗兰兹
+1191|modular-curve>moduli-space|0.8||作为模空间的几何
+1192|modular-curve>c-dm-stack|0.62||带 level 结构的精细模空间
+1193|donaldson-uhlenbeck-yau>b-stable-bundle|0.9||稳定性是定理的代数侧
+1194|donaldson-uhlenbeck-yau>b-narasimhan|0.78||半稳定性与 HN 滤过
+1195|donaldson-uhlenbeck-yau>k-stability|0.8||K-稳定性的原型
+1196|donaldson-uhlenbeck-yau>c-k-moduli|0.7||模空间的分析侧
+1197|donaldson-uhlenbeck-yau>c-git-quotient|0.72||稳定性概念的几何来源
+1198|donaldson-uhlenbeck-yau>kahler-manifold|0.76||定理要求凯勒流形
+1199|hitchin-fibration>c-hms|0.76||谱曲线与镜像对称
+1200|hitchin-fibration>moduli-space|0.78||Higgs 丛模空间
+1201|hitchin-fibration>langlands|0.82||基本引理的几何证明
+1202|hitchin-fibration>c-gauss-manin|0.66||可积系统的几何
+1203|hitchin-fibration>b-stable-bundle|0.72||Higgs 丛的稳定性
+1204|hitchin-fibration>c-hyperkaehler|0.74||模空间上的超凯勒结构
+1205|serre-finiteness-thm>serre-finiteness|0.9||有限性定理的正式表述
+1206|serre-finiteness-thm>proper-morphism|0.84||紧合性是前提
+1207|serre-finiteness-thm>cohomology-base-change|0.76||与基变换定理配套
+1208|serre-finiteness-thm>sheaf-cohomology|0.82||保证上同调有限维
+1209|serre-finiteness-thm>coherent-sheaf|0.8||凝聚层是高阶像保持的对象
+1210|serre-finiteness-thm>b-grauert|0.74||格劳尔特定理的另一半
+1211|serre-finiteness-thm>projective-cohomology|0.72||射影情形的直接推论
+1212|ample-line-bundle>a-ample|0.9||丰沛性的完整判据
+1213|ample-line-bundle>invertible-sheaf|0.84||丰沛性定义在线丛上
+1214|ample-line-bundle>b-linear-system-dim|0.78||截面给出线性系统

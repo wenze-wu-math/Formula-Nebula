@@ -1,0 +1,94 @@
+{
+ "out": [
+  {
+   "id": "cn-jacobian",
+   "lang": "en",
+   "len": 49277,
+   "rev": {
+    "user": "~2026-49193-44",
+    "temp": "",
+    "timestamp": "2026-09-11T15:52:16Z"
+   },
+   "found": [
+    "Alpöge",
+    "2026",
+    "counterexample",
+    "Claude",
+    "n > 2",
+    "three variables"
+   ],
+   "years": [
+    "2025",
+    "2026"
+   ]
+  },
+  {
+   "id": "cn-riemann",
+   "lang": "en",
+   "len": 134706,
+   "rev": {
+    "user": "Anas Riaz",
+    "timestamp": "2026-09-04T06:10:27Z"
+   },
+   "found": [
+    "2026",
+    "two-thirds",
+    "Claude",
+    "Anthropic",
+    "critical line"
+   ],
+   "years": [
+    "2026"
+   ]
+  },
+  {
+   "id": "cn-collatz",
+   "lang": "en",
+   "len": 58038,
+   "rev": {
+    "user": "Bendono",
+    "timestamp": "2026-09-10T00:28:50Z"
+   },
+   "found": [
+    "2026",
+    "Lean",
+    "Nanoda",
+    "disproof",
+    "invalid"
+   ],
+   "years": [
+    "2024",
+    "2025",
+    "2026"
+   ]
+  },
+  {
+   "id": "cn-kakeya",
+   "lang": "en",
+   "len": 18345,
+   "rev": {
+    "user": "FireflySentinel",
+    "timestamp": "2026-09-11T08:12:32Z"
+   },
+   "found": [
+    "2025",
+    "Wang",
+    "Zahl",
+    "three-dimensional",
+    "Fields Medal",
+    "2026"
+   ],
+   "years": [
+    "2025",
+    "2026"
+   ]
+  }
+ ],
+ "arxivOut": {
+  "jacobian-alpoge": [],
+  "jacobian-counterexample": [],
+  "kakeya-3d": [],
+  "riemann-66": [],
+  "navier-stokes-singularity": []
+ }
+}

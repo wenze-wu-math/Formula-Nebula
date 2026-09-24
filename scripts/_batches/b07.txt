@@ -1,0 +1,135 @@
+ 945|c-tt-geometry>c-deformation-theory|0.8|related|形变理论的延拓
+ 946|c-tt-geometry>c-kodaira-spencer|0.78|related|以 Kodaira–Spencer 类为对象
+ 947|c-tt-geometry>k-stability|0.7|related|与稳定性理论交汇
+ 948|c-hyperkaehler>k3-surface|0.85|related|K3 是超凯勒曲面
+ 949|c-hyperkaehler>moduli-space|0.78|related|模空间常是超凯勒的
+ 950|c-beauville-bogomolov>c-hyperkaehler|0.85|related|超凯勒流形上的二次型
+ 951|c-beauville-bogomolov>k3-surface|0.75|equivalent|K3 上即相交型
+ 952|c-lattice-torelli>c-beauville-bogomolov|0.85|defines|由格与周期刻画
+ 953|c-lattice-torelli>c-hyperkaehler|0.82|related|超凯勒流形的分类
+ 954|c-lattice-torelli>c-torelli|0.78|related|Torelli 型定理
+ 955|c-tropical>mirror-symmetry|0.72|related|SYZ 图景的组合版本
+ 956|c-tropical>gromov-witten|0.75|analogy|Mikhalkin 对应定理
+ 957|c-tropical>c-berkovich|0.78|computes|在 Berkovich 空间上自然实现
+ 958|c-berkovich>c-padic-hodge|0.72|related|非阿基米德几何的语言
+ 959|c-padic-hodge>etale-cohomology|0.8|related|平展上同调的比较理论
+ 960|c-padic-hodge>c-perfectoid|0.82|related|完美胚空间是其技术核心
+ 961|c-padic-hodge>weil-conjectures|0.7|related|算术几何的上同调基础
+ 962|c-perfectoid>c-condensed|0.7|related|与凝聚数学交汇
+ 963|c-perfectoid>etale-cohomology|0.75|property|tilting 保持平展上同调
+ 964|c-condensed>derived-algebraic-geometry|0.65|sameFamily|同属当代基础重构
+ 965|c-condensed-analytic>c-condensed|0.88|related|以凝聚数学为基础
+ 966|c-condensed-analytic>c-berkovich|0.68|related|统一复与 p 进解析几何
+ 967|c-condensed-analytic>c-padic-hodge|0.65|related|p 进解析几何的框架
+ 968|c-derived-scheme>derived-algebraic-geometry|0.92|related|导出几何的基本对象
+ 969|c-derived-scheme>c-virtual-fundamental|0.85|related|虚拟基本类的框架
+ 970|c-derived-scheme>derived-category|0.78|related|以导出范畴为语言
+ 971|c-derived-scheme>c-perfect-complex|0.8|defines|用完美复形定义
+ 972|c-virtual-fundamental>derived-algebraic-geometry|0.85|computes|导出框架下的构造
+ 973|c-virtual-fundamental>c-obstruction|0.82|depends|依赖障碍理论
+ 974|c-virtual-fundamental>c-perfect-complex|0.78|defines|用完美复形定义虚拟维数
+ 975|c-perfect-complex>derived-category|0.82|analogy|导出范畴中的向量丛类比
+ 976|c-perfect-complex>k-theory|0.8|related|完美复形给出 K 理论模型
+ 977|c-riemann-hilbert>derived-category|0.8|analogy|导出范畴版本的对应
+ 978|c-riemann-hilbert>c-d-module|0.88|depends|D-模理论的出发点
+ 979|c-riemann-hilbert>c-perverse|0.85|analogy|正则完整 D-模对应反常层
+ 980|c-d-module>c-perverse|0.8|related|与反常层对偶
+ 981|c-d-module>sheaf-cohomology|0.7|defines|解层由 RHom 给出
+ 982|c-perverse>derived-category|0.75|related|导出范畴的 Abel 子范畴
+ 983|c-perverse>a-verdier-duality|0.7|related|Verdier 对偶的正确范畴
+ 984|c-fourier-mukai>derived-category|0.9|equivalent|范畴等价的通用框架
+ 985|c-fourier-mukai>c-hms|0.82|equivalent|同调镜像对称中的等价
+ 986|c-orlov>c-fourier-mukai|0.88|equivalent|等价必由 FM 核给出
+ 987|c-orlov>c-bondal-orlov|0.85|related|重构定理
+ 988|c-orlov>derived-category|0.8|equivalent|导出范畴等价的性质
+ 989|c-bondal-orlov>derived-category|0.82|related|范畴决定几何
+ 990|c-bondal-orlov>fano|0.75|property|对 Fano 簇成立
+ 991|c-mukai-pair>c-fourier-mukai|0.82|equivalent|FM 等价诱导的配对
+ 992|c-mukai-pair>hodge-theory|0.78|property|保持 Hodge 结构
+ 993|c-mukai-pair>c-hms|0.72|related|镜像映射的来源
+ 994|hilbert-basis-theorem>noetherian|0.92|related|基定理是关于诺特环的核心定理
+ 995|hilbert-basis-theorem>coordinate-ring|0.8|property|保证坐标环有限生成
+ 996|hilbert-basis-theorem>noether-normalization|0.78|related|两者是诺特理论的姊妹定理
+ 997|hilbert-basis-theorem>krull-dim|0.72|implies|有限生成 ⇒ 维数有限
+ 998|krull-height>krull-dim|0.93|related|整体维数是局部高度的上确界
+ 999|krull-height>regular-local-ring|0.84|equivalent|正则局部环 = 维数等于嵌入维数
+1000|krull-height>dimension|0.82|related|高度的几何含义是余维数
+1001|krull-height>intersection-number|0.68|related|主理想定理给出交维数上界
+1002|krull-height>nakayama|0.6|sameFamily|同属局部环的基本工具
+1003|lying-over>noether-normalization|0.74|related|整扩张使谱映射满射
+1004|lying-over>valuation-ring|0.62|property|提升性质与赋值环相关
+1005|going-down>flat-morphism|0.78|depends|下降定理需要平坦性
+1006|going-down>a-flatness-criterion|0.7|defines|平坦性判据的谱层面表述
+1007|going-down>dimension-fiber|0.72|property|保证纤维维数不膨胀
+1008|hensels-lemma>a-completion|0.85|generalizes|完备局部环是亨泽尔环的原型
+1009|hensels-lemma>formal-scheme|0.76|related|形式几何的基本提升引理
+1010|hensels-lemma>etale-morphism|0.72|defines|亨泽尔环上可定义隐函数定理
+1011|hensels-lemma>a-formal-power-series|0.7|related|幂级数环是完备环
+1012|excellent-ring>a-completion|0.7|property|优秀性保证完备化不丢性质
+1013|excellent-ring>resolution|0.66|related|消解奇点在优秀环上可施行
+1014|excellent-ring>c-hironaka|0.62|depends|特征零消解依赖优秀性
+1015|auslander-buchsbaum>a-depth|0.9|related|公式把深度与投射维数锁在一起
+1016|auslander-buchsbaum>a-regular-sequence|0.78|defines|深度由正则序列定义
+1017|auslander-buchsbaum>regular-local-ring|0.82|equivalent|投射维数有限 ⟺ 正则
+1018|auslander-buchsbaum>a-ext-tor|0.74|depends|证明依赖 Ext 的长正合列
+1019|auslander-buchsbaum>a-koszul|0.62|related|Koszul 复形给出具体分解
+1020|gorenstein-ring>a-cohen-macaulay|0.88|related|戈伦斯坦是特殊的 CM 环
+1021|gorenstein-ring>a-dualizing-complex|0.86|depends|典范模来自对偶复形
+1022|gorenstein-ring>serre-duality|0.8|related|对偶理论在戈伦斯坦环上运作
+1023|gorenstein-ring>canonical-sheaf|0.78|related|典范层在戈伦斯坦情形最简单
+1024|gorenstein-ring>c-rational-singularities|0.64|related|戈伦斯坦有理奇点的特殊性
+1025|serre-normality-criterion>normalization|0.86|defines|判据给出何时已正规
+1026|serre-normality-criterion>a-integral-closure|0.84|equivalent|整闭即正规
+1027|serre-normality-criterion>a-depth|0.76|related|S₂ 条件用深度表述
+1028|serre-normality-criterion>a-dvr|0.74|related|高度 1 处要求是 DVR
+1029|serre-normality-criterion>singularity|0.7|related|指出奇点必在余维 1 或 S₂
+1030|serre-normality-criterion>a-cohen-macaulay|0.72|related|S₂ 是 CM 条件的一半
+1031|serre-normality-criterion>a-associated-primes|0.62|defines|用极小素理想刻画
+1032|rees-algebra>blowup|0.88|related|爆破就是里斯代数的 Proj
+1033|rees-algebra>b-normal-cone|0.82|related|关联分次环描述法锥
+1034|rees-algebra>b-hilbert-polynomial|0.72|related|希尔伯特函数的多项式性
+1035|rees-algebra>a-primary-decomposition|0.58|related|理想幂的渐近行为
+1036|graded-ring>b-hilbert-polynomial|0.9|depends|希尔伯特多项式来自分次环
+1037|graded-ring>projective-cohomology|0.78|computes|Proj 构造需要分次环
+1038|graded-ring>hilbert-scheme|0.74|related|希尔伯特概形由希尔伯特多项式分层
+1039|graded-ring>dimension|0.76|equivalent|多项式次数 = 维数 − 1
+1040|graded-ring>c-hilbert-mumford|0.68|defines|希尔伯特–芒福德判据用分次坐标
+1041|local-cohomology>a-depth|0.84|related|深度是第一个非零局部上同调
+1042|local-cohomology>grothendieck-vanishing|0.9|property|消没定理是它的基本性质
+1043|local-cohomology>a-dualizing-complex|0.8|related|局部对偶用局部上同调表述
+1044|local-cohomology>c-zariski-main|0.68|related|扎里斯基连通性定理的应用
+1045|local-cohomology>a-serre-affine|0.62|computes|仿射情形的计算基础
+1046|grothendieck-vanishing>krull-dim|0.8|defines|消没界限由维数给出
+1047|grothendieck-vanishing>sheaf-cohomology|0.72|related|与整体上同调的对照
+1048|grothendieck-vanishing>serre-vanishing|0.7|related|同为消没型定理
+1049|castelnuovo-mumford-regularity>b-hilbert-polynomial|0.78|equivalent|正则性与希尔伯特函数互通
+1050|castelnuovo-mumford-regularity>sheaf-cohomology|0.8|defines|定义在高阶上同调上
+1051|castelnuovo-mumford-regularity>c-boundedness|0.74|related|有界性的技术基础
+1052|castelnuovo-mumford-regularity>a-ample|0.7|related|与丰沛层扭曲的关系
+1053|castelnuovo-mumford-regularity>hilbert-scheme|0.72|defines|希尔伯特概形需要有限判据
+1054|formal-functions-theorem>formal-scheme|0.88|related|形式完备化的比较
+1055|formal-functions-theorem>a-stein-factorization|0.72|related|同为局部到整体的工具
+1056|formal-functions-theorem>a-completion|0.8|related|完备化是定理的舞台
+1057|formal-functions-theorem>proper-morphism|0.7|depends|紧合性是定理前提
+1058|formal-functions-theorem>local-cohomology|0.68|related|定理可用局部上同调陈述
+1059|artin-approximation>c-obstruction|0.72|related|逼近定理使障碍分析落地
+1060|artin-approximation>schlessinger|0.78|defines|同为模空间存在性的判据
+1061|artin-approximation>a-completion|0.82|related|形式解 → 真正解
+1062|artin-approximation>c-deformation-theory|0.76|related|形变理论的存在性工具
+1063|artin-approximation>etale-morphism|0.7|related|结论允许平展基变换
+1064|schlessinger>c-deformation-theory|0.88|defines|形变函子的可表性判据
+1065|schlessinger>moduli-space|0.84|related|决定模空间是否存在
+1066|schlessinger>c-obstruction|0.78|related|障碍消没是条件之一
+1067|schlessinger>representable-functor|0.8|related|形式可表性
+1068|schlessinger>stack|0.72|related|不可表时改用栈
+1069|cotangent-complex>a-kahler-differential|0.9|related|H⁰ 就是 Kähler 微分
+1070|cotangent-complex>obstruction-theory|0.84|related|障碍类的载体
+1071|cotangent-complex>derived-algebraic-geometry|0.8|related|导出几何的基本对象
+1072|cotangent-complex>smooth-morphism|0.78|related|光滑性由余切复形判定
+1073|cotangent-complex>tangent-space|0.74|related|对偶地给出切空间
+1074|cotangent-complex>c-deformation-theory|0.76|related|形变理论的核心工具
+1075|obstruction-theory>c-deformation-theory|0.9|related|障碍理论是形变的一半
+1076|obstruction-theory>moduli-space|0.82|related|决定模空间的局部形状
+1077|obstruction-theory>c-kodaira-spencer|0.8|related|KS 映射给出切空间
+1078|obstruction-theory>k-stability|0.62|depends|模空间紧化的技术前提
+1079|formal-deformation>c-deformation-theory|0.86|related|形式形变是标准范式
