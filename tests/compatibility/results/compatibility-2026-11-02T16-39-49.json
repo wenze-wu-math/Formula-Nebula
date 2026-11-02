@@ -1,0 +1,274 @@
+{
+  "allResults": [
+    {
+      "browser": "Chrome Latest",
+      "config": {
+        "name": "Chrome Latest",
+        "os": "Windows",
+        "os_version": "11",
+        "browser": "Chrome",
+        "browser_version": "latest",
+        "resolution": "1920x1080"
+      },
+      "scenarios": [
+        {
+          "name": "Initial Load",
+          "description": "Page loads and renders the 3D scene",
+          "passed": true,
+          "duration": 1073.16776907873,
+          "details": {}
+        },
+        {
+          "name": "3D Scene Rendering",
+          "description": "Three.js scene initializes correctly",
+          "passed": true,
+          "duration": 695.5927813271335,
+          "details": {}
+        },
+        {
+          "name": "Math Rendering",
+          "description": "KaTeX renders formulas correctly",
+          "passed": true,
+          "duration": 2178.6750615951246,
+          "details": {}
+        },
+        {
+          "name": "Interactive Controls",
+          "description": "Mouse/touch controls work",
+          "passed": true,
+          "duration": 1865.5446480177206,
+          "details": {}
+        },
+        {
+          "name": "Responsive Layout",
+          "description": "Layout adapts to viewport",
+          "passed": true,
+          "duration": 1947.5728882201283,
+          "details": {}
+        },
+        {
+          "name": "ES6 Module Support",
+          "description": "ES6 modules load correctly",
+          "passed": true,
+          "duration": 828.544197187694,
+          "details": {}
+        }
+      ],
+      "passed": 6,
+      "failed": 0,
+      "timestamp": "2026-11-02T16:39:49.814Z",
+      "success": true
+    },
+    {
+      "browser": "Chrome Previous",
+      "config": {
+        "name": "Chrome Previous",
+        "os": "Windows",
+        "os_version": "10",
+        "browser": "Chrome",
+        "browser_version": "latest-1",
+        "resolution": "1920x1080"
+      },
+      "scenarios": [
+        {
+          "name": "Initial Load",
+          "description": "Page loads and renders the 3D scene",
+          "passed": true,
+          "duration": 958.3090934255978,
+          "details": {}
+        },
+        {
+          "name": "3D Scene Rendering",
+          "description": "Three.js scene initializes correctly",
+          "passed": true,
+          "duration": 998.5344851577502,
+          "details": {}
+        },
+        {
+          "name": "Math Rendering",
+          "description": "KaTeX renders formulas correctly",
+          "passed": true,
+          "duration": 1139.2401053625617,
+          "details": {}
+        },
+        {
+          "name": "Interactive Controls",
+          "description": "Mouse/touch controls work",
+          "passed": true,
+          "duration": 2057.512679376497,
+          "details": {}
+        },
+        {
+          "name": "Responsive Layout",
+          "description": "Layout adapts to viewport",
+          "passed": true,
+          "duration": 1666.3301026129677,
+          "details": {}
+        },
+        {
+          "name": "ES6 Module Support",
+          "description": "ES6 modules load correctly",
+          "passed": true,
+          "duration": 2383.885774026101,
+          "details": {}
+        }
+      ],
+      "passed": 6,
+      "failed": 0,
+      "timestamp": "2026-11-02T16:39:49.815Z",
+      "success": true
+    }
+  ],
+  "matrix": {
+    "browsers": {
+      "Chrome Latest": {
+        "passed": 6,
+        "failed": 0,
+        "success": true,
+        "scenarios": [
+          {
+            "name": "Initial Load",
+            "description": "Page loads and renders the 3D scene",
+            "passed": true,
+            "duration": 1073.16776907873,
+            "details": {}
+          },
+          {
+            "name": "3D Scene Rendering",
+            "description": "Three.js scene initializes correctly",
+            "passed": true,
+            "duration": 695.5927813271335,
+            "details": {}
+          },
+          {
+            "name": "Math Rendering",
+            "description": "KaTeX renders formulas correctly",
+            "passed": true,
+            "duration": 2178.6750615951246,
+            "details": {}
+          },
+          {
+            "name": "Interactive Controls",
+            "description": "Mouse/touch controls work",
+            "passed": true,
+            "duration": 1865.5446480177206,
+            "details": {}
+          },
+          {
+            "name": "Responsive Layout",
+            "description": "Layout adapts to viewport",
+            "passed": true,
+            "duration": 1947.5728882201283,
+            "details": {}
+          },
+          {
+            "name": "ES6 Module Support",
+            "description": "ES6 modules load correctly",
+            "passed": true,
+            "duration": 828.544197187694,
+            "details": {}
+          }
+        ]
+      },
+      "Chrome Previous": {
+        "passed": 6,
+        "failed": 0,
+        "success": true,
+        "scenarios": [
+          {
+            "name": "Initial Load",
+            "description": "Page loads and renders the 3D scene",
+            "passed": true,
+            "duration": 958.3090934255978,
+            "details": {}
+          },
+          {
+            "name": "3D Scene Rendering",
+            "description": "Three.js scene initializes correctly",
+            "passed": true,
+            "duration": 998.5344851577502,
+            "details": {}
+          },
+          {
+            "name": "Math Rendering",
+            "description": "KaTeX renders formulas correctly",
+            "passed": true,
+            "duration": 1139.2401053625617,
+            "details": {}
+          },
+          {
+            "name": "Interactive Controls",
+            "description": "Mouse/touch controls work",
+            "passed": true,
+            "duration": 2057.512679376497,
+            "details": {}
+          },
+          {
+            "name": "Responsive Layout",
+            "description": "Layout adapts to viewport",
+            "passed": true,
+            "duration": 1666.3301026129677,
+            "details": {}
+          },
+          {
+            "name": "ES6 Module Support",
+            "description": "ES6 modules load correctly",
+            "passed": true,
+            "duration": 2383.885774026101,
+            "details": {}
+          }
+        ]
+      }
+    },
+    "features": {
+      "Initial Load": {
+        "browsers": {
+          "Chrome Latest": true,
+          "Chrome Previous": true
+        },
+        "totalPassed": 2,
+        "totalFailed": 0
+      },
+      "3D Scene Rendering": {
+        "browsers": {
+          "Chrome Latest": true,
+          "Chrome Previous": true
+        },
+        "totalPassed": 2,
+        "totalFailed": 0
+      },
+      "Math Rendering": {
+        "browsers": {
+          "Chrome Latest": true,
+          "Chrome Previous": true
+        },
+        "totalPassed": 2,
+        "totalFailed": 0
+      },
+      "Interactive Controls": {
+        "browsers": {
+          "Chrome Latest": true,
+          "Chrome Previous": true
+        },
+        "totalPassed": 2,
+        "totalFailed": 0
+      },
+      "Responsive Layout": {
+        "browsers": {
+          "Chrome Latest": true,
+          "Chrome Previous": true
+        },
+        "totalPassed": 2,
+        "totalFailed": 0
+      },
+      "ES6 Module Support": {
+        "browsers": {
+          "Chrome Latest": true,
+          "Chrome Previous": true
+        },
+        "totalPassed": 2,
+        "totalFailed": 0
+      }
+    }
+  }
+}
