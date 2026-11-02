@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公式诗云 · 师徒匹配系统演示</title>
+  <link rel="stylesheet" href="mentorship.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    #mentorship-marketplace {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="mentorship-marketplace"></div>
+
+  <script type="module">
+    import { initMentorshipMarketplace } from './mentorship-ui.js';
+
+    // 初始化师徒市场
+    document.addEventListener('DOMContentLoaded', () => {
+      const marketplace = initMentorshipMarketplace('mentorship-marketplace');
+      console.log('师徒匹配系统已启动', marketplace);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Licensing Test Suite</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .test-suite {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .test-case {
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 4px solid #ccc;
+            background: #f9f9f9;
+        }
+
+        .test-case.pass {
+            border-left-color: #4caf50;
+            background: #e8f5e9;
+        }
+
+        .test-case.fail {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+
+        .test-case.running {
+            border-left-color: #2196f3;
+            background: #e3f2fd;
+        }
+
+        .summary {
+            padding: 15px;
+            background: #333;
+            color: white;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .summary.pass {
+            background: #4caf50;
+        }
+
+        .summary.fail {
+            background: #f44336;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+
+        .error-details {
+            color: #c62828;
+            margin-top: 5px;
+            padding-left: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Enterprise Licensing Test Suite</h1>
+
+    <div>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="test-results"></div>
+    <div id="test-summary"></div>
+
+    <script type="module">
+        import { LicenseKey } from './LicenseKey.js';
+        import { UsageReporter } from './UsageReporter.js';
+        import { OfflineMode } from './OfflineMode.js';
+        import { SSOIntegration } from './SSOIntegration.js';
+        import { EnterpriseLicensing } from './EnterpriseLicensing.js';
+
+        // Test framework
+        class TestRunner {
+            constructor() {
+                this.tests = [];
+                this.results = [];
+                this.currentSuite = null;
+            }
+
+            suite(name, fn) {
+                this.currentSuite = name;
+                fn();
+                this.currentSuite = null;
+            }
+
+            test(name, fn) {
+                this.tests.push({
+                    suite: this.currentSuite,
+                    name,
+                    fn
+                });
+            }
+
+            async run() {
+                this.results = [];
+                const resultsEl = document.getElementById('test-results');
+                resultsEl.innerHTML = '';
+
+                for (const test of this.tests) {
+                    const testEl = this.createTestElement(test);
+                    resultsEl.appendChild(testEl);
+
+                    try {
+                        await test.fn();
+                        this.results.push({ test, passed: true });
+                        testEl.className = 'test-case pass';
+                        testEl.innerHTML = `✓ ${test.suite} - ${test.name}`;
+                    } catch (error) {
+                        this.results.push({ test, passed: false, error });
+                        testEl.className = 'test-case fail';
+                        testEl.innerHTML = `✗ ${test.suite} - ${test.name}`;
+
+                        const errorEl = document.createElement('div');
+                        errorEl.className = 'error-details';
+                        errorEl.textContent = error.message;
+                        testEl.appendChild(errorEl);
+                    }
+                }
+
+                this.showSummary();
+            }
+
+            createTestElement(test) {
+                const el = document.createElement('div');
+                el.className = 'test-case running';
+                el.textContent = `⏳ ${test.suite} - ${test.name}`;
+                return el;
+            }
+
+            showSummary() {
+                const summaryEl = document.getElementById('test-summary');
+                const passed = this.results.filter(r => r.passed).length;
+                const failed = this.results.filter(r => !r.passed).length;
+                const total = this.results.length;
+
+                summaryEl.className = `summary ${failed === 0 ? 'pass' : 'fail'}`;
+                summaryEl.innerHTML = `
+                    <strong>Test Summary</strong><br>
+                    Total: ${total} | Passed: ${passed} | Failed: ${failed}
+                `;
+            }
+        }
+
+        const runner = new TestRunner();
+        window.testRunner = runner;
+
+        // Assertion helpers
+        function assert(condition, message = 'Assertion failed') {
+            if (!condition) {
+                throw new Error(message);
+            }
+        }
+
+        function assertEqual(actual, expected, message) {
+            if (actual !== expected) {
+                throw new Error(message || `Expected ${expected}, got ${actual}`);
+            }
+        }
+
+        function assertThrows(fn, message) {
+            try {
+                fn();
+                throw new Error(message || 'Expected function to throw');
+            } catch (error) {
+                if (error.message.includes('Expected function to throw')) {
+                    throw error;
+                }
+            }
+        }
+
+        // Mock license data
+        const mockLicense = {
+            licenseId: 'test_lic_123',
+            customerId: 'test_cust_456',
+            customerName: 'Test Company',
+            type: 'enterprise',
+            seats: 10,
+            features: ['advanced_visualization', 'offline_mode', 'collaboration'],
+            activatedAt: new Date().toISOString(),
+            expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+        };
+
+        const mockEncodedLicense = btoa(JSON.stringify(mockLicense)) + '.mockSignature123';
+
+        // =====================================================
+        // LicenseKey Tests
+        // =====================================================
+        runner.suite('LicenseKey', () => {
+            runner.test('should decode license string', () => {
+                const manager = new LicenseKey();
+                const decoded = manager.decodeLicense(mockEncodedLicense);
+
+                assertEqual(decoded.licenseId, mockLicense.licenseId, 'License ID mismatch');
+                assertEqual(decoded.type, mockLicense.type, 'License type mismatch');
+            });
+
+            runner.test('should validate license properties', () => {
+                const manager = new LicenseKey();
+                manager.license = mockLicense;
+
+                const validation = manager.validateLicense();
+                assert(validation.valid, 'License should be valid');
+            });
+
+            runner.test('should detect expired license', () => {
+                const manager = new LicenseKey();
+                manager.license = {
+                    ...mockLicense,
+                    expiresAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+                };
+
+                const validation = manager.validateLicense();
+                assert(!validation.valid, 'Expired license should be invalid');
+            });
+
+            runner.test('should check seat availability', () => {
+                const manager = new LicenseKey();
+                manager.license = mockLicense;
+
+                assert(manager.canActivateSeat(5), 'Should allow activation with seats available');
+                assert(!manager.canActivateSeat(10), 'Should not allow activation with no seats');
+            });
+
+            runner.test('should get seat info', () => {
+                const manager = new LicenseKey();
+                manager.license = mockLicense;
+
+                const info = manager.getSeatInfo(3);
+                assertEqual(info.total, 10, 'Total seats mismatch');
+                assertEqual(info.used, 3, 'Used seats mismatch');
+                assertEqual(info.available, 7, 'Available seats mismatch');
+            });
+
+            runner.test('should check feature availability', () => {
+                const manager = new LicenseKey();
+                manager.license = mockLicense;
+
+                assert(manager.hasFeature('offline_mode'), 'Should have offline_mode feature');
+                assert(!manager.hasFeature('api_access'), 'Should not have api_access feature');
+            });
+
+            runner.test('should calculate days until expiration', () => {
+                const manager = new LicenseKey();
+                manager.license = mockLicense;
+
+                const days = manager.getDaysUntilExpiration();
+                assert(days > 360 && days <= 366, 'Days until expiration incorrect');
+            });
+        });
+
+        // =====================================================
+        // UsageReporter Tests
+        // =====================================================
+        runner.suite('UsageReporter', () => {
+            runner.test('should track events', () => {
+                const reporter = new UsageReporter({ batchSize: 100 });
+
+                reporter.trackEvent('test.event', { data: 'test' });
+
+                assert(reporter.events.length === 1, 'Event not tracked');
+                assertEqual(reporter.events[0].eventType, 'test.event', 'Event type mismatch');
+            });
+
+            runner.test('should track session start/end', () => {
+                const reporter = new UsageReporter({ batchSize: 100 });
+
+                reporter.trackSessionStart({ userId: 'user123' });
+                reporter.trackSessionEnd({ userId: 'user123', duration: 5000 });
+
+                assert(reporter.events.length === 2, 'Session events not tracked');
+            });
+
+            runner.test('should track feature usage', () => {
+                const reporter = new UsageReporter({ batchSize: 100 });
+
+                reporter.trackFeatureUsage('visualization', { action: 'create' });
+
+                const event = reporter.events.find(e => e.eventType === 'feature.used');
+                assert(event, 'Feature usage not tracked');
+                assertEqual(event.metadata.feature, 'visualization', 'Feature name mismatch');
+            });
+
+            runner.test('should generate statistics', () => {
+                const reporter = new UsageReporter({ batchSize: 100 });
+
+                reporter.trackFeatureUsage('feature1');
+                reporter.trackFeatureUsage('feature2');
+                reporter.trackEvent('custom.event');
+
+                const stats = reporter.getStatistics();
+                assertEqual(stats.totalEvents, 3, 'Total events mismatch');
+                assert(stats.featuresUsed.includes('feature1'), 'Feature1 not in stats');
+            });
+        });
+
+        // =====================================================
+        // OfflineMode Tests
+        // =====================================================
+        runner.suite('OfflineMode', () => {
+            runner.test('should validate offline license', () => {
+                const offline = new OfflineMode({ gracePeriodDays: 7 });
+
+                const validation = offline.validateOfflineLicense(mockLicense);
+
+                assert(validation.valid, 'Offline license should be valid');
+                assert(validation.canUseOffline, 'Should be able to use offline');
+            });
+
+            runner.test('should reject license without offline feature', () => {
+                const offline = new OfflineMode({ gracePeriodDays: 7 });
+                const licenseWithoutOffline = {
+                    ...mockLicense,
+                    features: ['visualization']
+                };
+
+                const validation = offline.validateOfflineLicense(licenseWithoutOffline);
+
+                assert(!validation.valid, 'Should reject license without offline feature');
+            });
+
+            runner.test('should queue actions for sync', () => {
+                const offline = new OfflineMode();
+
+                offline.queueAction('test.action', { data: 'test' });
+
+                assert(offline.syncQueue.length === 1, 'Action not queued');
+            });
+
+            runner.test('should get offline status', () => {
+                const offline = new OfflineMode();
+
+                const status = offline.getStatus();
+
+                assert('isOffline' in status, 'Missing isOffline in status');
+                assert('queuedActions' in status, 'Missing queuedActions in status');
+            });
+        });
+
+        // =====================================================
+        // SSOIntegration Tests
+        // =====================================================
+        runner.suite('SSOIntegration', () => {
+            runner.test('should generate random string', () => {
+                const sso = new SSOIntegration();
+
+                const str1 = sso.generateRandomString(32);
+                const str2 = sso.generateRandomString(32);
+
+                assertEqual(str1.length, 64, 'Random string length incorrect'); // 32 bytes = 64 hex chars
+                assert(str1 !== str2, 'Random strings should be unique');
+            });
+
+            runner.test('should check authentication status', () => {
+                const sso = new SSOIntegration();
+
+                assert(!sso.isAuthenticated(), 'Should not be authenticated initially');
+            });
+
+            runner.test('should check roles', () => {
+                const sso = new SSOIntegration();
+                sso.currentUser = {
+                    roles: ['admin', 'analyst']
+                };
+
+                assert(sso.hasRole('admin'), 'Should have admin role');
+                assert(!sso.hasRole('superuser'), 'Should not have superuser role');
+            });
+
+            runner.test('should check permissions', () => {
+                const sso = new SSOIntegration();
+                sso.currentUser = {
+                    permissions: ['read', 'write']
+                };
+
+                assert(sso.hasPermission('read'), 'Should have read permission');
+                assert(!sso.hasPermission('delete'), 'Should not have delete permission');
+            });
+        });
+
+        // =====================================================
+        // EnterpriseLicensing Integration Tests
+        // =====================================================
+        runner.suite('EnterpriseLicensing', () => {
+            runner.test('should initialize correctly', () => {
+                const licensing = new EnterpriseLicensing({
+                    enableSSO: true,
+                    enableUsageReporting: true,
+                    enableOfflineMode: true
+                });
+
+                assert(licensing.config.enableSSO, 'SSO should be enabled');
+                assert(licensing.config.enableUsageReporting, 'Usage reporting should be enabled');
+                assert(licensing.config.enableOfflineMode, 'Offline mode should be enabled');
+            });
+
+            runner.test('should generate unique session ID', () => {
+                const licensing = new EnterpriseLicensing();
+
+                const id1 = licensing.generateSessionId();
+                const id2 = licensing.generateSessionId();
+
+                assert(id1 !== id2, 'Session IDs should be unique');
+                assert(id1.startsWith('session_'), 'Session ID should have correct prefix');
+            });
+
+            runner.test('should track active sessions', () => {
+                const licensing = new EnterpriseLicensing();
+                licensing.initialized = true;
+
+                licensing.activeSessions.set('user1', {
+                    sessionId: 'sess1',
+                    userId: 'user1'
+                });
+
+                const sessions = licensing.getActiveSessions();
+                assertEqual(sessions.length, 1, 'Should have 1 active session');
+            });
+        });
+
+        // Run tests button
+        window.runAllTests = async function() {
+            await runner.run();
+        };
+
+        window.clearResults = function() {
+            document.getElementById('test-results').innerHTML = '';
+            document.getElementById('test-summary').innerHTML = '';
+        };
+
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            console.log('Test suite loaded. Click "Run All Tests" to begin.');
+        });
+    </script>
+</body>
+</html>

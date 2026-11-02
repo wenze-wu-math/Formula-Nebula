@@ -1,0 +1,129 @@
+# Prometheus Configuration for Formula Nebula
+# Documentation: https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+
+global:
+  scrape_interval: 15s      # Scrape targets every 15 seconds
+  scrape_timeout: 10s       # Timeout after 10 seconds
+  evaluation_interval: 15s  # Evaluate rules every 15 seconds
+
+  # Attach these labels to all time series
+  external_labels:
+    cluster: 'formula-nebula'
+    environment: 'production'
+    monitor: 'main-monitor'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'localhost:9093'
+      timeout: 10s
+      api_version: v2
+
+# Load rules and evaluate them according to the global 'evaluation_interval'
+rule_files:
+  - 'alerts.yaml'
+  - 'recording_rules.yaml'
+
+# Scrape configuration
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus'
+          tier: 'monitoring'
+
+  # Formula Nebula application metrics
+  - job_name: 'formula-nebula-app'
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets:
+          - 'localhost:3000'
+        labels:
+          service: 'formula-nebula'
+          tier: 'frontend'
+          component: 'web-app'
+
+  # Node.js server metrics (collaboration server)
+  - job_name: 'formula-nebula-collab'
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets:
+          - 'localhost:8080'
+        labels:
+          service: 'formula-nebula'
+          tier: 'backend'
+          component: 'collaboration-server'
+
+  # Node exporter for system metrics
+  - job_name: 'node-exporter'
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+          - 'localhost:9100'
+        labels:
+          service: 'node-exporter'
+          tier: 'infrastructure'
+
+  # Pushgateway for batch jobs
+  - job_name: 'pushgateway'
+    honor_labels: true
+    static_configs:
+      - targets:
+          - 'localhost:9091'
+        labels:
+          service: 'pushgateway'
+          tier: 'monitoring'
+
+  # Blackbox exporter for endpoint monitoring
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - http://localhost:3000
+        - http://localhost:8080/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115
+
+# Remote write configuration (for long-term storage)
+remote_write:
+  - url: 'http://localhost:9201/api/v1/push'
+    name: 'thanos'
+    queue_config:
+      capacity: 10000
+      max_shards: 10
+      min_shards: 1
+      max_samples_per_send: 5000
+      batch_send_deadline: 5s
+
+# Remote read configuration
+remote_read:
+  - url: 'http://localhost:9201/api/v1/read'
+    name: 'thanos'
+    read_recent: true
+
+# Storage configuration
+storage:
+  tsdb:
+    path: /var/lib/prometheus/data
+    retention:
+      time: 15d
+      size: 50GB
+
+# Tracing configuration
+tracing:
+  endpoint: 'localhost:4317'
+  insecure: true
+  sampling_fraction: 0.1

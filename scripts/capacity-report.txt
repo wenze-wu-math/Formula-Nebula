@@ -1,0 +1,107 @@
+══════════════════════════════════════════════════════════════════════
+Formula Nebula Capacity Planning Report
+══════════════════════════════════════════════════════════════════════
+
+EXECUTIVE SUMMARY
+----------------------------------------------------------------------
+Target Capacity: 100,000 concurrent users
+Current Max Tested: 10,000 users
+Estimated Monthly Cost: $1892.05
+Critical Issues: 0
+
+IDENTIFIED BOTTLENECKS
+----------------------------------------------------------------------
+1. Render Performance [HIGH]
+   Current: 2200ms | Target: 2000ms
+   Impact: Initial render is slow, poor UX
+   Recommendations:
+     - Implement progressive loading for formulas
+     - Use Web Workers for graph layout
+     - Optimize Three.js scene (reduce draw calls)
+     - Implement LOD (Level of Detail) system
+     - Cache texture baking results
+     - Use instanced rendering for particles
+
+2. Memory Usage [HIGH]
+   Current: 0.5MB per user | Target: 0.4096MB per user
+   Impact: Server OOM under high load
+   Recommendations:
+     - Implement connection pooling
+     - Add memory limits per connection
+     - Use streaming for large datasets
+     - Implement lazy loading for proof content
+     - Optimize data structures (use typed arrays)
+     - Enable garbage collection tuning
+
+CAPACITY REQUIREMENTS
+----------------------------------------------------------------------
+Application Servers:
+  Count: 1
+  CPU per instance: 4 cores
+  Memory per instance: 4096MB
+  Total CPU: 4 cores
+  Total Memory: 4096MB
+
+WebSocket Servers:
+  Count: 2
+  Connections per server: 10000
+
+Database:
+  Max connections: 100
+  CPU: 8 cores
+  Memory: 16GB
+  Storage: 500GB SSD
+
+AUTO-SCALING STRATEGY
+----------------------------------------------------------------------
+Horizontal Scaling Rules:
+  - CPU > 70% → Add 1 app server instance (cooldown: 5 minutes)
+  - Memory > 80% → Add 1 app server instance (cooldown: 5 minutes)
+  - Response time p95 > 800ms → Add 1 app server instance (cooldown: 3 minutes)
+  - WS connections > 8000 per server → Add 1 WebSocket server (cooldown: 2 minutes)
+
+Scaling Limits:
+  Max app servers: 2
+  Max WS servers: 4
+  Scale-down threshold: 30% capacity for 10 minutes
+
+COST ESTIMATION
+----------------------------------------------------------------------
+Monthly Costs:
+  Compute: $918.05
+  Storage: $73.00
+  Network: $901.00
+  TOTAL: $1892.05/month ($22704.58/year)
+
+RECOMMENDATIONS
+----------------------------------------------------------------------
+SHORT-TERM (Month 1-3):
+  [HIGH] Implement CDN
+    Rationale: Offload static assets, reduce origin server load by ~70%
+    Est. Savings: $500-1000/month at scale
+  [HIGH] Add Redis caching
+    Rationale: Cache formula textures, graph data, reduce DB load
+    Est. Improvement: 50-70% reduction in response time
+  [MEDIUM] Optimize bundle size
+    Rationale: Current bundle includes KaTeX + Three.js, implement code splitting
+    Est. Improvement: 30-40% faster initial load
+
+LONG-TERM (Month 6+):
+  [HIGH] Implement microservices architecture
+    Rationale: Independent scaling, better resource utilization
+    Components:
+      - Static asset service (CDN)
+      - API gateway
+      - Graph computation service
+      - WebSocket collaboration service
+      - Proof rendering service
+  [MEDIUM] Add edge computing
+    Rationale: Deploy to multiple regions, reduce latency for global users
+    Est. Improvement: 50-200ms latency reduction
+  [MEDIUM] Implement progressive rendering
+    Rationale: Load visible formulas first, lazy-load others
+    Est. Improvement: 60-80% faster time-to-interactive
+
+══════════════════════════════════════════════════════════════════════
+Report generated: 2026-11-02T15:28:27.328Z
+══════════════════════════════════════════════════════════════════════

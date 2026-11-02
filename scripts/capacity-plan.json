@@ -1,0 +1,220 @@
+{
+  "timestamp": "2026-11-02T15:28:27.331Z",
+  "bottlenecks": [
+    {
+      "category": "Render Performance",
+      "severity": "high",
+      "current": "2200ms",
+      "target": "2000ms",
+      "impact": "Initial render is slow, poor UX",
+      "recommendations": [
+        "Implement progressive loading for formulas",
+        "Use Web Workers for graph layout",
+        "Optimize Three.js scene (reduce draw calls)",
+        "Implement LOD (Level of Detail) system",
+        "Cache texture baking results",
+        "Use instanced rendering for particles"
+      ]
+    },
+    {
+      "category": "Memory Usage",
+      "severity": "high",
+      "current": "0.5MB per user",
+      "target": "0.4096MB per user",
+      "impact": "Server OOM under high load",
+      "recommendations": [
+        "Implement connection pooling",
+        "Add memory limits per connection",
+        "Use streaming for large datasets",
+        "Implement lazy loading for proof content",
+        "Optimize data structures (use typed arrays)",
+        "Enable garbage collection tuning"
+      ]
+    }
+  ],
+  "capacity": {
+    "current": {
+      "vus": 10000,
+      "rps": "248.89",
+      "responseTime": "156ms"
+    },
+    "target": {
+      "vus": 100000,
+      "estimatedRPS": "2488.89",
+      "targetResponseTime": "500ms"
+    },
+    "capacity": {
+      "appServers": {
+        "count": 1,
+        "cpu": 4,
+        "memory": "4096MB",
+        "totalCPU": 4,
+        "totalMemory": "4096MB"
+      },
+      "wsServers": {
+        "count": 2,
+        "cpu": 2,
+        "memory": "2048MB",
+        "connectionsPerServer": 10000
+      },
+      "database": {
+        "connections": 100,
+        "cpu": 8,
+        "memory": "16GB",
+        "storage": "500GB SSD",
+        "replicas": 2
+      },
+      "cache": {
+        "type": "Redis",
+        "cpu": 4,
+        "memory": "8GB",
+        "replicas": 2
+      },
+      "cdn": {
+        "bandwidth": "100GB/day",
+        "requests": "10M/day"
+      }
+    }
+  },
+  "scaling": {
+    "horizontal": [
+      {
+        "metric": "CPU > 70%",
+        "action": "Add 1 app server instance",
+        "cooldown": "5 minutes"
+      },
+      {
+        "metric": "Memory > 80%",
+        "action": "Add 1 app server instance",
+        "cooldown": "5 minutes"
+      },
+      {
+        "metric": "Response time p95 > 800ms",
+        "action": "Add 1 app server instance",
+        "cooldown": "3 minutes"
+      },
+      {
+        "metric": "WS connections > 8000 per server",
+        "action": "Add 1 WebSocket server",
+        "cooldown": "2 minutes"
+      }
+    ],
+    "vertical": [
+      {
+        "condition": "Sustained high CPU (>80%) despite scaling",
+        "action": "Upgrade to larger instance type",
+        "note": "Consider 8-core instances"
+      },
+      {
+        "condition": "Memory pressure with frequent GC",
+        "action": "Increase memory to 8GB per instance",
+        "note": "Profile memory usage first"
+      }
+    ],
+    "limits": {
+      "maxAppServers": 2,
+      "maxWSServers": 4,
+      "scaleDownThreshold": "30% capacity for 10 minutes"
+    }
+  },
+  "costs": {
+    "breakdown": {
+      "compute": {
+        "appServers": {
+          "type": "t3.xlarge",
+          "hourly": 0.1664,
+          "count": 1,
+          "monthly": 121.472
+        },
+        "wsServers": {
+          "type": "t3.medium",
+          "hourly": 0.0416,
+          "count": 2,
+          "monthly": 60.736
+        },
+        "database": {
+          "type": "db.r5.2xlarge",
+          "hourly": 1.008,
+          "count": 1,
+          "monthly": 735.84
+        }
+      },
+      "storage": {
+        "ebs": {
+          "gb": 500,
+          "monthly": 50
+        },
+        "s3": {
+          "gb": 1000,
+          "monthly": 23
+        }
+      },
+      "network": {
+        "dataTransfer": {
+          "gb": 10000,
+          "monthly": 900
+        },
+        "cdn": {
+          "requests": 10000000,
+          "monthly": 1
+        }
+      }
+    },
+    "totals": {
+      "compute": "918.05",
+      "storage": "73.00",
+      "network": "901.00",
+      "monthly": "1892.05",
+      "annual": "22704.58"
+    }
+  },
+  "recommendations": {
+    "immediate": [],
+    "shortTerm": [
+      {
+        "priority": "HIGH",
+        "action": "Implement CDN",
+        "rationale": "Offload static assets, reduce origin server load by ~70%",
+        "estimatedSavings": "$500-1000/month at scale"
+      },
+      {
+        "priority": "HIGH",
+        "action": "Add Redis caching",
+        "rationale": "Cache formula textures, graph data, reduce DB load",
+        "estimatedImprovement": "50-70% reduction in response time"
+      },
+      {
+        "priority": "MEDIUM",
+        "action": "Optimize bundle size",
+        "rationale": "Current bundle includes KaTeX + Three.js, implement code splitting",
+        "estimatedImprovement": "30-40% faster initial load"
+      }
+    ],
+    "longTerm": [
+      {
+        "priority": "HIGH",
+        "action": "Implement microservices architecture",
+        "components": [
+          "Static asset service (CDN)",
+          "API gateway",
+          "Graph computation service",
+          "WebSocket collaboration service",
+          "Proof rendering service"
+        ],
+        "rationale": "Independent scaling, better resource utilization"
+      },
+      {
+        "priority": "MEDIUM",
+        "action": "Add edge computing",
+        "rationale": "Deploy to multiple regions, reduce latency for global users",
+        "estimatedImprovement": "50-200ms latency reduction"
+      },
+      {
+        "priority": "MEDIUM",
+        "action": "Implement progressive rendering",
+        "rationale": "Load visible formulas first, lazy-load others",
+        "estimatedImprovement": "60-80% faster time-to-interactive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Visualization Recommender — Formula Nebula</title>
+  <link rel="stylesheet" href="recommender.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>🤖 AI Visualization Recommender</h1>
+      <p class="subtitle">Intelligent visualization recommendations for mathematical theorems</p>
+    </header>
+
+    <main class="main">
+      <!-- Search & Selection -->
+      <section class="search-section">
+        <div class="search-box">
+          <input
+            type="text"
+            id="theorem-search"
+            placeholder="Search for a theorem... (e.g., nullstellensatz, cohomology)"
+            autocomplete="off"
+          >
+          <button id="search-btn" class="btn btn-primary">Analyze</button>
+        </div>
+
+        <div class="quick-examples">
+          <span class="label">Quick examples:</span>
+          <button class="example-btn" data-id="nullstellensatz">Nullstellensatz</button>
+          <button class="example-btn" data-id="riemann-roch">Riemann-Roch</button>
+          <button class="example-btn" data-id="serre-duality">Serre Duality</button>
+          <button class="example-btn" data-id="zariski-topology">Zariski Topology</button>
+        </div>
+      </section>
+
+      <!-- Recommendation Result -->
+      <section id="result-section" class="result-section" style="display: none;">
+        <div class="result-header">
+          <h2 id="theorem-name" class="theorem-name"></h2>
+          <div id="theorem-meta" class="theorem-meta"></div>
+        </div>
+
+        <!-- Recommended Visualization -->
+        <div class="recommendation-card">
+          <div class="card-header">
+            <h3>🎯 Recommended Visualization</h3>
+          </div>
+          <div class="card-body">
+            <div id="recommended-viz" class="viz-display"></div>
+            <div id="recommendation-reasons" class="reasons-list"></div>
+          </div>
+        </div>
+
+        <!-- All Scores -->
+        <div class="scores-grid">
+          <div class="card">
+            <h4>📊 Visualization Scores</h4>
+            <div id="scores-chart" class="scores-chart"></div>
+          </div>
+
+          <div class="card">
+            <h4>📈 Graph Metrics</h4>
+            <div id="metrics-display" class="metrics-display"></div>
+          </div>
+        </div>
+
+        <!-- Connection Highlights -->
+        <div class="card">
+          <h3>🔗 Important Connections</h3>
+          <div id="connections-display" class="connections-display"></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+          <button id="open-viz-btn" class="btn btn-large btn-primary">
+            Open in Recommended View
+          </button>
+          <button id="compare-btn" class="btn btn-large btn-secondary">
+            Compare with Another Theorem
+          </button>
+        </div>
+      </section>
+
+      <!-- Comparison View -->
+      <section id="comparison-section" class="comparison-section" style="display: none;">
+        <div class="comparison-header">
+          <h2>📐 Theorem Comparison</h2>
+          <button id="back-to-result-btn" class="btn btn-small">← Back</button>
+        </div>
+
+        <div class="comparison-inputs">
+          <div class="input-group">
+            <label>First theorem:</label>
+            <input type="text" id="compare-theorem1" readonly>
+          </div>
+          <div class="input-group">
+            <label>Second theorem:</label>
+            <input type="text" id="compare-theorem2" placeholder="Enter second theorem ID...">
+            <button id="run-comparison-btn" class="btn btn-primary">Compare</button>
+          </div>
+        </div>
+
+        <div id="comparison-result" class="comparison-result"></div>
+      </section>
+
+      <!-- System Stats -->
+      <section class="stats-section">
+        <h3>📊 Recommender Statistics</h3>
+        <div id="system-stats" class="system-stats"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Formula Nebula AI Recommender — Powered by graph analysis algorithms</p>
+    </footer>
+  </div>
+
+  <script type="module" src="./demo.js"></script>
+</body>
+</html>

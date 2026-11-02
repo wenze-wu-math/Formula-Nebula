@@ -1,0 +1,395 @@
+{
+  "$schema": "https://json.schemastore.org/performance-budget.json",
+  "name": "Formula Nebula Performance Budget",
+  "version": "1.0.0",
+  "description": "Performance budgets for Formula Nebula algebraic geometry visualization",
+  "lastUpdated": "2026-11-02",
+
+  "budgets": {
+    "loadTime": {
+      "description": "Page load and rendering performance",
+      "metrics": {
+        "firstContentfulPaint": {
+          "value": 1000,
+          "unit": "ms",
+          "severity": "error",
+          "description": "First paint of any content"
+        },
+        "largestContentfulPaint": {
+          "value": 2500,
+          "unit": "ms",
+          "severity": "error",
+          "description": "Largest content element rendered"
+        },
+        "timeToInteractive": {
+          "value": 3500,
+          "unit": "ms",
+          "severity": "error",
+          "description": "Page becomes fully interactive"
+        },
+        "totalBlockingTime": {
+          "value": 300,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "Total time blocked by long tasks"
+        },
+        "cumulativeLayoutShift": {
+          "value": 0.1,
+          "unit": "score",
+          "severity": "error",
+          "description": "Visual stability during load"
+        },
+        "speedIndex": {
+          "value": 3000,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "How quickly content is visually displayed"
+        }
+      }
+    },
+
+    "bundleSize": {
+      "description": "JavaScript and CSS bundle sizes",
+      "metrics": {
+        "totalJavaScript": {
+          "value": 500,
+          "unit": "KB",
+          "severity": "error",
+          "description": "Total JS transferred (gzipped)"
+        },
+        "totalCSS": {
+          "value": 50,
+          "unit": "KB",
+          "severity": "warning",
+          "description": "Total CSS transferred (gzipped)"
+        },
+        "mainBundle": {
+          "value": 250,
+          "unit": "KB",
+          "severity": "error",
+          "description": "Main application bundle"
+        },
+        "vendorBundle": {
+          "value": 300,
+          "unit": "KB",
+          "severity": "warning",
+          "description": "Third-party dependencies (Three.js, KaTeX)"
+        },
+        "htmlDocument": {
+          "value": 10,
+          "unit": "KB",
+          "severity": "warning",
+          "description": "Initial HTML document size"
+        }
+      }
+    },
+
+    "assets": {
+      "description": "Asset loading and caching",
+      "metrics": {
+        "totalImages": {
+          "value": 200,
+          "unit": "KB",
+          "severity": "warning",
+          "description": "Total image weight"
+        },
+        "totalFonts": {
+          "value": 100,
+          "unit": "KB",
+          "severity": "warning",
+          "description": "Web font files"
+        },
+        "dataFiles": {
+          "value": 500,
+          "unit": "KB",
+          "severity": "error",
+          "description": "Knowledge graph JSON data"
+        },
+        "assetCount": {
+          "value": 50,
+          "unit": "requests",
+          "severity": "warning",
+          "description": "Total number of HTTP requests"
+        }
+      }
+    },
+
+    "runtime": {
+      "description": "Runtime performance during interaction",
+      "metrics": {
+        "frameRate": {
+          "value": 30,
+          "unit": "fps",
+          "severity": "error",
+          "description": "Minimum acceptable frame rate"
+        },
+        "frameTime": {
+          "value": 33,
+          "unit": "ms",
+          "severity": "error",
+          "description": "Maximum frame time (1000/30fps)"
+        },
+        "jsHeapSize": {
+          "value": 100,
+          "unit": "MB",
+          "severity": "error",
+          "description": "JavaScript heap memory usage"
+        },
+        "drawCalls": {
+          "value": 500,
+          "unit": "calls",
+          "severity": "warning",
+          "description": "WebGL draw calls per frame"
+        },
+        "triangleCount": {
+          "value": 100000,
+          "unit": "triangles",
+          "severity": "warning",
+          "description": "Total triangles rendered per frame"
+        }
+      }
+    },
+
+    "rendering": {
+      "description": "Three.js and WebGL rendering performance",
+      "metrics": {
+        "sceneComplexity": {
+          "value": 5000,
+          "unit": "objects",
+          "severity": "error",
+          "description": "Total objects in scene graph"
+        },
+        "textureBaking": {
+          "value": 5000,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "Time to bake all formula textures"
+        },
+        "layoutComputation": {
+          "value": 2000,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "Graph layout algorithm time"
+        },
+        "shaderCompilation": {
+          "value": 500,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "Time to compile all shaders"
+        }
+      }
+    },
+
+    "api": {
+      "description": "API and backend response times",
+      "metrics": {
+        "graphDataLoad": {
+          "value": 500,
+          "unit": "ms",
+          "severity": "error",
+          "description": "Load knowledge graph data"
+        },
+        "proofDataLoad": {
+          "value": 300,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "Load proof content"
+        },
+        "wsLatency": {
+          "value": 100,
+          "unit": "ms",
+          "severity": "warning",
+          "description": "WebSocket message round-trip time"
+        },
+        "wsMessageRate": {
+          "value": 100,
+          "unit": "msg/s",
+          "severity": "warning",
+          "description": "Max messages per second per connection"
+        }
+      }
+    },
+
+    "scalability": {
+      "description": "Scalability and capacity limits",
+      "metrics": {
+        "concurrentUsers": {
+          "value": 10000,
+          "unit": "users",
+          "severity": "error",
+          "description": "Max concurrent users per instance"
+        },
+        "wsConnections": {
+          "value": 5000,
+          "unit": "connections",
+          "severity": "error",
+          "description": "Max WebSocket connections per server"
+        },
+        "requestsPerSecond": {
+          "value": 5000,
+          "unit": "req/s",
+          "severity": "error",
+          "description": "Max requests per second"
+        },
+        "errorRate": {
+          "value": 1,
+          "unit": "percent",
+          "severity": "error",
+          "description": "Maximum acceptable error rate"
+        }
+      }
+    }
+  },
+
+  "targets": {
+    "lighthouse": {
+      "performance": 90,
+      "accessibility": 95,
+      "bestPractices": 90,
+      "seo": 85
+    },
+    "webVitals": {
+      "lcp": "good",
+      "fid": "good",
+      "cls": "good"
+    }
+  },
+
+  "thresholds": {
+    "error": {
+      "description": "Hard limits that must not be exceeded",
+      "action": "Block deployment"
+    },
+    "warning": {
+      "description": "Soft limits that should be addressed",
+      "action": "Create issue"
+    }
+  },
+
+  "monitoring": {
+    "tools": [
+      "k6 (load testing)",
+      "Lighthouse CI",
+      "WebPageTest",
+      "Chrome DevTools Performance",
+      "Three.js Stats.js"
+    ],
+    "intervals": {
+      "loadTests": "weekly",
+      "performanceAudits": "per-commit",
+      "productionMonitoring": "continuous"
+    }
+  },
+
+  "optimization": {
+    "priorities": [
+      {
+        "area": "Initial Load",
+        "techniques": [
+          "Code splitting by route",
+          "Lazy load Three.js until canvas visible",
+          "Preload critical resources",
+          "Defer non-critical JavaScript",
+          "Use resource hints (preconnect, dns-prefetch)"
+        ]
+      },
+      {
+        "area": "Bundle Size",
+        "techniques": [
+          "Tree-shaking for Three.js modules",
+          "Use lightweight KaTeX subset",
+          "Compress with Brotli",
+          "Remove unused dependencies",
+          "Dynamic imports for features"
+        ]
+      },
+      {
+        "area": "Rendering Performance",
+        "techniques": [
+          "Frustum culling for off-screen objects",
+          "Level-of-detail (LOD) system",
+          "Instanced rendering for particles",
+          "Texture atlasing",
+          "Shader optimization",
+          "Use BufferGeometry everywhere"
+        ]
+      },
+      {
+        "area": "Data Loading",
+        "techniques": [
+          "Progressive enhancement",
+          "Load visible formulas first",
+          "Lazy load proofs on demand",
+          "Implement virtual scrolling",
+          "Cache graph layout results",
+          "Use IndexedDB for offline support"
+        ]
+      },
+      {
+        "area": "Collaboration",
+        "techniques": [
+          "Throttle cursor updates",
+          "Batch WebSocket messages",
+          "Use binary protocol (MessagePack)",
+          "Implement presence awareness",
+          "Debounce text annotations"
+        ]
+      }
+    ]
+  },
+
+  "devices": {
+    "desktop": {
+      "target": "85th percentile device",
+      "specs": {
+        "cpu": "4-core 2.5GHz",
+        "gpu": "Integrated graphics",
+        "memory": "8GB RAM",
+        "connection": "Cable/WiFi"
+      },
+      "adjustments": {
+        "particleCount": 1.0,
+        "textureScale": 1.0,
+        "bloomQuality": "high"
+      }
+    },
+    "laptop": {
+      "target": "Average laptop",
+      "specs": {
+        "cpu": "2-core 1.8GHz",
+        "gpu": "Integrated graphics",
+        "memory": "4GB RAM",
+        "connection": "WiFi"
+      },
+      "adjustments": {
+        "particleCount": 0.6,
+        "textureScale": 0.8,
+        "bloomQuality": "medium"
+      }
+    },
+    "mobile": {
+      "target": "Mid-range mobile (fallback mode)",
+      "specs": {
+        "cpu": "Octa-core ARM",
+        "gpu": "Mobile GPU",
+        "memory": "2GB RAM",
+        "connection": "4G/5G"
+      },
+      "adjustments": {
+        "particleCount": 0.3,
+        "textureScale": 0.6,
+        "bloomQuality": "low",
+        "disableMotion": true
+      }
+    }
+  },
+
+  "notes": [
+    "Budgets based on target of 100K concurrent users",
+    "All sizes are post-compression (gzip/brotli)",
+    "Runtime metrics measured during active interaction",
+    "WebGL context loss handling required for mobile",
+    "Progressive enhancement: 2D fallback if WebGL unavailable",
+    "Consider separate lite version for mobile devices"
+  ]
+}

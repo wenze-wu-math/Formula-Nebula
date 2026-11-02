@@ -1,0 +1,220 @@
+# Alertmanager Configuration for Formula Nebula
+# Handles alert routing and integration with PagerDuty
+
+global:
+  resolve_timeout: 5m
+  pagerduty_url: 'https://events.pagerduty.com/v2/enqueue'
+
+# Templates for alert messages
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
+
+# Alert routing tree
+route:
+  # Default receiver for all alerts
+  receiver: 'default'
+
+  # Group alerts by these labels
+  group_by: ['alertname', 'cluster', 'service', 'component']
+
+  # How long to wait before sending initial notification
+  group_wait: 10s
+
+  # How long to wait before sending notification about new alerts in group
+  group_interval: 10s
+
+  # How long to wait before re-sending notification
+  repeat_interval: 12h
+
+  # Child routes with specific routing rules
+  routes:
+    # Critical alerts go to PagerDuty immediately
+    - match:
+        severity: critical
+      receiver: 'pagerduty-critical'
+      group_wait: 10s
+      group_interval: 5m
+      repeat_interval: 4h
+      continue: true
+
+    # Warning alerts to PagerDuty during business hours
+    - match:
+        severity: warning
+      receiver: 'pagerduty-warning'
+      group_wait: 30s
+      group_interval: 10m
+      repeat_interval: 12h
+      continue: true
+
+    # Application down alerts
+    - match:
+        alertname: ApplicationDown
+      receiver: 'pagerduty-critical'
+      group_wait: 0s
+      repeat_interval: 1h
+
+    # Performance degradation
+    - match_re:
+        alertname: '(HighRequestLatency|SlowRenderingFPS|HighFrameTime)'
+      receiver: 'performance-team'
+      group_wait: 5m
+      repeat_interval: 6h
+
+    # Infrastructure issues
+    - match_re:
+        component: '(monitoring|infrastructure)'
+      receiver: 'infrastructure-team'
+      group_wait: 5m
+      repeat_interval: 24h
+
+    # Info-level alerts (low priority)
+    - match:
+        severity: info
+      receiver: 'slack-info'
+      group_wait: 1h
+      repeat_interval: 24h
+
+# Alert suppression rules
+inhibit_rules:
+  # Suppress warning if critical is firing for same alert
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'cluster', 'service']
+
+  # Suppress individual component alerts if application is down
+  - source_match:
+      alertname: 'ApplicationDown'
+    target_match_re:
+      alertname: '(HighRequestLatency|HighErrorRate|SlowRenderingFPS).*'
+    equal: ['cluster', 'service']
+
+  # Suppress memory alerts if there's a memory leak alert
+  - source_match:
+      alertname: 'MemoryLeak'
+    target_match_re:
+      alertname: '(HighMemoryUsage|CriticalMemoryUsage)'
+    equal: ['cluster', 'service']
+
+# Receiver configurations
+receivers:
+  # Default receiver (logs only)
+  - name: 'default'
+    webhook_configs:
+      - url: 'http://localhost:9099/webhook'
+        send_resolved: true
+
+  # PagerDuty for critical alerts
+  - name: 'pagerduty-critical'
+    pagerduty_configs:
+      - service_key: '<PAGERDUTY_INTEGRATION_KEY_CRITICAL>'
+        severity: 'critical'
+        description: '{{ .CommonAnnotations.summary }}'
+        details:
+          firing: '{{ .Alerts.Firing | len }}'
+          resolved: '{{ .Alerts.Resolved | len }}'
+          num_firing: '{{ .Alerts.Firing | len }}'
+          num_resolved: '{{ .Alerts.Resolved | len }}'
+          description: '{{ .CommonAnnotations.description }}'
+          dashboard: '{{ .CommonAnnotations.dashboard }}'
+          runbook: '{{ .CommonAnnotations.runbook }}'
+        client: 'Formula Nebula Monitoring'
+        client_url: '{{ .CommonAnnotations.dashboard }}'
+
+  # PagerDuty for warning alerts
+  - name: 'pagerduty-warning'
+    pagerduty_configs:
+      - service_key: '<PAGERDUTY_INTEGRATION_KEY_WARNING>'
+        severity: 'warning'
+        description: '{{ .CommonAnnotations.summary }}'
+        details:
+          firing: '{{ .Alerts.Firing | len }}'
+          resolved: '{{ .Alerts.Resolved | len }}'
+          description: '{{ .CommonAnnotations.description }}'
+
+  # Slack for performance team
+  - name: 'performance-team'
+    slack_configs:
+      - api_url: '<SLACK_WEBHOOK_URL>'
+        channel: '#performance-alerts'
+        title: '{{ .CommonAnnotations.summary }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Details:*
+          {{ range .Labels.SortedPairs }} • {{ .Name }}: {{ .Value }}
+          {{ end }}
+          {{ end }}
+        send_resolved: true
+        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+
+  # Slack for infrastructure team
+  - name: 'infrastructure-team'
+    slack_configs:
+      - api_url: '<SLACK_WEBHOOK_URL>'
+        channel: '#infrastructure-alerts'
+        title: '{{ .CommonAnnotations.summary }}'
+        text: '{{ .CommonAnnotations.description }}'
+        send_resolved: true
+
+  # Slack for info-level alerts
+  - name: 'slack-info'
+    slack_configs:
+      - api_url: '<SLACK_WEBHOOK_URL>'
+        channel: '#monitoring-info'
+        title: '{{ .CommonAnnotations.summary }}'
+        text: '{{ .CommonAnnotations.description }}'
+        send_resolved: false
+
+  # Email for summary reports
+  - name: 'email-reports'
+    email_configs:
+      - to: 'team@example.com'
+        from: 'alerts@formula-nebula.example.com'
+        smarthost: 'smtp.example.com:587'
+        auth_username: 'alerts@formula-nebula.example.com'
+        auth_password: '<EMAIL_PASSWORD>'
+        headers:
+          Subject: '[Formula Nebula] {{ .CommonAnnotations.summary }}'
+        html: |
+          <h2>Alert Summary</h2>
+          <ul>
+          {{ range .Alerts }}
+          <li><strong>{{ .Annotations.summary }}</strong>: {{ .Annotations.description }}</li>
+          {{ end }}
+          </ul>
+
+# Time-based muting (maintenance windows)
+time_intervals:
+  - name: 'business-hours'
+    time_intervals:
+      - weekdays: ['monday:friday']
+        times:
+          - start_time: '09:00'
+            end_time: '17:00'
+        location: 'America/New_York'
+
+  - name: 'off-hours'
+    time_intervals:
+      - weekdays: ['monday:friday']
+        times:
+          - start_time: '00:00'
+            end_time: '09:00'
+          - start_time: '17:00'
+            end_time: '23:59'
+      - weekdays: ['saturday', 'sunday']
+
+  - name: 'maintenance-window'
+    time_intervals:
+      - weekdays: ['sunday']
+        times:
+          - start_time: '02:00'
+            end_time: '04:00'
+
+# Mute rules
+mute_time_intervals:
+  - name: 'maintenance-mute'
+    time_intervals:
+      - 'maintenance-window'

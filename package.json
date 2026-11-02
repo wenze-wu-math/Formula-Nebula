@@ -13,12 +13,30 @@
     "check-data": "node scripts/check-data.mjs",
     "perf": "node scripts/probe-perf.mjs",
     "start": "vite --config vite.designs.config.mjs",
-    "start:designs": "vite --config vite.designs.config.mjs"
+    "start:designs": "vite --config vite.designs.config.mjs",
+    "collab:server": "node src/collaboration/server/index.js",
+    "collab:demo": "npm run dev & npm run collab:server",
+    "billing:server": "node src/billing/server.js",
+    "billing:test": "node --experimental-vm-modules node_modules/jest/bin/jest.js src/payments/stripe.test.js",
+    "backup": "node scripts/backup.mjs",
+    "backup:verify": "node scripts/verify-backup.mjs",
+    "restore": "node scripts/restore.mjs",
+    "restore:latest": "node scripts/restore.mjs --latest",
+    "dr:help": "node -e \"console.log('See DR_PLAYBOOK.md for disaster recovery procedures')\"",
+    "load-test": "k6 run scripts/load-test.js",
+    "load-test:smoke": "k6 run -e STAGE=smoke scripts/load-test.js",
+    "load-test:stress": "k6 run -e STAGE=stress scripts/load-test.js",
+    "load-test:simulate": "node scripts/simulate-load-test.mjs",
+    "capacity-plan": "node scripts/capacity-plan.mjs",
+    "capacity-report": "npm run load-test:simulate && npm run capacity-plan"
   },
   "dependencies": {
     "katex": "^0.16.11",
     "mathjax-full": "^3.2.2",
-    "three": "^0.180.0"
+    "three": "^0.180.0",
+    "ws": "^8.14.2",
+    "stripe": "^17.5.0",
+    "express": "^4.21.2"
   },
   "devDependencies": {
     "vite": "^7.0.0"

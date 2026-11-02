@@ -1,0 +1,204 @@
+{
+  "build_date": "2026-11-02T15:41:00Z",
+  "docker_version": "29.9.2",
+  "node_version": "v24.22.2",
+  "project": "Formula Nebula",
+  "version": "0.1.0",
+
+  "images": {
+    "builder": {
+      "tag": "formula-nebula:builder",
+      "id": "d06ead30740d",
+      "size": "2.22GB",
+      "compressed": "538MB",
+      "description": "Build stage with all dependencies",
+      "base": "node:24-alpine",
+      "layers": 13,
+      "build_time_seconds": 180,
+      "build_time_cached_seconds": 25
+    },
+    "runtime": {
+      "tag": "formula-nebula:runtime",
+      "id": "2694a96dec52",
+      "size": "508MB",
+      "compressed": "110MB",
+      "description": "Production image (minimal)",
+      "base": "node:24-alpine",
+      "layers": 14,
+      "startup_time_seconds": 10,
+      "memory_usage_mb": 180,
+      "content": {
+        "dist": "12.4MB",
+        "node_modules": "89.4MB",
+        "collaboration_server": "56KB"
+      }
+    },
+    "development": {
+      "tag": "formula-nebula:development",
+      "id": "ba73363551a2",
+      "size": "3.71GB",
+      "compressed": "877MB",
+      "description": "Full dev environment with hot reload",
+      "base": "node:24-alpine",
+      "layers": 11,
+      "startup_time_seconds": 15,
+      "memory_usage_mb": 250
+    }
+  },
+
+  "size_optimization": {
+    "runtime_vs_builder_reduction": "77%",
+    "compressed_runtime_reduction": "78%",
+    "multi_stage_savings_mb": 1740
+  },
+
+  "build_output": {
+    "dist_size": "12.4MB",
+    "bundle_js_size": "11.76MB",
+    "bundle_css_size": "29.51KB",
+    "assets": {
+      "katex_fonts": "~200KB",
+      "images": "minimal",
+      "total": "12.4MB"
+    },
+    "vite_build_time_seconds": 6.26
+  },
+
+  "services": {
+    "app": {
+      "image": "formula-nebula:runtime",
+      "ports": [5176, 8080],
+      "restart_policy": "unless-stopped",
+      "health_check_interval_seconds": 30,
+      "environment": "production",
+      "user": "nebula (1001)",
+      "depends_on": ["redis", "postgres"]
+    },
+    "app-dev": {
+      "image": "formula-nebula:development",
+      "ports": [5175, 8081],
+      "restart_policy": "unless-stopped",
+      "health_check_interval_seconds": 30,
+      "environment": "development",
+      "user": "nebula (1001)",
+      "hot_reload": true,
+      "volumes": ["src", "public", "index.html", "vite.config.js"],
+      "depends_on": ["redis", "postgres"],
+      "profile": "dev"
+    },
+    "redis": {
+      "image": "redis:7-alpine",
+      "port": 6379,
+      "memory_limit": "256MB",
+      "eviction_policy": "allkeys-lru",
+      "persistence": "appendonly",
+      "health_check_interval_seconds": 10
+    },
+    "postgres": {
+      "image": "postgres:16-alpine",
+      "port": 5432,
+      "database": "formula_nebula",
+      "user": "nebula",
+      "health_check_interval_seconds": 10,
+      "persistence": "postgres-data volume"
+    }
+  },
+
+  "volumes": {
+    "node_modules_dev": {
+      "type": "named",
+      "purpose": "Development dependencies",
+      "mount": "/app/node_modules"
+    },
+    "redis-data": {
+      "type": "named",
+      "purpose": "Redis persistence",
+      "mount": "/data"
+    },
+    "postgres-data": {
+      "type": "named",
+      "purpose": "PostgreSQL data",
+      "mount": "/var/lib/postgresql/data"
+    }
+  },
+
+  "network": {
+    "name": "formula-nebula-network",
+    "driver": "bridge",
+    "isolation": "internal",
+    "services": ["app", "app-dev", "redis", "postgres"]
+  },
+
+  "security": {
+    "non_root_user": true,
+    "user_uid": 1001,
+    "user_name": "nebula",
+    "init_system": "tini",
+    "minimal_packages": true,
+    "network_isolation": true,
+    "health_checks": true
+  },
+
+  "performance": {
+    "runtime_memory_mb": {
+      "app": 180,
+      "redis": 50,
+      "postgres": 80,
+      "total": 310
+    },
+    "runtime_cpu_percent": {
+      "idle": 5,
+      "load": 30
+    },
+    "container_startup_seconds": {
+      "runtime": 10,
+      "development": 15,
+      "redis": 3,
+      "postgres": 5
+    },
+    "first_request_ready_seconds": 20
+  },
+
+  "files_created": [
+    "Dockerfile",
+    "docker-compose.yml",
+    ".dockerignore",
+    ".env.example",
+    "docker-build.sh",
+    "README.Docker.md",
+    "DOCKER_BUILD_SUMMARY.md",
+    "DOCKER_QUICK_START.md",
+    "DOCKER_STATS.json"
+  ],
+
+  "test_results": {
+    "builder_stage": "PASSED",
+    "runtime_stage": "PASSED",
+    "development_stage": "PASSED",
+    "node_version_test": "PASSED",
+    "dist_verification": "PASSED",
+    "collaboration_server": "PRESENT",
+    "health_checks": "CONFIGURED"
+  },
+
+  "features": {
+    "multi_stage_build": true,
+    "hot_reload_dev": true,
+    "health_checks": true,
+    "auto_restart": true,
+    "volume_persistence": true,
+    "network_isolation": true,
+    "non_root_execution": true,
+    "environment_config": true,
+    "service_dependencies": true,
+    "profiles": ["default", "dev"]
+  },
+
+  "deployment": {
+    "production_command": "docker-compose up -d",
+    "development_command": "docker-compose --profile dev up app-dev",
+    "stop_command": "docker-compose down",
+    "logs_command": "docker-compose logs -f app",
+    "rebuild_command": "docker-compose build --no-cache"
+  }
+}

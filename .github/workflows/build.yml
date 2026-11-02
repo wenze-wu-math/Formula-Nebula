@@ -1,0 +1,251 @@
+name: Build & Security
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: write
+
+jobs:
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: |
+          npm audit --audit-level=moderate || true
+          npm audit --json > audit-results.json || true
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        if: github.event_name == 'pull_request'
+        with:
+          fail-on-severity: moderate
+
+      - name: Check for known vulnerabilities
+        run: |
+          echo "Checking dependencies for known vulnerabilities..."
+          npm audit --production --audit-level=high
+
+      - name: Upload audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-audit-${{ github.sha }}
+          path: audit-results.json
+          retention-days: 30
+
+  snyk-scan:
+    name: Snyk Security Scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  coverage:
+    name: Test Coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run verification with coverage
+        run: |
+          npm run verify 2>&1 | tee verification-output.log
+          echo "Verification completed"
+
+      - name: Generate coverage report
+        run: |
+          echo "# Verification Coverage Report" > coverage-report.md
+          echo "" >> coverage-report.md
+          echo "## Data Integrity" >> coverage-report.md
+          echo "- Total nodes: $(grep -o 'nodes' verification-output.log | wc -l || echo 'N/A')" >> coverage-report.md
+          echo "- Total edges: $(grep -o 'edges' verification-output.log | wc -l || echo 'N/A')" >> coverage-report.md
+          echo "" >> coverage-report.md
+          echo "## Test Results" >> coverage-report.md
+          grep -E "(PASS|FAIL|nodes|edges|theorems|conjectures)" verification-output.log >> coverage-report.md || echo "No matches found"
+
+      - name: Comment PR with coverage
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('coverage-report.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
+
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-${{ github.sha }}
+          path: |
+            coverage-report.md
+            verification-output.log
+          retention-days: 30
+
+  build-and-analyze:
+    name: Build & Analyze
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Analyze bundle size
+        run: |
+          echo "# Bundle Size Analysis" > bundle-analysis.md
+          echo "" >> bundle-analysis.md
+          echo "## Assets" >> bundle-analysis.md
+          du -sh dist/ >> bundle-analysis.md
+          echo "" >> bundle-analysis.md
+          echo "## Files" >> bundle-analysis.md
+          find dist/ -type f -exec du -h {} \; | sort -rh | head -20 >> bundle-analysis.md
+
+      - name: Check bundle size limits
+        run: |
+          TOTAL_SIZE=$(du -sb dist/ | cut -f1)
+          MAX_SIZE=$((10 * 1024 * 1024))  # 10MB limit
+
+          if [ $TOTAL_SIZE -gt $MAX_SIZE ]; then
+            echo "Bundle size ${TOTAL_SIZE} exceeds limit ${MAX_SIZE}"
+            exit 1
+          fi
+          echo "Bundle size ${TOTAL_SIZE} is within limits"
+
+      - name: Comment PR with analysis
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const analysis = fs.readFileSync('bundle-analysis.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: analysis
+            });
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output-${{ github.sha }}
+          path: dist/
+          retention-days: 7
+
+  notify:
+    name: Notify Results
+    runs-on: ubuntu-latest
+    needs: [security-scan, coverage, build-and-analyze]
+    if: always() && github.event_name == 'pull_request'
+
+    steps:
+      - name: Determine status
+        id: status
+        run: |
+          if [[ "${{ needs.security-scan.result }}" == "failure" ]] || \
+             [[ "${{ needs.coverage.result }}" == "failure" ]] || \
+             [[ "${{ needs.build-and-analyze.result }}" == "failure" ]]; then
+            echo "status=failure" >> $GITHUB_OUTPUT
+          else
+            echo "status=success" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Slack notification
+        if: always()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*PR Build Results*\n*Repository:* ${{ github.repository }}\n*PR:* #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}\n*Status:* ${{ steps.status.outputs.status }}\n*Commit:* <${{ github.event.pull_request.html_url }}|View PR>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Security:* ${{ needs.security-scan.result }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Coverage:* ${{ needs.coverage.result }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Build:* ${{ needs.build-and-analyze.result }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

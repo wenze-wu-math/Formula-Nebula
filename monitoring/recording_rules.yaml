@@ -1,0 +1,229 @@
+# Prometheus Recording Rules for Formula Nebula
+# Pre-compute frequently used queries to improve dashboard performance
+
+groups:
+  # ============================================================================
+  # Request Rate Aggregations
+  # ============================================================================
+  - name: request_rates
+    interval: 30s
+    rules:
+      # Total request rate
+      - record: job:http_requests:rate5m
+        expr: sum(rate(http_requests_total[5m])) by (job)
+
+      # Request rate by method
+      - record: job:http_requests:rate5m:by_method
+        expr: sum(rate(http_requests_total[5m])) by (job, method)
+
+      # Request rate by status
+      - record: job:http_requests:rate5m:by_status
+        expr: sum(rate(http_requests_total[5m])) by (job, status)
+
+      # Success rate (2xx, 3xx)
+      - record: job:http_requests_success:rate5m
+        expr: |
+          sum(rate(http_requests_total{status=~"2..|3.."}[5m])) by (job) /
+          sum(rate(http_requests_total[5m])) by (job)
+
+      # Error rate (4xx, 5xx)
+      - record: job:http_requests_error:rate5m
+        expr: |
+          sum(rate(http_requests_total{status=~"4..|5.."}[5m])) by (job) /
+          sum(rate(http_requests_total[5m])) by (job)
+
+  # ============================================================================
+  # Latency Aggregations
+  # ============================================================================
+  - name: latency
+    interval: 30s
+    rules:
+      # P50 latency
+      - record: job:http_request_duration_seconds:p50
+        expr: histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket[5m])) by (job, le))
+
+      # P95 latency
+      - record: job:http_request_duration_seconds:p95
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (job, le))
+
+      # P99 latency
+      - record: job:http_request_duration_seconds:p99
+        expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (job, le))
+
+      # Average latency
+      - record: job:http_request_duration_seconds:avg
+        expr: |
+          sum(rate(http_request_duration_seconds_sum[5m])) by (job) /
+          sum(rate(http_request_duration_seconds_count[5m])) by (job)
+
+      # Search query latency P95
+      - record: job:search_duration_seconds:p95
+        expr: histogram_quantile(0.95, sum(rate(search_duration_seconds_bucket[5m])) by (job, type, le))
+
+  # ============================================================================
+  # Error Rates
+  # ============================================================================
+  - name: error_rates
+    interval: 30s
+    rules:
+      # Total error rate
+      - record: job:errors:rate5m
+        expr: sum(rate(errors_total[5m])) by (job)
+
+      # Error rate by type
+      - record: job:errors:rate5m:by_type
+        expr: sum(rate(errors_total[5m])) by (job, type)
+
+      # Error rate by severity
+      - record: job:errors:rate5m:by_severity
+        expr: sum(rate(errors_total[5m])) by (job, severity)
+
+      # Critical error percentage
+      - record: job:errors_critical:percentage
+        expr: |
+          sum(rate(errors_total{severity="error"}[5m])) by (job) /
+          sum(rate(errors_total[5m])) by (job) * 100
+
+  # ============================================================================
+  # Resource Utilization
+  # ============================================================================
+  - name: resources
+    interval: 30s
+    rules:
+      # Memory usage percentage
+      - record: job:memory_usage:percentage
+        expr: |
+          (memory_used_bytes{type="heap_used"} /
+           memory_used_bytes{type="heap_limit"}) * 100
+
+      # Memory growth rate
+      - record: job:memory_growth:rate1m
+        expr: deriv(memory_used_bytes{type="heap_used"}[1m])
+
+      # CPU usage
+      - record: job:cpu_usage:rate5m
+        expr: rate(process_cpu_seconds_total[5m]) * 100
+
+  # ============================================================================
+  # WebSocket Metrics
+  # ============================================================================
+  - name: websocket
+    interval: 30s
+    rules:
+      # Message rate by direction
+      - record: job:ws_messages:rate5m:by_direction
+        expr: sum(rate(ws_messages_total[5m])) by (job, direction)
+
+      # Message rate by type
+      - record: job:ws_messages:rate5m:by_type
+        expr: sum(rate(ws_messages_total[5m])) by (job, type)
+
+      # Average connections
+      - record: job:ws_connections:avg1h
+        expr: avg_over_time(ws_connections_active[1h]) by (job)
+
+  # ============================================================================
+  # Rendering Performance
+  # ============================================================================
+  - name: rendering
+    interval: 30s
+    rules:
+      # Average FPS
+      - record: job:render_fps:avg5m
+        expr: avg_over_time(render_fps[5m]) by (job)
+
+      # P95 frame time
+      - record: job:render_frame_time_ms:p95
+        expr: histogram_quantile(0.95, sum(rate(render_frame_time_ms_bucket[5m])) by (job, le))
+
+      # Dropped frames rate (frame time > 33.33ms = 30fps)
+      - record: job:render_dropped_frames:rate5m
+        expr: |
+          sum(rate(render_frame_time_ms_bucket{le="33.33"}[5m])) by (job) /
+          sum(rate(render_frame_time_ms_count[5m])) by (job)
+
+  # ============================================================================
+  # Business Metrics
+  # ============================================================================
+  - name: business
+    interval: 60s
+    rules:
+      # Search queries per minute
+      - record: job:search_queries:rate1m
+        expr: sum(rate(search_queries_total[1m])) by (job) * 60
+
+      # Search queries by type
+      - record: job:search_queries:rate1h:by_type
+        expr: sum(rate(search_queries_total[1h])) by (job, type) * 3600
+
+      # Active learning paths trend
+      - record: job:learning_paths_active:avg1h
+        expr: avg_over_time(learning_paths_active[1h]) by (job)
+
+      # Graph size trend
+      - record: job:graph_size:avg1h
+        expr: avg_over_time(graph_nodes_total[1h]) by (job)
+
+  # ============================================================================
+  # SLI/SLO Metrics (Service Level Indicators/Objectives)
+  # ============================================================================
+  - name: sli_slo
+    interval: 60s
+    rules:
+      # Availability (uptime percentage)
+      - record: slo:availability:ratio30d
+        expr: |
+          sum(up == 1) /
+          count(up)
+
+      # Request success rate (target: 99.9%)
+      - record: slo:request_success:ratio1h
+        expr: |
+          sum(rate(http_requests_total{status=~"2..|3.."}[1h])) /
+          sum(rate(http_requests_total[1h]))
+
+      # Latency SLO (P95 < 1s, target: 99%)
+      - record: slo:latency_p95_under_1s:ratio1h
+        expr: |
+          sum(rate(http_request_duration_seconds_bucket{le="1"}[1h])) /
+          sum(rate(http_request_duration_seconds_count[1h]))
+
+      # Error budget (1 - success rate)
+      - record: slo:error_budget:ratio1h
+        expr: 1 - slo:request_success:ratio1h
+
+      # Error budget burn rate (how fast we're consuming error budget)
+      - record: slo:error_budget_burn:rate1h
+        expr: |
+          (1 - slo:request_success:ratio1h) /
+          (1 - 0.999)  # Target: 99.9% success rate
+
+  # ============================================================================
+  # Capacity Planning
+  # ============================================================================
+  - name: capacity
+    interval: 300s  # 5 minutes
+    rules:
+      # Request rate trend (linear regression over 24h)
+      - record: capacity:request_rate:trend24h
+        expr: |
+          predict_linear(
+            sum(rate(http_requests_total[5m])) by (job)[24h:],
+            86400  # 24 hours ahead
+          )
+
+      # Memory usage trend
+      - record: capacity:memory_usage:trend24h
+        expr: |
+          predict_linear(
+            memory_used_bytes{type="heap_used"}[24h:],
+            86400
+          )
+
+      # Connection growth trend
+      - record: capacity:ws_connections:trend24h
+        expr: |
+          predict_linear(
+            ws_connections_active[24h:],
+            86400
+          )

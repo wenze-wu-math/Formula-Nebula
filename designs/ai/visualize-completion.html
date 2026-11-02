@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GNN Graph Completion Visualization</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0e17;
+      color: #e0e6ed;
+      overflow: hidden;
+    }
+
+    #container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    #canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    #controls {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(15, 20, 30, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      min-width: 300px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #fff;
+      border-bottom: 2px solid #4A90E2;
+      padding-bottom: 8px;
+    }
+
+    .control-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: #8a95a5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .value-display {
+      font-size: 14px;
+      color: #4A90E2;
+      text-align: right;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4A90E2;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 8px;
+    }
+
+    button:hover {
+      background: #357ABD;
+    }
+
+    button.secondary {
+      background: #34495e;
+    }
+
+    button.secondary:hover {
+      background: #2c3e50;
+    }
+
+    .legend {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .legend-line {
+      width: 30px;
+      height: 2px;
+      margin-right: 10px;
+    }
+
+    .legend-line.solid {
+      border-top: 2px solid currentColor;
+    }
+
+    .legend-line.dashed {
+      border-top: 2px dashed currentColor;
+    }
+
+    #stats {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(15, 20, 30, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 16px;
+      min-width: 250px;
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-label {
+      color: #8a95a5;
+    }
+
+    .stat-value {
+      color: #4A90E2;
+      font-weight: 600;
+    }
+
+    #info {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(15, 20, 30, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 16px;
+      max-width: 400px;
+      backdrop-filter: blur(10px);
+      display: none;
+    }
+
+    #info.visible {
+      display: block;
+    }
+
+    .info-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .info-section {
+      margin-bottom: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .info-section strong {
+      color: #4A90E2;
+    }
+
+    .confidence-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #E74C3C, #F39C12, #27AE60);
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <canvas id="canvas"></canvas>
+
+    <div id="controls">
+      <h1>GNN Completion</h1>
+
+      <div class="control-group">
+        <label>Confidence Threshold</label>
+        <input type="range" id="threshold" min="0.5" max="1.0" step="0.05" value="0.75">
+        <div class="value-display" id="threshold-val">0.75</div>
+      </div>
+
+      <div class="control-group">
+        <label>Show Top N</label>
+        <input type="range" id="topN" min="5" max="50" step="5" value="20">
+        <div class="value-display" id="topN-val">20</div>
+      </div>
+
+      <button id="update">Update Predictions</button>
+      <button id="toggle-existing" class="secondary">Hide Existing</button>
+      <button id="toggle-predicted" class="secondary">Hide Predicted</button>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-line solid" style="color: #4A90E2;"></div>
+          <span>Existing Links</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-line dashed" style="color: #27AE60;"></div>
+          <span>High Confidence (>85%)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-line dashed" style="color: #F39C12;"></div>
+          <span>Medium (75-85%)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-line dashed" style="color: #E74C3C;"></div>
+          <span>Low (<75%)</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="stats">
+      <div class="stat-row">
+        <span class="stat-label">Nodes</span>
+        <span class="stat-value" id="stat-nodes">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Existing Edges</span>
+        <span class="stat-value" id="stat-existing">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Predicted</span>
+        <span class="stat-value" id="stat-predicted">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Avg Confidence</span>
+        <span class="stat-value" id="stat-conf">0%</span>
+      </div>
+    </div>
+
+    <div id="info">
+      <div class="info-title" id="info-title">Link Details</div>
+      <div class="info-section">
+        <strong>Type:</strong> <span id="info-type"></span>
+      </div>
+      <div class="info-section">
+        <strong>Confidence:</strong> <span id="info-confidence"></span>
+        <div class="confidence-bar">
+          <div class="confidence-fill" id="info-bar"></div>
+        </div>
+      </div>
+      <div class="info-section" id="info-reasoning"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three'
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
+    // Load completion results
+    let data
+    try {
+      const response = await fetch('./completion-results.json')
+      data = await response.json()
+    } catch (err) {
+      console.error('Failed to load results:', err)
+      alert('Please run demo-completion.mjs first to generate results')
+    }
+
+    if (!data) throw new Error('No data')
+
+    // Scene setup
+    const scene = new THREE.Scene()
+    scene.background = new THREE.Color(0x0a0e17)
+
+    const canvas = document.getElementById('canvas')
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true })
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(window.devicePixelRatio)
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 5000)
+    camera.position.set(0, 300, 600)
+
+    const controls = new OrbitControls(camera, canvas)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.05
+
+    // Lighting
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5)
+    scene.add(ambient)
+    const directional = new THREE.DirectionalLight(0xffffff, 0.5)
+    directional.position.set(100, 200, 100)
+    scene.add(directional)
+
+    // Node visualization
+    const nodeGroup = new THREE.Group()
+    scene.add(nodeGroup)
+
+    const nodeGeometry = new THREE.SphereGeometry(3, 16, 16)
+    const nodeMeshes = new Map()
+
+    data.visualization.nodes.forEach(node => {
+      const material = new THREE.MeshStandardMaterial({
+        color: node.cluster ? 0xFF6B6B : 0x4ECDC4,
+        emissive: node.cluster ? 0xFF6B6B : 0x4ECDC4,
+        emissiveIntensity: node.rank * 0.5,
+      })
+
+      const mesh = new THREE.Mesh(nodeGeometry, material)
+      mesh.position.set(node.x, node.y, node.z)
+      mesh.userData = node
+      nodeGroup.add(mesh)
+      nodeMeshes.set(node.id, mesh)
+    })
+
+    // Edge visualization
+    const existingGroup = new THREE.Group()
+    const predictedGroup = new THREE.Group()
+    scene.add(existingGroup)
+    scene.add(predictedGroup)
+
+    function createEdge(edge, isPredicted = false) {
+      const srcNode = nodeMeshes.get(edge.source)
+      const tgtNode = nodeMeshes.get(edge.target)
+      if (!srcNode || !tgtNode) return null
+
+      const points = [
+        srcNode.position.clone(),
+        tgtNode.position.clone()
+      ]
+
+      const geometry = new THREE.BufferGeometry().setFromPoints(points)
+
+      const color = new THREE.Color(edge.color)
+      const material = new THREE.LineBasicMaterial({
+        color,
+        opacity: isPredicted ? 0.6 : 0.3,
+        transparent: true,
+        linewidth: edge.width || 1,
+      })
+
+      const line = new THREE.Line(geometry, material)
+      line.userData = edge
+      return line
+    }
+
+    // Initial render
+    let showExisting = true
+    let showPredicted = true
+
+    function updateVisualization() {
+      existingGroup.clear()
+      predictedGroup.clear()
+
+      if (showExisting) {
+        data.visualization.existingEdges.forEach(edge => {
+          const line = createEdge(edge, false)
+          if (line) existingGroup.add(line)
+        })
+      }
+
+      if (showPredicted) {
+        const threshold = parseFloat(document.getElementById('threshold').value)
+        const topN = parseInt(document.getElementById('topN').value)
+
+        const filtered = data.predictions
+          .filter(p => p.confidence >= threshold)
+          .slice(0, topN)
+
+        filtered.forEach(pred => {
+          const edge = {
+            source: pred.source,
+            target: pred.target,
+            color: pred.confidence > 0.85 ? '#27AE60' : pred.confidence > 0.75 ? '#F39C12' : '#E74C3C',
+            width: pred.confidence * 3,
+          }
+          edge.userData = pred
+
+          const line = createEdge(edge, true)
+          if (line) {
+            line.userData = pred
+            predictedGroup.add(line)
+          }
+        })
+
+        // Update stats
+        document.getElementById('stat-predicted').textContent = filtered.length
+        const avgConf = filtered.reduce((s, p) => s + p.confidence, 0) / filtered.length
+        document.getElementById('stat-conf').textContent = (avgConf * 100).toFixed(1) + '%'
+      }
+    }
+
+    updateVisualization()
+
+    // Stats
+    document.getElementById('stat-nodes').textContent = data.visualization.nodes.length
+    document.getElementById('stat-existing').textContent = data.visualization.existingEdges.length
+
+    // Controls
+    document.getElementById('threshold').addEventListener('input', (e) => {
+      document.getElementById('threshold-val').textContent = e.target.value
+    })
+
+    document.getElementById('topN').addEventListener('input', (e) => {
+      document.getElementById('topN-val').textContent = e.target.value
+    })
+
+    document.getElementById('update').addEventListener('click', updateVisualization)
+
+    document.getElementById('toggle-existing').addEventListener('click', (e) => {
+      showExisting = !showExisting
+      e.target.textContent = showExisting ? 'Hide Existing' : 'Show Existing'
+      updateVisualization()
+    })
+
+    document.getElementById('toggle-predicted').addEventListener('click', (e) => {
+      showPredicted = !showPredicted
+      e.target.textContent = showPredicted ? 'Hide Predicted' : 'Show Predicted'
+      updateVisualization()
+    })
+
+    // Raycasting for interaction
+    const raycaster = new THREE.Raycaster()
+    const mouse = new THREE.Vector2()
+
+    canvas.addEventListener('click', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+
+      raycaster.setFromCamera(mouse, camera)
+
+      // Check predicted edges
+      const intersects = raycaster.intersectObjects(predictedGroup.children)
+
+      if (intersects.length > 0) {
+        const pred = intersects[0].object.userData
+        showInfoPanel(pred)
+      } else {
+        document.getElementById('info').classList.remove('visible')
+      }
+    })
+
+    function showInfoPanel(pred) {
+      const info = document.getElementById('info')
+      info.classList.add('visible')
+
+      document.getElementById('info-title').textContent = `${pred.source} → ${pred.target}`
+      document.getElementById('info-type').textContent = pred.type
+      document.getElementById('info-confidence').textContent = (pred.confidence * 100).toFixed(1) + '%'
+      document.getElementById('info-bar').style.width = (pred.confidence * 100) + '%'
+      document.getElementById('info-reasoning').textContent = pred.reasoning ? pred.reasoning.explanation : 'No reasoning available'
+    }
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate)
+      controls.update()
+      renderer.render(scene, camera)
+    }
+
+    animate()
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    })
+  </script>
+</body>
+</html>

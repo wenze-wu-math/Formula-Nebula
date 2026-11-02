@@ -1,0 +1,183 @@
+version: '3.8'
+
+# ==========================================
+# Formula Nebula - Docker Compose Configuration
+# ==========================================
+# Services: app, redis, postgres
+# Networks: nebula-network
+# Volumes: node_modules, redis-data, postgres-data
+# ==========================================
+
+services:
+  # ==========================================
+  # Main Application Service
+  # ==========================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: formula-nebula-app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-5176}:5176"
+      - "${COLLAB_PORT:-8080}:8080"
+    environment:
+      - NODE_ENV=production
+      - NEBULA_PORT=5176
+      - NEBULA_PREVIEW_PORT=5176
+      - COLLAB_PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=${POSTGRES_DB:-formula_nebula}
+      - POSTGRES_USER=${POSTGRES_USER:-nebula}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-nebula_secret}
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - nebula-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:5176/', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.formula-nebula.service=app"
+      - "com.formula-nebula.version=0.1.0"
+
+  # ==========================================
+  # Development Environment Service
+  # ==========================================
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: formula-nebula-dev
+    restart: unless-stopped
+    ports:
+      - "${DEV_PORT:-5175}:5175"
+      - "${COLLAB_DEV_PORT:-8081}:8080"
+    environment:
+      - NODE_ENV=development
+      - NEBULA_PORT=5175
+      - COLLAB_PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=${POSTGRES_DB:-formula_nebula}
+      - POSTGRES_USER=${POSTGRES_USER:-nebula}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-nebula_secret}
+    volumes:
+      # Mount source for hot reload
+      - ./src:/app/src:cached
+      - ./public:/app/public:cached
+      - ./index.html:/app/index.html:cached
+      - ./vite.config.js:/app/vite.config.js:cached
+      - ./package.json:/app/package.json:cached
+      # Prevent overwriting node_modules
+      - node_modules_dev:/app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - nebula-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:5175/', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "com.formula-nebula.service=app-dev"
+      - "com.formula-nebula.environment=development"
+    profiles:
+      - dev
+
+  # ==========================================
+  # Redis Cache Service
+  # ==========================================
+  redis:
+    image: redis:7-alpine
+    container_name: formula-nebula-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    networks:
+      - nebula-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    labels:
+      - "com.formula-nebula.service=cache"
+
+  # ==========================================
+  # PostgreSQL Database Service
+  # ==========================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: formula-nebula-postgres
+    restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-formula_nebula}
+      - POSTGRES_USER=${POSTGRES_USER:-nebula}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-nebula_secret}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # Initialize database schema if needed
+      # - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - nebula-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nebula} -d ${POSTGRES_DB:-formula_nebula}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    labels:
+      - "com.formula-nebula.service=database"
+
+# ==========================================
+# Networks
+# ==========================================
+networks:
+  nebula-network:
+    driver: bridge
+    name: formula-nebula-network
+    labels:
+      - "com.formula-nebula.network=main"
+
+# ==========================================
+# Volumes
+# ==========================================
+volumes:
+  node_modules_dev:
+    name: formula-nebula-node-modules-dev
+    labels:
+      - "com.formula-nebula.volume=node-modules-dev"
+  redis-data:
+    name: formula-nebula-redis-data
+    labels:
+      - "com.formula-nebula.volume=redis-data"
+  postgres-data:
+    name: formula-nebula-postgres-data
+    labels:
+      - "com.formula-nebula.volume=postgres-data"

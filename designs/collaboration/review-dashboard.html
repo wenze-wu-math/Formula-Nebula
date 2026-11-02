@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peer Review Dashboard - Formula Nebula</title>
+  <link rel="stylesheet" href="review-dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <h1>Peer Review Dashboard</h1>
+      <div class="user-info">
+        <span class="user-name" id="userName">Reviewer</span>
+        <span class="notification-badge" id="notificationBadge">0</span>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="dashboard-nav">
+      <button class="nav-tab active" data-tab="pending">Pending Reviews</button>
+      <button class="nav-tab" data-tab="in-progress">In Progress</button>
+      <button class="nav-tab" data-tab="completed">Completed</button>
+      <button class="nav-tab" data-tab="submitted">My Submissions</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Pending Reviews Tab -->
+      <section class="tab-content active" id="pending-tab">
+        <div class="section-header">
+          <h2>Pending Reviews</h2>
+          <span class="count-badge" id="pendingCount">0</span>
+        </div>
+        <div class="review-list" id="pendingList">
+          <!-- Dynamic content -->
+        </div>
+      </section>
+
+      <!-- In Progress Tab -->
+      <section class="tab-content" id="in-progress-tab">
+        <div class="section-header">
+          <h2>In Progress</h2>
+          <span class="count-badge" id="inProgressCount">0</span>
+        </div>
+        <div class="review-list" id="inProgressList">
+          <!-- Dynamic content -->
+        </div>
+      </section>
+
+      <!-- Completed Tab -->
+      <section class="tab-content" id="completed-tab">
+        <div class="section-header">
+          <h2>Completed Reviews</h2>
+          <span class="count-badge" id="completedCount">0</span>
+        </div>
+        <div class="review-list" id="completedList">
+          <!-- Dynamic content -->
+        </div>
+      </section>
+
+      <!-- My Submissions Tab -->
+      <section class="tab-content" id="submitted-tab">
+        <div class="section-header">
+          <h2>My Submissions</h2>
+          <button class="btn-primary" id="submitNewBtn">Submit New Proof</button>
+        </div>
+        <div class="review-list" id="submittedList">
+          <!-- Dynamic content -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Review Proof</h2>
+          <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Proof Information -->
+          <section class="proof-info">
+            <h3>Proof Details</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <label>Title:</label>
+                <span id="proofTitle"></span>
+              </div>
+              <div class="info-item">
+                <label>Author:</label>
+                <span id="proofAuthor"></span>
+              </div>
+              <div class="info-item">
+                <label>Submitted:</label>
+                <span id="proofSubmitted"></span>
+              </div>
+              <div class="info-item">
+                <label>Deadline:</label>
+                <span id="reviewDeadline"></span>
+              </div>
+            </div>
+            <div class="proof-abstract">
+              <label>Abstract:</label>
+              <p id="proofAbstract"></p>
+            </div>
+          </section>
+
+          <!-- Review Checklist -->
+          <section class="review-checklist">
+            <h3>Review Checklist</h3>
+            <div id="checklistItems">
+              <!-- Dynamic checklist items -->
+            </div>
+          </section>
+
+          <!-- Strengths and Weaknesses -->
+          <section class="review-feedback">
+            <div class="feedback-section">
+              <h4>Strengths</h4>
+              <textarea id="strengths" rows="3" placeholder="List the strengths of this proof..."></textarea>
+            </div>
+            <div class="feedback-section">
+              <h4>Weaknesses</h4>
+              <textarea id="weaknesses" rows="3" placeholder="List any weaknesses or concerns..."></textarea>
+            </div>
+            <div class="feedback-section">
+              <h4>Suggestions for Improvement</h4>
+              <textarea id="suggestions" rows="3" placeholder="Provide constructive suggestions..."></textarea>
+            </div>
+          </section>
+
+          <!-- General Comments -->
+          <section class="review-comments">
+            <h4>General Comments</h4>
+            <textarea id="generalComments" rows="4" placeholder="Provide detailed feedback..."></textarea>
+          </section>
+
+          <!-- Confidential Notes -->
+          <section class="review-confidential">
+            <h4>Confidential Notes (for editors only)</h4>
+            <textarea id="confidentialNotes" rows="2" placeholder="Private notes not shared with author..."></textarea>
+          </section>
+
+          <!-- Verdict -->
+          <section class="review-verdict">
+            <h4>Verdict</h4>
+            <div class="verdict-options">
+              <label class="verdict-option">
+                <input type="radio" name="verdict" value="accept">
+                <span class="verdict-label accept">Accept</span>
+              </label>
+              <label class="verdict-option">
+                <input type="radio" name="verdict" value="revise">
+                <span class="verdict-label revise">Revise</span>
+              </label>
+              <label class="verdict-option">
+                <input type="radio" name="verdict" value="reject">
+                <span class="verdict-label reject">Reject</span>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" id="saveDraftBtn">Save Draft</button>
+          <button class="btn-primary" id="submitReviewBtn">Submit Review</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Version Diff Modal -->
+    <div class="modal" id="diffModal">
+      <div class="modal-content diff-modal">
+        <div class="modal-header">
+          <h2>Version Comparison</h2>
+          <button class="modal-close" id="diffModalClose">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="version-selector">
+            <div class="version-select">
+              <label>From Version:</label>
+              <select id="fromVersion"></select>
+            </div>
+            <div class="version-select">
+              <label>To Version:</label>
+              <select id="toVersion"></select>
+            </div>
+            <button class="btn-secondary" id="compareDiffBtn">Compare</button>
+          </div>
+          <div class="diff-display" id="diffDisplay">
+            <!-- Dynamic diff content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="review.js"></script>
+  <script src="review-dashboard.js"></script>
+</body>
+</html>

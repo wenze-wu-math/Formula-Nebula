@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-time Collaborative Proof Editor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 1400px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4CAF50;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .user-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 14px;
+    }
+
+    .main-content {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #f5f7fa;
+      border-right: 1px solid #e1e8ed;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      padding: 20px;
+      border-bottom: 1px solid #e1e8ed;
+    }
+
+    .sidebar-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #657786;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .user-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .user-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      background: white;
+      border: 1px solid #e1e8ed;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .user-info {
+      flex: 1;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #14171a;
+    }
+
+    .user-status {
+      font-size: 12px;
+      color: #657786;
+    }
+
+    .editor-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .editor-toolbar {
+      padding: 12px 20px;
+      background: #f5f7fa;
+      border-bottom: 1px solid #e1e8ed;
+      display: flex;
+      gap: 8px;
+    }
+
+    .toolbar-btn {
+      padding: 8px 16px;
+      border: 1px solid #e1e8ed;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .toolbar-btn:hover {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .editor-container {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .proof-editor {
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      border: 1px solid #e1e8ed;
+      border-radius: 8px;
+      padding: 20px;
+      min-height: 400px;
+      background: white;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      outline: none;
+      position: relative;
+    }
+
+    .proof-line {
+      position: relative;
+      padding: 4px 0;
+      padding-left: 60px;
+    }
+
+    .line-number {
+      position: absolute;
+      left: 0;
+      width: 50px;
+      text-align: right;
+      color: #657786;
+      user-select: none;
+      font-size: 12px;
+    }
+
+    .remote-cursor {
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      pointer-events: none;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .cursor-label {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: white;
+      font-size: 11px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .comment-panel {
+      width: 350px;
+      background: #f5f7fa;
+      border-left: 1px solid #e1e8ed;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .comment-header {
+      padding: 20px;
+      border-bottom: 1px solid #e1e8ed;
+      background: white;
+    }
+
+    .comment-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #14171a;
+    }
+
+    .comment-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .comment-thread {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #e1e8ed;
+    }
+
+    .comment-line-ref {
+      font-size: 12px;
+      color: #657786;
+      margin-bottom: 8px;
+    }
+
+    .comment-item {
+      margin-bottom: 12px;
+    }
+
+    .comment-author {
+      font-weight: 600;
+      font-size: 14px;
+      color: #14171a;
+      margin-bottom: 4px;
+    }
+
+    .comment-text {
+      font-size: 14px;
+      color: #14171a;
+      line-height: 1.5;
+    }
+
+    .comment-time {
+      font-size: 12px;
+      color: #657786;
+      margin-top: 4px;
+    }
+
+    .comment-input {
+      padding: 16px 20px;
+      border-top: 1px solid #e1e8ed;
+      background: white;
+    }
+
+    .comment-textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e1e8ed;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+    }
+
+    .comment-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .comment-btn:hover {
+      background: #5568d3;
+    }
+
+    .activity-log {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      max-width: 300px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .activity-log.show {
+      opacity: 1;
+    }
+
+    .setup-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 24px;
+      color: #14171a;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #14171a;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e1e8ed;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .join-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    .join-btn:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="setup-modal" id="setupModal">
+    <div class="modal-content">
+      <h2>Join Collaborative Session</h2>
+      <div class="form-group">
+        <label for="userName">Your Name</label>
+        <input type="text" id="userName" placeholder="Enter your name" value="">
+      </div>
+      <div class="form-group">
+        <label for="serverUrl">Server URL (optional)</label>
+        <input type="text" id="serverUrl" placeholder="ws://localhost:8080" value="ws://localhost:8080">
+      </div>
+      <button class="join-btn" onclick="joinSession()">Join Session</button>
+    </div>
+  </div>
+
+  <div class="container" style="display: none;" id="mainContainer">
+    <div class="header">
+      <h1>🔬 Collaborative Proof Editor</h1>
+      <div class="status">
+        <div class="status-indicator">
+          <div class="status-dot" id="statusDot"></div>
+          <span id="statusText">Connected</span>
+        </div>
+        <div class="user-badge">
+          <span id="currentUserName"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <h3>Active Users (<span id="userCount">0</span>)</h3>
+          <div class="user-list" id="userList"></div>
+        </div>
+      </div>
+
+      <div class="editor-area">
+        <div class="editor-toolbar">
+          <button class="toolbar-btn" onclick="formatText('bold')">Bold</button>
+          <button class="toolbar-btn" onclick="formatText('italic')">Italic</button>
+          <button class="toolbar-btn" onclick="insertSymbol('∀')">∀</button>
+          <button class="toolbar-btn" onclick="insertSymbol('∃')">∃</button>
+          <button class="toolbar-btn" onclick="insertSymbol('→')">→</button>
+          <button class="toolbar-btn" onclick="insertSymbol('∧')">∧</button>
+          <button class="toolbar-btn" onclick="insertSymbol('∨')">∨</button>
+        </div>
+
+        <div class="editor-container">
+          <div class="proof-editor" id="proofEditor" contenteditable="true">
+<span class="proof-line"><span class="line-number">1</span>Theorem: ∀x ∈ ℝ, x² ≥ 0</span>
+<span class="proof-line"><span class="line-number">2</span></span>
+<span class="proof-line"><span class="line-number">3</span>Proof:</span>
+<span class="proof-line"><span class="line-number">4</span>Let x ∈ ℝ be arbitrary.</span>
+<span class="proof-line"><span class="line-number">5</span></span>
+<span class="proof-line"><span class="line-number">6</span>Case 1: x ≥ 0</span>
+<span class="proof-line"><span class="line-number">7</span>  Then x² = x · x ≥ 0 (product of non-negative reals)</span>
+<span class="proof-line"><span class="line-number">8</span></span>
+<span class="proof-line"><span class="line-number">9</span>Case 2: x < 0</span>
+<span class="proof-line"><span class="line-number">10</span>  Then -x > 0, so x² = (-x)(-x) = (-x)² ≥ 0</span>
+<span class="proof-line"><span class="line-number">11</span></span>
+<span class="proof-line"><span class="line-number">12</span>Therefore x² ≥ 0. ∎</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comment-panel">
+        <div class="comment-header">
+          <h3>Comments</h3>
+        </div>
+        <div class="comment-list" id="commentList">
+          <div class="comment-thread">
+            <div class="comment-line-ref">Line 7</div>
+            <div class="comment-item">
+              <div class="comment-author">System</div>
+              <div class="comment-text">Click on a line to add a comment</div>
+              <div class="comment-time">Just now</div>
+            </div>
+          </div>
+        </div>
+        <div class="comment-input">
+          <textarea class="comment-textarea" id="commentText" placeholder="Add a comment..." rows="3"></textarea>
+          <button class="comment-btn" onclick="postComment()">Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="activity-log" id="activityLog"></div>
+
+  <script type="module">
+    import { RealtimeCollaboration } from './src/collaboration/realtime.js';
+
+    let collab = null;
+    let currentUserId = null;
+    let currentUserName = null;
+    let selectedLine = null;
+
+    window.joinSession = async function() {
+      const userName = document.getElementById('userName').value.trim();
+      const serverUrl = document.getElementById('serverUrl').value.trim() || 'ws://localhost:8080';
+
+      if (!userName) {
+        alert('Please enter your name');
+        return;
+      }
+
+      currentUserId = 'user-' + Math.random().toString(36).substr(2, 9);
+      currentUserName = userName;
+
+      // Generate random name if empty
+      if (!userName) {
+        currentUserName = 'User' + Math.floor(Math.random() * 1000);
+      }
+
+      document.getElementById('currentUserName').textContent = currentUserName;
+
+      // Initialize collaboration
+      collab = new RealtimeCollaboration(serverUrl, currentUserId, currentUserName);
+
+      // Set up event listeners
+      setupCollabEvents();
+
+      try {
+        await collab.connect();
+
+        // Hide modal, show main container
+        document.getElementById('setupModal').style.display = 'none';
+        document.getElementById('mainContainer').style.display = 'flex';
+
+        showActivity(`Connected as ${currentUserName}`);
+      } catch (error) {
+        alert('Failed to connect to server. Please try again.');
+        console.error(error);
+      }
+    };
+
+    function setupCollabEvents() {
+      // Ready event
+      collab.on('ready', (data) => {
+        console.log('Session ready:', data);
+        updateUserList();
+      });
+
+      // User joined
+      collab.on('user-joined', (data) => {
+        showActivity(`${data.userName} joined the session`);
+        updateUserList();
+      });
+
+      // User left
+      collab.on('user-left', (data) => {
+        showActivity(`User left the session`);
+        updateUserList();
+      });
+
+      // Local edit
+      collab.on('local-edit', (data) => {
+        console.log('Local edit applied:', data);
+      });
+
+      // Remote edit
+      collab.on('remote-edit', (data) => {
+        showActivity(`${getUserName(data.userId)} made an edit`);
+        // Apply edit to UI
+      });
+
+      // Remote cursor
+      collab.on('remote-cursor', (data) => {
+        updateRemoteCursor(data);
+      });
+
+      // Remote comment
+      collab.on('remote-comment', (data) => {
+        showActivity(`${data.comment.author} commented`);
+        addCommentToUI(data.comment);
+      });
+
+      // Disconnected
+      collab.on('disconnected', () => {
+        document.getElementById('statusText').textContent = 'Disconnected';
+        document.getElementById('statusDot').style.background = '#f44336';
+      });
+    }
+
+    function updateUserList() {
+      const users = collab.getActiveUsers();
+      const userList = document.getElementById('userList');
+      const userCount = document.getElementById('userCount');
+
+      userCount.textContent = users.length + 1; // +1 for current user
+
+      userList.innerHTML = `
+        <div class="user-item">
+          <div class="user-avatar" style="background: #667eea">${currentUserName[0]}</div>
+          <div class="user-info">
+            <div class="user-name">${currentUserName} (You)</div>
+            <div class="user-status">Active</div>
+          </div>
+        </div>
+      ` + users.map(user => `
+        <div class="user-item">
+          <div class="user-avatar" style="background: ${user.color}">${user.name[0]}</div>
+          <div class="user-info">
+            <div class="user-name">${user.name}</div>
+            <div class="user-status">Active</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateRemoteCursor(data) {
+      // Remove existing cursor for this user
+      const existingCursor = document.getElementById(`cursor-${data.userId}`);
+      if (existingCursor) {
+        existingCursor.remove();
+      }
+
+      // Create new cursor
+      const cursor = document.createElement('div');
+      cursor.id = `cursor-${data.userId}`;
+      cursor.className = 'remote-cursor';
+      cursor.style.backgroundColor = data.color;
+
+      const label = document.createElement('div');
+      label.className = 'cursor-label';
+      label.textContent = data.userName;
+      label.style.backgroundColor = data.color;
+
+      cursor.appendChild(label);
+
+      // Position cursor (simplified - would need actual position calculation)
+      cursor.style.left = `${data.position.column * 8}px`;
+      cursor.style.top = `${data.position.line * 28}px`;
+
+      document.getElementById('proofEditor').appendChild(cursor);
+    }
+
+    function addCommentToUI(comment) {
+      const commentList = document.getElementById('commentList');
+      const thread = document.createElement('div');
+      thread.className = 'comment-thread';
+
+      thread.innerHTML = `
+        <div class="comment-line-ref">Line ${comment.lineId}</div>
+        <div class="comment-item">
+          <div class="comment-author">${comment.author}</div>
+          <div class="comment-text">${comment.text}</div>
+          <div class="comment-time">${new Date(comment.timestamp).toLocaleTimeString()}</div>
+        </div>
+      `;
+
+      commentList.appendChild(thread);
+    }
+
+    window.postComment = async function() {
+      const text = document.getElementById('commentText').value.trim();
+      if (!text) return;
+
+      const lineId = selectedLine || '1';
+
+      await collab.ThreadComments(lineId, { text });
+
+      document.getElementById('commentText').value = '';
+      showActivity('Comment posted');
+    };
+
+    function showActivity(message) {
+      const log = document.getElementById('activityLog');
+      log.textContent = message;
+      log.classList.add('show');
+
+      setTimeout(() => {
+        log.classList.remove('show');
+      }, 3000);
+    }
+
+    function getUserName(userId) {
+      const users = collab.getActiveUsers();
+      const user = users.find(u => u.userId === userId);
+      return user ? user.name : 'Unknown';
+    }
+
+    // Editor event listeners
+    const editor = document.getElementById('proofEditor');
+
+    editor.addEventListener('input', () => {
+      // Track edit
+      const edit = {
+        type: 'insert',
+        position: { line: 1, column: 0 },
+        content: editor.textContent
+      };
+
+      collab.SyncProofEdits({ content: editor.textContent }, edit);
+    });
+
+    editor.addEventListener('click', (e) => {
+      // Track cursor position
+      const selection = window.getSelection();
+      const range = selection.getRangeAt(0);
+
+      // Simple position calculation
+      const position = {
+        line: 1,
+        column: range.startOffset
+      };
+
+      collab.ManageCursors(currentUserId, position);
+
+      // Select line for commenting
+      const line = e.target.closest('.proof-line');
+      if (line) {
+        const lineNum = line.querySelector('.line-number').textContent;
+        selectedLine = lineNum;
+      }
+    });
+
+    window.formatText = function(format) {
+      document.execCommand(format, false, null);
+    };
+
+    window.insertSymbol = function(symbol) {
+      document.execCommand('insertText', false, symbol);
+    };
+
+    // Generate random user name
+    const names = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank'];
+    document.getElementById('userName').value = names[Math.floor(Math.random() * names.length)];
+  </script>
+</body>
+</html>

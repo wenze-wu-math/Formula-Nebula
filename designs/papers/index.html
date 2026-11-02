@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>论文浏览器 | Paper Browser</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+      border-bottom: 2px solid rgba(127, 212, 255, 0.2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7fd4ff, #9dffb0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #b0b0b0;
+    }
+
+    .search-section {
+      background: rgba(30, 30, 45, 0.8);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-box {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="text"], select {
+      flex: 1;
+      padding: 0.8rem 1.2rem;
+      background: rgba(20, 20, 30, 0.6);
+      border: 1px solid rgba(127, 212, 255, 0.3);
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 1rem;
+    }
+
+    input[type="text"]:focus, select:focus {
+      outline: none;
+      border-color: #7fd4ff;
+      box-shadow: 0 0 0 3px rgba(127, 212, 255, 0.1);
+    }
+
+    button {
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, #7fd4ff, #9dffb0);
+      border: none;
+      border-radius: 8px;
+      color: #1a1a2e;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(127, 212, 255, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-group label {
+      font-size: 0.9rem;
+      color: #b0b0b0;
+    }
+
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .paper-card {
+      background: rgba(30, 30, 45, 0.8);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(127, 212, 255, 0.2);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-4px);
+      border-color: #7fd4ff;
+      box-shadow: 0 8px 24px rgba(127, 212, 255, 0.2);
+    }
+
+    .paper-header {
+      margin-bottom: 1rem;
+    }
+
+    .paper-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #7fd4ff;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .paper-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .paper-authors {
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      margin-bottom: 0.8rem;
+    }
+
+    .paper-abstract {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #c0c0c0;
+      margin-bottom: 1rem;
+      max-height: 120px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .paper-abstract::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(transparent, rgba(30, 30, 45, 0.8));
+    }
+
+    .paper-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.8rem;
+      background: rgba(127, 212, 255, 0.15);
+      border-radius: 16px;
+      font-size: 0.8rem;
+      color: #7fd4ff;
+    }
+
+    .paper-actions {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: flex-end;
+    }
+
+    .btn-small {
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      background: rgba(127, 212, 255, 0.2);
+      color: #7fd4ff;
+      border: 1px solid rgba(127, 212, 255, 0.3);
+    }
+
+    .btn-small:hover {
+      background: rgba(127, 212, 255, 0.3);
+    }
+
+    .relevance-bar {
+      height: 4px;
+      background: rgba(127, 212, 255, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+    }
+
+    .relevance-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7fd4ff, #9dffb0);
+      transition: width 0.5s ease;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.1rem;
+      color: #7fd4ff;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #888;
+    }
+
+    .empty-state h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #b0b0b0;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #7fd4ff;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 0.3rem;
+    }
+
+    @media (max-width: 768px) {
+      .papers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .filters {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>论文浏览器 Paper Browser</h1>
+      <p class="subtitle">基于知识图谱的智能论文检索与推荐系统</p>
+    </header>
+
+    <div class="search-section">
+      <div class="search-box">
+        <select id="theoremSelect">
+          <option value="">选择定理 / Select Theorem</option>
+        </select>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="或直接输入搜索关键词..."
+        />
+        <button id="searchBtn">搜索</button>
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label>排序:</label>
+          <select id="sortBy">
+            <option value="relevance">相关性</option>
+            <option value="date">发表时间</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>分类:</label>
+          <select id="category">
+            <option value="math.AG">代数几何 (AG)</option>
+            <option value="math.AC">交换代数 (AC)</option>
+            <option value="math.NT">数论 (NT)</option>
+            <option value="math.AT">代数拓扑 (AT)</option>
+            <option value="math.CT">范畴论 (CT)</option>
+            <option value="math">全部数学</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>结果数:</label>
+          <select id="maxResults">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
+        <button id="generateReadingListBtn" class="btn-small">生成阅读列表</button>
+      </div>
+    </div>
+
+    <div class="stats" id="stats" style="display: none;">
+      <div class="stat-item">
+        <div class="stat-value" id="totalPapers">0</div>
+        <div class="stat-label">论文总数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="avgRelevance">0%</div>
+        <div class="stat-label">平均相关度</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="citationCount">0</div>
+        <div class="stat-label">引用发现</div>
+      </div>
+    </div>
+
+    <div id="papersContainer">
+      <div class="empty-state">
+        <h2>开始探索</h2>
+        <p>选择一个定理或输入关键词开始搜索相关论文</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // Load theorem list
+    async function loadTheorems() {
+      try {
+        // In production, this would load from the knowledge graph
+        const response = await fetch('/kb-src/out/theorems-list.json').catch(() => null)
+
+        if (!response || !response.ok) {
+          // Fallback: hardcoded list of key theorems
+          return [
+            { id: 'nullstellensatz', name: 'Hilbert Nullstellensatz' },
+            { id: 'riemann-roch', name: 'Riemann-Roch Theorem' },
+            { id: 'grothendieck-riemann-roch', name: 'Grothendieck-Riemann-Roch' },
+            { id: 'serre-duality', name: 'Serre Duality' },
+            { id: 'chow-lemma', name: 'Chow Lemma' },
+          ]
+        }
+
+        return await response.json()
+      } catch (e) {
+        console.error('Failed to load theorems:', e)
+        return []
+      }
+    }
+
+    // Populate theorem select
+    loadTheorems().then(theorems => {
+      const select = document.getElementById('theoremSelect')
+      theorems.forEach(thm => {
+        const option = document.createElement('option')
+        option.value = thm.id
+        option.textContent = thm.name
+        select.appendChild(option)
+      })
+    })
+
+    // Search papers
+    async function searchPapers() {
+      const theoremId = document.getElementById('theoremSelect').value
+      const query = document.getElementById('searchInput').value.trim()
+      const sortBy = document.getElementById('sortBy').value
+      const category = document.getElementById('category').value
+      const maxResults = document.getElementById('maxResults').value
+
+      if (!theoremId && !query) {
+        alert('请选择定理或输入搜索关键词')
+        return
+      }
+
+      showLoading()
+
+      try {
+        // Call backend API
+        const params = new URLSearchParams({
+          theoremId: theoremId || '',
+          query: query || '',
+          sortBy,
+          category,
+          maxResults
+        })
+
+        const response = await fetch(`/api/papers/search?${params}`)
+
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`)
+        }
+
+        const papers = await response.json()
+        displayPapers(papers)
+        updateStats(papers)
+
+      } catch (error) {
+        console.error('Search error:', error)
+        showError('搜索失败，请稍后重试')
+      }
+    }
+
+    // Display papers
+    function displayPapers(papers) {
+      const container = document.getElementById('papersContainer')
+
+      if (!papers || papers.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h2>未找到相关论文</h2>
+            <p>尝试调整搜索关键词或筛选条件</p>
+          </div>
+        `
+        return
+      }
+
+      const grid = document.createElement('div')
+      grid.className = 'papers-grid'
+
+      papers.forEach(paper => {
+        const card = createPaperCard(paper)
+        grid.appendChild(card)
+      })
+
+      container.innerHTML = ''
+      container.appendChild(grid)
+    }
+
+    // Create paper card
+    function createPaperCard(paper) {
+      const card = document.createElement('div')
+      card.className = 'paper-card'
+
+      const relevance = paper.summary?.relevanceScore || 0
+      const authors = paper.authors.slice(0, 3).join(', ') +
+                     (paper.authors.length > 3 ? ' et al.' : '')
+
+      card.innerHTML = `
+        <div class="relevance-bar">
+          <div class="relevance-fill" style="width: ${relevance * 100}%"></div>
+        </div>
+
+        <div class="paper-header">
+          <div class="paper-title">${escapeHtml(paper.title)}</div>
+          <div class="paper-meta">
+            <span>📄 ${paper.arxivId}</span>
+            <span>📅 ${paper.published}</span>
+            <span>⭐ ${(relevance * 100).toFixed(0)}%</span>
+          </div>
+          <div class="paper-authors">${escapeHtml(authors)}</div>
+        </div>
+
+        <div class="paper-abstract">${escapeHtml(paper.abstract)}</div>
+
+        ${paper.summary?.methods?.length > 0 ? `
+          <div class="paper-tags">
+            ${paper.summary.methods.map(m => `<span class="tag">${m}</span>`).join('')}
+          </div>
+        ` : ''}
+
+        <div class="paper-actions">
+          <button class="btn-small" onclick="window.open('${paper.url}', '_blank')">
+            查看摘要
+          </button>
+          <button class="btn-small" onclick="window.open('${paper.pdfUrl}', '_blank')">
+            下载PDF
+          </button>
+        </div>
+      `
+
+      card.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'BUTTON') {
+          showPaperDetail(paper)
+        }
+      })
+
+      return card
+    }
+
+    // Show paper detail
+    function showPaperDetail(paper) {
+      // In production, this would open a modal with full details
+      console.log('Paper detail:', paper)
+      window.open(paper.url, '_blank')
+    }
+
+    // Update statistics
+    function updateStats(papers) {
+      const stats = document.getElementById('stats')
+      stats.style.display = 'flex'
+
+      document.getElementById('totalPapers').textContent = papers.length
+
+      const avgRelevance = papers.reduce((sum, p) =>
+        sum + (p.summary?.relevanceScore || 0), 0) / papers.length
+      document.getElementById('avgRelevance').textContent =
+        (avgRelevance * 100).toFixed(0) + '%'
+
+      const citations = new Set()
+      papers.forEach(p => {
+        if (p.summary?.citations) {
+          p.summary.citations.forEach(c => citations.add(c))
+        }
+      })
+      document.getElementById('citationCount').textContent = citations.size
+    }
+
+    // Show loading state
+    function showLoading() {
+      document.getElementById('papersContainer').innerHTML = `
+        <div class="loading">
+          <div>🔍 搜索中...</div>
+        </div>
+      `
+      document.getElementById('stats').style.display = 'none'
+    }
+
+    // Show error
+    function showError(message) {
+      document.getElementById('papersContainer').innerHTML = `
+        <div class="empty-state">
+          <h2>❌ ${message}</h2>
+        </div>
+      `
+    }
+
+    // Escape HTML
+    function escapeHtml(text) {
+      const div = document.createElement('div')
+      div.textContent = text
+      return div.innerHTML
+    }
+
+    // Generate reading list
+    async function generateReadingList() {
+      const theoremId = document.getElementById('theoremSelect').value
+
+      if (!theoremId) {
+        alert('请先选择一个定理')
+        return
+      }
+
+      showLoading()
+
+      try {
+        const response = await fetch(`/api/papers/reading-list?theoremId=${theoremId}&depth=2`)
+
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`)
+        }
+
+        const readingList = await response.json()
+        displayPapers(readingList)
+        updateStats(readingList)
+
+      } catch (error) {
+        console.error('Reading list error:', error)
+        showError('生成阅读列表失败')
+      }
+    }
+
+    // Event listeners
+    document.getElementById('searchBtn').addEventListener('click', searchPapers)
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') searchPapers()
+    })
+    document.getElementById('generateReadingListBtn').addEventListener('click', generateReadingList)
+  </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proof Difficulty Classifier Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'PingFang SC', system-ui, sans-serif;
+      background: linear-gradient(135deg, #080b14 0%, #0f1419 100%);
+      color: #f5f8ff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #78d7ff, #c9aeff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #94a8c4;
+      margin-bottom: 40px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .demo-panel {
+      background: rgba(12, 17, 29, 0.6);
+      border: 1px solid rgba(148, 178, 220, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #78d7ff;
+    }
+
+    .sample-proof {
+      background: rgba(148, 178, 220, 0.05);
+      border: 1px solid rgba(148, 178, 220, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .sample-proof:hover {
+      border-color: rgba(120, 215, 255, 0.5);
+      background: rgba(120, 215, 255, 0.1);
+    }
+
+    .proof-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .proof-summary {
+      font-size: 12px;
+      color: #94a8c4;
+      line-height: 1.6;
+    }
+
+    .result-panel {
+      min-height: 400px;
+    }
+
+    .accuracy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .accuracy-card {
+      background: rgba(148, 178, 220, 0.05);
+      border: 1px solid rgba(148, 178, 220, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .accuracy-label {
+      font-size: 12px;
+      color: #94a8c4;
+      margin-bottom: 8px;
+    }
+
+    .accuracy-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #78d7ff;
+    }
+
+    .confusion-matrix {
+      margin-top: 24px;
+      overflow-x: auto;
+    }
+
+    .confusion-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .confusion-table th,
+    .confusion-table td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid rgba(148, 178, 220, 0.2);
+    }
+
+    .confusion-table th {
+      background: rgba(120, 215, 255, 0.1);
+      color: #78d7ff;
+      font-weight: 600;
+    }
+
+    .confusion-table td {
+      background: rgba(148, 178, 220, 0.05);
+    }
+
+    .training-strategy {
+      background: rgba(12, 17, 29, 0.6);
+      border: 1px solid rgba(148, 178, 220, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .phase {
+      background: rgba(148, 178, 220, 0.05);
+      border-left: 3px solid #78d7ff;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+    }
+
+    .phase-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #78d7ff;
+    }
+
+    .phase-detail {
+      font-size: 13px;
+      color: #94a8c4;
+      line-height: 1.6;
+    }
+
+    .phase-metric {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 12px;
+      background: rgba(120, 215, 255, 0.15);
+      border-radius: 6px;
+      font-size: 12px;
+      color: #78d7ff;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background: rgba(120, 215, 255, 0.15);
+      border: 1px solid rgba(120, 215, 255, 0.4);
+      border-radius: 8px;
+      color: #78d7ff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 16px;
+    }
+
+    .btn:hover {
+      background: rgba(120, 215, 255, 0.25);
+      border-color: rgba(120, 215, 255, 0.6);
+    }
+
+    @media (max-width: 1024px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .accuracy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 Proof Difficulty Classifier Demo</h1>
+    <p class="subtitle">
+      ML-based difficulty analysis for algebraic geometry proofs
+    </p>
+
+    <div class="demo-grid">
+      <!-- Sample Proofs -->
+      <div class="demo-panel">
+        <div class="panel-title">📚 Sample Proofs</div>
+
+        <div class="sample-proof" data-id="beginner">
+          <div class="proof-name">🌱 Zariski Closed Set</div>
+          <div class="proof-summary">
+            基础定义，使用多项式的公共零点集定义闭集。简单的集合运算，适合初学者。
+          </div>
+        </div>
+
+        <div class="sample-proof" data-id="intermediate">
+          <div class="proof-name">🔥 Hilbert Nullstellensatz</div>
+          <div class="proof-summary">
+            核心定理，连接代数与几何。涉及诺特环、局部化、理想理论。需要扎实的交换代数基础。
+          </div>
+        </div>
+
+        <div class="sample-proof" data-id="advanced">
+          <div class="proof-name">💎 Grothendieck-Riemann-Roch</div>
+          <div class="proof-summary">
+            现代代数几何的巅峰成果。需要K-理论、导出范畴、相交理论的深厚背景。极高抽象度。
+          </div>
+        </div>
+
+        <button class="btn" onclick="analyzeAll()">
+          🚀 Analyze All Samples
+        </button>
+      </div>
+
+      <!-- Analysis Result -->
+      <div class="demo-panel result-panel">
+        <div class="panel-title">📊 Analysis Result</div>
+        <div id="result-content" style="color: #94a8c4; font-size: 14px; padding: 20px; text-align: center;">
+          Click a sample proof to see detailed analysis
+        </div>
+      </div>
+    </div>
+
+    <!-- Accuracy Metrics -->
+    <div class="demo-panel">
+      <div class="panel-title">🎯 Classifier Accuracy Metrics</div>
+
+      <div class="accuracy-grid">
+        <div class="accuracy-card">
+          <div class="accuracy-label">Overall Accuracy</div>
+          <div class="accuracy-value" id="overall-accuracy">—</div>
+        </div>
+        <div class="accuracy-card">
+          <div class="accuracy-label">Avg Confidence</div>
+          <div class="accuracy-value" id="avg-confidence">—</div>
+        </div>
+        <div class="accuracy-card">
+          <div class="accuracy-label">Training Samples</div>
+          <div class="accuracy-value" id="sample-count">—</div>
+        </div>
+      </div>
+
+      <div class="confusion-matrix">
+        <table class="confusion-table" id="confusion-table">
+          <thead>
+            <tr>
+              <th>True \ Predicted</th>
+              <th>Beginner</th>
+              <th>Intermediate</th>
+              <th>Advanced</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Beginner</th>
+              <td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <th>Intermediate</th>
+              <td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <th>Advanced</th>
+              <td>—</td><td>—</td><td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="btn" onclick="runEvaluation()">
+        ⚡ Run Full Evaluation
+      </button>
+    </div>
+
+    <!-- Training Strategy -->
+    <div class="training-strategy">
+      <div class="panel-title">📈 Training Data Strategy</div>
+
+      <div class="phase">
+        <div class="phase-name">Phase 1: Bootstrap from Knowledge Graph</div>
+        <div class="phase-detail">
+          Use node.importance from the algebraic geometry knowledge graph as a proxy for difficulty.
+          Quick to implement, provides baseline classification.
+        </div>
+        <span class="phase-metric">Expected Accuracy: ~75%</span>
+        <span class="phase-metric">Data Size: 120+ theorems</span>
+      </div>
+
+      <div class="phase">
+        <div class="phase-name">Phase 2: Expert Annotation</div>
+        <div class="phase-detail">
+          Manually label 50-100 representative proofs across all families (foundation, scheme, cohomology, etc.).
+          Focus on edge cases and borderline examples.
+        </div>
+        <span class="phase-metric">Expected Accuracy: ~85%</span>
+        <span class="phase-metric">Effort: 5-10 hours</span>
+      </div>
+
+      <div class="phase">
+        <div class="phase-name">Phase 3: User Interaction Learning</div>
+        <div class="phase-detail">
+          Track actual reading time, revisit patterns, "mark as difficult" clicks, and completion rates.
+          Continuously refine model based on real user behavior.
+        </div>
+        <span class="phase-metric">Expected Accuracy: ~90%</span>
+        <span class="phase-metric">Data Required: 1000+ user sessions</span>
+      </div>
+
+      <div class="phase">
+        <div class="phase-name">Phase 4: Fine-tuning with LLM</div>
+        <div class="phase-detail">
+          Use GPT-4 / Claude API for deep semantic analysis of proof text, concept dependencies, and mathematical reasoning.
+          Extract latent features not captured by rule-based methods.
+        </div>
+        <span class="phase-metric">Expected Accuracy: ~95%</span>
+        <span class="phase-metric">Cost: ~$50-100 for full corpus</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      ClassifyDifficulty,
+      PredictPrerequisites,
+      EstimateReadingTime,
+      GetDifficultyBadge,
+      FormatReadingTime,
+      EvaluateClassifier,
+      TRAINING_STRATEGY,
+    } from './proof-difficulty.js';
+
+    import {
+      RenderDifficultyBadge,
+      RenderReadingTime,
+      RenderPrerequisites,
+      RenderDifficultyAnalysis,
+      RenderLearningPath,
+    } from './proof-difficulty-ui.js';
+
+    // Mock proof data
+    const sampleProofs = {
+      beginner: {
+        id: 'zariski-topology',
+        name: 'Zariski Closed Set',
+        latex: String.raw`V(I)=\{\,x \mid f(x)=0,\ \forall f\in I\,\}`,
+        summary: '代数几何的拓扑基础：用多项式的公共零点集定义闭集。',
+        detail: '扎里斯基拓扑是代数簇上最自然的拓扑，它的闭集恰是某个理想 I 的公共零点集 V(I)。与欧氏拓扑不同，它极其"粗糙"——开集巨大而稀少。',
+        family: 'foundation',
+        importance: 0.91,
+        steps: [
+          { text: 'Define closed sets as V(I)' },
+          { text: 'Verify topology axioms' },
+        ],
+      },
+
+      intermediate: {
+        id: 'nullstellensatz',
+        name: 'Hilbert Nullstellensatz',
+        latex: String.raw`I(V(J))=\sqrt{J},\quad \mathfrak m_x=(x_1-a_1,\dots,x_n-a_n)`,
+        summary: '代数几何的基石定理：代数闭域上极大理想恰为点理想。',
+        detail: '零点定理（Nullstellensatz，字面意为"零点定理"）断言：若 k 代数闭，则多项式环 k[x₁,…,xₙ] 的每个极大理想都形如 (x₁−a₁,…,xₙ−aₙ)，即对应一个点。它把"几何上无公共零点"与"代数上 1 属于理想"这两种语言焊死在一起。',
+        family: 'foundation',
+        importance: 0.97,
+        prerequisites: ['zariski-topology', 'ideal-variety', 'noetherian'],
+        steps: [
+          { text: 'Rabinowitsch trick: add new variable' },
+          { text: 'Reduce to algebraically closed case' },
+          { text: 'Apply weak Nullstellensatz', substeps: [
+            { text: 'Use Zariski\'s lemma' },
+            { text: 'Transcendence degree argument' },
+          ]},
+          { text: 'Deduce radical ideal correspondence' },
+        ],
+        crossReferences: 5,
+      },
+
+      advanced: {
+        id: 'grothendieck-riemann-roch',
+        name: 'Grothendieck-Riemann-Roch',
+        latex: String.raw`\operatorname{ch}(f_!\mathcal F)\operatorname{td}(Y)=f_*\big(\operatorname{ch}(\mathcal F)\operatorname{td}(X)\big)`,
+        summary: '把黎曼-罗赫推广为相对版本，成为现代相交理论的公理基础。',
+        detail: 'GRR 定理断言：对紧合态射 f: X → Y，ch(f_! F)·td(Y) = f_*(ch(F)·td(X))，其中 f_! 是 K-理论推前。它的革命性在于把 HRR 从"单个簇上的数值等式"提升为"态射间的自然变换"。',
+        family: 'intersect',
+        importance: 0.83,
+        prerequisites: [
+          'riemann-roch', 'chern-class', 'todd-class', 'k-theory',
+          'sheaf-cohomology', 'derived-functor', 'chow-ring',
+        ],
+        steps: [
+          { text: 'Construct τ-functor via resolution', substeps: [
+            { text: 'Take projective resolution' },
+            { text: 'Apply f_* to resolution complex' },
+            { text: 'Show independence of resolution' },
+          ]},
+          { text: 'Verify τ as ring homomorphism' },
+          { text: 'Compute for specific cases', substeps: [
+            { text: 'Case 1: f = closed immersion' },
+            { text: 'Case 2: f = projection from bundle' },
+            { text: 'Case 3: general by factorization' },
+          ]},
+          { text: 'Appeal to Chern character naturality' },
+          { text: 'Conclude by uniqueness of natural transformation' },
+        ],
+        crossReferences: 12,
+        abstraction: 0.95,
+      },
+    };
+
+    // Analyze single proof
+    window.analyzeProof = function(proofId) {
+      const proof = sampleProofs[proofId];
+      const resultContent = document.getElementById('result-content');
+      resultContent.innerHTML = '';
+
+      RenderDifficultyAnalysis(proof, resultContent);
+      RenderPrerequisites(proof, resultContent, (prereqId) => {
+        alert(`Navigate to: ${prereqId}`);
+      });
+      RenderLearningPath(proof, resultContent, (prereqId) => {
+        alert(`Navigate to: ${prereqId}`);
+      });
+    };
+
+    // Analyze all samples
+    window.analyzeAll = function() {
+      Object.keys(sampleProofs).forEach(id => {
+        const classification = ClassifyDifficulty(sampleProofs[id]);
+        console.log(`${id}:`, classification);
+      });
+      alert('Analysis complete! Check console for results.');
+    };
+
+    // Run full evaluation
+    window.runEvaluation = function() {
+      // Note: This would work with real knowledge graph data
+      // For demo, show mock results
+      const mockResults = {
+        accuracy: 0.78,
+        avgConfidence: 0.82,
+        totalSamples: 120,
+        confusionMatrix: {
+          beginner: { beginner: 28, intermediate: 4, advanced: 0 },
+          intermediate: { beginner: 3, intermediate: 42, advanced: 6 },
+          advanced: { beginner: 0, intermediate: 5, advanced: 32 },
+        },
+      };
+
+      // Update UI
+      document.getElementById('overall-accuracy').textContent =
+        Math.round(mockResults.accuracy * 100) + '%';
+      document.getElementById('avg-confidence').textContent =
+        Math.round(mockResults.avgConfidence * 100) + '%';
+      document.getElementById('sample-count').textContent = mockResults.totalSamples;
+
+      // Update confusion matrix
+      const tbody = document.querySelector('#confusion-table tbody');
+      tbody.innerHTML = `
+        <tr>
+          <th>Beginner</th>
+          <td>${mockResults.confusionMatrix.beginner.beginner}</td>
+          <td>${mockResults.confusionMatrix.beginner.intermediate}</td>
+          <td>${mockResults.confusionMatrix.beginner.advanced}</td>
+        </tr>
+        <tr>
+          <th>Intermediate</th>
+          <td>${mockResults.confusionMatrix.intermediate.beginner}</td>
+          <td>${mockResults.confusionMatrix.intermediate.intermediate}</td>
+          <td>${mockResults.confusionMatrix.intermediate.advanced}</td>
+        </tr>
+        <tr>
+          <th>Advanced</th>
+          <td>${mockResults.confusionMatrix.advanced.beginner}</td>
+          <td>${mockResults.confusionMatrix.advanced.intermediate}</td>
+          <td>${mockResults.confusionMatrix.advanced.advanced}</td>
+        </tr>
+      `;
+    };
+
+    // Add click handlers
+    document.querySelectorAll('.sample-proof').forEach(el => {
+      el.addEventListener('click', () => {
+        analyzeProof(el.dataset.id);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Licensing Demo - Formula Nebula</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .status-item label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .status-item .value {
+            font-size: 1.3em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .status-item.warning {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+        }
+
+        .status-item.error {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+
+        .status-item.success {
+            border-left-color: #4caf50;
+            background: #e8f5e9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #667eea;
+            color: white;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: #6c757d;
+        }
+
+        button.danger {
+            background: #f44336;
+        }
+
+        button.success {
+            background: #4caf50;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .log {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 6px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+
+        .log-entry.info {
+            color: #4fc3f7;
+        }
+
+        .log-entry.success {
+            color: #81c784;
+        }
+
+        .log-entry.warning {
+            color: #ffb74d;
+        }
+
+        .log-entry.error {
+            color: #e57373;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .feature-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-item.enabled {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+        }
+
+        .feature-item.disabled {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            opacity: 0.6;
+        }
+
+        .feature-icon {
+            font-size: 1.5em;
+        }
+
+        .seat-progress {
+            margin-top: 15px;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Enterprise Licensing Demo</h1>
+            <p>Formula Nebula · License Management System</p>
+        </div>
+
+        <!-- License Status -->
+        <div class="card">
+            <h2>📜 License Status</h2>
+            <div class="status-grid">
+                <div class="status-item" id="status-license">
+                    <label>License Type</label>
+                    <div class="value">Not Loaded</div>
+                </div>
+                <div class="status-item" id="status-seats">
+                    <label>Seats Available</label>
+                    <div class="value">0 / 0</div>
+                </div>
+                <div class="status-item" id="status-expiry">
+                    <label>Days Remaining</label>
+                    <div class="value">—</div>
+                </div>
+                <div class="status-item" id="status-mode">
+                    <label>Mode</label>
+                    <div class="value">Offline</div>
+                </div>
+            </div>
+
+            <div class="seat-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="seat-progress" style="width: 0%">
+                        0 / 0
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="card">
+            <h2>✨ Available Features</h2>
+            <div class="feature-list" id="feature-list">
+                <div class="feature-item disabled">
+                    <span class="feature-icon">🎨</span>
+                    <span>Advanced Visualization</span>
+                </div>
+                <div class="feature-item disabled">
+                    <span class="feature-icon">👥</span>
+                    <span>Collaboration</span>
+                </div>
+                <div class="feature-item disabled">
+                    <span class="feature-icon">📴</span>
+                    <span>Offline Mode</span>
+                </div>
+                <div class="feature-item disabled">
+                    <span class="feature-icon">🔐</span>
+                    <span>SSO Integration</span>
+                </div>
+                <div class="feature-item disabled">
+                    <span class="feature-icon">📊</span>
+                    <span>Usage Analytics</span>
+                </div>
+                <div class="feature-item disabled">
+                    <span class="feature-icon">🔌</span>
+                    <span>API Access</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card">
+            <h2>🎮 Actions</h2>
+            <div class="btn-group">
+                <button onclick="initializeLicense()">Initialize License</button>
+                <button onclick="startSession()">Start Session</button>
+                <button onclick="endSession()">End Session</button>
+                <button onclick="trackFeature()" class="secondary">Track Feature</button>
+                <button onclick="syncOffline()" class="success">Sync Offline</button>
+                <button onclick="clearLog()" class="danger">Clear Log</button>
+            </div>
+        </div>
+
+        <!-- Event Log -->
+        <div class="card">
+            <h2>📋 Event Log</h2>
+            <div class="log" id="event-log">
+                <div class="log-entry info">[INFO] System initialized. Ready for license validation.</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { enterpriseLicensing } from './index.js';
+
+        // Mock configuration
+        const MOCK_LICENSE = {
+            licenseId: 'demo_lic_12345',
+            customerId: 'demo_cust_67890',
+            customerName: 'Demo Corporation',
+            type: 'enterprise',
+            seats: 10,
+            features: [
+                'advanced_visualization',
+                'collaboration',
+                'offline_mode',
+                'sso_integration',
+                'usage_analytics',
+                'api_access'
+            ],
+            activatedAt: new Date().toISOString(),
+            expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString()
+        };
+
+        let currentUserId = null;
+
+        // Log function
+        function log(message, type = 'info') {
+            const logEl = document.getElementById('event-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        // Initialize license
+        window.initializeLicense = async function() {
+            try {
+                log('Initializing licensing system...', 'info');
+
+                // In production, this would fetch from server
+                // For demo, we use mock license
+                const mockEncoded = btoa(JSON.stringify(MOCK_LICENSE)) + '.mockSignature';
+
+                // Mock initialization
+                setTimeout(() => {
+                    log('License validated successfully', 'success');
+                    updateLicenseStatus(MOCK_LICENSE);
+                    updateFeatureList(MOCK_LICENSE.features);
+                }, 500);
+
+            } catch (error) {
+                log(`Initialization error: ${error.message}`, 'error');
+            }
+        };
+
+        // Start session
+        window.startSession = async function() {
+            if (currentUserId) {
+                log('Session already active', 'warning');
+                return;
+            }
+
+            try {
+                currentUserId = `user_${Math.random().toString(36).substr(2, 9)}`;
+                log(`Starting session for ${currentUserId}...`, 'info');
+
+                // Simulate session start
+                setTimeout(() => {
+                    log('Session started successfully', 'success');
+                    updateSeatUsage();
+                }, 300);
+
+            } catch (error) {
+                log(`Session start error: ${error.message}`, 'error');
+            }
+        };
+
+        // End session
+        window.endSession = async function() {
+            if (!currentUserId) {
+                log('No active session', 'warning');
+                return;
+            }
+
+            try {
+                log(`Ending session for ${currentUserId}...`, 'info');
+
+                setTimeout(() => {
+                    log('Session ended successfully', 'success');
+                    currentUserId = null;
+                    updateSeatUsage();
+                }, 300);
+
+            } catch (error) {
+                log(`Session end error: ${error.message}`, 'error');
+            }
+        };
+
+        // Track feature usage
+        window.trackFeature = function() {
+            if (!currentUserId) {
+                log('No active session. Start a session first.', 'warning');
+                return;
+            }
+
+            const features = ['advanced_visualization', 'collaboration', 'offline_mode'];
+            const feature = features[Math.floor(Math.random() * features.length)];
+
+            log(`Tracking feature: ${feature}`, 'info');
+        };
+
+        // Sync offline data
+        window.syncOffline = async function() {
+            log('Syncing offline data...', 'info');
+
+            setTimeout(() => {
+                const synced = Math.floor(Math.random() * 20);
+                log(`Sync complete: ${synced} events synced`, 'success');
+            }, 500);
+        };
+
+        // Clear log
+        window.clearLog = function() {
+            document.getElementById('event-log').innerHTML = '';
+            log('Log cleared', 'info');
+        };
+
+        // Update license status
+        function updateLicenseStatus(license) {
+            const daysRemaining = Math.ceil(
+                (new Date(license.expiresAt) - new Date()) / (1000 * 60 * 60 * 24)
+            );
+
+            document.querySelector('#status-license .value').textContent = license.type.toUpperCase();
+            document.querySelector('#status-expiry .value').textContent = daysRemaining;
+
+            document.getElementById('status-license').className = 'status-item success';
+            document.getElementById('status-expiry').className = daysRemaining < 30 ? 'status-item warning' : 'status-item success';
+
+            updateSeatUsage();
+        }
+
+        // Update seat usage
+        function updateSeatUsage() {
+            const total = MOCK_LICENSE.seats;
+            const used = currentUserId ? 1 : 0;
+            const available = total - used;
+            const percentage = (used / total) * 100;
+
+            document.querySelector('#status-seats .value').textContent = `${available} / ${total}`;
+            document.querySelector('#seat-progress').style.width = `${percentage}%`;
+            document.querySelector('#seat-progress').textContent = `${used} / ${total}`;
+
+            document.getElementById('status-seats').className = available > 0 ? 'status-item success' : 'status-item error';
+        }
+
+        // Update feature list
+        function updateFeatureList(features) {
+            const featureMap = {
+                'advanced_visualization': { icon: '🎨', name: 'Advanced Visualization' },
+                'collaboration': { icon: '👥', name: 'Collaboration' },
+                'offline_mode': { icon: '📴', name: 'Offline Mode' },
+                'sso_integration': { icon: '🔐', name: 'SSO Integration' },
+                'usage_analytics': { icon: '📊', name: 'Usage Analytics' },
+                'api_access': { icon: '🔌', name: 'API Access' }
+            };
+
+            const listEl = document.getElementById('feature-list');
+            listEl.innerHTML = '';
+
+            Object.entries(featureMap).forEach(([key, { icon, name }]) => {
+                const enabled = features.includes(key);
+                const item = document.createElement('div');
+                item.className = `feature-item ${enabled ? 'enabled' : 'disabled'}`;
+                item.innerHTML = `
+                    <span class="feature-icon">${icon}</span>
+                    <span>${name}</span>
+                `;
+                listEl.appendChild(item);
+            });
+        }
+
+        // Auto-initialize on load
+        window.addEventListener('load', () => {
+            log('Demo page loaded. Click "Initialize License" to begin.', 'info');
+
+            // Update mode status
+            if (navigator.onLine) {
+                document.querySelector('#status-mode .value').textContent = 'Online';
+                document.getElementById('status-mode').className = 'status-item success';
+            }
+
+            // Monitor online/offline
+            window.addEventListener('online', () => {
+                document.querySelector('#status-mode .value').textContent = 'Online';
+                document.getElementById('status-mode').className = 'status-item success';
+                log('Network connection restored', 'success');
+            });
+
+            window.addEventListener('offline', () => {
+                document.querySelector('#status-mode .value').textContent = 'Offline';
+                document.getElementById('status-mode').className = 'status-item warning';
+                log('Network connection lost - entering offline mode', 'warning');
+            });
+        });
+    </script>
+</body>
+</html>

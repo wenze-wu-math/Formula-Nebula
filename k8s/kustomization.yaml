@@ -1,0 +1,58 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: formula-nebula
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+  - storage.yaml
+  - statefulset-db.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+  - autoscale.yaml
+  - network-policy.yaml
+  - monitoring.yaml
+  - backup-cronjob.yaml
+
+# Common labels applied to all resources
+commonLabels:
+  app.kubernetes.io/name: formula-nebula
+  app.kubernetes.io/version: "1.0.0"
+  app.kubernetes.io/managed-by: kustomize
+
+# Common annotations
+commonAnnotations:
+  contact: "support@formula-nebula.com"
+  documentation: "https://docs.formula-nebula.com"
+
+# Image transformations
+images:
+  - name: formula-nebula/web
+    newName: your-registry.com/formula-nebula-web
+    newTag: latest
+  - name: formula-nebula/collab
+    newName: your-registry.com/formula-nebula-collab
+    newTag: latest
+
+# ConfigMap generator (if needed for environment-specific configs)
+configMapGenerator:
+  - name: app-version
+    literals:
+      - version=1.0.0
+      - build_date=2026-11-02
+      - environment=production
+
+# Secret generator (use for additional secrets)
+secretGenerator:
+  - name: additional-secrets
+    literals:
+      - example_key=example_value
+
+# Patches for different environments
+patchesStrategicMerge:
+  # Add environment-specific patches here
+  # - production-patch.yaml
+  # - staging-patch.yaml

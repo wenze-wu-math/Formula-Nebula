@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <style>
+      .layer-box { fill: #f5f7fa; stroke: #667eea; stroke-width: 2; }
+      .component-box { fill: white; stroke: #667eea; stroke-width: 1.5; }
+      .client-box { fill: #e3f2fd; stroke: #2196f3; stroke-width: 1.5; }
+      .server-box { fill: #f3e5f5; stroke: #9c27b0; stroke-width: 1.5; }
+      .ot-box { fill: #fff3e0; stroke: #ff9800; stroke-width: 1.5; }
+      .data-box { fill: #e8f5e9; stroke: #4caf50; stroke-width: 1.5; }
+      .text-title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #14171a; }
+      .text-subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #14171a; }
+      .text-body { font-family: Arial, sans-serif; font-size: 12px; fill: #657786; }
+      .arrow { stroke: #667eea; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrow-bidirectional { stroke: #667eea; stroke-width: 2; fill: none; }
+      .websocket-line { stroke: #ff9800; stroke-width: 2; stroke-dasharray: 5,5; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#667eea" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="30" class="text-title" text-anchor="middle">Real-time Collaborative Editing Architecture</text>
+
+  <!-- Client Layer -->
+  <rect x="50" y="60" width="1100" height="200" rx="8" class="layer-box"/>
+  <text x="80" y="85" class="text-subtitle">Client Layer (Browser)</text>
+
+  <!-- Client 1 -->
+  <rect x="100" y="100" width="280" height="140" rx="6" class="client-box"/>
+  <text x="240" y="125" class="text-subtitle" text-anchor="middle">Browser Client 1</text>
+
+  <rect x="120" y="140" width="100" height="35" rx="4" class="component-box"/>
+  <text x="170" y="160" class="text-body" text-anchor="middle">Editor UI</text>
+
+  <rect x="120" y="185" width="100" height="35" rx="4" class="component-box"/>
+  <text x="170" y="205" class="text-body" text-anchor="middle">Realtime</text>
+  <text x="170" y="218" class="text-body" text-anchor="middle">Collaboration</text>
+
+  <rect x="240" y="140" width="100" height="35" rx="4" class="component-box"/>
+  <text x="290" y="160" class="text-body" text-anchor="middle">Cursor</text>
+  <text x="290" y="173" class="text-body" text-anchor="middle">Manager</text>
+
+  <rect x="240" y="185" width="100" height="35" rx="4" class="component-box"/>
+  <text x="290" y="205" class="text-body" text-anchor="middle">Comment</text>
+  <text x="290" y="218" class="text-body" text-anchor="middle">Panel</text>
+
+  <!-- Client 2 -->
+  <rect x="460" y="100" width="280" height="140" rx="6" class="client-box"/>
+  <text x="600" y="125" class="text-subtitle" text-anchor="middle">Browser Client 2</text>
+
+  <rect x="480" y="140" width="100" height="35" rx="4" class="component-box"/>
+  <text x="530" y="160" class="text-body" text-anchor="middle">Editor UI</text>
+
+  <rect x="480" y="185" width="100" height="35" rx="4" class="component-box"/>
+  <text x="530" y="205" class="text-body" text-anchor="middle">Realtime</text>
+  <text x="530" y="218" class="text-body" text-anchor="middle">Collaboration</text>
+
+  <rect x="600" y="140" width="100" height="35" rx="4" class="component-box"/>
+  <text x="650" y="160" class="text-body" text-anchor="middle">Cursor</text>
+  <text x="650" y="173" class="text-body" text-anchor="middle">Manager</text>
+
+  <rect x="600" y="185" width="100" height="35" rx="4" class="component-box"/>
+  <text x="650" y="205" class="text-body" text-anchor="middle">Comment</text>
+  <text x="650" y="218" class="text-body" text-anchor="middle">Panel</text>
+
+  <!-- Client 3 -->
+  <rect x="820" y="100" width="280" height="140" rx="6" class="client-box"/>
+  <text x="960" y="125" class="text-subtitle" text-anchor="middle">Browser Client 3</text>
+
+  <rect x="840" y="140" width="100" height="35" rx="4" class="component-box"/>
+  <text x="890" y="160" class="text-body" text-anchor="middle">Editor UI</text>
+
+  <rect x="840" y="185" width="100" height="35" rx="4" class="component-box"/>
+  <text x="890" y="205" class="text-body" text-anchor="middle">Realtime</text>
+  <text x="890" y="218" class="text-body" text-anchor="middle">Collaboration</text>
+
+  <rect x="960" y="140" width="100" height="35" rx="4" class="component-box"/>
+  <text x="1010" y="160" class="text-body" text-anchor="middle">Cursor</text>
+  <text x="1010" y="173" class="text-body" text-anchor="middle">Manager</text>
+
+  <rect x="960" y="185" width="100" height="35" rx="4" class="component-box"/>
+  <text x="1010" y="205" class="text-body" text-anchor="middle">Comment</text>
+  <text x="1010" y="218" class="text-body" text-anchor="middle">Panel</text>
+
+  <!-- WebSocket connections -->
+  <line x1="240" y1="240" x2="240" y2="300" class="websocket-line"/>
+  <line x1="600" y1="240" x2="600" y2="300" class="websocket-line"/>
+  <line x1="960" y1="240" x2="960" y2="300" class="websocket-line"/>
+
+  <text x="180" y="275" class="text-body">WebSocket</text>
+  <text x="540" y="275" class="text-body">WebSocket</text>
+  <text x="900" y="275" class="text-body">WebSocket</text>
+
+  <!-- Transport/Server Layer -->
+  <rect x="50" y="310" width="1100" height="180" rx="8" class="layer-box"/>
+  <text x="80" y="335" class="text-subtitle">Transport &amp; Server Layer</text>
+
+  <!-- WebSocket Server -->
+  <rect x="100" y="350" width="1000" height="120" rx="6" class="server-box"/>
+  <text x="600" y="375" class="text-subtitle" text-anchor="middle">WebSocket Server (CollabServer)</text>
+
+  <rect x="150" y="390" width="200" height="50" rx="4" class="component-box"/>
+  <text x="250" y="410" class="text-body" text-anchor="middle">Connection</text>
+  <text x="250" y="425" class="text-body" text-anchor="middle">Manager</text>
+
+  <rect x="400" y="390" width="200" height="50" rx="4" class="component-box"/>
+  <text x="500" y="410" class="text-body" text-anchor="middle">Room</text>
+  <text x="500" y="425" class="text-body" text-anchor="middle">Management</text>
+
+  <rect x="650" y="390" width="200" height="50" rx="4" class="component-box"/>
+  <text x="750" y="410" class="text-body" text-anchor="middle">Message</text>
+  <text x="750" y="425" class="text-body" text-anchor="middle">Broadcasting</text>
+
+  <rect x="900" y="390" width="150" height="50" rx="4" class="component-box"/>
+  <text x="975" y="410" class="text-body" text-anchor="middle">Version</text>
+  <text x="975" y="425" class="text-body" text-anchor="middle">Control</text>
+
+  <line x1="600" y1="490" x2="600" y2="530" class="arrow"/>
+
+  <!-- OT Engine Layer -->
+  <rect x="50" y="530" width="1100" height="150" rx="8" class="layer-box"/>
+  <text x="80" y="555" class="text-subtitle">Operational Transform Engine</text>
+
+  <rect x="100" y="570" width="1000" height="90" rx="6" class="ot-box"/>
+  <text x="600" y="595" class="text-subtitle" text-anchor="middle">OperationalTransform</text>
+
+  <rect x="180" y="610" width="180" height="35" rx="4" class="component-box"/>
+  <text x="270" y="630" class="text-body" text-anchor="middle">Transform Ops</text>
+
+  <rect x="400" y="610" width="180" height="35" rx="4" class="component-box"/>
+  <text x="490" y="630" class="text-body" text-anchor="middle">Resolve Conflicts</text>
+
+  <rect x="620" y="610" width="180" height="35" rx="4" class="component-box"/>
+  <text x="710" y="630" class="text-body" text-anchor="middle">Priority Calculation</text>
+
+  <rect x="840" y="610" width="180" height="35" rx="4" class="component-box"/>
+  <text x="930" y="630" class="text-body" text-anchor="middle">Position Adjustment</text>
+
+  <line x1="600" y1="680" x2="600" y2="720" class="arrow"/>
+
+  <!-- Data Layer -->
+  <rect x="50" y="720" width="1100" height="150" rx="8" class="layer-box"/>
+  <text x="80" y="745" class="text-subtitle">Data Layer (In-Memory / Persistent)</text>
+
+  <rect x="150" y="765" width="280" height="80" rx="6" class="data-box"/>
+  <text x="290" y="790" class="text-subtitle" text-anchor="middle">Proof State</text>
+  <text x="290" y="810" class="text-body" text-anchor="middle">• Document content</text>
+  <text x="290" y="828" class="text-body" text-anchor="middle">• Version numbers</text>
+
+  <rect x="460" y="765" width="280" height="80" rx="6" class="data-box"/>
+  <text x="600" y="790" class="text-subtitle" text-anchor="middle">Operation History</text>
+  <text x="600" y="810" class="text-body" text-anchor="middle">• Edit log (last 100)</text>
+  <text x="600" y="828" class="text-body" text-anchor="middle">• Version tracking</text>
+
+  <rect x="770" y="765" width="280" height="80" rx="6" class="data-box"/>
+  <text x="910" y="790" class="text-subtitle" text-anchor="middle">Comment Threads</text>
+  <text x="910" y="810" class="text-body" text-anchor="middle">• Threaded comments</text>
+  <text x="910" y="828" class="text-body" text-anchor="middle">• Metadata &amp; resolution</text>
+
+  <!-- Data flow arrows -->
+  <path d="M 240 240 Q 150 270 150 420" class="arrow-bidirectional"/>
+  <path d="M 600 240 Q 500 270 500 420" class="arrow-bidirectional"/>
+  <path d="M 960 240 Q 900 270 750 420" class="arrow-bidirectional"/>
+
+  <!-- Legend -->
+  <rect x="50" y="890" width="15" height="15" class="client-box"/>
+  <text x="75" y="902" class="text-body">Client Components</text>
+
+  <rect x="220" y="890" width="15" height="15" class="server-box"/>
+  <text x="245" y="902" class="text-body">Server Components</text>
+
+  <rect x="390" y="890" width="15" height="15" class="ot-box"/>
+  <text x="415" y="902" class="text-body">OT Engine</text>
+
+  <rect x="530" y="890" width="15" height="15" class="data-box"/>
+  <text x="555" y="902" class="text-body">Data Storage</text>
+
+  <line x1="680" y1="897" x2="730" y2="897" class="websocket-line"/>
+  <text x="740" y="902" class="text-body">WebSocket</text>
+
+  <line x1="850" y1="897" x2="900" y2="897" class="arrow-bidirectional"/>
+  <text x="910" y="902" class="text-body">Data Flow</text>
+</svg>

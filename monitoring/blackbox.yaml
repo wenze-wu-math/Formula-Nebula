@@ -1,0 +1,70 @@
+# Blackbox Exporter Configuration
+# Probes endpoints to monitor availability and performance
+
+modules:
+  # HTTP 2xx probe
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      valid_status_codes: []  # Defaults to 2xx
+      method: GET
+      headers:
+        Accept: text/html,application/json
+      no_follow_redirects: false
+      fail_if_ssl: false
+      fail_if_not_ssl: false
+      preferred_ip_protocol: "ip4"
+      ip_protocol_fallback: true
+
+  # HTTP POST probe
+  http_post_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: '{}'
+
+  # HTTPS probe with SSL verification
+  http_2xx_ssl:
+    prober: http
+    timeout: 5s
+    http:
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      fail_if_not_ssl: true
+      tls_config:
+        insecure_skip_verify: false
+
+  # WebSocket probe
+  ws_connect:
+    prober: http
+    timeout: 5s
+    http:
+      valid_http_versions: ["HTTP/1.1"]
+      headers:
+        Connection: Upgrade
+        Upgrade: websocket
+      method: GET
+
+  # TCP connect probe
+  tcp_connect:
+    prober: tcp
+    timeout: 5s
+
+  # ICMP ping probe
+  icmp:
+    prober: icmp
+    timeout: 5s
+    icmp:
+      preferred_ip_protocol: "ip4"
+
+  # DNS probe
+  dns_query:
+    prober: dns
+    timeout: 5s
+    dns:
+      query_name: "example.com"
+      query_type: "A"

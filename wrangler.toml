@@ -1,0 +1,59 @@
+name = "formula-nebula-edge"
+main = "src/worker/index.js"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+# Account details (replace with your own)
+# account_id = "your-cloudflare-account-id"
+# workers_dev = false
+# route = "formula-nebula.com/*"
+# zone_id = "your-cloudflare-zone-id"
+
+[env.production]
+name = "formula-nebula-edge-production"
+
+[env.staging]
+name = "formula-nebula-edge-staging"
+
+# KV Namespaces for rate limiting and analytics
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "your-rate-limit-namespace-id"
+preview_id = "your-rate-limit-preview-id"
+
+[[kv_namespaces]]
+binding = "ANALYTICS_KV"
+id = "your-analytics-namespace-id"
+preview_id = "your-analytics-preview-id"
+
+# Durable Objects for distributed rate limiting (optional, for high-scale)
+# [[durable_objects.bindings]]
+# name = "RATE_LIMITER"
+# class_name = "RateLimiter"
+# script_name = "formula-nebula-edge"
+
+# Build configuration
+[build]
+command = ""
+cwd = ""
+
+[build.upload]
+format = "service-worker"
+
+# Limits and configuration
+limits = { cpu_ms = 50 }
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+MAX_REQUESTS_PER_MINUTE = "100"
+CACHE_TTL_SECONDS = "3600"
+ENABLE_ANALYTICS = "true"
+ENABLE_GEO_ROUTING = "true"
+ENABLE_DDOS_PROTECTION = "true"
+
+# CORS configuration
+[cors]
+allow_origins = ["*"]
+allow_methods = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+allow_headers = ["Content-Type", "Authorization"]

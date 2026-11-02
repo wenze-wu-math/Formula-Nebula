@@ -1,0 +1,139 @@
+apiVersion: v1
+kind: ServiceMonitor
+metadata:
+  name: formula-nebula-monitor
+  namespace: formula-nebula
+  labels:
+    app: formula-nebula
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: formula-nebula
+  endpoints:
+  - port: metrics
+    interval: 30s
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - formula-nebula
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: formula-nebula
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 30s
+      evaluation_interval: 30s
+      external_labels:
+        cluster: 'formula-nebula-prod'
+        environment: 'production'
+
+    scrape_configs:
+    - job_name: 'kubernetes-pods'
+      kubernetes_sd_configs:
+      - role: pod
+        namespaces:
+          names:
+          - formula-nebula
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+
+    - job_name: 'kubernetes-services'
+      kubernetes_sd_configs:
+      - role: service
+        namespaces:
+          names:
+          - formula-nebula
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+
+    - job_name: 'node-exporter'
+      kubernetes_sd_configs:
+      - role: node
+      relabel_configs:
+      - source_labels: [__address__]
+        regex: '(.*):10250'
+        replacement: '${1}:9100'
+        target_label: __address__
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  namespace: formula-nebula
+data:
+  formula-nebula-dashboard.json: |
+    {
+      "dashboard": {
+        "title": "Formula Nebula - System Overview",
+        "panels": [
+          {
+            "title": "Active Users",
+            "targets": [
+              {
+                "expr": "sum(websocket_connections)"
+              }
+            ]
+          },
+          {
+            "title": "Request Rate",
+            "targets": [
+              {
+                "expr": "sum(rate(http_requests_total[5m]))"
+              }
+            ]
+          },
+          {
+            "title": "Response Time (p95)",
+            "targets": [
+              {
+                "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))"
+              }
+            ]
+          },
+          {
+            "title": "Error Rate",
+            "targets": [
+              {
+                "expr": "sum(rate(http_requests_total{status=~\"5..\"}[5m]))"
+              }
+            ]
+          },
+          {
+            "title": "Pod CPU Usage",
+            "targets": [
+              {
+                "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"formula-nebula\"}[5m])) by (pod)"
+              }
+            ]
+          },
+          {
+            "title": "Pod Memory Usage",
+            "targets": [
+              {
+                "expr": "sum(container_memory_working_set_bytes{namespace=\"formula-nebula\"}) by (pod)"
+              }
+            ]
+          }
+        ]
+      }
+    }

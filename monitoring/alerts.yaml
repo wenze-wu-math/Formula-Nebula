@@ -1,0 +1,350 @@
+# Prometheus Alerting Rules for Formula Nebula
+# Documentation: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+
+groups:
+  # ============================================================================
+  # Application Health Alerts
+  # ============================================================================
+  - name: application_health
+    interval: 30s
+    rules:
+      - alert: ApplicationDown
+        expr: up{job="formula-nebula-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: frontend
+          team: platform
+        annotations:
+          summary: "Formula Nebula application is down"
+          description: "Application {{ $labels.instance }} has been down for more than 1 minute"
+          dashboard: "https://grafana.example.com/d/app-overview"
+          runbook: "https://wiki.example.com/runbooks/app-down"
+
+      - alert: CollaborationServerDown
+        expr: up{job="formula-nebula-collab"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: backend
+          team: platform
+        annotations:
+          summary: "Collaboration server is down"
+          description: "Collaboration server {{ $labels.instance }} has been down for more than 1 minute"
+
+      - alert: HighRestartRate
+        expr: rate(process_start_time_seconds{job="formula-nebula-app"}[5m]) > 0.01
+        for: 5m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "High application restart rate detected"
+          description: "Application is restarting frequently ({{ $value | humanize }} restarts/sec)"
+
+  # ============================================================================
+  # Performance Alerts
+  # ============================================================================
+  - name: performance
+    interval: 30s
+    rules:
+      - alert: HighRequestLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "High request latency detected"
+          description: "95th percentile latency is {{ $value | humanize }}s (threshold: 1s)"
+          dashboard: "https://grafana.example.com/d/latency"
+
+      - alert: VeryHighRequestLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 5
+        for: 2m
+        labels:
+          severity: critical
+          component: frontend
+        annotations:
+          summary: "Very high request latency detected"
+          description: "95th percentile latency is {{ $value | humanize }}s (threshold: 5s)"
+
+      - alert: SlowRenderingFPS
+        expr: render_fps < 30
+        for: 2m
+        labels:
+          severity: warning
+          component: rendering
+        annotations:
+          summary: "Low rendering FPS detected"
+          description: "Current FPS is {{ $value | humanize }} (threshold: 30)"
+
+      - alert: HighFrameTime
+        expr: histogram_quantile(0.95, rate(render_frame_time_ms_bucket[5m])) > 33.33
+        for: 5m
+        labels:
+          severity: warning
+          component: rendering
+        annotations:
+          summary: "High frame rendering time"
+          description: "95th percentile frame time is {{ $value | humanize }}ms (target: 16.67ms for 60fps)"
+
+      - alert: SlowSearchQueries
+        expr: histogram_quantile(0.95, rate(search_duration_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+          component: search
+        annotations:
+          summary: "Slow search queries detected"
+          description: "95th percentile search time is {{ $value | humanize }}s"
+
+  # ============================================================================
+  # Error Rate Alerts
+  # ============================================================================
+  - name: error_rates
+    interval: 30s
+    rules:
+      - alert: HighErrorRate
+        expr: rate(errors_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanize }} errors/sec"
+
+      - alert: CriticalErrorRate
+        expr: rate(errors_total{severity="error"}[5m]) > 5
+        for: 1m
+        labels:
+          severity: critical
+          component: frontend
+        annotations:
+          summary: "Critical error rate detected"
+          description: "Critical error rate is {{ $value | humanize }} errors/sec"
+
+      - alert: HTTPErrorRate
+        expr: |
+          sum(rate(http_requests_total{status=~"5.."}[5m])) /
+          sum(rate(http_requests_total[5m])) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "High HTTP 5xx error rate"
+          description: "{{ $value | humanizePercentage }} of requests are failing with 5xx errors"
+
+      - alert: HTTP4xxRate
+        expr: |
+          sum(rate(http_requests_total{status=~"4.."}[5m])) /
+          sum(rate(http_requests_total[5m])) > 0.20
+        for: 10m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "High HTTP 4xx rate"
+          description: "{{ $value | humanizePercentage }} of requests return 4xx status codes"
+
+  # ============================================================================
+  # Resource Utilization Alerts
+  # ============================================================================
+  - name: resources
+    interval: 30s
+    rules:
+      - alert: HighMemoryUsage
+        expr: |
+          memory_used_bytes{type="heap_used"} /
+          memory_used_bytes{type="heap_limit"} > 0.85
+        for: 5m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "High memory usage detected"
+          description: "Memory usage is at {{ $value | humanizePercentage }} of heap limit"
+
+      - alert: CriticalMemoryUsage
+        expr: |
+          memory_used_bytes{type="heap_used"} /
+          memory_used_bytes{type="heap_limit"} > 0.95
+        for: 2m
+        labels:
+          severity: critical
+          component: frontend
+        annotations:
+          summary: "Critical memory usage detected"
+          description: "Memory usage is at {{ $value | humanizePercentage }} of heap limit"
+
+      - alert: MemoryLeak
+        expr: |
+          deriv(memory_used_bytes{type="heap_used"}[30m]) > 1048576
+        for: 30m
+        labels:
+          severity: warning
+          component: frontend
+        annotations:
+          summary: "Potential memory leak detected"
+          description: "Memory usage is steadily increasing by {{ $value | humanize }}B/sec"
+
+      - alert: HighCPUUsage
+        expr: rate(process_cpu_seconds_total[5m]) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+          component: backend
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage is {{ $value | humanizePercentage }}"
+
+  # ============================================================================
+  # WebSocket Alerts
+  # ============================================================================
+  - name: websocket
+    interval: 30s
+    rules:
+      - alert: HighWebSocketConnections
+        expr: ws_connections_active > 1000
+        for: 5m
+        labels:
+          severity: warning
+          component: collaboration
+        annotations:
+          summary: "High number of WebSocket connections"
+          description: "{{ $value }} active WebSocket connections"
+
+      - alert: WebSocketMessageBacklog
+        expr: rate(ws_messages_total{direction="inbound"}[5m]) > 1000
+        for: 5m
+        labels:
+          severity: warning
+          component: collaboration
+        annotations:
+          summary: "High WebSocket message rate"
+          description: "Receiving {{ $value | humanize }} messages/sec"
+
+  # ============================================================================
+  # Data Integrity Alerts
+  # ============================================================================
+  - name: data_integrity
+    interval: 60s
+    rules:
+      - alert: GraphNodeCountAnomaly
+        expr: |
+          abs(graph_nodes_total - avg_over_time(graph_nodes_total[1h])) /
+          avg_over_time(graph_nodes_total[1h]) > 0.10
+        for: 5m
+        labels:
+          severity: warning
+          component: data
+        annotations:
+          summary: "Anomalous graph node count"
+          description: "Node count changed by {{ $value | humanizePercentage }} from average"
+
+      - alert: GraphLinkCountAnomaly
+        expr: |
+          abs(graph_links_total - avg_over_time(graph_links_total[1h])) /
+          avg_over_time(graph_links_total[1h]) > 0.10
+        for: 5m
+        labels:
+          severity: warning
+          component: data
+        annotations:
+          summary: "Anomalous graph link count"
+          description: "Link count changed by {{ $value | humanizePercentage }} from average"
+
+  # ============================================================================
+  # Business Metrics Alerts
+  # ============================================================================
+  - name: business_metrics
+    interval: 60s
+    rules:
+      - alert: LowSearchActivity
+        expr: rate(search_queries_total[1h]) < 0.1
+        for: 2h
+        labels:
+          severity: info
+          component: search
+        annotations:
+          summary: "Unusually low search activity"
+          description: "Search rate is {{ $value | humanize }} queries/sec (expected > 0.1)"
+
+      - alert: LowLearningPathEngagement
+        expr: learning_paths_active < 5
+        for: 4h
+        labels:
+          severity: info
+          component: learning
+        annotations:
+          summary: "Low learning path engagement"
+          description: "Only {{ $value }} active learning paths"
+
+  # ============================================================================
+  # Infrastructure Alerts
+  # ============================================================================
+  - name: infrastructure
+    interval: 60s
+    rules:
+      - alert: PrometheusConfigReload
+        expr: prometheus_config_last_reload_successful == 0
+        for: 5m
+        labels:
+          severity: warning
+          component: monitoring
+        annotations:
+          summary: "Prometheus configuration reload failed"
+          description: "Check Prometheus logs for configuration errors"
+
+      - alert: PrometheusTooManyTargetsDown
+        expr: count(up == 0) > 2
+        for: 5m
+        labels:
+          severity: warning
+          component: monitoring
+        annotations:
+          summary: "Too many scrape targets are down"
+          description: "{{ $value }} targets are currently unreachable"
+
+      - alert: PrometheusNotConnectedToAlertmanager
+        expr: prometheus_notifications_alertmanagers_discovered < 1
+        for: 5m
+        labels:
+          severity: warning
+          component: monitoring
+        annotations:
+          summary: "Prometheus not connected to Alertmanager"
+          description: "No Alertmanager instances discovered"
+
+# ============================================================================
+# PagerDuty Integration (via Alertmanager)
+# ============================================================================
+# Configure in alertmanager.yaml:
+#
+# receivers:
+#   - name: 'pagerduty-critical'
+#     pagerduty_configs:
+#       - service_key: '<integration-key>'
+#         severity: critical
+#         description: '{{ .CommonAnnotations.summary }}'
+#         details:
+#           firing: '{{ .Alerts.Firing | len }}'
+#           resolved: '{{ .Alerts.Resolved | len }}'
+#
+#   - name: 'pagerduty-warning'
+#     pagerduty_configs:
+#       - service_key: '<integration-key>'
+#         severity: warning
+#
+# route:
+#   group_by: ['alertname', 'cluster', 'service']
+#   group_wait: 10s
+#   group_interval: 10s
+#   repeat_interval: 12h
+#   receiver: 'pagerduty-warning'
+#   routes:
+#     - match:
+#         severity: critical
+#       receiver: pagerduty-critical

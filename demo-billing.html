@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formula Nebula - Billing Dashboard Demo</title>
+  <link rel="stylesheet" href="/src/billing/dashboard.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .demo-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .demo-header {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .demo-header h1 {
+      font-size: 3rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
+
+    .demo-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .demo-controls {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .control-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .control-group label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .control-group button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-simulate {
+      background: #4caf50;
+      color: white;
+    }
+
+    .btn-simulate:hover {
+      background: #45a049;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    }
+
+    .btn-reset {
+      background: #f44336;
+      color: white;
+    }
+
+    .btn-reset:hover {
+      background: #da190b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+    }
+
+    .dashboard-wrapper {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .info-panel {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-panel h3 {
+      margin: 0 0 1rem 0;
+      color: #333;
+    }
+
+    .info-panel ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .info-panel code {
+      background: #f5f5f5;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>🚀 Formula Nebula Billing Dashboard</h1>
+      <p>Freemium SaaS Tier Management System</p>
+    </div>
+
+    <div class="demo-controls">
+      <div class="control-group">
+        <label>Simulate Actions:</label>
+        <button class="btn-simulate" onclick="simulateCollectionCreation()">
+          Create Collection
+        </button>
+        <button class="btn-simulate" onclick="simulateFileUpload()">
+          Upload File (50MB)
+        </button>
+        <button class="btn-simulate" onclick="simulateApiCalls()">
+          API Calls (x10)
+        </button>
+        <button class="btn-reset" onclick="resetDemo()">
+          Reset Demo
+        </button>
+      </div>
+    </div>
+
+    <div class="dashboard-wrapper">
+      <div id="billing-dashboard"></div>
+    </div>
+
+    <div class="info-panel">
+      <h3>📚 How to Use This Demo</h3>
+      <ul>
+        <li><strong>Create Collection:</strong> Simulates creating a new collection (limited to 5 on Free tier)</li>
+        <li><strong>Upload File:</strong> Simulates uploading a 50MB file (limited to 10MB per file on Free tier)</li>
+        <li><strong>API Calls:</strong> Simulates 10 API calls (limited to 100/day on Free tier)</li>
+        <li><strong>Upgrade:</strong> Click upgrade buttons on tier cards to test the upgrade flow</li>
+        <li><strong>Reset:</strong> Clears all usage and resets to Free tier</li>
+      </ul>
+      <br>
+      <h3>💻 Integration Code</h3>
+      <p>To integrate this in your application:</p>
+      <pre><code>import { initBillingDashboard } from './src/billing/dashboard.js';
+
+const container = document.getElementById('billing-dashboard');
+initBillingDashboard(userId, container, {
+  autoRefresh: true,
+  refreshInterval: 30000
+});</code></pre>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initBillingDashboard } from './src/billing/dashboard.js';
+    import { updateUsage, CheckLimits, getUserUsage } from './src/billing/tiers.js';
+
+    // Demo user ID
+    const DEMO_USER_ID = 'demo_user';
+
+    // Initialize dashboard
+    let dashboard;
+
+    function init() {
+      const container = document.getElementById('billing-dashboard');
+      dashboard = initBillingDashboard(DEMO_USER_ID, container, {
+        autoRefresh: true,
+        refreshInterval: 30000
+      });
+    }
+
+    // Simulate collection creation
+    window.simulateCollectionCreation = function() {
+      if (CheckLimits(DEMO_USER_ID, 'collections')) {
+        updateUsage(DEMO_USER_ID, 'collections', 1);
+        dashboard.refresh();
+        showToast('✓ Collection created successfully!', 'success');
+      } else {
+        showToast('⚠ Collection limit reached. Upgrade to create more.', 'error');
+      }
+    };
+
+    // Simulate file upload
+    window.simulateFileUpload = function() {
+      const fileSize = 50 * 1024 * 1024; // 50 MB
+
+      if (CheckLimits(DEMO_USER_ID, 'fileUpload', fileSize)) {
+        updateUsage(DEMO_USER_ID, 'storageUsed', fileSize);
+        dashboard.refresh();
+        showToast('✓ File uploaded successfully!', 'success');
+      } else {
+        showToast('⚠ File too large for your tier. Upgrade for larger uploads.', 'error');
+      }
+    };
+
+    // Simulate API calls
+    window.simulateApiCalls = function() {
+      let successCount = 0;
+
+      for (let i = 0; i < 10; i++) {
+        if (CheckLimits(DEMO_USER_ID, 'apiCalls')) {
+          updateUsage(DEMO_USER_ID, 'apiCallsToday', 1);
+          successCount++;
+        } else {
+          showToast(`⚠ API rate limit reached after ${successCount} calls.`, 'error');
+          dashboard.refresh();
+          return;
+        }
+      }
+
+      dashboard.refresh();
+      showToast(`✓ Made ${successCount} API calls successfully!`, 'success');
+    };
+
+    // Reset demo
+    window.resetDemo = function() {
+      // Clear usage (would need to expose a reset function in production)
+      const usage = getUserUsage(DEMO_USER_ID);
+      Object.keys(usage).forEach(key => {
+        if (typeof usage[key] === 'number') {
+          usage[key] = 0;
+        }
+      });
+
+      dashboard.refresh();
+      showToast('✓ Demo reset to initial state', 'success');
+    };
+
+    // Toast notification
+    function showToast(message, type = 'info') {
+      const toast = document.createElement('div');
+      toast.className = `notification notification-${type}`;
+      toast.textContent = message;
+      toast.style.position = 'fixed';
+      toast.style.top = '20px';
+      toast.style.right = '20px';
+      toast.style.zIndex = '10001';
+
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 3000);
+    }
+
+    // Initialize on load
+    init();
+  </script>
+</body>
+</html>
