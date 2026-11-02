@@ -8,12 +8,10 @@ import { spawn } from 'node:child_process'
 import { mkdtempSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
 const URL_ = process.env.URL || 'http://localhost:5176/'
-const CHROME = [
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-].find(existsSync)
+const CHROME = requireChrome()
 if (!CHROME) { console.error('找不到 Chrome'); process.exit(1) }
 
 const PORT = 9444 + (process.pid % 400)
@@ -106,7 +104,7 @@ const R = await evaluate(`(()=>{
    *    一个反引号就会把模板字符串截断，报 "missing ) after argument list"。
    *    这个坑刚刚踩过一次（而且第一次"警告不要写反引号"的那句话里
    *    自己就带了一个反引号，于是警告本身成了第二个 bug）。 */
-  const ok = ns.filter(x => x.sprite && !x.cluster);
+  const ok = ns.filter(x => x.sprite && !x.cluster && !x.researcher);
   const rOut = 175;   // LAYOUT.radiusOuter（改 config.js 时同步改这里）
 
   // ── 盘面半径（x-z 平面内到中心的距离）──
@@ -337,7 +335,7 @@ const HUE_PROBE = `(()=>{
     // 星团节点的 family 是 'conjecture'（不在 8 个族里），而且它们的颜色
     // 按 status/field 走另一套逻辑 —— 混进来会多出一个假族，
     // 把"8 个族各一种色相"的判据搞乱。
-    if(!x.sprite || x.cluster) continue;
+    if(!x.sprite || x.cluster || x.researcher) continue;
     const bc=x.baseColor||x.sprite.material.color;
     if(!lab[x.family]) lab[x.family]=oklab(bc);
     const mx=Math.max(bc.r,bc.g,bc.b), mn=Math.min(bc.r,bc.g,bc.b);

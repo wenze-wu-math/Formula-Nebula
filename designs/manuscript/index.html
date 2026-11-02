@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>公式诗稿 · Formula Manuscript</title>
+  <meta name="description" content="代数几何知识库的手稿式排版：八章诗句、页边未解之问、卷末题跋。">
+  <link rel="stylesheet" href="../shared/style-base.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- 画布：纸页、公式、铅笔线全部画在这里（render.js） -->
+  <canvas id="page" aria-label="公式诗稿版面，可拖动平移、滚轮缩放、点击公式查看注释"></canvas>
+  <!-- DOM 界面：顶栏、书签栏、注释页、图例、提示（ui.js 在此挂载） -->
+  <div id="ui"></div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

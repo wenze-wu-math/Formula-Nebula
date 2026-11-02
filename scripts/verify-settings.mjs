@@ -16,8 +16,9 @@ import { resolve } from 'node:path'
 import { mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = Number(process.env.PORT || 9244)
 const OUT = resolve('shots')
@@ -374,7 +375,7 @@ const s0 = await evaluate(SPIN)
 //   所以改成**轮询自转角**，等到真的转过阈值再测量。
 let s1 = s0
 for (let i = 0; i < 600 && Math.abs(s1 - s0) < 0.02; i++) {
-  await sleep(500)
+  await sleep(250)
   s1 = await evaluate(SPIN)
 }
 const p1 = await evaluate(PROJ)
@@ -395,7 +396,7 @@ const s2 = await evaluate(SPIN)
 // 同样等自转转过同样的角度，这样两边对比才是公平的
 let s3 = s2
 for (let i = 0; i < 600 && Math.abs(s3 - s2) < 0.02; i++) {
-  await sleep(500)
+  await sleep(250)
   s3 = await evaluate(SPIN)
 }
 const p3 = await evaluate(PROJ)

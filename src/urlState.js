@@ -45,6 +45,15 @@
 
 export const SCHEMA_VERSION = 1
 
+/* 证明页的地址栏约定。
+ *
+ * 旧版 hash 已经把 `p` 用作数值参数段（例如 `p=l1.2`），所以不能
+ * 把证明 id 塞进同一个命名空间。证明页的规范 hash 键用 `k`（key），
+ * 同时 decodeLocationState() 接受用户更容易手写的 `?p=<id>` 别名。
+ * 这样现有的 `#v1&p=...` 链接逐字节保持原语义。 */
+export const PROOF_HASH_KEY = 'k'
+export const PROOF_QUERY_KEY = 'p'
+
 /* ───────────── 枚举 ─────────────
  *
  *  ⚠ 这三个表必须与 src/settings.js 保持一致：
@@ -87,6 +96,7 @@ const DISPLAY_CODES = {
   c: 'cluster',
   h: 'clusterHalo',
   m: 'markers',
+  a: 'researchers',
   n: 'nebula',
   s: 'stars',
   d: 'disc',
@@ -132,7 +142,7 @@ const EQ_EPS = 1e-6
  * ——不知道，所以本模块不持有默认值，默认值由调用方通过 stateToHashInput()
  * 传进来。这样 config.js 改默认值时，链接自动跟着变，不需要改这里。
  *
- * @param {{node?:string, view?:string, shape?:string, coloring?:string,
+ * @param {{node?:string, proof?:string, view?:string, shape?:string, coloring?:string,
  *          params?:Object, display?:Object}} state 只含非默认字段
  * @returns {string} 例如 'v1&n=cn-hodge&w=cluster&s=barred'
  */
@@ -142,6 +152,10 @@ export function encodeState(state) {
 
   if (typeof s.node === 'string' && s.node) {
     parts.push(`n=${encodeURIComponent(s.node)}`)
+  }
+  // `k` 是 proof key。不要改成 `p`：旧版 p= 是数值参数命名空间。
+  if (typeof s.proof === 'string' && s.proof) {
+    parts.push(`${PROOF_HASH_KEY}=${encodeURIComponent(s.proof)}`)
   }
   if (VIEWS.includes(s.view)) parts.push(`w=${s.view}`)
   if (SHAPES.includes(s.shape)) parts.push(`s=${s.shape}`)
@@ -200,6 +214,7 @@ export function decodeState(hash) {
   const out = {
     version: 0,
     node: undefined,
+    proof: undefined,
     view: undefined,
     shape: undefined,
     coloring: undefined,
@@ -243,6 +258,11 @@ export function decodeState(hash) {
       case 'n':
         // 空串视为"没指定"：`n=` 不该被当成"选中了 id 为空的节点"
         if (v) out.node = v
+        break
+      case PROOF_HASH_KEY:
+        // 空串视为未指定，和 n= 的处理一致。保留任意非空字符串，
+        // 由图谱层负责检查 id 是否存在；地址栏解码器只负责结构安全。
+        if (v) out.proof = v
         break
       case 'w':
         if (VIEWS.includes(v)) out.view = v
@@ -293,6 +313,54 @@ export function decodeState(hash) {
     }
   }
 
+  return out
+}
+
+/**
+ * 解析浏览器的 search + hash 两段地址状态。
+ *
+ * 证明页同时接受两种写法：
+ *   `?p=<formula-id>`（便于分享与手写）
+ *   `#v1&k=<formula-id>`（与现有 hash 状态共存）
+ *
+ * search 中的 p 与 hash 中既有的 p= 数值参数完全是两个命名空间，
+ * 因此不会改变任何旧链接的解码结果。query proof 非空时优先于 hash
+ * proof；这样用户显式改了 `?p=` 后，不会被旧 hash 里的 k= 覆盖。
+ * 所有输入都按不可信字符串处理，保证永不抛异常。
+ *
+ * @param {string|object} search 可传 location.search 或字符串
+ * @param {string} hash 可传 location.hash 或 hash 字符串
+ * @returns {ReturnType<typeof decodeState>}
+ */
+export function decodeLocationState(search = '', hash = '') {
+  // 也接受传入 location-like 对象，方便浏览器端调用和 Node 验证。
+  if (search && typeof search === 'object') {
+    try {
+      const loc = search
+      hash = loc.hash
+      search = loc.search
+    } catch {
+      search = ''
+      hash = ''
+    }
+  }
+
+  const hashText = typeof hash === 'string' ? hash : ''
+  const out = decodeState(hashText)
+  let queryText = typeof search === 'string' ? search : ''
+
+  // 调用方偶尔会把完整 URL 传进来；截出 ? 到 # 之间的查询部分。
+  try {
+    const q = queryText.indexOf('?')
+    if (q >= 0) queryText = queryText.slice(q + 1)
+    const h = queryText.indexOf('#')
+    if (h >= 0) queryText = queryText.slice(0, h)
+    const sp = new URLSearchParams(queryText)
+    const proof = sp.get(PROOF_QUERY_KEY)
+    if (proof) out.proof = proof
+  } catch {
+    // URLSearchParams 在标准环境不会抛，但这里是启动路径，必须兜底。
+  }
   return out
 }
 
@@ -348,6 +416,7 @@ export function stateToHashInput(state, defaults) {
   const out = { params: {}, display: {} }
 
   if (typeof s.node === 'string' && s.node) out.node = s.node
+  if (typeof s.proof === 'string' && s.proof) out.proof = s.proof
   if (s.view !== undefined && s.view !== def.view) out.view = s.view
   if (s.shape !== undefined && s.shape !== def.shape) out.shape = s.shape
   // colorMode / coloring 两个名字都接受：调用方可能直接递 settings.state
@@ -386,6 +455,7 @@ export function hashEquals(a, b) {
   const B = decodeState(b)
   if (A.version !== B.version) return false
   if ((A.node || '') !== (B.node || '')) return false
+  if ((A.proof || '') !== (B.proof || '')) return false
   if (A.view !== B.view) return false
   if (A.shape !== B.shape) return false
   if (A.coloring !== B.coloring) return false

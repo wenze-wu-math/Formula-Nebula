@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formula Nebula · 设计稿</title>
+  <link rel="stylesheet" href="./shared/style-base.css">
+  <style>
+    main { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+    header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    h1 { font-family: var(--font-serif); font-size: 30px; font-weight: 600; }
+    .sub { color: var(--dim); margin-top: 6px; }
+    .theme { border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 12px; color: var(--ink-2); }
+    .theme:hover { border-color: var(--accent); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--gap); margin-top: 32px; }
+    .card {
+      display: block; padding: 20px; text-decoration: none;
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+    .card h2 { font-size: 17px; font-weight: 600; }
+    .card .id { font-family: var(--font-mono); font-size: 12px; color: var(--dim); }
+    .card p { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
+
+    /* 缩略图：固定 16:10，避免各方案比例不一导致卡片高低错落 */
+    .thumb {
+      width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+      border-radius: 6px; border: 1px solid var(--line-soft);
+      margin-bottom: 14px; background: var(--paper-2);
+    }
+    .thumb-empty {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; letter-spacing: .1em; color: var(--dim);
+    }
+
+    .card-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .badge {
+      font-size: 11px; padding: 2px 8px; border-radius: 999px;
+      border: 1px solid currentColor; opacity: .85; white-space: nowrap;
+    }
+    .badge-ok { color: var(--cyan); }
+    .badge-wip { color: var(--gold); }
+    .badge-origin { color: var(--violet); }
+
+    .meta {
+      margin-top: 4px; font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: .06em; color: var(--dim);
+    }
+    .note {
+      margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line-soft);
+      font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums;
+    }
+    .empty { margin-top: 32px; padding: 20px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--dim); }
+    .empty code { font-family: var(--font-mono); color: var(--ink-2); }
+
+    .check { margin-top: 48px; padding: 20px; background: var(--paper-2); border-radius: var(--radius); font-size: 14px; }
+    .check h2 { font-size: 13px; letter-spacing: .12em; color: var(--dim); font-weight: 600; }
+    .check dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 20px; margin-top: 12px; }
+    .check dt { color: var(--dim); }
+    .check dd { margin: 0; font-variant-numeric: tabular-nums; }
+    .check .ok { color: var(--cyan); }
+    .check .err { color: var(--coral); }
+    .check .formula { margin-top: 14px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>公式诗云 · 设计稿</h1>
+      <p class="sub">各可视化方案的并排预览，全部共用 <code>designs/shared/</code> 下的数据与排版模块。</p>
+    </div>
+    <button class="theme" id="theme" type="button" aria-pressed="false">深色</button>
+  </header>
+
+  <section aria-label="设计稿列表">
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>
+      还没有设计稿。新建 <code>designs/&lt;id&gt;/index.html</code>，再在本页的 <code>DESIGNS</code> 数组里登记一条即可。
+    </p>
+  </section>
+
+  <section class="check" aria-live="polite">
+    <h2>共享模块自检</h2>
+    <dl id="checks"></dl>
+    <div class="formula tex" id="formula"></div>
+  </section>
+</main>
+
+<script type="module">
+  import { getGraph, DATA_AS_OF, nodeHex } from './shared/kb.js'
+  import { tex } from './shared/tex.js'
+  import { inlineMd } from './shared/md.js'
+
+  /* 登记设计稿：{ id, title, desc, thumb?, meta?, status? }，id 即目录名 designs/<id>/ 。
+     desc 支持 **粗体**；thumb 是缩略图相对路径；meta 显示在标题下的一行小字；
+     status 用于标注完成度（'ok' 已验收 / 'wip' 部分完成）。 */
+  const DESIGNS = [
+    {
+      id: 'atlas',
+      title: 'A · 公式星图',
+      meta: 'ATLAS COELESTIS · 2D 古典星图',
+      desc: '知识族是**星座**，定理是**恒星**（六等星等），猜想是深空天体，研究者写在刻度环上。深蓝夜空 + 金色网格 + 朱红猜想。',
+      thumb: './atlas/thumb.png',
+      status: 'ok',
+      note: '验收 33/33',
+    },
+    {
+      id: 'map',
+      title: 'B · 公式大陆',
+      meta: 'TERRA FORMULARUM · 彩色知识地图',
+      desc: '知识族是**国家**，定理是**城市**，关联是**道路**，猜想是海上岛屿。有机海岸线由距离场等值线生成，浅色政区图风格。',
+      thumb: './map/thumb.png',
+      status: 'ok',
+      note: '验收 32/32',
+    },
+    {
+      id: 'manuscript',
+      title: 'D · 公式诗稿',
+      meta: 'FORMULA MANUSCRIPT · 手稿纸面',
+      desc: '八章对应八个知识族，铅笔线表示关联，猜想写在**页边批注**，研究者收进卷末**题跋**。浅色纸纹、疏朗排版。',
+      thumb: './manuscript/thumb.png',
+      status: 'ok',
+      note: '验收 32/32',
+    },
+    {
+      id: '',
+      title: '原版 · 公式诗云',
+      meta: 'FORMULA NEBULA · 3D 星云（正式应用）',
+      desc: '项目原有的三维星云实现：405 条定理组成旋涡星系盘，59 条猜想组成球状星团，24 位研究者组成第三个星团。',
+      href: '/',
+      status: 'origin',
+      note: '正式入口，非设计稿',
+    },
+  ]
+
+  /* ── 主题 ── */
+  const themeBtn = document.getElementById('theme')
+  const applyTheme = (night) => {
+    document.documentElement.dataset.theme = night ? 'night' : ''
+    themeBtn.setAttribute('aria-pressed', String(night))
+    themeBtn.textContent = night ? '浅色' : '深色'
+  }
+  applyTheme(localStorage.getItem('fn-designs-theme') === 'night')
+  themeBtn.addEventListener('click', () => {
+    const night = document.documentElement.dataset.theme !== 'night'
+    localStorage.setItem('fn-designs-theme', night ? 'night' : 'light')
+    applyTheme(night)
+  })
+
+  /* ── 卡片 ── */
+  const grid = document.getElementById('grid')
+  for (const d of DESIGNS) {
+    const a = document.createElement('a')
+    a.className = 'card'
+    /* 原版入口用绝对路径 '/'，设计稿用 ./<id>/ */
+    a.href = d.href || `./${encodeURIComponent(d.id)}/`
+
+    if (d.thumb) {
+      const img = document.createElement('img')
+      img.className = 'thumb'
+      img.src = d.thumb
+      img.alt = `${d.title} 缩略图`
+      img.loading = 'lazy'
+      a.append(img)
+    } else {
+      /* 没有缩略图（原版入口）：给一块占位，保持卡片高度一致 */
+      const ph = document.createElement('div')
+      ph.className = 'thumb thumb-empty'
+      ph.textContent = '3D 星云'
+      a.append(ph)
+    }
+
+    const head = document.createElement('div')
+    head.className = 'card-head'
+    const h = document.createElement('h2')
+    h.textContent = d.title
+    if (d.status) {
+      const badge = document.createElement('span')
+      badge.className = `badge badge-${d.status}`
+      badge.textContent = d.status === 'ok' ? '已完成'
+        : d.status === 'wip' ? '部分完成' : '原版'
+      head.append(h, badge)
+    } else head.append(h)
+    a.append(head)
+
+    if (d.meta) {
+      const meta = document.createElement('div')
+      meta.className = 'meta'
+      meta.textContent = d.meta
+      a.append(meta)
+    }
+
+    const p = document.createElement('p')
+    p.append(...inlineMd(d.desc || ''))
+    a.append(p)
+
+    if (d.note) {
+      const note = document.createElement('div')
+      note.className = 'note'
+      note.textContent = d.note
+      a.append(note)
+    }
+
+    if (d.id) {
+      const id = document.createElement('div')
+      id.className = 'id'
+      id.textContent = d.id
+      a.append(id)
+    }
+    grid.append(a)
+  }
+  document.getElementById('empty').hidden = DESIGNS.length > 0
+
+  /* ── 自检：证明三个共享模块在浏览器里能跑 ── */
+  const dl = document.getElementById('checks')
+  const row = (k, v, cls = '') => {
+    const dt = document.createElement('dt')
+    dt.textContent = k
+    const dd = document.createElement('dd')
+    if (cls) dd.className = cls
+    if (v instanceof Node) dd.append(v)
+    else dd.textContent = v
+    dl.append(dt, dd)
+  }
+
+  try {
+    const t0 = performance.now()
+    const g = getGraph()
+    const s = g.stats
+    row('buildGraph()', `${s.nodeCount} 节点 · ${s.linkCount} 关联 · ${(performance.now() - t0).toFixed(0)} ms`, 'ok')
+    row('结构', `主星系 ${s.galaxyCount} · 猜想 ${s.conjCount} · 研究者 ${s.researcherCount}`)
+    row('数据截至', DATA_AS_OF)
+
+    const top = g.nodes.filter((n) => !n.cluster && !n.researcher).sort((a, b) => b.rank - a.rank)[0]
+    const { svg, widthPx, heightPx } = await tex(top.latex, nodeHex(top))
+    row('tex()', `${top.name} · ${widthPx.toFixed(0)}×${heightPx.toFixed(0)} px`, 'ok')
+    document.getElementById('formula').innerHTML = svg   // MathJax 产出的 SVG，可信
+    document.getElementById('formula').setAttribute('aria-label', top.latex)
+    document.getElementById('formula').setAttribute('role', 'img')
+
+    const withBold = g.nodes.find((n) => /\*\*.+?\*\*/.test(n.detail || ''))
+    const frag = document.createElement('span')
+    frag.append(...inlineMd(withBold ? withBold.detail : '无含 **粗体** 的条目'))
+    row('inlineMd()', frag)
+  } catch (err) {
+    row('错误', String(err && err.message || err), 'err')
+    console.error(err)
+  }
+</script>
+</body>
+</html>

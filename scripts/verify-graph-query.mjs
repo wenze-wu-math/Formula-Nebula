@@ -56,6 +56,9 @@ import { EXTRA_H_NODES, EXTRA_H_LINKS } from '../src/data/extra-h.js'
 import {
   CONJECTURE_NODES, CONJECTURE_LINKS, CONJECTURE_STATUS,
 } from '../src/data/conjectures.js'
+import {
+  RESEARCHER_NODES, RESEARCHER_LINKS,
+} from '../src/data/researchers.js'
 
 /* ═══════════════ 断言计数器 ═══════════════ */
 let passed = 0
@@ -88,10 +91,11 @@ const GALAXY_LINKS = [
   ...EXTRA_A_LINKS, ...EXTRA_B_LINKS, ...EXTRA_C_LINKS, ...EXTRA_D_LINKS,
   ...EXTRA_E_LINKS, ...EXTRA_F_LINKS, ...EXTRA_G_LINKS, ...EXTRA_H_LINKS,
 ]
-const ALL_NODES = [...GALAXY_NODES, ...CONJECTURE_NODES]
-const ALL_LINKS = [...GALAXY_LINKS, ...CONJECTURE_LINKS]
+const ALL_NODES = [...GALAXY_NODES, ...CONJECTURE_NODES, ...RESEARCHER_NODES]
+const ALL_LINKS = [...GALAXY_LINKS, ...CONJECTURE_LINKS, ...RESEARCHER_LINKS]
 
 const CONJECTURE_IDS = new Set(CONJECTURE_NODES.map((n) => n.id))
+const RESEARCHER_IDS = new Set(RESEARCHER_NODES.map((n) => n.id))
 
 const clamp01 = (v) =>
   Math.min(1, Math.max(0, typeof v === 'number' && isFinite(v) ? v : 0))
@@ -104,12 +108,14 @@ function assemble() {
   for (const raw of ALL_NODES) {
     if (byId.has(raw.id)) { dupIds++; continue }
     const isConj = CONJECTURE_IDS.has(raw.id)
+    const isResearcher = RESEARCHER_IDS.has(raw.id)
 
     const n = {
       ...raw,
       importance: clamp01(raw.importance ?? 0.5),
-      family: FAMILIES[raw.family] ? raw.family : (isConj ? 'conjecture' : 'foundation'),
+      family: FAMILIES[raw.family] ? raw.family : (isConj ? 'conjecture' : isResearcher ? 'researcher' : 'foundation'),
       cluster: isConj,
+      researcher: isResearcher,
       degree: 0,
       linkIds: [],
     }
@@ -118,6 +124,11 @@ function assemble() {
       n.field = raw.field || 'ag'
       n.year = typeof raw.year === 'number' ? raw.year : null
       n.proposer = raw.proposer || ''
+    }
+    if (isResearcher) {
+      n.field = raw.field || 'arith'
+      n.institution = raw.institution || ''
+      n.focus = raw.focus || ''
     }
     byId.set(n.id, n)
     nodes.push(n)
@@ -139,8 +150,11 @@ function assemble() {
     const link = { source: a, target: b, weight: clamp01(w), label, key }
     const ca = byId.get(a).cluster
     const cb = byId.get(b).cluster
-    link.cross = ca !== cb
-    link.clusterSide = ca ? 'cluster' : 'galaxy'
+    const ra = byId.get(a).researcher
+    const rb = byId.get(b).researcher
+    link.researcher = ra || rb
+    link.cross = ca !== cb || ra !== rb
+    link.clusterSide = ca ? 'cluster' : (ra ? 'researcher' : 'galaxy')
     links.push(link)
     byId.get(a).linkIds.push(link)
     byId.get(b).linkIds.push(link)
@@ -159,19 +173,23 @@ function assemble() {
     for (const n of group) n.rank = (n.importance - lo) / span
     return [lo, hi]
   }
-  const galaxy = nodes.filter((n) => !n.cluster)
+  const galaxy = nodes.filter((n) => !n.cluster && !n.researcher)
   const conj = nodes.filter((n) => n.cluster)
+  const researchers = nodes.filter((n) => n.researcher)
   const impRange = norm(galaxy)
   const conjRange = norm(conj)
+  const researchRange = norm(researchers)
 
   return {
     nodes, links, byId,
     impRange: impRange || [0, 1],
     conjRange: conjRange || [0, 1],
+    researchRange: researchRange || [0, 1],
     raw: {
       dupIds, dangling, selfLoop, dupEdge,
       galaxyCount: galaxy.length,
       conjCount: conj.length,
+      researcherCount: researchers.length,
     },
   }
 }
@@ -189,10 +207,10 @@ console.log(`  原始节点 ${ALL_NODES.length} 条，原始连线 ${ALL_LINKS.l
 console.log(`  过滤：重复 id ${stats.dupIds} · 悬空引用 ${stats.dangling} · ` +
   `自环 ${stats.selfLoop} · 重复边 ${stats.dupEdge}`)
 
-const EXPECT_NODES = 464
-const EXPECT_LINKS = 1620
+const EXPECT_NODES = 488
+const EXPECT_LINKS = 1670
 console.log(`  最终：节点 ${nodes.length} / 连线 ${links.length}` +
-  `（主星系 ${stats.galaxyCount} + 猜想星团 ${stats.conjCount}）`)
+  `（主星系 ${stats.galaxyCount} + 猜想星团 ${stats.conjCount} + 研究者 ${stats.researcherCount}）`)
 
 if (nodes.length !== EXPECT_NODES || links.length !== EXPECT_LINKS) {
   console.log(`  ⚠ 期望 ${EXPECT_NODES} 节点 / ${EXPECT_LINKS} 连线，实际 ` +
@@ -398,9 +416,18 @@ check(clusterTrue === conjectureNodes,
   `${clusterTrue} === ${conjectureNodes}`)
 check(countOf('is:conjecture') === clusterTrue,
   'is:conjecture 与 cluster:true 同值', `${countOf('is:conjecture')}`)
-check(countOf('is:theorem') === nodes.length - clusterTrue,
-  'is:theorem 与 cluster:false 互补',
-  `${countOf('is:theorem')} + ${clusterTrue} = ${nodes.length}`)
+const theoremN = nodes.filter((n) => !n.cluster && !n.researcher).length
+const researcherN = nodes.filter((n) => n.researcher).length
+check(countOf('is:theorem') === theoremN,
+  'is:theorem 只命中主星系定理', `${countOf('is:theorem')} === ${theoremN}`)
+check(countOf('is:researcher') === researcherN,
+  'is:researcher 命中研究者星团', `${countOf('is:researcher')} === ${researcherN}`)
+check(countOf('is:theorem') + countOf('is:researcher') + clusterTrue === nodes.length,
+  'is:theorem + is:researcher + is:conjecture 互补为全图',
+  `${countOf('is:theorem')} + ${countOf('is:researcher')} + ${clusterTrue} = ${nodes.length}`)
+check(countOf('cluster:false') === nodes.length - clusterTrue,
+  'cluster:false 包含研究者（新结构不属于猜想星团）',
+  `${countOf('cluster:false')} === ${nodes.length - clusterTrue}`)
 check(countOf('id:cn-') === conjectureNodes,
   'id:cn- 命中的也是同一批（猜想 id 前缀）', `${countOf('id:cn-')}`)
 

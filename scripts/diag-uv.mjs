@@ -11,14 +11,16 @@ import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
 const URL_ = process.env.URL || 'http://localhost:5176/'
-const PORT = 9231
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const PORT = Number(process.env.PORT || 9231)
+const CHROME = requireChrome()
 const profile = mkdtempSync(join(tmpdir(), 'nebula-diag-'))
 
 const cp = spawn(CHROME, [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox',
+  '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`,
   '--no-first-run', '--no-default-browser-check', '--window-size=1440,900', URL_,
 ], { stdio: 'ignore' })

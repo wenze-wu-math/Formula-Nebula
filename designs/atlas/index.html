@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>公式星图 · Atlas Coelestis</title>
+  <!-- 冻结文件（SPEC §11.1）。各模块的样式表分属不同建造者：atlas.css=M6，panel.css=M4，chrome.css=M5 -->
+  <link rel="stylesheet" href="../shared/style-base.css">
+  <link rel="stylesheet" href="./atlas.css">
+  <link rel="stylesheet" href="./panel.css">
+  <link rel="stylesheet" href="./chrome.css">
+</head>
+<body>
+  <canvas id="atlas-canvas" aria-label="公式星图：405 条定理、59 个猜想与 24 位研究者" role="img"></canvas>
+  <div id="atlas-ui">
+    <header id="atlas-title"></header>
+    <div id="atlas-search"></div>
+    <section id="atlas-legend" aria-label="图例"></section>
+    <div id="atlas-zoom"></div>
+    <div id="atlas-hint"></div>
+    <aside id="atlas-panel" aria-hidden="true" aria-label="详情"></aside>
+    <div id="atlas-tooltip" role="tooltip" aria-hidden="true"></div>
+    <div id="atlas-live" class="sr-only" aria-live="polite"></div>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

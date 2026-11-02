@@ -36,6 +36,7 @@
 - [时效：这条猜想"现在"是什么状态](#时效这条猜想现在是什么状态)
 - [悬停一根线，看它为什么存在](#悬停一根线看它为什么存在)
 - [深链：把"看这个"变成一条 URL](#深链把看这个变成一条-url)
+- [证明页与知识脉络](#证明页与知识脉络)
 - [导出 SVG](#导出-svg)
 - [焦点+上下文与面板避让](#焦点上下文与面板避让)
 - [怎么改内容](#怎么改内容)
@@ -56,7 +57,8 @@ npm run dev        # 开发服务器，默认 http://localhost:5175
 npm run build      # 生产构建 → dist/
 npm run preview    # 预览构建产物，默认 http://localhost:5176
 
-npm run verify     # ★ 跑全部验证脚本（16 个）
+npm run verify     # ★ 跑全部验证脚本
+npm run verify:proofs # 单独校验可选证明数据与 LaTeX
 npm run check-data # 只校验知识库完整性（纯 Node，秒级）
 npm run perf       # ★ 量启动耗时 / draw call / 显存
 ```
@@ -107,6 +109,7 @@ preview **不会**（`strictPort: true`，理由见上）。
 | 滚轮 / 双指 | 缩放 |
 | 悬停 | 高亮 + 显示名称气泡（猜想还会显示状态） |
 | **单击公式** | **视角中心移到该公式**，打开右侧详情面板，并浮现它与直接关联公式之间的弧线 |
+| 详情面板「阅读证明与知识脉络」 | 打开独立证明页；没有专门证明数据的节点仍显示公式、概述与星云邻接 |
 | **面板里点「关联知识」** | 跳到那个公式 —— 中心**跟着换过去** |
 | 点击空白 / 关闭面板 / `Esc` | 收起面板与弧线，**视角回到最初的机位** |
 | 右上角搜索 | 按中文名/英文名/LaTeX 查找并飞过去（猜想会显示状态角标）。**还支持字段查询、布尔组合、寻路** —— 见「搜索、查询与寻路」 |
@@ -1333,8 +1336,185 @@ Abel 簇的极化 → 模空间
 改用 `1`/`0` 就完全绕开这个转义层。`verify-url-state.mjs` 里留了
 一条回归断言把这个坑钉死。
 
-### 另一个真实踩到的坑：默认值不能现读 config
+---
 
+## 证明页与知识脉络
+
+详情面板里的「阅读证明与知识脉络」会打开普通 DOM 阅读页。页面不进入
+three.js 场景和渲染循环；顶部提供返回星云按钮，点击后星云会聚焦当前命题，
+并恢复它的关联高亮。证明页地址使用 `?p=<节点 id>`，与 hash 中已有的
+`p=` 数值参数分开；因此旧的设置深链仍按原规则解码。页面内点击依赖会更新
+地址栏和面包屑，浏览器前进/后退也会恢复对应的证明页。
+
+证明内容单独放在 `src/data/proofs/`，按既有节点 id 索引。现有节点不必改写：
+没有 `proof` 记录时，阅读页会退回显示节点的公式、摘要、详情和星云邻接。
+目前覆盖 **226 条命题**，共 1167 个证明步骤、约 **68.6 万字符**正文
+（最短步骤 305 字）。图谱里还有 168 个可证命题没有证明页，可继续按下面的
+流程批量补充，不要求改 UI 或 three.js 代码。
+
+数据分成两层来源：
+
+- **精修层（10 个模块）**：`rewrite-a1.js`、`rewrite-a2.js`、`rewrite-a3.js`、
+  `rewrite-b.js`（改写加长的旧记录）、`deep-dive.js`、`foundation-long.js`、
+  `foundation-long-b.js`、`new-topics.js`、`new-curves.js`、`new-sheaves.js`。
+  这 43 条是逐条审读、修过数学错误的版本。
+- **批量层（`batch-NN.js`，21 个文件）**：按 `shots/proof-targets/` 下的清单
+  成批扩充，每个文件 3~13 条。写作规范见
+  [shots/proof-targets/COOKBOOK.md](shots/proof-targets/COOKBOOK.md)，
+  这是一份**可直接交给作者（或子代理）的契约**，里面记录了实际踩过的全部
+  格式坑（单引号字符串被 LaTeX 撇号提前终止、段内的 U+2032 被 KaTeX 拒绝、
+  全角标点进了数学模式、反斜杠被 JS 吞掉、`\text{}` 里嵌 `$...$` 等）。
+
+`index.js` 由 `scripts/_sync-proof-index.mjs` 依据目录内容生成静态 import
+清单（不能读目录：浏览器端不能 import `node:fs`；也不能用
+`import.meta.glob`：Node 下的验证脚本不解析它）。新增批次后运行该脚本即可。
+由于**没有任何节点 id 出现在两个文件里**，合并顺序只影响可读性，不存在
+“谁覆盖谁”的语义；原先同时声明同名 id 的 `long-form.js` / `foundation.js` /
+`foundation-extra.js` 已随重建删除。
+
+每条记录包含严格陈述、分步证明、步骤依赖、结论，以及直观解释、例子和常见误区
+（这三项由 verifier 强制要求）；推论、文献和历史仍可选：
+
+```js
+export const SOME_PROOFS = {
+  'some-existing-node-id': {
+    statement: String.raw`\text{命题陈述}`,
+    steps: [
+      {
+        id: 'step-one',
+        title: '第一步',
+        body: String.raw`\text{证明内容；可使用 $\LaTeX$}`,
+        uses: ['another-node-id'], // 或本证明里更早步骤的 id
+        note: '可选的直观解释',
+      },
+    ],
+    conclusion: String.raw`\boxed{\text{结论}}`,
+    explanation: '必填：直观解释',
+    examples: [{ title: '例子', body: '必填：至少一条' }],
+    remarks: ['必填：至少一条常见误区/边界说明'],
+    references: [{ title: '书名', author: '作者', year: 2024, doi: '…' }],
+    history: '可选的历史与动机',
+  },
+}
+```
+
+分步内容使用可折叠区块；`uses` 若指向图谱节点，会成为可下潜链接；若指向
+本条证明中更早的步骤，会滚动并展开该步骤。引用目标、字段、LaTeX、正文长度
+下限以及 `explanation` / `examples` / `remarks` 的必备性由
+`scripts/verify-proofs.mjs` 校验；单文件检查用 `scripts/_check-proof-file.mjs`。
+添加或修改证明后运行：
+
+```bash
+node scripts/verify-proofs.mjs
+node scripts/_check-proof-file.mjs src/data/proofs/<file>.js
+npm run verify
+```
+
+阅读状态与个人笔记尚未加入；当前实现聚焦于可下潜的证明、文献引用、深链和
+星云往返联动。
+
+### 参考资料与校验边界
+
+证明页的数据组织参考了已核读的官方资料：
+
+- [Stacks Project](https://stacks.math.columbia.edu/) 的稳定 tag、单命题证明和交叉引用；
+- [Lean mathlib4 文档](https://leanprover-community.github.io/mathlib4_docs/) 的模块导入与定理索引；
+- [Metamath](https://github.com/metamath/set.mm) 的带标签、逐步引用形式；
+- [Isabelle Archive of Formal Proofs](https://isa-afp.org/) 的可复用理论归档；
+- [nLab](https://ncatlab.org/nlab/show/HomePage) 的概念词条和双向链接；
+- [KaTeX API](https://katex.org/docs/api) 与 [MathJax 3.2](https://docs.mathjax.org/en/v3.2/) 的公式渲染接口。
+
+ProofWiki 当前返回 HTTP 403；Cytoscape/Dagre 的部分官方深链在本机请求超时，
+因此没有把它们的实现细节写成已核实结论。当前 `verify-proofs.mjs` 校验数据
+注册（跨文件重复 key 是**硬错误**）、节点/步骤引用、数学分隔符配对、KaTeX
+严格语法、裸 LaTeX 命令、每步正文长度下限、以及每条记录必须带
+`explanation` + 至少一条 `examples` + 至少一条 `remarks`；它不执行
+Lean/Metamath 式的形式化证明检查 —— 这些检查全部是**结构性 / LaTeX 层面**的，
+不等同于形式化证明验证，同一 JavaScript 对象字面量中的重复属性也无法在模块
+导入后恢复。
+
+### 合并顺序：只影响可读性，不影响任何一条证明
+
+`src/data/proofs/index.js` 的 `PROOF_MERGE_ORDER` 数组列出 10 个数据文件的
+展开顺序，`verify-proofs.mjs` 直接 import 这个数组来报告合并结果。早先版本
+里这份文件依赖“spread 在后面的赢”来让改写版覆盖旧版，并因此需要一个
+`SHADOWED` 白名单放行 18 组重复 —— 那些重复和那份白名单都已随
+`long-form.js` 退役而**一起删除**。现在重复 key 是硬错误，没有任何豁免：
+
+```bash
+# 任意两个数据文件声明同一个节点 id 时：
+#   ✗ duplicate proof key zariski-topology in rewrite-a1.js and rewrite-b.js:
+#     delete the superseded copy and keep one record per node id
+```
+
+因此合并顺序不再有语义：改动 `PROOF_MERGE_ORDER` 不会改变任何一条证明，
+只改变报告里文件列出的先后。规范顺序以 `index.js` 为准。
+
+### 三条语言层检查与它们的回归样本
+
+| 检查 | 抓什么 | 为什么 KaTeX 抓不到 |
+|---|---|---|
+| 分隔符外裸命令 | 正文里出现 `\operatorname` / `\cdots` 等，说明分隔符漏了 | 那些字符在正文里被当普通文本显示 |
+| 数学段内丢反斜杠 | `$mathcal{O}_X$` 这种，反斜杠被吞 | KaTeX 会把它渲染成 `m·a·t·h·c·a·l`，**语法上完全合法** |
+| 正文长度下限 | `steps[].body` 少于 `MIN_STEP_BODY`（默认 300 字） | 一句话也算合法字符串 |
+
+另有两条**结构**检查与语言无关：跨文件重复节点 id 是硬错误（见上一节），
+以及每条记录必须同时带 `explanation` + 至少一条 `examples` + 至少一条
+`remarks`（重建后 43/43 全部满足）。
+
+第 2 条是 KaTeX 的盲区，值得单独说明：`$mathcal{O}_X$` 不会报错，它会安静地
+渲染成一串斜体字母，看起来像个公式。所以只能靠一张命令名表反查，并且必须
+放过 `\operatorname{Spec}` 这类**命令参数**（匹配前面是 `{`、`\` 或字母就不算）。
+
+`scannerRegressions` 现在覆盖 22 个样本（原来 8 个），正负样本成对：
+`$r\cdot 1=0$` 通过而 `$a cdot b$` 报错、`$\ker\varphi$` 通过而 `$ker varphi$`
+报错两条、`$\dim_k \mathcal{O}_{X,p}$` 与 `$\operatorname{dim} M$` 必须通过
+（否则会把参数误判）。另有一条边界样本断言下限是**闭区间**：恰好 300 字通过、
+299 字失败。
+
+这三条检查上线时立刻抓到了 4 处真实缺陷，都已修掉：`a-krull-intersection`
+的正文里裸写 `\dots`、`b-serre-duality-curve.remarks[3]` 的 `$mathcal{O}_X(D)$`
+（`remarks` 字段以前根本没被扫描过）、以及 `noetherian` / `a-serre-affine`
+两处 `$` 分隔符错位 —— 后者的 `$` 前面多一个空格，而渲染器把「`$` 后跟空白」
+当普通文本，于是**后面每一处分隔符的配对全部平移一格**，把正文里的 `\cdots`
+暴露成了裸命令。
+
+### 一个既不是数据错、也不是 KaTeX 错的渲染 bug
+
+`proofView` 用 `.pv-plain` 类表示「这一段没能变成它该有的样子」，它有**两个**
+来源，第二个抓到过一个只有查 DOM 才看得见的缺陷：
+
+| 来源 | 触发条件 | 症状 |
+|---|---|---|
+| `renderLatex` 的 catch | KaTeX 拒绝该段 | 公式退化成灰色原文 |
+| `depButton` 的兜底 | `uses` 的目标解析不到（既不是节点 id，也不是本证明的步骤 id） | 依赖**链接**退化成灰色文字 |
+
+第二处的实例：推论卡片里的 `uses` 引用的是**本证明内的步骤 id**（schema 允许，
+数据里也确实这么写），但渲染推论时传给 `renderUses` 的是 `new Set()`，
+于是每个这样的引用都解析失败。页面上没有任何报错，只是那几条依赖不再可点 ——
+数据校验全绿、draw call 不变、截图里看不出异常，靠
+`verify-proof-view.mjs` 里那句 `.pv-plain` 计数才发现（当时报
+`math=1 / steps=5 / 退化=2`，那两项正是 `unit-gives-power` 与
+`closed-field-finite-means-base`）。修法是让它收到真正的步骤集合。
+
+> 排查路径留在 `scripts/_find-plain-node-math.mjs`（查节点字段）、
+> `scripts/_find-unresolved-uses.mjs`（查无法解析的引用）和
+> `scripts/_dump-pv-plain.mjs`（直接打印线上 DOM 里 `.pv-plain` 的文本与
+> 归属容器）。三者都是只读诊断，按需运行。
+
+### 正文下限：300 字，全员适用，没有豁免
+
+重建后原来的 7 条短记录（`nullstellensatz`、`krull-dim`、`noether-normalization`、
+`a-primary-decomposition`、`localization`、`nakayama`、`hilbert-basis-theorem`）
+已全部改写加长，因此 verifier 里的 `SHORT_BODY_ALLOWLIST`（带指纹的
+祖父豁免）被**整体删除**。现在 `MIN_STEP_BODY` 对每一条记录的每一步都
+生效，闭区间：恰好 300 字通过、299 字失败。实测重建后的最短步骤为 305 字
+（`foundation-long-b.js` 一侧的数值见 `verify-proofs.mjs` 输出）。
+
+> 下限可用环境变量覆盖调试：`MIN_STEP_BODY=200 node scripts/verify-proofs.mjs`，
+> 但默认值 300 是合并进主干的判据。
+
+### 另一个真实踩到的坑：默认值不能现读 config
 `applyToConfig()` 会把 state **写回** config（`GLYPH.colorMode` 等）。
 所以用户改过着色之后再去读 `GLYPH.colorMode` 当默认值，
 等于把当前值当成了默认 —— 于是 `c=` 这个字段**永远进不了 URL**。
@@ -1649,10 +1829,48 @@ s.quaternion.premultiply(_qInv)      // 主星系：axisY(−nodeGroup.rotation.
 > 另一种是断言根本没生效。这个脚本属于后者，而且因为
 > 输出里写着"✓"，看上去比真的通过还像通过。
 
+#### 第 5 个 bug：整数像素的取整误差（这一条最容易误判成产品缺陷）
+
+上面四个修完之后，在本机（只有 Edge、无 Chrome）第一次真正跑起来时，
+它又报 **命中 5 / 12**，而且失败集中在**贴图最扁**的那几个公式上
+（宽高比可达 18:1）。当时的输出极具误导性：
+
+```
+✗ 瞄准「层」→ 得到「诺特环」（命中序列 1 个：[sheaf]，目标在位置 0）
+```
+
+命中序列里目标就在**位置 0**（正面命中、无遮挡），但 `panel` 没打开。
+看起来像"射线检测和实际拾取不一致"，几乎要把锅扣到产品代码上。
+逐项排查后全部排除：精灵朝向的逐帧漂移（同一整数像素连测 6 帧，结果
+完全一致）、比例失配（平面宽高比与贴图画布宽高比**逐个节点都相等**）、
+`wasDrag` 阈值（Pressed 与 Released 之间没有 move 事件）、
+DOM 面板遮挡（`elementFromPoint` 命中的是 canvas）。
+
+真正的原因简单而彻底：**这些精灵在屏幕上只有十几像素高**。
+脚本原来用 `localToWorld` 算出**浮点** NDC 来瞄准，而
+`Input.dispatchMouseEvent` 收像素、app 的 `setPointer()` 又从**整数**
+`clientX` 反算 NDC。在本机 1576px 宽的画布上，1 像素的取整就是
+`2/1576 ≈ 0.00127` 的 NDC 变化 —— 对只有一两个像素高的笔画，
+这足以让瞄准点滑到透明留白，于是 `hitIsOpaque` **正确地**拒绝选中。
+
+修法是别再自己换算：**直接在整数像素上搜索**。在精灵的屏幕包围盒内
+由内向外枚举整数像素，每个候选点用「整数像素 → app 的 setPointer 公式
+→ NDC → `__pickAt`」验证，命中即停。这样"验证过的点"与"点下去的点"
+是**同一个整数像素**，取整误差从根上消失。
+
+修完：**命中 12 / 12**（连跑稳定），`verify-camera-focus.mjs` 也
+顺带从"试过所有候选都点不中"变为 **25 / 25**。
+
+> 这一条的教训与前面不同：前四个 bug 是"脚本没在验证"，
+> 这一个是"脚本在验证**别的东西**"。它瞄准的是自己算出来的理想点，
+> 而不是"真正会被派发的那个点"。凡是跨了两套坐标系的测试，
+> 都必须以**最终落地的那套坐标**为准 —— 否则测的是模型的正确性，
+> 不是产品行为。
+
 ### 顺带做了一次全量审计：还有谁"永远不失败"？
 
-发现上面两个之后，我把 `run-all.mjs` 收录的 27 个脚本全查了一遍
-`process.exit(0)`。结论分两类，**必须区分开**：
+发现上面两个之后，我把当时 `run-all.mjs` 收录的 27 个脚本（历史规模，
+现清单已扩至 30 项）全查了一遍 `process.exit(0)`。结论分两类，**必须区分开**：
 
 | 脚本 | 性质 | 处置 |
 |---|---|---|
@@ -1668,7 +1886,7 @@ s.quaternion.premultiply(_qInv)      // 主星系：axisY(−nodeGroup.rotation.
 
 ### 已经稳定复现过多次：一次跑绿要看机器脸色
 
-27 个脚本全量跑一轮约 18~20 分钟，全部是无头软件渲染（纯 CPU）。
+当时那 27 个脚本全量跑一轮约 18~20 分钟，全部是无头软件渲染（纯 CPU）。
 这台机器上开着游戏/浏览器/聊天工具时，**每一轮都会有一两个脚本
 因为被饿死而失败**，而且是**轮换的** —— 实测遇到过的：
 
@@ -1830,10 +2048,26 @@ s.quaternion.premultiply(_qInv)      // 主星系：axisY(−nodeGroup.rotation.
 
 ## 验证脚本
 
-项目自带一套无头 Chrome 验证脚本（需先 `npm run preview` 或 `npm run dev`）。
-每个脚本用**不同的 CDP 端口**，所以可以并行跑。
+项目自带一套无头 Chromium 验证脚本（需先 `npm run preview` 或 `npm run dev`）。
+每个脚本用**不同的 CDP 端口**，所以可以并行跑。浏览器脚本统一经
+`scripts/_chrome.mjs` 的 `requireChrome()` 解析可执行文件：先看 `CHROME`
+环境变量，再依次尝试常见 Chrome / Edge 安装路径，因此**没装 Chrome 的机器
+（只要有 Edge）也能跑全套**。
 
-**当前状态：27 / 27 全绿**（`npm run verify`）。
+验证清单目前包含 30 项：原有星云回归脚本，加上证明数据校验、单文件证明检查
+（`_check-proof-file.mjs`）和证明页浏览器验收。**规范清单是 `scripts/run-all.mjs`
+里的 `SCRIPTS` 数组**，数量可能随工作流调整，请以该文件为准。
+纯 Node 校验与证明页验收可分别运行：
+
+```bash
+node scripts/verify-proofs.mjs
+node scripts/_check-proof-file.mjs
+node scripts/verify-proof-view.mjs
+```
+
+`npm run verify` 仍是完整质量门禁；无头 Chromium 在 SwiftShader 环境下可能因
+目标进程资源耗尽而崩溃，遇到这种情况应单独重跑失败脚本确认，而不是把进程崩溃
+当作证明页断言失败。
 
 ```bash
 # ── 一次跑完全部 ──
@@ -2286,7 +2520,7 @@ getComputedStyle(...).color                   → rgb(159,208,255)，对
 | 加法混合 / 不写深度 | ✓ |
 | 颜色 / opacity | ✓ 0.55,0.62,0.95 / 0.10 |
 | draw call 只多 1 个 | ✓ |
-| 27 个脚本 | **全绿** |
+| 原有回归脚本 + 证明页脚本 | 证明页脚本单独通过；旧脚本按环境单独重跑 |
 
 根因是**几何假设与贴图假设不匹配**：
 
@@ -2422,7 +2656,7 @@ scripts/              ← 验证与调参脚本（40+ 个）
 |---|---|---|---|
 | `formula-nebula/` | **原始版**，未再改动 | 303 个公式 | — |
 | `formula-nebula-v1/` | **v1 冻结备份**（原始版的逐字节副本） | 303 个公式 | 13 / 13 |
-| `formula-nebula-v2/` | **当前开发版**（本 README 所描述的就是它） | 464 个公式（405 + 59 猜想） | **27 / 27** |
+| `formula-nebula-v2/` | **当前开发版**（本 README 所描述的就是它） | 464 个公式（405 + 59 猜想）+ 226 条证明 | 30 项脚本清单（见 `scripts/run-all.mjs`） |
 
 ### 备份是怎么做的、怎么验的
 

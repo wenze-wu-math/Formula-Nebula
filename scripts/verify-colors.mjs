@@ -4,8 +4,9 @@ import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = 9252
 const profile = resolve(tmpdir(), `nebula-color-${PORT}-${Date.now().toString(36)}`)
@@ -84,7 +85,7 @@ const R = await ev(`(()=>{
    *   把它们算进来，下面"每个族内部颜色完全一致"必然失败 ——
    *   那是**假失败**，测的是错的东西。星团的配色由 verify-cluster.mjs 负责。 */
   for (const x of n.graph.nodes) {
-    if(!x.sprite || x.cluster) continue;
+    if(!x.sprite || x.cluster || x.researcher) continue;
     const c=x.sprite.material.color;
     // 反解回 sRGB 便于比对。
     // ⚠ 必须除以 x.curBright（材质上**实际**用的亮度），
@@ -123,7 +124,7 @@ const L = await ev(`(()=>{
    * 而星团的半径是**球心距**（另一种语义）、颜色又是按 status 上的
    * （与 family 色不是一套），混进来会把两个映射拟合在一起，系数失去意义。 */
   for (const x of n.graph.nodes) {
-    if(!x.sprite || x.cluster) continue;
+    if(!x.sprite || x.cluster || x.researcher) continue;
     const c=x.sprite.material.color;
     // 感知明度用 OKLab 的 L 近似：这里用线性 RGB 的立方根加权
     const f=v=>Math.cbrt(Math.max(0,v));
@@ -268,7 +269,7 @@ const G = await ev(`(()=>{
   if(!gs||!gs.length) return {count:0};
   const s=gs[0];
   // 取几个样本看颜色是否随族/重要度变化
-  const rows=n.graph.nodes.filter(x=>x.glow && !x.cluster).map(x=>({
+  const rows=n.graph.nodes.filter(x=>x.glow && !x.cluster && !x.researcher).map(x=>({
     id:x.id, fam:x.family, rank:x.rank, base:x.glowBase,
     col:[x.glow.material.color.r,x.glow.material.color.g,x.glow.material.color.b],
     blend:x.glow.material.blending, tone:x.glow.material.toneMapped,
@@ -347,13 +348,13 @@ const M = await ev(`(()=>{
    *   不在 8 个族里），而"这条猜想定了没"是星团唯一的信息维度，
    *   退回单色等于把它唯一的维度丢掉。所以断言必须只统计主星系。 */
   for(const x of n.graph.nodes){
-    if(!x.sprite || x.cluster) continue;
+    if(!x.sprite || x.cluster || x.researcher) continue;
     const c=x.sprite.material.color, br=x.curBright || x.brightness;
     const lin2s=v=>v<=0.0031308?v*12.92:1.055*Math.pow(v,1/2.4)-0.055;
     const hx=v=>Math.round(Math.min(1,Math.max(0,lin2s(v)))*255).toString(16).padStart(2,'0');
     s.add(hx(c.r/br)+hx(c.g/br)+hx(c.b/br));
   }
-  const glowCols=new Set(n.graph.nodes.filter(x=>x.glow && !x.cluster).map(x=>{
+  const glowCols=new Set(n.graph.nodes.filter(x=>x.glow && !x.cluster && !x.researcher).map(x=>{
     const c=x.glow.material.color, m=Math.max(c.r,c.g,c.b);
     const lin2s=v=>v<=0.0031308?v*12.92:1.055*Math.pow(v,1/2.4)-0.055;
     const hx=v=>Math.round(Math.min(1,Math.max(0,lin2s(v)))*255).toString(16).padStart(2,'0');
@@ -373,7 +374,7 @@ const B = await ev(`(()=>{
   const n=window.__nebula, s=new Set();
   // 同样只统计主星系：星团不论在哪个模式下都按 status 上色（见上）
   for(const x of n.graph.nodes){
-    if(!x.sprite || x.cluster) continue;
+    if(!x.sprite || x.cluster || x.researcher) continue;
     const c=x.sprite.material.color, br=x.brightness;
     const lin2s=v=>v<=0.0031308?v*12.92:1.055*Math.pow(v,1/2.4)-0.055;
     const hx=v=>Math.round(Math.min(1,Math.max(0,lin2s(v)))*255).toString(16).padStart(2,'0');
@@ -385,11 +386,11 @@ check('切回 family 恢复多彩', B.n >= 8, `${B.n} 种颜色, mode=${B.mode}`
 
 /* ═══════ 6. 发光强度可调 ═══════ */
 console.log('\n=== 6. 发光强度实时可调 ===')
-const before = await ev(`(()=>{const g=window.__nebula.graph.nodes.find(x=>x.rank>0.9&&x.glow);
+const before = await ev(`(()=>{const g=window.__nebula.graph.nodes.find(x=>x.rank>0.9&&x.glow&&!x.cluster&&!x.researcher);
   return g.glow.material.color.r })()`)
 await ev(`(()=>{ window.__nebula.settings.setTweak('glowStrength', 1.5); return 1 })()`)
 await sleep(1200)
-const after = await ev(`(()=>{const g=window.__nebula.graph.nodes.find(x=>x.rank>0.9&&x.glow);
+const after = await ev(`(()=>{const g=window.__nebula.graph.nodes.find(x=>x.rank>0.9&&x.glow&&!x.cluster&&!x.researcher);
   return g.glow.material.color.r })()`)
 console.log(`  强度 0.55 → 1.5：光晕红通道 ${before.toFixed(4)} → ${after.toFixed(4)}`)
 check('调发光强度立刻生效（无需重建）', after > before * 1.5, `${(after / before).toFixed(2)}×`)
@@ -402,8 +403,9 @@ await ev(`(()=>{ window.__nebula.settings.setTweak('glowStrength', 0); return 1 
 let zero = 1
 for (let i = 0; i < 30; i++) {
   await sleep(700)
-  zero = await ev(`(()=>{const g=window.__nebula.graph.nodes.find(x=>x.rank>0.9&&x.glow);
-    return Math.max(g.glow.material.color.r,g.glow.material.color.g,g.glow.material.color.b) })()`)
+  zero = await ev(`(()=>{const g=window.__nebula.graph.nodes.find(x=>x.rank>0.9&&x.glow&&!x.cluster&&!x.researcher);
+    const t = g.glowBase * window.__nebula.settings.state.tweak.glowStrength;
+    return Math.max(t, g.glow.material.color.r, g.glow.material.color.g, g.glow.material.color.b) })()`)
   if (zero < 0.01) break
 }
 check('强度归零后光晕真的消失', zero < 0.01, zero.toExponential(2))

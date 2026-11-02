@@ -14,10 +14,11 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
 const PORT = Number(process.env.PORT || 9433)
 const URL_BASE = process.env.URL || 'http://127.0.0.1:5176/'
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 
 class CDP {
   constructor(ws) {
@@ -77,7 +78,7 @@ async function waitFor(cdp, expr, label, timeoutMs = 300000) {
 
 const profile = mkdtempSync(join(tmpdir(), 'neb-geom-'))
 const chrome = spawn(CHROME, [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--mute-audio',
   '--window-size=1600,1000', `--remote-debugging-port=${PORT}`,
   `--user-data-dir=${profile}`, URL_BASE,

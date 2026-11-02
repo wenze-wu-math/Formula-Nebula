@@ -29,14 +29,15 @@ import { spawn } from 'node:child_process'
 import { writeFileSync, readFileSync, mkdirSync } from 'node:fs'
 import { inflateSync, deflateSync } from 'node:zlib'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
 const PORT = Number(process.env.PORT || 9462)
 const URL_ = process.env.URL || 'http://127.0.0.1:5176/'
 const OUT = 'shots/legend-types'
 mkdirSync(OUT, { recursive: true })
 
-const chrome = spawn('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+const chrome = spawn(requireChrome(), [
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   `--remote-debugging-port=${PORT}`, `--user-data-dir=${process.env.TEMP}\\cdp-leg-${process.pid}`,
   '--window-size=1440,900', '--no-first-run', '--hide-scrollbars', 'about:blank',
 ], { stdio: 'ignore' })
@@ -187,6 +188,15 @@ try {
   await cdp.send('Runtime.enable'); await cdp.send('Page.enable')
   await cdp.send('Page.navigate', { url: URL_ })
   await waitFor(cdp, '!!window.__nebula', '就绪')
+
+  // Wake the HUD before polling its post-transition opacity. Waiting first
+  // leaves body.idle=true forever, so the condition can never become true.
+  for (let i = 0; i < 8; i++) {
+    await cdp.send('Input.dispatchMouseEvent', {
+      type: 'mouseMoved', x: 520 + i * 12, y: 300 + (i % 3) * 8, buttons: 0,
+    })
+    await sleep(60)
+  }
 
   /* ── 唤醒 HUD 并**等到过渡结束** ──
    *

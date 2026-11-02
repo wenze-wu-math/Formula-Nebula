@@ -21,7 +21,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
 
-import { CAMERA, GLYPH, MOTION, BLOOM, INTERACTION, LAYOUT, SHAPES, GRAVITY, LINKS, CLUSTER, VIEWS } from './config.js'
+import { CAMERA, GLYPH, MOTION, BLOOM, INTERACTION, LAYOUT, SHAPES, GRAVITY, LINKS, CLUSTER, RESEARCHERS, VIEWS } from './config.js'
 import { settings } from './settings.js'
 import { createNebula } from './nebula.js'
 import { createLinks } from './links.js'
@@ -125,6 +125,7 @@ export function createScene(canvas, graph, ui) {
   let currentView = 'overview'
   const ZERO3 = new THREE.Vector3(0, 0, 0)
   const CLUSTER_CENTER3 = new THREE.Vector3(...CLUSTER.center)
+  const RESEARCHER_CENTER3 = new THREE.Vector3(...RESEARCHERS.center)
 
   /**
    * 算出"要框住某组节点，相机该瞄哪里、该退多远"。
@@ -208,11 +209,13 @@ export function createScene(canvas, graph, ui) {
   }
 
   /** 按取景挑出参与框选的节点，并交给 fitProjected */
-  function viewFrame(v, showGalaxy, showCluster) {
+  function viewFrame(v, showGalaxy, showCluster, showResearchers = false) {
     const gal = []
     const cl = []
+    const rs = []
     for (const node of graph.nodes) {
       if (node.cluster) cl.push(node)
+      else if (node.researcher) rs.push(node)
       else gal.push(node)
     }
     let list = []
@@ -220,6 +223,7 @@ export function createScene(canvas, graph, ui) {
     const base = new THREE.Vector3()
     if (showGalaxy) list = list.concat(gal)
     if (showCluster) list = list.concat(cl)
+    if (showResearchers) list = list.concat(rs)
     if (!list.length) return { radius: LAYOUT.radiusOuter, center: base }
 
     for (const node of list) {
@@ -228,7 +232,8 @@ export function createScene(canvas, graph, ui) {
     }
     base.multiplyScalar(1 / list.length)
     // 星团是一个明确的球，重心会把它往里拖；用球心当基准更稳
-    if (!showGalaxy && showCluster) base.copy(CLUSTER_CENTER3)
+    if (!showGalaxy && showCluster && !showResearchers) base.copy(CLUSTER_CENTER3)
+    if (!showGalaxy && !showCluster && showResearchers) base.copy(RESEARCHER_CENTER3)
 
     return fitProjected(list, base)
   }
@@ -282,6 +287,16 @@ export function createScene(canvas, graph, ui) {
   clusterGroup.position.set(...CLUSTER.center)
   scene.add(clusterGroup)
 
+  /* ───────────── 研究者星团 ─────────────
+   *
+   * 与猜想星团同构：放在独立组里，绕 RESEARCHERS.spinAxis 翻滚。
+   * 研究者不是定理也不是猜想，而是知识图谱上的活动主体，
+   * 所以用第三颗伴星团表达，位置放在主星系左侧。 */
+  const researcherGroup = new THREE.Group()
+  researcherGroup.name = 'researchers'
+  researcherGroup.position.set(...RESEARCHERS.center)
+  scene.add(researcherGroup)
+
   const worldPos = new Map()   // id → {x,y,z} 每帧更新，供连线使用
   const sprites = []
   const glowSprites = []
@@ -294,6 +309,7 @@ export function createScene(canvas, graph, ui) {
   let spinPaused = false
   let spinAngle = 0
   let clusterAngle = 0
+  let researcherAngle = 0
 
   /* 星团的整体柔光：加法混合的**朝向相机的圆面**，暗示球状星团那种
    * "糊成一团的光斑"。用**一个** mesh 换整体观感，比给 59 个公式各加
@@ -350,6 +366,31 @@ export function createScene(canvas, graph, ui) {
     clusterGroup.add(clusterHalo)
   }
 
+  /* 研究者星团的整体柔光：与猜想星团同一种做法，只是位置与色温分开。 */
+  let researcherHalo = null
+  if (RESEARCHERS.enabled && RESEARCHERS.haloEnabled) {
+    const hr = RESEARCHERS.radius * RESEARCHERS.haloScale
+    const haloTex = getGlowTexture({ falloff: RESEARCHERS.haloFalloff })
+    researcherHalo = new THREE.Mesh(
+      new THREE.PlaneGeometry(hr * 2, hr * 2),
+      new THREE.MeshBasicMaterial({
+        map: haloTex,
+        color: new THREE.Color(0.48, 0.86, 0.82),
+        transparent: true,
+        opacity: RESEARCHERS.haloOpacity,
+        depthWrite: false,
+        depthTest: true,
+        blending: THREE.AdditiveBlending,
+        toneMapped: false,
+        side: THREE.DoubleSide,
+      }),
+    )
+    researcherHalo.position.set(0, 0, 0)
+    researcherHalo.renderOrder = 2
+    researcherHalo.raycast = () => {}
+    researcherGroup.add(researcherHalo)
+  }
+
   /**
    * 用烘焙好的贴图创建所有精灵。在 layoutGraph() 之后再调用，
    * 因为尺寸/位置都来自布局阶段算好的结果。
@@ -375,10 +416,12 @@ export function createScene(canvas, graph, ui) {
       })
 
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(planeW, planeH), mat)
-      // 星团节点的布局坐标是**世界坐标**（球心 + 偏移），
+      // 星团/研究者节点的布局坐标是**世界坐标**（球心 + 偏移），
       // 而它的父组已经在球心上了，所以子节点要存相对坐标。
       const [ccx, ccy, ccz] = CLUSTER.center
+      const [rcx, rcy, rcz] = RESEARCHERS.center
       if (n.cluster) mesh.position.set(n.pos.x - ccx, n.pos.y - ccy, n.pos.z - ccz)
+      else if (n.researcher) mesh.position.set(n.pos.x - rcx, n.pos.y - rcy, n.pos.z - rcz)
       else mesh.position.set(n.pos.x, n.pos.y, n.pos.z)
       mesh.userData.node = n
       mesh.renderOrder = 10
@@ -390,7 +433,7 @@ export function createScene(canvas, graph, ui) {
       mat.color.setRGB(c.r * n.brightness, c.g * n.brightness, c.b * n.brightness)
 
       n.sprite = mesh
-      n.group = n.cluster ? clusterGroup : nodeGroup
+      n.group = n.cluster ? clusterGroup : (n.researcher ? researcherGroup : nodeGroup)
       n.group.add(mesh)
       sprites.push(mesh)
 
@@ -429,7 +472,7 @@ export function createScene(canvas, graph, ui) {
         glowSprites.push(glow)
       }
 
-      /* ── 状态色点：猜想星团专有 ──
+      /* ── 状态色点：猜想星团专有（研究者节点不挂色点） ──
        *
        * 为什么必须有这个东西：一条猜想**是不是还悬着**，光看公式本身
        * 完全看不出来 —— "H^{2k}(X,Q) ∩ H^{k,k} = span[Z]" 这个陈述
@@ -758,6 +801,7 @@ export function createScene(canvas, graph, ui) {
    *
    * 表为空 = 没有选中 → 不压暗任何东西（回到原观感）。 */
   let focusHops = null
+  let proofContextFocusId = null
 
   function recomputeFocusHops() {
     if (!GLYPH.focusContext || !selected) {
@@ -983,6 +1027,8 @@ export function createScene(canvas, graph, ui) {
     const n = graph.byId.get(id)
     if (!n) return null
 
+    if (proofContextFocusId && proofContextFocusId !== id) proofContextFocusId = null
+
     selected = id
     links.highlight(selected)
     recomputeFocusHops()        // 焦点+上下文：算一次跳数表（不是每帧）
@@ -1014,6 +1060,7 @@ export function createScene(canvas, graph, ui) {
     const wasSelected = selected !== null
 
     selected = null
+    proofContextFocusId = null
     links.highlight(null)
     recomputeFocusHops()        // 清空跳数表 → 亮度恢复正常（焦点+上下文撤销）
     setPanelOpen(false)         // 面板收起 → 撤回视口避让，画面恢复整屏
@@ -1039,6 +1086,7 @@ export function createScene(canvas, graph, ui) {
   const _AXIS_Y = new THREE.Vector3(0, 1, 0)
   /* 星团的倾斜转轴。归一化一次，之后每帧复用。 */
   const _CLUSTER_AXIS = new THREE.Vector3(...CLUSTER.spinAxis).normalize()
+  const _RESEARCHER_AXIS = new THREE.Vector3(...RESEARCHERS.spinAxis).normalize()
 
   function updateMotion(dt) {
     elapsed += dt
@@ -1062,11 +1110,16 @@ export function createScene(canvas, graph, ui) {
         clusterAngle = (clusterAngle + dt * CLUSTER.spinRate) % (Math.PI * 2)
         clusterGroup.quaternion.setFromAxisAngle(_CLUSTER_AXIS, clusterAngle)
       }
+      if (RESEARCHERS.enabled) {
+        researcherAngle = (researcherAngle + dt * RESEARCHERS.spinRate) % (Math.PI * 2)
+        researcherGroup.quaternion.setFromAxisAngle(_RESEARCHER_AXIS, researcherAngle)
+      }
     }
     // 必须在读 matrixWorld 之前刷新：three 平时是在 render() 里才更新它的，
     // 而下面要拿它把局部坐标转成世界坐标，晚一步就会用到上一帧的旋转。
     nodeGroup.updateMatrixWorld(true)
     clusterGroup.updateMatrixWorld(true)
+    researcherGroup.updateMatrixWorld(true)
 
     /* 星团柔光是一张正对相机的面片，所以每帧都要把它转过来。
      * 父组（clusterGroup）在绕斜轴翻滚，所以世界朝向 = q组 × q局部，
@@ -1075,6 +1128,10 @@ export function createScene(canvas, graph, ui) {
     if (clusterHalo) {
       clusterHalo.quaternion.copy(clusterGroup.quaternion).invert()
       clusterHalo.quaternion.multiply(camera.quaternion)
+    }
+    if (researcherHalo) {
+      researcherHalo.quaternion.copy(researcherGroup.quaternion).invert()
+      researcherHalo.quaternion.multiply(camera.quaternion)
     }
 
     for (const n of graph.nodes) {
@@ -1090,12 +1147,18 @@ export function createScene(canvas, graph, ui) {
         amp * MOTION.bobVerticalRatio
 
       const b = n.basePos
-      // 星团节点的 basePos 是世界坐标，父组已在球心 → 要转成相对坐标
+      // 星团/研究者节点的 basePos 是世界坐标，父组已在球心 → 要转成相对坐标
       if (n.cluster) {
         s.position.set(
           b.x - CLUSTER.center[0] + bob,
           b.y - CLUSTER.center[1] + bobY,
           b.z - CLUSTER.center[2] + bob,
+        )
+      } else if (n.researcher) {
+        s.position.set(
+          b.x - RESEARCHERS.center[0] + bob,
+          b.y - RESEARCHERS.center[1] + bobY,
+          b.z - RESEARCHERS.center[2] + bob,
         )
       } else {
         s.position.set(b.x + bob, b.y + bobY, b.z + bob)
@@ -1118,6 +1181,8 @@ export function createScene(canvas, graph, ui) {
       // quaternion 给出（斜轴），所以取反也要用 quaternion。
       if (n.cluster) {
         _qInv.copy(clusterGroup.quaternion).invert()
+      } else if (n.researcher) {
+        _qInv.copy(researcherGroup.quaternion).invert()
       } else {
         _qInv.setFromAxisAngle(_AXIS_Y, -nodeGroup.rotation.y)
       }
@@ -1166,8 +1231,9 @@ export function createScene(canvas, graph, ui) {
       const isSel = selected === n.id
 
       // 目标缩放
+      const inProofContext = proofContextFocusId === selected && focusHops?.get(n.id) === 1
       const targetScale = isSel ? INTERACTION.hoverScale * 1.12
-        : isHover ? INTERACTION.hoverScale : 1
+        : isHover ? INTERACTION.hoverScale : inProofContext ? 1.08 : 1
 
       // 目标亮度系数
       let brightK = 1
@@ -1198,7 +1264,7 @@ export function createScene(canvas, graph, ui) {
         }
       }
 
-      const targetBright = n.brightness * brightK * (isSel ? 1.45 : isHover ? 1.25 : 1)
+      const targetBright = n.brightness * brightK * (isSel ? 1.45 : isHover ? 1.25 : inProofContext ? 1.55 : 1)
 
       // 平滑插值
       s.scale.x += (targetScale - s.scale.x) * k
@@ -1219,7 +1285,7 @@ export function createScene(canvas, graph, ui) {
       //      否则远处公式会出现"字很暗但光晕很亮"的鬼影。
       const gl = n.glow
       if (gl) {
-        const gk = (isSel ? 1.9 : isHover ? 1.5 : 1)
+        const gk = (isSel ? 1.9 : isHover ? 1.5 : inProofContext ? 1.55 : 1)
         gl.scale.setScalar(targetScale * (1 + (gk - 1) * 0.55))
         // 目标强度 = 归一化权重 × 全局强度设置 × 悬停加成 × 纵深衰减。
         // 全局强度每帧现取，所以拖动面板滑块立刻见效。
@@ -1275,19 +1341,25 @@ export function createScene(canvas, graph, ui) {
       // 这时组不转，但局部→世界仍要走一遍矩阵（组可能被别处置过旋转）。
       nodeGroup.updateMatrixWorld()
       clusterGroup.updateMatrixWorld()
+      researcherGroup.updateMatrixWorld()
       // 光晕也要朝向相机，否则静止模式下光斑会侧过去变成一条线
       _qInv.setFromAxisAngle(_AXIS_Y, -nodeGroup.rotation.y)
       _qInvC.copy(clusterGroup.quaternion).invert()
+      const _qInvR = new THREE.Quaternion().copy(researcherGroup.quaternion).invert()
       // 星团柔光同样要朝向相机（静止模式也要，否则停下来它就侧过去了）
       if (clusterHalo) {
         clusterHalo.quaternion.copy(clusterGroup.quaternion).invert()
         clusterHalo.quaternion.multiply(camera.quaternion)
       }
+      if (researcherHalo) {
+        researcherHalo.quaternion.copy(researcherGroup.quaternion).invert()
+        researcherHalo.quaternion.multiply(camera.quaternion)
+      }
       for (const n of graph.nodes) {
         if (!n.sprite) continue
         worldV.copy(n.sprite.position).applyMatrix4(n.group.matrixWorld)
         worldPos.set(n.id, { x: worldV.x, y: worldV.y, z: worldV.z })
-        const q = n.cluster ? _qInvC : _qInv
+        const q = n.cluster ? _qInvC : (n.researcher ? _qInvR : _qInv)
         if (n.glow) {
           n.glow.quaternion.copy(camera.quaternion)
           n.glow.quaternion.premultiply(q)
@@ -1622,6 +1694,15 @@ export function createScene(canvas, graph, ui) {
           CLUSTER.haloEnabled = on
           if (clusterHalo) clusterHalo.visible = on
           break
+        case 'researchers':
+          RESEARCHERS.enabled = on
+          researcherGroup.visible = on && currentView === 'overview'
+          links.setResearcherVisible?.(on && currentView === 'overview')
+          break
+        case 'researcherHalo':
+          RESEARCHERS.haloEnabled = on
+          if (researcherHalo) researcherHalo.visible = on
+          break
         case 'markers':
           /* 色点开关。⚠ 必须**在这里**直接置 visible，不能只改 CLUSTER
            * 然后指望 updateAppearance 每帧去同步。
@@ -1665,6 +1746,14 @@ export function createScene(canvas, graph, ui) {
       return clusterGroup.visible
     },
 
+    /** 研究者星团整体开关（与 setView 独立，用于设置面板里的单选框） */
+    setResearcherVisible(on) {
+      RESEARCHERS.enabled = !!on
+      researcherGroup.visible = !!on && currentView === 'overview'
+      links.setResearcherVisible?.(!!on && currentView === 'overview')
+      return researcherGroup.visible
+    },
+
     /**
      * 取景切换：全景 / 只看主星系 / 只看星团。
      *
@@ -1678,13 +1767,15 @@ export function createScene(canvas, graph, ui) {
 
       const showGalaxy = v !== 'cluster'
       const showCluster = v !== 'galaxy' && CLUSTER.enabled
+      const showResearchers = v === 'overview' && RESEARCHERS.enabled
 
       nodeGroup.visible = showGalaxy
       clusterGroup.visible = showCluster
-      links.setView?.(v, showGalaxy, showCluster)
+      researcherGroup.visible = showResearchers
+      links.setView?.(v, showGalaxy, showCluster, showResearchers)
 
       // 重新取景：按可见内容算包围范围与瞄准中心
-      const f = viewFrame(v, showGalaxy, showCluster)
+      const f = viewFrame(v, showGalaxy, showCluster, showResearchers)
       applyCameraFit(f.radius, f.center)
       currentView = v
       return { view: v, radius: f.radius }
@@ -1705,9 +1796,17 @@ export function createScene(canvas, graph, ui) {
      *  check-halo-geometry.mjs 就是这样，3/4 项失败，其实是没找到对象。 */
     get clusterHaloRef() { return clusterHalo },
 
-    /** 主星系 / 星团的对象组（验证脚本断言 visible 用） */
+    /** 研究者星团球心（世界坐标）。验证脚本用它算"到球心的距离"，
+     *  不硬编码 —— 否则 config 里改了位置，脚本会静默测错东西。 */
+    get researcherCenter() { return RESEARCHERS.center.slice() },
+
+    /** 研究者星团柔光 mesh（可能为 null，比如设置里关掉了）。 */
+    get researcherHaloRef() { return researcherHalo },
+
+    /** 主星系 / 星团 / 研究者星团的对象组（验证脚本断言 visible 用） */
     get nodeGroup() { return nodeGroup },
     get clusterGroupRef() { return clusterGroup },
+    get researcherGroupRef() { return researcherGroup },
 
     /** 相机对象 / 让验证脚本能自己把世界坐标投影到屏幕 */
     get camera() { return camera },
@@ -1725,6 +1824,12 @@ export function createScene(canvas, graph, ui) {
     /** 星团是否可见（验证脚本用） */
     get clusterVisible() { return clusterGroup.visible },
 
+    /** 研究者星团是否可见（验证脚本用） */
+    get researcherVisible() { return researcherGroup.visible },
+
+    /** 研究者星团的自转角度（验证脚本用） */
+    get researcherAngle() { return researcherAngle },
+
     /* ── 焦点+上下文 / 面板避让：暴露给验证脚本 ──
      *
      * 这两个特性都改"亮度"和"投影矩阵"，肉眼很难在截图上判定对错，
@@ -1735,6 +1840,15 @@ export function createScene(canvas, graph, ui) {
     focusHopsOf(id) {
       if (!focusHops) return undefined
       return focusHops.get(id)
+    },
+    /** Mark every direct graph neighbour of id as a proof-page context node. */
+    setProofContextFocus(id) {
+      proofContextFocusId = id && graph.byId.has(id) ? id : null
+      return proofContextFocusId
+    },
+    proofContextOf(id) {
+      return !!proofContextFocusId && proofContextFocusId === selected
+        && focusHops?.get(id) === 1
     },
     get focusHopCount() { return focusHops ? focusHops.size : 0 },
     get viewOffset() {
@@ -1756,6 +1870,21 @@ export function createScene(canvas, graph, ui) {
       if (bloomPass) {
         bloomPass.strength = BLOOM.strength
         bloomPass.threshold = BLOOM.threshold
+      }
+      /* 光点亮度是"调了立刻生效"的语义，不该只在下一帧插值里才体现。
+       *
+       * 无头浏览器/低帧率环境里，updateAppearance 可能几十秒都不跑一帧，
+       * 于是拖滑块（或测试脚本 setTweak）之后材质纹丝不动 —— 用户看到的是
+       * "这个滑块坏了"。这里直接按当前强度重写一遍材质，帧循环只负责后续
+       * 的悬停/纵深呼吸；两处口径一致，都是 glowColor(baseColor, glowBase × strength)。
+       *
+       * ⚠ 只改颜色、不动 n.curGlow 的呼吸曲线本身：curGlow 是逐帧目标，
+       *   下次 updateAppearance 会自然接上。 */
+      for (const n of graph.nodes) {
+        if (!n.glow) continue
+        const gc = glowColor(n.baseColor, n.glowBase * GLYPH.glow.strength, GLYPH.glow)
+        n.curGlow = GLYPH.glow.strength <= 0 ? 0 : n.curGlow
+        n.glow.material.color.setRGB(gc.r, gc.g, gc.b)
       }
     },
 
@@ -1783,6 +1912,8 @@ export function createScene(canvas, graph, ui) {
       markers.length = 0
       clusterHalo?.geometry.dispose()
       clusterHalo?.material.dispose()
+      researcherHalo?.geometry.dispose()
+      researcherHalo?.material.dispose()
       renderer.dispose()
     },
   }

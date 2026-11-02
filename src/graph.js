@@ -19,7 +19,7 @@
  */
 
 import * as THREE from 'three'
-import { LAYOUT, GLYPH, MOTION, SHAPES, CLUSTER } from './config.js'
+import { LAYOUT, GLYPH, MOTION, SHAPES, CLUSTER, RESEARCHERS } from './config.js'
 import { NODES, LINKS, FAMILIES } from './data/knowledge.js'
 import { EXTRA_A_NODES, EXTRA_A_LINKS } from './data/extra-a.js'
 import { EXTRA_B_NODES, EXTRA_B_LINKS } from './data/extra-b.js'
@@ -33,29 +33,68 @@ import {
   CONJECTURE_NODES, CONJECTURE_LINKS,
   CONJECTURE_STATUS, CONJECTURE_FIELDS,
 } from './data/conjectures.js'
+import {
+  RESEARCHER_AREAS, RESEARCHER_NODES, RESEARCHER_LINKS,
+} from './data/researchers.js'
+/* zbMATH Open API 自动抽取的数学家档案（生成物，见 kb-src/README）。
+ * 手写的 24 条叙述性档案在 researchers.js，两者互补：
+ * 手写条目有 focus/detail/代表作品，zbMATH 条目有可复核的 MSC 分布与获奖记录。 */
+import { RESEARCHER_EXTRA_NODES } from './data/researchers-extra.js'
+import { RESEARCHER_EXTRA_LINKS } from './data/researchers-extra-links.js'
+/* nLab 抓取的**概念**条目（生成物）。与 Stacks 的定理层互补：
+ * Stacks 回答"这个结论成立吗"，nLab 回答"这个术语什么意思"。 */
+import { NLAB_NODES, NLAB_LINKS } from './data/nlab-extra.js'
+/* Lean mathlib4 抽取的**形式化**定理（生成物）。
+ * 这是知识库的第三个维度：正确性由 Lean 内核保证，不依赖人类共识。
+ * 注意：latex 字段是 Lean 类型签名，不是 LaTeX 排版。 */
+import { MATHLIB_NODES, MATHLIB_LINKS } from './data/mathlib-extra.js'
+/* Wikipedia 未解决列表采集的猜想（生成物）。
+ * 与 UnsolvedMath 互补：UnsolvedMath 有难度分级做主线，
+ * Wikipedia 别名更全、一句话陈述更清楚，用来补漏。 */
+import { WIKI_NODES, WIKI_LINKS } from './data/wikipedia-extra.js'
+/* 三个知识源之间的跨源关联（生成物）。
+ * 把 Stacks 定理 / nLab 概念 / mathlib 形式化定理接起来，
+ * 否则它们在星云上是三块互不相连的星区。 */
+import { CROSS_SOURCE_LINKS } from './data/cross-source-links.js'
 import { buildEqualizedPalette, hexToLinear } from './palette.js'
 import {
   resolveLinkType, typeColor, heroThreshold, typeStats, LINK_TYPES, RELATED,
 } from './linkTypes.js'
+/* Stacks Project 自动抽取的补充节点（生成物，见 kb-src/README）。
+ * 用独立文件而不是塞进 knowledge.js：生成物与手写内容分离，
+ * 重新生成时不会覆盖人工撰写的条目。 */
+import { STACKS_NODES, STACKS_LINKS } from './data/stacks-extra.js'
+/* UnsolvedMath 数据集抽取的补充猜想（生成物，已与 conjectures.js 去重）。 */
+import { UNSOLVED_NODES, UNSOLVED_LINKS } from './data/unsolved-extra.js'
 
 /** 主星系的知识来源。分文件是为了让内容好维护，也方便按主题增删。 */
 const GALAXY_NODES = [
   ...NODES,
   ...EXTRA_A_NODES, ...EXTRA_B_NODES, ...EXTRA_C_NODES, ...EXTRA_D_NODES,
   ...EXTRA_E_NODES, ...EXTRA_F_NODES, ...EXTRA_G_NODES, ...EXTRA_H_NODES,
+  ...STACKS_NODES,
+  ...NLAB_NODES,
+  ...MATHLIB_NODES,
 ]
 const GALAXY_LINKS = [
   ...LINKS,
   ...EXTRA_A_LINKS, ...EXTRA_B_LINKS, ...EXTRA_C_LINKS, ...EXTRA_D_LINKS,
   ...EXTRA_E_LINKS, ...EXTRA_F_LINKS, ...EXTRA_G_LINKS, ...EXTRA_H_LINKS,
+  ...STACKS_LINKS,
+  ...NLAB_LINKS,
+  ...MATHLIB_LINKS,
 ]
 
-/** 猜想星团的 id 集合 —— 用来在装配时判定一个节点属于哪个结构 */
-const CONJECTURE_IDS = new Set(CONJECTURE_NODES.map((n) => n.id))
+/** 猜想星团的 id 集合 —— 用来在装配时判定一个节点属于哪个结构。
+ * 含手写的 59 条 + UnsolvedMath 补的批次；两者走同一套渲染与面板逻辑。 */
+const CONJECTURE_IDS = new Set([...CONJECTURE_NODES, ...UNSOLVED_NODES, ...WIKI_NODES].map((n) => n.id))
 
-/** 全体节点/关联（两个星团合并后交给同一套渲染管线） */
-const ALL_NODES = [...GALAXY_NODES, ...CONJECTURE_NODES]
-const ALL_LINKS = [...GALAXY_LINKS, ...CONJECTURE_LINKS]
+/** 研究者星团的 id 集合 —— 第三个结构，表示知识图谱上的活动主体 */
+const RESEARCHER_IDS = new Set([...RESEARCHER_NODES, ...RESEARCHER_EXTRA_NODES].map((n) => n.id))
+
+/** 全体节点/关联（三个结构合并后交给同一套渲染管线） */
+const ALL_NODES = [...GALAXY_NODES, ...CONJECTURE_NODES, ...UNSOLVED_NODES, ...WIKI_NODES, ...RESEARCHER_NODES, ...RESEARCHER_EXTRA_NODES]
+const ALL_LINKS = [...GALAXY_LINKS, ...CONJECTURE_LINKS, ...UNSOLVED_LINKS, ...WIKI_LINKS, ...RESEARCHER_LINKS, ...RESEARCHER_EXTRA_LINKS, ...CROSS_SOURCE_LINKS]
 
 /* ───────────── 族色调色板 ─────────────
  *
@@ -141,14 +180,17 @@ export function buildGraph() {
     }
 
     const isConj = CONJECTURE_IDS.has(raw.id)
+    const isResearcher = RESEARCHER_IDS.has(raw.id)
 
     const n = {
       ...raw,
       importance: clamp01(raw.importance ?? 0.5),
       // 猜想节点没有 family（它用的是 field），所以给一个无害的默认值：
       // star 结构不用 family 定位，只用它做"按族着色"这一种可选的显示模式。
-      family: FAMILIES[raw.family] ? raw.family : (isConj ? 'conjecture' : 'foundation'),
+      family: FAMILIES[raw.family] ? raw.family
+        : (isConj ? 'conjecture' : isResearcher ? 'researcher' : 'foundation'),
       cluster: isConj,
+      researcher: isResearcher,
       degree: 0,
       linkIds: [],
     }
@@ -160,6 +202,15 @@ export function buildGraph() {
       n.field = CONJECTURE_FIELDS[raw.field] ? raw.field : 'ag'
       n.year = typeof raw.year === 'number' ? raw.year : null
       n.proposer = raw.proposer || ''
+    }
+
+    if (isResearcher) {
+      // 研究者节点复用星团的"领域 → 球面方向"逻辑，但有自己的领域表。
+      n.field = RESEARCHER_AREAS[raw.field] ? raw.field : 'arith'
+      n.institution = raw.institution || ''
+      n.focus = raw.focus || ''
+      n.representativeWorks = Array.isArray(raw.representativeWorks)
+        ? raw.representativeWorks : []
     }
 
     byId.set(n.id, n)
@@ -200,9 +251,12 @@ export function buildGraph() {
     // 用色（紫罗兰 vs 蓝），以及切换取景时是否隐藏。
     const ca = byId.get(a).cluster
     const cb = byId.get(b).cluster
-    link.cross = ca !== cb
+    const ra = byId.get(a).researcher
+    const rb = byId.get(b).researcher
+    link.researcher = ra || rb
+    link.cross = ca !== cb || ra !== rb
     // 非跨结构边要记住自己属于哪一侧，取景过滤时用
-    link.clusterSide = ca ? 'cluster' : 'galaxy'
+    link.clusterSide = ca ? 'cluster' : (ra ? 'researcher' : 'galaxy')
     links.push(link)
     byId.get(a).linkIds.push(link)
     byId.get(b).linkIds.push(link)
@@ -236,10 +290,12 @@ export function buildGraph() {
     return [lo, hi]
   }
 
-  const galaxy = nodes.filter((n) => !n.cluster)
+  const galaxy = nodes.filter((n) => !n.cluster && !n.researcher)
   const conj = nodes.filter((n) => n.cluster)
+  const researchers = nodes.filter((n) => n.researcher)
   const impRange = norm(galaxy)
   const conjRange = norm(conj)
+  const researchRange = norm(researchers)
 
   for (const n of nodes) {
     // 亮度：像银河系一样，越重要越亮（>1 的部分交给 bloom 晕开）
@@ -261,6 +317,7 @@ export function buildGraph() {
     byId,
     impRange: impRange || [0, 1],
     conjRange: conjRange || [0, 1],
+    researchRange: researchRange || [0, 1],
     /* 猜想状态色的 linear 表示，按 status 索引。
      * 暴露出来是为了让验证脚本能断言"画面上的色点颜色确实等于
      * CONJECTURE_STATUS 里声明的那个" —— 否则就只能断言"同状态同色"，
@@ -299,9 +356,12 @@ export function buildGraph() {
       crossLinks: links.filter((l) => l.cross).length,
       galaxyCount: galaxy.length,
       conjCount: conj.length,
+      researcherCount: researchers.length,
       families: [...new Set(galaxy.map((n) => n.family))].length,
       avgDegree: (links.length * 2 / Math.max(1, nodes.length)).toFixed(2),
       impRange: `${(impRange ? impRange[0] : 0).toFixed(2)} ~ ${(impRange ? impRange[1] : 0).toFixed(2)}`,
+      conjRange: `${(conjRange ? conjRange[0] : 0).toFixed(2)} ~ ${(conjRange ? conjRange[1] : 0).toFixed(2)}`,
+      researchRange: `${(researchRange ? researchRange[0] : 0).toFixed(2)} ~ ${(researchRange ? researchRange[1] : 0).toFixed(2)}`,
       isolated: nodes.filter((n) => n.degree === 0).length,
     },
   }
@@ -324,7 +384,13 @@ export function buildGraph() {
 export function applyColor(n) {
   const mode = GLYPH.colorMode
 
-  if (n.cluster) {
+  if (n.researcher) {
+    /* 研究者星团：领域色始终是最有区分度的那一维，
+     * 不受主星系/猜想星团的着色模式影响。 */
+    const def = RESEARCHER_AREAS[n.field]
+    n.baseColor = def ? hexToLinear(def.color) : MONO_LINEAR
+    n.markerColor = n.baseColor
+  } else if (n.cluster) {
     /* 猜想星团：默认按**状态**着色，因为"这条还悬着吗"是读猜想时
      * 第一个要问的问题，色点与公式底色都服务于这件事。
      * 切到 field 时改看领域归属 —— 6 个领域在球面上各有方向，
@@ -370,8 +436,9 @@ export function applyColor(n) {
  */
 export function layoutGraph(graph, baked) {
   const { nodes } = graph
-  const galaxyNodes = nodes.filter((n) => !n.cluster)
+  const galaxyNodes = nodes.filter((n) => !n.cluster && !n.researcher)
   const conjNodes = nodes.filter((n) => n.cluster)
+  const researcherNodes = nodes.filter((n) => n.researcher)
 
   /* ── 1. 计算每个公式的世界尺寸 ──
    * 面积归一化：worldW × worldH = (baseSize × sizeScale)²
@@ -419,17 +486,21 @@ export function layoutGraph(graph, baked) {
   /* ── 2b. 猜想星团：球面定位 ── */
   const conjRelax = layoutCluster(conjNodes)
 
-  /* ── 3. 回写极坐标 / 运动参数（两个结构共用） ──
-   * ⚠ 猜想节点的"极坐标"是**球坐标**，语义与盘面不同：
+  /* ── 2c. 研究者星团：同款球面定位，但按研究者领域表分组 ── */
+  const researcherRelax = layoutResearcherCluster(researcherNodes)
+
+  /* ── 3. 回写极坐标 / 运动参数（三个结构共用） ──
+   * ⚠ 星团节点的"极坐标"是**球坐标**，语义与盘面不同：
    *   主星系 theta = 盘面方位角，ratio = |y|/r 为薄盘厚度比
-   *   星团   theta = 球面方位角，ratio = 极角的正弦（用于判断"是否近球心"）
-   *   两者都只被 scene.js 的浮动与取景读取，互不干扰。 */
+   *   猜想/研究者星团 theta = 球面方位角，ratio = 极角的正弦（用于判断"是否近球心"）
+   *   这些都只被 scene.js 的浮动与取景读取，互不干扰。 */
   const rng = makeRng(SEED)
   for (const n of nodes) {
-    if (n.cluster) {
-      // 球坐标：theta 是方位角，phi 是极角，二者都已在 layoutCluster 里定好。
+    if (n.cluster || n.researcher) {
+      // 球坐标：theta 是方位角，phi 是极角，二者都已在球面布局里定好。
       // 这里只把 y 相对球心的高度折算成 ratio，供细节面板与浮动使用。
-      const dy = n.pos.y - CLUSTER.center[1]
+      const cy = n.cluster ? CLUSTER.center[1] : RESEARCHERS.center[1]
+      const dy = n.pos.y - cy
       n.theta = n.sphTheta
       n.ratio = Math.min(1, Math.abs(dy) / Math.max(1e-6, n.sphR))
     } else {
@@ -449,7 +520,7 @@ export function layoutGraph(graph, baked) {
     n.spinPhase = rng() * Math.PI * 2
   }
 
-  return { avgSize, relaxRounds: galaxyRelax + conjRelax }
+  return { avgSize, relaxRounds: galaxyRelax + conjRelax + researcherRelax }
 }
 
 /**
@@ -590,9 +661,16 @@ function layoutGalaxy(nodes) {
  *    所以"越靠球心越重要"不会被松弛抹平。
  */
 function layoutCluster(nodes) {
+  return layoutSphere(nodes, CLUSTER, Object.keys(CONJECTURE_FIELDS))
+}
+
+function layoutResearcherCluster(nodes) {
+  return layoutSphere(nodes, RESEARCHERS, Object.keys(RESEARCHER_AREAS))
+}
+
+function layoutSphere(nodes, C, FIELDS) {
   if (!nodes.length) return 0
 
-  const C = CLUSTER
   const R_CL = C.radius
   const [cx, cy, cz] = C.center
 
@@ -642,11 +720,9 @@ function layoutCluster(nodes) {
   })
 
   /* ── ② 球面方向：field 决定方位，哈希给抖动 ──
-   * 6 个领域方向固定（下面 FIELDS 数组），这样同一领域的猜想会聚集在
+   * 领域方向固定（下面 FIELDS 数组），这样同一领域的节点会聚集在
    * 球面同一侧，形成可辨认的"星座"。然后在方向周围加各向同性抖动，
    * 抖动幅度随半径增大（外缘更松散），使星团看起来是"团"不是"六个瓣"。 */
-  const FIELDS = Object.keys(CONJECTURE_FIELDS)
-
   nodes.forEach((n) => {
     const h = hashStr(n.id)
     const h2 = hashStr(n.name + '#' + n.id)
@@ -693,7 +769,7 @@ function layoutCluster(nodes) {
     }
   })
 
-  return relaxOnSphere(nodes)
+  return relaxOnSphere(nodes, cx, cy, cz, R_CL)
 }
 
 /**
@@ -710,13 +786,10 @@ function layoutCluster(nodes) {
  *   次序由 rank → 半径的**严格单调映射**保证（面积分位），松弛只动切向
  *   与很小的径向，实测秩相关仍在 −0.97 以上（scripts/verify-cluster.mjs）。
  */
-function relaxOnSphere(nodes) {
+function relaxOnSphere(nodes, cx, cy, cz, R_CL) {
   const iters = LAYOUT.relaxIterations
   if (iters <= 0) return 0
   if (nodes.length < 2) return 0
-
-  const [cx, cy, cz] = CLUSTER.center
-  const R_CL = CLUSTER.radius
 
   // 径向自由度：与主星系同源，但球面没有形态倍率
   const freedom = LAYOUT.radialFreedom * 0.55

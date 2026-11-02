@@ -29,11 +29,11 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
 const PORT = Number(process.env.PORT || 9420)
 const URL_BASE = process.env.URL || 'http://127.0.0.1:5176/'
-const CHROME = process.env.CHROME ||
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 
 let pass = 0
 let fail = 0
@@ -116,7 +116,7 @@ async function launch(tag, url) {
   const profile = mkdtempSync(join(tmpdir(), `neb-int-${tag}-`))
   const port = PORT
   const chrome = spawn(CHROME, [
-    '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+    '--headless=new', '--no-sandbox', '--disable-gpu-sandbox', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
     '--no-first-run', '--no-default-browser-check', '--disable-extensions',
     '--mute-audio', '--window-size=1600,1000',
     `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, url,
@@ -493,11 +493,11 @@ try {
   `)
   ok(inv.linksPoints === 0,
     '连线组里没有 Points（没有沿连线流动的光点）', `实为 ${inv.linksPoints}`)
-  ok(inv.nodes === 464, `节点数仍为 464（实为 ${inv.nodes}）`)
-  ok(inv.links === 1620, `连线数仍为 1620（实为 ${inv.links}）`)
+  ok(inv.nodes === 488, `节点数仍为 488（实为 ${inv.nodes}）`)
+  ok(inv.links === 1670, `连线数仍为 1670（实为 ${inv.links}）`)
   ok(inv.galaxy === 405 && inv.conj === 59,
     `主星系 405 / 星团 59（实为 ${inv.galaxy} / ${inv.conj}）`)
-  ok(inv.cross === 175, `跨星团连线 175（实为 ${inv.cross}）`)
+  ok(inv.cross === 225, `跨结构连线 225（实为 ${inv.cross}）`)
 
 } finally {
   try { chrome.kill() } catch { /* ignore */ }
@@ -577,7 +577,7 @@ await sleep(500)
         loadGone: !document.querySelector('#load') || document.querySelector('#load.done') !== null,
       }
     `)
-    ok(st.nodes === 464, `坏深链下仍装配出 464 个节点（实为 ${st.nodes}）`)
+    ok(st.nodes === 488, `坏深链下仍装配出 488 个节点（实为 ${st.nodes}）`)
     ok(st.selection === null, '非法节点 id 没有被选中（安全兜底）')
     ok(st.shape === 'spiral', `非法形态被拒绝，回落到默认（实为 ${st.shape}）`)
     ok(st.hasDiag, '诊断元素正常写入（启动流程走完了）')

@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- M2 公式管线的独立测量页：只依赖 shared/kb.js、state.js 与 formulas.js，不受其他模块半成品影响。
+     由 shots/designs/manuscript/_m2_bench.mjs 驱动（window.__bench.run()）。 -->
+<html lang="zh-CN"><head><meta charset="utf-8"><title>公式管线 · bench</title>
+<style>body{margin:0;background:#f6f0e1;font:14px Georgia,serif;color:#1b1712}#out{padding:16px;white-space:pre}canvas{display:block}</style>
+</head>
+<body><div id="out">bench…</div><canvas id="c" width="1500" height="700"></canvas>
+<script type="module">
+import { getGraph } from '../shared/kb.js'
+import { state } from './state.js'
+import { computeDims, getBitmap, pumpBakes, prewarm, bitmapStats, svgUrlFor, svgFor, pipelineStats, MIP_LEVELS } from './formulas.js'
+
+// 其他建造者并行改文件时 Vite 会广播 full-reload，测量会被打断：本测量页把 reload 指向一个不存在的 html，从而忽略它
+if (import.meta.hot) import.meta.hot.on('vite:beforeFullReload', (p) => { p.path = '/__m2_bench_ignore.html' })
+
+const graph = getGraph()
+const raf = () => new Promise((r) => requestAnimationFrame(r))
+const q = (a, p) => { const s = [...a].sort((x, y) => x - y); return s.length ? +s[Math.min(s.length - 1, Math.floor(p * s.length))].toFixed(2) : 0 }
+
+/** 模拟 render：一组 id 以给定 pxPerUnit 请求位图，每帧先 pumpBakes(budget)，统计每帧 pump 耗时与未就绪数 */
+async function pan(ids, ppuOf, frames, step, win, budget = 6) {
+  const pump = [], pend = []
+  let settle = -1
+  for (let f = 0; f < frames || (settle < 0 && f < frames + 600); f++) {
+    await raf()
+    const t = performance.now(); pumpBakes(budget); pump.push(performance.now() - t)
+    const s0 = Math.min(ids.length - win, Math.floor(Math.min(f, frames) * step))
+    let p = 0
+    for (let k = s0; k < s0 + win; k++) { const bm = getBitmap(ids[k], ppuOf(ids[k])); if (!bm || !bm.exact) p++ }
+    pend.push(p)
+    if (f >= frames && p === 0 && settle < 0) settle = f - frames
+  }
+  return { frames: pump.length, pumpP50: q(pump, 0.5), pumpP95: q(pump, 0.95), pumpMax: q(pump, 1), overBudget: pump.filter((x) => x > budget + 1).length, pendMax: Math.max(...pend), settleFramesAfterStop: settle }
+}
+
+window.__bench = {
+  ready: true,
+  async run() {
+    const R = {}
+    const nodes = graph.nodes
+    let t = performance.now()
+    let calls = 0
+    const noShip = new URLSearchParams(location.search).has('nocache')
+    const dims = await computeDims(nodes, () => { calls++ }, noShip ? { shipped: false } : {})
+    R.computeDimsMs = Math.round(performance.now() - t)
+    R.dims = dims.size; R.progressCalls = calls; R.pipeline = pipelineStats()
+    const ids = [...dims.keys()]
+    state.dims = dims
+    // 预排版缓存与浏览器现排是否逐字节一致：worker 现排 24 条抽样比对
+    if (!noShip) {
+      const sample = ids.filter((_, i) => i % 19 === 0)
+      const w = new Worker(new URL('./formulas-worker.js', import.meta.url), { type: 'module' })
+      const res = await new Promise((r) => {
+        w.onmessage = (e) => { if (e.data.ready) w.postMessage({ jobs: sample.map((id, i) => ({ i, latex: graph.byId.get(id).latex, color: graph.byId.get(id).cluster ? '#1f3a5c' : '#1b1712', fallback: 'x' })) }); else r(e.data.results) }
+        setTimeout(() => r(null), 20000)
+      })
+      w.terminate()
+      R.cacheIdentical = res ? { n: res.length, svgSame: res.filter((x, i) => x.svg === svgFor(sample[i])).length, maxDimDiff: Math.max(...res.map((x, i) => Math.abs(x.w - dims.get(sample[i]).w) + Math.abs(x.h - dims.get(sample[i]).h))) } : 'timeout'
+    }
+
+    // 全部 1/16（与 1/8）级：prewarm 从调用到烘焙完
+    t = performance.now()
+    prewarm(ids)
+    while (bitmapStats().warmLeft > 0 || bitmapStats().pending > 0) await new Promise((r) => setTimeout(r, 20))
+    R.prewarmAllMs = Math.round(performance.now() - t)
+    R.afterPrewarm = bitmapStats()
+
+    // 诗句视图平移：pxPerUnit ≈ formula.scale(0.4–0.6) × z(1.2) × dpr(1)；普通 0.55，核心 0.75，前 8 条按题记 1.6
+    const ppu = (id) => { const i = ids.indexOf(id); return i % 40 === 0 ? 1.6 : i % 7 === 0 ? 0.75 : 0.55 }
+    R.panVerse = await pan(ids, ppu, 180, 1.5, 40)
+    R.panVerseStats = bitmapStats()
+    // 冷平移：2× 级（从没烘焙过的最大一级），最坏情况
+    R.panCold2x = await pan(ids, () => 1.9, 120, 2, 24)
+    R.after = bitmapStats()
+
+    // svgUrlFor 能在 <img> 里显示
+    const sample = [ids[0], ids.find((id) => graph.byId.get(id).cluster), ids[ids.length - 1]]
+    R.img = await Promise.all(sample.map((id) => new Promise((res) => {
+      const im = new Image(); im.onload = () => res({ id, w: im.naturalWidth, h: im.naturalHeight }); im.onerror = () => res({ id, err: true }); im.src = svgUrlFor(id)
+    })))
+    R.sameUrl = svgUrlFor(ids[0]) === svgUrlFor(ids[0])
+    R.svgOk = ids.every((id) => svgFor(id).startsWith('<svg'))
+    R.inkCheck = { verse: /#1b1712/.test(svgFor(ids[0])), note: /#1f3a5c/.test(svgFor(sample[1])) }
+
+    // 画一屏样张：每条公式按 1/1 级、2× 级画到画布上，肉眼检查锐度
+    const c = document.getElementById('c'), ctx = c.getContext('2d')
+    ctx.fillStyle = '#f6f0e1'; ctx.fillRect(0, 0, c.width, c.height)
+    let y = 10
+    for (const [k, ppuK] of [[0, 1], [1, 1], [2, 2], [ids.indexOf(sample[1]), 1], [5, 0.25], [6, 0.125], [7, 0.0625]]) {
+      const id = ids[k]; let bm
+      for (let n = 0; n < 200; n++) { bm = getBitmap(id, ppuK); if (bm && bm.exact) break; pumpBakes(20); await raf() }
+      const d = dims.get(id)
+      const w = d.w * ppuK, h = d.h * ppuK
+      ctx.drawImage(bm.canvas, 10, y, w, h)
+      ctx.fillStyle = '#776c5c'; ctx.fillText(`${id}  ppu=${ppuK}  ${bm.canvas.width}×${bm.canvas.height}`, Math.min(10 + w + 12, 1200), y + 14)
+      y += h + 8
+    }
+    document.getElementById('out').textContent = JSON.stringify(R, null, 1).slice(0, 400)
+    return R
+  },
+}
+</script>
+</body></html>

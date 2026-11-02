@@ -9,8 +9,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "verify": "node scripts/run-all.mjs",
+    "verify:proofs": "node scripts/verify-proofs.mjs",
     "check-data": "node scripts/check-data.mjs",
-    "perf": "node scripts/probe-perf.mjs"
+    "perf": "node scripts/probe-perf.mjs",
+    "start": "vite --config vite.designs.config.mjs",
+    "start:designs": "vite --config vite.designs.config.mjs"
   },
   "dependencies": {
     "katex": "^0.16.11",

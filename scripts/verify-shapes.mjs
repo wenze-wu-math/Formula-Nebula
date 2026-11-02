@@ -34,8 +34,10 @@ const { SHAPES, SHAPE_IDS, LAYOUT } = await import('../src/config.js')
  * 星团的节点在 x-z 平面上离原点 200 多，会直接把 maxR 从 194 拉到 400+，
  * 厚径比与秩相关都会得出错误的结论。 */
 const _probe = buildGraph()
-const graphNodes = _probe.nodes.filter((n) => !n.cluster)
-console.log(`主星系 ${graphNodes.length} 个节点 / 星团 ${_probe.nodes.length - graphNodes.length} 个（本脚本只验证主星系盘面）`)
+const graphNodes = _probe.nodes.filter((n) => !n.cluster && !n.researcher)
+const _researchers = _probe.nodes.filter((n) => n.researcher).length
+const _conjectures = _probe.nodes.filter((n) => n.cluster).length
+console.log(`主星系 ${graphNodes.length} 个节点 / 星团 ${_conjectures} 个 / 研究者 ${_researchers} 个（本脚本只验证主星系盘面）`)
 
 /** 造一份 baked Map（layoutGraph 只用到 emWidth/emHeight/aspect）
  *
@@ -129,8 +131,8 @@ for (const id of SHAPE_IDS) {
   const baked = fakeBaked()
   layoutGraph(graph, baked)
 
-  // 只看主星系：星团是球、与形态无关，混进来会污染所有盘面指标
-  const nodes = graph.nodes.filter((n) => n.pos && !n.cluster)
+  // 只看主星系：星团/研究者是球、与形态无关，混进来会污染所有盘面指标
+  const nodes = graph.nodes.filter((n) => n.pos && !n.cluster && !n.researcher)
   const radii = nodes.map((n) => Math.hypot(n.pos.x, n.pos.z))
   const ys = nodes.map((n) => Math.abs(n.pos.y))
   const ranks = nodes.map((n) => n.rank)

@@ -7,10 +7,11 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
-const PORT = 9435
+const PORT = Number(process.env.PORT || 9435)
 const URL_BASE = 'http://127.0.0.1:5176/'
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 mkdirSync('shots/final', { recursive: true })
 
 class CDP {
@@ -70,7 +71,8 @@ async function waitFor(cdp, expr, label, ms = 300000) {
 
 const profile = mkdtempSync(join(tmpdir(), 'neb-set-'))
 const chrome = spawn(CHROME, [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox',
+  '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--mute-audio',
   '--window-size=1600,1000', `--remote-debugging-port=${PORT}`,
   `--user-data-dir=${profile}`, URL_BASE,

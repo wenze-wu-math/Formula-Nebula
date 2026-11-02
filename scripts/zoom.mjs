@@ -8,13 +8,14 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
 const [x, y, w, h, name, scale] = process.argv.slice(2)
 if (!name) { console.error('用法：node scripts/zoom.mjs <x> <y> <w> <h> <输出名> [scale]'); process.exit(1) }
 
 const PORT = Number(process.env.PORT || 9434)
 const URL_BASE = process.env.URL || 'http://127.0.0.1:5176/'
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const SELECT = process.env.SELECT || ''
 mkdirSync('shots/zoom', { recursive: true })
 
@@ -75,7 +76,8 @@ async function waitFor(cdp, expr, label, ms = 300000) {
 
 const profile = mkdtempSync(join(tmpdir(), 'neb-zoom-'))
 const chrome = spawn(CHROME, [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox',
+  '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--mute-audio',
   '--window-size=1600,1000', `--remote-debugging-port=${PORT}`,
   `--user-data-dir=${profile}`, URL_BASE,

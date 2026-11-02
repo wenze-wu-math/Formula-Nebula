@@ -1,0 +1,1037 @@
+/**
+ * src/data/wikipedia-extra.js — 从 Wikipedia「未解决数学问题列表」采集的猜想。
+ *
+ * ⚠ 生成物，不要手改。重新生成：
+ *     node kb-src/fetch-wikipedia.mjs && node kb-src/build-wikipedia-nodes.mjs
+ *
+ * 来源：https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics
+ * （列表页 wikitext 本身是结构化清单：`* [[猜想名]]: 一句话陈述`，含内嵌 <math>）
+ *
+ * ═══ 与 UnsolvedMath 的分工 ═══
+ *   UnsolvedMath: 有难度分级/分类/来源集 → 做主线（300 条）
+ *   Wikipedia:    别名更全、一句话陈述更清楚 → 补漏（本文件 48 条）
+ *
+ * ═══ 数据可靠性说明 ═══
+ *   · 每条有 `url` 指向 Wikipedia 条目，可复核
+ *   · status 统一按 'open'（列表页里出现的都是未解决），
+ *     除非陈述里明确含 solved/disproved
+ *   · **Wikipedia 不提供难度分级**，importance 由陈述质量启发式派生，
+ *     不代表真实难度
+ *   · 该列表随数学进展修订，状态可能已变化
+ *
+ * 生成时间：2026-11-02T02:13:19.539Z
+ * 节点数：48　关联数：49
+ */
+
+export const WIKI_NODES = [
+ {
+  "id": "wk-green-s-conjecture",
+  "latex": "\\text{the Clifford index of a non-hyperelliptic curve is determined by the extent to which it, …}",
+  "name": "Green's conjecture",
+  "en": "Green's conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "the Clifford index of a non-hyperelliptic curve is determined by the extent to which it, as a canonical curve, has linear syzygies.",
+  "detail": "the Clifford index of a non-hyperelliptic curve is determined by the extent to which it, as a canonical curve, has linear syzygies.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Green's_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Green's_conjecture",
+  "wiki": {
+   "title": "Green's conjecture",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-williamson-conjecture",
+  "latex": "\\text{the problem of finding Williamson matrices, which can be used to construct Hadamard …}",
+  "name": "Williamson conjecture",
+  "en": "Williamson conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "the problem of finding Williamson matrices, which can be used to construct Hadamard matrices.",
+  "detail": "the problem of finding Williamson matrices, which can be used to construct Hadamard matrices.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Williamson_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Williamson_conjecture",
+  "wiki": {
+   "title": "Williamson conjecture",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-hadamard-s-maximal-determinant-problem",
+  "latex": "\\text{what is the largest determinant of a matrix with entries all equal to 1 or −1?}",
+  "name": "Hadamard's maximal determinant problem",
+  "en": "Hadamard's maximal determinant problem",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "what is the largest determinant of a matrix with entries all equal to 1 or −1?",
+  "detail": "what is the largest determinant of a matrix with entries all equal to 1 or −1?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Hadamard's_maximal_determinant_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Hadamard's_maximal_determinant_problem",
+  "wiki": {
+   "title": "Hadamard's maximal determinant problem",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-perfect-cuboid",
+  "latex": "\\text{Existence of perfect cuboids and associated cuboid conjectures}",
+  "name": "perfect cuboid",
+  "en": "perfect cuboid",
+  "importance": 0.62,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "Existence of perfect cuboids and associated cuboid conjectures",
+  "detail": "Existence of perfect cuboids and associated cuboid conjectures\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/perfect_cuboid\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/perfect_cuboid",
+  "wiki": {
+   "title": "perfect cuboid",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-rota-s-basis-conjecture",
+  "latex": "for matroids of rank $n$ with $n$ disjoint bases $B_{i}$, it is possible to create an $n \\times n$ matrix whose rows are $B_{i}$ and whose columns …",
+  "name": "Rota's basis conjecture",
+  "en": "Rota's basis conjecture",
+  "importance": 0.66,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "for matroids of rank $n$ with $n$ disjoint bases $B_{i}$, it is possible to create an $n \\times n$ matrix whose rows are $B_{i}$ and whose columns are also bases.",
+  "detail": "for matroids of rank $n$ with $n$ disjoint bases $B_{i}$, it is possible to create an $n \\times n$ matrix whose rows are $B_{i}$ and whose columns are also bases.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Rota's_basis_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Rota's_basis_conjecture",
+  "wiki": {
+   "title": "Rota's basis conjecture",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-wild-problem",
+  "latex": "s: problems involving classification of pairs of $n\\times n$ matrices under simultaneous conjugation.",
+  "name": "Wild problem",
+  "en": "Wild problem",
+  "importance": 0.7,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "s: problems involving classification of pairs of $n\\times n$ matrices under simultaneous conjugation.",
+  "detail": "s: problems involving classification of pairs of $n\\times n$ matrices under simultaneous conjugation.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Wild_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Wild_problem",
+  "wiki": {
+   "title": "Wild problem",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-sic-povm",
+  "latex": "\\text{Zauner's conjecture: do SIC-POVMs exist in all dimensions?}",
+  "name": "SIC-POVM",
+  "en": "SIC-POVM",
+  "importance": 0.62,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "Zauner's conjecture: do SIC-POVMs exist in all dimensions?",
+  "detail": "Zauner's conjecture: do SIC-POVMs exist in all dimensions?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/SIC-POVM\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/SIC-POVM",
+  "wiki": {
+   "title": "SIC-POVM",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-problems-in-loop-theory-and-quasigroup-theory",
+  "latex": "\\text{consider generalizations of groups}",
+  "name": "Problems in loop theory and quasigroup theory",
+  "en": "Problems in loop theory and quasigroup theory",
+  "importance": 0.6,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "consider generalizations of groups",
+  "detail": "consider generalizations of groups\n\n来源：Wikipedia「List of unsolved problems in mathematics」Group theory 章节。\n页面：https://en.wikipedia.org/wiki/Problems_in_loop_theory_and_quasigroup_theory\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Group theory",
+  "url": "https://en.wikipedia.org/wiki/Problems_in_loop_theory_and_quasigroup_theory",
+  "wiki": {
+   "title": "Problems in loop theory and quasigroup theory",
+   "section": "Group theory"
+  }
+ },
+ {
+  "id": "wk-brennan-conjecture",
+  "latex": "estimating the integral powers of the moduli of the derivative of conformal maps into the open unit disk, on certain subsets of $\\mathbb{C}$",
+  "name": "Brennan conjecture",
+  "en": "Brennan conjecture",
+  "importance": 0.7,
+  "family": "foundation",
+  "status": "open",
+  "field": "analysis",
+  "year": null,
+  "proposer": "",
+  "summary": "estimating the integral powers of the moduli of the derivative of conformal maps into the open unit disk, on certain subsets of $\\mathbb{C}$",
+  "detail": "estimating the integral powers of the moduli of the derivative of conformal maps into the open unit disk, on certain subsets of $\\mathbb{C}$\n\n来源：Wikipedia「List of unsolved problems in mathematics」Analysis 章节。\n页面：https://en.wikipedia.org/wiki/Brennan_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Analysis",
+  "url": "https://en.wikipedia.org/wiki/Brennan_conjecture",
+  "wiki": {
+   "title": "Brennan conjecture",
+   "section": "Analysis"
+  }
+ },
+ {
+  "id": "wk-invariant-subspace-problem",
+  "latex": "\\text{does every bounded operator on a complex Banach space send some non-trivial closed …}",
+  "name": "Invariant subspace problem",
+  "en": "Invariant subspace problem",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "analysis",
+  "year": null,
+  "proposer": "",
+  "summary": "does every bounded operator on a complex Banach space send some non-trivial closed subspace to itself?",
+  "detail": "does every bounded operator on a complex Banach space send some non-trivial closed subspace to itself?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Analysis 章节。\n页面：https://en.wikipedia.org/wiki/Invariant_subspace_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Analysis",
+  "url": "https://en.wikipedia.org/wiki/Invariant_subspace_problem",
+  "wiki": {
+   "title": "Invariant subspace problem",
+   "section": "Analysis"
+  }
+ },
+ {
+  "id": "wk-mean-value-problem",
+  "latex": "given a complex polynomial $f$ of degree $d \\ge 2$ and a complex number $z$, is there a critical point $c$ of $f$ …",
+  "name": "mean value problem",
+  "en": "mean value problem",
+  "importance": 0.7,
+  "family": "foundation",
+  "status": "open",
+  "field": "analysis",
+  "year": null,
+  "proposer": "",
+  "summary": "given a complex polynomial $f$ of degree $d \\ge 2$ and a complex number $z$, is there a critical point $c$ of $f$ such that $|f(z)-f(c)| \\le |f'(z)||z-c|$?",
+  "detail": "given a complex polynomial $f$ of degree $d \\ge 2$ and a complex number $z$, is there a critical point $c$ of $f$ such that $|f(z)-f(c)| \\le |f'(z)||z-c|$?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Analysis 章节。\n页面：https://en.wikipedia.org/wiki/mean_value_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Analysis",
+  "url": "https://en.wikipedia.org/wiki/mean_value_problem",
+  "wiki": {
+   "title": "mean value problem",
+   "section": "Analysis"
+  }
+ },
+ {
+  "id": "wk-pompeiu-problem",
+  "latex": "\\text{The Pompeiu problem on the topology of domains for which some nonzero function has …}",
+  "name": "Pompeiu problem",
+  "en": "Pompeiu problem",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "analysis",
+  "year": null,
+  "proposer": "",
+  "summary": "The Pompeiu problem on the topology of domains for which some nonzero function has integrals that vanish over every congruent copy",
+  "detail": "The Pompeiu problem on the topology of domains for which some nonzero function has integrals that vanish over every congruent copy\n\n来源：Wikipedia「List of unsolved problems in mathematics」Analysis 章节。\n页面：https://en.wikipedia.org/wiki/Pompeiu_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Analysis",
+  "url": "https://en.wikipedia.org/wiki/Pompeiu_problem",
+  "wiki": {
+   "title": "Pompeiu problem",
+   "section": "Analysis"
+  }
+ },
+ {
+  "id": "wk-1-3-2-3-conjecture",
+  "latex": "\\text{The 1/3–2/3 conjecture – does every finite partially ordered set that is not totally …}",
+  "name": "1/3–2/3 conjecture",
+  "en": "1/3–2/3 conjecture",
+  "importance": 0.6,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "The 1/3–2/3 conjecture – does every finite partially ordered set that is not totally ordered contain two elements x and y such that the probability that x appears before y in a ran",
+  "detail": "The 1/3–2/3 conjecture – does every finite partially ordered set that is not totally ordered contain two elements x and y such that the probability that x appears before y in a random linear extension is between 1/3 and 2/3?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/1%2F3%E2%80%932%2F3_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/1%2F3%E2%80%932%2F3_conjecture",
+  "wiki": {
+   "title": "1/3–2/3 conjecture",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-dittert-conjecture",
+  "latex": "\\text{The Dittert conjecture concerning the maximum achieved by a particular function of …}",
+  "name": "Dittert conjecture",
+  "en": "Dittert conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "The Dittert conjecture concerning the maximum achieved by a particular function of matrices with real, nonnegative entries satisfying a summation condition",
+  "detail": "The Dittert conjecture concerning the maximum achieved by a particular function of matrices with real, nonnegative entries satisfying a summation condition\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/Dittert_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/Dittert_conjecture",
+  "wiki": {
+   "title": "Dittert conjecture",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-problems-in-latin-squares",
+  "latex": "\\text{open questions concerning Latin squares}",
+  "name": "Problems in Latin squares",
+  "en": "Problems in Latin squares",
+  "importance": 0.6,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "open questions concerning Latin squares",
+  "detail": "open questions concerning Latin squares\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/Problems_in_Latin_squares\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/Problems_in_Latin_squares",
+  "wiki": {
+   "title": "Problems in Latin squares",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-map-folding",
+  "latex": "\\text{various problems in map folding and stamp folding.}",
+  "name": "Map folding",
+  "en": "Map folding",
+  "importance": 0.62,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "various problems in map folding and stamp folding.",
+  "detail": "various problems in map folding and stamp folding.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/Map_folding\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/Map_folding",
+  "wiki": {
+   "title": "Map folding",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-no-three-in-line-problem",
+  "latex": "how many points can be placed in the $n \\times n$ grid so that no three of them lie on a line?",
+  "name": "No-three-in-line problem",
+  "en": "No-three-in-line problem",
+  "importance": 0.7,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "how many points can be placed in the $n \\times n$ grid so that no three of them lie on a line?",
+  "detail": "how many points can be placed in the $n \\times n$ grid so that no three of them lie on a line?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/No-three-in-line_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/No-three-in-line_problem",
+  "wiki": {
+   "title": "No-three-in-line problem",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-sunflower-mathematics",
+  "latex": "The sunflower conjecture – can the number of $k$ size sets required for the existence of a sunflower of $r$ sets be bounded by an exponential …",
+  "name": "sunflower conjecture",
+  "en": "sunflower conjecture",
+  "importance": 0.66,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "The sunflower conjecture – can the number of $k$ size sets required for the existence of a sunflower of $r$ sets be bounded by an exponential function in $k$ for every fixed $r>2$?",
+  "detail": "The sunflower conjecture – can the number of $k$ size sets required for the existence of a sunflower of $r$ sets be bounded by an exponential function in $k$ for every fixed $r>2$?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/sunflower_(mathematics)\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/sunflower_(mathematics)",
+  "wiki": {
+   "title": "sunflower (mathematics)",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-union-closed-sets-conjecture",
+  "latex": "\\text{Frankl's union-closed sets conjecture – for any family of sets closed under sums there …}",
+  "name": "union-closed sets conjecture",
+  "en": "union-closed sets conjecture",
+  "importance": 0.6,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "Frankl's union-closed sets conjecture – for any family of sets closed under sums there exists an element (of the underlying space) belonging to half or more of the sets",
+  "detail": "Frankl's union-closed sets conjecture – for any family of sets closed under sums there exists an element (of the underlying space) belonging to half or more of the sets\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/union-closed_sets_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/union-closed_sets_conjecture",
+  "wiki": {
+   "title": "union-closed sets conjecture",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-bass-quillen-conjecture",
+  "latex": "relating vector bundles over a regular Noetherian ring and over the polynomial ring $A[t_{1}, \\ldots, t_{n}]$.",
+  "name": "Bass–Quillen conjecture",
+  "en": "Bass–Quillen conjecture",
+  "importance": 0.7,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "relating vector bundles over a regular Noetherian ring and over the polynomial ring $A[t_{1}, \\ldots, t_{n}]$.",
+  "detail": "relating vector bundles over a regular Noetherian ring and over the polynomial ring $A[t_{1}, \\ldots, t_{n}]$.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Bass%E2%80%93Quillen_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Bass%E2%80%93Quillen_conjecture",
+  "wiki": {
+   "title": "Bass–Quillen conjecture",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-deligne-conjecture",
+  "latex": "\\text{any one of numerous named for Pierre Deligne.}",
+  "name": "Deligne conjecture",
+  "en": "Deligne conjecture",
+  "importance": 0.64,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "any one of numerous named for Pierre Deligne.",
+  "detail": "any one of numerous named for Pierre Deligne.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Deligne_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Deligne_conjecture",
+  "wiki": {
+   "title": "Deligne conjecture",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-deligne-s-conjecture-on-hochschild-cohomology",
+  "latex": "\\text{about the operadic structure on Hochschild cochain complex.}",
+  "name": "Deligne's conjecture on Hochschild cohomology",
+  "en": "Deligne's conjecture on Hochschild cohomology",
+  "importance": 0.64,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "about the operadic structure on Hochschild cochain complex.",
+  "detail": "about the operadic structure on Hochschild cochain complex.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Deligne's_conjecture_on_Hochschild_cohomology\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Deligne's_conjecture_on_Hochschild_cohomology",
+  "wiki": {
+   "title": "Deligne's conjecture on Hochschild cohomology",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-dixmier-conjecture",
+  "latex": "any endomorphism of the Weyl algebras $A_{1}$ and $A_{2}$ is an automorphism.",
+  "name": "Dixmier conjecture",
+  "en": "Dixmier conjecture",
+  "importance": 0.7,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "any endomorphism of the Weyl algebras $A_{1}$ and $A_{2}$ is an automorphism.",
+  "detail": "any endomorphism of the Weyl algebras $A_{1}$ and $A_{2}$ is an automorphism.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Dixmier_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Dixmier_conjecture",
+  "wiki": {
+   "title": "Dixmier conjecture",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-nagata-s-conjecture-on-curves",
+  "latex": "\\text{specifically the minimal degree required for a plane algebraic curve to pass through a …}",
+  "name": "Nagata's conjecture on curves",
+  "en": "Nagata's conjecture on curves",
+  "importance": 0.64,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "specifically the minimal degree required for a plane algebraic curve to pass through a collection of very general points with prescribed multiplicities.",
+  "detail": "specifically the minimal degree required for a plane algebraic curve to pass through a collection of very general points with prescribed multiplicities.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Nagata's_conjecture_on_curves\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Nagata's_conjecture_on_curves",
+  "wiki": {
+   "title": "Nagata's conjecture on curves",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-nagata-biran-conjecture",
+  "latex": "that if $X$ is a smooth algebraic surface and $L$ is an ample line bundle on $X$ of degree $d$, then for sufficiently large $r$, the Seshadri …",
+  "name": "Nagata–Biran conjecture",
+  "en": "Nagata–Biran conjecture",
+  "importance": 0.66,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "that if $X$ is a smooth algebraic surface and $L$ is an ample line bundle on $X$ of degree $d$, then for sufficiently large $r$, the Seshadri constant satisfies $\\varepsilon(p_1,\\l",
+  "detail": "that if $X$ is a smooth algebraic surface and $L$ is an ample line bundle on $X$ of degree $d$, then for sufficiently large $r$, the Seshadri constant satisfies $\\varepsilon(p_1,\\ldots,p_r;X,L) = d/\\sqrt{r}$.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Nagata%E2%80%93Biran_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Nagata%E2%80%93Biran_conjecture",
+  "wiki": {
+   "title": "Nagata–Biran conjecture",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-parshin-s-conjecture",
+  "latex": "\\text{the higher algebraic K-groups of any smooth projective variety defined over a finite field …}",
+  "name": "Parshin's conjecture",
+  "en": "Parshin's conjecture",
+  "importance": 0.64,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "the higher algebraic K-groups of any smooth projective variety defined over a finite field must vanish up to torsion.",
+  "detail": "the higher algebraic K-groups of any smooth projective variety defined over a finite field must vanish up to torsion.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/Parshin's_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/Parshin's_conjecture",
+  "wiki": {
+   "title": "Parshin's conjecture",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-algebraic-variety",
+  "latex": "\\text{Zariski multiplicity conjecture on the topological equisingularity and equimultiplicity of …}",
+  "name": "varieties",
+  "en": "varieties",
+  "importance": 0.62,
+  "family": "scheme",
+  "status": "open",
+  "field": "ag",
+  "year": null,
+  "proposer": "",
+  "summary": "Zariski multiplicity conjecture on the topological equisingularity and equimultiplicity of varieties at singular points",
+  "detail": "Zariski multiplicity conjecture on the topological equisingularity and equimultiplicity of varieties at singular points\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebraic geometry 章节。\n页面：https://en.wikipedia.org/wiki/algebraic_variety\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebraic geometry",
+  "url": "https://en.wikipedia.org/wiki/algebraic_variety",
+  "wiki": {
+   "title": "algebraic variety",
+   "section": "Algebraic geometry"
+  }
+ },
+ {
+  "id": "wk-generalized-continuum-hypothesis",
+  "latex": "Does the generalized continuum hypothesis entail ${\\diamondsuit(E^{\\lambda^+}_{\\operatorname{cf}(\\lambda))$ for every singular cardinal $\\lambda$?",
+  "name": "generalized continuum hypothesis",
+  "en": "generalized continuum hypothesis",
+  "importance": 0.68,
+  "family": "foundation",
+  "status": "open",
+  "field": "logic",
+  "year": null,
+  "proposer": "",
+  "summary": "Does the generalized continuum hypothesis entail ${\\diamondsuit(E^{\\lambda^+}_{\\operatorname{cf}(\\lambda))$ for every singular cardinal $\\lambda$?",
+  "detail": "Does the generalized continuum hypothesis entail ${\\diamondsuit(E^{\\lambda^+}_{\\operatorname{cf}(\\lambda))$ for every singular cardinal $\\lambda$?\n\n来源：Wikipedia「List of unsolved problems in mathematics」Set theory 章节。\n页面：https://en.wikipedia.org/wiki/generalized_continuum_hypothesis\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Set theory",
+  "url": "https://en.wikipedia.org/wiki/generalized_continuum_hypothesis",
+  "wiki": {
+   "title": "generalized continuum hypothesis",
+   "section": "Set theory"
+  }
+ },
+ {
+  "id": "wk-singular-cardinals-hypothesis",
+  "latex": "If ℵ<sub>ω</sub> is a strong limit cardinal, is $2^{\\aleph_\\omega} < \\aleph_{\\omega_1}$ (see Singular cardinals hypothesis)? The best bound, …",
+  "name": "Singular cardinals hypothesis",
+  "en": "Singular cardinals hypothesis",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "logic",
+  "year": null,
+  "proposer": "",
+  "summary": "If ℵ<sub>ω</sub> is a strong limit cardinal, is $2^{\\aleph_\\omega} < \\aleph_{\\omega_1}$ (see Singular cardinals hypothesis)? The best bound, ℵ<sub>ω<sub>4</sub></sub>, was obtained",
+  "detail": "If ℵ<sub>ω</sub> is a strong limit cardinal, is $2^{\\aleph_\\omega} < \\aleph_{\\omega_1}$ (see Singular cardinals hypothesis)? The best bound, ℵ<sub>ω<sub>4</sub></sub>, was obtained by Shelah using his PCF theory.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Set theory 章节。\n页面：https://en.wikipedia.org/wiki/Singular_cardinals_hypothesis\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Set theory",
+  "url": "https://en.wikipedia.org/wiki/Singular_cardinals_hypothesis",
+  "wiki": {
+   "title": "Singular cardinals hypothesis",
+   "section": "Set theory"
+  }
+ },
+ {
+  "id": "wk-core-model",
+  "latex": "\\text{The problem of finding the ultimate core model, one that contains all large cardinals.}",
+  "name": "core model",
+  "en": "core model",
+  "importance": 0.62,
+  "family": "foundation",
+  "status": "open",
+  "field": "logic",
+  "year": null,
+  "proposer": "",
+  "summary": "The problem of finding the ultimate core model, one that contains all large cardinals.",
+  "detail": "The problem of finding the ultimate core model, one that contains all large cardinals.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Set theory 章节。\n页面：https://en.wikipedia.org/wiki/core_model\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Set theory",
+  "url": "https://en.wikipedia.org/wiki/core_model",
+  "wiki": {
+   "title": "core model",
+   "section": "Set theory"
+  }
+ },
+ {
+  "id": "wk-bing-borsuk-conjecture",
+  "latex": "every $n$-dimensional homogeneous absolute neighborhood retract is a topological manifold.",
+  "name": "Bing–Borsuk conjecture",
+  "en": "Bing–Borsuk conjecture",
+  "importance": 0.7,
+  "family": "cohomology",
+  "status": "open",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "every $n$-dimensional homogeneous absolute neighborhood retract is a topological manifold.",
+  "detail": "every $n$-dimensional homogeneous absolute neighborhood retract is a topological manifold.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Topology 章节。\n页面：https://en.wikipedia.org/wiki/Bing%E2%80%93Borsuk_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Topology",
+  "url": "https://en.wikipedia.org/wiki/Bing%E2%80%93Borsuk_conjecture",
+  "wiki": {
+   "title": "Bing–Borsuk conjecture",
+   "section": "Topology"
+  }
+ },
+ {
+  "id": "wk-ravenel-s-conjectures",
+  "latex": "\\text{the last of Ravenel's conjectures in stable homotopy theory to be resolved.}",
+  "name": "Telescope conjecture",
+  "en": "Telescope conjecture",
+  "importance": 0.64,
+  "family": "cohomology",
+  "status": "proved",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "the last of Ravenel's conjectures in stable homotopy theory to be resolved.",
+  "detail": "the last of Ravenel's conjectures in stable homotopy theory to be resolved.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Topology 章节。\n页面：https://en.wikipedia.org/wiki/Ravenel's_conjectures\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Topology",
+  "url": "https://en.wikipedia.org/wiki/Ravenel's_conjectures",
+  "wiki": {
+   "title": "Ravenel's conjectures",
+   "section": "Topology"
+  }
+ },
+ {
+  "id": "wk-nearby-lagrangian-conjecture",
+  "latex": "\\text{prove or find a counter-example to the statement: Any closed exact Lagrangian submanifold …}",
+  "name": "Nearby Lagrangian conjecture",
+  "en": "Nearby Lagrangian conjecture",
+  "importance": 0.6,
+  "family": "cohomology",
+  "status": "open",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "prove or find a counter-example to the statement: Any closed exact Lagrangian submanifold of the cotangent bundle of a closed manifold is Hamiltonian isotopic to the zero section.",
+  "detail": "prove or find a counter-example to the statement: Any closed exact Lagrangian submanifold of the cotangent bundle of a closed manifold is Hamiltonian isotopic to the zero section.\n\n来源：Wikipedia「List of unsolved problems in mathematics」Topology 章节。\n页面：https://en.wikipedia.org/wiki/Nearby_Lagrangian_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Topology",
+  "url": "https://en.wikipedia.org/wiki/Nearby_Lagrangian_conjecture",
+  "wiki": {
+   "title": "Nearby Lagrangian conjecture",
+   "section": "Topology"
+  }
+ },
+ {
+  "id": "wk-uniform-boundedness-conjecture-for-rational-points-mazur-s-c",
+  "latex": "\\text{(Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020).}",
+  "name": "Mazur's conjecture B",
+  "en": "Mazur's conjecture B",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "(Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020).",
+  "detail": "(Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Uniform_boundedness_conjecture_for_rational_points%23Mazur's_conjecture_B\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Uniform_boundedness_conjecture_for_rational_points%23Mazur's_conjecture_B",
+  "wiki": {
+   "title": "Uniform boundedness conjecture for rational points#Mazur's conjecture B",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-suita-conjecture",
+  "latex": "\\text{(Qi'an Guan and Xiangyu Zhou, 2015).}",
+  "name": "Suita conjecture",
+  "en": "Suita conjecture",
+  "importance": 0.6,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "(Qi'an Guan and Xiangyu Zhou, 2015).",
+  "detail": "(Qi'an Guan and Xiangyu Zhou, 2015).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Algebra 章节。\n页面：https://en.wikipedia.org/wiki/Suita_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Algebra",
+  "url": "https://en.wikipedia.org/wiki/Suita_conjecture",
+  "wiki": {
+   "title": "Suita conjecture",
+   "section": "Algebra"
+  }
+ },
+ {
+  "id": "wk-umbral-moonshine",
+  "latex": "\\text{conjecture (John F. R. Duncan, Michael J. Griffin, Ken Ono, 2015).}",
+  "name": "Umbral moonshine",
+  "en": "Umbral moonshine",
+  "importance": 0.62,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "conjecture (John F. R. Duncan, Michael J. Griffin, Ken Ono, 2015).",
+  "detail": "conjecture (John F. R. Duncan, Michael J. Griffin, Ken Ono, 2015).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Group theory 章节。\n页面：https://en.wikipedia.org/wiki/Umbral_moonshine\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Group theory",
+  "url": "https://en.wikipedia.org/wiki/Umbral_moonshine",
+  "wiki": {
+   "title": "Umbral moonshine",
+   "section": "Group theory"
+  }
+ },
+ {
+  "id": "wk-sendov-s-conjecture",
+  "latex": "\\text{and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).}",
+  "name": "Sendov's conjecture",
+  "en": "Sendov's conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "analysis",
+  "year": null,
+  "proposer": "",
+  "summary": "and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).",
+  "detail": "and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Analysis 章节。\n页面：https://en.wikipedia.org/wiki/Sendov's_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Analysis",
+  "url": "https://en.wikipedia.org/wiki/Sendov's_conjecture",
+  "wiki": {
+   "title": "Sendov's conjecture",
+   "section": "Analysis"
+  }
+ },
+ {
+  "id": "wk-heil-ramanathan-topiwala-conjecture",
+  "latex": "\\text{(Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using …}",
+  "name": "Heil–Ramanathan–Topiwala conjecture",
+  "en": "Heil–Ramanathan–Topiwala conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "analysis",
+  "year": null,
+  "proposer": "",
+  "summary": "(Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using GPT-5.6 Pro, 2026).",
+  "detail": "(Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using GPT-5.6 Pro, 2026).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Analysis 章节。\n页面：https://en.wikipedia.org/wiki/Heil%E2%80%93Ramanathan%E2%80%93Topiwala_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Analysis",
+  "url": "https://en.wikipedia.org/wiki/Heil%E2%80%93Ramanathan%E2%80%93Topiwala_conjecture",
+  "wiki": {
+   "title": "Heil–Ramanathan–Topiwala conjecture",
+   "section": "Analysis"
+  }
+ },
+ {
+  "id": "wk-unit-distance-graph-number-of-edges",
+  "latex": "\\text{(published in an anonymized paper by OpenAI, 2026).}",
+  "name": "Erdős unit distance conjecture",
+  "en": "Erdős unit distance conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "(published in an anonymized paper by OpenAI, 2026).",
+  "detail": "(published in an anonymized paper by OpenAI, 2026).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/Unit_distance_graph%23Number_of_edges\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/Unit_distance_graph%23Number_of_edges",
+  "wiki": {
+   "title": "Unit distance graph#Number of edges",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-bunkbed-conjecture",
+  "latex": "\\text{(Nikita Gladkov, Igor Pak, Alexander Zimin, 2025).}",
+  "name": "Bunkbed conjecture",
+  "en": "Bunkbed conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "(Nikita Gladkov, Igor Pak, Alexander Zimin, 2025).",
+  "detail": "(Nikita Gladkov, Igor Pak, Alexander Zimin, 2025).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/Bunkbed_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/Bunkbed_conjecture",
+  "wiki": {
+   "title": "Bunkbed conjecture",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-erd-s-sumset-conjecture",
+  "latex": "\\text{(Joel Moreira, Florian Richter, Donald Robertson, 2018).}",
+  "name": "Erdős sumset conjecture",
+  "en": "Erdős sumset conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "(Joel Moreira, Florian Richter, Donald Robertson, 2018).",
+  "detail": "(Joel Moreira, Florian Richter, Donald Robertson, 2018).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/Erd%C5%91s_sumset_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/Erd%C5%91s_sumset_conjecture",
+  "wiki": {
+   "title": "Erdős sumset conjecture",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-cap-set-problem",
+  "latex": "\\text{Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016).}",
+  "name": "cap set problem",
+  "en": "cap set problem",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "algebra",
+  "year": null,
+  "proposer": "",
+  "summary": "Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016).",
+  "detail": "Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Combinatorics 章节。\n页面：https://en.wikipedia.org/wiki/cap_set_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Combinatorics",
+  "url": "https://en.wikipedia.org/wiki/cap_set_problem",
+  "wiki": {
+   "title": "cap set problem",
+   "section": "Combinatorics"
+  }
+ },
+ {
+  "id": "wk-talagrand-s-convexity-conjecture",
+  "latex": "\\text{(Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026).}",
+  "name": "Talagrand's convexity conjecture",
+  "en": "Talagrand's convexity conjecture",
+  "importance": 0.64,
+  "family": "curve",
+  "status": "open",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "(Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026).",
+  "detail": "(Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Geometry 章节。\n页面：https://en.wikipedia.org/wiki/Talagrand's_convexity_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Geometry",
+  "url": "https://en.wikipedia.org/wiki/Talagrand's_convexity_conjecture",
+  "wiki": {
+   "title": "Talagrand's convexity conjecture",
+   "section": "Geometry"
+  }
+ },
+ {
+  "id": "wk-einstein-problem",
+  "latex": "\\text{(David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss, 2024).}",
+  "name": "Einstein problem",
+  "en": "Einstein problem",
+  "importance": 0.64,
+  "family": "curve",
+  "status": "open",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "(David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss, 2024).",
+  "detail": "(David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss, 2024).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Geometry 章节。\n页面：https://en.wikipedia.org/wiki/Einstein_problem\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Geometry",
+  "url": "https://en.wikipedia.org/wiki/Einstein_problem",
+  "wiki": {
+   "title": "Einstein problem",
+   "section": "Geometry"
+  }
+ },
+ {
+  "id": "wk-keller-s-conjecture",
+  "latex": "\\text{(Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019).}",
+  "name": "Keller's conjecture",
+  "en": "Keller's conjecture",
+  "importance": 0.64,
+  "family": "curve",
+  "status": "open",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "(Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019).",
+  "detail": "(Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Geometry 章节。\n页面：https://en.wikipedia.org/wiki/Keller's_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Geometry",
+  "url": "https://en.wikipedia.org/wiki/Keller's_conjecture",
+  "wiki": {
+   "title": "Keller's conjecture",
+   "section": "Geometry"
+  }
+ },
+ {
+  "id": "wk-weibel-s-conjecture",
+  "latex": "\\text{(Moritz Kerz, Florian Strunk, and Georg Tamme, 2018).}",
+  "name": "Weibel's conjecture",
+  "en": "Weibel's conjecture",
+  "importance": 0.64,
+  "family": "curve",
+  "status": "open",
+  "field": "topo",
+  "year": null,
+  "proposer": "",
+  "summary": "(Moritz Kerz, Florian Strunk, and Georg Tamme, 2018).",
+  "detail": "(Moritz Kerz, Florian Strunk, and Georg Tamme, 2018).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Geometry 章节。\n页面：https://en.wikipedia.org/wiki/Weibel's_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Geometry",
+  "url": "https://en.wikipedia.org/wiki/Weibel's_conjecture",
+  "wiki": {
+   "title": "Weibel's conjecture",
+   "section": "Geometry"
+  }
+ },
+ {
+  "id": "wk-andr-oort-conjecture",
+  "latex": "\\text{(Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021).}",
+  "name": "André–Oort conjecture",
+  "en": "André–Oort conjecture",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "arith",
+  "year": null,
+  "proposer": "",
+  "summary": "(Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021).",
+  "detail": "(Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Number theory 章节。\n页面：https://en.wikipedia.org/wiki/Andr%C3%A9%E2%80%93Oort_conjecture\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Number theory",
+  "url": "https://en.wikipedia.org/wiki/Andr%C3%A9%E2%80%93Oort_conjecture",
+  "wiki": {
+   "title": "André–Oort conjecture",
+   "section": "Number theory"
+  }
+ },
+ {
+  "id": "wk-vinogradov-s-mean-value-theorem-the-conjectured-form",
+  "latex": "\\text{(Jean Bourgain, Ciprian Demeter, Larry Guth, 2015).}",
+  "name": "Main conjecture in Vinogradov's mean-value theorem",
+  "en": "Main conjecture in Vinogradov's mean-value theorem",
+  "importance": 0.64,
+  "family": "foundation",
+  "status": "open",
+  "field": "arith",
+  "year": null,
+  "proposer": "",
+  "summary": "(Jean Bourgain, Ciprian Demeter, Larry Guth, 2015).",
+  "detail": "(Jean Bourgain, Ciprian Demeter, Larry Guth, 2015).\n\n来源：Wikipedia「List of unsolved problems in mathematics」Number theory 章节。\n页面：https://en.wikipedia.org/wiki/Vinogradov's_mean-value_theorem%23The_conjectured_form\n\n⚠ 本条由 Wikipedia 列表页自动抽取。该列表随数学进展修订，\n  所以状态（open/solved）可能已变化，请以原页面为准。\n  Wikipedia 列表不提供难度分级，importance 由陈述质量启发式派生。",
+  "source": "Wikipedia · Number theory",
+  "url": "https://en.wikipedia.org/wiki/Vinogradov's_mean-value_theorem%23The_conjectured_form",
+  "wiki": {
+   "title": "Vinogradov's mean-value theorem#The conjectured form",
+   "section": "Number theory"
+  }
+ }
+]
+
+export const WIKI_LINKS = [["wk-green-s-conjecture","wk-williamson-conjecture",0.22,"同章节","related"],
+  ["wk-williamson-conjecture","wk-hadamard-s-maximal-determinant-problem",0.22,"同章节","related"],
+  ["wk-hadamard-s-maximal-determinant-problem","wk-perfect-cuboid",0.22,"同章节","related"],
+  ["wk-perfect-cuboid","wk-rota-s-basis-conjecture",0.22,"同章节","related"],
+  ["wk-rota-s-basis-conjecture","wk-wild-problem",0.22,"同章节","related"],
+  ["wk-wild-problem","wk-sic-povm",0.22,"同章节","related"],
+  ["wk-sic-povm","wk-uniform-boundedness-conjecture-for-rational-points-mazur-s-c",0.22,"同章节","related"],
+  ["wk-uniform-boundedness-conjecture-for-rational-points-mazur-s-c","wk-suita-conjecture",0.22,"同章节","related"],
+  ["wk-problems-in-loop-theory-and-quasigroup-theory","wk-umbral-moonshine",0.22,"同章节","related"],
+  ["wk-brennan-conjecture","wk-invariant-subspace-problem",0.22,"同章节","related"],
+  ["wk-invariant-subspace-problem","wk-mean-value-problem",0.22,"同章节","related"],
+  ["wk-mean-value-problem","wk-pompeiu-problem",0.22,"同章节","related"],
+  ["wk-pompeiu-problem","wk-sendov-s-conjecture",0.22,"同章节","related"],
+  ["wk-sendov-s-conjecture","wk-heil-ramanathan-topiwala-conjecture",0.22,"同章节","related"],
+  ["wk-1-3-2-3-conjecture","wk-dittert-conjecture",0.22,"同章节","related"],
+  ["wk-dittert-conjecture","wk-problems-in-latin-squares",0.22,"同章节","related"],
+  ["wk-problems-in-latin-squares","wk-map-folding",0.22,"同章节","related"],
+  ["wk-map-folding","wk-no-three-in-line-problem",0.22,"同章节","related"],
+  ["wk-no-three-in-line-problem","wk-sunflower-mathematics",0.22,"同章节","related"],
+  ["wk-sunflower-mathematics","wk-union-closed-sets-conjecture",0.22,"同章节","related"],
+  ["wk-union-closed-sets-conjecture","wk-unit-distance-graph-number-of-edges",0.22,"同章节","related"],
+  ["wk-unit-distance-graph-number-of-edges","wk-bunkbed-conjecture",0.22,"同章节","related"],
+  ["wk-bunkbed-conjecture","wk-erd-s-sumset-conjecture",0.22,"同章节","related"],
+  ["wk-erd-s-sumset-conjecture","wk-cap-set-problem",0.22,"同章节","related"],
+  ["wk-bass-quillen-conjecture","wk-deligne-conjecture",0.22,"同章节","related"],
+  ["wk-deligne-conjecture","wk-deligne-s-conjecture-on-hochschild-cohomology",0.22,"同章节","related"],
+  ["wk-deligne-s-conjecture-on-hochschild-cohomology","wk-dixmier-conjecture",0.22,"同章节","related"],
+  ["wk-dixmier-conjecture","wk-nagata-s-conjecture-on-curves",0.22,"同章节","related"],
+  ["wk-nagata-s-conjecture-on-curves","wk-nagata-biran-conjecture",0.22,"同章节","related"],
+  ["wk-nagata-biran-conjecture","wk-parshin-s-conjecture",0.22,"同章节","related"],
+  ["wk-parshin-s-conjecture","wk-algebraic-variety",0.22,"同章节","related"],
+  ["wk-generalized-continuum-hypothesis","wk-singular-cardinals-hypothesis",0.22,"同章节","related"],
+  ["wk-singular-cardinals-hypothesis","wk-core-model",0.22,"同章节","related"],
+  ["wk-bing-borsuk-conjecture","wk-ravenel-s-conjectures",0.22,"同章节","related"],
+  ["wk-ravenel-s-conjectures","wk-nearby-lagrangian-conjecture",0.22,"同章节","related"],
+  ["wk-talagrand-s-convexity-conjecture","wk-einstein-problem",0.22,"同章节","related"],
+  ["wk-einstein-problem","wk-keller-s-conjecture",0.22,"同章节","related"],
+  ["wk-keller-s-conjecture","wk-weibel-s-conjecture",0.22,"同章节","related"],
+  ["wk-andr-oort-conjecture","wk-vinogradov-s-mean-value-theorem-the-conjectured-form",0.22,"同章节","related"],
+  ["cn-hodge","wk-bass-quillen-conjecture",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-deligne-conjecture",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-deligne-s-conjecture-on-hochschild-cohomology",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-dixmier-conjecture",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-nagata-s-conjecture-on-curves",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-nagata-biran-conjecture",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-parshin-s-conjecture",0.16,"field","sameFamily"],
+  ["cn-hodge","wk-algebraic-variety",0.16,"field","sameFamily"],
+  ["cn-riemann","wk-andr-oort-conjecture",0.16,"field","sameFamily"],
+  ["cn-riemann","wk-vinogradov-s-mean-value-theorem-the-conjectured-form",0.16,"field","sameFamily"]]

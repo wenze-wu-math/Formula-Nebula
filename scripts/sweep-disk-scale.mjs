@@ -20,6 +20,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
 const CONFIG = resolve('src', 'config.js')
 const original = readFileSync(CONFIG, 'utf8')
@@ -28,7 +29,7 @@ if (!m) throw new Error('找不到 diskScale')
 const ORIG = Number(m[1])
 console.log(`当前 diskScale = ${ORIG}（结束时恢复）\n`)
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = 9241
 

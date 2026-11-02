@@ -277,18 +277,21 @@ export function createLinks(graph) {
 
   /* 可见性过滤：切到"只看主星系"时，跨星团边必须消失 ——
    * 否则会看到一堆紫线连向空无一物的 -z 方向，比不画还糟。
-   * 'overview' 两者都可见；'galaxy' 只留主星系内部的边；
-   * 'cluster' 只留星团内部的边（跨星团边也隐藏：另一端不在画面里）。 */
+   * 'overview' 三者都可见；'galaxy' 只留主星系内部的边；
+   * 'cluster' 只留星团内部的边（跨星团边也隐藏：另一端不在画面里）。
+   * 研究者边的另一端总在另一个结构里，所以当成跨结构的紫线处理。 */
   let showGalaxy = true
   let showCluster = true
+  let showResearchers = true
 
   /** 一条边在当前取景下是否可见 */
   function visibleEdge(i) {
     const l = usable[i]
+    if (l.researcher) return showResearchers && showGalaxy && showCluster
     if (l.cross) return showGalaxy && showCluster
     // 非跨星团边：看它属于哪一侧。判定用 id 前缀不严谨，
     // 但 graph 在装配时已把 cluster 标记写进 link，这里直接用。
-    return l.clusterSide === 'cluster' ? showCluster : showGalaxy
+    return l.clusterSide === 'cluster' ? showCluster : l.clusterSide === 'researcher' ? showResearchers : showGalaxy
   }
 
   function applyFocus(id) {
@@ -353,10 +356,12 @@ export function createLinks(graph) {
      * @param {string} view        'overview' | 'galaxy' | 'cluster'
      * @param {boolean} gal        主星系是否可见
      * @param {boolean} cl         星团是否可见
+     * @param {boolean} [rs]       研究者星团是否可见（默认 true）
      */
-    setView(view, gal, cl) {
+    setView(view, gal, cl, rs) {
       showGalaxy = gal !== false
       showCluster = cl !== false
+      showResearchers = rs !== false
       // 强制重算：把 focusId 置 undefined 绕过"没变化就返回"的短路
       const prev = focusId
       focusId = undefined
@@ -365,9 +370,13 @@ export function createLinks(graph) {
     /** 星团整体开关（与 setView 独立，用于设置面板里的单选框） */
     setClusterVisible(on) {
       showCluster = !!on
-      if (showGalaxy && !showCluster) {
-        // 星团关掉但盘还在：跨星团边与星团内部边都要隐藏
-      }
+      const prev = focusId
+      focusId = undefined
+      applyFocus(prev === undefined ? null : prev)
+    },
+    /** 研究者星团整体开关（与 setView 独立） */
+    setResearcherVisible(on) {
+      showResearchers = !!on
       const prev = focusId
       focusId = undefined
       applyFocus(prev === undefined ? null : prev)

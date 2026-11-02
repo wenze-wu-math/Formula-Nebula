@@ -1,0 +1,390 @@
+/* designs/atlas/panel.css — 详情面板与悬停提示（M4）。
+ * 作用域：只写 #atlas-panel、#atlas-tooltip 及其后代（SPEC §11）。
+ * 视觉：与星图同一套语言 —— 深海军蓝半透明底、细金线、奶白正文、金色强调、朱红只给猜想。
+ * 字体串由 JS 从 constants.js 注入为 --ap-serif / --ap-sans（--at-*），这里只给兜底值。 */
+
+/* ───────── 面板：桌面右侧条 ───────── */
+#atlas-panel {
+  --ap-gold: #c9a86a;
+  --ap-gold-line: rgba(201, 168, 106, 0.35);
+  --ap-gold-faint: rgba(201, 168, 106, 0.16);
+  --ap-hi: #e8d3a2;
+  --ap-ink: #f1e7cf;
+  --ap-dim: rgba(241, 231, 207, 0.58);
+  --ap-faint: rgba(241, 231, 207, 0.40);
+  --ap-conj: #ef6a4a;
+  --ap-pad: 26px;
+  position: absolute;
+  top: 0; right: 0;
+  width: min(var(--ap-w, 400px), 100vw);
+  height: 100%;
+  display: flex; flex-direction: column;
+  box-sizing: border-box;
+  background: rgba(8, 14, 28, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-left: 1px solid var(--ap-gold-line);
+  box-shadow: -18px 0 40px rgba(2, 5, 12, 0.45);
+  color: var(--ap-ink);
+  font: 14px/1.7 var(--ap-sans, system-ui, sans-serif);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 220ms ease-out, visibility 0s linear 220ms;
+  overflow: hidden;
+  z-index: 20;
+}
+#atlas-panel.open {
+  transform: none;
+  visibility: visible;
+  transition: transform 220ms ease-out, visibility 0s;
+}
+/* 内缘第二道细金线（古星图的双线图框） */
+#atlas-panel::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 3px;
+  border-left: 0.5px solid var(--ap-gold-faint);
+  pointer-events: none;
+}
+
+#atlas-panel .ap-grip { display: none; }
+#atlas-panel .ap-scroll {
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto; overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding: 22px var(--ap-pad) 28px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 168, 106, 0.3) transparent;
+}
+#atlas-panel .ap-scroll::-webkit-scrollbar { width: 8px; }
+#atlas-panel .ap-scroll::-webkit-scrollbar-thumb { background: rgba(201, 168, 106, 0.25); border-radius: 4px; }
+
+/* ───────── 窄屏：底部抽屉 ───────── */
+#atlas-panel.is-sheet {
+  top: auto; bottom: 0; left: 0; right: 0;
+  width: 100%;
+  height: var(--ap-sheet-h, 46vh);
+  border-left: 0;
+  border-top: 1px solid var(--ap-gold-line);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -14px 36px rgba(2, 5, 12, 0.5);
+  transform: translateY(100%);
+  --ap-pad: 20px;
+}
+#atlas-panel.is-sheet::before { display: none; }
+#atlas-panel.is-sheet.open { transform: translateY(var(--ap-drag, 0px)); }
+#atlas-panel.is-sheet.is-dragging { transition: none; }
+#atlas-panel.is-sheet .ap-grip {
+  display: block; flex: none;
+  height: 22px; cursor: grab; touch-action: none;
+  position: relative;
+}
+#atlas-panel.is-sheet .ap-grip::after {
+  content: ''; position: absolute; left: 50%; top: 9px;
+  width: 40px; height: 4px; margin-left: -20px; border-radius: 2px;
+  background: rgba(201, 168, 106, 0.45);
+}
+#atlas-panel.is-sheet .ap-scroll { padding-top: 4px; }
+
+/* ───────── 头部 ───────── */
+#atlas-panel .ap-head { margin-bottom: 16px; }
+#atlas-panel .ap-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  margin: 0 36px 10px 0;
+  font-size: 11.5px; line-height: 1.4;
+  letter-spacing: 0.12em;
+  color: rgba(201, 168, 106, 0.85);
+}
+#atlas-panel .ap-eyebrow .atlas-glyph { flex: none; }
+#atlas-panel .ap-eyebrow > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#atlas-panel .ap-sep { margin: 0 0.5em; opacity: 0.6; }
+#atlas-panel .ap-mono { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+#atlas-panel .ap-status { color: var(--ap-conj); }
+#atlas-panel .ap-inst { letter-spacing: 0.04em; }
+
+#atlas-panel .ap-title-row { display: flex; align-items: flex-start; gap: 12px; }
+#atlas-panel .ap-titles { flex: 1 1 auto; min-width: 0; }
+#atlas-panel .ap-title {
+  margin: 0;
+  font: 400 24px/1.3 var(--ap-serif, Georgia, serif);
+  color: var(--ap-hi);
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+#atlas-panel[data-kind='dso'] .ap-title { color: #f3c2b2; }
+#atlas-panel .ap-en {
+  margin-top: 3px;
+  font: italic 14px/1.4 var(--ap-serif, Georgia, serif);
+  color: var(--ap-dim);
+  letter-spacing: 0.02em;
+}
+#atlas-panel .ap-close {
+  flex: none;
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; padding: 0;
+  display: grid; place-items: center;
+  font: 300 22px/1 var(--ap-serif, Georgia, serif);
+  color: var(--ap-dim);
+  background: rgba(8, 14, 28, 0.85);
+  border: 1px solid transparent; border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+#atlas-panel.is-sheet .ap-close { top: 20px; }
+#atlas-panel .ap-close:hover { color: var(--ap-hi); border-color: var(--ap-gold-line); }
+
+/* ───────── 公式 / 研究方向 ───────── */
+#atlas-panel .ap-formula {
+  margin: 0 calc(-1 * var(--ap-pad)) 16px;
+  padding: 14px var(--ap-pad);
+  overflow-x: auto; overflow-y: hidden;
+  border-top: 1px solid var(--ap-gold-faint);
+  border-bottom: 1px solid var(--ap-gold-faint);
+  background: linear-gradient(90deg, rgba(201, 168, 106, 0.035), rgba(201, 168, 106, 0.07) 50%, rgba(201, 168, 106, 0.035));
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 168, 106, 0.3) transparent;
+  outline: none;
+}
+#atlas-panel .ap-formula:focus-visible { box-shadow: inset 0 0 0 1px rgba(201, 168, 106, 0.5); }
+#atlas-panel .ap-katex { color: var(--ap-ink); font-size: 15px; }
+#atlas-panel[data-kind='dso'] .ap-katex { color: #f4a48e; }
+#atlas-panel .ap-katex .katex-display { margin: 0; text-align: center; }
+#atlas-panel .ap-katex .katex { font-size: 1.12em; }
+
+#atlas-panel .ap-focus {
+  margin: 0 0 16px; padding: 10px 14px;
+  border-left: 1px solid var(--ap-gold-line);
+  background: rgba(201, 168, 106, 0.05);
+}
+#atlas-panel .ap-label {
+  font-size: 11px; letter-spacing: 0.16em; color: rgba(201, 168, 106, 0.7);
+  margin-bottom: 2px;
+}
+#atlas-panel .ap-focus-text {
+  margin: 0;
+  font: italic 15px/1.55 var(--ap-serif, Georgia, serif);
+  color: var(--ap-ink);
+}
+
+/* ───────── 元数据 ───────── */
+#atlas-panel .ap-meta {
+  display: grid; grid-template-columns: max-content 1fr;
+  column-gap: 16px; row-gap: 3px;
+  margin: 0 0 16px;
+  font-size: 13px; line-height: 1.6;
+}
+#atlas-panel .ap-meta dt { color: rgba(201, 168, 106, 0.72); letter-spacing: 0.1em; white-space: nowrap; }
+#atlas-panel .ap-meta dd { margin: 0; min-width: 0; color: var(--ap-ink); overflow-wrap: anywhere; }
+#atlas-panel .ap-latin {
+  font: 10.5px/1 var(--ap-serif, Georgia, serif);
+  letter-spacing: 0.24em; color: var(--ap-faint);
+}
+#atlas-panel .ap-dim { color: var(--ap-dim); }
+#atlas-panel .ap-status-cell { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+#atlas-panel .ap-status-cell .ap-dim { font-size: 12.5px; }
+
+/* ───────── 简介 / 正文 ───────── */
+#atlas-panel b.em { color: #e8d3a2; font-weight: 600; }
+#atlas-panel .ap-summary {
+  margin: 0 0 12px;
+  font-size: 14.5px; line-height: 1.7;
+  color: var(--ap-ink);
+}
+#atlas-panel .ap-detail-wrap { margin: 0 0 20px; }
+#atlas-panel .ap-detail {
+  margin: 0;
+  font-size: 14px; line-height: 1.7;
+  color: rgba(241, 231, 207, 0.80);
+  /* 不两端对齐：中英混排时 justify 会在拉丁词之间撑出大空隙 */
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+#atlas-panel .ap-detail-wrap.is-clamped:not(.is-open) .ap-detail {
+  max-height: calc(1.7em * 6);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
+  mask-image: linear-gradient(180deg, #000 60%, transparent);
+}
+#atlas-panel .ap-more {
+  margin-top: 4px; padding: 2px 0;
+  font: 12.5px/1.5 var(--ap-sans, system-ui, sans-serif);
+  letter-spacing: 0.08em;
+  color: var(--ap-gold);
+  background: none; border: 0; cursor: pointer;
+}
+#atlas-panel .ap-more:hover { color: var(--ap-hi); text-decoration: underline; text-underline-offset: 3px; }
+#atlas-panel .ap-more[hidden] { display: none; }
+
+/* ───────── 区块标题（关联、代表作） ───────── */
+#atlas-panel .ap-section {
+  display: flex; align-items: center; gap: 10px;
+  margin: 22px 0 10px;
+  font: 400 12px/1.4 var(--ap-serif, Georgia, serif);
+  letter-spacing: 0.3em;
+  color: rgba(201, 168, 106, 0.85);
+}
+#atlas-panel .ap-section::after { content: ''; flex: 1; border-top: 1px solid var(--ap-gold-faint); }
+
+/* ───────── 代表作 ───────── */
+#atlas-panel .ap-work-list { list-style: none; margin: 0; padding: 0; }
+#atlas-panel .ap-work { padding: 6px 0 8px; border-bottom: 1px dotted var(--ap-gold-faint); }
+#atlas-panel .ap-work:last-child { border-bottom: 0; }
+#atlas-panel .ap-work-line { display: flex; align-items: baseline; gap: 10px; }
+#atlas-panel .ap-work-title {
+  flex: 1 1 auto; min-width: 0;
+  font: italic 15px/1.45 var(--ap-serif, Georgia, serif);
+  color: var(--ap-hi);
+}
+#atlas-panel a.ap-work-title { text-decoration: none; border-bottom: 1px solid rgba(201, 168, 106, 0.35); }
+#atlas-panel a.ap-work-title:hover { border-bottom-color: var(--ap-hi); }
+#atlas-panel a.ap-work-title::after { content: ' ↗'; font-style: normal; font-size: 0.8em; color: var(--ap-gold); }
+#atlas-panel .ap-work-year { flex: none; font-size: 12px; color: var(--ap-dim); font-variant-numeric: tabular-nums; }
+#atlas-panel .ap-work-note { margin-top: 2px; font-size: 13px; line-height: 1.6; color: var(--ap-dim); }
+
+/* ───────── 关联列表 ───────── */
+#atlas-panel .ap-group { margin-bottom: 12px; }
+#atlas-panel .ap-group-title {
+  display: flex; align-items: baseline; gap: 8px;
+  margin: 0 0 4px;
+  font-size: 12px; font-weight: 400; letter-spacing: 0.14em;
+  color: var(--ap-dim);
+}
+#atlas-panel .ap-count {
+  font-size: 11px; letter-spacing: 0.04em; color: var(--ap-faint);
+  font-variant-numeric: tabular-nums;
+}
+#atlas-panel .ap-rel-list { list-style: none; margin: 0; padding: 0; }
+#atlas-panel .ap-rel-list > li[hidden] { display: none; }
+#atlas-panel .ap-rel-item {
+  display: block;
+  margin: 0 0 0 -8px; padding: 5px 8px 6px;
+  width: calc(100% + 16px);
+  text-align: left;
+  font: inherit; color: inherit;
+  background: transparent;
+  border: 0; border-radius: 4px;
+  cursor: pointer;
+}
+#atlas-panel .ap-rel-item:hover { background: rgba(201, 168, 106, 0.08); }
+#atlas-panel .ap-rel-item:focus-visible { outline: 1px solid rgba(201, 168, 106, 0.6); outline-offset: -1px; background: rgba(201, 168, 106, 0.08); }
+#atlas-panel .ap-rel-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+#atlas-panel .ap-rel-top .atlas-glyph { flex: none; }
+#atlas-panel .ap-rel-name {
+  flex: 0 1 auto; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 14px; line-height: 1.5; color: var(--ap-ink);
+}
+#atlas-panel .ap-rel-item[data-kind='dso'] .ap-rel-name { color: #f3b6a4; }
+#atlas-panel .ap-rel-item[data-kind='researcher'] .ap-rel-name {
+  font-family: var(--ap-serif, Georgia, serif); font-style: italic; color: #d9c08a;
+}
+#atlas-panel .ap-rel-item:hover .ap-rel-name { color: var(--ap-hi); }
+#atlas-panel .ap-tag {
+  flex: none; margin-left: auto;
+  padding: 0 6px;
+  font-size: 10.5px; line-height: 17px; letter-spacing: 0.06em;
+  color: rgba(201, 168, 106, 0.85);
+  border: 1px solid rgba(201, 168, 106, 0.28); border-radius: 9px;
+  white-space: nowrap;
+}
+#atlas-panel .ap-rel-label {
+  display: block;
+  margin: 1px 0 0 24px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 12.5px; line-height: 1.5; color: var(--ap-faint);
+}
+#atlas-panel .ap-more-rel { margin-left: 24px; }
+
+/* ───────── 页脚 ───────── */
+#atlas-panel .ap-foot {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px;
+  margin-top: 22px; padding-top: 14px;
+  border-top: 1px solid var(--ap-gold-faint);
+  font-size: 13px;
+}
+#atlas-panel .ap-link {
+  padding: 0;
+  font: inherit; letter-spacing: 0.06em;
+  color: var(--ap-gold);
+  background: none; border: 0; cursor: pointer;
+  text-decoration: none;
+}
+#atlas-panel .ap-link:hover { color: var(--ap-hi); text-decoration: underline; text-underline-offset: 3px; }
+#atlas-panel .ap-copied { font-size: 12px; color: var(--ap-dim); }
+#atlas-panel .ap-id {
+  flex-basis: 100%;
+  font: 11px/1.4 ui-monospace, Consolas, monospace;
+  color: rgba(241, 231, 207, 0.28);
+  letter-spacing: 0.04em;
+}
+
+#atlas-panel button:focus-visible, #atlas-panel a:focus-visible {
+  outline: 1px solid rgba(201, 168, 106, 0.7); outline-offset: 2px;
+}
+
+/* ───────── 悬停提示 ───────── */
+#atlas-tooltip {
+  position: absolute; left: 0; top: 0;
+  max-width: 360px;
+  box-sizing: border-box;
+  padding: 8px 12px 9px;
+  background: rgba(8, 14, 28, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(201, 168, 106, 0.35);
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgba(2, 5, 12, 0.5);
+  color: #f1e7cf;
+  font: 13px/1.5 var(--at-sans, system-ui, sans-serif);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  /* 隐藏是立即的；出现时才有 120ms 淡入（见 .show） */
+  transition: none;
+  z-index: 30;
+  will-change: transform, opacity;
+}
+#atlas-tooltip.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 120ms ease-out;
+}
+#atlas-tooltip .at-eyebrow {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; line-height: 1.4; letter-spacing: 0.1em;
+  color: rgba(201, 168, 106, 0.85);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#atlas-tooltip .at-eyebrow .atlas-glyph { flex: none; }
+#atlas-tooltip .at-name {
+  margin-top: 2px;
+  font: 16px/1.35 var(--at-serif, Georgia, serif);
+  color: #e8d3a2; letter-spacing: 0.03em;
+}
+#atlas-tooltip[data-kind='dso'] .at-name { color: #f3c2b2; }
+#atlas-tooltip[data-kind='researcher'] .at-name { font-style: italic; }
+#atlas-tooltip .at-en {
+  font: italic 12px/1.35 var(--at-serif, Georgia, serif);
+  color: rgba(241, 231, 207, 0.55);
+}
+#atlas-tooltip .at-sub { margin-top: 3px; font-size: 12.5px; color: rgba(241, 231, 207, 0.72); }
+#atlas-tooltip .at-latin {
+  font: 11px/1 var(--at-serif, Georgia, serif);
+  letter-spacing: 0.28em; color: rgba(222, 196, 140, 0.7);
+}
+#atlas-tooltip .at-sep { margin: 0 0.5em; opacity: 0.6; }
+#atlas-tooltip .at-hint { margin-top: 4px; font-size: 11px; color: rgba(241, 231, 207, 0.42); }
+#atlas-tooltip .at-formula {
+  margin-top: 5px; padding-top: 5px;
+  border-top: 1px solid rgba(201, 168, 106, 0.16);
+  overflow: hidden; white-space: nowrap;
+}
+#atlas-tooltip .at-formula.is-overflow {
+  -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, #000 82%, transparent);
+}
+#atlas-tooltip .at-katex { color: #f1e7cf; font-size: 14px; }
+#atlas-tooltip[data-kind='dso'] .at-katex { color: #f4a48e; }
+
+/* ───────── 减少动态效果 ───────── */
+@media (prefers-reduced-motion: reduce) {
+  #atlas-panel, #atlas-panel.open, #atlas-tooltip, #atlas-tooltip.show { transition: none; }
+}

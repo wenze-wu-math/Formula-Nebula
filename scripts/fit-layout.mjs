@@ -29,8 +29,9 @@ import { resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
 import { writeFileSync, readFileSync, existsSync } from 'node:fs'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = 9234
 const CACHE = resolve('scripts', '.node-sizes.json')

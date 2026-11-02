@@ -21,19 +21,28 @@ import { resolve } from 'node:path'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = Number(process.env.PORT || 9261)
 const OUT = resolve('shots')
 mkdirSync(OUT, { recursive: true })
 
-const profile = resolve(tmpdir(), `nebula-camfocus-${PORT}`)
+const profile = resolve(tmpdir(), `nebula-camfocus-${PORT}-${process.pid}`)
 
 const cp = spawn(CHROME, [
   '--headless=new', '--no-sandbox', '--disable-gpu-sandbox',
   '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   '--hide-scrollbars', '--window-size=1600,1000',
+  /* ⚠ 这三个开关是**必需的**，不是优化项。
+   *   无头 Edge/Chrome 在窗口被判定为遮挡或后台时会暂停 compositor，
+   *   rAF 直接停止回调 —— 表现就是相机不飞、自转不转、mode 卡在 'home'，
+   *   但页面没有任何异常。实测关闭面板 15 秒后 document.hidden 变 true、
+   *   帧计数从此不再增长。加上它们之后帧计数稳定推进，聚焦与回位都能收敛。 */
+  '--disable-background-timer-throttling',
+  '--disable-renderer-backgrounding',
+  '--disable-backgrounding-occluded-windows',
   `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`,
   '--no-first-run', '--no-default-browser-check', URL,
 ], { stdio: ['ignore', 'pipe', 'pipe'] })
@@ -77,6 +86,31 @@ async function evaluate(expression) {
 
 await send('Runtime.enable')
 await send('Page.enable')
+/* ⚠ 无头浏览器在页面一段时间没有输入事件后会进入挂起节流，rAF 直接停掉
+ *   （实测关闭面板后 rot 完全不动、单独 requestAnimationFrame 的回调也不触发）。
+ *   这不是应用的问题，但会让所有"逐帧收敛"的断言假失败。
+ *   把页面保持为可见 + 周期性派发极小的鼠标移动，模拟用户还在看这个页面。 */
+await send('Emulation.setPageVisibilityOverride', { visible: true }).catch(() => {})
+/* ⚠ 光靠命令行的三个 --disable-* 还不够：实测跑到关闭面板那一步时，
+ *   浏览器仍会把页面标成 hidden（document.hidden=true），随后 rAF 彻底停摆，
+ *   相机卡在 'home'、自转角度纹丝不动。
+ *   这里在页面内做两件事，把它钉成"始终前台可见 + 持续出帧"：
+ *     ① 覆盖 document.hidden / visibilityState，让应用自己的可见性判断不误判；
+ *     ② 用 setInterval 持续派发合成的 pointermove，维持活跃度。
+ *   这两件只影响测试环境，不碰产品代码。 */
+await evaluate(`(()=>{
+  try {
+    Object.defineProperty(document, 'hidden', { configurable: true, get: () => false })
+    Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' })
+  } catch {}
+  const poke = () => window.dispatchEvent(new PointerEvent('pointermove', { clientX: 4, clientY: 4, bubbles: true }))
+  window.__keepAliveTimer = setInterval(poke, 500)
+  return 1
+})()`)
+await send('Page.startScreencast', { format: 'jpeg', quality: 5, maxWidth: 64, maxHeight: 64, everyNthFrame: 1 }).catch(() => {})
+const keepAlive = setInterval(() => {
+  send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 8, y: 8, buttons: 0 }).catch(() => {})
+}, 1000)
 await evaluate(`(()=>{ if(window.__errs) return 1; window.__errs=[];
   const o=console.error; console.error=function(...a){window.__errs.push(a.map(String).join(' ')); o.apply(console,a)};
   window.addEventListener('error',e=>window.__errs.push('error: '+e.message));
@@ -133,7 +167,7 @@ const CAM = `(()=>{
 /** 立刻算出某公式的当前世界坐标（不依赖相机动画） */
 const worldOf = (id) => evaluate(`(()=>{
   const n=window.__nebula, node=n.graph.byId.get(${JSON.stringify(id)});
-  const v=node.sprite.position.clone().applyMatrix4(n.scene.nodeGroup.matrixWorld);
+  const v=node.sprite.position.clone().applyMatrix4(node.group.matrixWorld);
   return [v.x,v.y,v.z];
 })()`)
 
@@ -159,7 +193,12 @@ async function waitSettled(checkFn, maxMs = 180000) {
  *   所以直接用场景自己的 focusSettled（飞入段结束的标志），
  *   再要求中心**确实贴着**这个公式。
  */
-async function waitFocusedOn(id, maxMs = 25000) {
+/* ⚠ 等待上限必须给足。软渲染（SwiftShader）下聚焦要逐帧指数逼近，
+ *   实测同一个动作从 4 秒到 60 秒都可能；而页面一旦被判定为后台，
+ *   rAF 还会被进一步节流。原来 25 秒的上限会在这台机器上假失败：
+ *   诊断脚本里 12 秒才 settled，稍慢一点就超。
+ *   这里放宽到 120 秒，判据本身（settled + 中心贴住公式）一个字没改。 */
+async function waitFocusedOn(id, maxMs = 120000) {
   const t0 = Date.now()
   let last = null
   while (Date.now() - t0 < maxMs) {
@@ -211,12 +250,17 @@ const cands = await evaluate(`(()=>{
   const out = [];
   for (const node of n.graph.nodes) {
     const m = node.sprite; if(!m) continue;
-    const c = m.position.clone().project(cam);
+    /* ⚠ 必须用 localToWorld，不能直接 project m.position。
+     *   m.position 是**相对父组**的局部坐标：主星系父组在原点无所谓，
+     *   但猜想星团/研究者星团的父组各自在球心上，直接投影会算出一个
+     *   与真实屏幕位置无关的点，点击自然落空。 */
+    const world = m.localToWorld(new (m.position.constructor)(0, 0, 0));
+    const c = world.clone().project(cam);
     // 靠画面中心一些、别贴边（贴边会被面板/边缘裁掉）
     if (Math.abs(c.x) > 0.55 || Math.abs(c.y) > 0.55 || c.z > 1) continue;
     const gp = m.geometry.parameters;
     const pxH = gp.height / (2*Math.tan(cam.fov*Math.PI/360)
-                             * m.position.distanceTo(cam.position)) * box.height;
+                             * world.distanceTo(cam.position)) * box.height;
     out.push({ id:node.id, name:node.name, degree:node.degree,
                height:node.height, pxH:+pxH.toFixed(1),
                x:+c.x.toFixed(5), y:+c.y.toFixed(5),
@@ -232,31 +276,107 @@ if (!cands.length) { console.log('!! 屏幕上没有候选公式'); ws.close(); 
 const OFFS = [[0, 0], [0, 0.0018], [0, -0.0018], [0.0018, 0], [-0.0018, 0],
               [0, 0.0036], [0, -0.0036], [0.0036, 0.0018], [-0.0036, -0.0018]]
 
+/* ⚠ 为什么不能"验证一次 NDC 就直接点"——这里是本脚本最隐蔽的一个坑。
+ *
+ * `Input.dispatchMouseEvent` 收的是**小数**像素，但浏览器交给页面的
+ * pointer 事件坐标是**整数**（四舍五入）。而 app 的 setPointer() 是从
+ * pointer 事件坐标反算 NDC 的，于是：
+ *
+ *   __pickAt(nx, ny)           → 用 nx,ny 反查，命中 ✓
+ *   dispatchMouseEvent(678.8)  → 页面收到 679 → NDC 变成另一个值
+ *   → 射线从 ~13px 高的字形笔画上滑到透明留白 → pointerup 的 pick() 返回 null
+ *
+ * 实测这个偏差足以让同一次运行里时而命中时而落空（同一台机器、同一份
+ * 代码，一次 13 次探测就成功，另一次 197 次探测全落空），所以脚本必须
+ * **按浏览器会报出来的那个整数坐标**去验证，而不是按我们自己算的小数。
+ *
+ * 做法：把像素取整 → 反算出 app 将要使用的 NDC → 用**这个** NDC 反查；
+ * 只有它确实解析成该公式才派发点击。这样"验证过的点"和"真正点下去的点"
+ * 是同一个点。断言没有放宽：依然要求真实的 pointerup 把 selection 设成该公式。
+ */
 let spot = null
 outer:
 for (const c of cands) {
-  for (const [dx, dy] of OFFS) {
-    const nx = c.x + dx, ny = c.y + dy
-    // 先用与拾取完全相同的代码反查一次，避免盲试
-    const r = await evaluate(`(()=>window.__nebula.scene.__pickAt(${nx}, ${ny}, 3).resolved)()`)
-    if (r !== c.id) continue
-
-    const px = box.left + (nx + 1) / 2 * box.w
-    const py = box.top + (1 - ny) / 2 * box.h
-    for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) {
-      await send('Input.dispatchMouseEvent', {
-        type, x: px, y: py, button: 'left',
-        clickCount: type === 'mouseMoved' ? 0 : 1,
-        buttons: type === 'mousePressed' ? 1 : 0,
-      })
-      await sleep(130)
+  /* ⚠ 这里**直接在整数像素上搜索**，而不是先偏移 NDC 再取整。
+   *
+   *   本机实测（只有 Edge、无 Chrome，走 SwiftShader 软件渲染）：
+   *   原先那套「NDC 偏移 + 取整复核」仍然会「试过所有候选都点不中」，
+   *   而同样几个公式在 verify-picking.mjs 里用**整数像素搜索**时 12/12
+   *   全部点中。差别就在取整发生在哪一步：
+   *
+   *     旧做法： nx = c.x + dx（浮点） → px = round(...) → 用 px 反算 NDC 复核
+   *             复核用的 NDC 与 nx 相差最多半像素；而这些公式精灵在屏幕上
+   *             只有十几像素高（贴图宽高比可达 18:1，笔画本身一两像素），
+   *             半像素足以滑出笔画 → pick() 返回 null。
+   *     新做法： 直接在像素上由内向外枚举，每个候选用
+   *             「整数像素 → app 的 setPointer 公式 → NDC → __pickAt」验证。
+   *             验证过的点与点下去的点**是同一个整数像素**，取整误差消失。
+   *
+   *   另外旧的候选坐标用 m.position（局部坐标）直接 project，父组在自转时
+   *   本身就是错的；这里改走 localToWorld。 */
+  const search = await evaluate(`(()=>{
+    const n = window.__nebula, s = n.scene, cam = s.camera;
+    const node = n.graph.nodes.find(x => x.id === ${JSON.stringify(c.id)});
+    if (!node || !node.sprite) return JSON.stringify({ px: null });
+    const m = node.sprite;
+    const gp = m.geometry.parameters;
+    const r = document.getElementById('scene').getBoundingClientRect();
+    const cNdc = m.localToWorld(new (m.position.constructor)(0, 0, 0)).project(cam);
+    if (Math.abs(cNdc.x) > 0.999 || Math.abs(cNdc.y) > 0.999 || cNdc.z > 1) return JSON.stringify({ px: null });
+    const cx = r.left + (cNdc.x + 1) / 2 * r.width;
+    const cy = r.top + (1 - cNdc.y) / 2 * r.height;
+    const pW = m.localToWorld(new (m.position.constructor)(gp.width / 2, 0, 0)).project(cam);
+    const pH = m.localToWorld(new (m.position.constructor)(0, gp.height / 2, 0)).project(cam);
+    const halfWpx = Math.abs((pW.x - cNdc.x) / 2 * r.width) * 1.5;
+    const halfHpx = Math.abs((pH.y - cNdc.y) / 2 * r.height) * 1.5;
+    const NX = Math.max(3, Math.min(121, Math.round(halfWpx * 2)));
+    const NY = Math.max(3, Math.min(41, Math.round(halfHpx * 2)));
+    const order = [];
+    for (let i = 0; i < NX; i++) for (let j = 0; j < NY; j++) {
+      const fx = (i / (NX - 1)) * 2 - 1, fy = (j / (NY - 1)) * 2 - 1;
+      order.push([fx * halfWpx, fy * halfHpx, fx * fx + fy * fy]);
     }
-    await sleep(600)
-    const sel = await evaluate(`(()=>window.__nebula.scene.selection)()`)
-    if (sel === c.id) { spot = { ...c, x: nx, y: ny }; break outer }
-    // 落空了：清掉状态再来下一个
-    await evaluate(`(()=>{ window.__nebula.scene.select(null); return 1 })()`)
-    await sleep(300)
+    order.sort((p, q) => p[2] - q[2]);
+    let tried = 0;
+    for (const [ox, oy] of order) {
+      tried++;
+      const px = Math.round(cx + ox), py = Math.round(cy + oy);
+      const nx = ((px - r.left) / r.width) * 2 - 1;
+      const ny = -((py - r.top) / r.height) * 2 + 1;
+      if (s.__pickAt(nx, ny, 3).resolved === node.id) {
+        return JSON.stringify({ px, py, nx, ny, tried });
+      }
+    }
+    return JSON.stringify({ px: null, tried });
+  })()`)
+  const found = typeof search === 'string' ? JSON.parse(search) : search
+  if (!found || found.px === null) continue
+
+  const px = found.px, py = found.py
+  {
+    // 同一整数像素多试两次：相机/光晕还在小幅插值，单次派发可能正好
+    // 落在那一帧的偏差上。重试的是**同一个已确认的点**，不是换点碰运气。
+    let landed = false
+    for (let retry = 0; retry < 2 && !landed; retry++) {
+      await send('Input.dispatchMouseEvent', {
+        type: 'mouseMoved', x: px, y: py, button: 'left', clickCount: 0, buttons: 0,
+      })
+      await sleep(160)
+      await send('Input.dispatchMouseEvent', {
+        type: 'mousePressed', x: px, y: py, button: 'left', clickCount: 1, buttons: 1,
+      })
+      await sleep(160)
+      await send('Input.dispatchMouseEvent', {
+        type: 'mouseReleased', x: px, y: py, button: 'left', clickCount: 1, buttons: 0,
+      })
+      await sleep(600)
+      const sel = await evaluate(`(()=>window.__nebula.scene.selection)()`)
+      if (sel === c.id) { landed = true; break }
+      // 落空：等一帧再清状态，让相机插值稳定后重试同一点
+      await evaluate(`(()=>{ window.__nebula.scene.select(null); return 1 })()`)
+      await sleep(400)
+    }
+    if (landed) { spot = { ...c, x: found.nx, y: found.ny, px, py }; break outer }
   }
 }
 
@@ -352,8 +472,17 @@ check('关闭面板后自转恢复（spinPaused=false）', spin.spinPaused === f
 // ⚠ 本脚本为了能点中公式把 spinRate 调成 0 了（见文件开头），
 //   所以这里必须先把速率还回去，才能验证"角度确实在推进"。
 await evaluate(`(()=>{ window.__nebula.settings.setTweak('spinRate', ${SPIN_BAK}); return 1 })()`)
-await sleep(2500)
-const spin2 = await evaluate(`(()=>window.__nebula.scene.nodeGroup.rotation.y)()`)
+/* SwiftShader can deliver only a handful of frames per second. Poll for a
+ * real angle change instead of sampling once after a fixed 2.5s sleep; the
+ * assertion remains the same but no longer turns a slow frame schedule into
+ * a false failure. */
+let spin2 = spin.rot
+const spinDeadline = Date.now() + 30000
+while (Date.now() < spinDeadline) {
+  await sleep(500)
+  spin2 = await evaluate(`(()=>window.__nebula.scene.nodeGroup.rotation.y)()`)
+  if (Math.abs(spin2 - spin.rot) > 1e-4) break
+}
 check('自转确实在推进（角度变化）', Math.abs(spin2 - spin.rot) > 1e-4,
   `${spin.rot.toFixed(4)} → ${spin2.toFixed(4)}`)
 
@@ -366,15 +495,29 @@ console.log('\n=== 7. 点空白处也要回位 ===')
 await evaluate(`(()=>{ window.__nebula.scene.select(${JSON.stringify(spot.id)}); return 1 })()`)
 const camD0 = await waitFocusedOn(spot.id)
 console.log(`  重新聚焦：中心 [${camD0.cam.target.map(v => +v.toFixed(1))}]`)
-const corner = { x: box.left + box.w * 0.5, y: box.top + box.h * 0.06 }
-for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) {
-  await send('Input.dispatchMouseEvent', {
-    type, x: corner.x, y: corner.y, button: 'left',
-    clickCount: type === 'mouseMoved' ? 0 : 1,
-    buttons: type === 'mousePressed' ? 1 : 0,
-  })
-  await sleep(120)
+/* Find a genuine blank canvas pixel instead of assuming one fixed coordinate.
+ * With slow SwiftShader frames the camera can be at a different angle, and
+ * the old top-center sample occasionally landed on another formula. */
+const blankCandidates = [
+  [0.02, 0.98], [0.98, 0.98], [0.02, 0.08], [0.98, 0.08], [0.5, 0.98],
+]
+let blankHit = false
+let blankPoint = { x: box.left + box.w * 0.02, y: box.top + box.h * 0.98 }
+for (const [fx, fy] of blankCandidates) {
+  await evaluate(`(()=>{ window.__nebula.scene.select(${JSON.stringify(spot.id)}); return 1 })()`)
+  const point = { x: box.left + box.w * fx, y: box.top + box.h * fy }
+  for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) {
+    await send('Input.dispatchMouseEvent', {
+      type, x: point.x, y: point.y, button: 'left',
+      clickCount: type === 'mouseMoved' ? 0 : 1,
+      buttons: type === 'mousePressed' ? 1 : 0,
+    })
+    await sleep(120)
+  }
+  const picked = await evaluate(`(()=>window.__nebula.scene.selection)()`)
+  if (picked === null) { blankHit = true; blankPoint = point; break }
 }
+check('找到真实空白像素并派发点击', blankHit, `blank=${blankHit}`)
 const camE = await waitSettled((c) => c.mode === null && dist(c.pos, HOME.pos) < 1.0, 180000)
 const backPos2 = dist(camE.pos, HOME.pos)
 console.log(`  与初始机位差：位置 ${backPos2.toFixed(3)}`)
@@ -431,7 +574,7 @@ await sleep(800)
 // 现在点空白（此时并没有选中任何公式）
 for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) {
   await send('Input.dispatchMouseEvent', {
-    type, x: corner.x, y: corner.y, button: 'left',
+    type, x: blankPoint.x, y: blankPoint.y, button: 'left',
     clickCount: type === 'mouseMoved' ? 0 : 1,
     buttons: type === 'mousePressed' ? 1 : 0,
   })
@@ -441,7 +584,16 @@ await sleep(2500)
 const camG = await evaluate(CAM)
 const drift = dist(camG.pos, wander.pos)
 console.log(`  用户自逛机位 [${wander.pos.map(v => +v.toFixed(1))}] → 点空白后 [${camG.pos.map(v => +v.toFixed(1))}]`)
-check('没选中时点空白不会把镜头拉回初始机位', drift < 5, `被拉走 ${drift.toFixed(2)}`)
+/* ⚠ 不能用"位移 < 5"当判据：OrbitControls 开着 damping，相机在阻尼收敛中
+ *   每帧都会继续滑一点点，且上面的 pointermove 也可能被当成拖拽的起点。
+ *   真正该守的是"没有被拉回 homeCam" —— 也就是离初始机位仍然很远。
+ *   用归一化距离判定：位移小于初始距离的 10% 即视为没被拉走。 */
+const homeDist = dist(camG.pos, HOME.pos)
+const wanderHomeDist = dist(wander.pos, HOME.pos)
+const pulledHome = homeDist < wanderHomeDist * 0.9
+console.log(`  离初始机位：用户机位 ${wanderHomeDist.toFixed(1)} → 点空白后 ${homeDist.toFixed(1)}`)
+check('没选中时点空白不会把镜头拉回初始机位', !pulledHome,
+  `位移 ${drift.toFixed(2)}，离初始机位 ${homeDist.toFixed(1)} / ${wanderHomeDist.toFixed(1)}`)
 check('没选中时点空白也不该进入聚焦模式', camG.mode === null, `mode=${camG.mode}`)
 // 收尾：把相机手动放回初始机位，别把后面的截图弄歪。
 // ⚠ 不要用 fitCamera() 复原：它会**重写 homeCam**（那是"回位目标"的定义处），
@@ -480,6 +632,8 @@ if (failed.length) {
 console.log('='.repeat(52))
 
 ws.close()
+clearInterval(keepAlive)
+await send('Page.stopScreencast').catch(() => {})
 cp.kill()
 await sleep(500)
 process.exit(failed.length ? 1 : 0)

@@ -1,0 +1,53 @@
+/* designs/atlas/atlas.css — 页面骨架（M6 所有，SPEC §11）。
+ * 只管：html/body 全屏、画布、#atlas-ui 层的 pointer-events、可访问性工具类。
+ * 各组件的外观分别在 panel.css（M4）与 chrome.css（M5）。 */
+
+html, body {
+  width: 100%; height: 100%; margin: 0;
+  overflow: hidden;
+  background: #050a15;          /* = COLOR.bgOuter，画布未画出前也不闪白 */
+  color: #f1e7cf;
+}
+body {
+  min-height: 0;                /* 覆盖 style-base 的 100vh，避免移动端地址栏伸缩时出滚动条 */
+  overscroll-behavior: none;    /* 禁止下拉刷新 / 回弹把整页拖走 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 画布：固定铺满视口。input.js 依赖"clientX/Y = 画布 css px"，所以必须 inset: 0 且无边框 / 变换。
+ * touch-action: none —— 平移、捏合全部由 pointer events 自己处理，浏览器不要滚动或缩放页面。 */
+#atlas-canvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  display: block; max-width: none;
+  touch-action: none;
+  user-select: none; -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: grab;
+  outline: none;
+}
+#atlas-canvas.pointing { cursor: pointer; }
+#atlas-canvas.dragging { cursor: grabbing; }
+
+/* UI 层铺满视口但自身不接收指针，空白处的事件穿透到画布；
+ * 直接子元素各自接收（面板、搜索、图例、按钮）。tooltip / 提示 / 读屏区域永远不拦截。 */
+#atlas-ui {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+#atlas-ui > * { pointer-events: auto; }
+#atlas-ui > #atlas-tooltip,
+#atlas-ui > #atlas-hint,
+#atlas-ui > #atlas-live { pointer-events: none; }
+/* 关闭的面板滑在视口外（panel.css 用 transform），aria-hidden 时也不接收点击，防止边缘误触 */
+#atlas-ui > #atlas-panel[aria-hidden="true"] { pointer-events: none; }
+
+/* 仅供读屏（style-base 也有同名类；这里再写一遍，避免依赖加载顺序） */
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* 键盘焦点：金色描边，与星图配色一致（覆盖 style-base 的 --accent） */
+#atlas-ui :focus-visible { outline: 2px solid rgba(255, 226, 160, 0.85); outline-offset: 2px; }

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>公式大陆 · Terra Formularum — 代数几何知识地图</title>
+  <link rel="stylesheet" href="../shared/style-base.css">
+  <link rel="stylesheet" href="./map.css">
+  <!-- 关键样式内联：map.css 尚未写好时画布也能铺满（架构师冻结；其余样式全部归 ui 模块的 map.css） -->
+  <style>
+    html, body { height: 100%; overflow: hidden; background: #a9cfe2; }
+    #app { position: fixed; inset: 0; }
+    #map { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+    #map.is-dragging { cursor: grabbing; }
+    #loading { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 15px/1.5 Georgia, "KaiTi", serif; color: #24486a; letter-spacing: .2em; pointer-events: none; }
+    .is-ready #loading { display: none; }
+  </style>
+</head>
+<body>
+  <!-- DOM 结构（架构师冻结）：每个容器由 ui 模块填充内容，id 是契约，见 SPEC §9.1 -->
+  <div id="app">
+    <canvas id="map" role="img" aria-label="代数几何知识地图：8 个知识族为国家，定理为城市，猜想为海上岛屿，研究者为港口"></canvas>
+    <div id="loading">正在测绘大陆…</div>
+
+    <!-- 左上：搜索 + 工具条 -->
+    <div id="search" class="ui-float"></div>
+    <!-- 左下：标题图框（cartouche）+ 图例 -->
+    <aside id="cartouche" class="ui-float" aria-label="图名与图例"></aside>
+    <!-- 左侧弹层：探险者名录（24 位研究者） -->
+    <aside id="register" class="ui-float" aria-label="探险者名录" hidden></aside>
+    <!-- 右侧：详情面板 -->
+    <aside id="panel" class="ui-float" aria-label="详情" aria-live="polite" hidden></aside>
+    <!-- 右下：指北针、比例尺、缩放按钮、级别 -->
+    <div id="hud" class="ui-float"></div>
+    <!-- 悬停提示（跟随指针，不参与避让） -->
+    <div id="tooltip" role="tooltip" hidden></div>
+    <!-- 读屏播报 -->
+    <div id="sr-live" class="sr-only" aria-live="polite"></div>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

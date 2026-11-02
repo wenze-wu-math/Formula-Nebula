@@ -6,13 +6,14 @@
  * 时间相关断言假失败），每个脚本用独立 CDP 端口。
  */
 import { spawn } from 'node:child_process'
+import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const SCRIPTS = [
   ['verify-colors.mjs', 9301],
   ['verify-glow-size.mjs', 9302],
   ['verify-focus-links.mjs', 9303],
-  ['verify-camera-focus.mjs', 9304],
+  ['verify-camera-focus.mjs', 9561],
   ['verify-settings.mjs', 9305],
   ['verify-migration.mjs', 9306],
   ['verify-shapes.mjs', 9307],
@@ -24,18 +25,28 @@ const SCRIPTS = [
   ['check-occlusion.mjs', 9312],
   ['check-data.mjs', 0],          // 纯 Node，不需要浏览器
   ['check-radius-shift.mjs', 0],  // 纯 Node：加内容有没有把老公式挤走
+  /* 严格版**逐文件**证明检查（port 0）：不带参数运行时自行扫描
+   * src/data/proofs/*.js（除 index.js / schema.js），把所有文件的记录
+   * 聚在一起再统计，因此反样板检查是**跨文件**的 —— 同一句话出现在三个
+   * 不同文件里正是"批量注入填充文字"的特征。verify-proofs.mjs 是宽松版，
+   * 这支更严：步骤正文长度下限 / 数学段内裸命令 / 分隔符配对 / 重复句子。
+   * 它是**默认运行**的：以前不带参数会直接报用法错误，所以 verify 从不
+   * 强制执行它，缺陷只会在手工调用时才发现。 */
+  ['_check-proof-file.mjs', 0],
   ['verify-bake-equivalence.mjs', 9403],  // 烘焙流水线 vs 串行，结果必须逐字段一致
   ['verify-status-layout-independent.mjs', 9405],  // 改 status 不许移动任何节点
-  ['verify-status-change.mjs', 9410],              // 改 status 要真的落到色点上
+  ['verify-status-change.mjs', 9560],              // 改 status 要真的落到色点上（避开旧 Edge/CDP 端口）
   /* ── 本轮新增（GitHub 调研落地的功能）──
    * 前四个是**纯 Node**（port 0）：它们验证的是与渲染无关的纯逻辑模块，
    * 不需要浏览器，跑起来也快得多。
    * 最后一个是浏览器脚本：它检查的是"这些纯逻辑真的接到了画面上"。 */
   ['verify-link-types.mjs', 0],        // 关系类型分类器（覆盖率 / 优先级 / 强调预算）
+  ['verify-proofs.mjs', 0],            // 可选证明数据 / uses 引用 / LaTeX
   ['verify-url-state.mjs', 0],         // 深链编解码（含敌意输入）
   ['verify-graph-query.mjs', 0],       // 查询语言 + 寻路 + 邻域
   ['verify-export.mjs', 0],            // SVG 导出（含 XML 良构性）
   ['verify-integration.mjs', 9420],    // 集成：类型上色 / 焦点上下文 / 视口偏移 / 深链
+  ['verify-proof-view.mjs', 9470],     // 证明页：深链 / uses 下潜 / 返回星云 / DOM 不增 draw call
   /* 这两个是**靠看图才发现问题**之后补上的回归。
    * 它们抓的都不是数值错误，而是"数值全对但画面不对"：
    *   - 类型着色必须是纯增量（related 的边逐位不变）
@@ -62,6 +73,18 @@ const SCRIPTS = [
    * 判据用"亮像素**占比**"而不是"最亮值"：星空里有的是孤立亮点，
    * 最亮值很容易被一颗星星拉高，而文字是成片的笔画。 */
   ['_shot-legend.mjs', 9462],
+  /* 证明数据的**逐文件**严格检查（纯 Node）。
+   *
+   * verify-proofs.mjs 看的是合并后的注册表，因此它对"某个源文件里多了一条
+   * 永远被覆盖的记录"或"合并顺序改变了赢家"这类问题不敏感；这支脚本直接
+   * 对着每一个 src/data/proofs/*.js 检查，判据也更严：
+   *   · 每个步骤正文 ≥300 字（一句话不构成证明）
+   *   · 数学分隔符成对，且数学段内不出现丢掉反斜杠的裸命令
+   *   · 反样板：任何 ≥25 字的句子不得在证明间重复超过 2 次
+   *
+   * 为什么必须进套件：先前正是靠它才发现 long-form.js 里有 1.1 万字的
+   * 机器拼接填充，以及三条 conclusion 的反斜杠被吞成了 `ell(D)-ell(K-D)`。 */
+  ['_check-proof-file.mjs', 0, 'src/data/proofs/*.js'],
 ]
 
 /* ── 每个脚本的超时 ──
@@ -79,11 +102,21 @@ const SCRIPTS = [
  * 上限取实测耗时的 4~6 倍，正常机器上永远不会触发。 */
 const TIMEOUT_MS = Number(process.env.VERIFY_TIMEOUT_MS || 480000)  // 8 分钟
 
-function run(file, port) {
+/* 个别脚本在软件渲染下本来就慢，给它们单独的上限。
+ * ⚠ verify-camera-focus 实测 25/25 断言全过，但整轮要 ~8 分钟起步：
+ *   它包含两次聚焦飞入、两次回位、自转恢复、缩放和空白点击，
+ *   每一步都要等逐帧收敛。用统一的 480s 会把它在**全部通过之后**
+ *   才 SIGKILL，汇总表记成"超时"，看起来像失败 —— 那会误导判断。 */
+const TIMEOUT_OVERRIDES = {
+  'verify-camera-focus.mjs': 1200000,   // 20 分钟
+  'verify-settings.mjs': 900000,        // 15 分钟（引力段要等两轮自转）
+}
+
+function run(file, port, extraArgs = []) {
   return new Promise((res) => {
     const env = { ...process.env }
     if (port) env.PORT = String(port)
-    const cp = spawn(process.execPath, [resolve('scripts', file)], {
+    const cp = spawn(process.execPath, [resolve('scripts', file), ...extraArgs], {
       env, stdio: ['ignore', 'pipe', 'pipe'],
     })
     let out = ''
@@ -91,7 +124,8 @@ function run(file, port) {
     const timer = setTimeout(() => {
       killed = true
       try { cp.kill('SIGKILL') } catch { /* 已经退出 */ }
-    }, TIMEOUT_MS)
+    }, TIMEOUT_OVERRIDES[file] || TIMEOUT_MS)
+    /* 汇总里的秒数要按实际超时上限报，否则会在"通过"之后又标一行 480s。 */
     cp.stdout.on('data', (d) => { out += d })
     cp.stderr.on('data', (d) => { out += d })
     cp.on('close', (code) => {
@@ -102,10 +136,19 @@ function run(file, port) {
 }
 
 const rows = []
-for (const [file, port] of SCRIPTS) {
+for (const [file, port, argSpec] of SCRIPTS) {
   process.stdout.write(`\n${'─'.repeat(60)}\n▶ ${file}\n`)
   const t0 = Date.now()
-  const r = await run(file, port)
+  /* `argSpec` 让某个脚本接收文件清单参数（目前只有 _check-proof-file.mjs）。
+   * 用 shell 通配符会让 run-all 依赖 shell，于是这里自己展开 glob，
+   * 保证 spawn 出来的参数与直接手跑 libuv 之外的环境一致。 */
+  const extraArgs = argSpec
+    ? readdirSync(resolve('src/data/proofs'))
+      .filter((name) => name.endsWith('.js') && name !== 'index.js' && name !== 'schema.js')
+      .sort()
+      .map((name) => resolve('src/data/proofs', name))
+    : []
+  const r = await run(file, port, extraArgs)
   const secs = ((Date.now() - t0) / 1000).toFixed(0)
   /* 抽末行结论。
    * ⚠ 失败时**必须把尾部输出打出来**：原来无论成败都只打最后 4 行
@@ -119,7 +162,7 @@ for (const [file, port] of SCRIPTS) {
     console.log(`  ── 失败详情（末 25 行）──`)
     console.log(lines.slice(-25).map((l) => '  ' + l).join('\n'))
   }
-  const tag = r.killed ? `⏱ 超时 ${secs}s（>${TIMEOUT_MS / 1000}s，疑似资源争抢）`
+  const tag = r.killed ? `⏱ 超时 ${secs}s（>${String(TIMEOUT_OVERRIDES[file] || TIMEOUT_MS) / 1000}s，疑似资源争抢）`
                        : `退出码 ${r.code}`
   console.log(`  [${r.code === 0 ? 'OK' : tag}] ${secs}s`)
   rows.push({ file, code: r.code, secs, out: r.out, killed: r.killed })

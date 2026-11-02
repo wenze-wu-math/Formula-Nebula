@@ -17,8 +17,9 @@ import { resolve } from 'node:path'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = Number(process.env.PORT || 9241)
 const OUT = resolve('shots')
@@ -136,6 +137,9 @@ const spot = await evaluate(`(()=>{
   let best=null, bestD=1e9;
   for (const node of n.graph.nodes) {
     const m = node.sprite; if(!m) continue;
+    /* 只挑主星系公式：星团/研究者节点的精灵挂在偏心球心组里，
+     * 用局部坐标直接 project 会把屏幕落点算错（那是另外一组测试的口径）。 */
+    if (node.cluster || node.researcher) continue;
     const c = tmp.copy(m.position).project(cam);
     if (Math.abs(c.x)>0.70 || Math.abs(c.y)>0.70 || c.z>1) continue;
     const d = c.x*c.x + c.y*c.y;

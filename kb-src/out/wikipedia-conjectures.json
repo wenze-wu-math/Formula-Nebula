@@ -1,0 +1,982 @@
+[
+ {
+  "name": "Green's conjecture",
+  "wikiTitle": "Green's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Green's_conjecture",
+  "statement": "the Clifford index of a non-hyperelliptic curve is determined by the extent to which it, as a canonical curve, has linear syzygies.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Green's conjecture]]: the [[Clifford's theorem on special divisors|Clifford index]] of a non-[[hyperelliptic curve]] is determined by the extent to which it, as a [[Canonical bundle|canonical curve]], has [[Linear relation|linear syzygies]]."
+ },
+ {
+  "name": "Hadamard conjecture",
+  "wikiTitle": "Hadamard conjecture",
+  "url": "https://en.wikipedia.org/wiki/Hadamard_conjecture",
+  "statement": "for every positive integer $k$, a Hadamard matrix of order $4k$ exists.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Hadamard conjecture]]: for every positive integer <math>k</math>, a [[Hadamard matrix]] of order <math>4k</math> exists.{{efn|Constructions are now known for every order below 2000 divisible by 4. In August 2026, Levent Alpöge, Philippe Voinov and Saul Reynolds-Haertle announced matrices for the twelve remaining unknown orders below 2000, the smallest of which, 668, had been open since 2005.<ref>{{cite web |last=Weisstein |first=Eric W. |title=Hadamard Matrix |url=https://mathworld.wolfram.com/HadamardMatrix.html |website=MathWorld |access-date=2026-09-10}}</ref>}}"
+ },
+ {
+  "name": "Williamson conjecture",
+  "wikiTitle": "Williamson conjecture",
+  "url": "https://en.wikipedia.org/wiki/Williamson_conjecture",
+  "statement": "the problem of finding Williamson matrices, which can be used to construct Hadamard matrices.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Williamson conjecture]]: the problem of finding Williamson matrices, which can be used to construct Hadamard matrices."
+ },
+ {
+  "name": "Hadamard's maximal determinant problem",
+  "wikiTitle": "Hadamard's maximal determinant problem",
+  "url": "https://en.wikipedia.org/wiki/Hadamard's_maximal_determinant_problem",
+  "statement": "what is the largest determinant of a matrix with entries all equal to 1 or −1?",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Hadamard's maximal determinant problem]]: what is the largest [[determinant]] of a matrix with entries all equal to 1 or −1?"
+ },
+ {
+  "name": "Hilbert's fifteenth problem",
+  "wikiTitle": "Hilbert's fifteenth problem",
+  "url": "https://en.wikipedia.org/wiki/Hilbert's_fifteenth_problem",
+  "statement": "put Schubert calculus on a rigorous foundation.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Hilbert's fifteenth problem]]: put [[Schubert calculus]] on a rigorous foundation."
+ },
+ {
+  "name": "Hilbert's sixteenth problem",
+  "wikiTitle": "Hilbert's sixteenth problem",
+  "url": "https://en.wikipedia.org/wiki/Hilbert's_sixteenth_problem",
+  "statement": "what are the possible configurations of the connected components of M-curves?",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Hilbert's sixteenth problem]]: what are the possible configurations of the [[Connected space|connected components]] of [[Harnack's curve theorem|M-curves]]?"
+ },
+ {
+  "name": "Jacobson's conjecture",
+  "wikiTitle": "Jacobson's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Jacobson's_conjecture",
+  "statement": "the intersection of all powers of the Jacobson radical of a left-and-right Noetherian ring is precisely 0.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Jacobson's conjecture]]: the intersection of all powers of the [[Jacobson radical]] of a left-and-right [[Noetherian ring]] is precisely 0."
+ },
+ {
+  "name": "perfect cuboid",
+  "wikiTitle": "perfect cuboid",
+  "url": "https://en.wikipedia.org/wiki/perfect_cuboid",
+  "statement": "Existence of perfect cuboids and associated cuboid conjectures",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Existence of [[perfect cuboid]]s and associated [[cuboid conjectures]]"
+ },
+ {
+  "name": "Pierce–Birkhoff conjecture",
+  "wikiTitle": "Pierce–Birkhoff conjecture",
+  "url": "https://en.wikipedia.org/wiki/Pierce%E2%80%93Birkhoff_conjecture",
+  "statement": "every piecewise-polynomial $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ is the maximum of a finite set of minimums of finite collections of polynomials.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Pierce–Birkhoff conjecture]]: every piecewise-polynomial <math>f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}</math> is the maximum of a finite set of minimums of finite collections of polynomials."
+ },
+ {
+  "name": "Rota's basis conjecture",
+  "wikiTitle": "Rota's basis conjecture",
+  "url": "https://en.wikipedia.org/wiki/Rota's_basis_conjecture",
+  "statement": "for matroids of rank $n$ with $n$ disjoint bases $B_{i}$, it is possible to create an $n \\times n$ matrix whose rows are $B_{i}$ and whose columns are also bases.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Rota's basis conjecture]]: for matroids of rank <math>n</math> with <math>n</math> disjoint bases <math>B_{i}</math>, it is possible to create an <math>n \\times n</math> matrix whose rows are <math>B_{i}</math> and whose columns are also bases."
+ },
+ {
+  "name": "Serre's positivity conjecture",
+  "wikiTitle": "Serre's multiplicity conjectures",
+  "url": "https://en.wikipedia.org/wiki/Serre's_multiplicity_conjectures",
+  "statement": "that if $R$ is a commutative regular local ring, and $P, Q$ are prime ideals of $R$, then $\\dim (R/P) + \\dim (R/Q) = \\dim (R)$ implies $\\chi(R/P, R/Q) > 0$.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Serre's multiplicity conjectures|Serre's positivity conjecture]] that if <math>R</math> is a commutative [[regular local ring]], and <math>P, Q</math> are [[prime ideal]]s of <math>R</math>, then <math>\\dim (R/P) + \\dim (R/Q) = \\dim (R)</math> implies <math>\\chi(R/P, R/Q) > 0</math>."
+ },
+ {
+  "name": "Wild problem",
+  "wikiTitle": "Wild problem",
+  "url": "https://en.wikipedia.org/wiki/Wild_problem",
+  "statement": "s: problems involving classification of pairs of $n\\times n$ matrices under simultaneous conjugation.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Wild problem]]s: problems involving classification of pairs of <math>n\\times n</math> matrices under simultaneous conjugation."
+ },
+ {
+  "name": "Zariski–Lipman conjecture",
+  "wikiTitle": "Zariski–Lipman conjecture",
+  "url": "https://en.wikipedia.org/wiki/Zariski%E2%80%93Lipman_conjecture",
+  "statement": "for a complex algebraic variety $V$ with coordinate ring $R$, if the derivations of $R$ are a free module over $R$, then $V$ is smooth.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Zariski–Lipman conjecture]]: for a [[complex algebraic variety]] <math>V</math> with [[coordinate ring]] <math>R</math>, if the [[Derivation (algebra)|derivations]] of <math>R</math> are a [[free module]] over <math>R</math>, then <math>V</math> is [[Smooth algebraic variety|smooth]]."
+ },
+ {
+  "name": "SIC-POVM",
+  "wikiTitle": "SIC-POVM",
+  "url": "https://en.wikipedia.org/wiki/SIC-POVM",
+  "statement": "Zauner's conjecture: do SIC-POVMs exist in all dimensions?",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Zauner's conjecture: do [[SIC-POVM]]s exist in all dimensions?"
+ },
+ {
+  "name": "Andrews–Curtis conjecture",
+  "wikiTitle": "Andrews–Curtis conjecture",
+  "url": "https://en.wikipedia.org/wiki/Andrews%E2%80%93Curtis_conjecture",
+  "statement": "every balanced presentation of the trivial group can be transformed into a trivial presentation by a sequence of Nielsen transformations on relators and conjugations of relators",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Andrews–Curtis conjecture]]: every balanced [[Presentation of a group|presentation]] of the [[trivial group]] can be transformed into a trivial presentation by a sequence of [[Nielsen transformation]]s on [[Presentation of a group#Definition|relators]] and conjugations of relators"
+ },
+ {
+  "name": "Bounded Burnside problem",
+  "wikiTitle": "Burnside problem#Bounded Burnside problem",
+  "url": "https://en.wikipedia.org/wiki/Burnside_problem%23Bounded_Burnside_problem",
+  "statement": "for which positive integers m, n is the free Burnside group B(m,n) finite? In particular, is B(2, 5) finite?",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Burnside problem#Bounded Burnside problem|Bounded Burnside problem]]: for which positive integers ''m'', ''n'' is the free Burnside group {{nowrap|B(''m'',''n'')}} finite? In particular, is {{nowrap|B(2, 5)}} finite?"
+ },
+ {
+  "name": "Journal of Algebra",
+  "wikiTitle": "Journal of Algebra",
+  "url": "https://en.wikipedia.org/wiki/Journal_of_Algebra",
+  "statement": "Guralnick–Thompson conjecture on the composition factors of groups in genus-0 systems",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Guralnick–Thompson conjecture on the composition factors of groups in genus-0 systems<ref>{{citation |last=Aschbacher |first=Michael |author-link=Michael Aschbacher |title=On Conjectures of Guralnick and Thompson |journal=[[Journal of Algebra]] |volume=135 |issue=2 |pages=277–343 |year=1990 |doi=10.1016/0021-8693(90)90292-V}}</ref>"
+ },
+ {
+  "name": "Leinster group",
+  "wikiTitle": "Leinster group",
+  "url": "https://en.wikipedia.org/wiki/Leinster_group",
+  "statement": "Are there an infinite number of Leinster groups?",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Are there an infinite number of [[Leinster group]]s?"
+ },
+ {
+  "name": "generalized moonshine",
+  "wikiTitle": "Monstrous moonshine#Generalized moonshine",
+  "url": "https://en.wikipedia.org/wiki/Monstrous_moonshine%23Generalized_moonshine",
+  "statement": "Does generalized moonshine exist?",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Does [[Monstrous moonshine#Generalized moonshine|generalized moonshine]] exist?"
+ },
+ {
+  "name": "finitely presented",
+  "wikiTitle": "finitely presented group",
+  "url": "https://en.wikipedia.org/wiki/finitely_presented_group",
+  "statement": "Is every finitely presented periodic group finite?",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Is every [[finitely presented group|finitely presented]] [[periodic group]] finite?"
+ },
+ {
+  "name": "surjunctive",
+  "wikiTitle": "surjunctive group",
+  "url": "https://en.wikipedia.org/wiki/surjunctive_group",
+  "statement": "Is every group surjunctive?",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Is every group [[surjunctive group|surjunctive]]?"
+ },
+ {
+  "name": "Problems in loop theory and quasigroup theory",
+  "wikiTitle": "Problems in loop theory and quasigroup theory",
+  "url": "https://en.wikipedia.org/wiki/Problems_in_loop_theory_and_quasigroup_theory",
+  "statement": "consider generalizations of groups",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Problems in loop theory and quasigroup theory]] consider generalizations of groups"
+ },
+ {
+  "name": "Brennan conjecture",
+  "wikiTitle": "Brennan conjecture",
+  "url": "https://en.wikipedia.org/wiki/Brennan_conjecture",
+  "statement": "estimating the integral powers of the moduli of the derivative of conformal maps into the open unit disk, on certain subsets of $\\mathbb{C}$",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "The [[Brennan conjecture]]: estimating the integral powers of the moduli of the derivative of [[conformal map]]s into the open unit disk, on certain subsets of <math>\\mathbb{C}</math>"
+ },
+ {
+  "name": "Invariant subspace problem",
+  "wikiTitle": "Invariant subspace problem",
+  "url": "https://en.wikipedia.org/wiki/Invariant_subspace_problem",
+  "statement": "does every bounded operator on a complex Banach space send some non-trivial closed subspace to itself?",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "[[Invariant subspace problem]] – does every [[bounded operator]] on a complex [[Banach space]] send some non-trivial [[Closed set|closed]] subspace to itself?"
+ },
+ {
+  "name": "Journal of the ACM",
+  "wikiTitle": "Journal of the ACM",
+  "url": "https://en.wikipedia.org/wiki/Journal_of_the_ACM",
+  "statement": "Kung–Traub conjecture on the optimal order of a multipoint iteration without memory",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "Kung–Traub conjecture on the optimal order of a multipoint iteration without memory<ref>{{citation |last1=Kung |first1=H. T. |last2=Traub |first2=Joseph Frederick |author-link1=H. T. Kung |author-link2=Joseph F. Traub |title=Optimal order of one-point and multipoint iteration |journal=[[Journal of the ACM]] |year=1974 |volume=21 |number=4 |pages=643–651|doi=10.1145/321850.321860 |s2cid=74921 }}</ref>"
+ },
+ {
+  "name": "mean value problem",
+  "wikiTitle": "mean value problem",
+  "url": "https://en.wikipedia.org/wiki/mean_value_problem",
+  "statement": "given a complex polynomial $f$ of degree $d \\ge 2$ and a complex number $z$, is there a critical point $c$ of $f$ such that $|f(z)-f(c)| \\le |f'(z)||z-c|$?",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "The [[mean value problem]]: given a [[complex number|complex]] [[polynomial]] <math>f</math> of [[Degree of a polynomial|degree]] <math>d \\ge 2</math> and a complex number <math>z</math>, is there a [[critical point (mathematics)|critical point]] <math>c</math> of <math>f</math> such that <math>|f(z)-f(c)| \\le |f'(z)||z-c|</math>?"
+ },
+ {
+  "name": "Pompeiu problem",
+  "wikiTitle": "Pompeiu problem",
+  "url": "https://en.wikipedia.org/wiki/Pompeiu_problem",
+  "statement": "The Pompeiu problem on the topology of domains for which some nonzero function has integrals that vanish over every congruent copy",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "The [[Pompeiu problem]] on the topology of domains for which some nonzero function has integrals that vanish over every congruent copy<ref>{{SpringerEOM|title=Pompeiu problem|id=Pompeiu_problem&oldid=14506|author-last1=Berenstein|author-first1=Carlos A.}}</ref>"
+ },
+ {
+  "name": "Landau's constants",
+  "wikiTitle": "Landau's constants",
+  "url": "https://en.wikipedia.org/wiki/Landau's_constants",
+  "statement": "What is the exact value of Landau's constants, including Bloch's constant?",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "What is the exact value of [[Landau's constants]], including [[Bloch's theorem (complex variables)#Bloch's and Landau's constants|Bloch's constant]]?"
+ },
+ {
+  "name": "Euler equations",
+  "wikiTitle": "Euler equations (fluid dynamics)",
+  "url": "https://en.wikipedia.org/wiki/Euler_equations_(fluid_dynamics)",
+  "statement": "Regularity of solutions of Euler equations",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "Regularity of solutions of [[Euler equations (fluid dynamics)|Euler equations]]{{cn|date=September 2026}}"
+ },
+ {
+  "name": "Vlasov–Maxwell equations",
+  "wikiTitle": "Vlasov–Maxwell equations",
+  "url": "https://en.wikipedia.org/wiki/Vlasov%E2%80%93Maxwell_equations",
+  "statement": "Regularity of solutions of Vlasov–Maxwell equations",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "Regularity of solutions of [[Vlasov–Maxwell equations]]"
+ },
+ {
+  "name": "Lehmer pair",
+  "wikiTitle": "Lehmer pair",
+  "url": "https://en.wikipedia.org/wiki/Lehmer_pair",
+  "statement": "Are there infinitely many Lehmer pairs?",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "Are there infinitely many [[Lehmer pair]]s?<ref>{{citation"
+ },
+ {
+  "name": "1/3–2/3 conjecture",
+  "wikiTitle": "1/3–2/3 conjecture",
+  "url": "https://en.wikipedia.org/wiki/1%2F3%E2%80%932%2F3_conjecture",
+  "statement": "The 1/3–2/3 conjecture – does every finite partially ordered set that is not totally ordered contain two elements x and y such that the probability that x appears before y in a random linear extension is between 1/3 and 2/3?",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The [[1/3–2/3 conjecture]] – does every finite [[partially ordered set]] that is not [[totally ordered]] contain two elements ''x'' and ''y'' such that the probability that ''x'' appears before ''y'' in a random [[linear extension]] is between 1/3 and 2/3?<ref>{{citation"
+ },
+ {
+  "name": "Dittert conjecture",
+  "wikiTitle": "Dittert conjecture",
+  "url": "https://en.wikipedia.org/wiki/Dittert_conjecture",
+  "statement": "The Dittert conjecture concerning the maximum achieved by a particular function of matrices with real, nonnegative entries satisfying a summation condition",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The [[Dittert conjecture]] concerning the maximum achieved by a particular function of matrices with real, nonnegative entries satisfying a summation condition"
+ },
+ {
+  "name": "Problems in Latin squares",
+  "wikiTitle": "Problems in Latin squares",
+  "url": "https://en.wikipedia.org/wiki/Problems_in_Latin_squares",
+  "statement": "open questions concerning Latin squares",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Problems in Latin squares]] – open questions concerning [[Latin squares]]"
+ },
+ {
+  "name": "lonely runner conjecture",
+  "wikiTitle": "lonely runner conjecture",
+  "url": "https://en.wikipedia.org/wiki/lonely_runner_conjecture",
+  "statement": "The lonely runner conjecture – if $k$ runners with pairwise distinct speeds run round a track of unit length, will every runner be \"lonely\" (that is, be at least a distance $1/k$ from each other runner) at some time?",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The [[lonely runner conjecture]] – if <math>k</math> runners with pairwise distinct speeds run round a track of unit length, will every runner be \"lonely\" (that is, be at least a distance <math>1/k</math> from each other runner) at some time?<ref>{{cite journal"
+ },
+ {
+  "name": "Map folding",
+  "wikiTitle": "Map folding",
+  "url": "https://en.wikipedia.org/wiki/Map_folding",
+  "statement": "various problems in map folding and stamp folding.",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Map folding]] – various problems in map folding and stamp folding."
+ },
+ {
+  "name": "No-three-in-line problem",
+  "wikiTitle": "No-three-in-line problem",
+  "url": "https://en.wikipedia.org/wiki/No-three-in-line_problem",
+  "statement": "how many points can be placed in the $n \\times n$ grid so that no three of them lie on a line?",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[No-three-in-line problem]] – how many points can be placed in the <math>n \\times n</math> grid so that no three of them lie on a line?"
+ },
+ {
+  "name": "sunflower conjecture",
+  "wikiTitle": "sunflower (mathematics)",
+  "url": "https://en.wikipedia.org/wiki/sunflower_(mathematics)",
+  "statement": "The sunflower conjecture – can the number of $k$ size sets required for the existence of a sunflower of $r$ sets be bounded by an exponential function in $k$ for every fixed $r>2$?",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The [[sunflower (mathematics)|sunflower conjecture]] – can the number of <math>k</math> size sets required for the existence of a sunflower of <math>r</math> sets be bounded by an exponential function in <math>k</math> for every fixed <math>r>2</math>?"
+ },
+ {
+  "name": "union-closed sets conjecture",
+  "wikiTitle": "union-closed sets conjecture",
+  "url": "https://en.wikipedia.org/wiki/union-closed_sets_conjecture",
+  "statement": "Frankl's union-closed sets conjecture – for any family of sets closed under sums there exists an element (of the underlying space) belonging to half or more of the sets",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Frankl's [[union-closed sets conjecture]] – for any family of sets closed under sums there exists an element (of the underlying space) belonging to half or more of the sets<ref>{{citation"
+ },
+ {
+  "name": "Kronecker coefficient",
+  "wikiTitle": "Kronecker coefficient",
+  "url": "https://en.wikipedia.org/wiki/Kronecker_coefficient",
+  "statement": "Give a combinatorial interpretation of the Kronecker coefficients",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Give a combinatorial interpretation of the [[Kronecker coefficient]]s<ref>{{citation"
+ },
+ {
+  "name": "Dedekind number",
+  "wikiTitle": "Dedekind number",
+  "url": "https://en.wikipedia.org/wiki/Dedekind_number",
+  "statement": "The values of the Dedekind numbers $M(n)$ for $n \\ge 10$",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The values of the [[Dedekind number]]s <math>M(n)</math> for <math>n \\ge 10</math><ref>{{Cite web |url=http://www.sfu.ca/~tyusun/ThesisDedekind.pdf |title=Dedekind Numbers and Related Sequences |access-date=2020-04-30 |archive-date=2015-03-15 |archive-url=https://web.archive.org/web/20150315021125/http://www.sfu.ca/~tyusun/ThesisDedekind.pdf }}</ref>"
+ },
+ {
+  "name": "Ramsey numbers",
+  "wikiTitle": "Ramsey numbers",
+  "url": "https://en.wikipedia.org/wiki/Ramsey_numbers",
+  "statement": "The values of the Ramsey numbers (particularly $R(5, 5)$) as well as asymptotic growth (e.g. of $R(n,n)$)",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The values of the [[Ramsey numbers]] (particularly <math>R(5, 5)</math>) as well as asymptotic growth (e.g. of <math>R(n,n)</math>)"
+ },
+ {
+  "name": "Van der Waerden number",
+  "wikiTitle": "Van der Waerden number",
+  "url": "https://en.wikipedia.org/wiki/Van_der_Waerden_number",
+  "statement": "The values of the Van der Waerden numbers",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "The values of the [[Van der Waerden number]]s"
+ },
+ {
+  "name": "self-avoiding walk",
+  "wikiTitle": "self-avoiding walk",
+  "url": "https://en.wikipedia.org/wiki/self-avoiding_walk",
+  "statement": "Finding a function to model n-step self-avoiding walks",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Finding a function to model n-step [[self-avoiding walk]]s<ref>{{Cite journal|last1=Liśkiewicz|first1=Maciej|last2=Ogihara|first2=Mitsunori|last3=Toda|first3=Seinosuke|date=2003-07-28|title=The complexity of counting self-avoiding walks in subgraphs of two-dimensional grids and hypercubes|journal=Theoretical Computer Science|volume=304|issue=1|pages=129–156|doi=10.1016/S0304-3975(03)00080-X|s2cid=33806100 }}</ref>"
+ },
+ {
+  "name": "Bass–Quillen conjecture",
+  "wikiTitle": "Bass–Quillen conjecture",
+  "url": "https://en.wikipedia.org/wiki/Bass%E2%80%93Quillen_conjecture",
+  "statement": "relating vector bundles over a regular Noetherian ring and over the polynomial ring $A[t_{1}, \\ldots, t_{n}]$.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Bass–Quillen conjecture]] relating [[vector bundle]]s over a [[Regular local ring#Regular ring|regular]] [[Noetherian ring]] and over the [[polynomial ring]] <math>A[t_{1}, \\ldots, t_{n}]</math>."
+ },
+ {
+  "name": "Deligne conjecture",
+  "wikiTitle": "Deligne conjecture",
+  "url": "https://en.wikipedia.org/wiki/Deligne_conjecture",
+  "statement": "any one of numerous named for Pierre Deligne.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Deligne conjecture]]: any one of numerous named for [[Pierre Deligne]]."
+ },
+ {
+  "name": "Deligne's conjecture on Hochschild cohomology",
+  "wikiTitle": "Deligne's conjecture on Hochschild cohomology",
+  "url": "https://en.wikipedia.org/wiki/Deligne's_conjecture_on_Hochschild_cohomology",
+  "statement": "about the operadic structure on Hochschild cochain complex.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Deligne's conjecture on Hochschild cohomology]] about the [[operad]]ic structure on [[Hochschild homology|Hochschild cochain complex]]."
+ },
+ {
+  "name": "Dixmier conjecture",
+  "wikiTitle": "Dixmier conjecture",
+  "url": "https://en.wikipedia.org/wiki/Dixmier_conjecture",
+  "statement": "any endomorphism of the Weyl algebras $A_{1}$ and $A_{2}$ is an automorphism.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Dixmier conjecture]]: any [[endomorphism]] of the [[Weyl algebra]]s <math>A_{1}</math> and <math>A_{2}</math> is an [[automorphism]]."
+ },
+ {
+  "name": "Fujita conjecture",
+  "wikiTitle": "Fujita conjecture",
+  "url": "https://en.wikipedia.org/wiki/Fujita_conjecture",
+  "statement": "regarding the line bundle $K_{M} \\otimes L^{\\otimes m}$ constructed from a positive holomorphic line bundle $L$ on a compact complex manifold $M$ and the canonical line bundle $K_{M}$ of $M$",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Fujita conjecture]] regarding the line bundle <math>K_{M} \\otimes L^{\\otimes m}</math> constructed from a [[Positive form#Positive line bundles|positive]] [[Holomorphic vector bundle|holomorphic line bundle]] <math>L</math> on a [[Compact space|compact]] [[complex manifold]] <math>M</math> and the [[Canonical bundle|canonical line bundle]] <math>K_{M}</math> of <math>M</math>"
+ },
+ {
+  "name": "spherical",
+  "wikiTitle": "Spherical geometry",
+  "url": "https://en.wikipedia.org/wiki/Spherical_geometry",
+  "statement": "In spherical or hyperbolic geometry, must polyhedra with the same volume and Dehn invariant be scissors-congruent?",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "In [[Spherical geometry|spherical]] or [[hyperbolic geometry]], must polyhedra with the same volume and [[Dehn invariant]] be [[scissors-congruent]]?<ref>{{citation"
+ },
+ {
+  "name": "Jacobian conjecture",
+  "wikiTitle": "Jacobian conjecture",
+  "url": "https://en.wikipedia.org/wiki/Jacobian_conjecture",
+  "statement": "for two-dimensional spaces: if a two-dimensional polynomial mapping over a characteristic-0 field has a constant nonzero Jacobian determinant, then does it have a regular (i.e. with polynomial components) inverse function?",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Jacobian conjecture]] for two-dimensional spaces: if a two-dimensional [[polynomial mapping]] over a [[Characteristic (algebra)|characteristic]]-0 field has a constant nonzero [[Jacobian matrix and determinant|Jacobian determinant]], then does it have a [[Morphism of algebraic varieties|regular]] (i.e. with polynomial components) inverse function?"
+ },
+ {
+  "name": "Nagata's conjecture on curves",
+  "wikiTitle": "Nagata's conjecture on curves",
+  "url": "https://en.wikipedia.org/wiki/Nagata's_conjecture_on_curves",
+  "statement": "specifically the minimal degree required for a plane algebraic curve to pass through a collection of very general points with prescribed multiplicities.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Nagata's conjecture on curves]], specifically the minimal degree required for a [[Algebraic curve|plane algebraic curve]] to pass through a collection of very general points with prescribed [[Multiplicity (mathematics)|multiplicities]]."
+ },
+ {
+  "name": "Nagata–Biran conjecture",
+  "wikiTitle": "Nagata–Biran conjecture",
+  "url": "https://en.wikipedia.org/wiki/Nagata%E2%80%93Biran_conjecture",
+  "statement": "that if $X$ is a smooth algebraic surface and $L$ is an ample line bundle on $X$ of degree $d$, then for sufficiently large $r$, the Seshadri constant satisfies $\\varepsilon(p_1,\\ldots,p_r;X,L) = d/\\sqrt{r}$.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Nagata–Biran conjecture]] that if <math>X</math> is a smooth [[algebraic surface]] and <math>L</math> is an [[ample line bundle]] on <math>X</math> of degree <math>d</math>, then for sufficiently large <math>r</math>, the [[Seshadri constant]] satisfies <math>\\varepsilon(p_1,\\ldots,p_r;X,L) = d/\\sqrt{r}</math>."
+ },
+ {
+  "name": "Parshin's conjecture",
+  "wikiTitle": "Parshin's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Parshin's_conjecture",
+  "statement": "the higher algebraic K-groups of any smooth projective variety defined over a finite field must vanish up to torsion.",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "[[Parshin's conjecture]]: the higher [[Algebraic K-theory|algebraic K-groups]] of any [[Smooth morphism|smooth]] [[projective variety]] defined over a [[finite field]] must vanish up to torsion."
+ },
+ {
+  "name": "varieties",
+  "wikiTitle": "algebraic variety",
+  "url": "https://en.wikipedia.org/wiki/algebraic_variety",
+  "statement": "Zariski multiplicity conjecture on the topological equisingularity and equimultiplicity of varieties at singular points",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "Zariski multiplicity conjecture on the topological equisingularity and equimultiplicity of [[algebraic variety|varieties]] at [[singular point of an algebraic variety|singular points]]<ref>{{cite journal|last=Zariski |first=Oscar |author-link=Oscar Zariski |title=Some open questions in the theory of singularities |journal=[[Bulletin of the American Mathematical Society]] |volume=77 |issue=4 |year=1971 |pages=481–491 |doi=10.1090/S0002-9904-1971-12729-5 |mr=0277533|doi-access=free }}</ref>"
+ },
+ {
+  "name": "flips",
+  "wikiTitle": "Flip (algebraic geometry)",
+  "url": "https://en.wikipedia.org/wiki/Flip_(algebraic_geometry)",
+  "statement": "Are infinite sequences of flips possible in dimensions greater than 3?",
+  "section": "Algebraic geometry",
+  "field": "ag",
+  "family": "scheme",
+  "raw": "Are infinite sequences of [[Flip (algebraic geometry)|flips]] possible in dimensions greater than 3?"
+ },
+ {
+  "name": "partition principle",
+  "wikiTitle": "Axiom of choice#Possibly equivalent implications of AC",
+  "url": "https://en.wikipedia.org/wiki/Axiom_of_choice%23Possibly_equivalent_implications_of_AC",
+  "statement": "Does the partition principle (PP) imply the axiom of choice (AC)?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "Does the [[Axiom of choice#Possibly equivalent implications of AC|partition principle]] (PP) imply the [[axiom of choice]] (AC)?"
+ },
+ {
+  "name": "generalized continuum hypothesis",
+  "wikiTitle": "generalized continuum hypothesis",
+  "url": "https://en.wikipedia.org/wiki/generalized_continuum_hypothesis",
+  "statement": "Does the generalized continuum hypothesis entail ${\\diamondsuit(E^{\\lambda^+}_{\\operatorname{cf}(\\lambda))$ for every singular cardinal $\\lambda$?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "Does the [[generalized continuum hypothesis]] entail [[Diamondsuit|<math>{\\diamondsuit(E^{\\lambda^+}_{\\operatorname{cf}(\\lambda)}})</math>]] for every [[singular cardinal]] <math>\\lambda</math>?"
+ },
+ {
+  "name": "generalized continuum hypothesis",
+  "wikiTitle": "generalized continuum hypothesis",
+  "url": "https://en.wikipedia.org/wiki/generalized_continuum_hypothesis",
+  "statement": "Does the generalized continuum hypothesis imply the existence of an ℵ<sub>2</sub>-Suslin tree?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "Does the [[generalized continuum hypothesis]] imply the existence of an [[Suslin tree|ℵ<sub>2</sub>-Suslin tree]]?"
+ },
+ {
+  "name": "Singular cardinals hypothesis",
+  "wikiTitle": "Singular cardinals hypothesis",
+  "url": "https://en.wikipedia.org/wiki/Singular_cardinals_hypothesis",
+  "statement": "If ℵ<sub>ω</sub> is a strong limit cardinal, is $2^{\\aleph_\\omega} < \\aleph_{\\omega_1}$ (see Singular cardinals hypothesis)? The best bound, ℵ<sub>ω<sub>4</sub></sub>, was obtained by Shelah using his PCF theory.",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "If ℵ<sub>ω</sub> is a strong limit cardinal, is <math>2^{\\aleph_\\omega} < \\aleph_{\\omega_1}</math> (see [[Singular cardinals hypothesis]])? The best bound, ℵ<sub>ω<sub>4</sub></sub>, was obtained by [[Saharon Shelah|Shelah]] using his [[PCF theory]]."
+ },
+ {
+  "name": "core model",
+  "wikiTitle": "core model",
+  "url": "https://en.wikipedia.org/wiki/core_model",
+  "statement": "The problem of finding the ultimate core model, one that contains all large cardinals.",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "The problem of finding the ultimate [[core model]], one that contains all [[Large cardinal property|large cardinals]]."
+ },
+ {
+  "name": "consistency",
+  "wikiTitle": "consistency",
+  "url": "https://en.wikipedia.org/wiki/consistency",
+  "statement": "Does the consistency of the existence of a strongly compact cardinal imply the consistent existence of a supercompact cardinal?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "Does the [[consistency]] of the existence of a [[strongly compact cardinal]] imply the consistent existence of a [[supercompact cardinal]]?"
+ },
+ {
+  "name": "Jónsson algebra",
+  "wikiTitle": "Jónsson cardinal",
+  "url": "https://en.wikipedia.org/wiki/J%C3%B3nsson_cardinal",
+  "statement": "Does there exist a Jónsson algebra on ℵ<sub>ω</sub>?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "Does there exist a [[Jónsson cardinal|Jónsson algebra]] on ℵ<sub>ω</sub>?"
+ },
+ {
+  "name": "open coloring axiom",
+  "wikiTitle": "open coloring axiom",
+  "url": "https://en.wikipedia.org/wiki/open_coloring_axiom",
+  "statement": "Is OCA (the open coloring axiom) consistent with $2^{\\aleph_{0>\\aleph_{2}$?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "Is OCA (the [[open coloring axiom]]) consistent with <math>2^{\\aleph_{0}}>\\aleph_{2}</math>?"
+ },
+ {
+  "name": "Reinhardt cardinal",
+  "wikiTitle": "Reinhardt cardinal",
+  "url": "https://en.wikipedia.org/wiki/Reinhardt_cardinal",
+  "statement": "s: Without assuming the axiom of choice, can a nontrivial elementary embedding V→V exist?",
+  "section": "Set theory",
+  "field": "logic",
+  "family": "foundation",
+  "raw": "[[Reinhardt cardinal]]s: Without assuming the [[axiom of choice]], can a [[Reinhardt cardinal|nontrivial elementary embedding]] ''V''→''V'' exist?"
+ },
+ {
+  "name": "Baum–Connes conjecture",
+  "wikiTitle": "Baum–Connes conjecture",
+  "url": "https://en.wikipedia.org/wiki/Baum%E2%80%93Connes_conjecture",
+  "statement": "the assembly map is an isomorphism.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Baum–Connes conjecture]]: the [[Baum–Connes conjecture#Formulation|assembly map]] is an [[isomorphism]]."
+ },
+ {
+  "name": "Berge conjecture",
+  "wikiTitle": "Berge knot",
+  "url": "https://en.wikipedia.org/wiki/Berge_knot",
+  "statement": "that the only knots in the 3-sphere which admit lens space surgeries are Berge knots.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Berge knot|Berge conjecture]] that the only [[Knot (mathematics)|knots]] in the [[3-sphere]] which admit [[lens space]] [[Dehn surgery|surgeries]] are [[Berge knot]]s."
+ },
+ {
+  "name": "Bing–Borsuk conjecture",
+  "wikiTitle": "Bing–Borsuk conjecture",
+  "url": "https://en.wikipedia.org/wiki/Bing%E2%80%93Borsuk_conjecture",
+  "statement": "every $n$-dimensional homogeneous absolute neighborhood retract is a topological manifold.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Bing–Borsuk conjecture]]: every <math>n</math>-dimensional [[Homogeneous space|homogeneous]] [[Retraction (topology)|absolute neighborhood retract]] is a [[topological manifold]]."
+ },
+ {
+  "name": "Borel conjecture",
+  "wikiTitle": "Borel conjecture",
+  "url": "https://en.wikipedia.org/wiki/Borel_conjecture",
+  "statement": "aspherical and closed manifolds are determined up to homeomorphism by their fundamental groups.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Borel conjecture]]: [[Aspherical space|aspherical]] and [[closed manifold]]s are determined up to [[homeomorphism]] by their [[fundamental group]]s."
+ },
+ {
+  "name": "Telescope conjecture",
+  "wikiTitle": "Ravenel's conjectures",
+  "url": "https://en.wikipedia.org/wiki/Ravenel's_conjectures",
+  "statement": "the last of Ravenel's conjectures in stable homotopy theory to be resolved.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Ravenel's conjectures|Telescope conjecture]]: the last of [[Ravenel's conjectures]] in [[stable homotopy theory]] to be resolved."
+ },
+ {
+  "name": "Unknotting problem",
+  "wikiTitle": "Unknotting problem",
+  "url": "https://en.wikipedia.org/wiki/Unknotting_problem",
+  "statement": "can unknots be recognized in polynomial time?",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Unknotting problem]]: can [[unknot]]s be recognized in [[Time complexity#Polynomial time|polynomial time]]?"
+ },
+ {
+  "name": "Volume conjecture",
+  "wikiTitle": "Volume conjecture",
+  "url": "https://en.wikipedia.org/wiki/Volume_conjecture",
+  "statement": "relating quantum invariants of knots to the hyperbolic geometry of their knot complements.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Volume conjecture]] relating [[quantum invariant]]s of [[Knot (mathematics)|knots]] to the [[hyperbolic geometry]] of their [[knot complement]]s."
+ },
+ {
+  "name": "Whitehead conjecture",
+  "wikiTitle": "Whitehead conjecture",
+  "url": "https://en.wikipedia.org/wiki/Whitehead_conjecture",
+  "statement": "every connected subcomplex of a two-dimensional aspherical CW complex is aspherical.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Whitehead conjecture]]: every [[Connectedness|connected]] [[CW complex#Inductive construction of CW complexes|subcomplex]] of a two-dimensional [[Aspherical space|aspherical]] [[CW complex]] is aspherical."
+ },
+ {
+  "name": "Zeeman conjecture",
+  "wikiTitle": "Zeeman conjecture",
+  "url": "https://en.wikipedia.org/wiki/Zeeman_conjecture",
+  "statement": "given a finite contractible two-dimensional CW complex $K$, is the space $K \\times [0, 1]$ collapsible?",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Zeeman conjecture]]: given a finite [[Contractible space|contractible]] two-dimensional [[CW complex]] <math>K</math>, is the space <math>K \\times [0, 1]</math> [[Collapse (topology)|collapsible]]?"
+ },
+ {
+  "name": "Nearby Lagrangian conjecture",
+  "wikiTitle": "Nearby Lagrangian conjecture",
+  "url": "https://en.wikipedia.org/wiki/Nearby_Lagrangian_conjecture",
+  "statement": "prove or find a counter-example to the statement: Any closed exact Lagrangian submanifold of the cotangent bundle of a closed manifold is Hamiltonian isotopic to the zero section.",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "[[Nearby Lagrangian conjecture]]: prove or find a counter-example to the statement: Any closed exact [[Lagrangian submanifold]] of the [[cotangent bundle]] of a [[closed manifold]] is [[Symplectomorphism#Flows|Hamiltonian isotopic]] to the [[Vector bundle#Sections and locally free sheaves|zero section]].<ref>{{Cite web|url=https://celebratio.org/Eliashberg_Y/article/1188/|title=Celebratio Mathematica — Eliashberg — Generating functions|website=Celebratio.org|access-date=June 16, 2026}}</ref>"
+ },
+ {
+  "name": "Jacobian conjecture",
+  "wikiTitle": "Jacobian conjecture",
+  "url": "https://en.wikipedia.org/wiki/Jacobian_conjecture",
+  "statement": "Disproof of the Jacobian conjecture for more than 2 dimensions (Levent Alpöge, 2026 using Claude Fable 5).",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Disproof of the [[Jacobian conjecture]] for more than 2 dimensions ([[Levent Alpöge]], 2026 using [[Claude Mythos|Claude Fable 5]]).<ref>{{cite news|url=https://www.newscientist.com/article/2580374-ais-solution-to-87-year-old-riddle-takes-mathematicians-by-surprise/|title=AI's solution to 87-year-old riddle takes mathematicians by surprise|author= Matthew Sparkes|date=July 20, 2026|publisher=[[New Scientist]]}}</ref><ref>{{Cite tweet |user=__alpoge__ |number=2079028340955197566 |title=hello there the jacobian conjecture is false}}</ref><ref name=mathworld>{{MathWorld |id=JacobianConjecture |title=Jacobian Conjecture}}</ref>"
+ },
+ {
+  "name": "Dixmier conjecture",
+  "wikiTitle": "Dixmier conjecture",
+  "url": "https://en.wikipedia.org/wiki/Dixmier_conjecture",
+  "statement": "Disproof of the Dixmier conjecture for $n \\geq 3$, stably equivalent to the Jacobian conjecture.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Disproof of the [[Dixmier conjecture]] for <math>n \\geq 3</math>, stably equivalent to the Jacobian conjecture."
+ },
+ {
+  "name": "Mazur's conjecture B",
+  "wikiTitle": "Uniform boundedness conjecture for rational points#Mazur's conjecture B",
+  "url": "https://en.wikipedia.org/wiki/Uniform_boundedness_conjecture_for_rational_points%23Mazur's_conjecture_B",
+  "statement": "(Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020).",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Uniform boundedness conjecture for rational points#Mazur's conjecture B|Mazur's conjecture B]] ([[Vesselin Dimitrov|Vessilin Dimitrov]], [[Ziyang Gao]], and [[Philipp Habegger]], 2020).<ref>{{cite journal"
+ },
+ {
+  "name": "Suita conjecture",
+  "wikiTitle": "Suita conjecture",
+  "url": "https://en.wikipedia.org/wiki/Suita_conjecture",
+  "statement": "(Qi'an Guan and Xiangyu Zhou, 2015).",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Suita conjecture]] (Qi'an Guan and [[Xiangyu Zhou]], 2015).<ref>{{cite journal"
+ },
+ {
+  "name": "Connes embedding problem",
+  "wikiTitle": "Connes embedding problem",
+  "url": "https://en.wikipedia.org/wiki/Connes_embedding_problem",
+  "statement": "Disproof of the Connes embedding problem (Zhengfeng Ji, Anand Natarajan, Thomas Vidick, John Wright, and Henry Yuen, 2020), as a consequence of their proof that $\\mathrm{MIP}^*=\\mathrm{RE}$.",
+  "section": "Algebra",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Disproof of the [[Connes embedding problem]] (Zhengfeng Ji, Anand Natarajan, Thomas Vidick, John Wright, and Henry Yuen, 2020), as a consequence of their proof that <math>\\mathrm{MIP}^*=\\mathrm{RE}</math>.<ref>{{cite journal |last1=Goldbring |first1=Isaac |last2=Hart |first2=Bradd |title=The Universal Theory of the Hyperfinite II<sub>1</sub> Factor Is Not Computable |journal=Bulletin of Symbolic Logic |volume=30 |issue=2 |pages=181–198 |year=2024 |doi=10.1017/bsl.2024.7}}</ref>"
+ },
+ {
+  "name": "non-sofic",
+  "wikiTitle": "sofic group",
+  "url": "https://en.wikipedia.org/wiki/sofic_group",
+  "statement": "Existence of a non-sofic, discrete, countable group (solution in an anonymized paper published by OpenAI, 2026).",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Existence of a [[sofic group|non-sofic]], discrete, countable group (solution in an anonymized paper published by [[OpenAI]], 2026).<ref>{{Cite web |date=2026-07-29 |title=Ten advances in mathematics and theoretical computer science |url=https://openai.com/index/ten-advances-in-mathematics/ |access-date=2026-08-01 |website=OpenAI |language=en-US}}</ref>"
+ },
+ {
+  "name": "Umbral moonshine",
+  "wikiTitle": "Umbral moonshine",
+  "url": "https://en.wikipedia.org/wiki/Umbral_moonshine",
+  "statement": "conjecture (John F. R. Duncan, Michael J. Griffin, Ken Ono, 2015).",
+  "section": "Group theory",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Umbral moonshine]] conjecture (John F. R. Duncan, Michael J. Griffin, [[Ken Ono]], 2015).<ref>{{cite journal|title=Proof of the umbral moonshine conjecture|first1=John F. R.|last1=Duncan|first2=Michael J.|last2=Griffin|first3=Ken|last3=Ono|date=1 December 2015|journal=Research in the Mathematical Sciences|volume=2|issue=1|page=26|doi=10.1186/s40687-015-0044-7|bibcode=2015arXiv150301472D|arxiv=1503.01472|s2cid=43589605 |doi-access=free }}</ref>"
+ },
+ {
+  "name": "Sendov's conjecture",
+  "wikiTitle": "Sendov's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Sendov's_conjecture",
+  "statement": "and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026).",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "[[Sendov's conjecture]] and Phelps–Rodriguez conjecture (Lech Mazur using [[GPT-5.6]] Pro, 2026).<ref>{{cite web|url=https://www.proofatlas.ai/papers/sendov-conjecture/SENDOV_CONJECTURE_PROOF_AUGUST_5_2026.pdf |title=A Computer-Assisted Proof of Sendov's Conjecture|website=Proofatlas.ai|access-date=2026-08-28}}</ref><ref>{{Cite web |date=2026-08-12 |title=A digestion of the proof of Sendov's conjecture |url=https://terrytao.wordpress.com/2026/08/12/a-digestion-of-the-proof-of-sendovs-conjecture/ |access-date=2026-08-20 |website=Terence Tao's Blog |language=en}}</ref>"
+ },
+ {
+  "name": "Crouzeix's conjecture",
+  "wikiTitle": "Crouzeix's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Crouzeix's_conjecture",
+  "statement": "(Shanmu Jin using GPT-5.6 Sol, 2026. Subsequent independent proof by Emiel Lorist and Felix Schwenninger using GPT-5.6 Sol, 2026).",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "[[Crouzeix's conjecture]] (Shanmu Jin using [[GPT-5|GPT-5.6 Sol]], 2026. Subsequent independent proof by Emiel Lorist and Felix Schwenninger using [[GPT-5|GPT-5.6 Sol]], 2026).<ref>{{Citation |last=Jin |first=Shanmu |title=The Numerical Range Is a 2-Spectral Set |year=2026 |url=https://www.preprints.org/manuscript/202607.1919/v1 |doi=10.20944/preprints202607.1919.v1 |doi-access=free}}</ref><ref>{{cite arXiv |last1=Lorist |first1=Emiel |last2=Schwenninger |first2=Felix |title=A solution to Crouzeix's conjecture |year=2026 |eprint=2608.03841 |class=math.CA}}</ref><ref name=\"TownsendGreenbaum2026\">{{cite web |last1=Townsend |first1=Alex |last2=Greenbaum |first2=Anne |title=The Neurosurgery Resident Who Proved Crouzeix's Conjecture |url=https://alextownsend.net/essays/SIAMNews_CrouzeixConjecture.pdf |date=2026-08-14 |access-date=2026-09-10}}</ref>"
+ },
+ {
+  "name": "Heil–Ramanathan–Topiwala conjecture",
+  "wikiTitle": "Heil–Ramanathan–Topiwala conjecture",
+  "url": "https://en.wikipedia.org/wiki/Heil%E2%80%93Ramanathan%E2%80%93Topiwala_conjecture",
+  "statement": "(Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using GPT-5.6 Pro, 2026).",
+  "section": "Analysis",
+  "field": "analysis",
+  "family": "foundation",
+  "raw": "[[Heil–Ramanathan–Topiwala conjecture]] (Markus Faulhuber, Philipp Petersen, Jordy Timo van Velthoven, Felix Voigtlaender using [[GPT-5.6]] Pro, 2026).<ref>{{Cite web |date=2026-08-06 |title=A partial digestion of the HRT counterexample |url=https://terrytao.wordpress.com/2026/08/06/a-partial-digestion-of-the-hrt-counterexample/ |access-date=2026-08-20 |website=Terence Tao's Blog |language=en}}</ref>"
+ },
+ {
+  "name": "Erdős unit distance conjecture",
+  "wikiTitle": "Unit distance graph#Number of edges",
+  "url": "https://en.wikipedia.org/wiki/Unit_distance_graph%23Number_of_edges",
+  "statement": "(published in an anonymized paper by OpenAI, 2026).",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Unit distance graph#Number of edges|Erdős unit distance conjecture]] (published in an anonymized paper by [[OpenAI]], 2026).<ref>{{Cite web | url=https://community.wolfram.com/groups/-/m/t/3719376 | title=OpenAI disproves Erdős unit distance conjecture | website=Wolfram Community | date=21 May 2026 }}</ref><ref>{{Cite web | url=https://cdn.openai.com/pdf/74c24085-19b0-4534-9c90-465b8e29ad73/unit-distance-proof.pdf |title = Planar Point Sets with Many Unit Distances | website = OpenAI}}</ref>"
+ },
+ {
+  "name": "Bunkbed conjecture",
+  "wikiTitle": "Bunkbed conjecture",
+  "url": "https://en.wikipedia.org/wiki/Bunkbed_conjecture",
+  "statement": "(Nikita Gladkov, Igor Pak, Alexander Zimin, 2025).",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Bunkbed conjecture]] (Nikita Gladkov, [[Igor Pak]], Alexander Zimin, 2025).<ref>{{Cite journal |last1=Gladkov |first1=Nikita |last2=Pak |first2=Igor |last3=Zimin |first3=Aleksandr |date=2025-06-17 |title=The bunkbed conjecture is false |journal=Proceedings of the National Academy of Sciences |volume=122 |issue=24 |article-number=e2420725122 |bibcode=2025PNAS..12220725G |doi=10.1073/pnas.2420725122 |pmc=12184427 |pmid=40512791 |bibcode-access=free |doi-access=free |arxiv=2410.02545 }}</ref>"
+ },
+ {
+  "name": "Erdős sumset conjecture",
+  "wikiTitle": "Erdős sumset conjecture",
+  "url": "https://en.wikipedia.org/wiki/Erd%C5%91s_sumset_conjecture",
+  "statement": "(Joel Moreira, Florian Richter, Donald Robertson, 2018).",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "[[Erdős sumset conjecture]] (Joel Moreira, Florian Richter, Donald Robertson, 2018).<ref>{{Cite journal |last1=Moreira |first1=Joel |last2=Richter |first2=Florian K. |last3=Robertson |first3=Donald |title=A proof of a sumset conjecture of Erdős |journal=[[Annals of Mathematics]] |doi=10.4007/annals.2019.189.2.4 |volume=189 |number=2 |pages=605–652 |language=en-US|year=2019 |arxiv=1803.00498 |s2cid=119158401 }}</ref>"
+ },
+ {
+  "name": "cap set problem",
+  "wikiTitle": "cap set problem",
+  "url": "https://en.wikipedia.org/wiki/cap_set_problem",
+  "statement": "Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016).",
+  "section": "Combinatorics",
+  "field": "algebra",
+  "family": "foundation",
+  "raw": "Upper bound for the [[cap set problem]] ([[Jordan Ellenberg]], Dion Gijswijt, 2016).<ref>{{Cite journal |date=2017 |last1=Ellenberg |first1=Jordan S. |last2=Gijswijt |first2=Dion |title=On large subsets of <math>\\mathbb{F}_q^n</math> with no three-term arithmetic progression |journal=Annals of Mathematics |volume=185 |issue=1 |pages=339–343 |doi=10.4007/annals.2017.185.1.8 |mr=3583358 |zbl=06686590 |doi-access=free}}</ref>"
+ },
+ {
+  "name": "Talagrand's convexity conjecture",
+  "wikiTitle": "Talagrand's convexity conjecture",
+  "url": "https://en.wikipedia.org/wiki/Talagrand's_convexity_conjecture",
+  "statement": "(Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026).",
+  "section": "Geometry",
+  "field": "topo",
+  "family": "curve",
+  "raw": "[[Talagrand's convexity conjecture]] (Dongming Hua, [[Antoine Song]], Stefan Tudose using [[GPT-5.5]] Pro, 2026).<ref>{{cite web |last=Kasal |first=Krystal |date=24 May 2026 |editor-last=Clark |editor-first=Gaby |editor2-last=Egan |editor2-first=Robert |title=Mathematicians solve decades-old mystery about the hidden order in high-dimensional randomness |url=https://phys.org/news/2026-05-mathematicians-decades-mystery-hidden-high.html |website=Phys.org}}</ref><ref>{{cite web |last=Howlett |first=Joseph |date=19 May 2026 |editor-last=Billings |editor-first=Lee |title='Sensational' proof topples decades-old geometry problem |url=https://www.scientificamerican.com/article/sensational-proof-topples-decades-old-geometry-problem/ |website=[[Scientific American]]}}</ref>"
+ },
+ {
+  "name": "Carathéodory conjecture",
+  "wikiTitle": "Carathéodory conjecture",
+  "url": "https://en.wikipedia.org/wiki/Carath%C3%A9odory_conjecture",
+  "statement": "for surfaces of smoothness $C^{4}$ (Brendan Guilfoyle and Wilhelm Klingenberg, 2025).",
+  "section": "Geometry",
+  "field": "topo",
+  "family": "curve",
+  "raw": "[[Carathéodory conjecture]] for surfaces of smoothness <math>C^{4}</math> (Brendan Guilfoyle and Wilhelm Klingenberg, 2025).<ref>{{cite journal |first1=B. |last1=Guilfoyle |first2=W. |last2=Klingenberg |year=2025 |title= The three obdurate conjectures of differential geometry |journal= Math. Proc. R. Ir. Acad. |volume=125A |pages=9–17 | arxiv=2502.11716 | doi=10.1353/mpr.2025.a968272 }}</ref>"
+ },
+ {
+  "name": "Einstein problem",
+  "wikiTitle": "Einstein problem",
+  "url": "https://en.wikipedia.org/wiki/Einstein_problem",
+  "statement": "(David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss, 2024).",
+  "section": "Geometry",
+  "field": "topo",
+  "family": "curve",
+  "raw": "[[Einstein problem]] (David Smith, Joseph Samuel Myers, Craig S. Kaplan, [[Chaim Goodman-Strauss]], 2024).<ref>{{Cite journal |last1=Smith |first1=David |last2=Myers |first2=Joseph Samuel |last3=Kaplan |first3=Craig S. |last4=Goodman-Strauss |first4=Chaim |date=2024 |title=An aperiodic monotile |url=https://escholarship.org/uc/item/3317z9z9 |journal=Combinatorial Theory |language=en |volume=4 |issue=1 |doi=10.5070/C64163843  |doi-access=free|issn=2766-1334}}</ref>"
+ },
+ {
+  "name": "Keller's conjecture",
+  "wikiTitle": "Keller's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Keller's_conjecture",
+  "statement": "(Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019).",
+  "section": "Geometry",
+  "field": "topo",
+  "family": "curve",
+  "raw": "[[Keller's conjecture]] (Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019).<ref>{{Citation |last1=Brakensiek |first1=Joshua |title=The Resolution of Keller's Conjecture |date=2020 |journal=Automated Reasoning |volume=12166 |pages=48–65 |editor-last=Peltier |editor-first=Nicolas |place=Cham |publisher=Springer International Publishing |language=en |arxiv=1910.03740 |doi=10.1007/978-3-030-51074-9_4 |isbn=978-3-030-51073-2 |pmc=7324133 |s2cid=203951899 |last2=Heule |first2=Marijn |last3=Mackey |first3=John |last4=Narváez |first4=David |editor2-last=Sofronie-Stokkermans |editor2-first=Viorica}}</ref>"
+ },
+ {
+  "name": "Weibel's conjecture",
+  "wikiTitle": "Weibel's conjecture",
+  "url": "https://en.wikipedia.org/wiki/Weibel's_conjecture",
+  "statement": "(Moritz Kerz, Florian Strunk, and Georg Tamme, 2018).",
+  "section": "Geometry",
+  "field": "topo",
+  "family": "curve",
+  "raw": "[[Weibel's conjecture]] (Moritz Kerz, Florian Strunk, and Georg Tamme, 2018).<ref>{{citation"
+ },
+ {
+  "name": "André–Oort conjecture",
+  "wikiTitle": "André–Oort conjecture",
+  "url": "https://en.wikipedia.org/wiki/Andr%C3%A9%E2%80%93Oort_conjecture",
+  "statement": "(Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021).",
+  "section": "Number theory",
+  "field": "arith",
+  "family": "foundation",
+  "raw": "[[André–Oort conjecture]] ([[Jonathan Pila]], Ananth Shankar, [[Jacob Tsimerman]], 2021).<ref>{{cite arXiv |last1=Pila |first1=Jonathan |last2=Shankar |first2=Ananth |last3=Tsimerman |first3=Jacob |last4=Esnault |first4=Hélène |last5=Groechenig |first5=Michael |date=2021-09-17 |title=Canonical Heights on Shimura Varieties and the André-Oort Conjecture |class=math.NT |eprint=2109.08788}}</ref>"
+ },
+ {
+  "name": "Duffin–Schaeffer theorem",
+  "wikiTitle": "Duffin–Schaeffer theorem",
+  "url": "https://en.wikipedia.org/wiki/Duffin%E2%80%93Schaeffer_theorem",
+  "statement": "(Dimitris Koukoulopoulos, James Maynard, 2019).",
+  "section": "Number theory",
+  "field": "arith",
+  "family": "foundation",
+  "raw": "[[Duffin–Schaeffer theorem]] ([[Dimitris Koukoulopoulos]], [[James Maynard (mathematician)|James Maynard]], 2019).<ref>{{Cite journal |last1=Koukoulopoulos |first1=Dimitris |last2=Maynard |first2=James |date=2020-07-01 |title=On the Duffin-Schaeffer conjecture |url=https://projecteuclid.org/journals/annals-of-mathematics/volume-192/issue-1/On-the-Duffin-Schaeffer-conjecture/10.4007/annals.2020.192.1.5.full |journal=Annals of Mathematics |volume=192 |issue=1 |pages=251–307 |arxiv=1907.04594 |doi=10.4007/annals.2020.192.1.5 |jstor=10.4007/annals.2020.192.1.5 |s2cid=195874052}}</ref>"
+ },
+ {
+  "name": "Main conjecture in Vinogradov's mean-value theorem",
+  "wikiTitle": "Vinogradov's mean-value theorem#The conjectured form",
+  "url": "https://en.wikipedia.org/wiki/Vinogradov's_mean-value_theorem%23The_conjectured_form",
+  "statement": "(Jean Bourgain, Ciprian Demeter, Larry Guth, 2015).",
+  "section": "Number theory",
+  "field": "arith",
+  "family": "foundation",
+  "raw": "[[Vinogradov's mean-value theorem#The conjectured form|Main conjecture in Vinogradov's mean-value theorem]] ([[Jean Bourgain]], Ciprian Demeter, [[Larry Guth]], 2015).<ref>{{cite journal|last1=Bourgain |first1=Jean|first2=Demeter|last2=Ciprian|first3=Guth|last3=Larry|title=Proof of the main conjecture in Vinogradov's Mean Value Theorem for degrees higher than three|journal=Annals of Mathematics |year=2015|doi=10.4007/annals.2016.184.2.7|volume=184|issue=2|pages=633–682|hdl=1721.1/115568|bibcode=2015arXiv151201565B|arxiv=1512.01565|s2cid=43929329}}</ref>"
+ },
+ {
+  "name": "Conway knot",
+  "wikiTitle": "Conway knot",
+  "url": "https://en.wikipedia.org/wiki/Conway_knot",
+  "statement": "Deciding whether the Conway knot is a slice knot (Lisa Piccirillo, 2020).",
+  "section": "Topology",
+  "field": "topo",
+  "family": "cohomology",
+  "raw": "Deciding whether the [[Conway knot]] is a [[slice knot]] ([[Lisa Piccirillo]], 2020).<ref>{{Cite journal |last=Piccirillo |first=Lisa |date=2020 |title=The Conway knot is not slice |url=https://annals.math.princeton.edu/2020/191-2/p05 |journal=[[Annals of Mathematics]] |volume=191 |issue=2 |pages=581–591 |doi=10.4007/annals.2020.191.2.5|arxiv=1808.02923 |s2cid=52398890 }}</ref><ref>{{Cite web |last=Klarreich |first=Erica |author-link=Erica Klarreich |date=2020-05-19 |title=Graduate Student Solves Decades-Old Conway Knot Problem |url=https://www.quantamagazine.org/graduate-student-solves-decades-old-conway-knot-problem-20200519/ |access-date=2022-08-17 |website=[[Quanta Magazine]] |language=en}}</ref>"
+ }
+]

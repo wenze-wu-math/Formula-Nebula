@@ -26,11 +26,11 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
 const PORT = Number(process.env.PORT || 9410)
 const URL = process.env.URL || 'http://127.0.0.1:5176/'
-const CHROME = process.env.CHROME ||
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 
 let pass = 0
 let fail = 0
@@ -114,7 +114,7 @@ let chrome = null
 
 try {
   chrome = spawn(CHROME, [
-    '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+    '--headless=new', '--no-sandbox', '--disable-gpu-sandbox', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
     '--no-first-run', '--no-default-browser-check', '--disable-extensions',
     '--mute-audio', '--window-size=1600,1000',
     `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}-${process.pid}`, URL,
@@ -168,12 +168,14 @@ try {
     const g = window.__nebula.graph
     return { nodes: g.nodes.length, links: g.links.length,
              conj: g.nodes.filter(n => n.family === 'conjecture').length,
-             gal: g.nodes.filter(n => n.family !== 'conjecture').length }
+             researchers: g.nodes.filter(n => n.researcher).length,
+             gal: g.nodes.filter(n => n.family !== 'conjecture' && !n.researcher).length }
   `)
   console.log('     ' + JSON.stringify(scale))
-  ok(scale.nodes === 464, '节点 464', `实为 ${scale.nodes}`)
-  ok(scale.links === 1620, '关联 1620', `实为 ${scale.links}`)
+  ok(scale.nodes === 488, '节点 488', `实为 ${scale.nodes}`)
+  ok(scale.links === 1670, '关联 1670', `实为 ${scale.links}`)
   ok(scale.conj === 59, '星团 59', `实为 ${scale.conj}`)
+  ok(scale.researchers === 24, '研究者 24', `实为 ${scale.researchers}`)
   ok(scale.gal === 405, '主星系 405', `实为 ${scale.gal}`)
 
   /* ── ④ cn-jacobian 的色点确实换成了"已被推翻"的颜色 ── */

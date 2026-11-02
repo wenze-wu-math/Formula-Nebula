@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#03050d" />
+    <title>公式诗云 · 星云修正版 · Formula Nebula+</title>
+    <meta name="description" content="方案 E：保留三维星云，修正旋臂-知识族对应、标签碰撞、焦点淡出与星团柔光" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffcf7a' d='M50 6 60 40 94 50 60 60 50 94 40 60 6 50 40 40Z'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 层次（自下而上）：WebGL 星云 → 2D 公式标签层 → 选中卡片层 → HUD/面板（ui.js 注入） -->
+      <canvas id="scene"></canvas>
+      <canvas id="labels" aria-hidden="true"></canvas>
+      <div id="cards"></div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

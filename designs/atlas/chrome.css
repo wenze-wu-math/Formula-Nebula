@@ -1,0 +1,305 @@
+/*
+ * designs/atlas/chrome.css — 外框（M5，SPEC §10/§11）。
+ * 作用域：只写 #atlas-title #atlas-search #atlas-legend #atlas-zoom #atlas-hint 及其后代，
+ * 以及 body.atlas-panel-open #atlas-zoom 的移位规则。
+ *
+ * 视觉：星图的"页边装饰"。深色半透明底 + 细金线，与面板同底色；不引入第三种饱和色
+ * （朱红只用于报错与猜想符号，冷蓝只属于地图上的搜索命中圈）。
+ * 字体变量 --kai/--serif/--sans、--panel-w、--sheet-h 由 chrome.js 从 constants.js 注入；
+ * 窄屏由 chrome.js 按 SHEET_BREAKPOINT 加 .is-narrow（阈值不在 CSS 里写死）。
+ */
+
+#atlas-title, #atlas-search, #atlas-legend, #atlas-zoom, #atlas-hint {
+  --c-bg: rgba(8, 14, 28, 0.86);
+  --c-bg-solid: rgba(8, 14, 28, 0.94);
+  --c-gold: rgba(201, 168, 106, 0.55);
+  --c-gold-soft: rgba(201, 168, 106, 0.28);
+  --c-gold-faint: rgba(201, 168, 106, 0.14);
+  --c-ink: #f1e7cf;
+  --c-dim: rgba(241, 231, 207, 0.58);
+  --c-faint: rgba(241, 231, 207, 0.40);
+  --c-title: #e8d3a2;
+  --c-ring-dim: rgba(201, 168, 106, 0.55);
+  --c-conj: #ef6a4a;
+  --w-left: 336px;
+  font-family: var(--sans);
+  color: var(--c-ink);
+  box-sizing: border-box;
+}
+#atlas-title *, #atlas-search *, #atlas-legend *, #atlas-zoom *, #atlas-hint * { box-sizing: border-box; }
+#atlas-search [hidden], #atlas-legend [hidden] { display: none !important; }
+
+/* ───────── §10.1 标题框：双金线 + 四角菱形 ───────── */
+#atlas-title {
+  position: absolute; left: 20px; top: 20px;
+  width: var(--w-left); max-width: calc(100vw - 40px);
+  padding: 14px 18px 12px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-gold);
+  backdrop-filter: blur(4px);
+  user-select: none;
+}
+#atlas-title.is-narrow { --w-left: 300px; padding: 10px 14px 9px; }
+/* 内线：内缩 3px 的 0.5px 金线（用 box-shadow 画 0.5px 在 1x 屏上会糊成 1px 半透明，正合"细"的观感） */
+#atlas-title::before {
+  content: ''; position: absolute; inset: 3px;
+  border: 0.5px solid var(--c-gold-soft);
+  pointer-events: none;
+}
+#atlas-title .at-corner {
+  position: absolute; width: 7px; height: 7px;
+  background: #0b1427;
+  border: 1px solid var(--c-gold);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+#atlas-title .at-tl { left: -4px; top: -4px; }
+#atlas-title .at-tr { right: -4px; top: -4px; }
+#atlas-title .at-bl { left: -4px; bottom: -4px; }
+#atlas-title .at-br { right: -4px; bottom: -4px; }
+#atlas-title .at-name {
+  margin: 0; font: 400 26px/1.15 var(--kai);
+  letter-spacing: 0.3em; color: var(--c-title);
+  /* 字间距会在末字后多留一截，用负右外边距抵掉，让标题视觉居左对齐 */
+  margin-right: -0.3em;
+}
+#atlas-title .at-latin {
+  margin: 5px 0 0; font: 400 10.5px/1.3 var(--serif);
+  letter-spacing: 0.32em; color: var(--c-ring-dim);
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+}
+#atlas-title .at-rule {
+  display: block; height: 0; margin: 8px 0 7px;
+  border-top: 0.5px solid var(--c-gold-faint);
+}
+#atlas-title .at-stats {
+  margin: 0; font: 400 11.5px/1.45 var(--sans); color: var(--c-dim);
+}
+#atlas-title .at-num {
+  font-family: var(--serif); font-size: 12.5px; color: var(--c-ink);
+  font-variant-numeric: oldstyle-nums;
+}
+#atlas-title .at-sep { color: var(--c-faint); }
+#atlas-title.is-narrow .at-name { font-size: 22px; }
+
+/* ───────── §10.2 搜索 ───────── */
+#atlas-search {
+  position: absolute; left: 20px; top: 136px;   /* top 由 chrome.js 按标题框实测高度改写 */
+  width: var(--w-left); max-width: calc(100vw - 40px);
+  z-index: 3;                                    /* 下拉要盖过图例 */
+}
+#atlas-search.is-narrow { --w-left: 300px; }
+#atlas-search .as-box {
+  display: flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 10px 0 11px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-gold-soft);
+  backdrop-filter: blur(4px);
+  transition: border-color .15s;
+}
+#atlas-search .as-box:focus-within { border-color: var(--c-gold); }
+#atlas-search.is-open .as-box { border-bottom-color: var(--c-gold-faint); }
+#atlas-search .as-icon { flex: none; }
+#atlas-search .as-input {
+  flex: 1; min-width: 0; height: 100%;
+  padding: 0; border: 0; outline: 0; background: transparent;
+  font: 400 13px/1 var(--sans); color: var(--c-ink);
+  caret-color: var(--c-title);
+}
+#atlas-search .as-input::placeholder { color: var(--c-faint); }
+#atlas-search .as-input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+#atlas-search .as-kbd {
+  flex: none; min-width: 18px; height: 18px; padding: 0 4px;
+  font: 400 11px/16px var(--sans); text-align: center; color: var(--c-faint);
+  border: 1px solid var(--c-gold-faint); border-radius: 3px;
+}
+#atlas-search .as-box:focus-within .as-kbd { visibility: hidden; }
+
+#atlas-search .as-drop {
+  display: flex; flex-direction: column;
+  background: var(--c-bg-solid);
+  border: 1px solid var(--c-gold-soft); border-top: 0;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;            /* max-height 由 chrome.js 按视口剩余高度设置，列表内部滚动 */
+}
+#atlas-search .as-list {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
+  margin: 0; padding: 4px 0; list-style: none;
+  scrollbar-width: thin; scrollbar-color: var(--c-gold-soft) transparent;
+}
+#atlas-search .as-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 12px 5px 10px; cursor: pointer;
+  border-left: 2px solid transparent;
+}
+#atlas-search .as-item.is-active {
+  background: rgba(201, 168, 106, 0.10);
+  border-left-color: var(--c-title);
+}
+#atlas-search .as-glyph {
+  flex: none; width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+#atlas-search .as-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+#atlas-search .as-line {
+  display: flex; align-items: baseline; gap: 7px; min-width: 0;
+  white-space: nowrap; overflow: hidden;
+}
+#atlas-search .as-name { flex: none; max-width: 100%; font: 400 13.5px/1.35 var(--serif); color: var(--c-ink);
+  overflow: hidden; text-overflow: ellipsis; }
+#atlas-search .k-dso .as-name { color: #f19a80; }
+#atlas-search .k-researcher .as-name { font-style: italic; color: #d9c08a; }
+#atlas-search .as-en {
+  flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;
+  font: italic 400 11.5px/1.35 var(--serif); color: var(--c-faint);
+}
+/* 小公式：单行，右侧渐隐（长公式不换行、不撑宽列表） */
+#atlas-search .as-tex, #atlas-search .as-sub {
+  display: block; white-space: nowrap; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, #000 82%, transparent);
+}
+#atlas-search .as-tex { height: 19px; font-size: 12px; line-height: 19px; color: rgba(241, 231, 207, 0.78); }
+#atlas-search .k-dso .as-tex { color: rgba(239, 106, 74, 0.86); }
+#atlas-search .as-tex .katex { font-size: 1em; white-space: nowrap; }
+#atlas-search .as-sub { font: 400 11.5px/1.4 var(--sans); color: var(--c-dim); }
+
+#atlas-search .as-error {
+  margin: 0; padding: 9px 12px 2px;
+  font: 400 12px/1.5 var(--sans); color: var(--c-conj);
+}
+#atlas-search .as-empty { margin: 0; padding: 10px 12px; font: 400 12.5px/1.4 var(--sans); color: var(--c-dim); }
+#atlas-search .as-foot {
+  flex: none; margin: 0; padding: 6px 12px 7px;
+  font: 400 11px/1.4 var(--sans); color: var(--c-faint);
+  border-top: 0.5px solid var(--c-gold-faint);
+}
+#atlas-search .as-help { padding: 10px 12px 11px; }
+#atlas-search .as-help-title { margin: 0 0 7px; font: 400 12px/1.5 var(--sans); color: var(--c-dim); }
+#atlas-search .as-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+#atlas-search .as-chip {
+  padding: 2px 7px; cursor: pointer;
+  font: 400 11.5px/1.5 Consolas, "Cascadia Code", monospace; color: var(--c-title);
+  background: rgba(201, 168, 106, 0.06);
+  border: 1px solid var(--c-gold-faint); border-radius: 3px;
+}
+#atlas-search .as-chip:hover { border-color: var(--c-gold); background: rgba(201, 168, 106, 0.12); }
+#atlas-search .as-help-note { margin: 8px 0 0; font: 400 11px/1.5 var(--sans); color: var(--c-faint); }
+/* ───────── §10.3 图例 ───────── */
+#atlas-legend {
+  position: absolute; left: 20px; bottom: 20px;
+  width: 264px; max-width: calc(100vw - 40px);
+  padding: 9px 14px 10px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-gold-soft);
+  backdrop-filter: blur(4px);
+  user-select: none;
+}
+#atlas-legend.is-collapsed { width: auto; min-width: 200px; }
+#atlas-legend .al-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: default; }
+#atlas-legend .al-title {
+  margin: 0; font: 400 13px/1.4 var(--kai); letter-spacing: 0.2em; color: var(--c-title);
+}
+#atlas-legend .al-title-latin { font: 400 9.5px/1 var(--serif); letter-spacing: 0.3em; color: var(--c-ring-dim); }
+#atlas-legend .al-toggle {
+  padding: 1px 7px; cursor: pointer;
+  font: 400 11px/1.5 var(--sans); color: var(--c-dim);
+  background: transparent; border: 1px solid var(--c-gold-faint); border-radius: 3px;
+}
+#atlas-legend .al-toggle:hover { color: var(--c-ink); border-color: var(--c-gold-soft); }
+#atlas-legend .al-body { margin-top: 6px; }
+#atlas-legend .al-sec { padding: 6px 0 4px; border-top: 0.5px solid var(--c-gold-faint); }
+#atlas-legend .al-cap {
+  margin: 0 0 4px; font: 400 10.5px/1.4 var(--sans); letter-spacing: 0.12em; color: var(--c-ring-dim);
+}
+#atlas-legend .al-note { margin: 2px 0 0; font: 400 11px/1.4 var(--sans); color: var(--c-faint); }
+
+#atlas-legend .al-mags { display: flex; justify-content: space-between; padding: 0 2px; }
+#atlas-legend .al-mag {
+  display: flex; flex-direction: column; align-items: center; gap: 1px; width: 30px;
+  opacity: 0.55; transition: opacity .2s;
+}
+#atlas-legend .al-mag.is-on { opacity: 1; }
+#atlas-legend .al-mag-n { font: 400 11px/1.2 var(--serif); color: var(--c-dim); font-variant-numeric: oldstyle-nums; }
+#atlas-legend .al-mag.is-on .al-mag-n { color: var(--c-title); }
+
+#atlas-legend .al-dsos {
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 8px;
+  margin: 0; padding: 0; list-style: none;
+}
+#atlas-legend .al-dso {
+  display: flex; align-items: center; gap: 6px; width: 100%;
+  padding: 2px 3px; margin: 0 -3px; cursor: pointer; text-align: left;
+  font: 400 12px/1.45 var(--sans); color: var(--c-ink);
+  background: transparent; border: 0; border-radius: 3px;
+}
+#atlas-legend .al-dso:hover { background: rgba(239, 106, 74, 0.08); }
+#atlas-legend .al-dso.is-zero { color: var(--c-faint); }
+#atlas-legend .al-dso.is-zero canvas { opacity: 0.55; }
+#atlas-legend .al-dso-name { flex: 1; white-space: nowrap; }
+#atlas-legend .al-count { font: 400 12px/1 var(--serif); color: var(--c-dim); font-variant-numeric: oldstyle-nums; }
+
+#atlas-legend .al-lines {
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 8px; row-gap: 2px;
+  margin: 0; padding: 0; list-style: none;
+}
+#atlas-legend .al-line {
+  display: flex; align-items: center; gap: 6px;
+  font: 400 11.5px/1.45 var(--sans); color: var(--c-dim); white-space: nowrap;
+}
+#atlas-legend .al-line:first-child { grid-column: 1 / -1; }
+#atlas-legend .al-line canvas { flex: none; }
+#atlas-legend .al-line .atlas-glyph { margin: 0 8px; }
+
+#atlas-legend .al-live {
+  margin: 6px 0 0; padding-top: 6px;
+  border-top: 0.5px solid var(--c-gold-faint);
+  font: 400 11.5px/1.4 var(--sans); color: var(--c-title);
+}
+#atlas-legend.is-collapsed .al-live { margin-top: 4px; padding-top: 4px; }
+#atlas-legend .al-live-sub { display: block; font-size: 10.5px; color: var(--c-faint); }
+
+/* ───────── §10.4 缩放按钮 ───────── */
+#atlas-zoom {
+  position: absolute; right: 20px; bottom: 20px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: right .22s ease-out, bottom .22s ease-out;
+}
+#atlas-zoom .az-btn {
+  width: 36px; height: 36px; padding: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font: 400 20px/1 var(--serif); color: var(--c-title);
+  background: var(--c-bg-solid);
+  border: 1px solid var(--c-gold-soft);
+  transition: border-color .15s, background-color .15s;
+}
+#atlas-zoom .az-home { margin-top: 4px; font-size: 17px; }
+#atlas-zoom .az-btn:hover { border-color: var(--c-gold); background: rgba(20, 30, 52, 0.96); }
+#atlas-zoom .az-btn:active { background: rgba(201, 168, 106, 0.14); }
+#atlas-zoom .az-btn:focus-visible,
+#atlas-search .as-chip:focus-visible,
+#atlas-legend button:focus-visible { outline: 1px solid var(--c-title); outline-offset: 2px; }
+body.atlas-panel-open #atlas-zoom { right: calc(var(--panel-w) + 20px); }
+body.atlas-panel-open #atlas-zoom.is-narrow { right: 20px; bottom: calc(var(--sheet-h) + 16px); }
+
+/* ───────── §10.5 首次提示 ───────── */
+#atlas-hint {
+  position: absolute; left: 50%; bottom: 26px;
+  transform: translate(-50%, 6px);
+  padding: 6px 16px;
+  font: 400 12.5px/1.4 var(--sans); letter-spacing: 0.12em; color: var(--c-title);
+  white-space: nowrap;
+  background: var(--c-bg);
+  border: 1px solid var(--c-gold-faint); border-radius: 15px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .5s ease, transform .5s ease;
+}
+#atlas-hint:empty { display: none; }
+#atlas-hint.is-shown { opacity: 1; transform: translate(-50%, 0); }
+#atlas-hint.is-narrow { bottom: 76px; font-size: 12px; letter-spacing: 0.06em; }
+body.atlas-panel-open #atlas-hint { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  #atlas-zoom, #atlas-zoom .az-btn, #atlas-hint, #atlas-legend .al-mag, #atlas-search .as-box { transition: none; }
+}

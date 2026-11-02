@@ -1,0 +1,405 @@
+a-ample  |  丰沛层
+a-artin-rees  |  Artin–Rees 引理
+a-associated-primes  |  相伴素因子
+a-base-change-thm  |  上同调基变换
+a-cartier-divisor  |  Cartier 除子
+a-cech-to-derived  |  Čech 与导出上同调一致
+a-cohen-macaulay  |  Cohen–Macaulay 环
+a-completion  |  完备化
+a-dedekind  |  戴德金整环
+a-depth  |  深度
+a-dualizing-complex  |  对偶化复形
+a-dvr  |  离散赋值环
+a-ext-tor  |  Ext 与 Tor
+a-faithfully-flat  |  忠实平坦
+a-flatness-criterion  |  平坦性判别
+a-formal-power-series  |  形式幂级数环
+a-formal-smooth  |  形式光滑
+a-godement  |  Godement 消解
+a-hodge-de-rham  |  de Rham 定理
+a-hypercohomology  |  超上同调
+a-injective-resolution  |  内射消解
+a-integral-closure  |  整闭与整扩张
+a-kahler-differential  |  Kähler 微分模
+a-koszul  |  Koszul 复形
+a-krull-intersection  |  Krull 交定理
+a-krull-pit  |  克鲁尔主理想定理
+a-leray-ss  |  Leray 谱序列
+a-line-bundle-degree  |  线丛的度
+a-oyama  |  凝聚层的局部判定
+a-primary-decomposition  |  准素分解
+a-pushforward-pullback  |  拉回与推前的伴随
+a-quasi-coherent  |  拟凝聚层与模等价
+a-regular-sequence  |  正则序列
+a-serre-affine  |  Serre 仿射判定
+a-skyscraper  |  摩天大楼层
+a-smooth-criterion  |  光滑性判别
+a-spectral-sequence  |  谱序列
+a-stalk  |  茎
+a-stein-factorization  |  Stein 分解与有限性
+a-verdier-duality  |  Verdier 对偶
+abelian-variety  |  阿贝尔簇
+abundance  |  丰沛性猜想
+adjunction  |  伴随公式
+ample-line-bundle  |  丰沛线丛
+artin-approximation  |  阿廷逼近定理
+auslander-buchsbaum  |  奥斯兰德–布赫斯鲍姆公式
+b-abelian-polarization  |  Abel 簇的极化
+b-adjunction-formula  |  伴随公式（曲面）
+b-adjunction-general  |  伴随公式（一般形式）
+b-birkhoff-grothendieck  |  Birkhoff–Grothendieck 分解
+b-blowup-local  |  爆破的局部构造
+b-blowup-surface  |  曲面的爆破
+b-bogomolov  |  Bogomolov–Miyaoka–Yau 不等式
+b-canonical-embedding  |  典范嵌入
+b-castelnuovo-criterion  |  Castelnuovo 收缩判据
+b-chern-class-axioms  |  Chern 类的公理
+b-chern-weil  |  Chern–Weil 理论
+b-chow-variety  |  Chow 群与 Abel–Jacobi
+b-coherent-duality  |  凝聚对偶
+b-elliptic-integral  |  椭圆积分
+b-enriques-kodaira  |  Enriques–Kodaira 分类
+b-flattening  |  平坦化
+b-grassmannian  |  Grassmann 流形与 Schubert 演算
+b-grauert  |  Grauert 定理
+b-grothendieck-quot  |  Quot 概形
+b-gysin  |  Gysin 映射与推前
+b-hilbert-polynomial  |  Hilbert 多项式
+b-hirzebruch-rr  |  Hirzebruch–Riemann–Roch
+b-hodge-diamond  |  Hodge 菱形
+b-hodge-index  |  Hodge 指标定理
+b-hodge-moduli  |  模空间的紧化与 Hodge 结构
+b-hurwitz  |  Hurwitz 公式
+b-hyperelliptic  |  超椭圆曲线
+b-k3-properties  |  K3 曲面的性质
+b-kodaira-vanishing  |  Kodaira 消没定理
+b-linear-system-dim  |  线性系统维数
+b-localization  |  Atiyah–Bott 局部化
+b-mordell-weil  |  Mordell–Weil 定理
+b-mori-cone  |  锥定理与极射线
+b-nakai-surface  |  Nakai–Moishezon 判据（曲面）
+b-narasimhan  |  Harder–Narasimhan 滤链
+b-noether-formula  |  Noether 公式
+b-noether-inequality  |  Noether 不等式
+b-normal-cone  |  法锥与法丛
+b-picard-group  |  Picard 群与 Néron–Severi
+b-projective-bundle  |  射影丛
+b-riemann-roch-curve  |  曲线 Riemann–Roch
+b-riemann-roch-surface  |  曲面的 Riemann–Roch
+b-semicontinuity  |  上同调半连续性
+b-serre-duality-curve  |  曲线上的 Serre 对偶
+b-splitting-principle  |  分裂原理
+b-stable-bundle  |  稳定向量丛
+b-tate-module  |  Tate 模
+b-todd-euler  |  Euler 类与拓扑欧拉数
+b-todd-genus  |  Todd 类与 Todd 亏格
+b-weil-pairing  |  Weil 配对
+bertini-theorem  |  贝尔蒂尼定理
+bezout  |  贝祖定理
+birational  |  双有理等价
+blowup  |  爆破
+c-abundance-conjecture  |  丰沛性猜想
+c-adjunction-mmp  |  伴随（MMP 形式）
+c-alterations  |  de Jong 变更
+c-atiyah-bott-fixed  |  不动点局部化（几何版）
+c-atiyah-singer  |  Atiyah–Singer 指标定理
+c-beauville-bogomolov  |  Beauville–Bogomolov 形式
+c-berkovich  |  Berkovich 空间
+c-bondal-orlov  |  Bondal–Orlov 重构
+c-boundedness  |  有界性
+c-bridgeland-stability  |  Bridgeland 稳定性条件
+c-chow-lemma  |  Chow 引理
+c-cobordism  |  配边环
+c-condensed  |  凝聚数学
+c-condensed-analytic  |  解析几何（Clausen–Scholze）
+c-d-module  |  D-模
+c-dbp  |  D-膜与导出范畴
+c-deformation-theory  |  形变理论
+c-deligne-mumford  |  Deligne–Mumford 紧化
+c-derived-scheme  |  导出概形
+c-discrepancy  |  差异
+c-dm-stack  |  Deligne–Mumford 栈
+c-dt-theory  |  Donaldson–Thomas 理论
+c-equivariant-k  |  等变 K 理论与局部化
+c-fourier-mukai  |  Fourier–Mukai 变换
+c-gauss-manin  |  Gauss–Manin 联络
+c-git-quotient  |  GIT 商
+c-good-moduli  |  粗模空间与细模空间
+c-gw-invariants  |  Gromov–Witten 不变量（一般形式）
+c-hilbert-mumford  |  Hilbert–Mumford 判据
+c-hilbert-scheme-points  |  Hilbert 概形上的计数
+c-hironaka  |  Hironaka 奇点消解
+c-hirzebruch-signature  |  Hirzebruch 符号差定理
+c-hms  |  同调镜像对称
+c-hodge-structure-vhs  |  Hodge 结构的变分
+c-hyperkaehler  |  超凯勒流形
+c-index-to-rr  |  指标定理与 Riemann–Roch
+c-k-moduli  |  K-稳定与模空间
+c-klt-base-point-free  |  klt 无基点定理
+c-kodaira-spencer  |  Kodaira–Spencer 映射
+c-kontsevich-formula  |  Kontsevich 公式
+c-lattice-torelli  |  全局 Torelli 定理
+c-lc-threshold  |  对数规范阈值
+c-log-resolution  |  对数消解
+c-mirror-map  |  镜像映射
+c-mnop  |  MNOP 对应
+c-moduli-fano  |  Fano 簇的模空间
+c-mukai-pair  |  Mukai 格与配对
+c-obstruction  |  障碍类
+c-orlov  |  Orlov 定理
+c-padic-hodge  |  p 进 Hodge 理论
+c-perfect-complex  |  完美复形
+c-perfectoid  |  完美胚空间
+c-periods  |  周期与 Picard–Fuchs
+c-perverse  |  反常层
+c-psi-classes  |  psi 类与 tautological 环
+c-quantum-cohomology  |  量子上同调
+c-rational-singularities  |  有理奇点
+c-riemann-hilbert  |  Riemann–Hilbert 对应
+c-singularities-mmp  |  MMP 中的奇点类型
+c-stack-quotient  |  商栈
+c-syz  |  SYZ 猜想
+c-termination  |  翻转终止性
+c-test-configuration  |  测试配置
+c-torelli  |  Torelli 定理
+c-tropical  |  热带几何
+c-tt-geometry  |  TT 几何
+c-virtual-fundamental  |  虚拟基本类
+c-wall-crossing  |  穿墙公式
+c-wdvv  |  WDVV 方程
+c-weak-factorization  |  弱因子分解定理
+c-witten-conjecture  |  Witten 猜想与 KdV 方程
+c-zariski-main  |  Zariski 主定理
+canonical-model  |  典范模型
+canonical-sheaf  |  典范层
+castelnuovo  |  卡斯泰尔诺沃收缩判据
+castelnuovo-mumford-regularity  |  卡斯泰尔诺沃–芒福德正则性
+cech-cohomology  |  Čech 上同调
+chern-character  |  陈特征
+chern-class  |  陈类
+chow-ring  |  周环
+coherent-sheaf  |  凝聚层
+cohomology-base-change  |  上同调基变换与半连续性
+cone-theorem  |  锥定理
+coordinate-ring  |  坐标环
+cotangent-complex  |  余切复形
+del-pezzo  |  德尔佩佐曲面
+derived-algebraic-geometry  |  导出代数几何
+derived-category  |  导出范畴
+derived-functor  |  导出函子
+descent  |  下降理论
+dimension  |  簇的维数
+dimension-fiber  |  纤维维数定理
+divisor  |  除子
+donaldson-uhlenbeck-yau  |  唐纳森–乌伦贝克–丘定理
+e-ample-vanishing  |  丰饶层的高阶消没
+e-base-change-cohomology  |  上同调基变换
+e-coherent-sheaf  |  凝聚层
+e-cohomology-finite-dim  |  上同调的有限维性
+e-d-module-direct-image  |  D-模的推前与积分
+e-decomposition-theorem  |  分解定理
+e-derived-pushforward  |  导出推前
+e-frobenius-split  |  Frobenius 分裂
+e-grauert-theorem  |  Grauert 定理
+e-hodge-to-de-rham  |  Hodge–de Rham 谱序列
+e-holonomic-d-module  |  全纯 D-模
+e-intersection-cohomology  |  相交上同调
+e-kodaira-vanishing-proof  |  Kodaira 消没的证明思路
+e-local-system  |  局部系与单值表示
+e-monodromy-weight  |  单值分解与权滤过
+e-nearby-cycle-functor  |  邻近轮与特殊化映射
+e-perverse-t-structure  |  反常 t-结构
+e-projection-formula  |  投影公式
+e-push-pull-adjunction  |  推前与拉回的伴随
+e-quasi-coherent-locality  |  拟凝聚层的局部刻画
+e-riemann-hilbert  |  Riemann–Hilbert 对应
+e-semicontinuity  |  上同调的半连续性
+e-sheafification  |  层化
+e-spectral-sequence-degeneration  |  谱序列的退化
+e-vanishing-cycle  |  消没轮
+elliptic-curve  |  椭圆曲线
+etale-cohomology  |  平展上同调
+etale-morphism  |  平展态射
+euler-characteristic  |  欧拉示性数
+excellent-ring  |  优秀环
+f-abundance-log  |  对数丰饶性猜想
+f-alterations  |  Alterations 与 Gabber 定理
+f-canonical-ring-fg  |  典范环的有限生成性
+f-contraction-algebraicity  |  收缩的代数性
+f-de-jong-modifications  |  de Jong 的修改定理
+f-discrepancy-divisor  |  差异除子与差异系数
+f-dlt-model  |  DLT 模型
+f-du-bois-singularity  |  Du Bois 奇点
+f-embedded-resolution  |  嵌入消解
+f-extremal-contraction  |  极收缩
+f-iitaka-fibration  |  Iitaka 纤维化
+f-jet-scheme  |  射流概形
+f-kodaira-dimension-fibration  |  Kodaira 维数在纤维化下的行为
+f-lc-center  |  Log canonical 中心
+f-log-canonical-threshold  |  Log canonical 阈值
+f-minimal-lc-center  |  极小 lc 中心
+f-mori-fiber-space  |  Mori 纤维空间
+f-nash-conjecture  |  Nash 猜想
+f-nash-transform  |  Nash 变换与弧空间
+f-nonvanishing  |  Non-vanishing 猜想
+f-rational-singularity  |  有理奇点
+f-severi-iitaka  |  Severi–Iitaka 型问题
+f-special-mmp  |  特殊终止与 flips 的终止性
+f-spectrum-singularity  |  奇点谱
+f-strong-resolution  |  强消解
+f-surface-classification-algorithm  |  曲面分类的算法化
+f-threefold-mmp  |  三维 MMP 的完整定理
+f-weak-factorization  |  弱分解定理
+fano  |  法诺簇
+fibred-product  |  纤维积与基变换
+flat-morphism  |  平坦态射
+flip  |  翻转
+flop  |  翻转（flop）
+formal-deformation  |  形式形变
+formal-functions-theorem  |  形式函数定理
+formal-scheme  |  形式概形与完备化
+fukaya-category  |  富卡亚范畴
+g-birational-morphism-decomposition  |  双有理态射的分解
+g-blowup-along-ideal  |  沿理想层的 blowup
+g-chern-class-integral  |  Chern 类的积分公式
+g-chow-ring-relations  |  Chow 环的关系与计算
+g-deformation-invariance  |  形变不变性
+g-enumerative-invariant  |  枚举不变量的定义
+g-fibration-construction  |  纤维化的构造与判别
+g-gromov-witten-motivation  |  Gromov–Witten 不变量的动机
+g-hom-scheme  |  Hom 概形
+g-intersection-toric  |  Toric 簇上的相交理论
+g-k-theoretic-integral  |  K-理论与相交理论之间的桥
+g-localization  |  Atiyah–Bott 局部化
+g-multiplicative-genus  |  乘性亏格与 Hirzebruch 形式
+g-normalization-technique  |  正规化作为工具
+g-quantum-cohomology-ring  |  量子上同调环
+g-quot-scheme  |  Quot 概形
+g-rational-map-resolution  |  有理映射的消解
+g-relative-ample  |  相对丰饶性与相对射影态射
+g-schubert-calculus  |  Schubert 演算
+g-schubert-variety  |  Schubert 簇与它的奇点
+g-separated-proper-diagonal  |  分离与真性作为对角态射的条件
+g-stein-factorization-technique  |  Stein 分解的应用
+g-virtual-fundamental-class  |  虚拟基本类
+g-virtual-localization  |  虚拟局部化
+generic-smoothness  |  一般光滑性
+genus  |  亏格
+git  |  几何不变量理论
+going-down  |  下降定理
+going-up  |  上升定理与下降定理
+gorenstein-ring  |  戈伦斯坦环
+graded-ring  |  分次环与希尔伯特函数
+gromov-witten  |  格罗莫夫-威滕不变量
+grothendieck-riemann-roch  |  格罗滕迪克-黎曼-罗赫
+grothendieck-topology  |  格罗滕迪克拓扑
+grothendieck-vanishing  |  格罗滕迪克消没定理
+h-aut-minimal-surface  |  极小曲面的自同构群
+h-birational-aut-representation  |  双有理自同构群与它的表示
+h-chevalley-constructible  |  Chevalley 定理（可构造集与像）
+h-condensed-motivation  |  凝聚态数学的动机与它的对象
+h-constructible-sheaf  |  可构造层与它的性质
+h-cubic-27-lines  |  三次曲面上的 27 条直线
+h-derived-analytic-geometry  |  导出解析几何
+h-derived-stack  |  导出叠
+h-dg-enhancement  |  导出范畴的 dg 增强
+h-einfinity-derived-rings  |  E∞ 环与导出环谱
+h-enriques-surface  |  Enriques 曲面
+h-finite-type-vs-presentation  |  有限型与有限呈示的差别
+h-flat-descent  |  平坦下降
+h-formal-completion  |  形式完备化与形式概形
+h-kappa-negative  |  Kodaira 维数 −∞ 与有理连通性
+h-kodaira-dimension-compute  |  Kodaira 维数的计算
+h-model-infty-categories  |  模型范畴与 ∞-范畴在同调代数里的用途
+h-nagata-compactification  |  Nagata 紧化的构造
+h-noether-formula-general  |  曲面的 Noether 公式的推广
+h-perfectoid-tilting  |  完美胚空间与 tilting
+h-separated-diagonal  |  分离态射与对角态射
+h-spectral-ag-motivation  |  谱代数几何的动机
+h-stein-factorization  |  Stein 分解
+h-terminal-flop  |  三维簇的极小模型（终端奇点与 flop）
+h-zariski-main  |  Zariski 主定理与它的推论
+hensels-lemma  |  亨泽尔引理
+hilbert-basis-theorem  |  希尔伯特基定理
+hilbert-scheme  |  希尔伯特概形
+hitchin-fibration  |  希钦纤维化
+hodge-conjecture  |  霍奇猜想
+hodge-decomposition  |  霍奇分解
+hodge-theory  |  霍奇分解
+ideal-sheaf  |  理想层与闭浸入
+ideal-variety  |  理想—簇对应
+iitaka-fibration  |  饭高纤维化
+intersection-number  |  相交数
+invertible-sheaf  |  可逆层与线丛
+jacobian  |  雅可比簇
+k-stability  |  K-稳定性与 YTD 猜想
+k-theory  |  代数 K-理论
+k3-surface  |  K3 曲面
+kahler-manifold  |  凯勒流形
+kodaira-dimension  |  小平维数
+krull-dim  |  克鲁尔维数
+krull-height  |  克鲁尔高度与维数
+langlands  |  朗兰兹纲领
+lefschetz  |  莱夫谢茨超平面定理
+lefschetz-hyperplane  |  莱夫谢茨超平面定理
+linear-system  |  线性系
+local-cohomology  |  局部上同调
+localization  |  局部化
+long-exact-sequence  |  上同调长正合列
+lying-over  |  覆盖定理
+minimal-model-open  |  正特征与高维的公开问题
+mirror-symmetry  |  镜像对称
+mmp  |  极小模型纲领
+modular-curve  |  模曲线
+moduli-space  |  模空间
+mori-cone-theorem  |  锥定理
+morphism  |  态射
+motive  |  周 motive
+nagata-compactification  |  永田紧化定理
+nakai-moishezon  |  中山-莫伊舍宗判据
+nakayama  |  中山正引理
+neron-severi  |  涅隆–塞维里群
+noether-normalization  |  诺特正规化引理
+noetherian  |  诺特环
+normalization  |  正规化
+nullstellensatz  |  希尔伯特零点定理
+obstruction-theory  |  障碍理论
+prime-spectrum  |  素谱
+projective-cohomology  |  射影空间的上同调
+proper-morphism  |  紧合态射
+rational-map  |  有理映射
+rational-surface  |  有理曲面
+rees-algebra  |  里斯代数
+regular-local-ring  |  正则局部环
+representable-functor  |  可表示函子与米田引理
+resolution  |  奇点消解
+riemann-roch  |  黎曼-罗赫定理
+riemann-surface  |  紧黎曼面
+ruled-surface  |  直纹面
+scheme  |  概形
+schlessinger  |  施莱辛格条件
+separated-morphism  |  分离态射
+serre-cartan  |  塞尔-嘉当方法
+serre-duality  |  塞尔对偶
+serre-finiteness  |  塞尔的有限性与消没
+serre-finiteness-thm  |  有限性定理
+serre-normality-criterion  |  塞尔的正常性判据
+serre-vanishing  |  格罗滕迪克消没定理
+sheaf  |  层
+sheaf-cohomology  |  层上同调
+singularity  |  奇点
+smooth-morphism  |  光滑态射
+spec-functor  |  Spec 函子
+stable-sheaf  |  稳定性与模空间
+stack  |  叠
+standard-conjectures  |  格罗滕迪克标准猜想
+structure-sheaf  |  结构层
+surface-classification  |  曲面分类
+tangent-space  |  扎里斯基切空间
+theta-functions  |  theta 函数
+todd-class  |  托德类
+valuation-ring  |  赋值环与整闭
+valuative-criterion  |  赋值判据
+weil-conjectures  |  韦伊猜想
+yoneda-lemma  |  米田引理
+zariski-topology  |  扎里斯基闭集

@@ -11,16 +11,19 @@ import { buildGraph, layoutGraph } from './graph.js'
 import { bakeAll } from './formulaTexture.js'
 import { createUI } from './ui.js'
 import { createScene } from './scene.js'
+import { createProofView } from './proofView.js'
 import { GLYPH, LAYOUT, SHAPES, TWEAKABLE } from './config.js'
 import { settings, DISPLAY, DEFAULTS } from './settings.js'
 import { createSettingsPanel } from './settingsPanel.js'
 import {
-  decodeState, encodeState, mergeState, stateToHashInput, hashEquals,
+  decodeLocationState, decodeState, encodeState, mergeState, stateToHashInput, hashEquals,
 } from './urlState.js'
 import * as exportView from './exportView.js'
 import * as graphQuery from './graphQuery.js'
 import * as linkTypes from './linkTypes.js'
 import * as progress from './data/progress.js'
+import * as proofRouter from './proofRouter.js'
+import { getProof, getProofCount } from './data/proofs/index.js'
 
 async function main() {
   const canvas = document.getElementById('scene')
@@ -40,7 +43,7 @@ async function main() {
    *
    * 注意 decodeState 解析的是**不可信输入**，它永不抛异常（见 urlState.js）。 */
   const hashIn = location.hash
-  const urlState = decodeState(hashIn)
+  const urlState = decodeLocationState(location.search, hashIn)
 
   /** 把"当前设置"编成 hash（不含 #）。node 由调用方给。 */
   function buildHash(nodeId) {
@@ -64,9 +67,14 @@ async function main() {
       `取景${changed.view ? '已改' : '不变'}）`,
     )
   }
-
   /* ── 1. 装配图谱（纯数据） ── */
   const graph = buildGraph()
+  // 证明内容独立存放，按稳定 id 作为渐进增强附加到运行时节点；
+  // 旧数据文件仍然只需提供 summary/detail，three.js 不读取 proof 字段。
+  for (const node of graph.nodes) {
+    const proof = getProof(node.id)
+    if (proof) node.proof = proof
+  }
   console.log(
     `[公式诗云] ${graph.stats.nodeCount} 个公式 · ` +
     `${graph.stats.linkCount} 条关联 · 平均度数 ${graph.stats.avgDegree} · ` +
@@ -74,6 +82,7 @@ async function main() {
   )
 
   /* ── 2. 界面 ── */
+  let proofView = null
   const ui = createUI(graph, {
     // 详情面板里点"关联知识"里的另一个公式 → 跳过去。
     // ⚠ 必须走 scene.select()，不能只调 focusOn+showDetail ——
@@ -86,6 +95,16 @@ async function main() {
       // ⚠ 这里不能再调 scene.select(null)：它会调 ui.hideDetail() → onClose，
       //   变成无限递归。走专门的 deselectFromPanel()，它只清状态不碰面板。
       scene.deselectFromPanel()
+    },
+    onProof(id) {
+      if (!proofView) return
+      /* Preserve the current nebula entry before replacing it with the first
+       * proof route. This makes browser Back return to the exact star-map
+       * state that opened the reader. Dependency hops use pushState below. */
+      if (!proofView.currentId) {
+        try { history.pushState(history.state, '', location.href) } catch { /* file:// fallback */ }
+      }
+      proofView.open(id)
     },
   })
 
@@ -208,19 +227,115 @@ async function main() {
    * 只在**真正变化**时写（hashEquals 做语义比较，顺序不同不算变化），
    * 否则每帧或每次重着色都会产生一次无谓的 history.replaceState。 */
   let lastHash = location.hash
-  function syncUrl() {
-    const next = buildHash(scene.selection)
-    if (next === lastHash.replace(/^#/, '')) return
-    lastHash = '#' + next
-    const url = location.pathname + location.search + lastHash
+  let lastSearch = location.search
+  let activeProofId = urlState.proof && graph.byId.has(urlState.proof)
+    ? urlState.proof : null
+  let proofTrail = activeProofId ? [activeProofId] : []
+  if (urlState.proof && !activeProofId) {
+    console.warn(`[公式诗云] 证明页深链里的节点不存在：${urlState.proof}（数据可能已变更）`)
+  }
+  let applyingLocation = false
+  let suppressRouteWrite = false
+
+  /** 更新证明 query 与星云 hash，默认 replace；页面跳转可压入一条浏览器历史。 */
+  function writeLocationState(proofId = activeProofId, { push = false, trail = proofTrail } = {}) {
+    const nextHash = buildHash(scene.selection)
+    let nextSearch = ''
     try {
-      history.replaceState(null, '', url)
+      const params = new URLSearchParams(location.search)
+      params.delete('p')
+      if (typeof proofId === 'string' && proofId) params.set('p', proofId)
+      const encoded = params.toString()
+      nextSearch = encoded ? `?${encoded}` : ''
     } catch {
-      // file:// 或某些沙箱下 replaceState 会被拒。这时退回"只改 hash"，
-      // 代价是会多一条历史记录，但功能不丢。
-      try { location.hash = next } catch { /* 完全不支持就算了，不影响主功能 */ }
+      nextSearch = location.search || ''
+    }
+    const hash = `#${nextHash}`
+    lastHash = hash
+    lastSearch = nextSearch
+    const url = location.pathname + nextSearch + hash
+    const current = location.pathname + location.search + location.hash
+    if (url === current) return
+    try {
+      const previousState = history.state && typeof history.state === 'object' ? history.state : {}
+      const state = {
+        ...previousState,
+        formulaNebula: { ...(previousState.formulaNebula || {}), proofTrail: [...trail] },
+      }
+      if (push) history.pushState(state, '', url)
+      else history.replaceState(state, '', url)
+    } catch {
+      // file:// 或受限沙箱不允许 history API 时，用完整地址替换当前页，
+      // 保留 query 中的 proof id 与设置 hash；只改 hash 会丢证明路由。
+      try { location.replace(url) } catch {
+        try { location.hash = nextHash } catch { /* 地址栏不可写不影响主功能 */ }
+      }
     }
   }
+
+  function syncUrl() {
+    if (suppressRouteWrite) return
+    writeLocationState(activeProofId)
+  }
+
+  function returnToGalaxy(id) {
+    const node = id && graph.byId.get(id)
+    activeProofId = null
+    proofTrail = []
+    proofView.hide()
+    if (!node) {
+      writeLocationState(null, { trail: [] })
+      return
+    }
+    scene.setProofContextFocus?.(id)
+    const view = settings.state.view
+    if ((view === 'galaxy' && node.cluster) || (view === 'cluster' && !node.cluster)) {
+      settings.setView('overview')
+    }
+    scene.select(id, { pushHistory: false })
+  }
+
+  proofView = createProofView({
+    graph,
+    onNavigate(id, detail = {}) {
+      if (!graph.byId.has(id)) return
+      if (detail.navigationType === 'back') {
+        proofTrail = proofTrail.slice(0, -1)
+        if (!proofTrail.length || proofTrail.at(-1) !== id) proofTrail = [id]
+      } else if (detail.navigationType === 'breadcrumb') {
+        const index = proofTrail.lastIndexOf(id)
+        proofTrail = index >= 0 ? proofTrail.slice(0, index + 1) : [id]
+      } else if (detail.pushHistory && detail.from) {
+        if (proofTrail.at(-1) !== detail.from) proofTrail = [...proofTrail, detail.from]
+        proofTrail.push(id)
+      } else if (proofTrail.at(-1) !== id) {
+        proofTrail = [id]
+      }
+      activeProofId = id
+      proofView.setHistory(proofTrail.slice(0, -1))
+      /* 证明页的依赖跳转也同步星云底层选中态，返回星云时焦点与关联高亮
+       * 已经对准当前命题；silent 避免把“证明页内导航”误判成新节点点击。 */
+      if (scene.selection !== id) scene.select(id, { pushHistory: false, silent: true })
+      scene.setProofContextFocus?.(id)
+      writeLocationState(id, {
+        push: detail.navigationType !== 'back',
+        trail: proofTrail,
+      })
+    },
+    onBack(id) {
+      returnToGalaxy(id)
+    },
+    onGalaxy(id) {
+      returnToGalaxy(id)
+    },
+    onHide() {
+      if (applyingLocation || !activeProofId) return
+      activeProofId = null
+      proofTrail = []
+      writeLocationState(null, { trail: [] })
+    },
+  })
+  proofView.mount()
 
   // 选中变化 → 写 URL（scene 内部点击拾取也会走到这里，见 scene.onSelection）
   scene.onSelection(() => syncUrl())
@@ -231,23 +346,46 @@ async function main() {
 
   // 浏览器后退/前进或用户手改 hash → 反过来应用（只处理节点，其余字段
   // 变化很罕见且会触发重排，为简洁只同步"选中"这一项）
-  window.addEventListener('hashchange', () => {
-    if (location.hash === lastHash) return    // 我们自己写进去的，忽略
+  function applyLocationState() {
+    if (location.hash === lastHash && location.search === lastSearch) return
     lastHash = location.hash
-    const st = decodeState(location.hash)
-    if (st.node && graph.byId.has(st.node)) {
-      scene.select(st.node, { pushHistory: false, silent: true })
-    } else if (!st.node && scene.selection) {
-      scene.select(null, { silent: true })
+    lastSearch = location.search
+    const st = decodeLocationState(location.search, location.hash)
+    applyingLocation = true
+    suppressRouteWrite = true
+    const proofId = st.proof && graph.byId.has(st.proof) ? st.proof : null
+    if (proofId) {
+      activeProofId = proofId
+      const savedTrail = history.state?.formulaNebula?.proofTrail
+      proofTrail = Array.isArray(savedTrail) && savedTrail.at(-1) === proofId
+        ? [...savedTrail] : [proofId]
+      proofView.setHistory(proofTrail.slice(0, -1))
+      scene.select(proofId, { pushHistory: false, silent: true })
+      scene.setProofContextFocus?.(proofId)
+      proofView.open(proofId, { pushHistory: false, notify: false })
+    } else {
+      activeProofId = null
+      proofTrail = []
+      proofView.setHistory([])
+      if (proofView.currentId) proofView.hide()
+      if (st.node && graph.byId.has(st.node)) {
+        scene.select(st.node, { pushHistory: false, silent: true })
+      } else if (!st.node && scene.selection) {
+        scene.select(null, { silent: true })
+      }
     }
-  })
+    suppressRouteWrite = false
+    applyingLocation = false
+  }
+  window.addEventListener('hashchange', applyLocationState)
+  window.addEventListener('popstate', applyLocationState)
   /* 首次同步：把从 URL 恢复出来的取景/着色写正。
    *
    * ⚠ 若 URL 里带着要选中的节点（urlState.node），这里**先不写**：
    *   此刻还没选中任何东西，写出来会把 `n=` 洗掉，等 9b 选中后
    *   再写一次才完整。省掉一次中途的 replaceState，也避免地址栏
    *   出现"节点闪一下又回来"的观感。 */
-  if (!urlState.node) syncUrl()
+  if (!urlState.node && !activeProofId) syncUrl()
 
   /* ── 7. 诊断信息写进 DOM，便于自动化验证 ── */
   const diag = document.createElement('div')
@@ -260,6 +398,7 @@ async function main() {
     links: graph.stats.linkCount,
     galaxy: graph.stats.galaxyCount,
     conjectures: graph.stats.conjCount,
+    researchers: graph.stats.researcherCount,
     crossLinks: graph.stats.crossLinks,
     built,
     failed,
@@ -290,6 +429,7 @@ async function main() {
     stats: () => ({
       galaxy: graph.stats.galaxyCount,
       conj: graph.stats.conjCount,
+      researchers: graph.stats.researcherCount,
       links: graph.stats.linkCount,
       cross: graph.stats.crossLinks,
     }),
@@ -310,6 +450,7 @@ async function main() {
     scene.setDisplay('cluster', settings.state.display.cluster)
     scene.setDisplay('clusterHalo', settings.state.display.clusterHalo)
     scene.setDisplay('markers', settings.state.display.markers)
+    scene.setDisplay('researchers', settings.state.display.researchers)
     document.getElementById('legend')?.style.setProperty(
       'display', settings.state.display.legend ? '' : 'none')
   })
@@ -338,6 +479,7 @@ async function main() {
   scene.setDisplay('cluster', settings.state.display.cluster)
   scene.setDisplay('clusterHalo', settings.state.display.clusterHalo)
   scene.setDisplay('markers', settings.state.display.markers)
+  scene.setDisplay('researchers', settings.state.display.researchers)
   document.getElementById('legend')?.style.setProperty(
     'display', settings.state.display.legend ? '' : 'none')
   panel.refreshStats()
@@ -362,7 +504,17 @@ async function main() {
    *
    *   不传 silent 是安全的：syncUrl 用字符串比较挡重复写，
    *   而且写的是 replaceState，不会多压历史记录。 */
-  if (urlState.node && graph.byId.has(urlState.node)) {
+  if (urlState.proof && graph.byId.has(urlState.proof)) {
+    const n = graph.byId.get(urlState.proof)
+    activeProofId = n.id
+    proofTrail = [n.id]
+    proofView.setHistory([])
+    scene.select(n.id, { pushHistory: false, silent: true })
+    scene.setProofContextFocus?.(n.id)
+    proofView.open(n.id, { pushHistory: false, notify: false })
+    syncUrl()
+    console.log(`[公式诗云] 证明页深链直达：${n.name}`)
+  } else if (urlState.node && graph.byId.has(urlState.node)) {
     const n = graph.byId.get(urlState.node)
     scene.select(urlState.node, { pushHistory: false })
     console.log(`[公式诗云] 深链直达：${n.name}`)
@@ -374,12 +526,13 @@ async function main() {
 
   // 调试用：控制台里可以直接访问
   window.__nebula = {
-    graph, scene, ui, baked, settings, panel, rebuildLayout,
+    graph, scene, ui, proofView, baked, settings, panel, rebuildLayout,
+    proofData: { getProof, getProofCount },
     url: { decodeState, encodeState, stateToHashInput, hashEquals, syncUrl, buildHash },
     /* 纯函数模块也挂上来：验证脚本要在**真实页面**里调用它们，
      * 以证明它们不只是"能在 Node 里跑"，而是真的被构建进来了。
      * 顺带也方便在控制台里手工试用。 */
-    exportView, graphQuery, linkTypes,
+    exportView, graphQuery, linkTypes, proofRouter,
     /* 进展年份也挂上来。
      *
      * ⚠ 验证脚本**不能**用 `import('/src/data/progress.js')` 去拿它：

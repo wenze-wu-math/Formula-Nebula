@@ -90,9 +90,9 @@ const EPS = 1e-9
  * 字符串是子串匹配（用户永远只想得到「含」），数值是大小比较，
  * 布尔只能 true/false，is 是纯语法糖。混成一锅的话，
  * `importance:定理` 这种输入就只能报一句含糊的错。 */
-const STRING_KEYS = ['family', 'field', 'status', 'id', 'name', 'en', 'latex', 'proposer']
+const STRING_KEYS = ['family', 'field', 'status', 'id', 'name', 'en', 'latex', 'proposer', 'institution', 'focus']
 const NUM_KEYS = ['importance', 'degree', 'rank', 'year']
-const BOOL_KEYS = ['cluster']
+const BOOL_KEYS = ['cluster', 'researcher']
 
 /** 给 UI 用的中文标签，报错信息与 describe() 共用一份，免得两处写岔 */
 const KEY_LABEL = {
@@ -104,11 +104,14 @@ const KEY_LABEL = {
   en: '英文名',
   latex: '公式',
   proposer: '提出者',
+  institution: '机构',
+  focus: '研究方向',
   importance: '重要度',
   degree: '关联数',
   rank: '族内排名',
   year: '年份',
   cluster: '是否属于猜想星团',
+  researcher: '是否属于研究者星团',
 }
 
 /** 给 UI 用：字段清单与示例查询（搜索框的 placeholder / 帮助面板可直接读它） */
@@ -116,12 +119,13 @@ export const QUERY_KEYS = {
   string: STRING_KEYS,
   number: NUM_KEYS,
   bool: BOOL_KEYS,
-  sugar: ['is:conjecture', 'is:theorem'],
+  sugar: ['is:conjecture', 'is:theorem', 'is:researcher'],
   examples: [
     'status:open importance:>0.8',
     '(family:scheme OR family:topo) -status:proved',
     'name:"Hodge 猜想"',
     'is:conjecture -field:ag',
+    'is:researcher institution:"Institute for Advanced Study"',
     'degree:>20 猜想',
   ],
 }
@@ -344,27 +348,34 @@ function compileAtom(text) {
   if (!key) fail(`「${text}」缺少字段名（例如 name:定理）`)
   if (!value) fail(`字段「${key}」后面没有值`)
 
-  /* ── 布尔：cluster ── */
+  /* ── 布尔：cluster / researcher ── */
   if (BOOL_KEYS.includes(key)) {
     const v = value.toLowerCase()
     if (v !== 'true' && v !== 'false') {
-      fail(`cluster 只能是 true 或 false（收到「${value}」）`)
+      fail(`${key} 只能是 true 或 false（收到「${value}」）`)
     }
     const want = v === 'true'
+    if (key === 'researcher') {
+      return {
+        test: (n) => !!n.researcher === want,
+        desc: want ? '属于研究者星团' : '不属于研究者星团',
+      }
+    }
     return {
       test: (n) => !!n.cluster === want,
-      desc: want ? '属于猜想星团' : '属于主星系',
+      desc: want ? '属于猜想星团' : '不属于猜想星团',
     }
   }
 
-  /* ── 语法糖：is:conjecture / is:theorem ──
+  /* ── 语法糖：is:conjecture / is:theorem / is:researcher ──
    * 「这条定论了吗」是读这张图时会问的第一个问题，值得一个短写法。
-   * 语义上它们与 cluster:true/false 完全等价（cluster 就是「在不在星团里」）。 */
+   * 语义上它们与 cluster/researcher 完全等价（cluster 就是「在不在星团里」）。 */
   if (key === 'is') {
     const v = value.toLowerCase()
     if (v === 'conjecture') return { test: (n) => !!n.cluster, desc: '属于猜想星团' }
-    if (v === 'theorem') return { test: (n) => !n.cluster, desc: '属于主星系（已定论）' }
-    fail(`is: 只支持 conjecture / theorem（收到「${value}」）`)
+    if (v === 'researcher') return { test: (n) => !!n.researcher, desc: '属于研究者星团' }
+    if (v === 'theorem') return { test: (n) => !n.cluster && !n.researcher, desc: '属于主星系（已定论）' }
+    fail(`is: 只支持 conjecture / researcher / theorem（收到「${value}」）`)
   }
 
   /* ── 数值比较 ──
@@ -408,7 +419,7 @@ function compileAtom(text) {
   }
 
   fail(`不认识的字段「${key}」。可用：` +
-    [...STRING_KEYS, ...NUM_KEYS, 'cluster', 'is'].join(' / '))
+    [...STRING_KEYS, ...NUM_KEYS, ...BOOL_KEYS, 'is'].join(' / '))
 }
 
 /**

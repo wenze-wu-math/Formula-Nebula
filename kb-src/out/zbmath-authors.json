@@ -1,0 +1,5474 @@
+{
+ "Zariski, Oscar": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 1981
+   }
+  ],
+  "code": "zariski.oscar",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "18926",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q381307",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Zariski",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "24434",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "119042940",
+    "type": "gnd"
+   },
+   {
+    "external_id": "031839541",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 30,
+    "field": "14",
+    "percent": "61.224489795918366",
+    "percentile": "61.224489795918366"
+   }
+  ],
+  "in_collective": [],
+  "name": "Zariski, Oscar",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 72,
+    "first_name": "Oscar",
+    "initials": "O",
+    "last_name": "Zariski",
+    "name": "Zariski, Oscar"
+   },
+   {
+    "count": 66,
+    "first_name": "O.",
+    "initials": "O",
+    "last_name": "Zariski",
+    "name": "Zariski, O."
+   },
+   {
+    "count": 1,
+    "first_name": "Oskar",
+    "initials": "O",
+    "last_name": "Zariski",
+    "name": "Zariski, Oskar"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/zariski.oscar"
+ },
+ "Grothendieck, Alexander": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1966
+   },
+   {
+    "title": "Crafoord Prize",
+    "wikidata": {
+     "id": "Q583069",
+     "link": "Crafoord_Prize"
+    },
+    "year": 1988
+   }
+  ],
+  "code": "grothendieck.alexander",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "31245",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q77141",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Grothendieck",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "24382",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "118952773",
+    "type": "gnd"
+   },
+   {
+    "external_id": "032375549",
+    "type": "idref"
+   },
+   {
+    "external_id": "KFPyTxQAAAAJ",
+    "type": "google_scholar"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 82,
+    "field": "14",
+    "percent": "51.89873417721519",
+    "percentile": "51.89873417721519"
+   },
+   {
+    "count": 21,
+    "field": "00",
+    "percent": "13.291139240506329",
+    "percentile": "65.18987341772151"
+   },
+   {
+    "count": 16,
+    "field": "18",
+    "percent": "10.126582278481013",
+    "percentile": "75.31645569620252"
+   }
+  ],
+  "in_collective": [
+   "bourbaki.nicolas"
+  ],
+  "name": "Grothendieck, Alexander",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 82,
+    "first_name": "A.",
+    "initials": "A",
+    "last_name": "Grothendieck",
+    "name": "Grothendieck, A."
+   },
+   {
+    "count": 41,
+    "first_name": "Alexander",
+    "initials": "A",
+    "last_name": "Grothendieck",
+    "name": "Grothendieck, Alexander"
+   },
+   {
+    "count": 24,
+    "first_name": "Alexandre",
+    "initials": "A",
+    "last_name": "Grothendieck",
+    "name": "Grothendieck, Alexandre"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/grothendieck.alexander"
+ },
+ "Serre, Jean-Pierre": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1954
+   },
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 2000
+   },
+   {
+    "title": "Abel Prize",
+    "wikidata": {
+     "id": "Q188184",
+     "link": "Abel_Prize"
+    },
+    "year": 2003
+   }
+  ],
+  "code": "serre.jean-pierre",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "34222",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q212063",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "24168",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "142283126",
+    "type": "gnd"
+   },
+   {
+    "external_id": "Serre",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "027133222",
+    "type": "idref"
+   },
+   {
+    "external_id": "73/9527",
+    "type": "dblp"
+   },
+   {
+    "external_id": "jean-pierre-serre",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 107,
+    "field": "11",
+    "percent": "25.355450236966824",
+    "percentile": "25.355450236966824"
+   },
+   {
+    "count": 100,
+    "field": "14",
+    "percent": "23.696682464454977",
+    "percentile": "49.0521327014218"
+   },
+   {
+    "count": 69,
+    "field": "20",
+    "percent": "16.350710900473935",
+    "percentile": "65.40284360189574"
+   },
+   {
+    "count": 36,
+    "field": "01",
+    "percent": "8.530805687203792",
+    "percentile": "73.93364928909953"
+   },
+   {
+    "count": 23,
+    "field": "12",
+    "percent": "5.450236966824645",
+    "percentile": "79.38388625592418"
+   }
+  ],
+  "in_collective": [
+   "bourbaki.nicolas"
+  ],
+  "name": "Serre, Jean-Pierre",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 314,
+    "first_name": "Jean-Pierre",
+    "initials": "J P",
+    "last_name": "Serre",
+    "name": "Serre, Jean-Pierre"
+   },
+   {
+    "count": 22,
+    "first_name": "J.-P.",
+    "initials": "J P",
+    "last_name": "Serre",
+    "name": "Serre, J.-P."
+   },
+   {
+    "count": 1,
+    "first_name": "Jean Pierre",
+    "initials": "J P",
+    "last_name": "Serre",
+    "name": "Serre, Jean Pierre"
+   },
+   {
+    "count": 1,
+    "first_name": "Z.-P.",
+    "initials": "Z P",
+    "last_name": "Serr",
+    "name": "Serr, Z.-P."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/serre.jean-pierre"
+ },
+ "Weil, Andre": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 1979
+   },
+   {
+    "title": "Kyoto Prize in Basic Sciences",
+    "wikidata": {
+     "id": "Q18344281",
+     "link": "Kyoto_Prize_in_Basic_Sciences"
+    },
+    "year": 1994
+   }
+  ],
+  "code": "weil.andre",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q323232",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "6385",
+    "type": "mgp"
+   },
+   {
+    "external_id": "25641",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "Weil",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "118980963",
+    "type": "gnd"
+   },
+   {
+    "external_id": "031616348",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Weil, André Abraham"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 58,
+    "field": "11",
+    "percent": "29.441624365482234",
+    "percentile": "29.441624365482234"
+   },
+   {
+    "count": 43,
+    "field": "01",
+    "percent": "21.82741116751269",
+    "percentile": "51.26903553299492"
+   },
+   {
+    "count": 37,
+    "field": "14",
+    "percent": "18.781725888324875",
+    "percentile": "70.05076142131979"
+   },
+   {
+    "count": 10,
+    "field": "32",
+    "percent": "5.0761421319796955",
+    "percentile": "75.12690355329948"
+   },
+   {
+    "count": 8,
+    "field": "20",
+    "percent": "4.060913705583756",
+    "percentile": "79.18781725888324"
+   }
+  ],
+  "in_collective": [
+   "bourbaki.nicolas"
+  ],
+  "name": "Weil, André",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 137,
+    "first_name": "André",
+    "initials": "A",
+    "last_name": "Weil",
+    "name": "Weil, André"
+   },
+   {
+    "count": 52,
+    "first_name": "A.",
+    "initials": "A",
+    "last_name": "Weil",
+    "name": "Weil, A."
+   },
+   {
+    "count": 1,
+    "first_name": "R.",
+    "initials": "R",
+    "last_name": "Lipschitz",
+    "name": "Lipschitz, R."
+   },
+   {
+    "count": 1,
+    "first_name": null,
+    "initials": null,
+    "last_name": "X. X. X.",
+    "name": "X. X. X."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/weil.andre"
+ },
+ "Mumford, David": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1974
+   },
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2006
+   },
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 2008
+   }
+  ],
+  "code": "mumford.david-b",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "18755",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q334021",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Mumford",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "24454",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "115549021",
+    "type": "gnd"
+   },
+   {
+    "external_id": "http://www.dam.brown.edu/people/mumford/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "031670865",
+    "type": "idref"
+   },
+   {
+    "external_id": "031670865",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "david-mumford",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 74,
+    "field": "14",
+    "percent": "29.959514170040485",
+    "percentile": "29.959514170040485"
+   },
+   {
+    "count": 25,
+    "field": "01",
+    "percent": "10.121457489878543",
+    "percentile": "40.08097165991903"
+   },
+   {
+    "count": 17,
+    "field": "68",
+    "percent": "6.882591093117409",
+    "percentile": "46.96356275303644"
+   },
+   {
+    "count": 17,
+    "field": "00",
+    "percent": "6.882591093117409",
+    "percentile": "53.846153846153854"
+   },
+   {
+    "count": 12,
+    "field": "58",
+    "percent": "4.8582995951417",
+    "percentile": "58.704453441295556"
+   },
+   {
+    "count": 8,
+    "field": "35",
+    "percent": "3.2388663967611335",
+    "percentile": "61.94331983805669"
+   },
+   {
+    "count": 8,
+    "field": "62",
+    "percent": "3.2388663967611335",
+    "percentile": "65.18218623481782"
+   },
+   {
+    "count": 7,
+    "field": "20",
+    "percent": "2.834008097165992",
+    "percentile": "68.01619433198381"
+   },
+   {
+    "count": 7,
+    "field": "32",
+    "percent": "2.834008097165992",
+    "percentile": "70.8502024291498"
+   },
+   {
+    "count": 6,
+    "field": "53",
+    "percent": "2.42914979757085",
+    "percentile": "73.27935222672065"
+   },
+   {
+    "count": 6,
+    "field": "11",
+    "percent": "2.42914979757085",
+    "percentile": "75.70850202429149"
+   },
+   {
+    "count": 6,
+    "field": "60",
+    "percent": "2.42914979757085",
+    "percentile": "78.13765182186233"
+   }
+  ],
+  "in_collective": [],
+  "name": "Mumford, David Bryant",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 108,
+    "first_name": "David",
+    "initials": "D",
+    "last_name": "Mumford",
+    "name": "Mumford, David"
+   },
+   {
+    "count": 47,
+    "first_name": "D.",
+    "initials": "D",
+    "last_name": "Mumford",
+    "name": "Mumford, D."
+   },
+   {
+    "count": 1,
+    "first_name": "David B.",
+    "initials": "D B",
+    "last_name": "Mumford",
+    "name": "Mumford, David B."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/mumford.david-b"
+ },
+ "Hironaka, Heisuke": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1970
+   }
+  ],
+  "code": "hironaka.heisuke",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q183373",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Hironaka",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "18752",
+    "type": "mgp"
+   },
+   {
+    "external_id": "124085",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "1074027868",
+    "type": "gnd"
+   },
+   {
+    "external_id": "57/6929",
+    "type": "dblp"
+   },
+   {
+    "external_id": "031682820",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "jpn",
+    "name": "広中 平祐"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 32,
+    "field": "14",
+    "percent": "50.79365079365079",
+    "percentile": "50.79365079365079"
+   },
+   {
+    "count": 16,
+    "field": "32",
+    "percent": "25.396825396825395",
+    "percentile": "76.19047619047619"
+   }
+  ],
+  "in_collective": [],
+  "name": "Hironaka, Heisuke",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 38,
+    "first_name": "Heisuke",
+    "initials": "H",
+    "last_name": "Hironaka",
+    "name": "Hironaka, Heisuke"
+   },
+   {
+    "count": 18,
+    "first_name": "H.",
+    "initials": "H",
+    "last_name": "Hironaka",
+    "name": "Hironaka, H."
+   },
+   {
+    "count": 1,
+    "first_name": "Hej",
+    "initials": "H",
+    "last_name": "Iss'sa",
+    "name": "Iss'sa, Hej"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/hironaka.heisuke"
+ },
+ "Hartshorne, Robin": {
+  "aliases": [],
+  "awards": [],
+  "code": "hartshorne.robin",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "https://math.berkeley.edu/people/faculty/robin-c-hartshorne",
+    "type": "homepage"
+   },
+   {
+    "external_id": "Q1356332",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "133225089",
+    "type": "gnd"
+   },
+   {
+    "external_id": "126/6974",
+    "type": "dblp"
+   },
+   {
+    "external_id": "29466",
+    "type": "mgp"
+   },
+   {
+    "external_id": "031682510",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 80,
+    "field": "14",
+    "percent": "62.99212598425197",
+    "percentile": "62.99212598425197"
+   },
+   {
+    "count": 15,
+    "field": "13",
+    "percent": "11.811023622047244",
+    "percentile": "74.80314960629921"
+   }
+  ],
+  "in_collective": [],
+  "name": "Hartshorne, Robin",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 78,
+    "first_name": "Robin",
+    "initials": "R",
+    "last_name": "Hartshorne",
+    "name": "Hartshorne, Robin"
+   },
+   {
+    "count": 21,
+    "first_name": "R.",
+    "initials": "R",
+    "last_name": "Hartshorne",
+    "name": "Hartshorne, R."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/hartshorne.robin"
+ },
+ "Deligne, Pierre": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1978
+   },
+   {
+    "title": "Crafoord Prize",
+    "wikidata": {
+     "id": "Q583069",
+     "link": "Crafoord_Prize"
+    },
+    "year": 1988
+   },
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 2008
+   },
+   {
+    "title": "Abel Prize",
+    "wikidata": {
+     "id": "Q188184",
+     "link": "Abel_Prize"
+    },
+    "year": 2013
+   }
+  ],
+  "code": "deligne.pierre",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "61289",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Deligne",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "Q334045",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "22625",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "10785533X",
+    "type": "gnd"
+   },
+   {
+    "external_id": "https://www.ias.edu/scholars/deligne",
+    "type": "homepage"
+   },
+   {
+    "external_id": "031681182",
+    "type": "idref"
+   },
+   {
+    "external_id": "pierre-deligne",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Deligne, Pierre René"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 104,
+    "field": "14",
+    "percent": "38.66171003717472",
+    "percentile": "38.66171003717472"
+   },
+   {
+    "count": 33,
+    "field": "11",
+    "percent": "12.267657992565056",
+    "percentile": "50.92936802973978"
+   },
+   {
+    "count": 20,
+    "field": "20",
+    "percent": "7.434944237918216",
+    "percentile": "58.36431226765799"
+   },
+   {
+    "count": 13,
+    "field": "32",
+    "percent": "4.83271375464684",
+    "percentile": "63.19702602230483"
+   },
+   {
+    "count": 13,
+    "field": "22",
+    "percent": "4.83271375464684",
+    "percentile": "68.02973977695167"
+   },
+   {
+    "count": 13,
+    "field": "18",
+    "percent": "4.83271375464684",
+    "percentile": "72.86245353159852"
+   },
+   {
+    "count": 8,
+    "field": "00",
+    "percent": "2.973977695167286",
+    "percentile": "75.83643122676581"
+   },
+   {
+    "count": 7,
+    "field": "81",
+    "percent": "2.6022304832713754",
+    "percentile": "78.43866171003718"
+   }
+  ],
+  "in_collective": [
+   "bourbaki.nicolas"
+  ],
+  "name": "Deligne, Pierre",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 134,
+    "first_name": "Pierre",
+    "initials": "P",
+    "last_name": "Deligne",
+    "name": "Deligne, Pierre"
+   },
+   {
+    "count": 34,
+    "first_name": "P.",
+    "initials": "P",
+    "last_name": "Deligne",
+    "name": "Deligne, P."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/deligne.pierre"
+ },
+ "Faltings, Gerd": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1986
+   },
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2015
+   },
+   {
+    "title": "Abel Prize",
+    "wikidata": {
+     "id": "Q188184",
+     "link": "Abel_Prize"
+    },
+    "year": 2026
+   }
+  ],
+  "code": "faltings.gerd",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "18851",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Faltings",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "118686003",
+    "type": "gnd"
+   },
+   {
+    "external_id": "gerd-faltings",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "37247",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "Q77137",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "032282990",
+    "type": "idref"
+   },
+   {
+    "external_id": "https://www.mpim-bonn.mpg.de/de/node/102",
+    "type": "homepage"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 83,
+    "field": "14",
+    "percent": "51.875",
+    "percentile": "51.875"
+   },
+   {
+    "count": 36,
+    "field": "11",
+    "percent": "22.5",
+    "percentile": "74.375"
+   }
+  ],
+  "in_collective": [],
+  "name": "Faltings, Gerd",
+  "reviewer": "1774",
+  "spellings": [
+   {
+    "count": 83,
+    "first_name": "Gerd",
+    "initials": "G",
+    "last_name": "Faltings",
+    "name": "Faltings, Gerd"
+   },
+   {
+    "count": 8,
+    "first_name": "G.",
+    "initials": "G",
+    "last_name": "Faltings",
+    "name": "Faltings, G."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "z",
+    "reviewer"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/faltings.gerd"
+ },
+ "Kodaira, Kunihiko": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1954
+   },
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 1984
+   }
+  ],
+  "code": "kodaira.kunihiko",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "20660",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q333918",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Kodaira",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "123810",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "118777645",
+    "type": "gnd"
+   },
+   {
+    "external_id": "03056820X",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "jpn",
+    "name": "小平 邦彦"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 11,
+    "field": "32",
+    "percent": "20.0",
+    "percentile": "20.0"
+   },
+   {
+    "count": 9,
+    "field": "14",
+    "percent": "16.363636363636363",
+    "percentile": "36.36363636363636"
+   },
+   {
+    "count": 6,
+    "field": "01",
+    "percent": "10.909090909090908",
+    "percentile": "47.272727272727266"
+   },
+   {
+    "count": 4,
+    "field": "30",
+    "percent": "7.2727272727272725",
+    "percentile": "54.54545454545454"
+   },
+   {
+    "count": 4,
+    "field": "00",
+    "percent": "7.2727272727272725",
+    "percentile": "61.81818181818181"
+   },
+   {
+    "count": 3,
+    "field": "58",
+    "percent": "5.454545454545454",
+    "percentile": "67.27272727272727"
+   },
+   {
+    "count": 3,
+    "field": "53",
+    "percent": "5.454545454545454",
+    "percentile": "72.72727272727272"
+   },
+   {
+    "count": 2,
+    "field": "11",
+    "percent": "3.6363636363636362",
+    "percentile": "76.36363636363636"
+   },
+   {
+    "count": 2,
+    "field": "35",
+    "percent": "3.6363636363636362",
+    "percentile": "80.0"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kodaira, Kunihiko",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 93,
+    "first_name": "Kunihiko",
+    "initials": "K",
+    "last_name": "Kodaira",
+    "name": "Kodaira, Kunihiko"
+   },
+   {
+    "count": 11,
+    "first_name": "K.",
+    "initials": "K",
+    "last_name": "Kodaira",
+    "name": "Kodaira, K."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kodaira.kunihiko"
+ },
+ "Atiyah, Michael": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1966
+   },
+   {
+    "title": "Abel Prize",
+    "wikidata": {
+     "id": "Q188184",
+     "link": "Abel_Prize"
+    },
+    "year": 2004
+   }
+  ],
+  "code": "atiyah.michael-francis",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "30949",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q208356",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Atiyah_MF",
+    "type": "celebratio"
+   },
+   {
+    "external_id": "Atiyah",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "92/9504",
+    "type": "dblp"
+   },
+   {
+    "external_id": "22225",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "118848453",
+    "type": "gnd"
+   },
+   {
+    "external_id": "http://www.maths.ed.ac.uk/school-of-mathematics/people?person=75",
+    "type": "homepage"
+   },
+   {
+    "external_id": "michael-atiyah",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "067638252",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 69,
+    "field": "58",
+    "percent": "13.398058252427184",
+    "percentile": "13.398058252427184"
+   },
+   {
+    "count": 63,
+    "field": "01",
+    "percent": "12.233009708737864",
+    "percentile": "25.631067961165048"
+   },
+   {
+    "count": 63,
+    "field": "53",
+    "percent": "12.233009708737864",
+    "percentile": "37.86407766990291"
+   },
+   {
+    "count": 59,
+    "field": "81",
+    "percent": "11.45631067961165",
+    "percentile": "49.32038834951456"
+   },
+   {
+    "count": 42,
+    "field": "57",
+    "percent": "8.155339805825243",
+    "percentile": "57.4757281553398"
+   },
+   {
+    "count": 30,
+    "field": "00",
+    "percent": "5.825242718446602",
+    "percentile": "63.300970873786405"
+   },
+   {
+    "count": 29,
+    "field": "55",
+    "percent": "5.631067961165049",
+    "percentile": "68.93203883495146"
+   },
+   {
+    "count": 27,
+    "field": "14",
+    "percent": "5.242718446601942",
+    "percentile": "74.1747572815534"
+   },
+   {
+    "count": 15,
+    "field": "35",
+    "percent": "2.912621359223301",
+    "percentile": "77.08737864077669"
+   },
+   {
+    "count": 14,
+    "field": "83",
+    "percent": "2.7184466019417477",
+    "percentile": "79.80582524271844"
+   }
+  ],
+  "in_collective": [],
+  "name": "Atiyah, Michael Francis",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 123,
+    "first_name": "Michael F.",
+    "initials": "M F",
+    "last_name": "Atiyah",
+    "name": "Atiyah, Michael F."
+   },
+   {
+    "count": 122,
+    "first_name": "Michael",
+    "initials": "M",
+    "last_name": "Atiyah",
+    "name": "Atiyah, Michael"
+   },
+   {
+    "count": 23,
+    "first_name": "M. F.",
+    "initials": "M F",
+    "last_name": "Atiyah",
+    "name": "Atiyah, M. F."
+   },
+   {
+    "count": 7,
+    "first_name": "M.",
+    "initials": "M",
+    "last_name": "Atiyah",
+    "name": "Atiyah, M."
+   },
+   {
+    "count": 4,
+    "first_name": "Michael Francis",
+    "initials": "M F",
+    "last_name": "Atiyah",
+    "name": "Atiyah, Michael Francis"
+   },
+   {
+    "count": 1,
+    "first_name": "Sir Michael F.",
+    "initials": "S M F",
+    "last_name": "Atiyah",
+    "name": "Atiyah, Sir Michael F."
+   },
+   {
+    "count": 1,
+    "first_name": "Sir Michael",
+    "initials": "S M",
+    "last_name": "Atiyah",
+    "name": "Atiyah, Sir Michael"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/atiyah.michael-francis"
+ },
+ "Griffiths, Phillip": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 2008
+   },
+   {
+    "title": "Chern Medal",
+    "wikidata": {
+     "id": "Q1070276",
+     "link": "Chern_Medal"
+    },
+    "year": 2014
+   }
+  ],
+  "code": "griffiths.phillip-a",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "26954",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q1385013",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Griffiths",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "158/2200",
+    "type": "dblp"
+   },
+   {
+    "external_id": "22624",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "131881434",
+    "type": "gnd"
+   },
+   {
+    "external_id": "031633595",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 108,
+    "field": "14",
+    "percent": "35.40983606557377",
+    "percentile": "35.40983606557377"
+   },
+   {
+    "count": 61,
+    "field": "32",
+    "percent": "20.0",
+    "percentile": "55.40983606557377"
+   },
+   {
+    "count": 29,
+    "field": "53",
+    "percent": "9.508196721311476",
+    "percentile": "64.91803278688525"
+   },
+   {
+    "count": 24,
+    "field": "58",
+    "percent": "7.868852459016393",
+    "percentile": "72.78688524590164"
+   },
+   {
+    "count": 17,
+    "field": "01",
+    "percent": "5.573770491803279",
+    "percentile": "78.36065573770492"
+   }
+  ],
+  "in_collective": [],
+  "name": "Griffiths, Phillip Augustus",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 76,
+    "first_name": "Phillip",
+    "initials": "P",
+    "last_name": "Griffiths",
+    "name": "Griffiths, Phillip"
+   },
+   {
+    "count": 63,
+    "first_name": "Phillip A.",
+    "initials": "P A",
+    "last_name": "Griffiths",
+    "name": "Griffiths, Phillip A."
+   },
+   {
+    "count": 22,
+    "first_name": "P. A.",
+    "initials": "P A",
+    "last_name": "Griffiths",
+    "name": "Griffiths, P. A."
+   },
+   {
+    "count": 9,
+    "first_name": "P.",
+    "initials": "P",
+    "last_name": "Griffiths",
+    "name": "Griffiths, P."
+   },
+   {
+    "count": 7,
+    "first_name": "Ph. A.",
+    "initials": "P A",
+    "last_name": "Griffiths",
+    "name": "Griffiths, Ph. A."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/griffiths.phillip-a"
+ },
+ "Mori, Shigefumi": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1990
+   }
+  ],
+  "code": "mori.shigefumi",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q206215",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "100894",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Mori",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "43343",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "142401137",
+    "type": "gnd"
+   },
+   {
+    "external_id": "050498851",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "jpn",
+    "name": "森 重文"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 63,
+    "field": "14",
+    "percent": "74.11764705882354",
+    "percentile": "74.11764705882354"
+   }
+  ],
+  "in_collective": [],
+  "name": "Mori, Shigefumi",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 64,
+    "first_name": "Shigefumi",
+    "initials": "S",
+    "last_name": "Mori",
+    "name": "Mori, Shigefumi"
+   },
+   {
+    "count": 5,
+    "first_name": "S.",
+    "initials": "S",
+    "last_name": "Mori",
+    "name": "Mori, S."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/mori.shigefumi"
+ },
+ "Kawamata, Yujiro": {
+  "aliases": [],
+  "awards": [],
+  "code": "kawamata.yujiro",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "189058",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q11477914",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "095218939",
+    "type": "idref"
+   },
+   {
+    "external_id": "173132758",
+    "type": "gnd"
+   },
+   {
+    "external_id": "112878",
+    "type": "mathnetru"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 111,
+    "field": "14",
+    "percent": "62.359550561797754",
+    "percentile": "62.359550561797754"
+   },
+   {
+    "count": 26,
+    "field": "32",
+    "percent": "14.606741573033707",
+    "percentile": "76.96629213483146"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kawamata, Yujiro",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 111,
+    "first_name": "Yujiro",
+    "initials": "Y",
+    "last_name": "Kawamata",
+    "name": "Kawamata, Yujiro"
+   },
+   {
+    "count": 1,
+    "first_name": "Yūjirō",
+    "initials": "Y",
+    "last_name": "Kawamata",
+    "name": "Kawamata, Yūjirō"
+   },
+   {
+    "count": 1,
+    "first_name": "Y.",
+    "initials": "Y",
+    "last_name": "Kawamata",
+    "name": "Kawamata, Y."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kawamata.yujiro"
+ },
+ "Kollar, Janos": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2017
+   }
+  ],
+  "code": "kollar.janos",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "20125",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q1115371",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "050498843",
+    "type": "idref"
+   },
+   {
+    "external_id": "https://web.math.princeton.edu/~kollar/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "xKUVD4MAAAAJ",
+    "type": "google_scholar"
+   },
+   {
+    "external_id": "36/728",
+    "type": "dblp"
+   },
+   {
+    "external_id": "47731",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "113796277",
+    "type": "gnd"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 212,
+    "field": "14",
+    "percent": "57.452574525745256",
+    "percentile": "57.452574525745256"
+   },
+   {
+    "count": 34,
+    "field": "32",
+    "percent": "9.214092140921409",
+    "percentile": "66.66666666666666"
+   },
+   {
+    "count": 13,
+    "field": "53",
+    "percent": "3.5230352303523036",
+    "percentile": "70.18970189701896"
+   },
+   {
+    "count": 12,
+    "field": "00",
+    "percent": "3.252032520325203",
+    "percentile": "73.44173441734416"
+   },
+   {
+    "count": 12,
+    "field": "11",
+    "percent": "3.252032520325203",
+    "percentile": "76.69376693766937"
+   },
+   {
+    "count": 10,
+    "field": "57",
+    "percent": "2.710027100271003",
+    "percentile": "79.40379403794037"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kollár, János",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 212,
+    "first_name": "János",
+    "initials": "J",
+    "last_name": "Kollár",
+    "name": "Kollár, János"
+   },
+   {
+    "count": 8,
+    "first_name": "Janos",
+    "initials": "J",
+    "last_name": "Kollar",
+    "name": "Kollar, Janos"
+   },
+   {
+    "count": 7,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "Kollár",
+    "name": "Kollár, J."
+   },
+   {
+    "count": 5,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "Kollar",
+    "name": "Kollar, J."
+   },
+   {
+    "count": 1,
+    "first_name": "János",
+    "initials": "J",
+    "last_name": "Kollar",
+    "name": "Kollar, János"
+   },
+   {
+    "count": 1,
+    "first_name": null,
+    "initials": null,
+    "last_name": "Kollár",
+    "name": "Kollár"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kollar.janos"
+ },
+ "Scholze, Peter": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Clay Research Award",
+    "wikidata": {
+     "id": "Q1099219",
+     "link": "Clay_Research_Award"
+    },
+    "year": 2014
+   },
+   {
+    "title": "New Horizons in Mathematics Prize",
+    "wikidata": {
+     "id": "Q45310290",
+     "link": "New_Horizons_in_Mathematics_Prize"
+    },
+    "year": 2016
+   },
+   {
+    "title": "EMS Prize",
+    "wikidata": {
+     "id": "Q1275243",
+     "link": "EMS_Prize"
+    },
+    "year": 2016
+   },
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 2018
+   }
+  ],
+  "code": "scholze.peter",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q98034",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "160930",
+    "type": "mgp"
+   },
+   {
+    "external_id": "37690",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "peter-scholze",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "1143603133",
+    "type": "gnd"
+   },
+   {
+    "external_id": "6074",
+    "type": "mathoverflow"
+   },
+   {
+    "external_id": "147448824",
+    "type": "idref"
+   },
+   {
+    "external_id": "147448824",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "https://people.mpim-bonn.mpg.de/scholze/",
+    "type": "homepage"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 53,
+    "field": "14",
+    "percent": "40.458015267175576",
+    "percentile": "40.458015267175576"
+   },
+   {
+    "count": 29,
+    "field": "11",
+    "percent": "22.137404580152673",
+    "percentile": "62.595419847328245"
+   },
+   {
+    "count": 7,
+    "field": "00",
+    "percent": "5.343511450381679",
+    "percentile": "67.93893129770993"
+   },
+   {
+    "count": 6,
+    "field": "22",
+    "percent": "4.580152671755725",
+    "percentile": "72.51908396946565"
+   },
+   {
+    "count": 6,
+    "field": "13",
+    "percent": "4.580152671755725",
+    "percentile": "77.09923664122138"
+   }
+  ],
+  "in_collective": [],
+  "name": "Scholze, Peter",
+  "reviewer": "18816",
+  "spellings": [
+   {
+    "count": 55,
+    "first_name": "Peter",
+    "initials": "P",
+    "last_name": "Scholze",
+    "name": "Scholze, Peter"
+   },
+   {
+    "count": 1,
+    "first_name": "P.",
+    "initials": "P",
+    "last_name": "Scholze",
+    "name": "Scholze, P."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "z",
+    "reviewer"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/scholze.peter"
+ },
+ "Voevodsky, Vladimir": {
+  "_miss": true,
+  "_candidates": [
+   "Voevodskiĭ, Vladimir Aleksandrovich"
+  ]
+ },
+ "Lurie, Jacob": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Breakthrough Prize in Mathematics",
+    "wikidata": {
+     "id": "Q17278380",
+     "link": "Breakthrough_Prize_in_Mathematics"
+    },
+    "year": 2014
+   }
+  ],
+  "code": "lurie.jacob",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "84215",
+    "type": "mgp"
+   },
+   {
+    "external_id": "139905529",
+    "type": "gnd"
+   },
+   {
+    "external_id": "Q6333335",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "31/5041",
+    "type": "dblp"
+   },
+   {
+    "external_id": "13639597X",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "https://www.math.ias.edu/~lurie/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "13639597X",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 12,
+    "field": "55",
+    "percent": "25.53191489361702",
+    "percentile": "25.53191489361702"
+   },
+   {
+    "count": 9,
+    "field": "14",
+    "percent": "19.148936170212767",
+    "percentile": "44.68085106382979"
+   },
+   {
+    "count": 8,
+    "field": "18",
+    "percent": "17.02127659574468",
+    "percentile": "61.70212765957447"
+   },
+   {
+    "count": 3,
+    "field": "03",
+    "percent": "6.382978723404255",
+    "percentile": "68.08510638297872"
+   },
+   {
+    "count": 3,
+    "field": "11",
+    "percent": "6.382978723404255",
+    "percentile": "74.46808510638297"
+   }
+  ],
+  "in_collective": [],
+  "name": "Lurie, Jacob",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 18,
+    "first_name": "Jacob",
+    "initials": "J",
+    "last_name": "Lurie",
+    "name": "Lurie, Jacob"
+   },
+   {
+    "count": 1,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "Lurie",
+    "name": "Lurie, J."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/lurie.jacob"
+ },
+ "Bhatt, Bhargav": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "New Horizons in Mathematics Prize",
+    "wikidata": {
+     "id": "Q45310290",
+     "link": "New_Horizons_in_Mathematics_Prize"
+    },
+    "year": 2021
+   },
+   {
+    "title": "Clay Research Award",
+    "wikidata": {
+     "id": "Q1099219",
+     "link": "Clay_Research_Award"
+    },
+    "year": 2021
+   }
+  ],
+  "code": "bhatt.bhargav",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "151781",
+    "type": "mgp"
+   },
+   {
+    "external_id": "http://www-personal.umich.edu/~bhattb/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "200/6079",
+    "type": "dblp"
+   },
+   {
+    "external_id": "1193438020",
+    "type": "gnd"
+   },
+   {
+    "external_id": "Q99238382",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "bhargav-bhatt",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "242918409",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 48,
+    "field": "14",
+    "percent": "48.97959183673469",
+    "percentile": "48.97959183673469"
+   },
+   {
+    "count": 28,
+    "field": "13",
+    "percent": "28.571428571428573",
+    "percentile": "77.55102040816327"
+   }
+  ],
+  "in_collective": [],
+  "name": "Bhatt, Bhargav",
+  "reviewer": "13470",
+  "spellings": [
+   {
+    "count": 49,
+    "first_name": "Bhargav",
+    "initials": "B",
+    "last_name": "Bhatt",
+    "name": "Bhatt, Bhargav"
+   },
+   {
+    "count": 1,
+    "first_name": "B.",
+    "initials": "B",
+    "last_name": "Bhatt",
+    "name": "Bhatt, B."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "z",
+    "reviewer"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/bhatt.bhargav"
+ },
+ "Gaitsgory, Dennis": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "EMS Prize",
+    "wikidata": {
+     "id": "Q1275243",
+     "link": "EMS_Prize"
+    },
+    "year": 2000
+   },
+   {
+    "title": "Breakthrough Prize in Mathematics",
+    "wikidata": {
+     "id": "Q17278380",
+     "link": "Breakthrough_Prize_in_Mathematics"
+    },
+    "year": 2025
+   }
+  ],
+  "code": "gaitsgory.dennis",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "203615263",
+    "type": "idref"
+   },
+   {
+    "external_id": "53163",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q950863",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "60377",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "http://www.math.harvard.edu/~gaitsgde/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "203615263",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "1182044891",
+    "type": "gnd"
+   },
+   {
+    "external_id": "dennis-gaitsgory",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "rus",
+    "name": "Гайцгори Деннис"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 61,
+    "field": "14",
+    "percent": "35.05747126436781",
+    "percentile": "35.05747126436781"
+   },
+   {
+    "count": 25,
+    "field": "22",
+    "percent": "14.367816091954023",
+    "percentile": "49.42528735632183"
+   },
+   {
+    "count": 22,
+    "field": "17",
+    "percent": "12.64367816091954",
+    "percentile": "62.068965517241374"
+   },
+   {
+    "count": 16,
+    "field": "11",
+    "percent": "9.195402298850574",
+    "percentile": "71.26436781609195"
+   },
+   {
+    "count": 13,
+    "field": "18",
+    "percent": "7.471264367816092",
+    "percentile": "78.73563218390804"
+   }
+  ],
+  "in_collective": [],
+  "name": "Gaitsgory, Dennis",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 52,
+    "first_name": "Dennis",
+    "initials": "D",
+    "last_name": "Gaitsgory",
+    "name": "Gaitsgory, Dennis"
+   },
+   {
+    "count": 30,
+    "first_name": "D.",
+    "initials": "D",
+    "last_name": "Gaitsgory",
+    "name": "Gaitsgory, D."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/gaitsgory.dennis"
+ },
+ "Fargues, Laurent": {
+  "aliases": [],
+  "awards": [],
+  "code": "fargues.laurent",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "92895",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q55471696",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "1176714082",
+    "type": "gnd"
+   },
+   {
+    "external_id": "069020876",
+    "type": "idref"
+   },
+   {
+    "external_id": "069020876",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "laurent-fargues",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 30,
+    "field": "14",
+    "percent": "46.15384615384615",
+    "percentile": "46.15384615384615"
+   },
+   {
+    "count": 20,
+    "field": "11",
+    "percent": "30.76923076923077",
+    "percentile": "76.92307692307692"
+   }
+  ],
+  "in_collective": [],
+  "name": "Fargues, Laurent",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 27,
+    "first_name": "Laurent",
+    "initials": "L",
+    "last_name": "Fargues",
+    "name": "Fargues, Laurent"
+   },
+   {
+    "count": 1,
+    "first_name": "L.",
+    "initials": "L",
+    "last_name": "Fargues",
+    "name": "Fargues, L."
+   }
+  ],
+  "states": [
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/fargues.laurent"
+ },
+ "Kedlaya, Kiran": {
+  "aliases": [],
+  "awards": [],
+  "code": "kedlaya.kiran-sridhara",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "47174",
+    "type": "mgp"
+   },
+   {
+    "external_id": "075873451",
+    "type": "idref"
+   },
+   {
+    "external_id": "141747633",
+    "type": "gnd"
+   },
+   {
+    "external_id": "0000-0001-8700-8758",
+    "type": "orcid"
+   },
+   {
+    "external_id": "96/6462",
+    "type": "dblp"
+   },
+   {
+    "external_id": "Q1742415",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "https://kskedlaya.org/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "kiran-kedlaya",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 87,
+    "field": "14",
+    "percent": "32.58426966292135",
+    "percentile": "32.58426966292135"
+   },
+   {
+    "count": 83,
+    "field": "11",
+    "percent": "31.086142322097377",
+    "percentile": "63.67041198501873"
+   },
+   {
+    "count": 29,
+    "field": "12",
+    "percent": "10.861423220973784",
+    "percentile": "74.53183520599251"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kedlaya, Kiran Sridhara",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 126,
+    "first_name": "Kiran S.",
+    "initials": "K S",
+    "last_name": "Kedlaya",
+    "name": "Kedlaya, Kiran S."
+   },
+   {
+    "count": 6,
+    "first_name": "Kiran",
+    "initials": "K",
+    "last_name": "Kedlaya",
+    "name": "Kedlaya, Kiran"
+   },
+   {
+    "count": 2,
+    "first_name": "Kiran Sridhara",
+    "initials": "K S",
+    "last_name": "Kedlaya",
+    "name": "Kedlaya, Kiran Sridhara"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kedlaya.kiran-sridhara"
+ },
+ "Cesnavicius, Kestutis": {
+  "aliases": [],
+  "awards": [],
+  "code": "cesnavicius.kestutis",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "kestutis-cesnavicius",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "184247",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q102422570",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "249733730",
+    "type": "idref"
+   },
+   {
+    "external_id": "249733730",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 20,
+    "field": "14",
+    "percent": "41.666666666666664",
+    "percentile": "41.666666666666664"
+   },
+   {
+    "count": 15,
+    "field": "11",
+    "percent": "31.25",
+    "percentile": "72.91666666666666"
+   }
+  ],
+  "in_collective": [],
+  "name": "Česnavičius, Kęstutis",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 23,
+    "first_name": "Kęstutis",
+    "initials": "K",
+    "last_name": "Česnavičius",
+    "name": "Česnavičius, Kęstutis"
+   },
+   {
+    "count": 2,
+    "first_name": "Kȩstutis",
+    "initials": "K",
+    "last_name": "Česnavičius",
+    "name": "Česnavičius, Kȩstutis"
+   },
+   {
+    "count": 1,
+    "first_name": "Kestutis",
+    "initials": "K",
+    "last_name": "Cesnavicius",
+    "name": "Cesnavicius, Kestutis"
+   },
+   {
+    "count": 1,
+    "first_name": "Kȩstutis",
+    "initials": "K",
+    "last_name": "Cesnavičius",
+    "name": "Cesnavičius, Kȩstutis"
+   }
+  ],
+  "states": [
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/cesnavicius.kestutis"
+ },
+ "Raskin, Sam": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "New Horizons in Mathematics Prize",
+    "wikidata": {
+     "id": "Q45310290",
+     "link": "New_Horizons_in_Mathematics_Prize"
+    },
+    "year": 2025
+   }
+  ],
+  "code": "raskin.sam",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "183268",
+    "type": "mgp"
+   },
+   {
+    "external_id": "https://gauss.math.yale.edu/~sr2532/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "sam-raskin",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "Q102421187",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "249307278",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 11,
+    "field": "14",
+    "percent": "34.375",
+    "percentile": "34.375"
+   },
+   {
+    "count": 8,
+    "field": "22",
+    "percent": "25.0",
+    "percentile": "59.375"
+   }
+  ],
+  "in_collective": [],
+  "name": "Raskin, Sam",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 13,
+    "first_name": "Sam",
+    "initials": "S",
+    "last_name": "Raskin",
+    "name": "Raskin, Sam"
+   },
+   {
+    "count": 1,
+    "first_name": "S.",
+    "initials": "S",
+    "last_name": "Raskin",
+    "name": "Raskin, S."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/raskin.sam"
+ },
+ "Hacon, Christopher": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Clay Research Award",
+    "wikidata": {
+     "id": "Q1099219",
+     "link": "Clay_Research_Award"
+    },
+    "year": 2007
+   },
+   {
+    "title": "Breakthrough Prize in Mathematics",
+    "wikidata": {
+     "id": "Q17278380",
+     "link": "Breakthrough_Prize_in_Mathematics"
+    },
+    "year": 2018
+   }
+  ],
+  "code": "hacon.christopher-derek",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q1086709",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "36635",
+    "type": "mgp"
+   },
+   {
+    "external_id": "141481870",
+    "type": "gnd"
+   },
+   {
+    "external_id": "https://www.math.utah.edu/~hacon/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "145219364",
+    "type": "idref"
+   },
+   {
+    "external_id": "HUZNgQMAAAAJ",
+    "type": "google_scholar"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 98,
+    "field": "14",
+    "percent": "72.05882352941177",
+    "percentile": "72.05882352941177"
+   }
+  ],
+  "in_collective": [],
+  "name": "Hacon, Christopher Derek",
+  "reviewer": "11166",
+  "spellings": [
+   {
+    "count": 69,
+    "first_name": "Christopher D.",
+    "initials": "C D",
+    "last_name": "Hacon",
+    "name": "Hacon, Christopher D."
+   },
+   {
+    "count": 19,
+    "first_name": "Christopher",
+    "initials": "C",
+    "last_name": "Hacon",
+    "name": "Hacon, Christopher"
+   },
+   {
+    "count": 3,
+    "first_name": "C.",
+    "initials": "C",
+    "last_name": "Hacon",
+    "name": "Hacon, C."
+   },
+   {
+    "count": 2,
+    "first_name": "Christopher Derek",
+    "initials": "C D",
+    "last_name": "Hacon",
+    "name": "Hacon, Christopher Derek"
+   },
+   {
+    "count": 1,
+    "first_name": "C. D.",
+    "initials": "C D",
+    "last_name": "Hacon",
+    "name": "Hacon, C. D."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "z",
+    "reviewer"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/hacon.christopher-derek"
+ },
+ "McKernan, James": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Clay Research Award",
+    "wikidata": {
+     "id": "Q1099219",
+     "link": "Clay_Research_Award"
+    },
+    "year": 2007
+   },
+   {
+    "title": "Breakthrough Prize in Mathematics",
+    "wikidata": {
+     "id": "Q17278380",
+     "link": "Breakthrough_Prize_in_Mathematics"
+    },
+    "year": 2018
+   }
+  ],
+  "code": "mckernan.james",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q1680799",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "49644",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "16237674X",
+    "type": "idref"
+   },
+   {
+    "external_id": "42404",
+    "type": "mgp"
+   },
+   {
+    "external_id": "http://www.math.ucsd.edu/~jmckerna/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "172944236",
+    "type": "gnd"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 34,
+    "field": "14",
+    "percent": "72.34042553191489",
+    "percentile": "72.34042553191489"
+   }
+  ],
+  "in_collective": [],
+  "name": "McKernan, James",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 34,
+    "first_name": "James",
+    "initials": "J",
+    "last_name": "McKernan",
+    "name": "McKernan, James"
+   },
+   {
+    "count": 1,
+    "first_name": "James",
+    "initials": "J",
+    "last_name": "Mckernan",
+    "name": "Mckernan, James"
+   },
+   {
+    "count": 1,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "Mckernan",
+    "name": "Mckernan, J."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/mckernan.james"
+ },
+ "Birkar, Caucher": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 2018
+   }
+  ],
+  "code": "birkar.caucher",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "182405583",
+    "type": "idref"
+   },
+   {
+    "external_id": "Q4121788",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "98185",
+    "type": "mgp"
+   },
+   {
+    "external_id": "https://www.dpmms.cam.ac.uk/~cb496/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "1103570633",
+    "type": "gnd"
+   },
+   {
+    "external_id": "182405583",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Bîrkar‎, Koçer"
+   },
+   {
+    "charset": "lat",
+    "name": "Derakhshani, Fereydoun"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 50,
+    "field": "14",
+    "percent": "79.36507936507937",
+    "percentile": "79.36507936507937"
+   }
+  ],
+  "in_collective": [],
+  "name": "Birkar, Caucher",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 43,
+    "first_name": "Caucher",
+    "initials": "C",
+    "last_name": "Birkar",
+    "name": "Birkar, Caucher"
+   },
+   {
+    "count": 5,
+    "first_name": "C.",
+    "initials": "C",
+    "last_name": "Birkar",
+    "name": "Birkar, C."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/birkar.caucher"
+ },
+ "Xu, Chenyang": {
+  "aliases": [],
+  "awards": [],
+  "code": "xu.chenyang.2",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Xcw6ZXIAAAAJ",
+    "type": "google_scholar"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 3,
+    "field": "68",
+    "percent": "30.0",
+    "percentile": "30.0"
+   },
+   {
+    "count": 3,
+    "field": "94",
+    "percent": "30.0",
+    "percentile": "60.0"
+   },
+   {
+    "count": 2,
+    "field": "35",
+    "percent": "20.0",
+    "percentile": "80.0"
+   }
+  ],
+  "in_collective": [],
+  "name": "Xu, Chenyang",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 6,
+    "first_name": "Chenyang",
+    "initials": "C",
+    "last_name": "Xu",
+    "name": "Xu, Chenyang"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/xu.chenyang.2"
+ },
+ "Abramovich, Dan": {
+  "aliases": [],
+  "awards": [],
+  "code": "abramovich.dan",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "dan-abramovich",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "https://www.math.brown.edu/dabramov/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "6808",
+    "type": "mgp"
+   },
+   {
+    "external_id": "abramovich_d_1",
+    "type": "arxiv"
+   },
+   {
+    "external_id": "Q15433396",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "136162762",
+    "type": "gnd"
+   },
+   {
+    "external_id": "0000-0003-0719-0989",
+    "type": "orcid"
+   },
+   {
+    "external_id": "035433922",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 92,
+    "field": "14",
+    "percent": "74.19354838709677",
+    "percentile": "74.19354838709677"
+   }
+  ],
+  "in_collective": [],
+  "name": "Abramovich, Dan",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 76,
+    "first_name": "Dan",
+    "initials": "D",
+    "last_name": "Abramovich",
+    "name": "Abramovich, Dan"
+   },
+   {
+    "count": 7,
+    "first_name": "D.",
+    "initials": "D",
+    "last_name": "Abramovich",
+    "name": "Abramovich, D."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/abramovich.dan"
+ },
+ "Olsson, Martin": {
+  "aliases": [],
+  "awards": [],
+  "code": "olsson.martin-c",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "https://math.berkeley.edu/~molsson/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "martin-olsson",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 50,
+    "field": "14",
+    "percent": "72.46376811594203",
+    "percentile": "72.46376811594203"
+   }
+  ],
+  "in_collective": [],
+  "name": "Olsson, Martin C.",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 35,
+    "first_name": "Martin",
+    "initials": "M",
+    "last_name": "Olsson",
+    "name": "Olsson, Martin"
+   },
+   {
+    "count": 13,
+    "first_name": "Martin C.",
+    "initials": "M C",
+    "last_name": "Olsson",
+    "name": "Olsson, Martin C."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/olsson.martin-c"
+ },
+ "Conrad, Brian": {
+  "aliases": [],
+  "awards": [],
+  "code": "conrad.brian",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "18916",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q912029",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "122429206",
+    "type": "gnd"
+   },
+   {
+    "external_id": "071561196",
+    "type": "idref"
+   },
+   {
+    "external_id": "071561196",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 35,
+    "field": "14",
+    "percent": "46.05263157894737",
+    "percentile": "46.05263157894737"
+   },
+   {
+    "count": 22,
+    "field": "11",
+    "percent": "28.94736842105263",
+    "percentile": "75.0"
+   }
+  ],
+  "in_collective": [],
+  "name": "Conrad, Brian",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 54,
+    "first_name": "Brian",
+    "initials": "B",
+    "last_name": "Conrad",
+    "name": "Conrad, Brian"
+   },
+   {
+    "count": 1,
+    "first_name": "B.",
+    "initials": "B",
+    "last_name": "Conrad",
+    "name": "Conrad, B."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/conrad.brian"
+ },
+ "Vakil, Ravi": {
+  "aliases": [],
+  "awards": [],
+  "code": "vakil.ravi",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q2133711",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "68/2309",
+    "type": "dblp"
+   },
+   {
+    "external_id": "18790",
+    "type": "mgp"
+   },
+   {
+    "external_id": "http://math.stanford.edu/~vakil/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "0000-0001-8506-270X",
+    "type": "orcid"
+   },
+   {
+    "external_id": "1279138920",
+    "type": "gnd"
+   },
+   {
+    "external_id": "075873338",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 63,
+    "field": "14",
+    "percent": "54.78260869565217",
+    "percentile": "54.78260869565217"
+   },
+   {
+    "count": 15,
+    "field": "00",
+    "percent": "13.043478260869565",
+    "percentile": "67.82608695652173"
+   },
+   {
+    "count": 8,
+    "field": "05",
+    "percent": "6.956521739130435",
+    "percentile": "74.78260869565217"
+   },
+   {
+    "count": 3,
+    "field": "97",
+    "percent": "2.608695652173913",
+    "percentile": "77.39130434782608"
+   },
+   {
+    "count": 3,
+    "field": "53",
+    "percent": "2.608695652173913",
+    "percentile": "79.99999999999999"
+   }
+  ],
+  "in_collective": [],
+  "name": "Vakil, Ravi",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 62,
+    "first_name": "Ravi",
+    "initials": "R",
+    "last_name": "Vakil",
+    "name": "Vakil, Ravi"
+   },
+   {
+    "count": 5,
+    "first_name": "R.",
+    "initials": "R",
+    "last_name": "Vakil",
+    "name": "Vakil, R."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/vakil.ravi"
+ },
+ "Poonen, Bjorn": {
+  "aliases": [],
+  "awards": [],
+  "code": "poonen.bjorn",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "bjorn-poonen",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "Q879454",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "https://math.mit.edu/~poonen/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "32425",
+    "type": "mgp"
+   },
+   {
+    "external_id": "115203264X",
+    "type": "gnd"
+   },
+   {
+    "external_id": "075873532",
+    "type": "idref"
+   },
+   {
+    "external_id": "075873532",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 111,
+    "field": "11",
+    "percent": "39.08450704225352",
+    "percentile": "39.08450704225352"
+   },
+   {
+    "count": 86,
+    "field": "14",
+    "percent": "30.281690140845072",
+    "percentile": "69.36619718309859"
+   },
+   {
+    "count": 12,
+    "field": "03",
+    "percent": "4.225352112676056",
+    "percentile": "73.59154929577466"
+   },
+   {
+    "count": 10,
+    "field": "00",
+    "percent": "3.5211267605633805",
+    "percentile": "77.11267605633803"
+   }
+  ],
+  "in_collective": [],
+  "name": "Poonen, Bjorn",
+  "reviewer": "9879",
+  "spellings": [
+   {
+    "count": 136,
+    "first_name": "Bjorn",
+    "initials": "B",
+    "last_name": "Poonen",
+    "name": "Poonen, Bjorn"
+   },
+   {
+    "count": 3,
+    "first_name": "B.",
+    "initials": "B",
+    "last_name": "Poonen",
+    "name": "Poonen, B."
+   },
+   {
+    "count": 1,
+    "first_name": "Björn",
+    "initials": "B",
+    "last_name": "Poonen",
+    "name": "Poonen, Björn"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "z",
+    "reviewer"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/poonen.bjorn"
+ },
+ "Kisin, Mark": {
+  "aliases": [],
+  "awards": [],
+  "code": "kisin.mark",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "131465",
+    "type": "mgp"
+   },
+   {
+    "external_id": "mark-kisin",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "079446590",
+    "type": "idref"
+   },
+   {
+    "external_id": "https://people.math.harvard.edu/~kisin/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "115147",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "Q6768401",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "lf4x4RgAAAAJ",
+    "type": "google_scholar"
+   },
+   {
+    "external_id": "1081942924",
+    "type": "gnd"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 35,
+    "field": "11",
+    "percent": "39.77272727272727",
+    "percentile": "39.77272727272727"
+   },
+   {
+    "count": 32,
+    "field": "14",
+    "percent": "36.36363636363637",
+    "percentile": "76.13636363636364"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kisin, Mark",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 56,
+    "first_name": "Mark",
+    "initials": "M",
+    "last_name": "Kisin",
+    "name": "Kisin, Mark"
+   },
+   {
+    "count": 4,
+    "first_name": "M.",
+    "initials": "M",
+    "last_name": "Kisin",
+    "name": "Kisin, M."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kisin.mark"
+ },
+ "Emerton, Matthew": {
+  "aliases": [],
+  "awards": [],
+  "code": "emerton.matthew",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "2874",
+    "type": "mathoverflow"
+   },
+   {
+    "external_id": "1104848163",
+    "type": "gnd"
+   },
+   {
+    "external_id": "http://www.math.uchicago.edu/~emerton/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "Q24248201",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "22519",
+    "type": "mgp"
+   },
+   {
+    "external_id": "matthew-emerton",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "079446477",
+    "type": "idref"
+   },
+   {
+    "external_id": "079446477",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Emerton, Matthew James"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 39,
+    "field": "11",
+    "percent": "53.42465753424658",
+    "percentile": "53.42465753424658"
+   },
+   {
+    "count": 18,
+    "field": "22",
+    "percent": "24.65753424657534",
+    "percentile": "78.08219178082192"
+   }
+  ],
+  "in_collective": [],
+  "name": "Emerton, Matthew",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 49,
+    "first_name": "Matthew",
+    "initials": "M",
+    "last_name": "Emerton",
+    "name": "Emerton, Matthew"
+   },
+   {
+    "count": 1,
+    "first_name": "M.",
+    "initials": "M",
+    "last_name": "Emerton",
+    "name": "Emerton, M."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/emerton.matthew"
+ },
+ "Beilinson, Alexander": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 2018
+   },
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2020
+   }
+  ],
+  "code": "beilinson.alexander-a",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "44354",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q369792",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "alexander-beilinson",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "173704115",
+    "type": "gnd"
+   },
+   {
+    "external_id": "20602",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "087890860",
+    "type": "idref"
+   },
+   {
+    "external_id": "https://mathematics.uchicago.edu/people/profile/alexander-beilinson/",
+    "type": "homepage"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Beĭlinson, Aleksandr Aleksandrovich"
+   },
+   {
+    "charset": "rus",
+    "name": "Бейлинсон Александр Александрович"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 48,
+    "field": "14",
+    "percent": "40.0",
+    "percentile": "40.0"
+   },
+   {
+    "count": 14,
+    "field": "18",
+    "percent": "11.666666666666666",
+    "percentile": "51.666666666666664"
+   },
+   {
+    "count": 10,
+    "field": "17",
+    "percent": "8.333333333333334",
+    "percentile": "60.0"
+   },
+   {
+    "count": 9,
+    "field": "11",
+    "percent": "7.5",
+    "percentile": "67.5"
+   },
+   {
+    "count": 7,
+    "field": "19",
+    "percent": "5.833333333333333",
+    "percentile": "73.33333333333333"
+   },
+   {
+    "count": 6,
+    "field": "32",
+    "percent": "5.0",
+    "percentile": "78.33333333333333"
+   }
+  ],
+  "in_collective": [],
+  "name": "Beilinson, Alexander A.",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 19,
+    "first_name": "Alexander",
+    "initials": "A",
+    "last_name": "Beilinson",
+    "name": "Beilinson, Alexander"
+   },
+   {
+    "count": 17,
+    "first_name": "A. A.",
+    "initials": "A A",
+    "last_name": "Beilinson",
+    "name": "Beilinson, A. A."
+   },
+   {
+    "count": 10,
+    "first_name": "Alexander A.",
+    "initials": "A A",
+    "last_name": "Beilinson",
+    "name": "Beilinson, Alexander A."
+   },
+   {
+    "count": 8,
+    "first_name": "A. A.",
+    "initials": "A A",
+    "last_name": "Bejlinson",
+    "name": "Bejlinson, A. A."
+   },
+   {
+    "count": 6,
+    "first_name": "A.",
+    "initials": "A",
+    "last_name": "Beilinson",
+    "name": "Beilinson, A."
+   },
+   {
+    "count": 1,
+    "first_name": "A. A.",
+    "initials": "A A",
+    "last_name": "Beĭlinson",
+    "name": "Beĭlinson, A. A."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/beilinson.alexander-a"
+ },
+ "Drinfeld, Vladimir": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1990
+   },
+   {
+    "title": "Wolf Prize",
+    "wikidata": {
+     "id": "Q915604",
+     "link": "Wolf_Prize"
+    },
+    "year": 2018
+   },
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2023
+   }
+  ],
+  "code": "drinfeld.vladimir",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Drinfeld",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "20646",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q369561",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "19866",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "132279223",
+    "type": "gnd"
+   },
+   {
+    "external_id": "112127789",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Drinfel'd, Volodymyr Gershonovych"
+   },
+   {
+    "charset": "rus",
+    "name": "Дринфельд Владимир Гершонович"
+   },
+   {
+    "charset": "ukr",
+    "name": "Дрінфельд Володимир Гершонович"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 52,
+    "field": "14",
+    "percent": "22.22222222222222",
+    "percentile": "22.22222222222222"
+   },
+   {
+    "count": 25,
+    "field": "22",
+    "percent": "10.683760683760683",
+    "percentile": "32.9059829059829"
+   },
+   {
+    "count": 24,
+    "field": "17",
+    "percent": "10.256410256410257",
+    "percentile": "43.16239316239316"
+   },
+   {
+    "count": 21,
+    "field": "11",
+    "percent": "8.974358974358974",
+    "percentile": "52.136752136752136"
+   },
+   {
+    "count": 17,
+    "field": "81",
+    "percent": "7.264957264957265",
+    "percentile": "59.401709401709404"
+   },
+   {
+    "count": 15,
+    "field": "16",
+    "percent": "6.410256410256411",
+    "percentile": "65.81196581196582"
+   },
+   {
+    "count": 10,
+    "field": "35",
+    "percent": "4.273504273504273",
+    "percentile": "70.08547008547009"
+   },
+   {
+    "count": 10,
+    "field": "20",
+    "percent": "4.273504273504273",
+    "percentile": "74.35897435897436"
+   },
+   {
+    "count": 9,
+    "field": "18",
+    "percent": "3.8461538461538463",
+    "percentile": "78.2051282051282"
+   }
+  ],
+  "in_collective": [],
+  "name": "Drinfeld, Vladimir Gershonovich",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 60,
+    "first_name": "V. G.",
+    "initials": "V G",
+    "last_name": "Drinfel'd",
+    "name": "Drinfel'd, V. G."
+   },
+   {
+    "count": 26,
+    "first_name": "Vladimir",
+    "initials": "V",
+    "last_name": "Drinfeld",
+    "name": "Drinfeld, Vladimir"
+   },
+   {
+    "count": 7,
+    "first_name": "V. G.",
+    "initials": "V G",
+    "last_name": "Drinfeld",
+    "name": "Drinfeld, V. G."
+   },
+   {
+    "count": 5,
+    "first_name": "V.",
+    "initials": "V",
+    "last_name": "Drinfeld",
+    "name": "Drinfeld, V."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/drinfeld.vladimir"
+ },
+ "Kontsevich, Maxim": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "EMS Prize",
+    "wikidata": {
+     "id": "Q1275243",
+     "link": "EMS_Prize"
+    },
+    "year": 1992
+   },
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 1998
+   },
+   {
+    "title": "Crafoord Prize",
+    "wikidata": {
+     "id": "Q583069",
+     "link": "Crafoord_Prize"
+    },
+    "year": 2008
+   },
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2012
+   },
+   {
+    "title": "Breakthrough Prize in Mathematics",
+    "wikidata": {
+     "id": "Q17278380",
+     "link": "Breakthrough_Prize_in_Mathematics"
+    },
+    "year": 2014
+   }
+  ],
+  "code": "kontsevich.maxim",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "26861",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q369588",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "Kontsevich",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "19941",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "1026762456",
+    "type": "gnd"
+   },
+   {
+    "external_id": "071596496",
+    "type": "idref"
+   },
+   {
+    "external_id": "wEC_2HIAAAAJ",
+    "type": "google_scholar"
+   },
+   {
+    "external_id": "https://www.ihes.fr/~maxim/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "071596496",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "maxim-kontsevich",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "lat",
+    "name": "Kontsevitch, Maxime Lvovitch"
+   },
+   {
+    "charset": "lat",
+    "name": "Kontsevich, Maksim L'vovich"
+   },
+   {
+    "charset": "rus",
+    "name": "Концевич Максим Львович"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 44,
+    "field": "14",
+    "percent": "18.803418803418804",
+    "percentile": "18.803418803418804"
+   },
+   {
+    "count": 25,
+    "field": "81",
+    "percent": "10.683760683760683",
+    "percentile": "29.48717948717949"
+   },
+   {
+    "count": 19,
+    "field": "58",
+    "percent": "8.11965811965812",
+    "percentile": "37.60683760683761"
+   },
+   {
+    "count": 17,
+    "field": "16",
+    "percent": "7.264957264957265",
+    "percentile": "44.871794871794876"
+   },
+   {
+    "count": 15,
+    "field": "53",
+    "percent": "6.410256410256411",
+    "percentile": "51.282051282051285"
+   },
+   {
+    "count": 14,
+    "field": "32",
+    "percent": "5.982905982905983",
+    "percentile": "57.26495726495727"
+   },
+   {
+    "count": 13,
+    "field": "18",
+    "percent": "5.555555555555555",
+    "percentile": "62.820512820512825"
+   },
+   {
+    "count": 11,
+    "field": "17",
+    "percent": "4.700854700854701",
+    "percentile": "67.52136752136752"
+   },
+   {
+    "count": 9,
+    "field": "37",
+    "percent": "3.8461538461538463",
+    "percentile": "71.36752136752136"
+   },
+   {
+    "count": 9,
+    "field": "11",
+    "percent": "3.8461538461538463",
+    "percentile": "75.2136752136752"
+   },
+   {
+    "count": 8,
+    "field": "57",
+    "percent": "3.4188034188034186",
+    "percentile": "78.63247863247862"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kontsevich, Maxim",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 63,
+    "first_name": "Maxim",
+    "initials": "M",
+    "last_name": "Kontsevich",
+    "name": "Kontsevich, Maxim"
+   },
+   {
+    "count": 14,
+    "first_name": "M.",
+    "initials": "M",
+    "last_name": "Kontsevich",
+    "name": "Kontsevich, M."
+   },
+   {
+    "count": 10,
+    "first_name": "M. L.",
+    "initials": "M L",
+    "last_name": "Kontsevich",
+    "name": "Kontsevich, M. L."
+   },
+   {
+    "count": 1,
+    "first_name": "Maxime",
+    "initials": "M",
+    "last_name": "Kontsevich",
+    "name": "Kontsevich, Maxime"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kontsevich.maxim"
+ },
+ "Simpson, Carlos": {
+  "aliases": [],
+  "awards": [],
+  "code": "simpson.carlos-t",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "44606",
+    "type": "mgp"
+   },
+   {
+    "external_id": "carlos-simpson",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "Q15433442",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "51710",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "62/4397",
+    "type": "dblp"
+   },
+   {
+    "external_id": "1017429251",
+    "type": "gnd"
+   },
+   {
+    "external_id": "108786218",
+    "type": "idref"
+   },
+   {
+    "external_id": "108786218",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 54,
+    "field": "14",
+    "percent": "38.297872340425535",
+    "percentile": "38.297872340425535"
+   },
+   {
+    "count": 22,
+    "field": "32",
+    "percent": "15.602836879432624",
+    "percentile": "53.90070921985816"
+   },
+   {
+    "count": 10,
+    "field": "18",
+    "percent": "7.092198581560283",
+    "percentile": "60.99290780141844"
+   },
+   {
+    "count": 5,
+    "field": "53",
+    "percent": "3.5460992907801416",
+    "percentile": "64.53900709219859"
+   },
+   {
+    "count": 5,
+    "field": "03",
+    "percent": "3.5460992907801416",
+    "percentile": "68.08510638297874"
+   },
+   {
+    "count": 5,
+    "field": "68",
+    "percent": "3.5460992907801416",
+    "percentile": "71.63120567375888"
+   },
+   {
+    "count": 4,
+    "field": "34",
+    "percent": "2.8368794326241136",
+    "percentile": "74.468085106383"
+   },
+   {
+    "count": 4,
+    "field": "30",
+    "percent": "2.8368794326241136",
+    "percentile": "77.30496453900712"
+   }
+  ],
+  "in_collective": [],
+  "name": "Simpson, Carlos Tschudi",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 48,
+    "first_name": "Carlos",
+    "initials": "C",
+    "last_name": "Simpson",
+    "name": "Simpson, Carlos"
+   },
+   {
+    "count": 16,
+    "first_name": "Carlos T.",
+    "initials": "C T",
+    "last_name": "Simpson",
+    "name": "Simpson, Carlos T."
+   },
+   {
+    "count": 2,
+    "first_name": "C.",
+    "initials": "C",
+    "last_name": "Simpson",
+    "name": "Simpson, C."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/simpson.carlos-t"
+ },
+ "Ngo, Bao Chau": {
+  "_miss": true,
+  "_candidates": [
+   "Ngô Bao Châu"
+  ]
+ },
+ "Lafforgue, Laurent": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Clay Research Award",
+    "wikidata": {
+     "id": "Q1099219",
+     "link": "Clay_Research_Award"
+    },
+    "year": 2000
+   },
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 2002
+   }
+  ],
+  "code": "lafforgue.laurent",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q315396",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "07869518X",
+    "type": "idref"
+   },
+   {
+    "external_id": "Lafforgue",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "22738",
+    "type": "mgp"
+   },
+   {
+    "external_id": "37114",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "1133383017",
+    "type": "gnd"
+   },
+   {
+    "external_id": "https://www.laurentlafforgue.org/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "laurent-lafforgue",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "07869518X",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 19,
+    "field": "14",
+    "percent": "31.147540983606557",
+    "percentile": "31.147540983606557"
+   },
+   {
+    "count": 14,
+    "field": "11",
+    "percent": "22.950819672131146",
+    "percentile": "54.09836065573771"
+   },
+   {
+    "count": 5,
+    "field": "22",
+    "percent": "8.19672131147541",
+    "percentile": "62.295081967213115"
+   },
+   {
+    "count": 4,
+    "field": "03",
+    "percent": "6.557377049180328",
+    "percentile": "68.85245901639344"
+   },
+   {
+    "count": 4,
+    "field": "18",
+    "percent": "6.557377049180328",
+    "percentile": "75.40983606557377"
+   }
+  ],
+  "in_collective": [],
+  "name": "Lafforgue, Laurent",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 23,
+    "first_name": "Laurent",
+    "initials": "L",
+    "last_name": "Lafforgue",
+    "name": "Lafforgue, Laurent"
+   },
+   {
+    "count": 4,
+    "first_name": "L.",
+    "initials": "L",
+    "last_name": "Lafforgue",
+    "name": "Lafforgue, L."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/lafforgue.laurent"
+ },
+ "Illusie, Luc": {
+  "aliases": [],
+  "awards": [],
+  "code": "illusie.luc",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "luc-illusie",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "030485274",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "Q370871",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "1059533332",
+    "type": "gnd"
+   },
+   {
+    "external_id": "0000-0002-6634-6325",
+    "type": "orcid"
+   },
+   {
+    "external_id": "030485274",
+    "type": "idref"
+   },
+   {
+    "external_id": "13123",
+    "type": "mgp"
+   },
+   {
+    "external_id": "51688",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "https://www.imo.universite-paris-saclay.fr/~luc.illusie/",
+    "type": "homepage"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 79,
+    "field": "14",
+    "percent": "45.142857142857146",
+    "percentile": "45.142857142857146"
+   },
+   {
+    "count": 16,
+    "field": "01",
+    "percent": "9.142857142857142",
+    "percentile": "54.28571428571429"
+   },
+   {
+    "count": 15,
+    "field": "18",
+    "percent": "8.571428571428571",
+    "percentile": "62.85714285714286"
+   },
+   {
+    "count": 14,
+    "field": "00",
+    "percent": "8.0",
+    "percentile": "70.85714285714286"
+   },
+   {
+    "count": 14,
+    "field": "13",
+    "percent": "8.0",
+    "percentile": "78.85714285714286"
+   }
+  ],
+  "in_collective": [],
+  "name": "Illusie, Luc",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 80,
+    "first_name": "Luc",
+    "initials": "L",
+    "last_name": "Illusie",
+    "name": "Illusie, Luc"
+   },
+   {
+    "count": 26,
+    "first_name": "L.",
+    "initials": "L",
+    "last_name": "Illusie",
+    "name": "Illusie, L."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/illusie.luc"
+ },
+ "Berthelot, Pierre": {
+  "aliases": [],
+  "awards": [],
+  "code": "berthelot.pierre",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "74069",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q931228",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "1035745364",
+    "type": "gnd"
+   },
+   {
+    "external_id": "031671292",
+    "type": "idref"
+   },
+   {
+    "external_id": "031671292",
+    "type": "theses_fr"
+   },
+   {
+    "external_id": "pierre-berthelot",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 46,
+    "field": "14",
+    "percent": "56.79012345679013",
+    "percentile": "56.79012345679013"
+   },
+   {
+    "count": 6,
+    "field": "32",
+    "percent": "7.407407407407407",
+    "percentile": "64.19753086419753"
+   },
+   {
+    "count": 6,
+    "field": "00",
+    "percent": "7.407407407407407",
+    "percentile": "71.60493827160494"
+   },
+   {
+    "count": 5,
+    "field": "18",
+    "percent": "6.172839506172839",
+    "percentile": "77.77777777777777"
+   }
+  ],
+  "in_collective": [],
+  "name": "Berthelot, Pierre",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 36,
+    "first_name": "Pierre",
+    "initials": "P",
+    "last_name": "Berthelot",
+    "name": "Berthelot, Pierre"
+   },
+   {
+    "count": 17,
+    "first_name": "P.",
+    "initials": "P",
+    "last_name": "Berthelot",
+    "name": "Berthelot, P."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/berthelot.pierre"
+ },
+ "Ogus, Arthur": {
+  "aliases": [],
+  "awards": [],
+  "code": "ogus.arthur",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "arthur-ogus",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 36,
+    "field": "14",
+    "percent": "69.23076923076923",
+    "percentile": "69.23076923076923"
+   },
+   {
+    "count": 5,
+    "field": "13",
+    "percent": "9.615384615384615",
+    "percentile": "78.84615384615384"
+   }
+  ],
+  "in_collective": [],
+  "name": "Ogus, Arthur",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 34,
+    "first_name": "Arthur",
+    "initials": "A",
+    "last_name": "Ogus",
+    "name": "Ogus, Arthur"
+   },
+   {
+    "count": 6,
+    "first_name": "A.",
+    "initials": "A",
+    "last_name": "Ogus",
+    "name": "Ogus, A."
+   }
+  ],
+  "states": [
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/ogus.arthur"
+ },
+ "Kollár, János": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Shaw Prize",
+    "wikidata": {
+     "id": "Q584250",
+     "link": "Shaw_Prize"
+    },
+    "year": 2017
+   }
+  ],
+  "code": "kollar.janos",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "20125",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q1115371",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "050498843",
+    "type": "idref"
+   },
+   {
+    "external_id": "https://web.math.princeton.edu/~kollar/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "xKUVD4MAAAAJ",
+    "type": "google_scholar"
+   },
+   {
+    "external_id": "36/728",
+    "type": "dblp"
+   },
+   {
+    "external_id": "47731",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "113796277",
+    "type": "gnd"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 212,
+    "field": "14",
+    "percent": "57.452574525745256",
+    "percentile": "57.452574525745256"
+   },
+   {
+    "count": 34,
+    "field": "32",
+    "percent": "9.214092140921409",
+    "percentile": "66.66666666666666"
+   },
+   {
+    "count": 13,
+    "field": "53",
+    "percent": "3.5230352303523036",
+    "percentile": "70.18970189701896"
+   },
+   {
+    "count": 12,
+    "field": "00",
+    "percent": "3.252032520325203",
+    "percentile": "73.44173441734416"
+   },
+   {
+    "count": 12,
+    "field": "11",
+    "percent": "3.252032520325203",
+    "percentile": "76.69376693766937"
+   },
+   {
+    "count": 10,
+    "field": "57",
+    "percent": "2.710027100271003",
+    "percentile": "79.40379403794037"
+   }
+  ],
+  "in_collective": [],
+  "name": "Kollár, János",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 212,
+    "first_name": "János",
+    "initials": "J",
+    "last_name": "Kollár",
+    "name": "Kollár, János"
+   },
+   {
+    "count": 8,
+    "first_name": "Janos",
+    "initials": "J",
+    "last_name": "Kollar",
+    "name": "Kollar, Janos"
+   },
+   {
+    "count": 7,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "Kollár",
+    "name": "Kollár, J."
+   },
+   {
+    "count": 5,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "Kollar",
+    "name": "Kollar, J."
+   },
+   {
+    "count": 1,
+    "first_name": "János",
+    "initials": "J",
+    "last_name": "Kollar",
+    "name": "Kollar, János"
+   },
+   {
+    "count": 1,
+    "first_name": null,
+    "initials": null,
+    "last_name": "Kollár",
+    "name": "Kollár"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/kollar.janos"
+ },
+ "Voevodskiĭ, Vladimir Aleksandrovich": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 2002
+   }
+  ],
+  "code": "voevodsky.vladimir-aleksandrovich",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "28125",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Voevodsky",
+    "type": "mactutor"
+   },
+   {
+    "external_id": "Q369662",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "20935",
+    "type": "mathnetru"
+   },
+   {
+    "external_id": "Vladimir_Voevodsky",
+    "type": "researchgate"
+   },
+   {
+    "external_id": "https://www.math.ias.edu/vladimir/home",
+    "type": "homepage"
+   },
+   {
+    "external_id": "143160605",
+    "type": "gnd"
+   },
+   {
+    "external_id": "0000-0001-7823-4454",
+    "type": "orcid"
+   },
+   {
+    "external_id": "19/9534",
+    "type": "dblp"
+   },
+   {
+    "external_id": "099890747",
+    "type": "idref"
+   },
+   {
+    "external_id": "vladimir-voevodski",
+    "type": "carmin_tv"
+   }
+  ],
+  "further_spellings": [
+   {
+    "charset": "rus",
+    "name": "Воеводский Владимир Александрович"
+   }
+  ],
+  "main_fields": [
+   {
+    "count": 33,
+    "field": "14",
+    "percent": "23.571428571428573",
+    "percentile": "23.571428571428573"
+   },
+   {
+    "count": 26,
+    "field": "18",
+    "percent": "18.571428571428573",
+    "percentile": "42.142857142857146"
+   },
+   {
+    "count": 20,
+    "field": "55",
+    "percent": "14.285714285714286",
+    "percentile": "56.42857142857143"
+   },
+   {
+    "count": 19,
+    "field": "03",
+    "percent": "13.571428571428571",
+    "percentile": "70.0"
+   }
+  ],
+  "in_collective": [
+   "the-univalent-foundations-program."
+  ],
+  "name": "Voevodskiĭ, Vladimir Aleksandrovich",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 39,
+    "first_name": "Vladimir",
+    "initials": "V",
+    "last_name": "Voevodsky",
+    "name": "Voevodsky, Vladimir"
+   },
+   {
+    "count": 10,
+    "first_name": "V. A.",
+    "initials": "V A",
+    "last_name": "Voevodskij",
+    "name": "Voevodskij, V. A."
+   },
+   {
+    "count": 8,
+    "first_name": "V.",
+    "initials": "V",
+    "last_name": "Voevodsky",
+    "name": "Voevodsky, V."
+   },
+   {
+    "count": 1,
+    "first_name": "V. A.",
+    "initials": "V A",
+    "last_name": "Voevodsky",
+    "name": "Voevodsky, V. A."
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/voevodsky.vladimir-aleksandrovich"
+ },
+ "Česnavičius, Kęstutis": {
+  "aliases": [],
+  "awards": [],
+  "code": "cesnavicius.kestutis",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "kestutis-cesnavicius",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "184247",
+    "type": "mgp"
+   },
+   {
+    "external_id": "Q102422570",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "249733730",
+    "type": "idref"
+   },
+   {
+    "external_id": "249733730",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 20,
+    "field": "14",
+    "percent": "41.666666666666664",
+    "percentile": "41.666666666666664"
+   },
+   {
+    "count": 15,
+    "field": "11",
+    "percent": "31.25",
+    "percentile": "72.91666666666666"
+   }
+  ],
+  "in_collective": [],
+  "name": "Česnavičius, Kęstutis",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 23,
+    "first_name": "Kęstutis",
+    "initials": "K",
+    "last_name": "Česnavičius",
+    "name": "Česnavičius, Kęstutis"
+   },
+   {
+    "count": 2,
+    "first_name": "Kȩstutis",
+    "initials": "K",
+    "last_name": "Česnavičius",
+    "name": "Česnavičius, Kȩstutis"
+   },
+   {
+    "count": 1,
+    "first_name": "Kestutis",
+    "initials": "K",
+    "last_name": "Cesnavicius",
+    "name": "Cesnavicius, Kestutis"
+   },
+   {
+    "count": 1,
+    "first_name": "Kȩstutis",
+    "initials": "K",
+    "last_name": "Cesnavičius",
+    "name": "Cesnavičius, Kȩstutis"
+   }
+  ],
+  "states": [
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/cesnavicius.kestutis"
+ },
+ "Ngô Bao Châu": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "Clay Research Award",
+    "wikidata": {
+     "id": "Q1099219",
+     "link": "Clay_Research_Award"
+    },
+    "year": 2004
+   },
+   {
+    "title": "Fields Medal",
+    "wikidata": {
+     "id": "Q28835",
+     "link": "Fields_Medal"
+    },
+    "year": 2010
+   }
+  ],
+  "code": "ngo.bao-chau",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q216350",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "147507650",
+    "type": "idref"
+   },
+   {
+    "external_id": "86472",
+    "type": "mgp"
+   },
+   {
+    "external_id": "https://math.uchicago.edu/~ngo/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "bao-chau-ngo",
+    "type": "carmin_tv"
+   },
+   {
+    "external_id": "141736771",
+    "type": "gnd"
+   },
+   {
+    "external_id": "J5i9pecAAAAJ",
+    "type": "google_scholar"
+   },
+   {
+    "external_id": "147507650",
+    "type": "theses_fr"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 27,
+    "field": "11",
+    "percent": "30.337078651685392",
+    "percentile": "30.337078651685392"
+   },
+   {
+    "count": 26,
+    "field": "14",
+    "percent": "29.213483146067414",
+    "percentile": "59.550561797752806"
+   }
+  ],
+  "in_collective": [],
+  "name": "Ngô Bao Châu",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 18,
+    "first_name": "Bao Châu",
+    "initials": "B C",
+    "last_name": "Ngô",
+    "name": "Ngô, Bao Châu"
+   },
+   {
+    "count": 6,
+    "first_name": "Báo Châu",
+    "initials": "B C",
+    "last_name": "Ngô",
+    "name": "Ngô, Báo Châu"
+   },
+   {
+    "count": 5,
+    "first_name": "B. C.",
+    "initials": "B C",
+    "last_name": "Ngô",
+    "name": "Ngô, B. C."
+   },
+   {
+    "count": 4,
+    "first_name": "Bao-Châu",
+    "initials": "B C",
+    "last_name": "Ngô",
+    "name": "Ngô, Bao-Châu"
+   },
+   {
+    "count": 2,
+    "first_name": "Ngô Bao",
+    "initials": "N B",
+    "last_name": "Châu",
+    "name": "Châu, Ngô Bao"
+   },
+   {
+    "count": 2,
+    "first_name": "Ngô Bảo",
+    "initials": "N B",
+    "last_name": "Châu",
+    "name": "Châu, Ngô Bảo"
+   },
+   {
+    "count": 1,
+    "first_name": "Ngô Báo",
+    "initials": "N B",
+    "last_name": "Châu",
+    "name": "Châu, Ngô Báo"
+   },
+   {
+    "count": 1,
+    "first_name": "Bao Chau",
+    "initials": "B C",
+    "last_name": "Ngô",
+    "name": "Ngô, Bao Chau"
+   },
+   {
+    "count": 1,
+    "first_name": "Bảo Châu",
+    "initials": "B C",
+    "last_name": "Ngô",
+    "name": "Ngô, Bảo Châu"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/ngo.bao-chau"
+ },
+ "de Jong, Aise Johan": {
+  "aliases": [],
+  "awards": [
+   {
+    "title": "EMS Prize",
+    "wikidata": {
+     "id": "Q1275243",
+     "link": "EMS_Prize"
+    },
+    "year": 1996
+   }
+  ],
+  "code": "de-jong.aise-johan",
+  "collective_of": [],
+  "external_ids": [
+   {
+    "external_id": "Q371475",
+    "type": "wikidata"
+   },
+   {
+    "external_id": "7647",
+    "type": "mgp"
+   },
+   {
+    "external_id": "http://www.math.columbia.edu/~dejong/",
+    "type": "homepage"
+   },
+   {
+    "external_id": "172542898",
+    "type": "gnd"
+   },
+   {
+    "external_id": "139210377",
+    "type": "idref"
+   }
+  ],
+  "further_spellings": [],
+  "main_fields": [
+   {
+    "count": 51,
+    "field": "14",
+    "percent": "61.44578313253012",
+    "percentile": "61.44578313253012"
+   },
+   {
+    "count": 8,
+    "field": "11",
+    "percent": "9.63855421686747",
+    "percentile": "71.08433734939759"
+   }
+  ],
+  "in_collective": [],
+  "name": "de Jong, Aise Johan",
+  "reviewer": null,
+  "spellings": [
+   {
+    "count": 29,
+    "first_name": "A. J.",
+    "initials": "A J",
+    "last_name": "de Jong",
+    "name": "de Jong, A. J."
+   },
+   {
+    "count": 8,
+    "first_name": "Johan",
+    "initials": "J",
+    "last_name": "de Jong",
+    "name": "de Jong, Johan"
+   },
+   {
+    "count": 7,
+    "first_name": "Aise Johan",
+    "initials": "A J",
+    "last_name": "de Jong",
+    "name": "de Jong, Aise Johan"
+   },
+   {
+    "count": 4,
+    "first_name": "Johan",
+    "initials": "J",
+    "last_name": "De Jong",
+    "name": "De Jong, Johan"
+   },
+   {
+    "count": 3,
+    "first_name": "A. Johan",
+    "initials": "A J",
+    "last_name": "de Jong",
+    "name": "de Jong, A. Johan"
+   },
+   {
+    "count": 2,
+    "first_name": "A. J.",
+    "initials": "A J",
+    "last_name": "De Jong",
+    "name": "De Jong, A. J."
+   },
+   {
+    "count": 2,
+    "first_name": "J.",
+    "initials": "J",
+    "last_name": "de Jong",
+    "name": "de Jong, J."
+   },
+   {
+    "count": 1,
+    "first_name": "Aise Johan",
+    "initials": "A J",
+    "last_name": "De Jong",
+    "name": "De Jong, Aise Johan"
+   }
+  ],
+  "states": [
+   [
+    "m",
+    "manual"
+   ],
+   [
+    "b",
+    "biographic_reference"
+   ],
+   [
+    "c",
+    "is cited"
+   ]
+  ],
+  "zbmath_url": "https://zbmath.org/authors/de-jong.aise-johan"
+ }
+}

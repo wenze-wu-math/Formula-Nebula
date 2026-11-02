@@ -3,8 +3,9 @@ import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = 9224
 const profile = resolve(tmpdir(), 'nebula-cdp-profile2' + '-' + process.pid)
@@ -158,7 +159,13 @@ const targets = await evaluate(`(()=>{
     const ndc = ndcOf(m, bestU, bestV);
     if (Math.abs(ndc.x) > 0.92 || Math.abs(ndc.y) > 0.92) continue;
 
-    cands.push({id:node.id, name:node.name, x:ndc.x, y:ndc.y, u:bestU, v:bestV, alpha:bestA});
+    /* 这里只保留"这个节点在屏幕上大致在哪儿"和"它的贴图有多扁"，
+     * 用来挑出屏幕分散、贴图比例多样的 12 个测试目标。
+     *
+     * ⚠ 具体的点击点**不在这一步算** —— 曾经把 (u,v) 存下来、点击时用
+     *   localToWorld 反推屏幕坐标，结果引入了一处系统性坐标偏差
+     *   （见下面 ② 的说明）。点击点改由射线在精灵窗口内搜索得到。 */
+    cands.push({id:node.id, name:node.name, x:ndc.x, y:ndc.y, u:bestU, v:bestV, alpha:bestA, texelAspect: iw / ih});
   }
 
   // 取屏幕上尽量分散的 12 个
@@ -217,35 +224,112 @@ for (const t of targets) {
   //      setViewOffset 的**视口偏移还留着**，投影矩阵跟按钮看到的
   //      不一致，后面的点击点全部偏掉（表现得像"拾取不准"，其实是
   //      测试把应用的状态改坏了）。
-  //      正确做法是走 deselectFromPanel()，它会同时撤回视口偏移。
+  //
+  //    ⚠⚠ 但也**不能只调 scene.deselectFromPanel()**：它清的是场景侧的
+  //      选中与视口偏移，DOM 面板的 `.on` 类由 ui.hideDetail() 负责摘掉。
+  //       只调前者会留下"selection 已是 null、但面板仍然开着"的半状态 ——
+  //       实测此时下一个目标虽然能被正确选中（scene.selection 变成它），
+  //       断言读到的 panel 标题却仍是上一个节点，于是把正常行为判成
+  //       "点到了别的公式"。
+  //       两条都走一遍：先关 DOM 面板（它回调 onClose → deselectFromPanel），
+  //       再显式调一次场景侧（silent，幂等），把两边都归零。
   await evaluate(`(()=>{
     const n = window.__nebula;
+    n.ui.hideDetail();
     n.scene.deselectFromPanel({ silent: true });
     return true;
   })()`)
-  await sleep(160)
+  /* ⚠ 必须等镜头**回位结束**，不能只 sleep 一个固定值。
+   *
+   * deselectFromPanel → returnHome() 会把 focusState.mode 设成 'home'，
+   * 之后由渲染循环把相机**平滑插值**回初始机位。在本机软件渲染下
+   * （实测 2.6~2.7 fps，约 385ms/帧）这段回位要好几帧。
+   * 若在这期间就去搜索瞄准点，算出来的屏幕坐标属于**旧机位**；
+   * 等点击真正派发时相机已经动了，同一个像素指向另一片空间 ——
+   * 表现为"明明用射线验证过，点下去却选不中"。
+   *
+   * 这正是之前"单独复现时 100% 成功、在循环里却失败"的原因：
+   * 单独复现时我在 reset 后等了 300ms 且不做别的操作；
+   * 循环里紧接着就是搜索+点击，正好落在回位动画中间。
+   *
+   * 判据用应用自己的状态：focusMode 回到 null（不在聚焦/回位）即已稳定。 */
+  for (let i = 0; i < 60; i++) {
+    const settled = await evaluate(`(()=>{
+      const s = window.__nebula.scene;
+      return { mode: s.focusMode, converged: s.focusSettled };
+    })()`)
+    if (settled.mode === null) break
+    await sleep(100)
+  }
 
   /* ② 每次**现算**点击点 ──
-   * 不能用循环外算好的 t.x / t.y：点上一个目标会让镜头飞过去，
-   * 而且面板开关会改投影矩阵，旧坐标立刻失效。
-   * 所以这里用 (id, u, v) 重新求一次 NDC，再转屏幕像素。 */
-  const live = await evaluate(`(()=>{
+   *
+   * ⚠⚠ 这里**必须直接在"整数像素"上搜索**，不能先搜浮点 NDC 再取整。
+   *
+   *   原实现是「UV → localToWorld → project → 浮点 NDC → 取整成像素」，
+   *   在本机实测 12 个目标里稳定失败 5~11 个，而**应用本身完全正常**：
+   *   同一目标只要用整数像素搜到一个能命中的点，点击就 100% 选中、
+   *   面板立刻打开（已用探针逐事件核对过 app 收到的 clientX/clientY
+   *   与 pick() 的结果）。
+   *
+   *   原因是分辨率：这些公式精灵在屏幕上只有十几像素高
+   *   （贴图宽高比可达 18:1，笔画本身只有一两个像素），而
+   *   1 像素的取整在 NDC 上就是 2/boxW ≈ 0.00127 —— 足以让瞄准点
+   *   从笔画滑到透明留白，被 hitIsOpaque 正确地拒绝。
+   *   （已排除逐帧漂移：同一整数像素连续 6 帧结果完全一致。）
+   *
+   *   正确做法：在精灵屏幕包围盒内**按整数像素**枚举候选点，
+   *   每个候选点用"整数像素 → app 的 setPointer 公式 → NDC → __pickAt"
+   *   验证。这样"验证过的点"与"点下去的点"是**同一个整数像素**，
+   *   不存在取整误差。由内向外扫，命中即停，避免总是贴边取点。 */
+  const search = await evaluate(`(()=>{
     const n = window.__nebula, s = n.scene, cam = s.camera;
     const node = n.graph.nodes.find(x => x.id === ${JSON.stringify(t.id)});
     if (!node || !node.sprite) return null;
     const m = node.sprite;
     const gp = m.geometry.parameters;
-    const lx = (${t.u} - 0.5) * gp.width;
-    const ly = (${t.v} - 0.5) * gp.height;
-    const w = m.localToWorld(new (m.position.constructor)(lx, ly, 0));
-    const c = w.project(cam);
-    return { x: c.x, y: c.y, z: c.z };
+    const r = document.getElementById('scene').getBoundingClientRect();
+    // 精灵中心的屏幕像素
+    const cNdc = m.localToWorld(new (m.position.constructor)(0, 0, 0)).project(cam);
+    if (Math.abs(cNdc.x) > 0.999 || Math.abs(cNdc.y) > 0.999 || cNdc.z > 1) return JSON.stringify({ offscreen: true });
+    const cx = r.left + (cNdc.x + 1) / 2 * r.width;
+    const cy = r.top + (1 - cNdc.y) / 2 * r.height;
+    // 精灵在屏幕上的半宽/半高（像素），再放宽 50% 以覆盖整个字形
+    const pW = m.localToWorld(new (m.position.constructor)(gp.width / 2, 0, 0)).project(cam);
+    const pH = m.localToWorld(new (m.position.constructor)(0, gp.height / 2, 0)).project(cam);
+    const halfWpx = Math.abs((pW.x - cNdc.x) / 2 * r.width) * 1.5;
+    const halfHpx = Math.abs((pH.y - cNdc.y) / 2 * r.height) * 1.5;
+    const NX = Math.max(3, Math.min(121, Math.round(halfWpx * 2)));
+    const NY = Math.max(3, Math.min(41, Math.round(halfHpx * 2)));
+    // 由内向外枚举整数像素偏移
+    const order = [];
+    for (let i = 0; i < NX; i++) for (let j = 0; j < NY; j++) {
+      const fx = (i / (NX - 1)) * 2 - 1, fy = (j / (NY - 1)) * 2 - 1;
+      order.push([fx * halfWpx, fy * halfHpx, fx * fx + fy * fy]);
+    }
+    order.sort((p, q) => p[2] - q[2]);
+    let tried = 0;
+    for (const [ox, oy] of order) {
+      tried++;
+      const px = Math.round(cx + ox), py = Math.round(cy + oy);
+      // 用 app 自己的 setPointer 公式把整数像素换回 NDC
+      const nx = ((px - r.left) / r.width) * 2 - 1;
+      const ny = -((py - r.top) / r.height) * 2 + 1;
+      const pick = s.__pickAt(nx, ny);
+      if (pick.resolved === node.id) {
+        return JSON.stringify({ px, py, nx, ny, tried, hits: pick.hits.map(h => h.id) });
+      }
+    }
+    return JSON.stringify({ px: null, tried, halfWpx, halfHpx, center: { x: cx, y: cy } });
   })()`)
-  if (!live) { console.log(`  · 「${t.name}」的 sprite 不见了，跳过`); continue }
-
-  // NDC(-1..1) → 屏幕像素： (ndc+1)/2 * size
-  const cx = box.x + (live.x + 1) / 2 * box.w
-  const cy = box.y + (1 - live.y) / 2 * box.h
+  const aimInfo = typeof search === 'string' ? JSON.parse(search) : search
+  if (!aimInfo || aimInfo.offscreen) { console.log(`  · 「${t.name}」不在屏幕内，跳过`); continue }
+  if (aimInfo.px === null) {
+    fail++
+    failures.push(`瞄准「${t.name}」→ 在精灵包围盒内扫了 ${aimInfo.tried} 个**整数像素**都无法解析到目标（半宽 ${aimInfo.halfWpx?.toFixed(1)}px 半高 ${aimInfo.halfHpx?.toFixed(1)}px，可能被合法遮挡）`)
+    continue
+  }
+  const aim = { nx: aimInfo.nx, ny: aimInfo.ny, px: aimInfo.px, py: aimInfo.py, hits: aimInfo.hits }
 
   /* ③ 在**点击之前**采样射线序列。
    *
@@ -255,21 +339,29 @@ for (const t of targets) {
    *   已经飞过去了**，同一个 NDC 指向的完全是另一片空间。
    *   要判断"这次点击该不该选中它"，就必须用**点击那一刻**的机位。 */
   const before = await evaluate(`(()=>{
-    const r = window.__nebula.scene.__pickAt(${live.x.toFixed(4)}, ${live.y.toFixed(4)});
+    const r = window.__nebula.scene.__pickAt(${aim.nx.toFixed(6)}, ${aim.ny.toFixed(6)});
     return {hitCount:r.hitCount, hits:r.hits, resolved:r.resolved};
   })()`)
 
   for (const type of ['mouseMoved', 'mousePressed', 'mouseReleased']) {
     await send('Input.dispatchMouseEvent', {
-      type, x: cx, y: cy, button: 'left',
+      type, x: aim.px, y: aim.py, button: 'left',
       clickCount: type === 'mouseMoved' ? 0 : 1,
       buttons: type === 'mousePressed' ? 1 : 0,
     })
     await sleep(60)
   }
-  await sleep(260)
 
-  const got = await evaluate(`(()=>{
+  /* ⚠ 轮询而不是固定 sleep(260)。
+   *
+   * 点击 → pointerup 的 pick() → select() → 面板加 .on，这一串在
+   * **下一帧**才落地。本机走 SwiftShader 软件渲染实测约 2.6 fps
+   * （≈385ms/帧），固定等 260ms 会稳定读到"还没开"，于是把正常行为
+   * 报成拾取失败 —— 这正是本机曾出现 "失败 5/12" 的第二个原因。
+   * 单独瞄准同一目标时，面板其实是 **1ms** 内就开的。
+   *
+   * 轮询用 3s 上限（约 8 帧），正常机器上一两次就返回。 */
+  const readState = () => evaluate(`(()=>{
     const p=document.getElementById('panel');
     /* ⚠ scene.selection 直接就是**公式 id 字符串**（源码注释：
      *   "当前选中的公式 id（无则 null）"），不是节点对象。
@@ -280,6 +372,8 @@ for (const t of targets) {
     return {open:p.classList.contains('on'), title:p.querySelector('.hd .nm')?.textContent||'',
             id: (typeof sel === 'string' ? sel : (sel && sel.id) || null)};
   })()`)
+  let got = await readState()
+  for (let i = 0; i < 40 && !got.open; i++) { await sleep(75); got = await readState() }
 
   /* ── 判定"命中"，而不是"命中它自己" ──
    *

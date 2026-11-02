@@ -1,0 +1,920 @@
+/** * designs/atlas/layout.js — 星图布局（M1 所有）。规格：SPEC §3。 * * 纯函数：buildAtlas(graph, opts) → Atlas（结构见 SPEC §3.6）。不碰 DOM、不用 Math.random， * 全部随机性来自 geo.makeRng(seed ^ hashStr(id))；Node 与浏览器下逐位一致。 * * 流水线（每步的输出只被后面的步骤读）： *   1. 扇区   —— 极冠半径 rCap（面积占比 = foundation 星数占比）+ 7 个按星数分角宽的环形扇区。 *   2. 恒星   —— 星等切分 + 确定性力导向（斥力 / 硬间距 / 亮星"标签盒"斥力 / 同族与跨族弹簧 / *                极冠与扇区软约束）。 *   3. 区域   —— 格中心核密度定族 → 多数票平滑 → 每族只留最大连通块 → 边界段提取与合并 → *                星收纳进本族区域（距边界 ≥ REGION_INSET）+ 带区域约束的松弛。 *   4. 深空天体 —— 加权平均初始化 + 弹簧 / 斥力，不受区域约束。 *   5. 星座连线（Kruskal 不相交森林）、星座名位置、区域包围盒。 *   6. 研究者 —— 圆平均目标角 + 一维间距松弛（按屏幕字宽在参考缩放下换算成弧度）。 * * 关键取舍： *   · 力导向用 O(n²) 双重循环而不是四叉树：405 颗星 × 320 次 ≈ 2600 万次距离判定，V8 下几十毫秒； *     树结构的遍历顺序与浮点累加顺序更难保证跨环境一致，收益不值得。 *   · 位移用 Jacobi 式（先累加全部力再统一移动），硬间距用 Gauss-Seidel 式（逐对立即推开）—— *     前者避免数组顺序带来的方向偏置，后者收敛快且能保证最小间距。 *   · 区域由星的实际位置导出，而不是直接用初始扇区：这样边界会沿网格阶梯起伏、绕着星团走， *     像 IAU 星座边界，而不是一刀切的扇形。扇区只是力导向的软约束。 *   · "在本族区域内且离边界 ≥ INSET"用精确的点到边界段距离判定（只查本族的边界段）， *     而不是把格子各边一律内缩——后者会在同族格之间留出无意义的禁区。 */
+import  {  REGION_BANDS, regionCols, REGION_INSET, POLE_FAMILY, RING_ORDER, FAMILY_ORDER,  FAMILY_LATIN, MAG_CUTS, DSO_TIER_CUTS, MAG_LABEL_L, DSO_LABEL_L, NAME_EXTRA_L, RES_LABEL_L,  FORMULA_PX, DSO_FORMULA_PX, RES_PX, FONT_SERIF, FIT_MARGIN,} from './constants.js'/* 世界长度量一律来自 runtime.js（可缩放的 live binding），不要从 constants.js 取。 * 理由见 runtime.js 头注释：混用会让尺度派生在 geo.cellOf() 处被静默截断。 */
+import  { R_DISK, R_RES, R_RES_TICK, FIT_RADIUS, setWorldScale, worldScale, BAND_W } from './runtime.js'
+import  { deriveLayoutScale } from './scale.js'
+import  { polarToWorld, worldToPolar, normRa, raDelta, makeRng, hashStr, cellOf, cellBounds } from './geo.js'
+import  { FAMILIES } from '../shared/kb.js'
+const   TAU = Math.PI * 2
+const  DEG = Math.PI / 180
+/* ───────── 布局参数（SPEC §3 的数值；改动处见注释"调整"） ───────── * * ⚠ 这里列的是 **1× 基准值**，单位是世界单位。`setLayoutScale(k)` 会把 * **每一个世界长度**乘 k，得到生效中的 `P`（见下方 SCALED_KEYS）。 * 这样盘面放大 k 倍时，斥力半径、硬间距、弹簧长度、区域内缩、深空天体 * 散布半径……全部同步放大 —— 即一次**纯相似变换**，相对结构不变。 * * 哪些键会被缩放，由 SCALED_KEYS 显式列出（不靠名字猜）， * 新增世界长度参数时**必须**加进那个集合，否则放大盘面后它会成为 * 唯一不跟着放大的约束，把布局卡回小尺度。 */
+const   BASE_P = {  seed: 20261031,  iter: 320,  /* 斥力  */
+repR: 140, kRep: 6,  /* 硬间距 dmin = dminBase + dminMag·(6.5 − (magA+magB)/2)  */
+dminBase: 12, dminMag: 4,  /* 弹簧  */
+sameLen: 70, sameK: 0.02, crossLen: 160, crossK: 0.004,  /* 约束（世界单位）  */
+capIn: 20, ringIn: 20, diskOut: 30, sectorTol: 0.5 * DEG,  conK: 0.5,                 /* 越界修正系数：每步把越界量的这一比例推回（再乘冷却步长）  */
+maxStep: 12,               /* 单步最大位移（防止早期大力把星甩出盘面）  // 调整：亮星"标签盒"斥力（SPEC 未写，新增）。mag ≤ 3 的星两两之间按椭圆距离互斥，  // 横向半轴 ≈ 标签宽、纵向 ≈ 标签高（世界单位，按 L = MAG_LABEL_L[mag-1] 时的缩放换算），  // 让同级公式在各自出现的那一级缩放下大多能放得下，而不是挤在一起被避让器淘汰。  */
+brightMaxMag: 3,  brightBox: [[300, 100], [175, 62], [105, 38]],   /* [半宽, 半高]，按两星中较亮者的 mag  */
+kBright: 2.2,  /* 撒点 / 空间网格的余量（世界单位；原先是散落的字面量 30/40/60/30）  */
+capSeedInset: 30,          /* 极冠撒点内缩 / 环扇区撒点起算半径的偏移  */
+ringSeedOutset: 40,        /* 环扇区撒点外沿相对盘缘的内缩  */
+verletLabelPad: 30,        /* PairGrid 建表半径相对 repR 的余量  */
+verletSkin: 30,            /* Verlet 近邻表的重建阈值 = 半步  */
+relaxNear: 60,             /* 收纳松弛时的近邻搜索半径  // 区域  */
+kdeSigma: 60, kdeFloor: 1e-4, smoothPasses: 2, smoothVotes: 3,  inset: REGION_INSET + 0.6, /* 收纳时多留 0.6：四舍五入到 0.01 后仍 ≥ REGION_INSET  */
+insetBase: REGION_INSET,   /* 最终归属校验用的内缩（世界单位，随尺度放大）  */
+relaxIter: 40, relaxRep: 0.25,  /* 深空天体  */
+dsoIter: 200, dsoTLen: 45, dsoTK: 0.03, dsoCLen: 90, dsoCK: 0.004,  dsoStarR: 26, dsoDsoR: 30, dsoRMin: 20, dsoRMaxOf: 30, dsoJitter: 20,  /* 星座连线  */
+figFrac: 0.2, figMin: 6, figMax: 14, figMaxLen: 360,  figClear: 9,               /* 调整：连线离第三颗星至少这么远（世界单位），避免连线从别的星上穿过  // 星座名  */
+constCentroidK: 0.35,  constAspect: 2.4,          /* 调整：星座名净空的纵向放大系数（标签约 2.5:1）  */
+constRimK: 1.6,            /* 调整：盘缘作为障碍时的距离系数  // 研究者  */
+resIter: 200, resPad: 14, resK: 0.05, resPoleR: 250, resPoleAll: 60,}
+/** 随世界尺度等比缩放的参数键（1× 基准值 × k）。新增世界长度参数必须登记在此。 * * ═══ 为什么"力的增益"也要分类（容易搞错）═══ * * 判断标准是：**单步位移**是否随 k 变化。 * * · `kRep`（斥力）：位移 = kRep·(repR−d)/repR，(repR−d)/repR 是无量纲的 *   （分子分母同乘 k 抵消），所以位移只能靠 kRep 承担 → **必须 × k**。 *   踩过的坑：漏了这一步时 k=2 的星点平均半径/rCap 从 1.37 掉到 0.85， *   因为固定 6 单位的斥力推不开间距已变成 24 的星点。 * · `kBright`（亮星标签盒）：同理，e2 已归一化 → **必须 × k**。 * · `relaxRep`（收纳松弛）：位移 = rep·(NEAR−d)/NEAR，同理 → **必须 × k**。 * · `sameK` / `crossK`（弹簧）：位移 = k·(d−L0)，而 d 与 L0 都是世界长度、 *   都已 × k，所以 (d−L0) 自身 ∝ k → 增益**保持不变**。 * · `resK`（研究者）：作用在**角度**上（raDelta），角度与尺度无关 → **保持不变**。 * · `resPad`（研究者名字间距）：它是 **css px**，与 (wi+wj)/2 同类相加， *   再除以 (R_RES·zoom0) 换算成弧度。R_RES ∝ k、zoom0 ∝ 1/k 抵消， *   所以**留成 px 才是尺度不变的** —— 跟着缩放会让每个名字的角间距 × k， *   屏幕上看起来就是名字散得越来越开。 * · `maxStep`：纯长度上限 → **必须 × k**。 */
+const   SCALED_KEYS = [  'repR', 'dminBase', 'dminMag', 'sameLen', 'crossLen', 'kRep', 'kBright', 'relaxRep',  'capIn', 'ringIn', 'diskOut', 'maxStep',  'capSeedInset', 'ringSeedOutset', 'verletLabelPad', 'verletSkin', 'relaxNear',  'kdeSigma', 'inset', 'insetBase',  'dsoTLen', 'dsoCLen', 'dsoStarR', 'dsoDsoR', 'dsoRMin', 'dsoRMaxOf', 'dsoJitter',  'figMin', 'figMax', 'figMaxLen', 'figClear',  'resPoleR', 'resPoleAll',]
+/** 生效中的布局参数（由 setLayoutScale 重新算出） */
+let   P = { ...BASE_P, dsoRMax: R_DISK - BASE_P.dsoRMaxOf }
+/** * 按世界尺度 k 重新计算 `P`（纯相似变换：所有世界长度 × k）。 * * k = 1 时结果与 BASE_P **逐位相同**，所以 1× 行为不允许有任何变化 * （用 `node designs/atlas/check-layout-hash.mjs 1` 的指纹来守这条线）。 */
+export   function   setLayoutScale(k) 
+{  const   s = Number.isFinite(k) && k > 0 ? k : 1  
+const   next = { ...BASE_P }  
+for (const key of SCALED_KEYS) 
+next[key] = BASE_P[key] * s  /* brightBox 是 [半宽, 半高] 的二维数组，单独处理 */
+  next.brightBox = BASE_P.brightBox.map(([w, h]) => [w * s, h * s])  /* 深空天体的外半径原本写死 `R_DISK - 30`；改成"盘缘内收 30·k" */
+  next.dsoRMax = R_DISK - BASE_P.dsoRMaxOf * s  
+P = next  
+return s}
+/** 读当前生效参数（只读；供测试/诊断） */
+export   const   layoutParams = () => P
+const 
+now = () => (typeof  performance !== 'undefined' ? performance : Date).now()
+/** * 生效中的布局参数（2026-11-01 重构：世界几何改由 runtime.js 统一驱动）。 * * ═══ 为什么不再自己持有一份 R_DISK ═══ * * 上一版这里有个 `RT.R_DISK`，只覆盖了 layout.js 内部的 7 处引用。 * 但 `geo.js` 的 `cellOf()` 仍读 constants 里的固定 `R_DISK`/`BAND_W`， * 于是收纳步骤（依赖 `allowed()` → `cellOf`）把星点**全部拉回 r < 1000**。 * 实测 `applyScale({R_DISK:4000})` 后星点最大半径仍是 1000，而 `rCap` * 却按 4000 算了 —— 盘面没变大，是个静默的半坏状态。 * * 现在世界几何的唯一真源是 `runtime.setWorldScale(k)`，`geo.js` 也读它， * 所以"放大盘面"是真的放大。本对象只留**不随尺度变化的布局参数** * （迭代次数、收敛补偿）；世界长度直接读 `runtime.js` 的 live binding。 */
+const   RT = {  repR: P.repR,  dminBase: P.dminBase,  dminMag: P.dminMag,  iter: P.iter,  relaxIter: P.relaxIter,}
+/** 用派生尺度覆盖运行时参数（buildAtlas 内部调用；也可供测试直接调用） */
+export   function   applyScale(s) 
+{  RT.repR = s?.repR ?? P.repR  
+RT.dminBase = s?.dminBase ?? P.dminBase  
+RT.dminMag = s?.dminMag ?? P.dminMag  
+RT.iter = s?.iter ?? P.iter  
+RT.relaxIter = s?.relaxIter ?? P.relaxIter}
+/** 当前生效的盘面半径（世界几何真源在 runtime.js） */
+export   const   curDiskRadius = () => R_DISK/** importance 降序、同值按 id 字典序（星等切分与各类排序共用） */
+const   byImp = (a, b) => b.importance - a.importance || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
+const   byId = (a, b) => (a < b ? -1 : a > b ? 1 : 0)
+const   r2 = (v) => Math.round(v * 100) / 100
+const  FI = Object.fromEntries(FAMILY_ORDER.map((f, i) => [f, i]))
+const   POLE_I = FI[POLE_FAMILY]
+/* ═════════════════════════ 主入口 ═════════════════════════ */
+/** * @param {object} graph  getGraph() / buildGraph() 的结果（只读） * @param {{ seed?:number, measure?:(text:string, font:string)=>number, resFont?:string }} [opts] * @returns Atlas（SPEC §3.6） */
+export   function   buildAtlas(graph, opts = {}) 
+{  const   t0 = now()  /* 固定处理顺序：与 graph.nodes 的原始顺序无关  */
+const   theorems = graph.nodes.filter((n) => !n.cluster && !n.researcher).sort(byImp)  
+const   conjs = graph.nodes.filter((n) => n.cluster).sort(byImp)  
+const   researchers = graph.nodes.filter((n) => n.researcher).sort((a, b) => byId(a.id, b.id))  /* ── 动态派生世界尺度（2026-11-01 新增） ──   *   * 定理变多时**盘面按 √n 等比放大**（面积律），而不是把更多星点塞进同一个盘。   * 要动整条几何栈（runtime.js + P 里所有世界长度）而不是只改 R_DISK：   * 只改 R_DISK 时，`geo.cellOf()` 仍读常量 `BAND_W = 1000/20`，网格锁在 r<1000，   * 收纳步骤会把一切拉回去 —— 实测盘面"设了 4000 却没变大"（HANDOFF-SCALE.md §1.3）。   *   * ═══ 盘面变大的收益与不收益（别读错）═══   *   * **收益**：世界密度恒定。盘面积 ∝ n，相邻星点间距在世界里不变，   * 所以拉近浏览时星图结构不变形 —— 这正是用户要的"盘变大、点更密"。   *   * **不收益**：全图适配时一屏能看清的点数/标签数。相机把盘面拟合回同一块视口，   * 屏幕上可用点位只由"视口面积 ÷ 最小间距²"决定，与盘面世界半径无关。   * 实测 16× 的硬间距违规率仍是 59.2%（`node designs/atlas/check-scale.mjs`），   * 与随机分布的几何预期吻合 —— 限制是**约束求解预算**，不是盘面尺寸。   *   * 调用方可传 opts.worldScale 覆盖（测试用）；opts.scale 为旧名，保留兼容。 */
+  const   derived = deriveLayoutScale(theorems.length)  
+const   k = setWorldScale(opts.worldScale ?? opts.scale ?? derived.scale)  
+setLayoutScale(k)  /* 迭代次数随**数据量**缓降（scale.js 的 n^-0.12），这是"收敛预算"而不是几何量，   * 与 k 无关，所以直接取 derived；几何量已由 setLayoutScale(k) 统一缩放，   * 这里**不能**再把 derived.repR 之类覆盖回去 —— 那会把 k 乘两次。 */
+  applyScale({ iter: derived.iter, relaxIter: derived.relaxIter })  
+const   seed = (opts.seed ?? P.seed) >>> 0  
+const   neighbours = buildNeighbours(graph)  
+const  { rCap, sectors } = buildSectors(theorems)  /* 恒星：星等 + 力导向 */
+  const   N = theorems.length  
+const   stars = theorems.map((n, i) => {    const   frac = (i + 1) / N    
+let   m = 0    
+while (m < 5 && frac > MAG_CUTS[m] + 1e-9) 
+m++    
+return   mkBody(n, 'star', n.family, 0, 0, m + 1, 0, MAG_LABEL_L[m], FORMULA_PX[m])  })  
+layoutStars(stars, neighbours, rCap, sectors, seed)  /* 区域：核密度 → 平滑 → 连通 → 边界 → 收纳 */
+  const   cells = assignCells(stars)  
+const   boundaries = extractBoundaries(cells)  
+containStars(stars, cells, boundaries)  /* 深空天体 */
+  const   bodies = new   Map()  
+for (const  s 
+of  stars) 
+bodies.set(s.id, s)  
+const   dsos = layoutDsos(conjs, stars, neighbours, bodies, seed)  
+for (const  d 
+of  dsos) 
+{ d.family = famAt(cells, d.x, d.y) || POLE_FAMILY; bodies.set(d.id, d) }  
+dsos.sort((a, b) => a.tier - b.tier || byImp(a, b))  /* 星座连线、区域信息 */
+  stars.sort((a, b) => a.mag - b.mag || byImp(a, b))  
+const   figures = buildFigures(stars, dsos, neighbours, bodies)  
+const   regions = buildRegions(stars, dsos, cells)  /* 研究者 */
+  const   res = layoutResearchers(researchers, neighbours, bodies, sectors, opts)  
+for (const  r 
+of  res) 
+bodies.set(r.id, r)  
+const   atlas = {    seed, rCap: r2(rCap), sectors, bodies, stars, dsos, researchers: res, neighbours,    regions, cells, boundaries, figures, ms: 0,  }  
+atlas.ms = Math.round((now() - t0) * 10) / 10  
+return atlas}
+/** 世界点所在区域的族；盘外 null。只依赖 atlas.cells */
+export   function   regionAt(atlas, x, y) 
+{  return   famAt(atlas.cells, x, y)}
+function   famAt(cells, x, y) 
+{  if (!(Number.isFinite(x) && Number.isFinite(y))) 
+return  null  
+const   c = cellOf(x, y)  
+if (!c) 
+return null  
+return FAMILY_ORDER[cells[c.band][c.col]] ?? null}
+/** Body 构造（字段顺序固定，便于逐位比较两次运行的结果） */
+function   mkBody(n, kind, family, x, y, mag, tier, labelL, formulaPx) 
+{  return {    id: n.id, node: n, kind, family, x, y, mag, tier, status: null,    importance: n.importance, labelL, nameL: labelL + NAME_EXTRA_L, formulaPx,  }}
+/* ═════════════════════════ 邻居表与扇区 ═════════════════════════ */
+/** 每个节点的一跳邻居：weight 降序，同权按 id */
+function   buildNeighbours(graph) 
+{  const   nb = new   Map(graph.nodes.map((n) => [n.id, []]))  
+for (const l of graph.links) 
+{    const   s = typeof l.source === 'object' ? l.source.id : l.source    
+const   t = typeof  l.target === 'object' ? l.target.id : l.target    
+if (!nb.has(s) || !nb.has(t) || s === t) 
+continue
+const   w = Number(l.weight) || 0    
+nb.get(s).push({ id: t, weight: w, type: l.type, label: l.label, cross: !!l.cross })    
+nb.get(t).push({ id: s, weight: w, type: l.type, label: l.label, cross: !!l.cross })  }  
+for (const  arr 
+of   nb.values()) 
+arr.sort((a, b) => b.weight - a.weight || byId(a.id, b.id))  
+return nb}
+/** 极冠半径（面积占比 = 极冠族星数占比）与 7 个环形扇区（角宽 ∝ 星数，RING_ORDER[0] 居中于 ra=0） */
+function   buildSectors(theorems) 
+{  const   cnt = Object.fromEntries(FAMILY_ORDER.map((f) => [f, 0]))  
+for (const  n 
+of  theorems) 
+if (n.family in cnt) cnt[n.family]++  
+const   total = theorems.length || 1  
+const   rCap = R_DISK * Math.sqrt(cnt[POLE_FAMILY] / total)  
+const   ringTotal = RING_ORDER.reduce((s, f) => s + cnt[f], 0) || 1  
+const   sectors = {}  
+let   acc = -TAU * cnt[RING_ORDER[0]] / ringTotal / 2  
+for (const f of RING_ORDER) 
+{    const   w = TAU * cnt[f] / ringTotal    
+const   ra0 = normRa(acc)    
+sectors[f] = { ra0, ra1: ra0 + w, raMid: normRa(acc + w / 2) }    
+acc += w  }  
+return { rCap, sectors }}
+/* ═════════════════════════ 恒星力导向 ═════════════════════════ */
+function   layoutStars(stars, neighbours, rCap, sectors, seed) 
+{  const   n = stars.length  
+const   X = new   Float64Array(n), Y = new   Float64Array(n)  
+const   FX = new   Float64Array(n), FY = new   Float64Array(n)  
+const   mag = Int8Array.from(stars, (s) => s.mag)  
+const   isCap = Uint8Array.from(stars, (s) => (s.family === POLE_FAMILY ? 1 : 0))  
+const   sec = stars.map((s) => sectors[s.family] || null)  
+const   idx = new   Map(stars.map((s, i) => [s.id, i]))  /* 初始化：扇区（或极冠）内按面积均匀撒点 */
+  for (let   i = 0; i < n; i++) 
+{    const   rng = makeRng((seed ^ hashStr(stars[i].id)) >>> 0)    
+let r, ra    
+if (isCap[i]) 
+{      const   R = rCap - P.capSeedInset      
+r = R * Math.sqrt(rng()); ra = rng() * TAU    } else  {      const   s = sec[i], w = s.ra1 - s.ra0, a = rCap + P.capSeedInset, b = R_DISK - P.ringSeedOutset      
+r = Math.sqrt(a * a + rng() * (b * b - a * a))      
+ra = s.ra0 + w * (0.04 + 0.92 * rng())    }    
+const   p = polarToWorld(r, ra)    
+X[i] = p.x; Y[i] = p.y  }  /* 弹簧：每条定理—定理关联一次（i < j），按星数组顺序 */
+  const   springs = []  
+for (let   i = 0; i < n; i++) 
+{    for (const  e 
+of   neighbours.get(stars[i].id)) 
+{      const   j = idx.get(e.id)      
+if (j === undefined || j <= i) continue
+const   same = stars[i].family === stars[j].family      
+springs.push(i, j, same ? P.sameLen : P.crossLen, (same ? P.sameK : P.crossK) * e.weight)    }  }  
+const   S = Float64Array.from(springs)  /* 两两硬间距表（只依赖 mag） */
+  const   dminT = dminTable()  
+const   bright = []  
+for (let   i = 0; i < n; i++) 
+if (mag[i] <= P.brightMaxMag) 
+bright.push(i)  /* 斥力环节得到的 d < repR 近邻对也供硬间距使用（单步位移 ≤ maxStep，  // 移动后可能违反 dmin 的对，移动前必在 dmin + 2·maxStep < repR 之内）  */
+const   nbr = new   PairGrid(n, RT.repR + P.verletLabelPad)  
+const   brightHx = new   Float64Array(64), brightHy = new   Float64Array(64)  
+for (let   a = 1; a <= 6; a++) 
+for (let   b = 1; b <= 6; b++) 
+{    const   box = P.brightBox[Math.min(a, b, P.brightBox.length) - 1]    
+brightHx[a * 8 + b] = box[0]; brightHy[a * 8 + b] = box[1]  }  
+const   last = Math.max(1, RT.iter - 1)  /* Verlet 近邻表：按 repR + SKIN 建表，任一星自上次建表后位移 > SKIN/2 才重建。  // 两星相对位移 ≤ SKIN，表外的对不可能进入 repR 之内，所以结果与每步重建完全相同（精确，非近似），  // 而建表次数从 320 降到几十次。重建时机只取决于坐标，仍是确定性的。  */
+const   SKIN = P.verletSkin, repR2 = RT.repR * RT.repR  
+const   BX = new   Float64Array(n), BY = new   Float64Array(n)  
+let   np = 0, pairs = null  
+const   rebuildIfNeeded = () => {    if (pairs) 
+{      let   worst = 0      
+for (let   i = 0; i < n; i++) 
+{ const   dx = X[i] - BX[i], dy = Y[i] - BY[i], d2 = dx * dx + dy * dy; if (d2 > worst) 
+worst = d2 }      
+if (worst <= (SKIN / 2) ** 2) 
+return }
+np = nbr.build(X, Y); pairs = nbr.pairs    
+BX.set(X); BY.set(Y)  }  
+for (let   it = 0; it < RT.iter; it++) 
+{    const   step = 1 - 0.95 * it / last    
+FX.fill(0); FY.fill(0)    
+rebuildIfNeeded()    /* 斥力：d < repR 时 F = kRep·(repR − d)/repR */
+    for (let   p = 0; p < np; p += 2) 
+{      const   i = pairs[p], j = pairs[p + 1]      
+{        let   dx = X[i] - X[j], dy = Y[i] - Y[j]        
+const   d2 = dx * dx + dy * dy        
+if (d2 >= repR2) 
+continue
+let   d = Math.sqrt(d2)        
+if (d < 1e-6) 
+{ const   a = fallbackAngle(i, j); dx = Math.cos(a); dy = Math.sin(a); d = 1 }        
+const   f = P.kRep * (RT.repR - d) / RT.repR / d        
+FX[i] += dx * f; FY[i] += dy * f; FX[j] -= dx * f; FY[j] -= dy * f      }    }    /* 亮星标签盒斥力：椭圆距离 e < 1 时沿椭圆梯度方向互推（偏向上下错开，标签横宽竖窄） */
+    for (let   a = 0; a < bright.length; a++) 
+{      const   i = bright[a]      
+for (let   b = a + 1; b < bright.length; b++) 
+{        const   j = bright[b]        
+const   hx = brightHx[mag[i] * 8 + mag[j]], hy = brightHy[mag[i] * 8 + mag[j]]        
+const   dx = X[i] - X[j], dy = Y[i] - Y[j]        
+const   ex = dx / hx, ey = dy / hy, e2 = ex * ex + ey * ey        
+if (e2 >= 1) continue
+let   gx = ex / hx, gy = ey / hy        
+const   gl = Math.hypot(gx, gy)        
+if (gl < 1e-12) 
+{ const   t = fallbackAngle(i, j); gx = Math.cos(t); gy = Math.sin(t) } else  { gx /= gl; gy /= gl }        
+const   f = P.kBright * (1 - Math.sqrt(e2))        
+FX[i] += gx * f; FY[i] += gy * f; FX[j] -= gx * f; FY[j] -= gy * f      }    }    /* 弹簧：F = k·(d − L0)，沿连线 */
+    for (let   s = 0; s < S.length; s += 4) 
+{      const   i = S[s], j = S[s + 1], L0 = S[s + 2], k = S[s + 3]      
+const   dx = X[j] - X[i], dy = Y[j] - Y[i]      
+const   d = Math.sqrt(dx * dx + dy * dy)      
+if (d < 1e-6) 
+continue
+const   f = k * (d - L0) / d      
+FX[i] += dx * f; FY[i] += dy * f; FX[j] -= dx * f; FY[j] -= dy * f    }    /* 统一移动（步长冷却 + 单步上限） */
+    for (let   i = 0; i < n; i++) 
+{      let   mx = FX[i] * step, my = FY[i] * step      
+const   m = Math.hypot(mx, my)      
+if (m > P.maxStep) 
+{ mx *= P.maxStep / m; my *= P.maxStep / m }      
+X[i] += mx; Y[i] += my    }    /* 硬间距：逐对立即各推开一半 */
+    hardSpacing(X, Y, mag, pairs, np, dminT)    /* 软约束：极冠 / 环带半径、扇区角度 */
+    for (let   i = 0; i < n; i++) 
+{      const   p = worldToPolar(X[i], Y[i])      
+let   r = p.r, ra = p.ra, moved = false      
+if (isCap[i]) 
+{        const   lim = rCap - P.capIn        
+if (r > lim) 
+{ r -= P.conK * (r - lim); moved = true }      } else  {        const   lo = rCap + P.ringIn, hi = R_DISK - P.diskOut        
+if (r < lo) 
+{ r += P.conK * (lo - r); moved = true }        
+else   if (r > hi) 
+{ r -= P.conK * (r - hi); moved = true }        
+const   s = sec[i], half = (s.ra1 - s.ra0) / 2        
+const   d = raDelta(s.raMid, ra), over = Math.abs(d) - half - P.sectorTol        
+if (over > 0) 
+{ ra -= Math.sign(d) * P.conK * over; moved = true }      }      
+if (moved) 
+{ const   q = polarToWorld(r, ra); X[i] = q.x; Y[i] = q.y }    }  }  
+for (let   i = 0; i < n; i++) 
+{ stars[i].x = r2(X[i]); stars[i].y = r2(Y[i]) }}
+/** 硬间距（Gauss-Seidel）：pairs 里 d < dmin 的对各推开一半 */
+function   hardSpacing(X, Y, mag, pairs, np, dminT) 
+{  for (let   p = 0; p < np; p += 2) 
+{    const   i = pairs[p], j = pairs[p + 1]    
+const   dm = dminT[mag[i] * 8 + mag[j]]    
+let   dx = X[i] - X[j], dy = Y[i] - Y[j]    
+const   d2 = dx * dx + dy * dy    
+if (d2 >= dm * dm) 
+continue
+let   d = Math.sqrt(d2)    
+if (d < 1e-6) 
+{ const   a = fallbackAngle(i, j); dx = Math.cos(a); dy = Math.sin(a); d = 1 }    
+const   h = (dm - Math.sqrt(d2)) / 2 / d    
+X[i] += dx * h; Y[i] += dy * h; X[j] -= dx * h; Y[j] -= dy * h  }}
+/** dmin(magA, magB) = dminBase + dminMag·(6.5 − (magA+magB)/2)，查表下标 magA·8 + magB */
+function   dminTable() 
+{  const   t = new   Float64Array(64)  
+for (let   a = 1; a <= 6; a++) 
+for (let   b = 1; b <= 6; b++) 
+t[a * 8 + b] = RT.dminBase + RT.dminMag * (6.5 - (a + b) / 2)  
+return t}
+/** 两点重合时的确定性推开方向 */
+const   fallbackAngle = (i, j) => ((i * 7919 + j * 104729) % 360) * DEG/** * 均匀网格近邻：build(X, Y) 生成全部 d < R 的点对 (i<j) 到 this.pairs，返回其长度（= 2·对数）。 * 输出顺序只取决于坐标与下标（i 升序；每个 i 按固定的 3×3 格顺序、格内按下标升序），因此是确定性的； * 与 O(n²) 双重循环相比快 ~15 倍（405 颗星的 d < 140 近邻平均只有十几个）。 * 坐标夹到 ±GRID_EXT 内分桶（盘外的点归入边缘桶，只影响效率不影响正确性：距离仍按真实坐标判定）。 */
+const   GRID_EXT = 1200
+class  PairGrid 
+{  constructor(n, R) 
+{    this.n = n; this.R = R; this.R2 = R * R    
+this.dim = Math.ceil(2 * GRID_EXT / R)    
+this.head = new   Int32Array(this.dim * this.dim)    
+this.next = new   Int32Array(n)    
+this.cell = new   Int32Array(n)    
+this.pairs = new   Int32Array(1 << 14)  }  
+build(X, Y) 
+{    const  { n, dim, head, next, cell, R, R2 } = this    
+head.fill(-1)    
+const   ci = (v) => { const   k = Math.floor((v + GRID_EXT) / R); return k < 0 ? 0 : k >= dim ? dim - 1 : k }    /* 逆序插入链表头 → 每个桶内按下标升序    */
+for (let   i = n - 1; i >= 0; i--) 
+{      const   c = ci(Y[i]) * dim + ci(X[i])      
+cell[i] = c; next[i] = head[c]; head[c] = i    }    
+let   np = 0, pairs = this.pairs    
+for (let   i = 0; i < n; i++) 
+{      const   cx = cell[i] % dim, cy = (cell[i] - cx) / dim, xi = X[i], yi = Y[i]      
+for (let   oy = -1; oy <= 1; oy++) 
+{        const   gy = cy + oy        
+if (gy < 0 || gy >= dim) 
+continue
+for (let   ox = -1; ox <= 1; ox++) 
+{          const   gx = cx + ox          
+if (gx < 0 || gx >= dim) 
+continue
+for (let   j = head[gy * dim + gx]; j >= 0; j = next[j]) 
+{            if (j <= i) continue
+const   dx = xi - X[j], dy = yi - Y[j]            
+if (dx * dx + dy * dy >= R2) 
+continue
+if (np + 2 > pairs.length) 
+{ const   g = new   Int32Array(pairs.length * 2); g.set(pairs); pairs = this.pairs = g }            
+pairs[np++] = i; pairs[np++] = j          }        }      }    }    
+return np  }}
+/* ═════════════════════════ 区域网格 ═════════════════════════ */
+/** 网格拓扑（与数据无关，模块级缓存）：每格的中心与 4 邻域（同档左右 + 内外档覆盖重叠的格） */
+let   GRID = null/** GRID 缓存对应的世界尺度；尺度变了必须重建，否则网格仍是旧半径的格子 */
+let   GRID_SCALE = null
+function 
+grid() 
+{  /* 尺度变了必须重建：格子的 r0/r1/rm 都是世界长度，缓存旧的会让   * "区域归属"按 1× 的格子去判，放大盘面后星点全落在同一批小格里 ——    * 这正是之前 ratio 随 k 单调下降（1.37 → 0.21）的根因。 */
+  if (GRID && GRID_SCALE === worldScale) 
+return  GRID
+GRID_SCALE = worldScale  
+const   list = [], at = []  
+for (let   b = 0; b < REGION_BANDS; b++) 
+{    const   cols = regionCols(b), row = []    
+for (let   c = 0; c < cols; c++) 
+{      const   cb = cellBounds(b, c)      
+const   rm = (cb.r0 + cb.r1) / 2, ram = (cb.ra0 + cb.ra1) / 2      
+const   p = polarToWorld(rm, ram)      
+const   cell = { k: list.length, b, c, ...cb, rm, ram, x: p.x, y: p.y, nb: [], lat: [], rad: [] }      
+list.push(cell); row.push(cell)    }    
+at.push(row)  }  
+for (const  cell 
+of  list) 
+{    const  { b, c } = cell, cols = regionCols(b)    
+for (const  cc 
+of [(c + cols - 1) % cols, (c + 1) % cols]) 
+if (cc !== c && !cell.lat.includes(at[b][cc])) 
+cell.lat.push(at[b][cc])    /* 内外档：列区间 [c/cols, (c+1)/cols) 与对方列区间有正长度重叠即相邻；band 0 的内侧是天极（无邻居）    */
+for (const  ob 
+of [b - 1, b + 1]) 
+{      if (ob < 0 || ob >= REGION_BANDS) 
+continue
+const   oc = regionCols(ob)      
+for (let   k = 0; k < oc; k++) 
+if (k / oc < (c + 1) / cols && c / cols < (k + 1) / oc) 
+cell.rad.push(at[ob][k])    }    
+cell.nb = [...cell.lat, ...cell.rad]  }  
+GRID = { list, at }  
+return GRID}
+/** 步骤 1–3：核密度定族 → 多数票平滑 → 每族只留最大连通块。返回 cells[band] = Int8Array */
+function   assignCells(stars) 
+{  const   G = grid(), M = G.list.length, F = FAMILY_ORDER.length  
+const   fam = new   Int8Array(M)  
+const   s2 = 2 * P.kdeSigma * P.kdeSigma, cut2 = (4 * P.kdeSigma) ** 2  
+const   sf = Int8Array.from(stars, (s) => FI[s.family] ?? POLE_I)  
+const   dens = new   Float64Array(F)  
+for (const  cell 
+of  G.list) 
+{    dens.fill(0)    
+let   best = Infinity, bestF = POLE_I    
+for (let   i = 0; i < stars.length; i++) 
+{      const   dx = cell.x - stars[i].x, dy = cell.y - stars[i].y, d2 = dx * dx + dy * dy      
+if (d2 < best) 
+{ best = d2; bestF = sf[i] }      
+if (d2 < cut2) 
+dens[sf[i]] += Math.exp(-d2 / s2)    }    
+let   f = 0    
+for (let   k = 1; k < F; k++) 
+if (dens[k] > dens[f]) 
+f = k    
+fam[cell.k] = dens[f] < P.kdeFloor ? bestF : f  }  /* 平滑：票数 ≥ smoothVotes 且严格多于本族票数才改（并列取 FAMILY_ORDER 靠前者） */
+  const   votes = new   Int32Array(F)  
+for (let   pass = 0; pass < P.smoothPasses; pass++) 
+{    const   next = fam.slice()    
+for (const  cell 
+of  G.list) 
+{      votes.fill(0)      
+for (const  o 
+of  cell.nb) 
+votes[fam[o.k]]++      
+let   f = -1      
+for (let   k = 0; k < F; k++) 
+if (k !== fam[cell.k] && (f < 0 || votes[k] > votes[f])) 
+f = k      
+if (f >= 0 && votes[f] >= P.smoothVotes && votes[f] > votes[fam[cell.k]]) 
+next[cell.k] = f    }    
+fam.set(next)  }  
+connectRegions(fam, G)  
+return   G.at.map((row) => Int8Array.from(row, (cell) => fam[cell.k]))}
+/** 连通化：每族只保留最大连通块，其余碎块并入"与它接壤最多"的邻族；重复直到全部连通 */
+function   connectRegions(fam, G) 
+{  const   M = G.list.length  
+for (let   round = 0; round < 32; round++) 
+{    const   comp = new   Int32Array(M).fill(-1), comps = []    
+for (const  start 
+of  G.list) 
+{      if (comp[start.k] >= 0) continue
+const   id = comps.length, f = fam[start.k], cellsOf = [start.k]      
+comp[start.k] = id      
+for (let   q = 0; q < cellsOf.length; q++) 
+{        for (const  o 
+of  G.list[cellsOf[q]].nb) 
+if (comp[o.k] < 0 && fam[o.k] === f) 
+{ comp[o.k] = id; cellsOf.push(o.k) }      }      
+comps.push({ f, cells: cellsOf })    }    
+const   biggest = new   Map()    
+for (let   i = 0; i < comps.length; i++) 
+{      const   b = biggest.get(comps[i].f)      
+if (b === undefined || comps[i].cells.length > comps[b].cells.length) 
+biggest.set(comps[i].f, i)    }    
+let   changed = false    
+for (let   i = 0; i < comps.length; i++) 
+{      if (biggest.get(comps[i].f) === i) 
+continue
+const   border = new   Int32Array(FAMILY_ORDER.length)      
+for (const  k 
+of  comps[i].cells) 
+for (const  o 
+of  G.list[k].nb) 
+if (comp[o.k] !== i) 
+border[fam[o.k]]++      
+let   g = -1      
+for (let   k = 0; k < border.length; k++) 
+if (k !== comps[i].f && border[k] > 0 && (g < 0 || border[k] > border[g])) 
+g = k      
+if (g < 0) 
+continue
+for (const  k 
+of  comps[i].cells) 
+fam[k] = g      
+changed = true    }    
+if (!changed) 
+return  }}
+/* ═════════════════════════ 边界段 ═════════════════════════ */
+/** * 步骤 5：相邻异族格的公共边 → BoundarySeg[]。 *   radial：同档 c 与 c+1 之间，ra = (c+1)/cols·2π；a = c 侧（ra 较小一侧）的族，b = c+1 侧。 *           同一 ra、径向相接、族对相同的段合并（12/24/48 列互相整除，较粗档的列线必是较细档的列线）。 *   arc   ：band b 与 b+1 之间，r = (b+1)·BAND_W；按两档中较细的列宽切分后逐小段比较； *           a = 内侧族，b = 外侧族；相邻且族对相同的小段合并；ra0 < ra1，跨 0 时 ra1 > 2π。 * 盘缘（r = R_DISK）与天极不出边界。 */
+function   extractBoundaries(cells) 
+{  const   radial = new   Map()   /* key "ra|a|b" → 段（按 band 递增追加，相接即延长）  */
+const   out = []  
+for (let   b = 0; b < REGION_BANDS; b++) 
+{    const   cols = regionCols(b), row = cells[b]    
+if (cols < 2) 
+continue
+for (let   c = 0; c < cols; c++) 
+{      const   fa = row[c], fb = row[(c + 1) % cols]      
+if (fa === fb) 
+continue      /* 以 48 列为单位的整数角键，避免浮点比较      */
+const   unit = ((c + 1) % cols) * (48 / cols)      
+const   key = `${unit}|${fa}|${fb}`      
+const   r0 = b * BAND_W, r1 = (b + 1) * BAND_W      
+const   prev = radial.get(key)      
+if (prev && prev.r1 === r0) 
+{ prev.r1 = r1; continue }      
+const   seg = { kind: 'radial', ra: unit / 48 * TAU, r0, r1, a: FAMILY_ORDER[fa], b: FAMILY_ORDER[fb] }      
+radial.set(key, seg); out.push(seg)    }  }  
+for (let   b = 0; b + 1 < REGION_BANDS; b++) 
+{    const   ci = regionCols(b), co = regionCols(b + 1), fine = Math.max(ci, co)    
+const   runs = []    
+let   open = null    
+for (let   k = 0; k < fine; k++) 
+{      const   fi = cells[b][Math.floor(k * ci / fine)], fo = cells[b + 1][Math.floor(k * co / fine)]      
+if (fi === fo) 
+{ open = null; continue }      
+if (open && open.fi === fi && open.fo === fo) 
+{ open.k1 = k + 1; continue }      
+open = { fi, fo, k0: k, k1: k + 1 }      
+runs.push(open)    }    /* 首尾相接（跨 0）的同族对合并：把首段并到末段之后    */
+if (runs.length > 1) 
+{      const   first = runs[0], lastRun = runs[runs.length - 1]      
+if (first.k0 === 0 && lastRun.k1 === fine && first.fi === lastRun.fi && first.fo === lastRun.fo) 
+{        lastRun.k1 = fine + first.k1        
+runs.shift()      }    }    
+for (const  run 
+of  runs) 
+{      out.push({        kind: 'arc', r: (b + 1) * BAND_W, ra0: run.k0 / fine * TAU, ra1: run.k1 / fine * TAU,        a: FAMILY_ORDER[run.fi], b: FAMILY_ORDER[run.fo],      })    }  }  
+return out}
+/* ═════════════════════════ 收纳：星 → 本族区域 ═════════════════════════ */
+/** 区域几何查询器：精确的"点到本族边界"距离、合法性判定、到本族区域的投影 */
+function   regionGeometry(cells, boundaries, inset) 
+{  const   G = grid()  
+const   famOf = (cell) => cells[cell.b][cell.c]  /* 每族相关的边界段（预先算好径向段的方向向量与弧段端点）  */
+const   segsOf = FAMILY_ORDER.map(() => [])  
+for (const s of boundaries) 
+{    const   g = s.kind === 'arc'      ? { arc: true, r: s.r, ra0: s.ra0, span: s.ra1 - s.ra0, e0: polarToWorld(s.r, s.ra0), e1: polarToWorld(s.r, s.ra1) }      : { arc: false, u: polarToWorld(1, s.ra), r0: s.r0, r1: s.r1 }    
+segsOf[FI[s.a]].push(g)    
+if (s.b !== s.a) 
+segsOf[FI[s.b]].push(g)  }  /** 点到 fi 族边界（含盘缘）的最近距离 */
+  function   edgeDist(x, y, fi) 
+{    const   p = worldToPolar(x, y)    
+let   best = R_DISK - p.r    
+for (const  g 
+of  segsOf[fi]) 
+{      let  d      
+if (g.arc) 
+{        if (normRa(p.ra - g.ra0) <= g.span) 
+d = Math.abs(p.r - g.r)        
+else   d = Math.min(Math.hypot(x - g.e0.x, y - g.e0.y), Math.hypot(x - g.e1.x, y - g.e1.y))      } else  {        let   t = x * g.u.x + y * g.u.y        
+t = t < g.r0 ? g.r0 : t > g.r1 ? g.r1 : t        
+d = Math.hypot(x - t * g.u.x, y - t * g.u.y)      }      
+if (d < best) 
+best = d    }    
+return best  }  
+const   allowed = (x, y, fi, m = inset) => {    const   c = cellOf(x, y)    
+return !!c && cells[c.band][c.col] === fi && edgeDist(x, y, fi) >= m  }  /* 每格四条边是否（部分）邻接异族 / 盘缘：[内, 外, ra 小侧, ra 大侧]  */
+const   foreign = G.list.map((cell) => {    const   f = famOf(cell)    
+const   inner = cell.rad.some((o) => o.b < cell.b && famOf(o) !== f)    
+const   outer = cell.b === REGION_BANDS - 1 || cell.rad.some((o) => o.b > cell.b && famOf(o) !== f)    
+const   cols = regionCols(cell.b)    
+const   lo = famOf(G.at[cell.b][(cell.c + cols - 1) % cols]) !== f    
+const   hi = famOf(G.at[cell.b][(cell.c + 1) % cols]) !== f    
+return [inner, outer, lo, hi]  })  
+const   famCells = FAMILY_ORDER.map(() => [])  
+for (const  cell 
+of  G.list) 
+famCells[famOf(cell)].push(cell)  /** 把 (r, ra) 夹进格内（四边按 sides 内缩 m）；格太窄时取中线 */
+  function   clampInCell(cell, pr, pra, sides, m) 
+{    let   rlo = cell.r0 + (sides[0] ? m : 0), rhi = cell.r1 - (sides[1] ? m : 0)    
+if (rlo > rhi) 
+rlo = rhi = cell.rm    
+const   r = Math.max(rlo, Math.min(rhi, pr))    
+const   w = cell.ra1 - cell.ra0, half = w / 2    
+const   am = r > m ? Math.asin(Math.min(1, m / r)) : half    
+let   lo = -half + (sides[2] ? am : 0), hi = half - (sides[3] ? am : 0)    
+if (lo > hi) 
+lo = hi = 0    
+const   d = Math.max(lo, Math.min(hi, raDelta(cell.ram, pra)))    
+return   polarToWorld(r, cell.ram + d)  }  /** 离 (x, y) 最近的、fi 族内合法的点 */
+  function   project(x, y, fi) 
+{    const   p = worldToPolar(x, y)    
+const   cand = famCells[fi].map((cell) => {      const   q = clampInCell(cell, p.r, p.ra, [false, false, false, false], 0)      
+return { cell, lb: Math.hypot(q.x - x, q.y - y) }    }).sort((a, b) => a.lb - b.lb || a.cell.k - b.cell.k)    
+let   best = null, bestD = Infinity    
+for (const  { cell, lb } 
+of  cand) 
+{      if (lb >= bestD) 
+break
+const   tries = [        () => clampInCell(cell, p.r, p.ra, foreign[cell.k], inset),        () => clampInCell(cell, p.r, p.ra, [true, true, true, true], inset),        () => polarToWorld(cell.rm, cell.ram),      ]      
+for (const  t 
+of  tries) 
+{        const   q = t()        
+if (!allowed(q.x, q.y, fi)) 
+continue
+const   d = Math.hypot(q.x - x, q.y - y)        
+if (d < bestD) 
+{ bestD = d; best = q }        break      }    }    
+return  best || polarToWorld(famCells[fi][0]?.rm ?? 0, famCells[fi][0]?.ram ?? 0)  }  
+return { edgeDist, allowed, project, famCells }}
+/** * 步骤 4：不在本族区域内（或离边界 < inset）的星投影到本族区域内最近的合法点， * 然后跑 relaxIter 次"弱斥力 + 硬间距 + 区域约束"的松弛。原地修改 stars 的 x/y。 */
+function   containStars(stars, cells, boundaries) 
+{  const   n = stars.length  
+const   geo = regionGeometry(cells, boundaries, P.inset)  
+const   X = Float64Array.from(stars, (s) => s.x), Y = Float64Array.from(stars, (s) => s.y)  
+const   fi = Int8Array.from(stars, (s) => FI[s.family])  
+const   mag = Int8Array.from(stars, (s) => s.mag)  
+const   dminT = dminTable()  
+const   fit = (i) => { if (!geo.allowed(X[i], Y[i], fi[i])) 
+{ const   q = geo.project(X[i], Y[i], fi[i]); X[i] = q.x; Y[i] = q.y } }  
+for (let   i = 0; i < n; i++) 
+fit(i)  
+const   NEAR = P.relaxNear  
+const   nbr = new   PairGrid(n, NEAR)  
+const   FX = new   Float64Array(n), FY = new   Float64Array(n)  
+const   relax = (iters, rep) => {    for (let   it = 0; it < iters; it++) 
+{      const   np = nbr.build(X, Y), pairs = nbr.pairs      
+if (rep > 0) 
+{        FX.fill(0); FY.fill(0)        
+for (let   p = 0; p < np; p += 2) 
+{          const   i = pairs[p], j = pairs[p + 1]          
+const   dx = X[i] - X[j], dy = Y[i] - Y[j], d2 = dx * dx + dy * dy          
+if (d2 <= 1e-12) 
+continue
+const   d = Math.sqrt(d2), f = rep * (NEAR - d) / NEAR / d          
+FX[i] += dx * f; FY[i] += dy * f; FX[j] -= dx * f; FY[j] -= dy * f        }        
+for (let   i = 0; i < n; i++) 
+{ X[i] += FX[i]; Y[i] += FY[i] }      }      
+hardSpacing(X, Y, mag, pairs, np, dminT)      
+for (let   i = 0; i < n; i++) 
+fit(i)    }  }  
+const   minRatio = () => {    const   np = nbr.build(X, Y), pairs = nbr.pairs    
+let   m = Infinity    
+for (let   p = 0; p < np; p += 2) 
+{      const   i = pairs[p], j = pairs[p + 1]      
+const   r = Math.hypot(X[i] - X[j], Y[i] - Y[j]) / dminT[mag[i] * 8 + mag[j]]      
+if (r < m) 
+m = r    }    
+return m  }  
+relax(RT.relaxIter, P.relaxRep)  /* 兜底：区域约束可能把两颗星挤进同一个角落，再做至多 60 次纯硬间距 + 约束，直到全部 ≥ 0.9·dmin  */
+for (let   k = 0; k < 60 && minRatio() < 0.9; k++) 
+relax(1, 0)  
+for (let   i = 0; i < n; i++) 
+{    let   x = r2(X[i]), y = r2(Y[i])    
+if (!geo.allowed(x, y, fi[i], P.insetBase)) 
+{ const   q = geo.project(x, y, fi[i]); x = r2(q.x); y = r2(q.y) }    
+stars[i].x = x; stars[i].y = y  }}
+/* ═════════════════════════ 深空天体（猜想） ═════════════════════════ */
+function   layoutDsos(conjs, stars, neighbours, bodies, seed) 
+{  const   m = conjs.length  
+const   cIdx = new   Map(conjs.map((n, i) => [n.id, i]))  
+const   X = new   Float64Array(m), Y = new   Float64Array(m)  
+const   tSpr = [], cSpr = []      /* [ci, starIndex|ci2, L0, k]  */
+const   sIdx = new   Map(stars.map((s, i) => [s.id, i]))  /* ═══ 猜想数量自适应（2026-11-02 新增）═══   *   * 知识库的猜想从 59 涨到 179（3 倍），但 `dsoDsoR`（猜想互推半径）与   * `dsoRMin/dsoRMax`（径向散布范围）都是固定值 —— 结果是 179 个符号   * 挤在原来的 59 个所占的面积里，中心糊成一团红点（截图可见）。   *   * 修法同星点：**面积律**。猜想占的面积 ∝ 数量，所以互推距离与径向范围   * 都按 √(m/59) 放大。这样密度恒定，视觉上是"同一团星云变大"，   * 而不是"更多点挤进同一块地方"。   *   * 上限 3.0：再大就会把猜想推到盘缘外，反而破坏"猜想是盘内深空天体"的语义。 */
+  const   dsoScale = Math.min(3.0, Math.sqrt(Math.max(1, m) / 59))  
+const   DSO_DIST = P.dsoDsoR * dsoScale  
+const   DSO_STAR = P.dsoStarR * dsoScale  
+const   dsoRMin = P.dsoRMin  
+const   dsoRMax = Math.min(R_DISK - P.dsoRMaxOf, P.dsoRMax * dsoScale)  
+const   dsos = conjs.map((n, i) => {    let   sx = 0, sy = 0, sw = 0, strongest = -1    
+const   nbs = neighbours.get(n.id) || []    
+for (const  e 
+of  nbs) 
+{      const   j = sIdx.get(e.id)      
+if (j === undefined) 
+continue
+if (strongest < 0) 
+strongest = j    /* nbs 已按 weight 降序、同权按 id：第一个定理即最强      sx += stars[j].x * e.weight; sy += stars[j].y * e.weight; sw += e.weight      tSpr.push(i, j, P.dsoTLen, P.dsoTK * e.weight * (j === strongest ? 2 : 1))    */
+}    
+for (const  e 
+of  nbs) 
+{      const   k = cIdx.get(e.id)      
+if (k !== undefined && k > i) 
+cSpr.push(i, k, P.dsoCLen, P.dsoCK * e.weight)    }    
+const   rng = makeRng((seed ^ hashStr(n.id)) >>> 0)    
+X[i] = (sw > 0 ? sx / sw : 0) + (rng() * 2 - 1) * P.dsoJitter    
+Y[i] = (sw > 0 ? sy / sw : 0) + (rng() * 2 - 1) * P.dsoJitter    
+const   tier = n.importance >= DSO_TIER_CUTS[0] ? 1 : n.importance >= DSO_TIER_CUTS[1] ? 2 : 3    
+const   b = mkBody(n, 'dso', POLE_FAMILY, 0, 0, tier + 1, tier, DSO_LABEL_L[tier - 1], DSO_FORMULA_PX[tier - 1])    
+b.status = n.status ?? null    
+return b  })  
+const   ns = stars.length  
+const   SX = Float64Array.from(stars, (s) => s.x), SY = Float64Array.from(stars, (s) => s.y)  /* 合并数组 [猜想 0..m-1, 恒星 m..m+ns-1] 上建近邻网格；恒星只作障碍、永不移动  */
+const   AX = new   Float64Array(m + ns), AY = new   Float64Array(m + ns)  
+AX.set(SX, m); AY.set(SY, m)  
+const   sepGrid = new   PairGrid(m + ns, Math.max(DSO_STAR, DSO_DIST))  /** 对恒星的斥力（只动猜想，d < dsoStarR）与猜想间互推（d < dsoDsoR），逐对直接位移；gain = 1 时一次推到位 */
+  const   separate = (gain) => {    AX.set(X); AY.set(Y)    
+const   np = sepGrid.build(AX, AY), pairs = sepGrid.pairs    
+for (let   p = 0; p < np; p += 2) 
+{      const   i = pairs[p], j = pairs[p + 1]      
+if (i >= m) continue                       /* 恒星—恒星对：不管      */
+const   jx = j < m ? X[j] : SX[j - m], jy = j < m ? Y[j] : SY[j - m]      
+const   R = j < m ? DSO_DIST : DSO_STAR      
+const   dx = X[i] - jx, dy = Y[i] - jy, d2 = dx * dx + dy * dy      
+if (d2 >= R * R) 
+continue
+let   d = Math.sqrt(d2), ux, uy      
+if (d < 1e-6) 
+{ const   a = fallbackAngle(i, j); ux = Math.cos(a); uy = Math.sin(a); d = 0 } else  { ux = dx / d; uy = dy / d }      
+if (j < m) 
+{        const   h = (R - d) * gain / 2        
+X[i] += ux * h; Y[i] += uy * h; X[j] -= ux * h; Y[j] -= uy * h      } 
+else  {        const   h = (R - d) * gain        
+X[i] += ux * h; Y[i] += uy * h      }    }  }  
+const   lo2 = dsoRMin ** 2, hi2 = dsoRMax ** 2  
+const   clampR = (i) => {    const   q2 = X[i] * X[i] + Y[i] * Y[i]    
+if (q2 >= lo2 && q2 <= hi2) 
+return
+const
+p = worldToPolar(X[i], Y[i])    
+const   q = polarToWorld(Math.max(dsoRMin, Math.min(dsoRMax, p.r)), p.ra)    
+X[i] = q.x; Y[i] = q.y  }  
+const   last = Math.max(1, P.dsoIter - 1)  
+const   FX = new   Float64Array(m), FY = new   Float64Array(m)  
+for (let   it = 0; it < P.dsoIter; it++) 
+{    const   step = 1 - 0.95 * it / last    
+FX.fill(0); FY.fill(0)    
+for (let   s = 0; s < tSpr.length; s += 4) 
+{      const   i = tSpr[s], j = tSpr[s + 1], dx = SX[j] - X[i], dy = SY[j] - Y[i]      
+const   d = Math.hypot(dx, dy)      
+if (d < 1e-6) 
+continue
+const   f = tSpr[s + 3] * (d - tSpr[s + 2]) / d      
+FX[i] += dx * f; FY[i] += dy * f    }    
+for (let   s = 0; s < cSpr.length; s += 4) 
+{      const   i = cSpr[s], k = cSpr[s + 1], dx = X[k] - X[i], dy = Y[k] - Y[i]      
+const   d = Math.hypot(dx, dy)      
+if (d < 1e-6) 
+continue
+const   f = cSpr[s + 3] * (d - cSpr[s + 2]) / d      
+FX[i] += dx * f; FY[i] += dy * f; FX[k] -= dx * f; FY[k] -= dy * f    }    
+for (let   i = 0; i < m; i++) 
+{      let   mx = FX[i] * step, my = FY[i] * step      
+const   mm = Math.hypot(mx, my)      
+if (mm > P.maxStep) 
+{ mx *= P.maxStep / mm; my *= P.maxStep / mm }      
+X[i] += mx; Y[i] += my    }    
+separate(0.5)    
+for (let   i = 0; i < m; i++) 
+clampR(i)  }  /* 收尾：几次一步到位的分离，保证与恒星 / 彼此的最小距离  */
+for (let   k = 0; k < 30; k++) 
+{ separate(1); for (let   i = 0; i < m; i++) 
+clampR(i) }  
+dsos.forEach((b, i) => { b.x = r2(X[i]); b.y = r2(Y[i]); bodies.set(b.id, b) })  
+return dsos}
+/* ═════════════════════════ 星座连线 ═════════════════════════ */
+/** * 每族最亮 nFig 颗星之间的真实关联 → Kruskal 生成森林（weight 降序、同权按长度升序、再按 id）。 * 拒绝：长度 > figMaxLen；与已接受边相交（端点不共享时）；从第三颗星 / 深空天体旁 figClear 内穿过。 * stars 须已按 mag→importance→id 排好。 */
+function   buildFigures(stars, dsos, neighbours, bodies) 
+{  const   figures = {}  
+for (const  f 
+of  FAMILY_ORDER) 
+{    const   own = stars.filter((s) => s.family === f)    
+const   nFig = Math.max(P.figMin, Math.min(P.figMax, Math.round(own.length * P.figFrac)))    
+const   top = own.slice(0, nFig)    
+const   inTop = new   Set(top.map((s) => s.id))    
+const   cand = []    
+for (const  s 
+of  top) 
+{      for (const  e 
+of   neighbours.get(s.id)) 
+{        if (!inTop.has(e.id) || !(s.id < e.id)) 
+continue
+const   o = bodies.get(e.id)        
+cand.push({ a: s.id, b: e.id, w: e.weight, len: Math.hypot(s.x - o.x, s.y - o.y) })      }    }    
+cand.sort((p, q) => q.w - p.w || p.len - q.len || byId(p.a, q.a) || byId(p.b, q.b))    
+const   parent = new   Map(top.map((s) => [s.id, s.id]))    
+const   find = (x) => { while (parent.get(x) !== x) 
+{ parent.set(x, parent.get(parent.get(x))); x = parent.get(x) } 
+return x }    
+const   others = [...stars, ...dsos]    
+const   acc = []    
+for (const  c 
+of  cand) 
+{      if (c.len > P.figMaxLen) 
+continue
+const   ra = find(c.a), rb = find(c.b)      
+if (ra === rb) 
+continue
+const   A = bodies.get(c.a), B = bodies.get(c.b)      
+let   ok = true      
+for (const [p, q] 
+of  acc) 
+{        if (p === c.a || p === c.b || q === c.a || q === c.b) 
+continue
+const   C = bodies.get(p), D = bodies.get(q)        
+if (segCross(A.x, A.y, B.x, B.y, C.x, C.y, D.x, D.y)) 
+{ ok = false; break }      }      
+if (ok) 
+{        for (const  o 
+of  others) 
+{          if (o.id === c.a || o.id === c.b) 
+continue
+if (segPointDist(A.x, A.y, B.x, B.y, o.x, o.y) < P.figClear) 
+{ ok = false; break }        }      }      
+if (!ok) 
+continue      
+parent.set(ra, rb)      
+acc.push([c.a, c.b])    }    
+figures[f] = acc  }  
+return figures}
+/** 两线段严格相交（共线重叠也算） */
+function   segCross(ax, ay, bx, by, cx, cy, dx, dy) 
+{  const   o = (px, py, qx, qy, rx, ry) => Math.sign((qx - px) * (ry - py) - (qy - py) * (rx - px))  
+const   o1 = o(ax, ay, bx, by, cx, cy), o2 = o(ax, ay, bx, by, dx, dy)  
+const   o3 = o(cx, cy, dx, dy, ax, ay), o4 = o(cx, cy, dx, dy, bx, by)  
+if (o1 !== o2 && o3 !== o4 && o1 !== 0 && o2 !== 0 && o3 !== 0 && o4 !== 0) 
+return  true  
+if (o1 === 0 && o2 === 0) 
+{   /* 共线：投影区间重叠    */
+const   t = (px, py) => (px - ax) * (bx - ax) + (py - ay) * (by - ay), L = t(bx, by)    
+const   t1 = t(cx, cy), t2 = t(dx, dy)    
+return   Math.max(t1, t2) > 0 && Math.min(t1, t2) < L  }  
+return false}
+/** 点到线段距离 */
+function   segPointDist(ax, ay, bx, by, px, py) 
+{  const   vx = bx - ax, vy = by - ay, L2 = vx * vx + vy * vy  
+let   t = L2 > 0 ? ((px - ax) * vx + (py - ay) * vy) / L2 : 0  
+t = t < 0 ? 0 : t > 1 ? 1 : t  
+return   Math.hypot(px - ax - t * vx, py - ay - t * vy)}
+/* ═════════════════════════ 区域信息：星座名位置 + 包围盒 ═════════════════════════ */
+/** * 星座名放在本族格中心里得分最高者：得分 = 到最近星 / 深空天体的距离 − 0.35·到本族星质心的距离 * （既要落在星与星之间的空地上，又不能跑到区域边角）。同分取格序靠前者。 */
+function   buildRegions(stars, dsos, cells) 
+{  const   G = grid(), regions = {}  
+const   pts = [...stars, ...dsos]  
+for (let   f = 0; f < FAMILY_ORDER.length; f++) 
+{    const   fam = FAMILY_ORDER[f]    
+const   own = stars.filter((s) => s.family === fam)    
+let   cx = 0, cy = 0    
+for (const s of own) 
+{ cx += s.x; cy += s.y }    
+if (own.length) 
+{ cx /= own.length; cy /= own.length }    
+let   best = null, bestScore = -Infinity, cellCount = 0    
+let   x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity    
+for (const  cell 
+of  G.list) 
+{      if (cells[cell.b][cell.c] !== f) 
+continue      
+cellCount++      
+for (const  r 
+of [cell.r0, cell.r1]) 
+{        for (const ra 
+of [cell.ra0, cell.ram, cell.ra1]) 
+{          const   p = polarToWorld(r, ra)          
+if (p.x < x0) 
+x0 = p.x; if (p.x > x1) 
+x1 = p.x          
+if (p.y < y0) 
+y0 = p.y; if (p.y > y1) 
+y1 = p.y        }      }      /* 调整：净空按椭圆距离量（纵向 ×constAspect：星座名横宽竖窄，正上下方的星比左右的星更不碍事），      // 并把盘缘也当作障碍（否则空旷的盘缘格总是得分最高，名字全贴在刻度环上）      */
+let   dn = (R_DISK - cell.rm) * P.constRimK      
+for (const  s 
+of  pts) 
+{        const   dx = s.x - cell.x, dy = (s.y - cell.y) * P.constAspect        
+const   d = Math.sqrt(dx * dx + dy * dy)        
+if (d < dn) 
+dn = d      }      
+const   score = dn - P.constCentroidK * Math.hypot(cell.x - cx, cell.y - cy)      
+if (score > bestScore) 
+{ bestScore = score; best = cell }    }    
+regions[fam] = {      family: fam, name: FAMILIES[fam]?.name ?? fam, latin: FAMILY_LATIN[fam] ?? fam.toUpperCase(),      labelX: r2(best ? best.x : cx), labelY: r2(best ? best.y : cy),      bbox: cellCount ? { x0: r2(x0), y0: r2(y0), x1: r2(x1), y1: r2(y1) } : { x0: cx, y0: cy, x1: cx, y1: cy },      cellCount, starIds: own.map((s) => s.id),    }  }  
+return regions}
+/* ═════════════════════════ 研究者 ═════════════════════════ */
+/** 参考缩放：1600×1000 视口下的 zoom0（研究者名字的屏幕宽在这个缩放下换算成弧度） * * ⚠ 必须是**函数**而不是模块级常量：它依赖 FIT_RADIUS，而后者随世界尺度变化。 * 写成常量会在 import 时冻结成 1× 的值，放大盘面后研究者的角间距就算错了 * （屏幕上名字会挤在一起或过度散开）。 */
+export   const   RES_ZOOM_REF = () => (Math.min(1600, 1000) / 2 - FIT_MARGIN) / FIT_RADIUS
+export 
+const   RES_FONT_DEFAULT = `italic ${RES_PX}px ${FONT_SERIF}`/** 缺省字宽估算：CJK（含全角标点）1em，其他 0.55em；字号从 font 串里取 */
+export   function   estimateWidth(text, font = RES_FONT_DEFAULT) 
+{  const   m = /(\d+(?:\.\d+)?)px/.exec(font || '')  
+const   px = m ? parseFloat(m[1]) : RES_PX  
+let   w = 0  
+for (const  ch 
+of   String(text)) 
+w += /[⺀-鿿豈-﫿＀-￯　-〿]/.test(ch) ? 1 : 0.55  
+return w * px}
+/** 相邻两名字需要的最小角距（弧度）：((宽_i + 宽_j)/2 + resPad) px，在 R_RES、RES_ZOOM_REF 下换算 */
+export   function   researcherMinGap(wi, wj) 
+{  return ((wi + wj) / 2 + P.resPad) / (R_RES * RES_ZOOM_REF())}
+function   layoutResearchers(researchers, neighbours, bodies, sectors, opts) 
+{  const   font = opts.resFont || RES_FONT_DEFAULT  
+const   measure = typeof opts.measure === 'function' ? opts.measure : estimateWidth  
+const   items = researchers.map((n) => {    let   sx = 0, sy = 0, any = false, allNear = true, nx = 0, ny = 0    
+for (const  e 
+of   neighbours.get(n.id) || []) 
+{      const   o = bodies.get(e.id)      
+if (!o || o.kind === 'researcher') 
+continue
+const  { r, ra } = worldToPolar(o.x, o.y)      
+any = true      
+if (r >= P.resPoleAll) 
+allNear = false      
+const   k = e.weight * Math.min(1, r / P.resPoleR)      
+sx += Math.sin(ra) * k; sy += Math.cos(ra) * k      
+nx += o.x; ny += o.y    }    
+let  target    
+if (any && allNear) 
+{      /* 全部关联节点都贴着天极：角度不可靠，取最近的环形族扇区中心（按关联节点平均位置的方位）      */
+const   a = worldToPolar(nx, ny).ra      
+let   best = RING_ORDER[0]      
+for (const  f 
+of  RING_ORDER) 
+if (Math.abs(raDelta(a, sectors[f].raMid)) < Math.abs(raDelta(a, sectors[best].raMid))) 
+best = f      
+target = sectors[best].raMid    } 
+else   if (any && (sx !== 0 || sy !== 0)) 
+{      target = normRa(Math.atan2(sx, sy))   /* Σk·sin ra / Σk·cos ra → 加权圆平均（直接在 ra 空间）    */
+} else  {      target = sectors[RING_ORDER[0]].raMid    }    
+const   w = Number(measure(n.name ?? n.id, font)) || estimateWidth(n.name ?? n.id, font)    
+return { n, target, w, ra: target }  })  /* 按目标角排序（同角按 id），之后的松弛保持这个循环顺序  items.sort((a, b) => a.target - b.target || byId(a.n.id, b.n.id))  relaxRing(items)  */
+return items.map((it) => {    const
+raLabel = Math.round(normRa(it.ra) * 1e6) / 1e6    
+const   p = polarToWorld(R_RES, raLabel), a = polarToWorld(R_RES_TICK, raLabel)    
+const   b = mkBody(it.n, 'researcher', 'researcher', r2(p.x), r2(p.y), 3, 0, RES_LABEL_L, 0)    
+b.nameL = RES_LABEL_L    
+b.raLabel = raLabel    
+b.raTarget = Math.round(it.target * 1e6) / 1e6    
+b.anchorX = r2(a.x); b.anchorY = r2(a.y)    
+return b  }).sort((a, b) => a.raLabel - b.raLabel || byId(a.id, b.id))}
+/** * 环上一维间距松弛。items 已按目标角排序；用"展开角" u（不取模）与带符号间距， * 这样即使中途两名字交叉，后续的推开也会按数组顺序把它们拉回正确次序。 *   1. resIter 次 Jacobi：间距不足的相邻对各推开 1/4 缺口 + 回到目标角的弹簧 resK。 *   2. Gauss-Seidel 收尾：逐对推开到恰好满足最小角距，直到全部满足（总需求 ≤ 2π 时必收敛）。 * 总需求 > 2π（名字太多 / 太宽）时按比例压缩最小角距，尽量均匀。 */
+function   relaxRing(items) 
+{  const   n = items.length  
+if (n < 2) 
+return
+const
+g = new   Float64Array(n)            /* g[i] = items[i] 与 items[i+1]（末项与首项）之间的最小角距  */
+for (let   i = 0; i < n; i++) 
+g[i] = researcherMinGap(items[i].w, items[(i + 1) % n].w)  
+const   need = g.reduce((s, v) => s + v, 0)  
+if (need > TAU) 
+for (let   i = 0; i < n; i++) 
+g[i] *= TAU / need * 0.999  
+const   u = Float64Array.from(items, (it) => it.target)  
+const   gap = (i) => (i < n - 1 ? u[i + 1] - u[i] : u[0] + TAU - u[n - 1])  
+const   D = new   Float64Array(n)  
+for (let   it = 0; it < P.resIter; it++) 
+{    D.fill(0)    
+for (let   i = 0; i < n; i++) 
+{      const   def = g[i] - gap(i)      
+if (def <= 0) 
+continue
+const   j = (i + 1) % n      
+D[i] -= def * 0.25; D[j] += def * 0.25    }    
+for (let   i = 0; i < n; i++) 
+D[i] += P.resK * raDelta(u[i], items[i].target)    
+for (let   i = 0; i < n; i++) 
+u[i] += D[i]  }  
+for (let   sweep = 0; sweep < 20000; sweep++) 
+{    let   ok = true    
+for (let   i = 0; i < n; i++) 
+{      const   def = g[i] - gap(i)      
+if (def <= 1e-9) 
+continue      
+ok = false      
+const   j = (i + 1) % n, h = def / 2 + 1e-7      
+u[i] -= h; u[j] += h    }    
+if (ok) break  }  
+for (let   i = 0; i < n; i++) 
+items[i].ra = u[i]}

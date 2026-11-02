@@ -4,7 +4,8 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  background: #03050d;
+  color-scheme: dark;
+  background: #080b14;
 }
 
 #app {

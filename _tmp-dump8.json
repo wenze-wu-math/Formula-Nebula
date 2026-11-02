@@ -1,0 +1,90 @@
+{
+  "iitaka-fibration": {
+    "file": "extra-d.js",
+    "id": "iitaka-fibration",
+    "latex": "X\\dashrightarrow Y,\\qquad \\kappa(X)=\\kappa(Y)+\\dim_{\\text{gen}}F",
+    "name": "饭高纤维化",
+    "en": "Iitaka Fibration",
+    "importance": 0.73,
+    "family": "birational",
+    "summary": "按小平维数把簇纤维化，把分类问题逐层归约到一般型。",
+    "detail": "对小平维数 κ(X) ≥ 0 的簇，多重典范系统 |mK_X| 对大的 m 给出一个双有理意义的纤维化 X ⇢ Y，其一般纤维具有小平维数 0，而 dim Y = κ(X)。饭高猜想（加法公式）断言 κ(X) = κ(Y) + dim(一般纤维)，这是把任意簇归约到\"一般型 + 小平维数 0 的纤维\"这一结构的核心命题。它在纤维不是光滑时（甚至只是 klt 奇点）仍有争议，是中亚猜想之外双有理几何里最重要的开放问题之一。"
+  },
+  "canonical-model": {
+    "file": "extra-d.js",
+    "id": "canonical-model",
+    "latex": "X_{\\mathrm{can}}=\\operatorname{Proj}\\bigoplus_{m\\ge 0}H^0(X,\\mathcal O_X(mK_X))",
+    "name": "典范模型",
+    "en": "Canonical Model",
+    "importance": 0.79,
+    "family": "birational",
+    "summary": "多重典范环的 Proj，是双有理等价类中唯一的典范对象。",
+    "detail": "当 κ(X) ≥ 0 时，多重典范环 R(X) = ⊕H⁰(X, 𝓞(mK_X)) 是有限生成的分次环（这是 MMP 的一大成果，也是\"典范模型存在\"的确切含义），其 Proj 称为 X 的典范模型。它具有唯一性：同一双有理等价类的所有簇共享同一个典范模型，且典范模型上 K 是丰沛的。因此\"分类簇\"可以化为\"分类典范模型 + 描述从 X 到它的收缩映射\"。对一般型簇，典范模型就是 X 本身（若 K 丰沛）；对 κ = 0 的情形它退化成一个点，此时需要借助 Iitaka 纤维化。"
+  },
+  "flop": {
+    "file": "extra-d.js",
+    "id": "flop",
+    "latex": "X\\dashrightarrow X^+,\\qquad K_X\\ \\text{trivial on the exceptional locus}",
+    "name": "翻转（flop）",
+    "en": "Flop",
+    "importance": 0.76,
+    "family": "birational",
+    "summary": "K 在例外簇上平凡的收缩，是极小模型之间来回跳跃的通道。",
+    "detail": "当一个收缩映射 D → D′ 使 K_X 在收缩的极端射线上**平凡**（而不像 flip 那样是负的），就称为 flop。flop 的关键性质是：它是一个双有理映射，且保持 X 的奇点类型与所有相关不变量（如 K 的丰沛性、终端性），因此是同维数、同\"好坏程度\"的两个极小模型之间的桥梁。极小模型纲领中的连通性定理表明：任何两个极小模型都通过一串 flop 相连。它也是导出范畴层次上 Fourier–Mukai 等价（Bondal–Orlov 定理）的几何背景。"
+  },
+  "kahler-manifold": {
+    "file": "extra-d.js",
+    "id": "kahler-manifold",
+    "latex": "g\\ \\text{Kähler}\\iff d\\omega=0,\\qquad \\omega(X,Y)=g(JX,Y)",
+    "name": "凯勒流形",
+    "en": "Kähler Manifold",
+    "importance": 0.82,
+    "family": "modern",
+    "summary": "复结构、黎曼结构与辛结构三者相容的流形，霍奇理论的舞台。",
+    "detail": "凯勒流形同时配备复结构 J、黎曼度量 g 与辛形式 ω，三者通过 ω(X,Y) = g(JX,Y) 相容且 dω = 0。这个\"三合一\"条件极其苛刻，却恰好被所有复射影簇满足（它们继承 Fubini–Study 度量）。凯勒条件的回报是丰富的：霍奇分解、硬莱夫谢茨定理、∂∂̄ 引理、以及上同调上的霍奇结构全都依赖它。反过来，凯勒流形与一般复流形的差别正是霍奇理论的适用边界——小平–Thurston 的工作表明，有些复流形连一维的霍奇对称性都不具备。"
+  },
+  "hodge-decomposition": {
+    "file": "extra-d.js",
+    "id": "hodge-decomposition",
+    "latex": "H^n(X,\\mathbb C)=\\bigoplus_{p+q=n}H^{p,q}(X),\\qquad \\overline{H^{p,q}}=H^{q,p}",
+    "name": "霍奇分解",
+    "en": "Hodge Decomposition",
+    "importance": 0.85,
+    "family": "cohomology",
+    "summary": "紧凯勒流形的上同调按 (p,q) 型分解，把拓扑与复结构联系起来。",
+    "detail": "对紧凯勒流形 X，H^n(X, ℂ) = ⊕_{p+q=n} H^{p,q}(X)，其中 H^{p,q} 由调和形式的类型决定，并满足霍奇对称 H^{p,q} ≅ H^{q,p}（共轭）以及塞尔对偶。这一分解最深远的意义是**给出了拓扑的额外结构**：整数上同调上多了一个由复结构决定的分解（霍奇结构），而它并不由拓扑单独决定。这条线索直接通向霍奇猜想——哪些有理上同调类是代数闭链的类——以及 Griffiths 的中间雅可比与周期映射理论。当 X 是射影簇时，霍奇分解还有代数版本（代数 de Rham 上同调），这使\"用代数算拓扑\"成为可能。"
+  },
+  "theta-functions": {
+    "file": "extra-d.js",
+    "id": "theta-functions",
+    "latex": "\\theta(z,\\tau)=\\sum_{n\\in\\mathbb Z}e^{\\pi i n^2\\tau+2\\pi i n z}",
+    "name": "theta 函数",
+    "en": "Theta Functions",
+    "importance": 0.75,
+    "family": "curve",
+    "summary": "雅可比簇上唯一的（近乎）整体截面，把阿贝尔簇写成射影簇。",
+    "detail": "theta 函数是定义在 ℂ^g × 上半平面上的拟周期全纯函数，它以因子 exp(πin²τ + 2πinz) 的形式把雅可比簇的周期格\"编码\"进一个级数。关键事实：theta 函数的零点构成 theta 除子，而这些除子的平移给出 theta 群；取足够多次的 theta 函数就能给出阿贝尔簇到射影空间的嵌入（Lefschetz 定理）。这就是\"阿贝尔簇是射影簇\"的经典证明路线，也把阿贝尔簇的模空间（Siegel 上半空间模一个离散群）与 theta 常数联系起来。黎曼的 theta 关系式至今仍是显式构造阿贝尔簇的主要工具。"
+  },
+  "neron-severi": {
+    "file": "extra-d.js",
+    "id": "neron-severi",
+    "latex": "NS(X)=\\operatorname{Pic}(X)/\\operatorname{Pic}^0(X)\\subseteq H^2(X,\\mathbb Z)",
+    "name": "涅隆–塞维里群",
+    "en": "Néron–Severi Group",
+    "importance": 0.78,
+    "family": "intersect",
+    "summary": "除子的代数等价类，是有限生成的自由群，其秩即皮卡数。",
+    "detail": "涅隆–塞维里群 NS(X) 是皮卡群模去代数等价（等价于模去 Pic⁰ 这个阿贝尔簇），它是有限生成的自由阿贝尔群，其秩 ρ(X) 称为皮卡数。它是\"代数闭链\"与\"拓扑上同调\"之间的第一道比较：NS(X) 嵌入 H²(X, ℤ) 的 (1,1) 型部分，而霍奇猜想说的正是这个嵌入在有理系数下是满的。ρ(X) 在形变下的行为是霍奇理论的核心问题之一（诺特定理说 ρ 在局部是上半连续的，而\"跳跃\"对应 Noether–Lefschetz 轨迹），也是 K3 曲面与卡拉比–丘流形模空间结构的决定因素。"
+  },
+  "modular-curve": {
+    "file": "extra-d.js",
+    "id": "modular-curve",
+    "latex": "X_0(N)=\\overline{\\Gamma_0(N)\\backslash\\mathfrak H^*},\\qquad \\Gamma_0(N)\\subseteq SL_2(\\mathbb Z)",
+    "name": "模曲线",
+    "en": "Modular Curve",
+    "importance": 0.81,
+    "family": "curve",
+    "summary": "带 level 结构的椭圆曲线的模空间，是数论与代数几何的交汇点。",
+    "detail": "模曲线 X₀(N) 是上半平面模去 Γ₀(N) 作用的紧化，几何上参数化\"带 N 阶循环子群的椭圆曲线\"。它是定义在 ℚ 上的射影曲线，其函数域正是模形式构成的域。这条曲线同时承载三种结构：作为模空间的几何、作为黎曼面的复结构、以及作为 ℚ 上概形的算术（Hecke 算子作用在雅可比簇上）。怀尔斯证明费马大定理的核心一步就是建立\"所有 ℚ 上椭圆曲线都来自模曲线\"（模性定理），即 Taniyama–Shimura–Weil 猜想——把椭圆曲线的问题翻译成模形式的问题。"
+  }
+}

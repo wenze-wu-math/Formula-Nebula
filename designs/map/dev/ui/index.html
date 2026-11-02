@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ui 模块调试页 — 公式大陆</title>
+  <link rel="stylesheet" href="../../../shared/style-base.css">
+  <link rel="stylesheet" href="../../map.css">
+  <!-- 与 designs/map/index.html 相同的关键样式与容器（ui 模块的独立调试页；actions 用 dev.js 里的简易实现） -->
+  <style>
+    html, body { height: 100%; overflow: hidden; background: #a9cfe2; }
+    #app { position: fixed; inset: 0; }
+    #map { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+    #loading { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 15px/1.5 Georgia, "KaiTi", serif; color: #24486a; letter-spacing: .2em; pointer-events: none; }
+    .is-ready #loading { display: none; }
+    .dev-obs { position: absolute; border: 1px dashed rgba(214, 58, 85, .8); pointer-events: none; z-index: 40; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <canvas id="map"></canvas>
+    <div id="loading">正在测绘大陆…（ui 调试页）</div>
+    <div id="search" class="ui-float"></div>
+    <aside id="cartouche" class="ui-float" aria-label="图名与图例"></aside>
+    <aside id="register" class="ui-float" aria-label="探险者名录" hidden></aside>
+    <aside id="panel" class="ui-float" aria-label="详情" aria-live="polite" hidden></aside>
+    <div id="hud" class="ui-float"></div>
+    <div id="tooltip" role="tooltip" hidden></div>
+    <div id="sr-live" class="sr-only" aria-live="polite"></div>
+  </div>
+  <script type="module" src="./dev.js"></script>
+</body>
+</html>

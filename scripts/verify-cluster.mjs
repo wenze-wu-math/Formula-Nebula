@@ -21,11 +21,11 @@
 
 import { spawn } from 'node:child_process'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
 const PORT = Number(process.env.PORT || 9301)
 const URL = process.env.URL || 'http://127.0.0.1:5176/'
-const CHROME = process.env.CHROME ||
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 
 let pass = 0
 let fail = 0
@@ -143,6 +143,8 @@ function spearman(xs, ys) {
 /* ───────────── 主流程 ───────────── */
 const chrome = spawn(CHROME, [
   '--headless=new',
+  '--no-sandbox',
+  '--disable-gpu-sandbox',
   '--enable-unsafe-swiftshader',
   '--use-gl=angle',
   '--use-angle=swiftshader',
@@ -170,15 +172,17 @@ try {
   /* ───────── ① 结构 ───────── */
   console.log('① 结构')
   ok(diag.conjectures === 59, `猜想节点数 = 59`, `实际 ${diag.conjectures}`)
+  ok(diag.researchers === 24, `研究者节点数 = 24`, `实际 ${diag.researchers}`)
   ok(diag.galaxy === 405, `主星系节点数 = 405`, `实际 ${diag.galaxy}`)
-  ok(diag.nodes === 464, `总节点数 = 464`, `实际 ${diag.nodes}`)
+  ok(diag.nodes === 488, `总节点数 = 488`, `实际 ${diag.nodes}`)
   ok(diag.crossLinks > 100, `跨星团关联充足`, `${diag.crossLinks} 条`)
   ok(diag.failed === 0, `无烘焙失败`, `failed=${diag.failed}`)
   ok((diag.errors || []).length === 0, `无烘焙错误`)
 
   const geo = await cdp.eval(`
     const N = window.__nebula.graph;
-    const G = N.nodes.filter(n => !n.cluster);
+    const G = N.nodes.filter(n => !n.cluster && !n.researcher);
+    const R = N.nodes.filter(n => n.researcher);
     const C = N.nodes.filter(n => n.cluster);
     // 球心取自 config —— 测试脚本不该硬编码它，否则改布局时脚本会静默失效
     const cc = window.__nebula.scene.clusterCenter;
@@ -246,11 +250,13 @@ try {
         +n.marker.material.color.b.toFixed(3)] : null),
       clusterInOwnGroup: C.every(n => n.group && n.group.name === 'cluster'),
       galaxyInOwnGroup: G.every(n => n.group && n.group.name === 'nodes'),
+      researchersInOwnGroup: R.every(n => n.group && n.group.name === 'researchers'),
     };
   `)
 
   ok(geo.clusterInOwnGroup, '猜想节点都在独立的 cluster 组里')
   ok(geo.galaxyInOwnGroup, '主星系节点都在 nodes 组里')
+  ok(geo.researchersInOwnGroup, '研究者节点都在独立的 researchers 组里')
   ok(geo.cMax <= 56, `星团半径 ≤ 56`, `实际 ${geo.cMax.toFixed(1)}`)
   ok(geo.cMin >= 5, `星团内半径 ≥ 5（不塌成一点）`, `实际 ${geo.cMin.toFixed(1)}`)
   ok(geo.gap > 25, `星团与主星系之间有净空`, `空档 ${geo.gap.toFixed(0)} 世界单位`)
@@ -429,27 +435,27 @@ try {
     const g = window.__nebula.graph;
     const L = g.links;
     const cross = L.filter(l => l.cross);
-    // 跨星团边必须一端在星团、一端在盘
+    // 跨结构边必须一端在星团/研究者星团、另一端在主星系或其他结构
     let good = 0;
     for (const l of cross) {
       const a = g.byId.get(l.source), b = g.byId.get(l.target);
-      if (a && b && a.cluster !== b.cluster) good++;
+      if (a && b && (a.cluster !== b.cluster || a.researcher !== b.researcher)) good++;
     }
-    // 非跨星团边的 clusterSide 标注必须正确
+    // 非跨结构边的 clusterSide 标注必须正确
     let sideOk = 0;
     for (const l of L) {
       if (l.cross) continue;
       const a = g.byId.get(l.source);
-      if (a && l.clusterSide === (a.cluster ? 'cluster' : 'galaxy')) sideOk++;
+      if (a && l.clusterSide === (a.researcher ? 'researcher' : a.cluster ? 'cluster' : 'galaxy')) sideOk++;
     }
     return {
       total: L.length, cross: cross.length, good,
       nonCross: L.length - cross.length, sideOk,
     };
   `)
-  ok(cross.good === cross.cross, `跨星团边两端确实分属两个结构`,
+  ok(cross.good === cross.cross, `跨结构边两端确实分属两个结构`,
     `${cross.good}/${cross.cross}`)
-  ok(cross.sideOk === cross.nonCross, `非跨星团边的归属标注全部正确`,
+  ok(cross.sideOk === cross.nonCross, `非跨结构边的归属标注全部正确`,
     `${cross.sideOk}/${cross.nonCross}`)
 
   /* 每个猜想至少要有一条连回主星系的边 —— 否则它就是孤立的浮点，

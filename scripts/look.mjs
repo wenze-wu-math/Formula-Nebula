@@ -14,10 +14,11 @@ import { setTimeout as sleep } from 'node:timers/promises'
 import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { requireChrome } from './_chrome.mjs'
 
 const PORT = Number(process.env.PORT || 9432)
 const URL_BASE = process.env.URL || 'http://127.0.0.1:5176/'
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const OUTDIR = process.env.OUTDIR || 'shots/v5'
 mkdirSync(OUTDIR, { recursive: true })
 
@@ -104,7 +105,7 @@ async function wake(cdp) {
 
 const profile = mkdtempSync(join(tmpdir(), 'neb-shots-'))
 const chrome = spawn(CHROME, [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox', '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader',
   '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--mute-audio',
   '--window-size=1600,1000', `--remote-debugging-port=${PORT}`,
   `--user-data-dir=${profile}`, URL_BASE,
@@ -166,6 +167,20 @@ try {
   await wake(cdp)
   await sleep(1200)
   await cdp.shot('08-halo-off.png')
+
+  console.log('\n⑤ 研究者星团 + 详情面板')
+  await cdp.eval(`
+    const nb = window.__nebula
+    nb.scene.setDisplay('clusterHalo', true)
+    nb.scene.setView('overview')
+    nb.scene.select('rs-voisin')
+    return true
+  `)
+  await sleep(9000)
+  await wake(cdp)
+  await sleep(1200)
+  await cdp.shot('09-research-overview.png')
+  await cdp.shot('10-research-panel.png', { x: vp.w - 440, y: 0, width: 440, height: Math.min(vp.h, 700) })
 
   console.log('\n完成')
 } finally {

@@ -22,7 +22,7 @@
  *  把一个非法值（NaN / 字符串 / 越界）灌进渲染循环 —— 那会让整个场景白屏。
  */
 
-import { SHAPES, SHAPE_IDS, TWEAKABLE, GRAVITY, LAYOUT, MOTION, LINKS, BLOOM, NEBULA, INTERACTION, GLYPH, UI, CLUSTER, VIEWS } from './config.js'
+import { SHAPES, SHAPE_IDS, TWEAKABLE, GRAVITY, LAYOUT, MOTION, LINKS, BLOOM, NEBULA, INTERACTION, GLYPH, UI, CLUSTER, RESEARCHERS, VIEWS } from './config.js'
 
 const SETTINGS_KEY = 'formula-nebula.settings.v1'
 
@@ -92,6 +92,7 @@ export const DISPLAY = {
   cluster: { def: CLUSTER.enabled, label: '猜想星团', hint: '未定论的知识球（关掉只看主星系）' },
   clusterHalo: { def: CLUSTER.haloEnabled, label: '星团柔光', hint: '星团的整体光晕' },
   markers: { def: CLUSTER.markerEnabled, label: '状态色点', hint: '每条猜想左侧的解决状态标记' },
+  researchers: { def: RESEARCHERS.enabled, label: '研究者星团', hint: '活跃研究者球（全景视图显示）' },
   nebula: { def: NEBULA.enabled, label: '背景星云', hint: '旋臂粒子云（关闭可提升帧率）' },
   stars: { def: true, label: '深空星点', hint: '远景星点' },
   disc: { def: true, label: '盘面辉光', hint: '盘面中央的柔光' },
@@ -271,6 +272,7 @@ export function applyToConfig() {
   CLUSTER.enabled = state.display.cluster
   CLUSTER.haloEnabled = state.display.clusterHalo
   CLUSTER.markerEnabled = state.display.markers
+  RESEARCHERS.enabled = state.display.researchers
 
   GRAVITY.enabled = state.gravity
   GRAVITY.followRate = state.gravityFollow

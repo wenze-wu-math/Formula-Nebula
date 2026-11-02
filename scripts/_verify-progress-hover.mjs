@@ -9,15 +9,17 @@
 import { spawn } from 'node:child_process'
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const PORT = 9455
+const PORT = Number(process.env.PORT || 9455)
 const URL = process.env.URL || 'http://127.0.0.1:5176/'
 const OUT = 'shots/progress-hover'
 mkdirSync(OUT, { recursive: true })
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const chrome = spawn(CHROME, [
-  '--headless=new', '--enable-unsafe-swiftshader', '--use-gl=angle',
+  '--headless=new', '--no-sandbox', '--disable-gpu-sandbox',
+  '--enable-unsafe-swiftshader', '--use-gl=angle',
   '--use-angle=swiftshader', `--remote-debugging-port=${PORT}`,
   `--user-data-dir=${process.env.TEMP}\\cdp-prog-${process.pid}`,
   '--window-size=1440,900', '--no-first-run', '--no-default-browser-check',

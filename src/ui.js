@@ -11,6 +11,7 @@ import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import { FAMILIES } from './data/knowledge.js'
 import { CONJECTURE_STATUS, CONJECTURE_FIELDS } from './data/conjectures.js'
+import { RESEARCHER_AREAS, FRONTIER_LINKS } from './data/researchers.js'
 import { progressOf, DATA_AS_OF } from './data/progress.js'
 import { UI, GLYPH } from './config.js'
 import { settings } from './settings.js'
@@ -59,6 +60,7 @@ function equalizeColors(defs) {
 }
 const STATUS_UI = equalizeColors(CONJECTURE_STATUS)
 const FIELD_UI = equalizeColors(CONJECTURE_FIELDS)
+const RESEARCHER_UI = equalizeColors(RESEARCHER_AREAS)
 
 /* ── 关系类型的 UI 取色 ──
  *
@@ -79,6 +81,7 @@ function typeUiLabel(id) {
 
 /** 节点在 UI 里该用哪个颜色（族色 / 状态色 / 领域色） */
 function nodeUiColor(n) {
+  if (n.researcher) return RESEARCHER_UI[n.field]?.ui || '#7be8c8'
   if (!n.cluster) {
     // 主星系在"按状态/按领域"模式下仍按族着色（那两个模式只定义在星团上）
     return familyUiColor(n.family)
@@ -91,32 +94,47 @@ function nodeUiColor(n) {
   return STATUS_UI[n.status]?.ui || '#ff8f6b'
 }
 
-/** 节点的标签（徽章文字）：星团显示状态名，主星系显示族名 */
+/** 节点的标签（徽章文字）：研究者显示"研究者"，星团显示状态名，主星系显示族名 */
 function nodeBadge(n) {
+  if (n.researcher) return '研究者'
   if (!n.cluster) return FAMILIES[n.family]?.name || n.family
   return STATUS_UI[n.status]?.name || n.status
 }
 
 const CSS = `
 :root{
-  --ink:#eaf2ff; --dim:#8fa4c4; --line:rgba(140,180,255,.18);
-  --panel:rgba(10,14,28,.82); --accent:#ffce7a;
+  --bg:#080b14;
+  --panel:rgba(12,17,29,.86);
+  --panel-strong:rgba(12,17,29,.94);
+  --line:rgba(148,178,220,.20);
+  --line-soft:rgba(148,178,220,.12);
+  --line-strong:rgba(148,178,220,.34);
+  --ink:#f5f8ff;
+  --dim:#94a8c4;
+  --mute:#c5d2e6;
+  --gold:#ffcf7a;
+  --cyan:#78d7ff;
+  --coral:#ff9b7f;
+  --violet:#c9aeff;
+  /* 标题与加载页共用的星座标记：纯 CSS 背景，不新增 DOM，
+     也不会拦截画布拖拽。 */
+  --constellation:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cg fill='none' stroke='%2394b2dc' stroke-opacity='.45' stroke-width='.8'%3E%3Cpath d='M10 30 26 12 40 20 54 9'/%3E%3Cpath d='M26 12 34 34 54 9'/%3E%3C/g%3E%3Cg fill='%23ffcf7a'%3E%3Ccircle cx='10' cy='30' r='1.6'/%3E%3Ccircle cx='40' cy='20' r='1.2'/%3E%3C/g%3E%3Cg fill='%2378d7ff'%3E%3Ccircle cx='26' cy='12' r='1.9'/%3E%3Ccircle cx='54' cy='9' r='1.3'/%3E%3C/g%3E%3Ccircle cx='34' cy='34' r='1.1' fill='%23c9aeff'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;background:#03050d}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg)}
 body{
   font-family:"Inter","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
-  color:var(--ink); -webkit-font-smoothing:antialiased;
+  color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
 }
 #scene{position:fixed;inset:0;display:block;width:100%;height:100%}
 
-/* 上下黑边 + 暗角：两行 CSS 换来的"电影感" */
+/* 上下黑边 + 暗角：只压边缘，不抢画面中心的公式 */
 #vignette{
   position:fixed;inset:0;pointer-events:none;z-index:5;
   background:
-    radial-gradient(ellipse at 50% 50%, transparent 42%, rgba(0,0,0,.55) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,.75) 0, transparent 8vh),
-    linear-gradient(to top,    rgba(0,0,0,.75) 0, transparent 8vh);
+    radial-gradient(ellipse at 50% 46%, transparent 44%, rgba(3,5,11,.60) 100%),
+    linear-gradient(to bottom, rgba(4,6,12,.70) 0, transparent 10vh),
+    linear-gradient(to top,    rgba(4,6,12,.76) 0, transparent 12vh);
 }
 
 #hud{position:fixed;inset:0;z-index:10;pointer-events:none}
@@ -125,27 +143,45 @@ body{
    否则从标题/图例上按下拖动时事件会被这些 div 吃掉，画面就转不动了。 */
 #search,#results,#panel{pointer-events:auto}
 
-/* ── 标题 ── */
+/* ── 标题 ──
+ * 左侧留出星座标记的位置；标记用 ::before 的 SVG 背景实现，
+ * 不新增 DOM，也不会拦截拖拽。 */
 #title{
-  position:absolute;top:26px;left:30px;transition:opacity .7s ease;
-  pointer-events:none;
+  position:absolute;top:26px;left:30px;padding-left:78px;min-height:56px;
+  transition:opacity .7s ease;pointer-events:none;
+}
+#title::before{
+  content:"";position:absolute;left:0;top:2px;width:62px;height:48px;
+  background-image:var(--constellation);background-repeat:no-repeat;
+  background-position:center;background-size:contain;opacity:.9;
+}
+#title::after{
+  content:"";position:absolute;left:68px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(148,178,220,.28),transparent);
 }
 #title h1{
   margin:0;font-size:26px;font-weight:600;letter-spacing:.22em;
-  background:linear-gradient(92deg,#fff6e0,#8fd8ff 55%,#b48cff);
+  background:linear-gradient(96deg,#fff7e8 0%,#ffcf7a 44%,#78d7ff 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 #title p{
-  margin:7px 0 0;font-size:11.5px;color:var(--dim);letter-spacing:.16em;
+  margin:7px 0 0;font-size:11px;color:var(--dim);letter-spacing:.15em;
+  line-height:1.5;max-width:430px;
 }
 
-/* ── 底部提示 ── */
+/* ── 底部提示 ──
+ * 不再用 left:50% + translateX：那样在窄屏会直接压到右下角图例上。
+ * 改成左右留出固定安全带（左边给导出按钮，右边给图例），
+ * 中间的文字可以自然换行。 */
 #hint{
-  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
-  font-size:11.5px;color:var(--dim);letter-spacing:.13em;text-align:center;
-  transition:opacity .7s ease;white-space:nowrap;
+  position:absolute;bottom:26px;left:170px;right:336px;
+  font-size:11px;color:var(--dim);letter-spacing:.1em;text-align:center;
+  line-height:1.65;transition:opacity .7s ease;
 }
-body.idle #title,body.idle #hint,body.idle #legend,body.idle #exportwrap{opacity:.06}
+#hint .hint-main{color:var(--dim)}
+#hint .hint-sep{color:rgba(148,178,220,.42)}
+#hint .hint-stats{color:#7f93b2;font-variant-numeric:tabular-nums}
+body.idle #title,body.idle #hint,body.idle #legend,body.idle #exportwrap{opacity:.08}
 
 /* ── 导出按钮 ──
  * 摆在**左下角**：右下角是图例（#legend，right:26px;bottom:26px），
@@ -159,45 +195,68 @@ body.idle #title,body.idle #hint,body.idle #legend,body.idle #exportwrap{opacity
   transition:opacity .7s ease;pointer-events:auto;
 }
 #export{
-  appearance:none;cursor:pointer;
-  background:var(--panel);color:var(--dim);
-  border:1px solid var(--line);border-radius:9px;
-  padding:6px 13px;font-size:11px;letter-spacing:.12em;
-  font-family:inherit;backdrop-filter:blur(10px);
-  transition:color .18s ease,border-color .18s ease;
+  appearance:none;cursor:pointer;height:32px;min-width:96px;padding:0 14px;
+  background:var(--panel);color:var(--mute);
+  border:1px solid var(--line);border-radius:8px;
+  font:inherit;font-size:11px;letter-spacing:.12em;
+  backdrop-filter:blur(12px);
+  transition:color .18s ease,border-color .18s ease,background .18s ease;
 }
-#export:hover:not(:disabled){color:#cfe0ff;border-color:#4a6ea8}
+#export:hover:not(:disabled){
+  color:var(--ink);border-color:rgba(255,207,122,.42);
+  background:rgba(20,27,44,.9);
+}
+#export:focus-visible{outline:2px solid rgba(120,215,255,.45);outline-offset:2px}
 #export:disabled{opacity:.55;cursor:default}
 
-/* ── 图例 ── */
+/* ── 图例 ──
+ * 从"右下角一串右对齐的小字"改成一张轻卡片：细边、半透明底、两列族色。
+ * 两列是这里最有效的减密手段 —— 8 个族 + 12 个关联类型如果单列排，
+ * 会占掉半屏高度。 */
 #legend{
-  position:absolute;right:26px;bottom:26px;font-size:11px;
-  color:var(--dim);letter-spacing:.1em;text-align:right;
-  transition:opacity .7s ease;
+  position:absolute;right:26px;bottom:26px;width:300px;padding:12px 14px;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  backdrop-filter:blur(14px);color:var(--dim);font-size:10.5px;
+  letter-spacing:.08em;text-align:left;transition:opacity .7s ease;
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
 }
+#legend .lg-head{
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:.18em;color:var(--mute);
+}
+#legend .lg-head::after{content:"";flex:1;height:1px;background:var(--line-soft)}
 #legend .grad{
-  width:132px;height:5px;border-radius:3px;margin:8px 0 6px auto;
+  width:100%;height:4px;border-radius:2px;margin:9px 0 7px;
   /* 所有公式同色相，重要度只由亮度表达：
      左（外缘）= 暗橙黄 → 右（核心）= 亮橙黄 */
-  background:linear-gradient(90deg,#5a3d14,#a86a1c,#ffb03a,#ffd89a);
-  box-shadow:0 0 14px rgba(255,176,58,.42);
+  background:linear-gradient(90deg,#3a2a12,#8a5a1e,#ffcf7a,#ffe7bd);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
 }
-#legend .fams{margin-top:14px;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
-#legend .fam{display:flex;align-items:center;gap:7px;font-size:10.5px}
-#legend .dot{width:7px;height:7px;border-radius:50%;flex:none}
+#legend .lg-cap{font-size:9.5px;color:var(--dim);letter-spacing:.08em;line-height:1.5}
+#legend .lg-cap + .lg-cap{margin-top:2px}
+#legend .fams{
+  margin-top:10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:4px 14px;align-items:center;
+}
+#legend .fam{
+  display:flex;align-items:center;gap:6px;min-width:0;
+  font-size:10px;line-height:1.5;color:var(--mute);
+}
+#legend .fam > span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#legend .dot{width:6px;height:6px;border-radius:50%;flex:none}
 /* 分组小标题：图例里同时列星团与主星系时用它分隔 */
 #legend .fam.grp{
-  color:#6b7fa3;font-size:9.5px;letter-spacing:.14em;margin-top:7px;
+  grid-column:1/-1;color:#7f93b2;font-size:9px;letter-spacing:.16em;
+  margin-top:8px;padding-top:7px;border-top:1px solid var(--line-soft);
 }
-#legend .fam.grp:first-child{margin-top:0}
+#legend .fam.grp:first-child{margin-top:0;padding-top:0;border-top:none}
 /* 数据截止日期。
  * 刻意做得比其它行更暗、更小：它不是用来"看"的，是用来"查"的 ——
  * 只在用户想确认这份数据有多新时才需要读到它。
  * 但不能省略：不写清楚截至何时，标着"未解决"的猜想就不可信。 */
 #legend .asof{
-  margin-top:12px;padding-top:8px;
-  border-top:1px solid rgba(107,127,163,.22);
-  color:#5f7093;font-size:9.5px;letter-spacing:.1em;
+  margin-top:10px;padding-top:8px;border-top:1px solid var(--line-soft);
+  color:#7185a5;font-size:9px;letter-spacing:.08em;line-height:1.5;
 }
 /* 搜索结果里的状态角标 */
 #results .row .tag{
@@ -207,179 +266,347 @@ body.idle #title,body.idle #hint,body.idle #legend,body.idle #exportwrap{opacity
 
 /* ── 悬停气泡 ── */
 #tip{
-  position:absolute;padding:7px 12px;border-radius:9px;
-  background:var(--panel);border:1px solid var(--line);
-  font-size:12px;letter-spacing:.05em;pointer-events:none;
+  position:absolute;padding:8px 12px;border-radius:8px;
+  background:rgba(12,17,29,.92);border:1px solid var(--line);
+  color:var(--mute);font-size:12px;letter-spacing:.04em;pointer-events:none;
   opacity:0;transition:opacity .16s ease;white-space:nowrap;
-  backdrop-filter:blur(10px);z-index:30;
+  backdrop-filter:blur(14px);z-index:30;box-shadow:0 12px 30px rgba(0,0,0,.4);
 }
 #tip.on{opacity:1}
-#tip b{color:var(--accent);font-weight:600}
+#tip b{color:var(--gold);font-weight:600}
 #tip s{display:block;text-decoration:none;color:var(--dim);font-size:10.5px;margin-top:3px}
 /* 连线提示：理由常常 20–40 字，一行放不下。
  * 节点提示保持 nowrap（名字都很短），边提示改成定宽换行 ——
  * 这里必须是 #tip.edge 而不是 #tip，否则会把节点提示也撑成方块。 */
-#tip.edge{max-width:290px;white-space:normal;line-height:1.55}
+#tip.edge{max-width:300px;white-space:normal;line-height:1.55}
 #tip.edge i.why{
-  display:block;font-style:normal;margin-top:5px;
-  color:#c3cede;font-size:11.5px;
+  display:block;font-style:normal;margin-top:6px;
+  color:var(--mute);font-size:11.5px;line-height:1.6;
 }
 
 /* ── 加载 ── */
 #load{
   position:fixed;inset:0;z-index:60;display:flex;
   flex-direction:column;align-items:center;justify-content:center;
-  background:#03050d;transition:opacity .8s ease;gap:20px;
+  background:var(--bg);transition:opacity .8s ease;gap:18px;
 }
 #load.done{opacity:0;pointer-events:none}
+#load::before{
+  content:"";width:72px;height:52px;background-image:var(--constellation);
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+  opacity:.75;margin-bottom:-2px;
+}
 #load .glyph{
-  font-size:44px;letter-spacing:.3em;
-  background:linear-gradient(92deg,#fff6e0,#8fd8ff,#b48cff);
+  font-size:42px;letter-spacing:.34em;text-indent:.34em;
+  background:linear-gradient(92deg,#fff7e8,#ffcf7a 48%,#78d7ff);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:pulse 2.6s ease-in-out infinite;
+  animation:pulse 2.8s ease-in-out infinite;
 }
 @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
 #load .bar{
-  width:280px;height:2px;background:rgba(140,180,255,.16);
+  width:260px;height:2px;background:rgba(148,178,220,.14);
   border-radius:2px;overflow:hidden;
 }
 #load .bar i{
   display:block;height:100%;width:0;
-  background:linear-gradient(90deg,#8fd8ff,#fff6e0);
-  transition:width .18s ease;box-shadow:0 0 10px #8fd8ff;
+  background:linear-gradient(90deg,var(--cyan),var(--gold));
+  transition:width .18s ease;box-shadow:0 0 8px rgba(120,215,255,.35);
 }
-#load .lbl{font-size:11px;color:var(--dim);letter-spacing:.16em;height:14px}
+#load .lbl{
+  font-size:10.5px;color:var(--dim);letter-spacing:.16em;height:14px;
+  font-variant-numeric:tabular-nums;
+}
 
-/* ── 搜索 ── */
-#search{
-  position:absolute;top:26px;right:26px;width:230px;
-}
+/* ── 搜索 ──
+ * 尺寸是硬契约：#search 250×36、top 28 / right 24，
+ * 因为 settingsPanel.js 里的 #st-open 是相对它定位的。
+ * 改这里必须同步改那边，否则设置按钮会压住输入框。 */
+#search{position:absolute;top:28px;right:24px;width:250px}
 #search input{
-  width:100%;padding:9px 13px;border-radius:9px;
+  width:100%;height:36px;padding:0 12px;border-radius:8px;
   background:var(--panel);border:1px solid var(--line);
   color:var(--ink);font-size:12.5px;outline:none;
-  letter-spacing:.06em;backdrop-filter:blur(10px);
-  font-family:inherit;transition:border-color .2s;
+  letter-spacing:.04em;backdrop-filter:blur(12px);
+  font-family:inherit;
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
 }
-#search input:focus{border-color:rgba(143,216,255,.6)}
-#search input::placeholder{color:#5d7396}
+#search input:hover{border-color:var(--line-strong)}
+#search input:focus{
+  border-color:rgba(120,215,255,.55);
+  box-shadow:0 0 0 3px rgba(120,215,255,.10);
+  background:rgba(14,20,34,.92);
+}
+#search input::placeholder{color:#6f84a5}
 #results{
-  margin-top:7px;max-height:46vh;overflow-y:auto;border-radius:9px;
+  margin-top:8px;max-height:min(46vh,420px);overflow-y:auto;border-radius:8px;
   background:var(--panel);border:1px solid var(--line);
-  backdrop-filter:blur(10px);display:none;
+  backdrop-filter:blur(14px);display:none;
+  box-shadow:0 18px 40px rgba(0,0,0,.42);
+  scrollbar-gutter:stable;scrollbar-width:thin;
+  scrollbar-color:rgba(148,178,220,.30) transparent;
 }
 #results.on{display:block}
+#results::-webkit-scrollbar{width:8px}
+#results::-webkit-scrollbar-track{background:transparent}
+#results::-webkit-scrollbar-thumb{
+  background:rgba(148,178,220,.26);border-radius:4px;
+  border:2px solid transparent;background-clip:content-box;
+}
 #results .row{
-  padding:8px 13px;font-size:12px;cursor:pointer;
-  border-bottom:1px solid rgba(140,180,255,.07);
-  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;font-size:12px;cursor:pointer;
+  border-bottom:1px solid var(--line-soft);
+  display:flex;align-items:center;gap:8px;line-height:1.45;
+  transition:background .14s ease;
 }
 #results .row:last-child{border-bottom:none}
-#results .row:hover{background:rgba(143,216,255,.12)}
+#results .row:hover{background:rgba(120,215,255,.075)}
+#results .row:active{background:rgba(120,215,255,.11)}
+/* 静态行（统计/错误/路径理由）不是命中项：不要给它们可点击的反馈 */
+#results .row[style*="cursor:default"]{cursor:default}
+#results .row[style*="cursor:default"]:hover{background:transparent}
+#results .row[style*="cursor:default"] .nm{
+  white-space:normal;overflow:visible;text-overflow:clip;line-height:1.5;
+}
 #results .row .dot{width:6px;height:6px;border-radius:50%;flex:none}
-#results .row .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#results .row .nm{
+  flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:var(--mute);
+}
+#results .row:hover .nm{color:var(--ink)}
+/* 英文名只做辅助：给固定上限并省略，避免长名字把中文名挤没 */
+#results .row .en{
+  flex:none;max-width:40%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:10px;color:#8fa4c4;
+}
+/* 搜索结果里的状态角标 */
+#results .row .tag{
+  font-size:9px;opacity:.9;border:1px solid currentColor;
+  padding:1px 5px;border-radius:4px;flex:none;letter-spacing:.04em;
+}
 
-/* ── 详情面板 ── */
+/* ── 详情面板 ──
+ * 宽度 432px 是硬契约：scene.js 的 PANEL_WIDTH 与相机 setViewOffset 都按它算。
+ * 不要为了"更宽一点"改这里，否则选中公式会被相机偏移推到错误的位置。 */
 #panel{
   position:absolute;top:0;right:0;height:100%;width:432px;max-width:92vw;
-  background:linear-gradient(180deg,rgba(9,13,26,.95),rgba(6,9,20,.97));
+  background:linear-gradient(180deg,rgba(12,17,29,.94),rgba(8,11,20,.97));
   border-left:1px solid var(--line);
-  backdrop-filter:blur(18px);
-  transform:translateX(102%);transition:transform .42s cubic-bezier(.22,.9,.25,1);
+  backdrop-filter:blur(20px);
+  transform:translateX(102%);transition:none;
   display:flex;flex-direction:column;z-index:40;
-  box-shadow:-30px 0 70px rgba(0,0,0,.6);
+  box-shadow:-30px 0 70px rgba(0,0,0,.55);
 }
 #panel.on{transform:translateX(0)}
 #panel .hd{
-  padding:20px 24px 14px;border-bottom:1px solid var(--line);flex:none;position:relative;
+  padding:22px 24px 16px;border-bottom:1px solid var(--line);flex:none;
+  position:relative;background:linear-gradient(180deg,rgba(148,178,220,.045),transparent);
 }
-#panel .hd .nm{font-size:19px;font-weight:600;letter-spacing:.06em;padding-right:34px}
-#panel .hd .en{font-size:11px;color:var(--dim);margin-top:5px;letter-spacing:.1em}
+#panel .hd::before{
+  content:"";position:absolute;left:24px;top:0;width:34px;height:2px;
+  background:var(--gold);opacity:.75;border-radius:0 0 2px 2px;
+}
+#panel .hd .nm{
+  font-size:20px;font-weight:600;letter-spacing:.04em;
+  line-height:1.35;padding-right:40px;color:var(--ink);
+}
+#panel .hd .en{
+  font-size:11px;color:var(--dim);margin-top:6px;letter-spacing:.08em;
+  line-height:1.5;padding-right:36px;
+}
+#panel .hd .en:not(:empty)::before{
+  content:"";display:inline-block;width:12px;height:1px;margin-right:8px;
+  background:var(--line-strong);vertical-align:middle;
+}
 #panel .close{
-  position:absolute;top:18px;right:20px;width:28px;height:28px;border-radius:50%;
-  border:1px solid var(--line);background:transparent;color:var(--dim);
+  position:absolute;top:18px;right:20px;width:28px;height:28px;border-radius:6px;
+  border:1px solid var(--line);background:rgba(148,178,220,.03);color:var(--dim);
   cursor:pointer;font-size:15px;line-height:1;display:flex;
   align-items:center;justify-content:center;transition:.18s;font-family:inherit;
 }
-#panel .close:hover{color:var(--ink);border-color:rgba(143,216,255,.55);background:rgba(143,216,255,.1)}
-#panel .bd{padding:18px 24px 40px;overflow-y:auto;flex:1}
-#panel .bd::-webkit-scrollbar{width:5px}
-#panel .bd::-webkit-scrollbar-thumb{background:rgba(140,180,255,.25);border-radius:3px}
+#panel .close:hover{color:var(--ink);border-color:var(--line-strong);background:rgba(148,178,220,.08)}
+#panel .close:focus-visible{outline:2px solid rgba(120,215,255,.45);outline-offset:2px}
+#panel .bd{
+  padding:18px 24px 40px;overflow-y:auto;flex:1;overscroll-behavior:contain;
+  scrollbar-gutter:stable;scrollbar-width:thin;
+  scrollbar-color:rgba(148,178,220,.24) transparent;
+}
+#panel .bd::-webkit-scrollbar{width:8px}
+#panel .bd::-webkit-scrollbar-track{background:transparent}
+#panel .bd::-webkit-scrollbar-thumb{
+  background:rgba(148,178,220,.24);border-radius:4px;
+  border:2px solid transparent;background-clip:content-box;
+}
 
+/* 公式：整块面板里唯一的"展品"。用细边 + 极淡青底把它框出来，
+   而不是加发光 —— 公式本身已经是最亮的东西。 */
 #panel .formula{
-  padding:20px 16px;border-radius:11px;margin-bottom:18px;
-  background:rgba(143,216,255,.055);border:1px solid rgba(143,216,255,.15);
+  padding:22px 18px;border-radius:8px;margin-bottom:18px;
+  background:rgba(120,215,255,.045);border:1px solid rgba(148,178,220,.18);
   overflow-x:auto;overflow-y:hidden;text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
 }
 #panel .formula .katex{color:#fff6e0;font-size:1.06em}
+#panel .formula::-webkit-scrollbar{height:6px}
+#panel .formula::-webkit-scrollbar-thumb{background:rgba(148,178,220,.22);border-radius:3px}
 
-#panel .meta{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+#panel .meta{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 #panel .badge{
-  font-size:10.5px;padding:3.5px 10px;border-radius:20px;letter-spacing:.1em;
-  border:1px solid currentColor;
+  font-size:10.5px;padding:3px 8px;border-radius:6px;letter-spacing:.08em;
+  border:1px solid currentColor;background:rgba(148,178,220,.04);line-height:1.4;
 }
-#panel .imp{font-size:10.5px;color:var(--dim);letter-spacing:.08em}
+#panel .imp{font-size:10.5px;color:var(--dim);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 #panel .impbar{
   flex:1;min-width:70px;height:3px;border-radius:2px;
-  background:rgba(140,180,255,.15);overflow:hidden;
+  background:rgba(148,178,220,.14);overflow:hidden;
 }
-#panel .impbar i{display:block;height:100%;border-radius:2px;
-  background:linear-gradient(90deg,#8fd8ff,#fff6e0)}
+#panel .impbar i{
+  display:block;height:100%;border-radius:2px;
+  background:linear-gradient(90deg,rgba(255,207,122,.5),var(--gold));
+}
 
 /* 领域标签（猜想专有）：比徽章更轻，用细边框而不是实心，
    这样"状态徽章"仍然是视觉上最重的信息 */
 #panel .tag{
-  font-size:10px;padding:3px 9px;border-radius:20px;letter-spacing:.08em;
-  border:1px solid currentColor;opacity:.9;
+  font-size:10px;padding:3px 8px;border-radius:6px;letter-spacing:.06em;
+  border:1px solid currentColor;opacity:.92;background:rgba(148,178,220,.03);
+  line-height:1.4;
 }
 
 /* 状态横幅（猜想专有）：左边框 + 极淡底色，读起来像一条注释。
-   ⚠ 底色用 8 位 hex 的 alpha 通道（#rrggbb14），不能直接拼 3 位 —— 
+   ⚠ 底色用 8 位 hex 的 alpha 通道（#rrggbb14），不能直接拼 3 位 ——
    均衡后的颜色是 #rrggbb 形式，拼 2 位 alpha 才合法。 */
 #panel .status{
-  font-size:12.5px;line-height:1.75;margin:0 0 16px;padding:10px 13px;
-  border-left:3px solid var(--accent);border-radius:0 8px 8px 0;color:#c8d6ee;
+  font-size:12.5px;line-height:1.72;margin:0 0 16px;padding:10px 13px;
+  border-left:3px solid var(--gold);border-radius:0 8px 8px 0;color:#c9d7ec;
+  background:rgba(148,178,220,.035);
 }
-#panel .status b{font-weight:600;margin-right:9px;letter-spacing:.06em}
+#panel .status b{font-weight:600;margin-right:9px;letter-spacing:.04em}
 
 /* 跨星团关联的角标：提示"这一跳要跨结构" */
 #panel .rel .xbadge{
-  font-size:9.5px;color:#b9a2ff;border:1px solid rgba(185,162,255,.4);
-  padding:1.5px 6px;border-radius:10px;flex:none;letter-spacing:.05em;
+  font-size:9.5px;color:var(--violet);border:1px solid rgba(201,174,255,.35);
+  padding:1px 5px;border-radius:4px;flex:none;letter-spacing:.04em;
 }
 
 #panel .summary{
-  font-size:13.5px;line-height:1.85;color:#dfe9ff;margin:0 0 16px;
-  padding-left:13px;border-left:2px solid var(--accent);
+  font-size:13.5px;line-height:1.85;color:#e4edfb;margin:0 0 16px;
+  padding-left:14px;border-left:2px solid var(--gold);
 }
-#panel .detail{font-size:13px;line-height:2.0;color:#b8c8e4;margin:0;text-align:justify}
+#panel .detail{
+  font-size:13px;line-height:1.95;color:#b9c8de;margin:0;
+  text-align:justify;text-justify:inter-ideograph;
+}
+#panel .proof-open{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+  margin:20px 0 6px;padding:11px 14px;border-radius:8px;
+  border:1px solid rgba(255,207,122,.28);background:rgba(255,207,122,.06);
+  color:#f3ddb0;cursor:pointer;font:inherit;font-size:12px;letter-spacing:.04em;
+  transition:background .18s,border-color .18s,transform .18s;
+}
+#panel .proof-open:hover{
+  background:rgba(255,207,122,.11);border-color:rgba(255,207,122,.5);
+  transform:translateY(-1px);
+}
+#panel .proof-open:active{transform:translateY(0)}
+#panel .proof-open:focus-visible{outline:2px solid rgba(120,215,255,.45);outline-offset:2px}
+#panel .proof-open small{color:#a9bad4;font-size:10px;letter-spacing:.02em;white-space:nowrap}
 /* 数据里的 **粗体**：提亮 + 加粗。颜色用正文色系里更亮的一档，
    不用 accent（橙色）—— 那太抢眼，满屏橙字会盖过公式本身的重要性。 */
-#panel .em{font-weight:600;color:#e8f1ff}
+#panel .em{font-weight:600;color:#eef4ff}
 
 #panel h4{
-  font-size:11px;color:var(--dim);letter-spacing:.18em;font-weight:500;
-  margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;color:var(--dim);letter-spacing:.16em;font-weight:500;
+  margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);
 }
+#panel h4::before{content:"";width:12px;height:1px;background:var(--gold);opacity:.6}
 #panel .rel{
-  display:block;width:100%;text-align:left;padding:11px 13px;margin-bottom:7px;
-  border-radius:9px;background:rgba(143,216,255,.045);
-  border:1px solid rgba(143,216,255,.1);cursor:pointer;
-  transition:.18s;font-family:inherit;color:inherit;
+  display:block;width:100%;text-align:left;padding:11px 12px;margin-bottom:8px;
+  border-radius:8px;background:rgba(148,178,220,.035);
+  border:1px solid rgba(148,178,220,.12);cursor:pointer;
+  transition:background .18s,border-color .18s,transform .18s;
+  font-family:inherit;color:inherit;
 }
-#panel .rel:hover{background:rgba(143,216,255,.13);border-color:rgba(143,216,255,.4);
-  transform:translateX(-3px)}
-#panel .rel .t{display:flex;align-items:center;gap:8px}
+#panel .rel:hover{
+  background:rgba(148,178,220,.075);border-color:rgba(148,178,220,.3);
+  transform:translateX(-2px);
+}
+#panel .rel:focus-visible{outline:2px solid rgba(120,215,255,.4);outline-offset:2px}
+#panel .rel .t{display:flex;align-items:center;gap:8px;min-width:0}
 #panel .rel .dot{width:6px;height:6px;border-radius:50%;flex:none}
-#panel .rel .nm{font-size:12.5px;flex:1}
-#panel .rel .w{
-  font-size:10px;color:var(--dim);font-variant-numeric:tabular-nums;
+#panel .rel .nm{
+  font-size:12.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;color:var(--mute);
 }
-#panel .rel .why{font-size:11px;color:var(--dim);margin-top:5px;line-height:1.6}
-#panel .rel .wbar{height:2px;border-radius:2px;background:rgba(140,180,255,.14);margin-top:7px}
-#panel .rel .wbar i{display:block;height:100%;border-radius:2px;background:var(--accent)}
+#panel .rel:hover .nm{color:var(--ink)}
+#panel .rel .w{font-size:10px;color:var(--dim);font-variant-numeric:tabular-nums;flex:none}
+#panel .rel .why{font-size:11px;color:var(--dim);margin-top:6px;line-height:1.65}
+#panel .rel .wbar{height:2px;border-radius:2px;background:rgba(148,178,220,.12);margin-top:8px;overflow:hidden}
+#panel .rel .wbar i{display:block;height:100%;border-radius:2px;background:var(--gold);opacity:.8}
+#panel .rel.work{text-decoration:none;cursor:pointer}
+#panel .rel.work:hover{transform:translateX(-2px)}
+#panel .rel.work .why{white-space:normal}
 
 #panel .empty{font-size:12px;color:var(--dim);font-style:italic}
+
+/* ── 响应式 ──
+ * 只用 max-width 断点 + 固定字号，不用 vw 字号。
+ * 目标尺寸：390×844 / 1366×768 / 1440×900 / 1920×1080。
+ * 底部三块（导出 / 提示 / 图例）各自占一条安全带，互不重叠。 */
+@media (max-width:1100px){
+  #legend{width:272px;padding:11px 12px}
+  #legend .fams{gap:4px 12px}
+  #hint{right:320px}
+}
+@media (max-width:900px){
+  #title{left:24px;padding-left:72px}
+  #title::after{left:62px}
+  #title p{max-width:280px}
+  #legend{width:260px}
+  #hint{left:160px;right:300px;font-size:10.5px}
+}
+@media (max-width:760px){
+  #title{top:88px;left:18px;padding-left:58px;min-height:44px}
+  #title::before{width:46px;height:38px;top:0}
+  #title::after{left:52px}
+  #title h1{font-size:20px;letter-spacing:.18em}
+  #title p{font-size:9.5px;letter-spacing:.1em;max-width:300px;line-height:1.5}
+  #exportwrap{left:16px;bottom:16px}
+  #export{height:30px;min-width:92px;padding:0 12px;font-size:10.5px}
+  #legend{
+    right:16px;bottom:88px;width:min(240px,calc(100vw - 32px));
+    padding:10px 12px;
+  }
+  #legend .fams{gap:3px 8px}
+  #legend .fam{font-size:9px}
+  #legend .fam.grp{font-size:8.5px;margin-top:7px;padding-top:6px}
+  #legend .asof{font-size:8.5px;margin-top:8px;padding-top:7px}
+  #hint{
+    left:auto;right:16px;bottom:16px;max-width:calc(100vw - 140px);
+    text-align:right;font-size:9.5px;letter-spacing:.06em;line-height:1.55;
+  }
+  #results{max-height:calc(100vh - 96px)}
+  #panel .hd{padding:18px 18px 14px}
+  #panel .hd::before{left:18px}
+  #panel .hd .nm{font-size:18px;padding-right:36px}
+  #panel .close{top:15px;right:16px}
+  #panel .bd{padding:16px 18px 36px}
+  #panel .formula{padding:18px 12px}
+  #panel .summary{font-size:13px;line-height:1.8}
+  #panel .detail{font-size:12.5px;line-height:1.9}
+}
+@media (max-width:430px){
+  #title{top:84px;left:16px;padding-left:52px}
+  #title::after{left:46px}
+  #title p{max-width:calc(100vw - 90px)}
+  #legend{width:min(240px,calc(100vw - 32px))}
+  #hint{max-width:calc(100vw - 130px)}
+}
+@media (prefers-reduced-motion:reduce){
+  #load .glyph{animation:none}
+  #panel{transition:none}
+  #title,#hint,#legend,#exportwrap{transition:none}
+}
 `
 
 /**
@@ -403,9 +630,16 @@ export function createUI(graph, cb = {}) {
 
   /* 底部提示 */
   const stats = graph.stats
+  /* 拆成两段：主提示与统计数字用不同颜色，扫读时先看到"能做什么"，
+   * 再看到"这里面有多少东西"。textContent 与原来逐字一致。 */
   hud.appendChild(el('div', { id: 'hint' }, [
-    `${UI.hint}　·　主星系 ${stats.galaxyCount} 条定理 / ` +
-    `星团 ${stats.conjCount} 条猜想 / ${stats.linkCount} 条关联`,
+    el('span', { class: 'hint-main' }, [UI.hint]),
+    el('span', { class: 'hint-sep' }, ['　·　']),
+    el('span', { class: 'hint-stats' }, [
+      `主星系 ${stats.galaxyCount} 条定理 / ` +
+      `星团 ${stats.conjCount} 条猜想 / 研究者 ${stats.researcherCount} 位 / ` +
+      `${stats.linkCount} 条关联`,
+    ]),
   ]))
 
   /* ── 导出 SVG 按钮 ──
@@ -643,7 +877,7 @@ export function createUI(graph, cb = {}) {
     title:
       '支持四类：\n' +
       '· 普通词：霍奇、cohomology\n' +
-      '· 字段查询：family:/status:/field:/id:/name:/en:/latex:/importance:/degree:/rank:/cluster:\n' +
+      '· 字段查询：family:/status:/field:/id:/name:/en:/latex:/importance:/degree:/rank:/cluster:/researcher:/institution:\n' +
       '  可用 - 取反、OR 组合、括号分组，值含空格用引号\n' +
       '· 数值比较：importance:>0.9\n' +
       '· 寻路：霍奇猜想 -> 黎曼猜想',
@@ -693,9 +927,11 @@ export function createUI(graph, cb = {}) {
   function showTip(node, x, y) {
     tip.innerHTML = ''
     // 星团节点没有族名，改显示状态 —— 悬停时最想知道的就是"这条定了没"
-    const sub = node.cluster
-      ? `${nodeBadge(node)} · ${FIELD_UI[node.field]?.name || ''} · 关联 ${node.degree}`
-      : `${FAMILIES[node.family]?.name || ''} · 关联 ${node.degree} · 重要度 ${(node.importance * 100).toFixed(0)}%`
+    const sub = node.researcher
+      ? `${RESEARCHER_UI[node.field]?.name || ''} · ${node.institution || ''} · 关联 ${node.degree}`
+      : node.cluster
+        ? `${nodeBadge(node)} · ${FIELD_UI[node.field]?.name || ''} · 关联 ${node.degree}`
+        : `${FAMILIES[node.family]?.name || ''} · 关联 ${node.degree} · 重要度 ${(node.importance * 100).toFixed(0)}%`
     tip.append(
       el('b', {}, [node.name]),
       el('s', {}, [sub]),
@@ -897,9 +1133,9 @@ export function createUI(graph, cb = {}) {
         const row = el('div', { class: 'row' }, [
           el('span', { class: 'dot', style: `background:${nodeUiColor(n)}` }),
           el('span', { class: 'nm' }, [n.name]),
-          // 星团节点标出状态：搜索结果里混着定理与猜想时，
-          // "这条还悬着"是比英文名重要得多的信息
-          n.cluster
+          // 星团节点标出状态：搜索结果里混着定理、猜想与研究者时，
+          // 用徽章快速区分三类对象。
+          (n.cluster || n.researcher)
             ? el('span', { class: 'tag', style: `color:${nodeUiColor(n)}` }, [nodeBadge(n)])
             : null,
           el('span', { style: 'font-size:10px;color:#8fa4c4' }, [n.en || '']),
@@ -958,6 +1194,25 @@ export function createUI(graph, cb = {}) {
         style: `color:${nodeUiColor(node)}`,
       }, [nodeBadge(node)]),
     ])
+        /* 研究者额外两行元信息：
+     *   · 领域 —— 它决定研究者星团球面上的方向
+     *   · 机构 —— 当前 affiliation，比"某个年份在哪个学校"更稳 */
+    if (node.researcher) {
+      const f = RESEARCHER_UI[node.field]
+      if (f) {
+        meta.appendChild(el('span', {
+          class: 'tag',
+          style: `color:${f.ui}; border-color:${f.ui}44`,
+        }, [f.name]))
+      }
+      if (node.institution) {
+        meta.appendChild(el('span', { class: 'tag' }, [node.institution]))
+      }
+      if (node.focus) {
+        meta.appendChild(el('span', { class: 'imp', style: 'max-width:100%' }, [node.focus]))
+      }
+    }
+
     /* 猜想额外两行元信息：
      *   · 领域 —— 它属于哪一支数学（球面上的方向就是按这个分的）
      *   · 提出者与年份 —— 猜想的"作者"信息比定理重要得多，
@@ -1026,6 +1281,60 @@ export function createUI(graph, cb = {}) {
     if (node.summary) panelBody.appendChild(el('p', { class: 'summary' }, inlineMd(node.summary)))
     if (node.detail) panelBody.appendChild(el('p', { class: 'detail' }, inlineMd(node.detail)))
 
+    /* 研究者没有"证明页"含义，代表工作在下方以 arXiv 链接展示 */
+    if (!node.researcher) {
+      const proofButton = el('button', {
+        class: 'proof-open', type: 'button', 'aria-label': `打开${node.name}的证明与知识脉络`,
+      }, [
+        el('span', {}, ['阅读证明与知识脉络']),
+        el('small', {}, ['独立阅读页　→']),
+      ])
+      proofButton.addEventListener('click', () => cb.onProof?.(node.id))
+      panelBody.appendChild(proofButton)
+    }
+
+    /* 研究者的代表工作：链接直接进 arXiv abs 页 */
+    const works = node.representativeWorks || []
+    if (node.researcher && works.length) {
+      panelBody.appendChild(el('h4', {}, [`代表工作 · ${works.length}`]))
+      for (const w of works) {
+        panelBody.appendChild(el('a', {
+          class: 'rel work',
+          href: w.url,
+          target: '_blank',
+          rel: 'noreferrer',
+        }, [
+          el('div', { class: 't' }, [
+            el('span', { class: 'nm' }, [w.title]),
+            el('span', { class: 'w' }, [`${w.year ?? ''}`]),
+            el('span', { class: 'tag' }, ['arXiv']),
+          ]),
+          w.note ? el('div', { class: 'why' }, [w.note]) : null,
+        ]))
+      }
+    }
+
+    /* 已有知识节点上的近期 arXiv 进展 */
+    const frontier = FRONTIER_LINKS.filter((f) => f.targetNodeId === node.id)
+    if (frontier.length) {
+      panelBody.appendChild(el('h4', {}, [`前沿 arXiv 进展 · ${frontier.length}`]))
+      for (const f of frontier) {
+        panelBody.appendChild(el('a', {
+          class: 'rel work',
+          href: f.url,
+          target: '_blank',
+          rel: 'noreferrer',
+        }, [
+          el('div', { class: 't' }, [
+            el('span', { class: 'nm' }, [f.title]),
+            el('span', { class: 'w' }, [`${f.year ?? ''}`]),
+            el('span', { class: 'tag' }, ['arXiv']),
+          ]),
+          f.summary ? el('div', { class: 'why' }, [f.summary]) : null,
+        ]))
+      }
+    }
+
     /* 关联知识 */
     const rels = [...node.linkIds].sort((a, b) => b.weight - a.weight)
     /* 关系类型的小结：这一条公式的关联里，各类型各有几条。
@@ -1063,10 +1372,12 @@ export function createUI(graph, cb = {}) {
             el('span', { class: 'nm' }, [other.name]),
             // 跨星团的关联要标出来。它表示的语义完全不同
             // （"这条猜想依赖那个定理"而不是"同层知识相邻"），
-            // 在列表里混着看不区分，用户会以为猜想和定理是同类对象。
-            other.cluster !== node.cluster
-              ? el('span', { class: 'xbadge' }, [node.cluster ? '↤ 定理' : '↦ 猜想'])
-              : null,
+            // 研究者是与两者都不同的活动主体。
+            (node.researcher || other.researcher)
+              ? el('span', { class: 'xbadge' }, [node.researcher ? '↔ 知识节点' : other.researcher ? '↔ 研究者' : ''])
+              : other.cluster !== node.cluster
+                ? el('span', { class: 'xbadge' }, [node.cluster ? '↤ 定理' : '↦ 猜想'])
+                : null,
             /* 关系类型徽章 —— 这条边是"蕴含"还是"同族"。
              * 颜色与画面上那条线一致，所以面板和 3D 视图能对上号：
              * 在面板里看到玫红的"蕴含"，回到星系里就能认出玫红的线。

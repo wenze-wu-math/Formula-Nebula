@@ -16,8 +16,9 @@ import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const BASE = process.env.URL || 'http://127.0.0.1:5176/'
 /* 需要**两个** CDP 端口（要各起一个浏览器分别跑串行与流水线）。
  * 从 PORT 起算，用 PORT 与 PORT+1 —— 这样 run-all.mjs 只要给一个基准端口，

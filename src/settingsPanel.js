@@ -61,145 +61,251 @@ function el(tag, attrs = {}, children = []) {
 }
 
 const CSS = `
+#settings, #st-open{
+  box-sizing:border-box;
+  --panel:rgba(12,17,29,.86);
+  --line:rgba(148,178,220,.20);
+  --ink:#f5f8ff;
+  --dim:#94a8c4;
+  --mute:#c5d2e6;
+  --accent:#ffcf7a;
+  --cyan:#78d7ff;
+  --coral:#ff9b7f;
+  --violet:#c9aeff;
+}
+
 #settings{
-  position:fixed; z-index:30; width:288px; max-height:calc(100vh - 92px);
+  position:fixed; z-index:30; width:308px; max-height:calc(100vh - 96px);
   display:flex; flex-direction:column;
-  background:var(--panel); border:1px solid var(--line); border-radius:12px;
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 18px 48px rgba(0,0,0,.55);
+  background:var(--panel); border:1px solid var(--line); border-radius:8px;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 16px 42px rgba(3,8,18,.46), inset 0 1px 0 rgba(245,248,255,.04);
   transform:translateX(-8px); opacity:0; pointer-events:none;
-  transition:opacity .22s ease, transform .22s ease;
+  transition:opacity .18s ease, transform .18s ease;
 }
 #settings.on{ opacity:1; transform:none; pointer-events:auto }
 
+#settings *{ box-sizing:border-box }
+#settings button{
+  font-family:inherit; line-height:1.2; touch-action:manipulation;
+}
+#settings button:focus-visible,
+#settings input:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px rgba(120,215,255,.26), 0 0 0 4px rgba(120,215,255,.10);
+}
+
 #settings .st-head{
   display:flex; align-items:center; justify-content:space-between;
-  padding:10px 12px; border-bottom:1px solid var(--line);
-  font-size:12.5px; letter-spacing:.10em; color:var(--ink);
+  min-height:42px; padding:8px 12px 8px 16px; border-bottom:1px solid var(--line);
+  font-size:12px; letter-spacing:.10em; color:var(--ink);
   cursor:grab; user-select:none; flex:none;
 }
 #settings .st-head:active{ cursor:grabbing }
 #settings .st-head .st-close{
-  background:none; border:none; color:var(--dim); font-size:17px; line-height:1;
-  cursor:pointer; padding:2px 6px; border-radius:5px;
-}
-#settings .st-head .st-close:hover{ color:var(--ink); background:rgba(143,216,255,.12) }
-
-#settings .st-body{ overflow-y:auto; overscroll-behavior:contain; padding:4px 0 8px }
-#settings .st-body::-webkit-scrollbar{ width:8px }
-#settings .st-body::-webkit-scrollbar-thumb{ background:rgba(140,180,255,.20); border-radius:4px }
-
-#settings .st-group{ padding:10px 12px 12px; border-bottom:1px solid var(--line) }
-#settings .st-group:last-child{ border-bottom:none }
-#settings .st-label{
-  font-size:10.5px; letter-spacing:.20em; color:var(--accent);
-  text-transform:uppercase; margin-bottom:8px; opacity:.92;
-}
-#settings .st-row{ display:flex; align-items:center; gap:8px; margin:7px 0 }
-#settings .st-sub{ font-size:11px; color:var(--dim); flex:none; width:44px }
-
-/* 分段按钮 */
-#settings .st-seg{ display:flex; gap:3px; flex:1; flex-wrap:wrap }
-#settings .st-seg button{
-  flex:1; min-width:52px; padding:5px 6px; font-size:11px;
-  background:rgba(140,180,255,.06); border:1px solid var(--line);
-  color:var(--dim); border-radius:6px; cursor:pointer; white-space:nowrap;
+  width:26px; height:26px; margin-left:8px; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(148,178,220,.08); border:1px solid rgba(148,178,220,.16);
+  color:var(--dim); font-size:15px; line-height:1; border-radius:6px;
+  cursor:pointer; padding:0;
   transition:background .15s, color .15s, border-color .15s;
 }
-#settings .st-seg button:hover:not(:disabled){ color:var(--ink); background:rgba(140,180,255,.14) }
-#settings .st-seg button.on{
-  background:rgba(255,206,122,.16); border-color:rgba(255,206,122,.55); color:var(--accent);
+#settings .st-head .st-close:hover{
+  color:var(--ink); background:rgba(148,178,220,.16); border-color:rgba(148,178,220,.30);
 }
-#settings .st-seg button:disabled{ opacity:.35; cursor:not-allowed }
 
-/* 族色样本（着色组下方的一排小色块） */
+#settings .st-body{
+  overflow-y:auto; overscroll-behavior:contain; padding:2px 0 10px;
+  scrollbar-color:rgba(148,178,220,.28) transparent; scrollbar-width:thin;
+}
+#settings .st-body::-webkit-scrollbar{ width:8px }
+#settings .st-body::-webkit-scrollbar-track{ background:transparent }
+#settings .st-body::-webkit-scrollbar-thumb{
+  background:rgba(148,178,220,.24); border-radius:999px;
+  border:2px solid rgba(12,17,29,.35);
+}
+#settings .st-body::-webkit-scrollbar-thumb:hover{ background:rgba(148,178,220,.38) }
+
+#settings .st-group{
+  padding:13px 16px 15px; border-bottom:1px solid rgba(148,178,220,.12);
+}
+#settings .st-group:last-child{ border-bottom:none }
+#settings .st-label{
+  display:flex; align-items:center; gap:8px;
+  font-size:11px; letter-spacing:.18em; color:var(--cyan);
+  margin-bottom:10px; line-height:1.4;
+}
+#settings .st-label::before{
+  content:""; width:3px; height:11px; border-radius:2px; flex:none;
+  background:var(--accent); box-shadow:0 0 8px rgba(255,207,122,.5);
+}
+#settings .st-row{
+  display:flex; align-items:center; gap:10px; margin:8px 0; min-height:28px;
+}
+#settings .st-sub{
+  font-size:11px; color:var(--dim); flex:none; width:44px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+#settings .st-seg{
+  display:flex; gap:4px; flex:1; flex-wrap:wrap; padding:3px;
+  background:rgba(6,10,19,.42); border:1px solid rgba(148,178,220,.16); border-radius:7px;
+}
+#settings .st-seg button{
+  flex:1; min-width:54px; min-height:27px; padding:4px 7px; font-size:11px;
+  background:transparent; border:1px solid transparent; border-radius:5px;
+  color:var(--dim); cursor:pointer; white-space:nowrap;
+  transition:background .15s, color .15s, border-color .15s, box-shadow .15s;
+}
+#settings .st-seg button:hover:not(:disabled){ color:var(--ink); background:rgba(148,178,220,.10) }
+#settings .st-seg button.on{
+  background:rgba(255,207,122,.15); border-color:rgba(255,207,122,.42); color:var(--ink);
+  box-shadow:0 0 10px rgba(255,207,122,.08);
+}
+#settings .st-seg button:disabled{ opacity:.34; cursor:not-allowed }
+#settings .st-seg button.on:disabled{
+  opacity:.48; background:rgba(148,178,220,.10); border-color:rgba(148,178,220,.28);
+  color:var(--mute); box-shadow:none;
+}
+
 #settings .st-fams{
-  display:flex; flex-wrap:wrap; gap:3px 9px; margin-top:7px;
+  display:flex; flex-wrap:wrap; gap:4px 8px; margin-top:8px;
   transition:opacity .2s;
 }
 #settings .st-fam{
-  display:flex; align-items:center; gap:5px;
+  display:flex; align-items:center; gap:6px; padding:4px 7px;
+  background:rgba(148,178,220,.06); border:1px solid rgba(148,178,220,.14); border-radius:6px;
   font-size:10px; color:var(--dim); white-space:nowrap;
 }
 #settings .st-fam i{
-  width:8px; height:8px; border-radius:50%; flex:none;
-  /* 让色块自己像个小光源，跟画面里的发光观感呼应 */
-  box-shadow:0 0 5px currentColor;
+  width:9px; height:9px; border-radius:50%; flex:none;
+  border:1px solid rgba(245,248,255,.28);
+  box-shadow:0 0 7px currentColor;
 }
 
-/* 滑块 */
 #settings input[type=range]{
-  flex:1; -webkit-appearance:none; appearance:none; height:3px; border-radius:2px;
-  background:rgba(140,180,255,.22); outline:none; cursor:pointer;
+  flex:1; min-width:0; height:16px; margin:0;
+  -webkit-appearance:none; appearance:none; border-radius:8px;
+  background:transparent; outline:none; cursor:pointer;
+}
+#settings input[type=range]::-webkit-slider-runnable-track{
+  height:3px; border-radius:999px; background:rgba(148,178,220,.20);
+}
+#settings input[type=range]::-moz-range-track{
+  height:3px; border-radius:999px; background:rgba(148,178,220,.20);
+}
+#settings input[type=range]::-moz-range-progress{
+  height:3px; border-radius:999px; background:rgba(255,207,122,.46);
 }
 #settings input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none; width:12px; height:12px; border-radius:50%;
-  background:var(--accent); cursor:pointer; border:none;
-  box-shadow:0 0 6px rgba(255,206,122,.55);
+  -webkit-appearance:none; width:12px; height:12px; margin-top:-4.5px; border-radius:50%;
+  background:var(--accent); border:1px solid rgba(245,248,255,.24); cursor:pointer;
+  box-shadow:0 0 8px rgba(255,207,122,.32), 0 1px 3px rgba(0,0,0,.4);
+  transition:transform .12s, box-shadow .12s;
 }
 #settings input[type=range]::-moz-range-thumb{
-  width:12px; height:12px; border-radius:50%; background:var(--accent);
-  cursor:pointer; border:none;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--accent); border:1px solid rgba(245,248,255,.24); cursor:pointer;
+  box-shadow:0 0 8px rgba(255,207,122,.32), 0 1px 3px rgba(0,0,0,.4);
 }
-#settings input[type=range]:disabled{ opacity:.35; cursor:not-allowed }
+#settings input[type=range]:hover:not(:disabled)::-webkit-slider-thumb{ transform:scale(1.08) }
+#settings input[type=range]:hover:not(:disabled)::-moz-range-thumb{ transform:scale(1.08) }
+#settings input[type=range]:focus-visible::-webkit-slider-thumb{
+  box-shadow:0 0 0 3px rgba(120,215,255,.22), 0 0 8px rgba(255,207,122,.32);
+}
+#settings input[type=range]:focus-visible::-moz-range-thumb{
+  box-shadow:0 0 0 3px rgba(120,215,255,.22), 0 0 8px rgba(255,207,122,.32);
+}
+#settings input[type=range]:disabled{ opacity:.38; cursor:not-allowed }
+#settings input[type=range]:disabled::-webkit-slider-thumb,
+#settings input[type=range]:disabled::-moz-range-thumb{
+  background:var(--mute); box-shadow:none;
+}
 #settings .st-val{
-  font-size:10.5px; color:var(--dim); flex:none; width:52px; text-align:right;
-  font-variant-numeric:tabular-nums;
+  width:54px; flex:none; text-align:right; white-space:nowrap;
+  font-size:10.5px; color:var(--mute); font-variant-numeric:tabular-nums;
 }
 
-/* 开关 */
 #settings .st-toggle{
-  display:flex; align-items:flex-start; gap:8px; margin:8px 0;
+  display:flex; align-items:flex-start; gap:9px; margin:9px 0;
   font-size:11.5px; color:var(--ink); cursor:pointer; line-height:1.45;
 }
-#settings .st-toggle input{ margin:2px 0 0; flex:none; accent-color:#ffce7a; cursor:pointer }
+#settings .st-toggle input{
+  flex:none; width:16px; height:16px; margin:2px 0 0;
+  -webkit-appearance:none; appearance:none; border-radius:5px;
+  background:rgba(148,178,220,.10); border:1px solid rgba(148,178,220,.34);
+  background-position:center; background-repeat:no-repeat; background-size:10px 10px;
+  accent-color:var(--accent); cursor:pointer;
+  transition:background .18s, border-color .18s, box-shadow .18s;
+}
+#settings .st-toggle input:checked{
+  background-color:rgba(255,207,122,.22);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6 9.5 3.4' fill='none' stroke='%23ffcf7a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  border-color:rgba(255,207,122,.62);
+}
+#settings .st-toggle input:disabled{ opacity:.35; cursor:not-allowed }
 #settings .st-toggle small{ display:block; color:var(--dim); font-size:10px; margin-top:2px }
 
-/* 形态描述 */
 #settings .st-desc{
-  font-size:10.5px; color:var(--dim); line-height:1.5; margin-top:7px;
-  padding:7px 8px; background:rgba(140,180,255,.05); border-radius:6px;
-  border-left:2px solid rgba(255,206,122,.40);
+  font-size:10.5px; color:var(--dim); line-height:1.55; margin-top:8px;
+  padding:7px 9px; background:rgba(148,178,220,.06); border-radius:6px;
+  border-left:2px solid rgba(255,207,122,.44);
+}
+#settings .st-stats{
+  margin-top:7px; font-size:10px; line-height:1.6; color:var(--dim);
+  overflow-wrap:anywhere;
 }
 
-/* 恢复默认 */
 #settings .st-reset{
-  width:100%; margin-top:8px; padding:6px; font-size:11px;
-  background:rgba(140,180,255,.06); border:1px solid var(--line);
+  width:100%; min-height:30px; margin-top:10px; padding:5px 8px; font-size:11px;
+  background:rgba(148,178,220,.06); border:1px solid rgba(148,178,220,.18);
   color:var(--dim); border-radius:6px; cursor:pointer;
-  transition:background .15s, color .15s;
+  transition:background .15s, color .15s, border-color .15s;
 }
-#settings .st-reset:hover:not(:disabled){ color:var(--ink); background:rgba(140,180,255,.14) }
-#settings .st-reset:disabled{ opacity:.35; cursor:not-allowed }
-#settings .st-reset.wide{ margin:10px 12px 2px; width:calc(100% - 24px) }
+#settings .st-reset:hover:not(:disabled){
+  color:var(--ink); background:rgba(148,178,220,.13); border-color:rgba(148,178,220,.30);
+}
+#settings .st-reset:disabled{ opacity:.30; cursor:not-allowed }
+#settings .st-reset.wide{
+  margin:12px 16px 2px; width:calc(100% - 32px); min-height:32px;
+  background:rgba(255,159,127,.06); border-color:rgba(255,159,127,.20); color:var(--coral);
+}
+#settings .st-reset.wide:hover:not(:disabled){
+  color:var(--ink); background:rgba(255,159,127,.14); border-color:rgba(255,159,127,.36);
+}
+#settings .st-reset.wide:disabled{
+  color:var(--dim); background:rgba(148,178,220,.06); border-color:rgba(148,178,220,.18);
+}
 
-/* 打开设置的按钮（挂在 HUD 上）
- *
- * ⚠ 位置是**相对搜索框**算出来的，不能随便改。
- * 搜索框是 top:26px / right:26px / width:230px，而这个按钮原来写的是
- * top:18px / right:18px —— 同一个角，于是它**压在搜索框上面**：
- * 实测重叠 60×24px，elementFromPoint 显示搜索框宽度 80% 之后就
- * 全部命中这个按钮，也就是输入框右侧有一片区域点不进去、
- * placeholder 尾部被切断（"…status:open" 之后的语法提示全看不见）。
- *
- * 这个 bug 是**从 v1 就有的**（v1 的 ui.js 与 settingsPanel.js 里
- * 坐标完全一样），不是我这一轮引入的。发现它靠的是**看图**：
- * 程序化的重叠检查当时漏了 #st-open（手写清单只列了 6 个 id），
- * 所以报了"无重叠"。现在 check-layout-overlap.mjs 改成从 DOM 枚举。
- *
- * 修法：挪到搜索框**左边**，留 12px 间隙。
- *   right = 26(搜索框右边距) + 230(搜索框宽) + 12(间隙) = 268
- * 竖直方向与搜索框对齐（搜索框 top:26 + 自身高 36，按钮高 32，
- * 视觉中心差 2px，所以按钮取 top:28）。 */
 #st-open{
-  position:fixed; z-index:20; top:28px; right:268px;
-  padding:7px 13px; font-size:11.5px; letter-spacing:.10em;
-  background:var(--panel); border:1px solid var(--line); color:var(--dim);
-  border-radius:8px; cursor:pointer; backdrop-filter:blur(12px);
-  transition:color .15s, border-color .15s, background .15s;
+  position:fixed; z-index:20; top:29px; right:286px; width:84px; height:36px;
+  box-sizing:border-box; display:flex; align-items:center; justify-content:center;
+  padding:0 12px; font-family:inherit; font-size:11.5px; letter-spacing:.08em;
+  background:rgba(12,17,29,.72); border:1px solid var(--line); color:var(--dim);
+  border-radius:8px; cursor:pointer; white-space:nowrap;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 22px rgba(3,8,18,.28);
+  transition:color .15s, border-color .15s, background .15s, box-shadow .15s;
 }
-#st-open:hover{ color:var(--accent); border-color:rgba(255,206,122,.45) }
-#st-open.on{ color:var(--accent); border-color:rgba(255,206,122,.55) }
+#st-open:hover{
+  color:var(--ink); background:rgba(148,178,220,.10); border-color:rgba(148,178,220,.34);
+}
+#st-open.on{
+  color:var(--accent); background:rgba(255,207,122,.08); border-color:rgba(255,207,122,.46);
+}
+#st-open:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px rgba(120,215,255,.28), 0 0 0 4px rgba(120,215,255,.10);
+}
+
+@media (max-width: 900px){
+  #settings{ width:min(308px, calc(100vw - 20px)); max-height:calc(100vh - 96px) }
+  #settings .st-group{ padding:12px 14px 14px }
+  #settings .st-label{ margin-bottom:9px }
+  #settings .st-reset.wide{ margin:11px 14px 2px; width:calc(100% - 28px) }
+  #settings .st-seg button{ min-width:44px; padding:4px 6px }
+  #settings .st-fams{ gap:4px 6px }
+}
 `
 
 /**
@@ -217,18 +323,19 @@ export function createSettingsPanel(cb = {}) {
     id: 'st-open',
     title: '设置 · 形态 / 参数 / 显示',
     onclick: () => toggle(),
-  }, ['设置 ⚙'])
+  }, ['设置'])
 
   /* ─────────── 面板骨架 ─────────── */
   const closeBtn = el('button', { class: 'st-close', title: '关闭', onclick: () => close() }, ['×'])
-  const head = el('div', { class: 'st-head' }, [el('span', {}, ['设置 ⚙']), closeBtn])
+  const head = el('div', { class: 'st-head' }, [el('span', {}, ['设置']), closeBtn])
   const body = el('div', { class: 'st-body' })
   const panel = el('div', { id: 'settings' }, [head, body])
 
   document.body.append(openBtn, panel)
 
   /* ─────────── 拖动标题栏（仿 shiyun 的 drag） ─────────── */
-  let pos = { x: Math.max(8, window.innerWidth - 312), y: 62 }
+  const initialX = Math.max(8, window.innerWidth - Math.min(308, window.innerWidth - 24) - 24)
+  let pos = { x: initialX, y: 64 }
   let drag = null
   head.addEventListener('pointerdown', (e) => {
     drag = { ox: e.clientX - pos.x, oy: e.clientY - pos.y }
@@ -236,8 +343,9 @@ export function createSettingsPanel(cb = {}) {
   })
   head.addEventListener('pointermove', (e) => {
     if (!drag) return
+    const edge = Math.max(4, window.innerWidth - panel.offsetWidth - 4)
     pos = {
-      x: Math.max(4, Math.min(window.innerWidth - 60, e.clientX - drag.ox)),
+      x: Math.max(4, Math.min(edge, e.clientX - drag.ox)),
       y: Math.max(4, Math.min(window.innerHeight - 40, e.clientY - drag.oy)),
     }
     place()

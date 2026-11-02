@@ -17,8 +17,13 @@ import { dirname, join } from 'node:path'
 
 import {
   SCHEMA_VERSION, VIEWS, SHAPES, COLORINGS,
-  encodeState, decodeState, mergeState, stateToHashInput, hashEquals,
+  encodeState, decodeState, decodeLocationState,
+  mergeState, stateToHashInput, hashEquals,
 } from '../src/urlState.js'
+import {
+  encodeProofLink, encodeProofHash, proofIdFromLocation,
+  withoutProofQuery,
+} from '../src/proofRouter.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -369,6 +374,34 @@ assert(realBad.length === 0, `${realIds.length} 个真实 id 全部往返正确`
 
 const sampleHash = encodeState({ node: realIds[0], view: 'cluster', coloring: 'status', shape: 'spiral' })
 console.log(`  例：${realIds[0]} → #${sampleHash}`)
+
+/* ═══════════════ 9. 证明页路由（query + hash） ═══════════════
+ *
+ * 旧版 hash 已把 p= 留给数值参数。证明页使用 ?p=<id>，并提供
+ * hash v1&k=<id> 的规范写法；两者叠加时必须同时保留星云设置。 */
+section('9. 证明页深链（不破坏旧 p= 参数）')
+const proofHash = encodeState({ proof: 'nullstellensatz', params: { brightness: 1.2 } })
+assert(proofHash.includes('k=nullstellensatz'), `proof 编码使用 k=　→　${proofHash}`)
+const proofDecoded = decodeState(proofHash)
+assert(proofDecoded.proof === 'nullstellensatz' && proofDecoded.params.brightness === 1.2,
+  'hash proof 与旧数值 p= 可同时解码', JSON.stringify(proofDecoded))
+const queryDecoded = decodeLocationState('?p=zariski-topology', '#v1&p=l1.2')
+assert(queryDecoded.proof === 'zariski-topology' && queryDecoded.params.brightness === 1.2,
+  'query ?p= 与 hash p= 命名空间隔离', JSON.stringify(queryDecoded))
+assert(decodeLocationState('?p=a%26b', '').proof === 'a&b',
+  'query proof id 正确解码特殊字符')
+assert(decodeLocationState('?p=', '#v1&k=fallback').proof === 'fallback',
+  '空 query proof 不覆盖合法 hash proof')
+let routeThrew = false
+try { decodeLocationState({ search: null, hash: Symbol('bad') }) } catch { routeThrew = true }
+assert(!routeThrew, 'decodeLocationState 对畸形 location-like 输入永不抛异常')
+assert(encodeProofLink('foo') === '?p=foo', 'encodeProofLink 默认生成 query 短链')
+assert(encodeProofLink('a&b').includes('p=a%26b'), 'encodeProofLink 转义特殊字符')
+assert(encodeProofHash('foo', { view: 'cluster' }) === 'v1&k=foo&w=cluster',
+  'encodeProofHash 生成规范 hash')
+assert(proofIdFromLocation('?p=query', '#v1&k=hash') === 'query',
+  'query proof 在冲突时优先')
+assert(withoutProofQuery('?p=foo&a=1') === '?a=1', 'withoutProofQuery 保留其它参数')
 
 /* ═══════════════ 汇总 ═══════════════ */
 console.log(`\n${'─'.repeat(48)}`)

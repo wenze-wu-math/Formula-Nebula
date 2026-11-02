@@ -17,6 +17,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { requireChrome } from './_chrome.mjs'
 
 const CONFIG = resolve('src', 'config.js')
 const original = readFileSync(CONFIG, 'utf8')
@@ -24,7 +25,7 @@ const m = original.match(/baseSize:\s*([\d.]+)/)
 if (!m) throw new Error('找不到 baseSize')
 console.log(`当前 baseSize = ${m[1]}（结束时恢复）\n`)
 
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+const CHROME = requireChrome()
 const URL = process.env.URL || 'http://localhost:5176/'
 const PORT = 9242
 
