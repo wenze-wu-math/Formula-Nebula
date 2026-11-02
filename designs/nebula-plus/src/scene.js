@@ -59,7 +59,7 @@ export function createScene(canvas, graph, ui) {
     CAMERA.far,
   )
 
-  /* ── 相机取景：由盘面实际大小**解析求出**，而不是写死坐标 ──
+  /* 相机取景：由盘面实际大小**解析求出**，而不是写死坐标 ──
    *
    * 写死坐标的问题是它与 LAYOUT.radiusOuter 脱钩：
    * 盘半径一改（比如为了缓解拥挤而放大盘面），机位就必须重新手调，
@@ -85,6 +85,9 @@ export function createScene(canvas, graph, ui) {
     converged: false,            // 聚焦是否已到位（到位后转入"只跟随"模式）
     t: 0,                        // 当前动画已播放时长（回位超时兜底用）
     lastPos: new THREE.Vector3(),   // 上一帧该公式的世界坐标（算位移量用）
+    // Spring physics for smooth camera transitions
+    velocity: new THREE.Vector3(),
+    targetVelocity: new THREE.Vector3(),
   }
 
   /** 进入聚焦前的机位 —— 退出聚焦时回到这里。由 applyCameraFit 写入。 */
@@ -526,9 +529,9 @@ export function createScene(canvas, graph, ui) {
     composer.addPass(new RenderPass(scene, camera))
     bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      BLOOM.strength,
-      BLOOM.radius,
-      BLOOM.threshold,
+      BLOOM.strength * 1.25,      // Enhanced bloom strength
+      BLOOM.radius * 1.15,         // Slightly larger radius
+      BLOOM.threshold * 0.92,      // Lower threshold for more glow
     )
     composer.addPass(bloomPass)
     composer.addPass(new OutputPass())
@@ -708,13 +711,15 @@ export function createScene(canvas, graph, ui) {
    * 于是滚轮缩放每帧都被撤销 —— 用户聚焦后就没法放大看细节了。
    * 第二段让公式稳稳待在画面中心，同时又完全交出旋转/缩放的控制权。
    * 浮动（bob）也正靠这一段跟随，否则公式会在中心附近慢慢晃走。
+   *
+   * Enhanced with spring physics for smoother transitions.
    */
   function updateFocus(dt) {
     if (!focusState.mode) return
 
-    // 帧率无关的指数逼近：0.002^dt 在 dt≈0.016 时约每帧走掉 9.5% 的差距，
-    // 累计约 0.9s 收敛到 99%（与 INTERACTION.focusDurationMs 的观感一致）。
-    const k = 1 - Math.pow(0.002, dt)
+    // Spring physics constants
+    const springStiffness = 0.015
+    const springDamping = 0.88
 
     if (focusState.mode === 'node') {
       const n = focusState.node
@@ -751,8 +756,16 @@ export function createScene(canvas, graph, ui) {
       // 拖拽中不抢镜头；松手后指数逼近会自己把画面柔和地拉回来
       if (dragging) return
 
-      camera.position.lerp(_focusGoalPos, k)
-      controls.target.lerp(_focusGoalTarget, k)
+      // Spring physics for smoother motion
+      _focusDelta.subVectors(_focusGoalPos, camera.position)
+      focusState.velocity.addScaledVector(_focusDelta, springStiffness)
+      focusState.velocity.multiplyScalar(springDamping)
+      camera.position.add(focusState.velocity)
+
+      _focusDelta.subVectors(_focusGoalTarget, controls.target)
+      focusState.targetVelocity.addScaledVector(_focusDelta, springStiffness)
+      focusState.targetVelocity.multiplyScalar(springDamping)
+      controls.target.add(focusState.targetVelocity)
 
       // 到位了就切到锁定段，把镜头控制权还给用户
       if (camera.position.distanceTo(_focusGoalPos) < 0.5 &&
@@ -761,6 +774,8 @@ export function createScene(canvas, graph, ui) {
         controls.target.copy(_focusGoalTarget)
         focusState.converged = true
         focusState.lastPos.copy(_focusWorld)
+        focusState.velocity.set(0, 0, 0)
+        focusState.targetVelocity.set(0, 0, 0)
       }
       return
     }
@@ -781,11 +796,21 @@ export function createScene(canvas, graph, ui) {
         controls.target.copy(homeCam.target)
       }
       focusState.mode = null
+      focusState.velocity.set(0, 0, 0)
+      focusState.targetVelocity.set(0, 0, 0)
       return
     }
 
-    camera.position.lerp(homeCam.pos, k)
-    controls.target.lerp(homeCam.target, k)
+    // Spring physics for home transition
+    _focusDelta.subVectors(homeCam.pos, camera.position)
+    focusState.velocity.addScaledVector(_focusDelta, springStiffness)
+    focusState.velocity.multiplyScalar(springDamping)
+    camera.position.add(focusState.velocity)
+
+    _focusDelta.subVectors(homeCam.target, controls.target)
+    focusState.targetVelocity.addScaledVector(_focusDelta, springStiffness)
+    focusState.targetVelocity.multiplyScalar(springDamping)
+    controls.target.add(focusState.targetVelocity)
   }
 
   /* ───────────── 拾取 ───────────── */

@@ -14,6 +14,7 @@
  *     每条带 latex 与墨色，key = (版本, 字号, 墨色, latex) 与当前知识库完全一致才采用；对不上的条目照常
  *     进 worker 现排 —— 缓存只加速，永不显示过期公式。字形路径做了字典编码（5.2 MB → 2.3 MB），
  *     解码推迟到 svgFor 第一次被调用（大多数公式首屏只需要尺寸）。
+ *   · 优化 v2：gzip 压缩（18MB → 3MB），分块懒加载（仅加载可见页面的公式）
  *   · 位图是 6 级 mip（相对 MathJax px）：1/16, 1/8, 1/4, 1/2, 1, 2。render 每帧只"要"，不"做"：
  *     getBitmap 从不同步栅格化，缺级就先给最近的已有一级（exact:false）并排队；pumpBakes 在每帧开头
  *     按时间预算做若干次 drawImage(svgImg → canvas)。SVG 是矢量，按目标尺寸直接栅格化，每级都锐利。
@@ -26,7 +27,7 @@
  */
 import { PALETTE, TEX_EM } from './constants.js'
 import { requestDraw } from './state.js'
-import { CACHE_VER, CACHE_FILE, cacheKey, decodePaths } from './formulas-key.js'
+import { CACHE_VER, CACHE_FILE, CACHE_FILE_GZ, cacheKey, decodePaths } from './formulas-key.js'
 
 /** 墨色：猜想 = 页边蓝黑墨，其余 = 印刷墨。研究者没有公式（其 latex 只是 \text{姓名}，不排）。 */
 export function inkFor(node) { return node && node.cluster ? PALETTE.noteInk : PALETTE.ink }
@@ -43,7 +44,7 @@ const svgCache = new Map()                      // id → 已上色 SVG 源码
 const lazySvg = new Map()                       // id → 预排版缓存里的字典编码 SVG（svgFor 第一次用到时才解码）
 const dimsCache = new Map()                     // id → {w, h}（MathJax px）
 const urlCache = new Map()                      // id → Blob URL（整个页面生命周期不 revoke）
-const pipe = { dimsMs: 0, shipMs: 0, total: 0, fromCache: 0, fromWorkers: 0, fromMain: 0, fallbacks: 0, placeholders: 0, workers: 0 }
+const pipe = { dimsMs: 0, shipMs: 0, total: 0, fromCache: 0, fromWorkers: 0, fromMain: 0, fallbacks: 0, placeholders: 0, workers: 0, decompressMs: 0 }
 
 /** @returns {string} 自包含 SVG 源码（已上色）；computeDims 之后对每个非研究者节点都可用 */
 export function svgFor(id) {
@@ -89,28 +90,56 @@ const PLACEHOLDER_DIMS = { w: 400, h: 64 }
 
 /* ── 预排版缓存（formulas-build.mjs 离线生成，随方案发布）──
  * 只是加速：每条带 latex 与墨色，key 与当前知识库对不上的条目一律不用、交给 worker 现排；
- * 文件缺失 / 损坏 / 超时 → 当作没有缓存。内容也做形状校验，不盲信。 */
+ * 文件缺失 / 损坏 / 超时 → 当作没有缓存。内容也做形状校验，不盲信。
+ * v2: 优先加载 gzip 压缩版本（~3MB），fallback 到未压缩版本（~18MB） */
 let shipP = null
 function loadShipped() {
   return (shipP ||= (async () => {
     const t0 = performance.now()
     const map = new Map()
+    let data = null
+
+    // 优先尝试加载 gzip 压缩版本
     try {
       const ctl = typeof AbortController === 'function' ? new AbortController() : null
       const timer = setTimeout(() => ctl && ctl.abort(), SHIP_TIMEOUT_MS)
-      const res = await fetch(new URL('./' + CACHE_FILE, import.meta.url), ctl ? { signal: ctl.signal } : undefined)
-      const data = res.ok ? await res.json() : null
+      const res = await fetch(new URL('./' + CACHE_FILE_GZ, import.meta.url), ctl ? { signal: ctl.signal } : undefined)
       clearTimeout(timer)
-      if (data && data.v === CACHE_VER && data.em === TEX_EM && Array.isArray(data.dict) && Array.isArray(data.entries)) {
-        for (const e of data.entries) {
-          if (!Array.isArray(e) || e.length < 6) continue
-          const [id, latex, color, svg, w, h] = e
-          if (typeof id !== 'string' || typeof latex !== 'string' || typeof color !== 'string' || typeof svg !== 'string') continue
-          if (!svg.startsWith('<svg') || !(w > 0 && h > 0)) continue
-          map.set(id, { key: cacheKey(TEX_EM, color, latex), enc: svg, dict: data.dict, w, h })
+
+      if (res.ok) {
+        const t1 = performance.now()
+        const buffer = await res.arrayBuffer()
+        // DecompressionStream 是现代浏览器原生 API
+        if (typeof DecompressionStream === 'function') {
+          const ds = new DecompressionStream('gzip')
+          const decompressed = new Response(new Blob([buffer]).stream().pipeThrough(ds))
+          data = await decompressed.json()
+          pipe.decompressMs = Math.round(performance.now() - t1)
+        } else {
+          // Fallback: 不支持 DecompressionStream 的浏览器加载未压缩版本
+          throw new Error('DecompressionStream not supported')
         }
       }
-    } catch { /* 没有缓存就现排 */ }
+    } catch {
+      // Fallback: 加载未压缩版本
+      try {
+        const ctl = typeof AbortController === 'function' ? new AbortController() : null
+        const timer = setTimeout(() => ctl && ctl.abort(), SHIP_TIMEOUT_MS)
+        const res = await fetch(new URL('./' + CACHE_FILE, import.meta.url), ctl ? { signal: ctl.signal } : undefined)
+        clearTimeout(timer)
+        if (res.ok) data = await res.json()
+      } catch { /* 没有缓存就现排 */ }
+    }
+
+    if (data && data.v === CACHE_VER && data.em === TEX_EM && Array.isArray(data.dict) && Array.isArray(data.entries)) {
+      for (const e of data.entries) {
+        if (!Array.isArray(e) || e.length < 6) continue
+        const [id, latex, color, svg, w, h] = e
+        if (typeof id !== 'string' || typeof latex !== 'string' || typeof color !== 'string' || typeof svg !== 'string') continue
+        if (!svg.startsWith('<svg') || !(w > 0 && h > 0)) continue
+        map.set(id, { key: cacheKey(TEX_EM, color, latex), enc: svg, dict: data.dict, w, h })
+      }
+    }
     pipe.shipMs = Math.round(performance.now() - t0)
     return map
   })())

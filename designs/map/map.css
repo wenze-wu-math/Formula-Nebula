@@ -3,8 +3,8 @@
  * 不写任何影响 #map 尺寸的规则（canvas 尺寸由 index.html 内联样式与 main.js 管）。 */
 
 :root {
-  --ui-paper: #fbf8f1;
-  --ui-paper-2: #f4eee1;
+  --ui-paper: #f5ede0;       /* 更偏羊皮纸色调 */
+  --ui-paper-2: #ebe2cf;
   --ui-hover: #f3ecdc;
   --ui-edge: rgba(80, 64, 40, .22);
   --ui-edge-soft: rgba(80, 64, 40, .12);
@@ -16,6 +16,7 @@
   --ui-accent: #b5832a;
   --ui-gold: #d9a521;
   --ui-sea: #24486a;
+  --ui-sepia: rgba(112, 66, 20, 0.08);  /* 整体 sepia 叠层 */
   --ui-font: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Source Han Sans SC", system-ui, sans-serif;
   --ui-serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
   --ui-latin: Georgia, "Times New Roman", serif;
@@ -37,6 +38,10 @@
   border: 1px solid var(--ui-edge);
   border-radius: 6px;
   box-shadow: var(--ui-shadow);
+  /* 羊皮纸纹理背景 */
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 125, 107, .02) 2px, rgba(139, 125, 107, .02) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 125, 107, .015) 2px, rgba(139, 125, 107, .015) 4px);
 }
 
 .ui-glyph { display: inline-block; vertical-align: middle; max-width: none; flex: none; }
@@ -137,7 +142,13 @@
 
 /* ═════════ 标题图框 + 图例 #cartouche ═════════ */
 #cartouche { left: 16px; bottom: 16px; width: 300px; z-index: 12; }
-.ui-cartouche { padding: 10px; }
+.ui-cartouche {
+  padding: 10px;
+  /* 装饰性边框增强：内阴影 + 外光晕 */
+  box-shadow:
+    var(--ui-shadow),
+    inset 0 0 8px rgba(139, 125, 107, .08);
+}
 .ui-cart-title {
   position: relative;
   padding: 12px 12px 10px;
@@ -149,6 +160,28 @@
   background:
     radial-gradient(ellipse at 50% 0%, rgba(236, 220, 180, .35), transparent 70%),
     var(--ui-paper);
+}
+/* 装饰性角花（CSS 伪元素） */
+.ui-cart-title::before,
+.ui-cart-title::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #8a7f73;
+  opacity: 0.6;
+}
+.ui-cart-title::before {
+  top: 6px;
+  left: 6px;
+  border-right: none;
+  border-bottom: none;
+}
+.ui-cart-title::after {
+  bottom: 6px;
+  right: 6px;
+  border-left: none;
+  border-top: none;
 }
 .ui-cart-h1 {
   font-family: var(--ui-serif); font-weight: 700;
@@ -334,7 +367,22 @@ a.ui-work-title:hover { border-bottom-color: currentColor; }
 .ui-bake-bar i { display: block; height: 100%; width: 0; background: var(--ui-accent); transition: width .2s; }
 
 .ui-hud-side { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.ui-compass { width: 44px; height: 52px; filter: drop-shadow(0 2px 4px rgba(40, 50, 60, .18)); }
+.ui-compass {
+  width: 44px;
+  height: 52px;
+  filter: drop-shadow(0 2px 4px rgba(40, 50, 60, .18));
+}
+/* 指北针动画：微晃动效果 */
+.ui-compass-needle {
+  transform-origin: 24px 32px;
+  animation: compass-sway 4s ease-in-out infinite;
+}
+@keyframes compass-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1.5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-1.2deg); }
+}
 .ui-zoom { display: flex; flex-direction: column; overflow: hidden; }
 .ui-zoom-btn { width: 34px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--ui-ink-2); }
 .ui-zoom-btn + .ui-zoom-btn { border-top: 1px solid var(--ui-edge-soft); }
@@ -371,7 +419,28 @@ a.ui-work-title:hover { border-bottom-color: currentColor; }
 }
 @keyframes ui-drawer-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 
+/* 距离测量工具样式（ruler mode） */
+.ui-ruler-line {
+  stroke: #d9a521;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+  fill: none;
+  pointer-events: none;
+}
+.ui-ruler-label {
+  background: rgba(217, 165, 33, 0.95);
+  color: #2b2a26;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
 @media (prefers-reduced-motion: reduce) {
   #panel.is-entering { animation: none; }
   #hud, .ui-scale-bar, .ui-bake, .ui-bake-bar i, .ui-btn { transition: none; }
+  .ui-compass-needle { animation: none; }
 }

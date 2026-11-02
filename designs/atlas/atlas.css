@@ -7,6 +7,7 @@ html, body {
   overflow: hidden;
   background: #050a15;          /* = COLOR.bgOuter，画布未画出前也不闪白 */
   color: #f1e7cf;
+  transition: background-color 0.32s ease, color 0.32s ease;
 }
 body {
   min-height: 0;                /* 覆盖 style-base 的 100vh，避免移动端地址栏伸缩时出滚动条 */
@@ -15,7 +16,8 @@ body {
 }
 
 /* 画布：固定铺满视口。input.js 依赖"clientX/Y = 画布 css px"，所以必须 inset: 0 且无边框 / 变换。
- * touch-action: none —— 平移、捏合全部由 pointer events 自己处理，浏览器不要滚动或缩放页面。 */
+ * touch-action: none —— 平移、捏合全部由 pointer events 自己处理，浏览器不要滚动或缩放页面。
+ * 添加平滑缩放过渡效果 */
 #atlas-canvas {
   position: fixed; inset: 0;
   width: 100%; height: 100%;
@@ -25,9 +27,10 @@ body {
   -webkit-touch-callout: none;
   cursor: grab;
   outline: none;
+  transition: transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 #atlas-canvas.pointing { cursor: pointer; }
-#atlas-canvas.dragging { cursor: grabbing; }
+#atlas-canvas.dragging { cursor: grabbing; transition: none; }
 
 /* UI 层铺满视口但自身不接收指针，空白处的事件穿透到画布；
  * 直接子元素各自接收（面板、搜索、图例、按钮）。tooltip / 提示 / 读屏区域永远不拦截。 */
@@ -51,3 +54,21 @@ body {
 
 /* 键盘焦点：金色描边，与星图配色一致（覆盖 style-base 的 --accent） */
 #atlas-ui :focus-visible { outline: 2px solid rgba(255, 226, 160, 0.85); outline-offset: 2px; }
+
+/* 改进的文字渲染与排版 */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* 星座连线淡入动画（用于悬停显示） */
+@keyframes fade-in-line {
+  from { opacity: 0; stroke-dashoffset: 20; }
+  to { opacity: 1; stroke-dashoffset: 0; }
+}
+
+.constellation-line-hover {
+  animation: fade-in-line 0.28s ease-out forwards;
+}

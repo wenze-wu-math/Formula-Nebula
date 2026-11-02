@@ -250,7 +250,8 @@ export const LAYOUT = {
 
   // 松弛迭代次数。200 比 60 明显更"压实"（公式推开得更充分），
   // 而 600 相比 200 几乎无提升 —— 200 是性价比拐点。
-  relaxIterations: 200,
+  // Temporarily reduced to 150 for faster startup (was: 200)
+  relaxIterations: 150,
 
   // 目标分离度：1.0 = 要求屏幕上完全分开，< 1 允许压进来。
   //

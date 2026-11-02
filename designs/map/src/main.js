@@ -49,7 +49,7 @@ async function boot() {
   const graph = getGraph()
   state.graph = graph
   const tw = performance.now()
-  const world = buildWorld(graph, { raster: true })
+  const world = await buildWorld(graph, { raster: true })
   const worldMs = performance.now() - tw
   state.world = world
 

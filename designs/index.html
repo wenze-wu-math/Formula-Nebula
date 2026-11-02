@@ -42,6 +42,7 @@
     }
     .badge-ok { color: var(--cyan); }
     .badge-wip { color: var(--gold); }
+    .badge-new { color: var(--accent); }
     .badge-origin { color: var(--violet); }
 
     .meta {
@@ -99,6 +100,14 @@
      status 用于标注完成度（'ok' 已验收 / 'wip' 部分完成）。 */
   const DESIGNS = [
     {
+      id: 'analytics',
+      title: 'Analytics Dashboard',
+      meta: 'GRAPH INSIGHTS · Interactive Metrics Panel',
+      desc: '知识图谱**统计分析**面板：度分布、中心性排名、社区检测、跨源连接矩阵、家族连接热图、孤立节点、高引用定理、证明完整度计量。纯 Canvas 绘制，无外部图表库。',
+      status: 'new',
+      note: '8 个交互式指标',
+    },
+    {
       id: 'atlas',
       title: 'A · 公式星图',
       meta: 'ATLAS COELESTIS · 2D 古典星图',
@@ -124,6 +133,14 @@
       thumb: './manuscript/thumb.png',
       status: 'ok',
       note: '验收 32/32',
+    },
+    {
+      id: 'timeline',
+      title: 'T · 历史时间线',
+      meta: 'HISTORICAL TIMELINE · 时间维度可视化',
+      desc: '按年份横向排列所有定理与猜想（1800-2025），气泡颜色对应家族或状态。支持缩放聚焦到任意年代区间，点击查看同时期定理间的连接关系。',
+      status: 'wip',
+      note: '新增功能',
     },
     {
       id: '',
@@ -181,7 +198,9 @@
       const badge = document.createElement('span')
       badge.className = `badge badge-${d.status}`
       badge.textContent = d.status === 'ok' ? '已完成'
-        : d.status === 'wip' ? '部分完成' : '原版'
+        : d.status === 'wip' ? '部分完成'
+        : d.status === 'new' ? '新增'
+        : '原版'
       head.append(h, badge)
     } else head.append(h)
     a.append(head)

@@ -445,10 +445,19 @@ function buildLegend(root, runQuery) {
   const head = el('div', 'al-head')
   const titleTxt = el('h2', 'al-title')
   titleTxt.append(document.createTextNode('图例'), el('span', 'al-title-latin', ' · LEGENDA'))
+
+  // Theme switcher button
+  const themeBtn = el('button', 'al-theme')
+  themeBtn.type = 'button'
+  themeBtn.textContent = '🌙'
+  themeBtn.title = '切换主题'
+  themeBtn.setAttribute('aria-label', '切换主题')
+
   const toggle = el('button', 'al-toggle')
   toggle.type = 'button'
   toggle.setAttribute('aria-controls', 'atlas-legend-body')
-  head.append(titleTxt, toggle)
+  head.append(titleTxt, themeBtn, toggle)
+
   const body = el('div', 'al-body')
   body.id = 'atlas-legend-body'
 
@@ -505,6 +514,21 @@ function buildLegend(root, runQuery) {
   live.setAttribute('aria-live', 'off')
   body.append(magSec, dsoSec, lineSec)
   root.append(head, body, live)
+
+  // Theme cycling: dark → light → sepia → dark
+  const themes = ['dark', 'light', 'sepia']
+  let currentTheme = 0
+  const themeIcons = { dark: '🌙', light: '☀️', sepia: '📜' }
+
+  themeBtn.addEventListener('click', () => {
+    currentTheme = (currentTheme + 1) % themes.length
+    const theme = themes[currentTheme]
+    document.body.dataset.theme = theme
+    themeBtn.textContent = themeIcons[theme]
+    themeBtn.title = `当前: ${theme === 'dark' ? '暗色' : theme === 'light' ? '亮色' : '羊皮纸'} 主题`
+    // Trigger theme change event
+    actions.setTheme?.(theme)
+  })
 
   let lastText = ''
   const updateLive = () => {

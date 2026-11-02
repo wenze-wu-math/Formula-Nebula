@@ -285,7 +285,7 @@ export async function bakeAll(items, onProgress, opts = {}) {
   const errors = []
   const results = new Array(total)      // 按下标放，最后建 Map 保序
 
-  const { lookahead = 8, ...bakeOpts } = opts
+  const { lookahead = 16, ...bakeOpts } = opts  // Increased from 8 to 16 for better parallelism
   const depth = Math.max(1, Math.min(lookahead, total))
 
   /** 已经排版并启动解码、但还没收尾的槽位 */

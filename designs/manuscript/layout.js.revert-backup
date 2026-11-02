@@ -1,0 +1,232 @@
+/**
+ * designs/manuscript/layout.js — 模块 M1 排版引擎：整个知识库排成一册 10 页的手稿（SPEC §4）。
+ *
+ * buildLayout(graph, dims, measure) 是纯函数、确定性，不访问 DOM / state，可在 node 下用假 measure 测。
+ * 流程：
+ *   1. 网格：10 页同尺寸，行优先 5×2 [卷首, I–IV] / [V–VIII, 题跋]，页边批注区一律在右（§4.1）。
+ *   2. 每章：选题记 → 诗节划分（layout-stanza）。
+ *   3. 猜想归章 + 页边容量检查（layout-notes）—— 批注块高度与章无关，所以能在排正文前完成；
+ *      正文由此知道哪些诗句被批注，好给上标字母预留宽度。
+ *   4. 每章：页眉/章头/导言/题记（与 k 无关）→ 二分填充系数 k 排两栏正文 → 栏内弧 → 页边批注一维避让 → 补上标字母。
+ *      若某章 k=0.75 仍溢出：所有页等高加高 200 后整卷重排（确定性）。
+ *   5. 卷首、题跋、章际丝线、阅读顺序。
+ * 分文件：layout-util（常量/量宽/断行）、layout-stanza、layout-chapter、layout-notes、layout-pages。
+ */
+import { CHAPTERS, PALETTE } from './constants.js'
+import { countOverlaps, runRect } from './geom.js'
+import { stripMd } from '../shared/md.js'
+import { G, V, SIZE, makeMeasurer, mkRun, byImportance, cnNum } from './layout-util.js'
+import { pickEpigraph, makeStanzas } from './layout-stanza.js'
+import { chapterHead, fitBody, emitBody, emitArcs } from './layout-chapter.js'
+import { noteGeom, assignNotes, anchorVerse, placeNotes } from './layout-notes.js'
+import { pageFrame, buildFront, buildColophon, buildThreads } from './layout-pages.js'
+
+const MAX_GROW = 12   // 最多加高 12 × 200
+
+export function buildLayout(graph, dims, measure) {
+  const m = makeMeasurer(measure)
+  for (let grow = 0; grow <= MAX_GROW; grow++) {
+    const L = attempt(graph, dims, m, G.PAGE_H + grow * 200, grow === MAX_GROW)
+    if (L) return L
+  }
+  throw new Error('layout: 无法排下')   // 不会到这里（最后一次 attempt 强制完成）
+}
+
+/* ───────── 网格 ───────── */
+/**
+ * 生成页槽位（OLD BEHAVIOR: 每章恰好一页）。
+ */
+function makePages(pageH) {
+  /* 展开成扁平的页描述：{ key, chapterKey, part } */
+  const flat = [{ key: 'front', kind: 'front' }]
+  for (const c of CHAPTERS) {
+    flat.push({ key: c.key, kind: 'chapter', chapterKey: c.key, part: 0, parts: 1 })
+  }
+  flat.push({ key: 'colophon', kind: 'colophon' })
+
+  return flat.map((slot, i) => {
+    const key = slot.key
+    const x = (i % 5) * (G.PAGE_W + G.GAP), y = Math.floor(i / 5) * (pageH + G.GAP)
+    const kind = slot.kind
+    const ch = CHAPTERS.find((c) => c.key === key)
+    const bodyBottom = y + pageH - V.BODY_BOTTOM_FROM_BOTTOM
+    const chapterPage = kind === 'chapter'
+    const text = chapterPage
+      ? { x: x + G.PAD_L, y: y + G.PAD_T, w: G.TEXT_W, h: bodyBottom - (y + G.PAD_T) }
+      : { x: x + G.PAD_L, y: y + G.PAD_T, w: G.PAGE_W - G.PAD_L - G.PAD_R, h: bodyBottom - (y + G.PAD_T) }
+    const mTop = y + V.DRULE + 40
+    const margin = chapterPage ? { x: x + G.PAGE_W - G.PAD_R - G.MARGIN_W, y: mTop, w: G.MARGIN_W, h: bodyBottom - mTop } : null
+    return {
+      index: i, key, kind, chapter: ch ? ch.index : -1, x, y, w: G.PAGE_W, h: pageH, text, margin,
+      marginSide: chapterPage ? 'right' : null,
+      folio: ch ? ch.roman : kind === 'front' ? '首' : '跋',
+      titleAnchor: { x: chapterPage ? text.x + text.w / 2 : x + G.PAGE_W / 2, y: y + V.DRULE + 24 },
+      seed: 1009 + i * 7919,
+    }
+  })
+}
+
+/* ───────── 一次完整排版；页高 pageH 不够时返回 null ───────── */
+function attempt(graph, dims, m, pageH, force) {
+  const L = { bounds: null, pages: makePages(pageH), items: [], byId: new Map(), texts: [], paras: [], rules: [], ornaments: [],
+    arcs: [], threads: [], hotspots: [], legend: [], chapters: [], order: [] }
+
+  // 2. 每章的诗句、题记、诗节
+  const chapterOf = new Map()
+  const plans = CHAPTERS.map((ch) => {
+    const verses = graph.nodes.filter((n) => n.family === ch.key && !n.cluster && !n.researcher)
+    for (const n of verses) chapterOf.set(n.id, ch.key)
+    const epi = pickEpigraph(verses, dims, G.TEXT_W)
+    const rest = verses.filter((n) => n !== epi)
+    const stanzas = makeStanzas(rest, graph)
+    const byRank = [...rest].sort(byImportance)
+    const rr = new Map(byRank.map((n, i) => [n.id, byRank.length > 1 ? 1 - i / (byRank.length - 1) : 1]))
+    let ord = 1
+    const stanzaNodes = stanzas.map((s) => s.ids.map((id, j) => ({ n: graph.byId.get(id), tier: j === 0 ? 'core' : 'verse', rr: rr.get(id), ordinal: ++ord })))
+    return { ch, verses, verseCount: verses.length, epi: { ...epi, summaryPlain: stripMd(epi.summary || '') }, epiNode: epi, stanzas, stanzaNodes }
+  })
+
+  // 3. 猜想归章（页边容量按"页边区高度"估：正文起点之前的页边也可用）
+  const geomCache = new Map()
+  const geomOf = (id) => { let g = geomCache.get(id); if (!g) { g = noteGeom(m, dims, graph.byId.get(id)); geomCache.set(id, g) } return g }
+  const firstPageOf = (ck) => L.pages.find((pg) => pg.key === ck && pg.kind === 'chapter')
+  const capOf = (ck) => firstPageOf(ck)?.margin?.h ?? 0
+  const notesBy = assignNotes(graph, chapterOf, capOf, geomOf)
+  const anchorOf = new Map(), refCounts = new Map()
+  for (const p of plans) {
+    const ids = new Set(p.verses.map((n) => n.id))
+    for (const n of notesBy.get(p.ch.key)) {
+      const a = anchorVerse(graph, n, ids)
+      if (a) { anchorOf.set(n.id, a); refCounts.set(a, (refCounts.get(a) || 0) + 1) }
+    }
+  }
+
+  // 4. 章页（OLD BEHAVIOR: 单页排版，不分页）
+  const verseItems = new Map()
+  for (const p of plans) {
+    const ch = p.ch
+    const page = L.pages.find((pg) => pg.key === ch.key && pg.kind === 'chapter')
+    pageFrame(m, L, page, null)
+    const notes = notesBy.get(ch.key)
+    const { bodyTop, epiItem } = chapterHead(m, L, page, ch, p, dims, notes.length, refCounts.get(p.epiNode.id) || 0)
+    const colH = page.text.y + page.text.h - bodyTop
+    const fit = fitBody(m, dims, p, colH, refCounts)
+    if (!fit && !force) return null
+    const fitted = fit || forceFit(m, dims, p, colH, refCounts)
+    p.k = fitted.k
+    p.util = [fitted.f.used / colH, fitted.f.used / colH]
+
+    const b = emitBody(m, L, page, ch, p, fitted, bodyTop)
+    emitArcs(L, graph, page, b)
+
+    // 页边批注：理想 y = 锚诗句的公式顶
+    const all = [epiItem, ...b.items]
+    for (const it of all) verseItems.set(it.id, it)
+    const ideal = new Map()
+    for (const n of notes) { const a = anchorOf.get(n.id); const it = a && verseItems.get(a); ideal.set(n.id, it ? it.formula.y : page.margin.y) }
+    const noteItems = placeNotes(m, page, ch, notes, geomOf, ideal, anchorOf)
+    L.items.push(...all, ...noteItems)
+    L.chapters.push({
+      key: ch.key, index: ch.index, page: page.index, epigraphId: p.epiNode.id,
+      verseIds: [p.epiNode.id, ...p.stanzas.flatMap((s) => s.ids)],
+      noteIds: noteItems.map((it) => it.id),
+      stanzas: p.stanzas.map((s, i) => ({ ordinal: i + 1, title: `其${cnNum(i + 1)} · ${s.head.name}`, ids: [...s.ids] })),
+      k: p.k, util: p.util,
+    })
+    // 补上标引用字母：同一句被多条批注时按字母序连写「a, c」
+    const byAnchor = new Map()
+    for (const it of noteItems) if (it._anchor) { if (!byAnchor.has(it._anchor)) byAnchor.set(it._anchor, []); byAnchor.get(it._anchor).push(it) }
+    for (const [vid, list] of byAnchor) {
+      const v = verseItems.get(vid)
+      let x = v._refX
+      list.forEach((note, i) => {
+        const t = note._letter + (i < list.length - 1 ? ',' : '')
+        const r = mkRun(m, x, v._refY, t, 'hand', 16, { color: PALETTE.rubric, role: 'ref', itemId: note.id })
+        note.ref.push(r)
+        x += r.w + 4
+      })
+    }
+  }
+
+  // 5. 卷首、题跋
+  const verseCount = new Map(plans.map((p) => [p.ch.key, p.verseCount]))
+  const noteCount = new Map(plans.map((p) => [p.ch.key, notesBy.get(p.ch.key).length]))
+  const signs = buildColophon(m, L, L.pages[9], graph, {
+    verseTotal: plans.reduce((s, p) => s + p.verseCount, 0), noteTotal: [...noteCount.values()].reduce((a, b) => a + b, 0),
+  })
+  buildFront(m, L, L.pages[0], { verseCount, noteCount, signCount: signs.length })
+  L.items.push(...signs)
+
+  // 阅读顺序：每章 题记 → 诗节诗句 → 页边批注（字母序）；最后题跋署名
+  for (const c of L.chapters) L.order.push(...c.verseIds, ...c.noteIds)
+  L.order.push(...signs.map((s) => s.id))
+
+  for (const it of L.items) { delete it._refX; delete it._refY; delete it._letter; delete it._anchor; L.byId.set(it.id, it) }
+  const last = L.pages[L.pages.length - 1]
+  L.bounds = { x: -G.BLEED, y: -G.BLEED, w: last.x + last.w + 2 * G.BLEED, h: last.y + last.h + 2 * G.BLEED }
+
+  // 章际丝线：label 避开全卷可读的字（章号、章题、拉丁副题、题记公式与署名）
+  const avoid = []
+  for (const t of L.texts) if (t.label) avoid.push(runRect(t))
+  for (const it of L.items) {
+    if (it.tier === 'epigraph') avoid.push(it.box)
+    else if (it.formula) avoid.push(it.formula)
+    if (it.kind === 'note' && it.glyph) avoid.push(runRect(it.glyph))
+  }
+  for (const p of L.paras) avoid.push({ x: p.x, y: p.y - p.size, w: p.w, h: p.lines.length * p.lineHeight + p.size })
+  buildThreads(L, graph, avoid)
+  return L
+}
+
+/** 最后一次加高后仍排不下（实际不会发生）：取 k=0.75 的结果，允许溢出由 checkLayout 报告 */
+function forceFit(m, dims, p, colH, refCounts) {
+  return fitBody(m, dims, p, 1e6, refCounts)
+}
+
+/**
+ * 版面自检（SPEC §4.1）：missing / overlaps（label 文字、公式、印章两两相交，countOverlaps shrink=0）/ outOfPage。
+ * outOfPage 除了条目 box，还检查每条静态文字、段落行与首字是否在某一页内（与其所在页比较）。
+ */
+export function checkLayout(layout, graph) {
+  const missing = graph.nodes.filter((n) => !layout.byId.has(n.id)).map((n) => n.id)
+  const { rects, tags } = collectLabelRects(layout)
+  const { pairs } = countOverlaps(rects, 0)
+  const overlaps = pairs.map(([a, b]) => [tags[a], tags[b]])
+  const outOfPage = []
+  const inside = (r, p) => r.x >= p.x && r.y >= p.y && r.x + r.w <= p.x + p.w && r.y + r.h <= p.y + p.h
+  for (const it of layout.items) {
+    const p = layout.pages[it.page]
+    if (!inside(it.box, p)) outOfPage.push(it.id)
+    for (const r of [...it.ref, it.lineNo]) if (r && !inside(runRect(r), p)) outOfPage.push(`${it.id}:${r.role}`)
+  }
+  const pageOf = (r) => layout.pages.find((p) => r.x + r.w / 2 >= p.x && r.x + r.w / 2 <= p.x + p.w && r.y + r.h / 2 >= p.y && r.y + r.h / 2 <= p.y + p.h)
+  const check = (r, tag) => { const p = pageOf(r); if (!p || !inside(r, p)) outOfPage.push(tag) }
+  for (const t of layout.texts) check(runRect(t), `text:${t.role}:${t.text.slice(0, 12)}`)
+  for (const p of layout.paras) {
+    for (const ln of p.lines) check(runRect({ ...ln, size: p.size, align: 'left' }), 'para-line')
+    check(runRect({ ...p.dropCap, align: 'left' }), 'drop-cap')
+  }
+  return { missing, overlaps, outOfPage }
+}
+
+/**
+ * 参与重叠检查的矩形：label 文字（含段落行、首字）、公式、印章。
+ * 导出给测试脚本用（例如外扩 2 世界 px 检查"留白余量"）。
+ */
+export function collectLabelRects(layout) {
+  const rects = [], tags = []
+  for (const t of layout.texts) if (t.label) { rects.push(runRect(t)); tags.push(`text:${t.role}:${t.text.slice(0, 12)}`) }
+  for (const p of layout.paras) {
+    for (const ln of p.lines) { rects.push(runRect({ ...ln, size: p.size, align: 'left' })); tags.push('para:' + ln.text.slice(0, 8)) }
+    rects.push(runRect({ ...p.dropCap, align: 'left' })); tags.push('dropcap:' + p.dropCap.text)
+  }
+  for (const it of layout.items) {
+    for (const r of [it.name, ...it.sub, it.lineNo, it.glyph, ...it.ref]) if (r && r.label) { rects.push(runRect(r)); tags.push(`${it.id}:${r.role}`) }
+    if (it.formula) { rects.push(it.formula); tags.push(`${it.id}:formula`) }
+    if (it.seal) { rects.push({ x: it.seal.x, y: it.seal.y, w: it.seal.size, h: it.seal.size }); tags.push(`${it.id}:seal`) }
+  }
+  return { rects, tags }
+}
+
+export { SIZE as LAYOUT_SIZE }
+

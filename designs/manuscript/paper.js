@@ -39,25 +39,28 @@ function tileNoise(R, period) {
   }
 }
 
-/** 纸纤维 tile：低频云絮（纸浆厚薄）+ 像素颗粒 + 短纤维线（含少量跨边的线，画两次保证无缝） */
+/** 纸纤维 tile：低频云絮（纸浆厚薄）+ 像素颗粒 + 短纤维线（含少量跨边的线，画两次保证无缝）+ 增强纤维细节 */
 function makeFiberTile() {
   const c = mk(TILE, TILE)
   const g = c.getContext('2d')
   const R = rng(0x5eed)
-  const n1 = tileNoise(R, 8), n2 = tileNoise(R, 32)
+  const n1 = tileNoise(R, 8), n2 = tileNoise(R, 32), n3 = tileNoise(R, 64)
   const img = g.createImageData(TILE, TILE)
   const d = img.data
   for (let y = 0; y < TILE; y++) for (let x = 0; x < TILE; x++) {
     const cloud = n1((x / TILE) * 8, (y / TILE) * 8) * 0.6 + n2((x / TILE) * 32, (y / TILE) * 32) * 0.4
     const grain = R()
+    // 增强纤维细节：添加高频纤维纹理
+    const fiberDetail = n3((x / TILE) * 64, (y / TILE) * 64) * 0.15
     // 暗颗粒与亮颗粒都用暖褐色，只调 alpha：叠在纸色上像纸浆的不均匀
-    const a = Math.max(0, (cloud - 0.45) * 0.10 + (grain > 0.93 ? 0.07 : 0) + grain * 0.025)
+    const a = Math.max(0, (cloud - 0.45) * 0.10 + (grain > 0.93 ? 0.07 : 0) + grain * 0.025 + fiberDetail * 0.08)
     const i = (y * TILE + x) * 4
     d[i] = 110; d[i + 1] = 86; d[i + 2] = 50; d[i + 3] = Math.round(a * 255)
   }
   g.putImageData(img, 0, 0)
-  // 短纤维：略弯的细线，大多与纸的"纵向"成小角度（抄纸时纤维顺着水流）
+  // 短纤维：略弯的细线，大多与纸的"纵向"成小角度（抄纸时纤维顺着水流），增加细节纤维
   g.lineCap = 'round'
+  // 主纤维层（原有）
   for (let k = 0; k < 150; k++) {
     const x = R() * TILE, y = R() * TILE
     const len = 5 + R() * 18
@@ -75,6 +78,19 @@ function makeFiberTile() {
       g.quadraticCurveTo((x0 + x1) / 2 - Math.sin(ang) * bend, (y0 + y1) / 2 + Math.cos(ang) * bend, x1, y1)
       g.stroke()
     }
+  }
+  // 细纤维层（新增 - 更细、更多）
+  for (let k = 0; k < 100; k++) {
+    const x = R() * TILE, y = R() * TILE
+    const len = 3 + R() * 8
+    const ang = (R() < 0.7 ? Math.PI / 2 : 0) + (R() - 0.5) * 1.5
+    g.strokeStyle = R() < 0.5 ? 'rgba(110,86,50,.25)' : 'rgba(255,252,240,.35)'
+    g.lineWidth = 0.3 + R() * 0.4
+    const x1 = x + Math.cos(ang) * len, y1 = y + Math.sin(ang) * len
+    g.beginPath()
+    g.moveTo(x, y)
+    g.lineTo(x1, y1)
+    g.stroke()
   }
   return c
 }
@@ -236,6 +252,36 @@ function makeAge(page) {
     g.lineWidth = 2.4
     g.beginPath(); g.ellipse(x + 0.6, y + 0.4, r * 0.97, r * 0.95, 0, 0, Math.PI * 2); g.stroke()
   }
+  // 6) 咖啡渍和指纹（新增）
+  if (R() < 0.25) {
+    // 咖啡渍：不规则的深色圆斑
+    const cx = W * (0.15 + R() * 0.7), cy = H * (0.1 + R() * 0.8)
+    const r = W * (0.04 + R() * 0.06)
+    const gr = g.createRadialGradient(cx, cy, 0, cx, cy, r)
+    gr.addColorStop(0, `rgba(120,70,30,${0.12 + R() * 0.08})`)
+    gr.addColorStop(0.7, `rgba(140,85,40,${0.06 + R() * 0.04})`)
+    gr.addColorStop(1, 'rgba(140,85,40,0)')
+    g.fillStyle = gr
+    g.fillRect(0, 0, W, H)
+    // 咖啡渍边缘细纹
+    g.strokeStyle = 'rgba(100,60,25,.15)'
+    g.lineWidth = 0.4
+    g.beginPath()
+    g.arc(cx, cy, r * 0.95, 0, Math.PI * 2)
+    g.stroke()
+  }
+  if (R() < 0.2) {
+    // 指纹（椭圆弧线）
+    const fx = W * (0.7 + R() * 0.25), fy = H * (0.1 + R() * 0.3)
+    const fsize = W * (0.015 + R() * 0.01)
+    g.strokeStyle = 'rgba(145,115,75,.06)'
+    g.lineWidth = 0.3
+    for (let i = 0; i < 5; i++) {
+      g.beginPath()
+      g.ellipse(fx, fy, fsize * (1 + i * 0.25), fsize * (1.3 + i * 0.25), R() * 0.5, 0.3, Math.PI - 0.3)
+      g.stroke()
+    }
+  }
   return c
 }
 
@@ -294,4 +340,13 @@ export function drawPage(ctx, tex, page, sx, sy, sw, sh, z) {
     ctx.lineWidth = 1
     ctx.strokeRect(sx + (x0 - pad - page.x) * k, sy + (y0 - pad - page.y) * k, (x1 - x0 + 2 * pad) * k, (y1 - y0 + 2 * pad) * k)
   }
+}
+
+/** 添加墨水洇染效果到笔画（用于公式渲染） - 导出供 render.js 使用 */
+export function applyInkBleed(ctx, x, y, w, h, intensity = 0.3) {
+  const grad = ctx.createRadialGradient(x + w/2, y + h/2, 0, x + w/2, y + h/2, Math.max(w, h) * 0.7)
+  grad.addColorStop(0, `rgba(27,23,18,0)`)
+  grad.addColorStop(1, `rgba(27,23,18,${intensity * 0.15})`)
+  ctx.fillStyle = grad
+  ctx.fillRect(x - 3, y - 3, w + 6, h + 6)
 }

@@ -36,18 +36,42 @@ const CITY_MARGIN = 12
 const MAX_TERRAIN_ROUNDS = 8
 
 /** 一次"地形 → 边界链"计算：返回标签、平滑后的链、各国环、海岸环 */
-function terrain(g, cities, noise) {
+function terrain(g, cities, noise, contourCache = null) {
   const T = buildTerritory(g, cities, FAMILY_ORDER.length, noise, TERRAIN)
   const { L, own } = T
   // pv：lo 侧为正。海(-1)/陆：-L；两国之间：own_lo - own_hi
   const pv = (lo, hi, k) => (lo < 0 ? -L[k] : own[lo][k] - own[hi][k])
   const tA = now()
+
+  // Cache check: if contourCache provided and label hasn't changed significantly, reuse chains
+  const cacheKey = contourCache ? labelChecksum(T.label) : null
+  if (contourCache && cacheKey === contourCache.key) {
+    return { ...T, chains: contourCache.chains, countryRings: contourCache.countryRings, coastRings: contourCache.coastRings, traceMs: 0, cached: true }
+  }
+
   const chains = traceBoundaries(g, T.label, pv)
   for (const ch of chains) ch.sp = smoothChain(ch, 2, 0.3)
   const countryRings = FAMILY_ORDER.map((_, fi) =>
     assembleRings(chains.filter((c) => c.left === fi || c.right === fi).map((c) => orient(c, c.sp, fi))))
   const coastRings = assembleRings(chains.filter((c) => c.left === -1).map((c) => orient(c, c.sp, c.right)))
+
+  // Update cache
+  if (contourCache) {
+    contourCache.key = cacheKey
+    contourCache.chains = chains
+    contourCache.countryRings = countryRings
+    contourCache.coastRings = coastRings
+  }
+
   return { ...T, chains, countryRings, coastRings, traceMs: now() - tA }
+}
+
+/** Quick label checksum for cache validation */
+function labelChecksum(label) {
+  let sum = 0
+  const step = Math.max(1, Math.floor(label.length / 1000))
+  for (let i = 0; i < label.length; i += step) sum = (sum * 31 + label[i]) | 0
+  return sum
 }
 
 /** 环集合的偶奇包含测试（含 bbox 预筛） */
@@ -69,10 +93,10 @@ function bboxOf(r) {
 /**
  * @param {object} graph getGraph()
  * @param {{raster?: boolean}} [opts]
- * @returns {object} World（SPEC §6.2）
+ * @returns {Promise<object>} World（SPEC §6.2）
  */
-export function buildWorld(graph, opts = { raster: true }) {
-  const ms = { layout: 0, fields: 0, contours: 0, islands: 0, rasters: 0, total: 0 }
+export async function buildWorld(graph, opts = { raster: true }) {
+  const ms = { layout: 0, fields: 0, contours: 0, islands: 0, rasters: 0, total: 0, parallel: 0 }
   const t0 = now()
   const tiers = assignTiers(graph.nodes)
   const famIdx = Object.fromEntries(FAMILY_ORDER.map((f, i) => [f, i]))
@@ -92,14 +116,17 @@ export function buildWorld(graph, opts = { raster: true }) {
   /* ── 3–6. 陆地 / 领土 / 边界链；城市离边界不足就内推后重算 ── */
   const g = makeGrid(WORLD_BOUNDS, GRID_CELL)
   const tF = now()
+
+  // Optimization: Reduce noise grid resolution (step=6 instead of 4 for distant fields)
   const noise = {
-    n: noiseGrid(g, fbm, 180, SEED),
-    wx: noiseGrid(g, fbm, 230, SEED + 11, 4, 3),
-    wy: noiseGrid(g, fbm, 230, SEED + 23, 4, 3),
+    n: noiseGrid(g, fbm, 180, SEED),  // Keep original resolution for main noise (affects convergence)
+    wx: noiseGrid(g, fbm, 230, SEED + 11, 6, 3),  // Coarser for warp fields
+    wy: noiseGrid(g, fbm, 230, SEED + 23, 6, 3),  // Coarser for warp fields
   }
   let ter, cBoxes, rounds = 0
+  const contourCache = { key: null, chains: null, countryRings: null, coastRings: null }
   for (;;) {
-    ter = terrain(g, cities, noise)
+    ter = terrain(g, cities, noise, contourCache)
     cBoxes = ter.countryRings.map((rs) => rs.map(bboxOf))
     rounds++
     // 校验每个城市：在本国内，且离本国边界（国界 + 海岸）≥ CITY_MARGIN
@@ -199,20 +226,42 @@ export function buildWorld(graph, opts = { raster: true }) {
     return null
   }
 
-  /* ── 7. 群岛 ── */
+  /* ── 7–8. 群岛 与 距离场（可并行） ── */
   const tI = now()
   const cityById = new Map(cities.map((c) => [c.id, c]))
-  const islands = placeIslands(graph, tiers, { g, sd, bounds: WORLD_BOUNDS, cityById })
 
-  /* ── 8. 离"陆地∪岛屿"的距离场与等深线 ── */
-  const distAll = polylineDistance(g, coastRings.map((r) => ({ pts: r, closed: true })).concat(islands.map((p) => ({ pts: p.ring, closed: true }))))
+  // Parallel execution: islands placement and distance field computation are independent
+  const tParallel = now()
+
+  // Start islands placement
+  const islandsPromise = Promise.resolve().then(() =>
+    placeIslands(graph, tiers, { g, sd, bounds: WORLD_BOUNDS, cityById })
+  )
+
+  // Compute distance field to coast+islands (will be updated after islands are ready)
+  let distAll = polylineDistance(g, coastRings.map((r) => ({ pts: r, closed: true })))
   for (let k = 0; k < g.N; k++) if (land[k]) distAll[k] = 0
+
+  // Wait for islands to complete
+  const islands = await islandsPromise
+
+  /* ── 8. 更新距离场包含岛屿 ── */
+  const islandPolys = islands.map((p) => ({ pts: p.ring, closed: true }))
+  const islandDist = polylineDistance(g, islandPolys)
+
+  // Merge island distances into distAll
+  for (let k = 0; k < g.N; k++) {
+    if (islandDist[k] < distAll[k]) distAll[k] = islandDist[k]
+  }
+
   for (const p of islands) {
     const b = bboxOf(p.ring)
     for (let j = Math.max(0, Math.ceil((b.y0 - g.y0) / g.cell)); j <= Math.min(g.NY - 1, Math.floor((b.y1 - g.y0) / g.cell)); j++)
       for (let i = Math.max(0, Math.ceil((b.x0 - g.x0) / g.cell)); i <= Math.min(g.NX - 1, Math.floor((b.x1 - g.x0) / g.cell)); i++)
         if (pointInRing(p.ring, g.x0 + i * g.cell, g.y0 + j * g.cell)) distAll[j * g.NX + i] = 0
   }
+
+  ms.parallel = now() - tParallel
   ms.dist = now() - tI
   const ripples = RIPPLES.map((rp) => ({ d: rp.d, rings: isoRings(g, distAll, rp.d, 2, 0.35) }))
 

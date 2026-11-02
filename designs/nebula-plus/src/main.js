@@ -25,9 +25,28 @@ import * as progress from '../../../src/data/progress.js'
 import * as proofRouter from '../../../src/proofRouter.js'
 import { getProof, getProofCount } from '../../../src/data/proofs/index.js'
 import { createDesignApi } from './designApi.js'
+import {
+  detectDevice, getQualitySettings, TouchGestureHandler,
+  getCanvasResolution, debounce
+} from '../../shared/responsive.js'
 
 async function main() {
   const canvas = document.getElementById('scene')
+
+  /* ── 0. Responsive setup ── */
+  const device = detectDevice()
+  const quality = getQualitySettings(device)
+  console.log(`[公式诗云] 设备: ${device.tier}, 分辨率: ${device.width}×${device.height}, DPR: ${device.dpr}`)
+  console.log(`[公式诗云] 质量设置:`, quality)
+
+  // Apply quality settings to config
+  if (device.isMobile || device.isTablet) {
+    // Reduce particle count on mobile
+    LAYOUT.particleCount = Math.floor(LAYOUT.particleCount * quality.particle)
+    // Simplify glow effects
+    TWEAKABLE.glowIntensity = TWEAKABLE.glowIntensity * 0.7
+    console.log(`[公式诗云] 已降低粒子数至 ${LAYOUT.particleCount}`)
+  }
 
   /* ── 0. 地址栏深链 ──
    *
@@ -152,6 +171,23 @@ async function main() {
    *   下一步方向：用 CDP Profiler.start 抓启动期真实 CPU profile
    *   （不是靠差分猜测），或改用 Worker 跑布局。 */
   const tLayout = performance.now()
+
+  /* ── JIT Warmup: Pre-run layout on 10% sample to optimize hot paths ──
+   * First execution suffers 4.5× slowdown due to cold JIT.
+   * Running a small warmup batch triggers V8's TurboFan optimizer
+   * so the full layout runs on optimized code. */
+  if (graph.nodes.length > 50) {
+    const sampleSize = Math.floor(graph.nodes.length * 0.10)
+    const warmupNodes = graph.nodes.slice(0, sampleSize)
+    const warmupBaked = new Map()
+    for (const n of warmupNodes) {
+      const b = baked.get(n.id)
+      if (b) warmupBaked.set(n.id, b)
+    }
+    // Warmup run - discard result, only want JIT side effect
+    layoutGraph({ ...graph, nodes: warmupNodes }, warmupBaked)
+  }
+
   const layoutInfo = layoutGraph(graph, baked)
   mark('layout', tLayout)
   console.log(

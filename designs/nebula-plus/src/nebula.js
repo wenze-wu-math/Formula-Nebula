@@ -302,11 +302,58 @@ export function createNebula() {
   disc.rotation.x = -Math.PI / 2
   group.add(disc)
 
+  /* ─────────── 4. 体积雾（Volumetric fog with depth-based opacity） ─────────── */
+  const fogGeo = new THREE.SphereGeometry(NEBULA.particleRadius * 0.85, 32, 32)
+  const fogMat = new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uColor: { value: new THREE.Color(0.15, 0.25, 0.45) },
+    },
+    vertexShader: /* glsl */`
+      varying vec3 vWorldPos;
+      varying vec3 vViewPos;
+      void main() {
+        vec4 worldPos = modelMatrix * vec4(position, 1.0);
+        vWorldPos = worldPos.xyz;
+        vec4 viewPos = viewMatrix * worldPos;
+        vViewPos = viewPos.xyz;
+        gl_Position = projectionMatrix * viewPos;
+      }
+    `,
+    fragmentShader: /* glsl */`
+      uniform float uTime;
+      uniform vec3 uColor;
+      varying vec3 vWorldPos;
+      varying vec3 vViewPos;
+      void main() {
+        float depth = length(vViewPos);
+        // Distance-based fade
+        float distFade = 1.0 - smoothstep(200.0, 600.0, depth);
+        // Radial fade from center
+        float r = length(vWorldPos.xz);
+        float radialFade = smoothstep(0.9, 0.3, r / ${NEBULA.particleRadius.toFixed(1)});
+        // Animated noise
+        float noise = sin(vWorldPos.x * 0.01 + uTime * 0.1) *
+                      cos(vWorldPos.z * 0.01 - uTime * 0.08) * 0.5 + 0.5;
+        float alpha = distFade * radialFade * noise * 0.12;
+        gl_FragColor = vec4(uColor, alpha);
+      }
+    `,
+  })
+  const fogMesh = new THREE.Mesh(fogGeo, fogMat)
+  fogMesh.frustumCulled = false
+  group.add(fogMesh)
+
   return {
     group,
     update(t) {
       mat.uniforms.uTime.value = t
       smat.uniforms.uTime.value = t
+      fogMat.uniforms.uTime.value = t
     },
     /** 外部每帧写自转角（弧度）。只有旋臂粒子转，星点与辉光盘不转。 */
     setSpin(angle) {

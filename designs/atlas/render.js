@@ -59,6 +59,7 @@ function mark(name) { const t = performance.now(); perf.layers[name] = Math.roun
 export function initRender(atlas) {
   A = atlas
   // 背景微星：世界坐标、固定种子；环带 [R_SCALE_OUT+40, 2.2·R_DISK]，按面积均匀
+  // 每颗微星带一个相位（用于闪烁动画）
   const rng = makeRng(0x5eed2026)
   const r0 = R_SCALE_OUT + 40, r1 = 2.2 * R_DISK
   const buckets = [[], [], [], []]
@@ -66,7 +67,8 @@ export function initRender(atlas) {
     const r = Math.sqrt(r0 * r0 + rng() * (r1 * r1 - r0 * r0)), ra = rng() * TAU
     const p = polarToWorld(r, ra)
     const size = 0.4 + 0.5 * rng(), k = Math.min(3, Math.floor(rng() * 4))
-    buckets[k].push(p.x, p.y, size)
+    const phase = rng()  // [0,1) 相位，用于闪烁
+    buckets[k].push(p.x, p.y, size, phase)
   }
   micro = buckets.map((pts, k) => ({ alpha: 0.15 + k * 0.0667, pts: Float64Array.from(pts) }))
 
@@ -248,19 +250,28 @@ export function drawScene(ctx, f) {
   ctx.fillStyle = COLOR.bgOuter
   ctx.fillRect(0, 0, w, h)
   ctx.fillStyle = COLOR.star
+  // 微星闪烁动画：周期 3.2s，幅度 ±0.15，按相位错开
+  const twinkle = !f.reducedMotion
   for (const bk of micro) {
     ctx.globalAlpha = bk.alpha
     ctx.beginPath()
     const p = bk.pts
-    for (let i = 0; i < p.length; i += 3) {
+    for (let i = 0; i < p.length; i += 4) {
       const x = P.sx(p[i]), y = P.sy(p[i + 1])
       if (x < -2 || y < -2 || x > w + 2 || y > h + 2) continue
-      ctx.moveTo(x + p[i + 2], y); ctx.arc(x, y, p[i + 2], 0, TAU)
+      let r = p[i + 2]
+      if (twinkle) {
+        const phase = p[i + 3]
+        const t = ((f.now / 3200 + phase) % 1) * TAU
+        r *= 1 + 0.15 * Math.sin(t)
+      }
+      ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, TAU)
     }
     ctx.fill()
   }
   ctx.globalAlpha = 1
   mark('bg')
+  if (twinkle) animating = true
 
   const diskVisible = dist.near < R_SCALE_OUT * z + 8
   if (diskVisible) {

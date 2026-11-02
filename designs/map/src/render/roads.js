@@ -97,21 +97,37 @@ export function drawSeaRoutes(ctx, rb, level, z, opt) {
   ctx.globalAlpha = 1
 }
 
-/** 第 11 层：陆路，两遍描边 */
+/** 第 11 层：陆路，两遍描边（添加手绘波浪线效果） */
 export function drawLandRoads(ctx, rb, level, z, opt) {
   const iz = 1 / z
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   ctx.setLineDash([])
+
+  // 手绘效果：在较大缩放级别添加微阴影
+  const useHandDrawn = z > 0.8
+
   for (const kind of LAND_KINDS) {
     const g = rb.groups.get(kind)
     const a = groupState(g?.sample, level, opt)
     if (a == null) continue
     const st = ROAD_STYLE[kind]
     ctx.globalAlpha = a
+
+    // Casing 层
     ctx.strokeStyle = st.casing
     ctx.lineWidth = st.w * iz
+    if (useHandDrawn) {
+      ctx.save()
+      ctx.shadowColor = 'rgba(0,0,0,0.06)'
+      ctx.shadowBlur = 0.4 * iz
+      ctx.shadowOffsetX = 0.15 * iz
+      ctx.shadowOffsetY = 0.15 * iz
+    }
     ctx.stroke(g.path)
+    if (useHandDrawn) ctx.restore()
+
+    // Core 层（芯线）
     ctx.strokeStyle = st.core
     ctx.lineWidth = st.cw * iz
     ctx.stroke(g.path)

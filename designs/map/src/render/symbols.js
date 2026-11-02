@@ -34,28 +34,91 @@ function star(ctx, x, y, ro, ri) {
   ctx.closePath()
 }
 
-/** 单个城市符号（屏幕坐标） */
+/** 单个城市符号（屏幕坐标），增强版：首都=城堡、大城=塔楼、城镇=房屋、村落=小圆点 */
 export function drawCity(ctx, tier, x, y, r, ink) {
   if (tier === 0) {
-    ctx.beginPath(); ctx.arc(x, y, r, 0, TAU)
-    ctx.fillStyle = SYMBOL_STROKE; ctx.fill()
-    ctx.lineWidth = 1.6; ctx.strokeStyle = ink; ctx.stroke()
-    star(ctx, x, y, r * 0.62, r * 0.62 * 0.42)
-    ctx.fillStyle = ink; ctx.fill()
+    // 首都：城堡造型（方形底 + 城垛 + 旗帜）
+    drawCastle(ctx, x, y, r, ink)
   } else if (tier === 1) {
-    ctx.beginPath(); ctx.arc(x, y, r, 0, TAU)
-    ctx.fillStyle = SYMBOL_STROKE; ctx.fill()
-    ctx.lineWidth = 2; ctx.strokeStyle = ink; ctx.stroke()
-    ctx.beginPath(); ctx.arc(x, y, r * 0.38, 0, TAU)
-    ctx.fillStyle = ink; ctx.fill()
+    // 大城市：塔楼造型（圆塔 + 窗）
+    drawTower(ctx, x, y, r, ink)
   } else if (tier === 2) {
-    ctx.beginPath(); ctx.arc(x, y, r, 0, TAU)
-    ctx.fillStyle = ink; ctx.fill()
-    ctx.lineWidth = 1; ctx.strokeStyle = SYMBOL_STROKE; ctx.stroke()
+    // 城镇：房屋造型（方形 + 尖顶）
+    drawHouse(ctx, x, y, r, ink)
   } else {
+    // 村落：保持原简单圆点
     ctx.beginPath(); ctx.arc(x, y, r, 0, TAU)
     ctx.fillStyle = ink; ctx.fill()
   }
+}
+
+/** 城堡符号（首都）：矩形底座 + 城垛 */
+function drawCastle(ctx, x, y, r, ink) {
+  const w = r * 1.4, h = r * 1.3
+  // 底座
+  ctx.fillStyle = SYMBOL_STROKE
+  ctx.fillRect(x - w / 2, y - h / 2, w, h)
+  // 城墙色
+  ctx.fillStyle = ink
+  ctx.fillRect(x - w / 2 + 1.2, y - h / 2 + 1.2, w - 2.4, h - 2.4)
+  // 城垛（顶部锯齿）
+  ctx.fillStyle = SYMBOL_STROKE
+  const notchW = w / 5
+  for (let i = 0; i < 3; i++) {
+    ctx.fillRect(x - w / 2 + i * notchW * 1.6 + notchW * 0.3, y - h / 2 - 2, notchW * 0.8, 2.5)
+  }
+  // 小旗
+  ctx.beginPath()
+  ctx.moveTo(x, y - h / 2 - 2)
+  ctx.lineTo(x, y - h / 2 - r * 0.9)
+  ctx.lineWidth = 0.8
+  ctx.strokeStyle = ink
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x + 0.3, y - h / 2 - r * 0.85)
+  ctx.lineTo(x + r * 0.5, y - h / 2 - r * 0.68)
+  ctx.lineTo(x + 0.3, y - h / 2 - r * 0.5)
+  ctx.closePath()
+  ctx.fillStyle = ink
+  ctx.fill()
+}
+
+/** 塔楼符号（大城市）：圆形塔 + 窗口 */
+function drawTower(ctx, x, y, r, ink) {
+  // 塔身
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, TAU)
+  ctx.fillStyle = SYMBOL_STROKE
+  ctx.fill()
+  ctx.lineWidth = 1.8
+  ctx.strokeStyle = ink
+  ctx.stroke()
+  // 窗口（2个小矩形）
+  ctx.fillStyle = SYMBOL_STROKE
+  const winW = r * 0.25, winH = r * 0.35
+  ctx.fillRect(x - winW / 2, y - r * 0.3, winW, winH)
+  ctx.fillRect(x - winW / 2, y + r * 0.1, winW, winH * 0.6)
+}
+
+/** 房屋符号（城镇）：方形 + 三角顶 */
+function drawHouse(ctx, x, y, r, ink) {
+  const w = r * 1.3, h = r * 1.1
+  // 屋身
+  ctx.fillStyle = ink
+  ctx.fillRect(x - w / 2, y - h / 4, w, h * 0.75)
+  ctx.lineWidth = 1
+  ctx.strokeStyle = SYMBOL_STROKE
+  ctx.strokeRect(x - w / 2, y - h / 4, w, h * 0.75)
+  // 屋顶（三角）
+  ctx.beginPath()
+  ctx.moveTo(x - w / 2 - 1, y - h / 4)
+  ctx.lineTo(x, y - h / 2 - r * 0.4)
+  ctx.lineTo(x + w / 2 + 1, y - h / 4)
+  ctx.closePath()
+  ctx.fillStyle = '#6b6255'
+  ctx.fill()
+  ctx.strokeStyle = SYMBOL_STROKE
+  ctx.stroke()
 }
 
 /** 港口：实心圆 + 白色锚（环、柄、横杆、弧形锚臂） */

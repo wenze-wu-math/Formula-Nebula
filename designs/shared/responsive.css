@@ -1,0 +1,252 @@
+/**
+ * designs/shared/responsive.css — Mobile-responsive styles for all designs.
+ *
+ * Breakpoints:
+ * - Mobile: < 768px
+ * - Tablet: 768px - 1023px
+ * - Desktop: >= 1024px
+ *
+ * Mobile adaptations:
+ * - Touch-friendly controls (min 44px tap targets)
+ * - Bottom sheet panels instead of sidebars
+ * - Simplified legends (single column)
+ * - Larger fonts for readability
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   Mobile Portrait (< 768px, h > w)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) and (orientation: portrait) {
+  /* Touch-friendly minimum sizes */
+  .ui-btn, .ui-iconbtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Bottom sheet for panels */
+  .ui-panel-mobile {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    max-height: 70vh;
+    border-radius: 16px 16px 0 0 !important;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ui-panel-mobile.is-open {
+    transform: translateY(0);
+  }
+
+  /* Collapse search to icon on mobile */
+  .ui-search-mobile {
+    width: 44px !important;
+    overflow: hidden;
+    transition: width 0.3s ease;
+  }
+
+  .ui-search-mobile.is-expanded {
+    width: calc(100vw - 32px) !important;
+  }
+
+  /* Single-column legend */
+  .ui-legend {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+
+  /* Larger fonts for mobile readability */
+  .ui-label-text {
+    font-size: 15px !important;
+  }
+
+  /* Hide secondary UI on small screens */
+  .ui-hide-mobile {
+    display: none !important;
+  }
+
+  /* Stack toolbar buttons vertically */
+  .ui-toolbar-mobile {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Mobile Landscape (< 768px, w > h)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Compact sidebar for landscape mobile */
+  .ui-panel-mobile {
+    position: fixed !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 320px !important;
+    max-width: 50vw !important;
+    border-radius: 0 !important;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ui-panel-mobile.is-open {
+    transform: translateX(0);
+  }
+
+  /* Keep touch-friendly sizes */
+  .ui-btn, .ui-iconbtn {
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Tablet (768px - 1023px)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Slightly larger tap targets */
+  .ui-btn {
+    min-height: 38px;
+    padding: 0 14px;
+  }
+
+  .ui-iconbtn {
+    min-height: 38px;
+    min-width: 38px;
+  }
+
+  /* Adaptive panel width */
+  .ui-panel {
+    max-width: 400px !important;
+  }
+
+  /* Two-column legend on tablet */
+  .ui-legend {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Touch device adaptations (regardless of size)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover states on touch devices */
+  .ui-btn:hover,
+  .ui-iconbtn:hover {
+    border-color: inherit;
+    background: inherit;
+    opacity: inherit;
+  }
+
+  /* Active/pressed state instead */
+  .ui-btn:active {
+    transform: scale(0.97);
+    opacity: 0.8;
+  }
+
+  /* Larger hitboxes for small interactive elements */
+  .ui-clickable::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+  }
+
+  /* Disable cursor grab/grabbing on touch */
+  canvas {
+    cursor: default !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   High-DPR displays (retina, etc.)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Crisp text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Thinner borders on high-DPR */
+  .ui-card {
+    border-width: 0.5px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Reduced motion preference
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Safe area insets for notched devices (iPhone X+, etc.)
+   ═══════════════════════════════════════════════════════════════ */
+
+@supports (padding: env(safe-area-inset-top)) {
+  .ui-safe-top {
+    padding-top: max(16px, env(safe-area-inset-top));
+  }
+
+  .ui-safe-bottom {
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .ui-safe-left {
+    padding-left: max(16px, env(safe-area-inset-left));
+  }
+
+  .ui-safe-right {
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Utility classes
+   ═══════════════════════════════════════════════════════════════ */
+
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: block !important;
+}
+
+@media (max-width: 767px) {
+  .mobile-only {
+    display: block !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Touch-friendly spacing */
+.touch-spacing {
+  gap: 12px;
+}
+
+@media (hover: none) {
+  .touch-spacing {
+    gap: 16px;
+  }
+}

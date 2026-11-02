@@ -95,7 +95,7 @@ export function createRenderer(canvas, { world, graph, labeler }) {
         drawn,
       }
       xf.world()
-      drawBasemap(ctx, bm, world, z, frame.visibleWorld)
+      drawBasemap(ctx, bm, world, z, frame.visibleWorld, frame.now || Date.now())
       drawSeaRoutes(ctx, rb, level, z, roadOpt)
       drawIslands(ctx, ib, xf, frame)
       drawLandRoads(ctx, rb, level, z, roadOpt)

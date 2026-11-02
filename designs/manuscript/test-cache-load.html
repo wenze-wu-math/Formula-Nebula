@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Formula Cache Loading</title>
+</head>
+<body>
+  <h1>Formula Cache Loading Test</h1>
+  <div id="output"></div>
+
+  <script type="module">
+    const output = document.getElementById('output');
+
+    function log(msg) {
+      const p = document.createElement('p');
+      p.textContent = msg;
+      output.appendChild(p);
+    }
+
+    // Test loading compressed cache
+    log('Testing gzip compressed cache load...');
+    const t0 = performance.now();
+
+    try {
+      const res = await fetch('./formulas-cache.json.gz');
+      const buffer = await res.arrayBuffer();
+
+      log(`Downloaded: ${(buffer.byteLength / 1024 / 1024).toFixed(2)} MB`);
+
+      if (typeof DecompressionStream === 'function') {
+        const t1 = performance.now();
+        const ds = new DecompressionStream('gzip');
+        const decompressed = new Response(new Blob([buffer]).stream().pipeThrough(ds));
+        const data = await decompressed.json();
+        const t2 = performance.now();
+
+        log(`✓ Decompression supported`);
+        log(`✓ Decompressed in ${(t2 - t1).toFixed(0)} ms`);
+        log(`✓ Loaded ${data.entries?.length || 0} formulas`);
+        log(`✓ Dict size: ${data.dict?.length || 0} paths`);
+        log(`✓ Total time: ${(t2 - t0).toFixed(0)} ms`);
+      } else {
+        log('✗ DecompressionStream not supported, would fallback to uncompressed');
+      }
+    } catch (err) {
+      log(`✗ Error: ${err.message}`);
+    }
+  </script>
+</body>
+</html>

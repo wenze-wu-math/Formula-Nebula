@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graph Analytics · Formula Nebula</title>
+  <link rel="stylesheet" href="../shared/style-base.css">
+  <link rel="stylesheet" href="./analytics.css">
+</head>
+<body>
+  <header class="analytics-header">
+    <h1>Graph Analytics Dashboard</h1>
+    <p class="subtitle">Interactive metrics and insights for the Formula Nebula knowledge graph</p>
+  </header>
+
+  <main class="analytics-grid">
+    <section class="panel" id="degree-distribution">
+      <h2>Degree Distribution</h2>
+      <canvas id="degree-canvas"></canvas>
+      <div class="stats" id="degree-stats"></div>
+    </section>
+
+    <section class="panel" id="centrality">
+      <h2>Centrality Rankings</h2>
+      <canvas id="centrality-canvas"></canvas>
+      <div class="rankings" id="centrality-list"></div>
+    </section>
+
+    <section class="panel" id="communities">
+      <h2>Community Detection</h2>
+      <canvas id="community-canvas"></canvas>
+      <div class="community-info" id="community-info"></div>
+    </section>
+
+    <section class="panel" id="cross-source">
+      <h2>Cross-Source Connection Matrix</h2>
+      <canvas id="cross-source-canvas"></canvas>
+      <div class="matrix-legend" id="matrix-legend"></div>
+    </section>
+
+    <section class="panel" id="family-connectivity">
+      <h2>Family Connectivity Heatmap</h2>
+      <canvas id="family-canvas"></canvas>
+      <div class="heatmap-info" id="family-info"></div>
+    </section>
+
+    <section class="panel" id="isolated-nodes">
+      <h2>Isolated Nodes</h2>
+      <div class="node-list" id="isolated-list"></div>
+    </section>
+
+    <section class="panel" id="referenced-theorems">
+      <h2>Most Referenced Theorems</h2>
+      <canvas id="referenced-canvas"></canvas>
+      <div class="theorem-list" id="theorem-list"></div>
+    </section>
+
+    <section class="panel" id="proof-completeness">
+      <h2>Proof Completeness Gauge</h2>
+      <canvas id="proof-canvas"></canvas>
+      <div class="proof-stats" id="proof-stats"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

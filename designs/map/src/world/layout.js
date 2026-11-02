@@ -15,7 +15,7 @@ import { mulberry32 } from './rng.js'
 /** 城市圆盘可用半径占 R_f 的比例（SPEC：0.92·R_f） */
 export const DISK_K = 0.92
 /** 不同国家城市之间的最小间距（wu）：给国界两侧各留 ≥ 10 wu 的余量还有富余 */
-export const CROSS_MIN = 46
+export const CROSS_MIN = 138  // 46 × 3 (scaled for 6000×4320 world)
 
 /** 六角相邻的国家对（FAMILY_SLOTS 上同排相距 2、或隔排相距 1） */
 export function hexAdjacentPairs() {
@@ -39,7 +39,7 @@ export function relaxCountries(counts) {
   const R = Object.fromEntries(fs.map((f) => [f, 21 * Math.sqrt(counts[f] || 1)]))
   const c = Object.fromEntries(fs.map((f) => [f, { x: COUNTRY_SEEDS[f].x, y: COUNTRY_SEEDS[f].y }]))
   const adj = new Set(hexAdjacentPairs().map(([a, b]) => a + '|' + b))
-  const GAP_ADJ = 8, GAP_FAR = 130
+  const GAP_ADJ = 24, GAP_FAR = 390  // 8 × 3, 130 × 3 (scaled for 6000×4320 world)
   for (let it = 0; it < 240; it++) {
     for (let i = 0; i < fs.length; i++) for (let j = i + 1; j < fs.length; j++) {
       const a = fs[i], b = fs[j]
@@ -146,10 +146,10 @@ export function layoutCities(cities, links, centers, R, seed) {
   const ITER = 360
   for (let it = 0; it < ITER; it++) {
     const alpha = 1 - it / ITER
-    // 族内弹簧（静长 34）；跨族弱弹簧（×0.15，只拉不推：把它们拉向两国国境，但圆盘约束不许出国）
+    // 族内弹簧（静长 102 = 34 × 3）；跨族弱弹簧（×0.15，只拉不推：把它们拉向两国国境，但圆盘约束不许出国）
     for (const s of springs) {
       const dx = s.b.x - s.a.x, dy = s.b.y - s.a.y, d = Math.sqrt(dx * dx + dy * dy) || 1e-6
-      let f = (d - 34) / d
+      let f = (d - 102) / d  // 34 × 3 (scaled for 6000×4320 world)
       if (s.cross) { if (f <= 0) continue; f *= 0.15 }
       f *= 0.06 * s.w * alpha
       s.a.x += dx * f; s.a.y += dy * f; s.b.x -= dx * f; s.b.y -= dy * f
@@ -160,8 +160,8 @@ export function layoutCities(cities, links, centers, R, seed) {
   for (let it = 0; it < 70; it++) project(cities, centers, R, 0, false)
 }
 
-// 网格桶（链表式 typed array，每轮零分配）：覆盖 WORLD_BOUNDS 外扩 100 wu，桶边 48 ≥ 最大最小间距 46
-const GB = 48, GX0 = -1100, GY0 = -820, GW = 46, GH = 35
+// 网格桶（链表式 typed array，每轮零分配）：覆盖 WORLD_BOUNDS 外扩 300 wu，桶边 144 ≥ 最大最小间距 138
+const GB = 144, GX0 = -3300, GY0 = -2460, GW = 46, GH = 35  // GB, GX0, GY0 × 3 (scaled for 6000×4320 world)
 const gHead = new Int32Array(GW * GH)
 let gNext = new Int32Array(512), gCell = new Int32Array(512)
 
@@ -193,7 +193,7 @@ export function project(cities, centers, R, alpha, spread) {
           const m = minDist(c, o)
           let push = 0
           if (d < m) push = (m - d) * 0.5
-          else if (spread && c.fi === o.fi && d < 40) push = (40 - d) * 0.03 * alpha  // 族内轻微扩散，避免扎堆
+          else if (spread && c.fi === o.fi && d < 120) push = (120 - d) * 0.03 * alpha  // 族内轻微扩散（40 × 3），避免扎堆
           if (!push) continue
           const ux = d > 1e-3 ? dx / d : Math.cos(i), uy = d > 1e-3 ? dy / d : Math.sin(i)
           c.x -= ux * push; c.y -= uy * push; o.x += ux * push; o.y += uy * push

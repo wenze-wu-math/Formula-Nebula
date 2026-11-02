@@ -634,9 +634,19 @@ of  nbs)
 {      const   k = cIdx.get(e.id)      
 if (k !== undefined && k > i) 
 cSpr.push(i, k, P.dsoCLen, P.dsoCK * e.weight)    }    
-const   rng = makeRng((seed ^ hashStr(n.id)) >>> 0)    
-X[i] = (sw > 0 ? sx / sw : 0) + (rng() * 2 - 1) * P.dsoJitter    
-Y[i] = (sw > 0 ? sy / sw : 0) + (rng() * 2 - 1) * P.dsoJitter    
+const   rng = makeRng((seed ^ hashStr(n.id)) >>> 0)
+const   GA = Math.PI * (3 - Math.sqrt(5))  /* golden angle ≈ 2.399963 rad */
+if (sw > 0) {
+  /* Has theorem neighbors: use weighted average + small jitter */
+  X[i] = sx / sw + (rng() * 2 - 1) * P.dsoJitter
+  Y[i] = sy / sw + (rng() * 2 - 1) * P.dsoJitter
+} else {
+  /* No neighbors: initialize with golden-angle spiral across the full disk */
+  const   rr = dsoRMin + (dsoRMax - dsoRMin) * Math.sqrt((i + 0.5) / m)
+  const   ang = i * GA
+  X[i] = Math.cos(ang) * rr
+  Y[i] = Math.sin(ang) * rr
+}    
 const   tier = n.importance >= DSO_TIER_CUTS[0] ? 1 : n.importance >= DSO_TIER_CUTS[1] ? 2 : 3    
 const   b = mkBody(n, 'dso', POLE_FAMILY, 0, 0, tier + 1, tier, DSO_LABEL_L[tier - 1], DSO_FORMULA_PX[tier - 1])    
 b.status = n.status ?? null    

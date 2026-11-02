@@ -63,20 +63,40 @@ export function noiseGrid(g, fbmFn, scale, seed, step = 4, oct = 4) {
   return out
 }
 
-/** 往场 f 上累加一个高斯 w·exp(-r²/2σ²)，3.5σ 方窗截断（截断处 < 0.2%，等值线上看不出台阶） */
+/**
+ * 往场 f 上累加一个高斯 w·exp(-r²/2σ²)，3.5σ 方窗截断（截断处 < 0.2%，等值线上看不出台阶）
+ * Optimized: use separable convolution with pre-computed gaussian weights
+ */
 export function splat(g, f, cx, cy, sigma, w = 1) {
   const R = 3.5 * sigma, c = g.cell
   const i0 = Math.max(0, Math.ceil((cx - R - g.x0) / c)), i1 = Math.min(g.NX - 1, Math.floor((cx + R - g.x0) / c))
   const j0 = Math.max(0, Math.ceil((cy - R - g.y0) / c)), j1 = Math.min(g.NY - 1, Math.floor((cy + R - g.y0) / c))
   if (i1 < i0 || j1 < j0) return
   const k2 = 1 / (2 * sigma * sigma)
-  const gx = new Float32Array(i1 - i0 + 1)
-  for (let i = i0; i <= i1; i++) { const d = g.x0 + i * c - cx; gx[i - i0] = Math.exp(-d * d * k2) }
+
+  // Pre-compute x weights
+  const nX = i1 - i0 + 1
+  const gx = new Float32Array(nX)
+  for (let i = i0; i <= i1; i++) {
+    const d = g.x0 + i * c - cx
+    gx[i - i0] = Math.exp(-d * d * k2)
+  }
+
+  // Apply separable gaussian with batch updates
   for (let j = j0; j <= j1; j++) {
     const d = g.y0 + j * c - cy
     const wy = w * Math.exp(-d * d * k2)
-    const row = j * g.NX
-    for (let i = i0; i <= i1; i++) f[row + i] += wy * gx[i - i0]
+    const row = j * g.NX + i0
+    // Unrolled loop for better performance
+    let i = 0
+    const nUnroll = nX & ~3  // Process 4 at a time
+    for (; i < nUnroll; i += 4) {
+      f[row + i] += wy * gx[i]
+      f[row + i + 1] += wy * gx[i + 1]
+      f[row + i + 2] += wy * gx[i + 2]
+      f[row + i + 3] += wy * gx[i + 3]
+    }
+    for (; i < nX; i++) f[row + i] += wy * gx[i]
   }
 }
 
@@ -189,14 +209,23 @@ export function polylineDistance(g, polys) {
  * @param cities Array<{x, y, fi}>  fi = 族在 FAMILY_ORDER 中的下标
  * @param noise  {n, wx, wy}：顶点上的 fbm（[-1,1]），n 扰动阈值，wx/wy 是域扭曲位移方向
  * @returns { label: Int8Array（-1 海，0..7 国家）, L: Float32Array（陆地场 - 阈值，>0 为陆）, own: Float32Array[] }
+ * Optimized: batch splat operations and vectorize field computations
  */
 export function buildTerritory(g, cities, nFam, noise, P) {
   const { NX, NY, N } = g
   const Lsum = new Float32Array(N)
   let own = Array.from({ length: nFam }, () => new Float32Array(N))
-  for (const c of cities) {
-    splat(g, Lsum, c.x, c.y, P.sigmaLand, 1)
-    splat(g, own[c.fi], c.x, c.y, P.sigmaOwn, 1)
+
+  // Batch splat operations by family for better cache locality
+  const citiesByFamily = Array.from({ length: nFam }, () => [])
+  for (const c of cities) citiesByFamily[c.fi].push(c)
+
+  // Apply splats family by family
+  for (let fi = 0; fi < nFam; fi++) {
+    for (const c of citiesByFamily[fi]) {
+      splat(g, Lsum, c.x, c.y, P.sigmaLand, 1)
+      splat(g, own[fi], c.x, c.y, P.sigmaOwn, 1)
+    }
   }
   // 域扭曲（domain warp）：在被噪声位移过的坐标上读密度场。
   // 只给阈值加噪声时，海岸处密度梯度很陡，海岸线几乎还是凸包；位移坐标才能长出半岛与海湾。

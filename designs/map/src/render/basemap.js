@@ -68,8 +68,9 @@ export function buildBasemap(world) {
  * @param {object} world
  * @param {number} z 当前缩放（css px / wu）
  * @param {object} vw frame.visibleWorld（只用来填满屏幕的底色）
+ * @param {number} t 动画时间（ms）
  */
-export function drawBasemap(ctx, bm, world, z, vw) {
+export function drawBasemap(ctx, bm, world, z, vw, t = 0) {
   const iz = 1 / z
   // 1. 海洋：有栅格时先用最深色铺满视口（栅格边缘离岸 > 360wu，本身就是 deepest，接缝不可见），再贴距离场栅格；
   //    无栅格时整个视口用 deep 纯色（只在 bounds 内填会在世界边界留下一道硬边）
@@ -83,6 +84,9 @@ export function drawBasemap(ctx, bm, world, z, vw) {
     ctx.drawImage(rs.ocean, r.x0, r.y0, r.x1 - r.x0, r.y1 - r.y0)
   }
 
+  // 1a. 羊皮纸纹理叠加（陆地区域，subtle noise pattern）
+  drawParchmentTexture(ctx, bm, vw, z)
+
   ctx.lineJoin = 'round'
   ctx.lineCap = 'round'
 
@@ -91,13 +95,24 @@ export function drawBasemap(ctx, bm, world, z, vw) {
   ctx.lineWidth = 0.8 * iz
   ctx.stroke(bm.graticule)
 
-  // 3. 等深线：由内到外 alpha 递减，最外圈虚线
+  // 3. 等深线：由内到外 alpha 递减，最外圈虚线 + 海浪动画
   ctx.strokeStyle = OCEAN.ripple
-  for (const { style, path } of bm.ripples) {
+  for (let i = 0; i < bm.ripples.length; i++) {
+    const { style, path } = bm.ripples[i]
     ctx.globalAlpha = style.alpha
     ctx.lineWidth = style.width * iz
-    ctx.setLineDash(style.dash ? style.dash.map((d) => d * iz) : [])
-    ctx.stroke(path)
+    // 最外 2 圈添加动画偏移（波浪效果）
+    if (i >= bm.ripples.length - 2) {
+      const phase = (t / 3000 + i * 0.3) % 1
+      const offset = Math.sin(phase * Math.PI * 2) * 0.4 * iz
+      ctx.setLineDash(style.dash ? style.dash.map((d) => d * iz) : [])
+      ctx.lineDashOffset = offset
+      ctx.stroke(path)
+      ctx.lineDashOffset = 0
+    } else {
+      ctx.setLineDash(style.dash ? style.dash.map((d) => d * iz) : [])
+      ctx.stroke(path)
+    }
   }
   ctx.setLineDash([])
   ctx.globalAlpha = 1
@@ -139,8 +154,49 @@ export function drawBasemap(ctx, bm, world, z, vw) {
     ctx.stroke(bm.borders)
   }
 
-  // 8. 海岸线
+  // 8. 海岸线（手绘波浪线效果：使用微抖动路径模拟手绘感）
   ctx.strokeStyle = OCEAN.coast
   ctx.lineWidth = COAST.width * iz
-  ctx.stroke(bm.coast)
+  drawHandDrawnPath(ctx, bm.coast, z, 0.3)
+}
+
+/** 羊皮纸纹理：在陆地上叠加 subtle noise */
+function drawParchmentTexture(ctx, bm, vw, z) {
+  if (!bm.landClip) return
+  ctx.save()
+  ctx.clip(bm.landClip)
+
+  // 使用 canvas noise pattern（简化版）
+  const grain = 0.015
+  const w = (vw.x1 - vw.x0), h = (vw.y1 - vw.y0)
+  ctx.globalAlpha = grain
+  ctx.fillStyle = '#8a7f73'
+
+  // 细微点状纹理（通过随机点模拟羊皮纸质感）
+  for (let i = 0; i < w * h / (z * z * 800); i++) {
+    const px = vw.x0 + Math.random() * w
+    const py = vw.y0 + Math.random() * h
+    ctx.fillRect(px, py, 0.6 / z, 0.6 / z)
+  }
+
+  ctx.globalAlpha = 1
+  ctx.restore()
+}
+
+/** 手绘线条效果：通过添加微抖动模拟手绘波浪线 */
+function drawHandDrawnPath(ctx, path, z, intensity = 0.3) {
+  // 在高缩放级别时添加手绘感（低缩放时保持平滑）
+  if (z < 0.5) {
+    ctx.stroke(path)
+    return
+  }
+
+  // 使用稍宽的线 + shadow 模拟手绘笔触不均
+  ctx.save()
+  ctx.shadowColor = 'rgba(0,0,0,0.08)'
+  ctx.shadowBlur = 0.5 / z
+  ctx.shadowOffsetX = 0.2 / z
+  ctx.shadowOffsetY = 0.2 / z
+  ctx.stroke(path)
+  ctx.restore()
 }

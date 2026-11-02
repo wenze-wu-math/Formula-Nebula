@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>历史时间线 · Formula Nebula</title>
+  <link rel="stylesheet" href="timeline.css">
+</head>
+<body>
+  <div class="timeline-container">
+    <header class="timeline-header">
+      <h1>公式星云 · 历史时间线</h1>
+      <p class="subtitle">1800 - 2025 · 代数几何与猜想的历史进程</p>
+      <div class="controls">
+        <div class="zoom-controls">
+          <button id="zoom-out" title="缩小">−</button>
+          <button id="zoom-reset" title="重置">◎</button>
+          <button id="zoom-in" title="放大">+</button>
+        </div>
+        <div class="filter-controls">
+          <label>
+            <input type="checkbox" id="filter-theorems" checked>
+            <span>定理</span>
+          </label>
+          <label>
+            <input type="checkbox" id="filter-conjectures" checked>
+            <span>猜想</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <div class="timeline-canvas-wrapper">
+      <canvas id="timeline-canvas"></canvas>
+      <div class="decade-labels" id="decade-labels"></div>
+    </div>
+
+    <div class="info-panel" id="info-panel">
+      <button class="close-btn" id="close-panel">×</button>
+      <div class="info-content">
+        <h2 id="info-title"></h2>
+        <div class="info-meta">
+          <span id="info-year"></span>
+          <span id="info-proposer"></span>
+          <span id="info-family"></span>
+        </div>
+        <p id="info-summary"></p>
+        <div class="info-formula" id="info-formula"></div>
+        <div class="info-connections" id="info-connections"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="timeline.js"></script>
+</body>
+</html>

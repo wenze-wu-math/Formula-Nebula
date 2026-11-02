@@ -1,0 +1,330 @@
+/**
+ * Proof Explorer Styles
+ * Styles for interactive proof viewing features
+ */
+
+/* 1. Step Highlighting */
+.pv-step-focused {
+  background: rgba(120, 215, 255, 0.08) !important;
+  border-left: 3px solid rgba(120, 215, 255, 0.6) !important;
+  margin-left: -3px;
+  transition: all 0.3s ease;
+}
+
+.pv-step-highlight {
+  background: rgba(255, 207, 122, 0.1) !important;
+  box-shadow: 0 0 0 2px rgba(255, 207, 122, 0.3) inset;
+  transition: all 0.3s ease;
+}
+
+.pv-step summary::after {
+  content: '↵';
+  opacity: 0;
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--pv-dim);
+  transition: opacity 0.2s ease;
+}
+
+.pv-step-focused summary::after {
+  opacity: 1;
+}
+
+/* 2. Theorem Popup */
+.pv-theorem-popup {
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+}
+
+.pv-theorem-popup .katex {
+  font-size: 1.05em;
+}
+
+/* 3. Dependency Graph */
+.pv-dependency-graph {
+  position: relative;
+  margin: 20px 0;
+}
+
+.pv-dependency-graph canvas {
+  cursor: grab;
+}
+
+.pv-dependency-graph canvas:active {
+  cursor: grabbing;
+}
+
+/* 4. Alternate Proofs Comparison */
+.pv-alternate-proofs {
+  position: relative;
+}
+
+.pv-proof-card {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pv-proof-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(120, 215, 255, 0.15);
+}
+
+/* 5. Completeness Indicator */
+.pv-completeness {
+  position: relative;
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pv-completeness details summary {
+  transition: color 0.2s ease;
+}
+
+.pv-completeness details summary:hover {
+  color: var(--pv-gold);
+}
+
+.pv-completeness details[open] summary {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(148, 178, 220, 0.15);
+}
+
+/* 6. LaTeX Export Button */
+#proof-view .pv-head button[title*="LaTeX"] {
+  position: relative;
+}
+
+#proof-view .pv-head button[title*="LaTeX"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 6px;
+  height: 6px;
+  background: var(--pv-cyan);
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* 7. Proof Search Results */
+.pv-search-results {
+  margin: 20px 0;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 178, 220, 0.3) transparent;
+}
+
+.pv-search-result {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: rgba(12, 17, 29, 0.4);
+  border-left: 2px solid rgba(120, 215, 255, 0.4);
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pv-search-result:hover {
+  background: rgba(120, 215, 255, 0.08);
+  border-left-color: rgba(120, 215, 255, 0.7);
+  transform: translateX(4px);
+}
+
+.pv-search-result-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pv-ink);
+  margin-bottom: 4px;
+}
+
+.pv-search-result-context {
+  font-size: 11.5px;
+  color: var(--pv-dim);
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.pv-search-result mark {
+  background: rgba(255, 207, 122, 0.25);
+  color: var(--pv-gold);
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+/* 8. Animated Flow Diagram */
+.pv-flow-animator {
+  position: relative;
+  overflow: hidden;
+}
+
+.pv-flow-animator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(120, 215, 255, 0.4),
+    transparent
+  );
+}
+
+.pv-flow-animator::after {
+  content: '证明逻辑流';
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(120, 215, 255, 0.6);
+  text-transform: uppercase;
+}
+
+/* Interactive step navigation hints */
+.pv-step[data-has-focus-hint]::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 0;
+  background: var(--pv-cyan);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+.pv-step-focused[data-has-focus-hint]::before {
+  height: 80%;
+}
+
+/* Usage indicators */
+.pv-usage-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: rgba(120, 215, 255, 0.15);
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--pv-cyan);
+  margin-left: 8px;
+}
+
+/* Proof quality indicator colors */
+.pv-quality-high {
+  color: rgba(120, 215, 255, 1);
+}
+
+.pv-quality-medium {
+  color: rgba(255, 207, 122, 1);
+}
+
+.pv-quality-low {
+  color: rgba(255, 155, 127, 1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 620px) {
+  .pv-alternate-proofs {
+    grid-template-columns: 1fr;
+  }
+
+  .pv-completeness {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .pv-flow-animator canvas {
+    height: 200px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .pv-step-focused,
+  .pv-step-highlight {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .pv-theorem-popup,
+  .pv-flow-animator {
+    display: none !important;
+  }
+}
+
+/* Accessibility */
+.pv-step:focus-within {
+  outline: 2px solid var(--pv-cyan);
+  outline-offset: 2px;
+}
+
+.pv-link[data-theorem-id]:focus-visible::after {
+  content: '?';
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
+  color: var(--pv-cyan);
+  font-weight: 600;
+}
+
+/* Animation preferences */
+@media (prefers-reduced-motion: reduce) {
+  .pv-step-focused,
+  .pv-step-highlight,
+  .pv-proof-card,
+  .pv-search-result,
+  .pv-completeness {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .pv-flow-animator canvas {
+    display: none;
+  }
+
+  .pv-flow-animator::after {
+    content: '证明逻辑流（动画已禁用）';
+  }
+}
+
+/* Dark mode adjustments (if needed) */
+@media (prefers-color-scheme: light) {
+  /* Currently Formula Nebula is dark-only, but this is ready for future */
+}

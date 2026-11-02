@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proof Explorer Demo - Formula Nebula</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      background: linear-gradient(135deg, #080b14 0%, #0f1419 100%);
+      color: #f5f8ff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #78d7ff, #c9aeff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #94a8c4;
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .feature-card {
+      background: rgba(12, 17, 29, 0.6);
+      border: 1px solid rgba(148, 178, 220, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(120, 215, 255, 0.5);
+      background: rgba(12, 17, 29, 0.8);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(120, 215, 255, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f5f8ff;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: #94a8c4;
+      line-height: 1.6;
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background: rgba(120, 215, 255, 0.15);
+      border: 1px solid rgba(120, 215, 255, 0.4);
+      border-radius: 8px;
+      color: #78d7ff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background: rgba(120, 215, 255, 0.25);
+      border-color: rgba(120, 215, 255, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: rgba(255, 207, 122, 0.15);
+      border-color: rgba(255, 207, 122, 0.4);
+      color: #ffcf7a;
+    }
+
+    .btn-primary:hover {
+      background: rgba(255, 207, 122, 0.25);
+      border-color: rgba(255, 207, 122, 0.7);
+    }
+
+    .code-block {
+      background: rgba(8, 11, 20, 0.8);
+      border: 1px solid rgba(148, 178, 220, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #c5d2e6;
+    }
+
+    .code-block code {
+      color: #78d7ff;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 40px 0 20px;
+      color: #f5f8ff;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(148, 178, 220, 0.2);
+    }
+
+    .keyboard-shortcuts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .shortcut {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(12, 17, 29, 0.6);
+      border-radius: 6px;
+      font-size: 12.5px;
+    }
+
+    .key {
+      padding: 4px 8px;
+      background: rgba(120, 215, 255, 0.15);
+      border: 1px solid rgba(120, 215, 255, 0.3);
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      font-size: 11px;
+      color: #78d7ff;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .shortcut-desc {
+      color: #94a8c4;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✦ Proof Explorer Demo</h1>
+    <p class="subtitle">Formula Nebula 交互式证明视图增强功能演示</p>
+
+    <div class="demo-actions">
+      <button class="btn btn-primary" onclick="openDemoProof()">
+        🚀 打开示例证明
+      </button>
+      <button class="btn" onclick="showFeatures()">
+        ✨ 查看所有功能
+      </button>
+      <button class="btn" onclick="window.location.href='index.html'">
+        🌌 返回星云主页
+      </button>
+    </div>
+
+    <div class="section-title">🎯 核心功能</div>
+    <div class="features-grid">
+      <div class="feature-card" data-feature="highlight">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">1. 证明步骤高亮</div>
+        <div class="feature-desc">点击证明步骤可聚焦高亮，使用方向键快速导航，Enter 键展开/折叠步骤</div>
+      </div>
+
+      <div class="feature-card" data-feature="popup">
+        <div class="feature-icon">💡</div>
+        <div class="feature-title">2. 定理悬浮提示</div>
+        <div class="feature-desc">鼠标悬停在引用的定理链接上，自动显示定理陈述和摘要，无需跳转页面</div>
+      </div>
+
+      <div class="feature-card" data-feature="graph">
+        <div class="feature-icon">🕸️</div>
+        <div class="feature-title">3. 依赖关系图</div>
+        <div class="feature-desc">可视化展示证明步骤之间的依赖关系，以及证明依赖的前置定理</div>
+      </div>
+
+      <div class="feature-card" data-feature="comparison">
+        <div class="feature-icon">⚖️</div>
+        <div class="feature-title">4. 多证明对比</div>
+        <div class="feature-desc">并排比较同一定理的不同证明方法，查看步骤数、难度和依赖差异</div>
+      </div>
+
+      <div class="feature-card" data-feature="completeness">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">5. 完整度指示器</div>
+        <div class="feature-desc">显示证明的完整度评分，列出已包含和缺失的内容模块</div>
+      </div>
+
+      <div class="feature-card" data-feature="latex">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">6. LaTeX 导出</div>
+        <div class="feature-desc">一键导出证明为标准 LaTeX 文档，包含定理、证明步骤、参考文献</div>
+      </div>
+
+      <div class="feature-card" data-feature="search">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-title">7. 定理使用搜索</div>
+        <div class="feature-desc">查找哪些证明引用了当前定理，追踪定理在知识图谱中的使用情况</div>
+      </div>
+
+      <div class="feature-card" data-feature="animation">
+        <div class="feature-icon">🌊</div>
+        <div class="feature-title">8. 证明流程动画</div>
+        <div class="feature-desc">动态粒子流动画展示证明的逻辑推导流程，直观理解推理过程</div>
+      </div>
+    </div>
+
+    <div class="section-title">⌨️ 键盘快捷键</div>
+    <div class="keyboard-shortcuts">
+      <div class="shortcut">
+        <span class="key">↓</span>
+        <span class="shortcut-desc">下一步骤</span>
+      </div>
+      <div class="shortcut">
+        <span class="key">↑</span>
+        <span class="shortcut-desc">上一步骤</span>
+      </div>
+      <div class="shortcut">
+        <span class="key">Enter</span>
+        <span class="shortcut-desc">展开/折叠</span>
+      </div>
+      <div class="shortcut">
+        <span class="key">Esc</span>
+        <span class="shortcut-desc">关闭证明页</span>
+      </div>
+    </div>
+
+    <div class="section-title">💻 集成代码示例</div>
+    <div class="code-block">
+      <pre><code>// 1. 导入模块
+import { createProofView } from './src/proofView.js'
+import ProofExplorer from './src/proof-explorer.js'
+import './src/proof-explorer.css'
+
+// 2. 创建 proof view
+const proofView = createProofView({
+  graph: graphData,
+  onNavigate: (id) => console.log('Navigated to:', id),
+  onBack: () => console.log('Back clicked'),
+  onGalaxy: () => console.log('Return to galaxy')
+})
+
+// 3. 初始化 Proof Explorer
+const explorer = new ProofExplorer(proofView, graphData)
+
+// 4. 打开证明并自动应用增强功能
+proofView.mount()
+proofView.open('valuation-ring')
+explorer.enhanceProofView('valuation-ring')
+
+// 5. 手动使用单个功能
+// 高亮特定步骤
+explorer.stepHighlighter.highlightSteps(['step-1', 'step-3'])
+
+// 导出 LaTeX
+explorer.latexExporter.downloadAsFile(
+  nodeData.proof,
+  'valuation-ring-proof.tex'
+)
+
+// 搜索定理使用情况
+const usages = explorer.proofSearch.findUsages('valuation-ring')
+console.log(`Used in ${usages.length} proofs`)
+
+// 6. 监听事件
+proofView.root.addEventListener('step:focus', (e) => {
+  console.log('Step focused:', e.detail.stepId)
+})
+
+proofView.root.addEventListener('proof:switch', (e) => {
+  console.log('Switched to proof:', e.detail.proof)
+})</code></pre>
+    </div>
+
+    <div class="section-title">📝 使用说明</div>
+    <div class="code-block">
+      <pre><code># 安装依赖
+npm install katex three
+
+# 在主项目中引入
+import ProofExplorer from './src/proof-explorer.js'
+import './src/proof-explorer.css'
+
+# 在现有的 proofView 基础上初始化
+const explorer = new ProofExplorer(proofView, graphData)
+
+# 每次打开新证明时调用
+proofView.root.addEventListener('proof:open', (e) => {
+  explorer.enhanceProofView(e.detail.id)
+})
+
+# 清理资源
+explorer.destroy()</code></pre>
+    </div>
+
+    <div class="section-title">🎨 自定义样式</div>
+    <div class="code-block">
+      <pre><code>/* 覆盖高亮颜色 */
+.pv-step-focused {
+  background: rgba(255, 100, 100, 0.1) !important;
+}
+
+/* 自定义完整度指示器颜色 */
+.pv-completeness {
+  border-left-color: #your-color;
+}
+
+/* 调整依赖图尺寸 */
+.pv-dependency-graph canvas {
+  height: 500px;
+}
+
+/* 禁用动画 */
+.pv-flow-animator {
+  display: none;
+}</code></pre>
+    </div>
+
+    <div class="section-title">📊 API 参考</div>
+    <div class="code-block">
+      <pre><code>// ProofExplorer 主类
+class ProofExplorer {
+  constructor(proofView, graph)
+  enhanceProofView(nodeId)    // 自动应用所有增强
+  destroy()                    // 清理资源
+}
+
+// ProofStepHighlighter
+stepHighlighter.focusStep(element)
+stepHighlighter.navigateStep('next' | 'prev')
+stepHighlighter.highlightSteps(stepIds[])
+stepHighlighter.clearHighlights()
+
+// TheoremPopup
+theoremPopup.showPopup(target, theoremId)
+theoremPopup.scheduleHide()
+
+// DependencyGraph
+dependencyGraph.render(proofData, graph)
+dependencyGraph.clear()
+
+// LaTeXExporter
+latexExporter.export(proof, metadata)
+latexExporter.downloadAsFile(proof, filename)
+
+// ProofSearch
+proofSearch.findUsages(theoremId)     // 返回 usage[]
+proofSearch.searchProofs(query)       // 返回 result[]
+
+// CompletenessIndicator
+completenessIndicator.render(proof)   // 显示完整度
+
+// ProofFlowAnimator
+flowAnimator.render(proof)
+flowAnimator.destroy()</code></pre>
+    </div>
+  </div>
+
+  <script type="module">
+    function openDemoProof() {
+      alert('完整演示需要在主项目中运行。\n请在主页面中点击任意公式节点打开证明页，增强功能将自动应用。')
+    }
+
+    function showFeatures() {
+      const features = document.querySelectorAll('.feature-card')
+      features.forEach((card, i) => {
+        setTimeout(() => {
+          card.style.transform = 'scale(1.05)'
+          card.style.boxShadow = '0 8px 32px rgba(120, 215, 255, 0.3)'
+          setTimeout(() => {
+            card.style.transform = ''
+            card.style.boxShadow = ''
+          }, 300)
+        }, i * 100)
+      })
+    }
+
+    // Add click handlers to feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const feature = this.dataset.feature
+        const messages = {
+          highlight: '证明步骤高亮功能：\n\n• 点击任意步骤聚焦\n• 使用 ↑↓ 键导航\n• Enter 键展开/折叠\n• 高亮显示被引用的步骤',
+          popup: '定理悬浮提示功能：\n\n• 鼠标悬停在定理链接上\n• 自动加载定理数据\n• 显示公式和摘要\n• 智能定位避免遮挡',
+          graph: '依赖关系图功能：\n\n• 自动分层布局\n• 显示步骤间依赖\n• 展示前置定理\n• 支持交互缩放',
+          comparison: '多证明对比功能：\n\n• 并排展示不同证明\n• 比较步骤数和难度\n• 一键切换证明\n• 显示依赖差异',
+          completeness: '完整度指示器功能：\n\n• 自动评估证明质量\n• 显示缺失内容\n• 进度条可视化\n• 详细检查清单',
+          latex: 'LaTeX 导出功能：\n\n• 标准 LaTeX 格式\n• 包含所有证明内容\n• 支持中文和数学公式\n• 可直接编译',
+          search: '定理使用搜索功能：\n\n• 查找引用位置\n• 显示使用上下文\n• 追踪知识传播\n• 快速跳转',
+          animation: '证明流程动画功能：\n\n• 粒子流动画\n• 展示推理过程\n• 自适应证明长度\n• 支持暂停/播放'
+        }
+        alert(messages[feature] || '功能详情')
+      })
+    })
+  </script>
+</body>
+</html>

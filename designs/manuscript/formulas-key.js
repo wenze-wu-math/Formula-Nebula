@@ -7,6 +7,7 @@
  */
 export const CACHE_VER = 'mj1'
 export const CACHE_FILE = 'formulas-cache.json'
+export const CACHE_FILE_GZ = 'formulas-cache.json.gz'
 
 export function cacheKey(texEm, color, latex) { return `${CACHE_VER}|${texEm}|${color}|${latex}` }
 

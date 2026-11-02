@@ -140,7 +140,7 @@ function zoomBtn(d, label, fn) {
   return b
 }
 
-/** 老地图风指北针：外圈刻度 + 双色菱形针 + 衬线 N */
+/** 老地图风指北针：外圈刻度 + 双色菱形针（添加动画针晃动） + 衬线 N */
 function compassSvg() {
   const NS = 'http://www.w3.org/2000/svg'
   const svg = document.createElementNS(NS, 'svg')
@@ -150,22 +150,35 @@ function compassSvg() {
   svg.setAttribute('aria-label', '指北针：上方为北')
   const el = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); svg.append(e); return e }
   const cx = 24, cy = 32, R = 15
+
+  // 外圈 + 刻度底盘
   el('circle', { cx, cy, r: R + 4, fill: '#fbf8f1', stroke: '#8a7f73', 'stroke-width': 1 })
   el('circle', { cx, cy, r: R, fill: 'none', stroke: '#8a7f73', 'stroke-width': 0.6 })
+
+  // 16 个刻度线（每 4 个一组深刻度）
   for (let i = 0; i < 16; i++) {
     const a = (i / 16) * Math.PI * 2
     const r0 = i % 4 === 0 ? R - 3 : R - 1.5
     el('line', { x1: cx + Math.sin(a) * r0, y1: cy - Math.cos(a) * r0, x2: cx + Math.sin(a) * R, y2: cy - Math.cos(a) * R, stroke: '#8a7f73', 'stroke-width': i % 4 === 0 ? 1 : 0.6 })
   }
-  // 东西针（细，浅）
+
+  // 东西针（细，浅色底针）
   el('path', { d: `M${cx - R + 3} ${cy} L${cx} ${cy - 2.6} L${cx + R - 3} ${cy} L${cx} ${cy + 2.6} Z`, fill: '#e8e0cf', stroke: '#8a7f73', 'stroke-width': 0.6 })
-  // 南北针：北半深红、南半纸白，左右两半明暗分开（老海图的立体针）
-  el('path', { d: `M${cx} ${cy - R + 1} L${cx - 4} ${cy} L${cx} ${cy} Z`, fill: '#b5402e' })
-  el('path', { d: `M${cx} ${cy - R + 1} L${cx + 4} ${cy} L${cx} ${cy} Z`, fill: '#8a2d1f' })
-  el('path', { d: `M${cx} ${cy + R - 1} L${cx - 4} ${cy} L${cx} ${cy} Z`, fill: '#fbf8f1', stroke: '#6b6255', 'stroke-width': 0.6 })
-  el('path', { d: `M${cx} ${cy + R - 1} L${cx + 4} ${cy} L${cx} ${cy} Z`, fill: '#d9cfbc', stroke: '#6b6255', 'stroke-width': 0.6 })
-  el('circle', { cx, cy, r: 1.6, fill: '#4a4236' })
+
+  // 南北针：北半深红、南半纸白，添加动画 group
+  const needleGroup = document.createElementNS(NS, 'g')
+  needleGroup.setAttribute('class', 'ui-compass-needle')
+  needleGroup.innerHTML = `
+    <path d="M${cx} ${cy - R + 1} L${cx - 4} ${cy} L${cx} ${cy} Z" fill="#b5402e"/>
+    <path d="M${cx} ${cy - R + 1} L${cx + 4} ${cy} L${cx} ${cy} Z" fill="#8a2d1f"/>
+    <path d="M${cx} ${cy + R - 1} L${cx - 4} ${cy} L${cx} ${cy} Z" fill="#fbf8f1" stroke="#6b6255" stroke-width="0.6"/>
+    <path d="M${cx} ${cy + R - 1} L${cx + 4} ${cy} L${cx} ${cy} Z" fill="#d9cfbc" stroke="#6b6255" stroke-width="0.6"/>
+    <circle cx="${cx}" cy="${cy}" r="1.6" fill="#4a4236"/>
+  `
+  svg.append(needleGroup)
+
   const t = el('text', { x: cx, y: 9.5, 'text-anchor': 'middle', 'font-family': 'Georgia, "Times New Roman", serif', 'font-size': 11, 'font-weight': 700, fill: '#4a4236' })
   t.textContent = 'N'
+
   return svg
 }

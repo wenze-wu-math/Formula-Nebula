@@ -7,11 +7,87 @@
 import { state, w2s, s2w, worldViewport } from './state.js'
 import { PALETTE, LOD, TEX_EM, fontCss } from './constants.js'
 import { getBitmap, pumpBakes, bitmapStats } from './formulas.js'
-import { makeTextures, drawDesk, drawPage } from './paper.js'
+import { makeTextures, drawDesk, drawPage, applyInkBleed } from './paper.js'
 import { inkEllipse } from './pencil.js'
 
 let canvas = null, ctx = null, textures = null
 let lastStats = { visibleLabels: 0, overlappingLabels: 0, drawnItems: 0, pendingVisible: 0, drawMs: 0, threads: 0, arcs: 0, links: 0, legibleFormulas: 0, bitmaps: null }
+let pageFlipState = { active: false, progress: 0, fromPage: null, toPage: null, startTime: 0 }
+
+/** 初始化翻页动画 */
+export function startPageFlip(fromPage, toPage) {
+  pageFlipState = {
+    active: true,
+    progress: 0,
+    fromPage,
+    toPage,
+    startTime: performance.now()
+  }
+}
+
+/** 绘制3D翻页效果 */
+function drawPageFlip(ctx, state, pageFlipState) {
+  if (!pageFlipState.active) return false
+
+  const elapsed = performance.now() - pageFlipState.startTime
+  const duration = 600 // 翻页动画时长 ms
+  pageFlipState.progress = Math.min(1, elapsed / duration)
+
+  if (pageFlipState.progress >= 1) {
+    pageFlipState.active = false
+    return false
+  }
+
+  // 使用 ease-in-out 缓动
+  const t = pageFlipState.progress < 0.5
+    ? 2 * pageFlipState.progress * pageFlipState.progress
+    : 1 - Math.pow(-2 * pageFlipState.progress + 2, 2) / 2
+
+  const { fromPage, toPage } = pageFlipState
+  const z = state.cam.z
+
+  // 绘制目标页（背景）
+  if (toPage) {
+    const [sx, sy] = w2s(toPage.x, toPage.y)
+    drawPage(ctx, textures, toPage, sx, sy, toPage.w * z, toPage.h * z, z)
+  }
+
+  // 绘制翻页中的页面（带3D透视）
+  if (fromPage) {
+    const [sx, sy] = w2s(fromPage.x, fromPage.y)
+    const sw = fromPage.w * z
+    const sh = fromPage.h * z
+
+    ctx.save()
+
+    // 3D 翻页效果：沿中心垂直轴旋转
+    const centerX = sx + sw / 2
+    const angle = t * Math.PI
+    const scale = Math.cos(angle)
+
+    if (scale > 0) {
+      ctx.translate(centerX, sy + sh / 2)
+      ctx.scale(scale, 1)
+      ctx.translate(-centerX, -(sy + sh / 2))
+
+      // 添加阴影效果
+      ctx.globalAlpha = 0.3 + 0.7 * Math.abs(scale)
+
+      drawPage(ctx, textures, fromPage, sx, sy, sw, sh, z)
+
+      // 翻页边缘高光
+      if (Math.abs(scale) < 0.3) {
+        ctx.globalAlpha = (0.3 - Math.abs(scale)) / 0.3 * 0.4
+        ctx.fillStyle = '#fff'
+        ctx.fillRect(centerX - 2, sy, 4, sh)
+      }
+    }
+
+    ctx.restore()
+  }
+
+  return true
+}
 
 /** boot 时调用一次。 */
 export function initRenderer(cnv) {
@@ -35,11 +111,18 @@ export function draw() {
   const L = state.layout
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   drawDesk(ctx, textures, vw, vh, state.cam)
-  const vp = worldViewport()
-  for (const p of L.pages) {
-    if (!hit(p, vp)) continue
-    const [sx, sy] = w2s(p.x, p.y)
-    drawPage(ctx, textures, p, sx, sy, p.w * z, p.h * z, z)
+
+  // 检查是否有翻页动画
+  const hasFlip = drawPageFlip(ctx, state, pageFlipState)
+
+  if (!hasFlip) {
+    // 正常绘制所有页面
+    const vp = worldViewport()
+    for (const p of L.pages) {
+      if (!hit(p, vp)) continue
+      const [sx, sy] = w2s(p.x, p.y)
+      drawPage(ctx, textures, p, sx, sy, p.w * z, p.h * z, z)
+    }
   }
   ctx.fillStyle = PALETTE.ink
   for (const t of L.texts) {
@@ -62,6 +145,12 @@ export function draw() {
         ctx.fillStyle = PALETTE.ink; ctx.globalAlpha = LOD.GREEK_ALPHA
         ctx.fillRect(sx, sy + f.h * z * 0.35, f.w * z, Math.max(1, f.h * z * 0.3)); ctx.globalAlpha = 1
       } else {
+        // 应用墨水洇染效果
+        if (em >= LOD.LEGIBLE_PX * 0.7) {
+          ctx.globalAlpha = 0.08
+          applyInkBleed(ctx, sx, sy, f.w * z, f.h * z, 0.4)
+          ctx.globalAlpha = 1
+        }
         const bm = getBitmap(it.id, f.scale * z * state.dpr)
         if (bm) ctx.drawImage(bm.canvas, sx, sy, f.w * z, f.h * z)
         if (!bm || !bm.exact) pendingVisible++
@@ -81,6 +170,12 @@ export function draw() {
     }
   }
   lastStats = { visibleLabels: visible, overlappingLabels: 0, drawnItems: L.items.length, pendingVisible, drawMs: performance.now() - t0, threads: 0, arcs: 0, links: 0, legibleFormulas: visible, bitmaps: bitmapStats() }
+
+  // 如果翻页动画在进行，保持 dirty 状态以继续渲染
+  if (pageFlipState.active) {
+    state.dirty = true
+  }
+
   return lastStats
 }
 

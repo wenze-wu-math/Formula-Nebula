@@ -116,11 +116,13 @@ export function getGlowTexture(opts = {}) {
  *   （同样只是兜底值，实际由 `GLYPH.glow.whiten` 传入，现值 **0.38**：
  *    光点面积变小后需要更"烫"一点才够显眼）
  * @param {boolean} [opts.tint=true]  false 时用纯白（不跟族色）
+ * @param {number} [opts.bloomBoost=1.0] bloom强度加成
  * @returns {{r:number,g:number,b:number}}
  */
 export function glowColor(baseLinear, glowScale, opts = {}) {
   const whiten = opts.whiten ?? 0.28
   const tint = opts.tint !== false
+  const bloomBoost = opts.bloomBoost ?? 1.0
 
   // 不跟色时直接用白，但要按族的相对明度稍微压一下，
   // 否则所有族的光晕一样亮，"核心更亮"就只剩大小在表达
@@ -129,9 +131,9 @@ export function glowColor(baseLinear, glowScale, opts = {}) {
   // 把基色朝白色插值：core → 更白、更"过曝"
   const mix = (v) => v + (1 - v) * whiten
   return {
-    r: mix(src.r) * glowScale,
-    g: mix(src.g) * glowScale,
-    b: mix(src.b) * glowScale,
+    r: mix(src.r) * glowScale * bloomBoost,
+    g: mix(src.g) * glowScale * bloomBoost,
+    b: mix(src.b) * glowScale * bloomBoost,
   }
 }
 

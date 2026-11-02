@@ -99,11 +99,14 @@ export function drawStar(ctx, x, y, r, o = {}) {
   ctx.save()
   ctx.globalAlpha = alpha
   if (mag <= 2) {
-    const g = ctx.createRadialGradient(x, y, r * 0.6, x, y, r * 3.2)
-    g.addColorStop(0, 'rgba(244,236,216,0.20)')
+    // Enhanced radial gradient with smoother alpha falloff
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r * 3.5)
+    g.addColorStop(0, 'rgba(244,236,216,0.35)')
+    g.addColorStop(0.3, 'rgba(244,236,216,0.18)')
+    g.addColorStop(0.6, 'rgba(244,236,216,0.08)')
     g.addColorStop(1, 'rgba(244,236,216,0)')
     ctx.fillStyle = g
-    ctx.beginPath(); ctx.arc(x, y, r * 3.2, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath(); ctx.arc(x, y, r * 3.5, 0, Math.PI * 2); ctx.fill()
   }
   if (halo) {
     ctx.fillStyle = COLOR.starHalo

@@ -224,14 +224,15 @@ function attempt(graph, dims, m, pageH, force) {
         }
         /* 续页也要页眉页脚（否则第 2 页起是白纸） */
         if (k > 0) pageFrame(m, L, pg, `卷 ${ch.roman} · ${ch.name}（续）`)
-        /* 段内 y 需要重映射：减去该段起点的 y，落到页顶 */
+        /* 段内 y 需要重映射：减去该段的最小 y，使段内第一项从 0 开始 */
         const seg = segments[k]
-        const y0 = place[seg.from]?.y ?? 0
+        const segSlice = place.slice(seg.from, seg.to)
+        const y0 = segSlice.length > 0 ? Math.min(...segSlice.map(it => it.y)) : 0
         const shifted = {
           ...fitted,
           f: {
             ...fitted.f,
-            place: place.slice(seg.from, seg.to).map((it) => ({ ...it, y: it.y - y0 })),
+            place: segSlice.map((it) => ({ ...it, y: it.y - y0 })),
           },
         }
         const top = k === 0 ? bodyTop : pg.text.y + 40

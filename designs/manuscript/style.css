@@ -176,13 +176,19 @@ body { font-family: var(--mx-f-serif); color: var(--mx-ink); }
   position: relative; flex: 1 1 0; min-height: 0; max-height: 84px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
   width: 50px; padding: 4px 0; color: var(--mx-ink2);
-  /* 书签纸条：右端是从书页里露出的那截，右上 / 右下圆角 */
+  /* 书签纸条：右端是从书页里露出的那截，右上 / 右下圆角，增加丝带质感 */
   border-radius: 1px 5px 5px 1px;
   background: linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,.35) 100%);
-  box-shadow: inset 0 0 0 1px rgba(110,90,60,.20);
+  box-shadow: inset 0 0 0 1px rgba(110,90,60,.20), inset 0 1px 0 rgba(255,255,255,.25);
   transition: transform .18s var(--mx-ease), background-color .18s, color .18s, box-shadow .18s;
 }
-.mx-mark-num { font-family: var(--mx-f-serif); font-size: 15px; font-weight: 600; letter-spacing: .02em; line-height: 1; }
+/* 书签丝带纹理效果 */
+.mx-mark::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0px, rgba(110,90,60,.03) 1px, transparent 2px);
+  border-radius: inherit;
+}
+.mx-mark-num { font-family: var(--mx-f-serif); font-size: 15px; font-weight: 600; letter-spacing: .02em; line-height: 1; z-index: 1; }
 .mx-mark.is-end .mx-mark-num { font-size: 16px; }
 .mx-mark-short {
   writing-mode: vertical-rl; text-orientation: upright; font-family: var(--mx-f-serif); font-size: 11.5px;
@@ -192,9 +198,18 @@ body { font-family: var(--mx-f-serif); color: var(--mx-ink); }
 .mx-mark:hover .mx-mark-short { color: var(--mx-ink2); }
 .mx-mark.is-current {
   transform: translateX(6px); color: var(--mx-rubric); background-color: var(--mx-paper);
-  box-shadow: inset 3px 0 0 var(--mx-rubric), inset 0 0 0 1px rgba(163,41,27,.35), 3px 2px 6px -2px rgba(58,42,18,.35);
+  box-shadow: inset 3px 0 0 var(--mx-rubric), inset 0 0 0 1px rgba(163,41,27,.35), 3px 2px 6px -2px rgba(58,42,18,.35), inset 0 1px 0 rgba(255,255,255,.35);
 }
 .mx-mark.is-current .mx-mark-short { color: var(--mx-rubric); }
+/* 阅读进度指示器 - 书签底部的装饰性丝带 */
+.mx-mark.is-current::after {
+  content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 8px solid transparent; border-right: 8px solid transparent;
+  border-top: 8px solid var(--mx-rubric);
+  opacity: 0.75;
+  filter: drop-shadow(0 1px 2px rgba(58,42,18,.3));
+}
 .mx-badge {
   position: absolute; top: -3px; right: -7px; min-width: 17px; height: 17px; padding: 0 4px;
   display: grid; place-items: center; border-radius: 9px;
@@ -268,9 +283,15 @@ body { font-family: var(--mx-f-serif); color: var(--mx-ink); }
 .mx-summary { font-size: 15.5px; line-height: 1.8; color: var(--mx-ink); }
 .mx-detail { font-size: 15px; line-height: 1.8; color: var(--mx-ink2); text-align: justify; text-justify: inter-character; }
 .mx-detail + .mx-detail { margin-top: .6em; text-indent: 2em; }
-/* 笺注首字：小号朱色下沉两行 */
+/* 笺注首字：小号朱色下沉两行 - 增强为装饰性首字母 */
 .mx-initial::first-letter {
   float: left; margin: .12em .12em 0 0; font-family: var(--mx-f-serif); font-size: 2.55em; line-height: 1; font-weight: 600; color: var(--mx-rubric);
+  /* 添加装饰边框和背景 */
+  padding: .08em .15em .05em .12em;
+  background: linear-gradient(135deg, rgba(163,41,27,.08) 0%, rgba(163,41,27,.03) 100%);
+  border: 1.5px solid rgba(163,41,27,.25);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 .5px rgba(163,41,27,.15);
 }
 .mx-leaf b.em, .mx-tip b.em { font-weight: 600; color: var(--mx-rubric); }
 
@@ -286,6 +307,18 @@ a.mx-work-title { text-decoration: underline; text-decoration-color: rgba(163,41
 a.mx-work-title:hover { color: var(--mx-rubric); text-decoration-color: var(--mx-rubric); }
 .mx-work-year { font-size: 13px; color: var(--mx-ink3); font-variant-numeric: oldstyle-nums; }
 .mx-work-note { font-size: 13.5px; line-height: 1.65; color: var(--mx-ink2); }
+
+/* 手写注释样式 - 使用楷体作为手写字体 */
+.mx-annotation, .mx-leaf-annotation {
+  font-family: var(--mx-f-kai); font-size: 14.5px; line-height: 1.75; color: var(--mx-noteInk);
+  margin: 10px 0; padding: 8px 12px; position: relative;
+  background: linear-gradient(to right, rgba(31,58,92,.04) 0%, transparent 100%);
+  border-left: 2px solid rgba(31,58,92,.15);
+}
+.mx-annotation::before {
+  content: "✍"; position: absolute; left: -10px; top: 6px;
+  font-size: 16px; opacity: 0.5;
+}
 
 /* 关联 */
 .mx-rel-group + .mx-rel-group { margin-top: 12px; }

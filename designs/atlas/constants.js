@@ -81,6 +81,65 @@ export const COLOR = {
   labelHalo: '#0a1529',          // 标签文字底下的晕边
   regionFocus: 'rgba(201,168,106,0.05)', // 选中节点所在星座区域的极淡金色铺底
 }
+
+/** 主题色板：支持 light / sepia / dark 三种模式 */
+export const THEMES = {
+  dark: { ...COLOR },
+  light: {
+    bgOuter: '#e8e4dc',
+    diskInner: '#f7f4ed',
+    diskOuter: '#f1ebe0',
+    grid: 'rgba(130,110,70,0.20)',
+    gridMajor: 'rgba(130,110,70,0.40)',
+    ring: '#8b7442',
+    ringDim: 'rgba(139,116,66,0.70)',
+    boundary: 'rgba(150,125,80,0.60)',
+    figure: 'rgba(120,100,65,0.55)',
+    star: '#3a3226',
+    starHalo: '#f1ebe0',
+    ink: '#2d2820',
+    inkName: 'rgba(45,40,32,0.80)',
+    conj: '#c83a1e',
+    conjName: 'rgba(200,58,30,0.90)',
+    researcher: '#8b7442',
+    constName: 'rgba(100,85,55,0.50)',
+    constLatin: 'rgba(100,85,55,0.40)',
+    arcTheorem: '#b8942a',
+    arcConj: '#c83a1e',
+    arcResearcher: '#5070a0',
+    reticle: '#d89020',
+    searchHit: '#3090d0',
+    labelHalo: '#f1ebe0',
+    regionFocus: 'rgba(139,116,66,0.08)',
+  },
+  sepia: {
+    bgOuter: '#1a1612',
+    diskInner: '#2d2519',
+    diskOuter: '#1f1b15',
+    grid: 'rgba(190,160,110,0.15)',
+    gridMajor: 'rgba(190,160,110,0.30)',
+    ring: '#caa870',
+    ringDim: 'rgba(202,168,112,0.60)',
+    boundary: 'rgba(205,175,120,0.52)',
+    figure: 'rgba(225,200,155,0.52)',
+    star: '#f0e5d0',
+    starHalo: '#1f1b15',
+    ink: '#ede2c8',
+    inkName: 'rgba(237,226,200,0.76)',
+    conj: '#e8674a',
+    conjName: 'rgba(232,103,74,0.88)',
+    researcher: '#d4bc80',
+    constName: 'rgba(210,185,130,0.42)',
+    constLatin: 'rgba(210,185,130,0.32)',
+    arcTheorem: '#e5c270',
+    arcConj: '#e8674a',
+    arcResearcher: '#a0b8d0',
+    reticle: '#ffd890',
+    searchHit: '#7fc0f0',
+    labelHalo: '#1f1b15',
+    regionFocus: 'rgba(202,168,112,0.06)',
+  },
+}
 /** 公式位图只能用 hex 颜色（tex.js 限制）；与 COLOR.ink / COLOR.conj 相同色相 */
 export const INK_HEX = '#f1e7cf'
 export const CONJ_HEX = '#ef6a4a'

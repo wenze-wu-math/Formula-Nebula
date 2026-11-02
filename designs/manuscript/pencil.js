@@ -110,7 +110,7 @@ function graphite(ctx, S, off, width, alpha) {
   ctx.globalAlpha = a0
 }
 
-/** 曲线的核心绘制：按 opt.style 选择笔法 */
+/** 曲线的核心绘制：按 opt.style 选择笔法，带墨水洇染效果 */
 function drawCurve(ctx, c, seed, opt) {
   const len = estLen(c)
   if (!(len >= 1.5)) return
@@ -121,6 +121,18 @@ function drawCurve(ctx, c, seed, opt) {
   const wavy = style === 'wavy' ? { amp: 1.6 + width * 0.35, wl: 9 + width * 1.5 } : null
   const S = sampleCurve(c, len, seed >>> 0, jitter, wavy)
   ctx.save()
+
+  // 墨水洇染效果（在主笔画之前）
+  if (opt.inkBleed && width > 0.8) {
+    ctx.globalAlpha *= 0.06
+    ctx.strokeStyle = color
+    ctx.lineWidth = width * 2.2
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round'
+    ctx.filter = 'blur(1.5px)'
+    tracePolyline(ctx, S, 0, 0, 0)
+    ctx.filter = 'none'
+  }
+
   ctx.globalAlpha *= opt.alpha ?? 0.7
   ctx.strokeStyle = color
   ctx.lineCap = 'round'; ctx.lineJoin = 'round'
@@ -148,7 +160,7 @@ function drawCurve(ctx, c, seed, opt) {
   ctx.restore()
 }
 
-/** 二次曲线铅笔线。opt: {color, alpha(0.7), width(1.2), jitter(0.8), style('solid'|'double'|'arrow'|'dashed'|'dotted'|'wavy')} */
+/** 二次曲线铅笔线。opt: {color, alpha(0.7), width(1.2), jitter(0.8), style('solid'|'double'|'arrow'|'dashed'|'dotted'|'wavy'), inkBleed(false)} */
 export function pencilCurve(ctx, x0, y0, cx, cy, x1, y1, seed, opt = {}) {
   drawCurve(ctx, [x0, y0, cx, cy, x1, y1], seed, opt)
 }
