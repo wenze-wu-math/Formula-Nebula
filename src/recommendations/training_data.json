@@ -1,0 +1,2023 @@
+{
+  "users": [
+    {
+      "userId": "user_0",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_1",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_2",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_3",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_4",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_5",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_6",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_7",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_8",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_9",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_10",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_11",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_12",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_13",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_14",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_15",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_16",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_17",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_18",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_19",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_20",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_21",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_22",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_23",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_24",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_25",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_26",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_27",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_28",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_29",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_30",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_31",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_32",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_33",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_34",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_35",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_36",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_37",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_38",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_39",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_40",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_41",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_42",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_43",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_44",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_45",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_46",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_47",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_48",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_49",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_50",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_51",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_52",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_53",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_54",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_55",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_56",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_57",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_58",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_59",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_60",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_61",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_62",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_63",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_64",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_65",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_66",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_67",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_68",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_69",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_70",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_71",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_72",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_73",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_74",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_75",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_76",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_77",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_78",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_79",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_80",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_81",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_82",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_83",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_84",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_85",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_86",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_87",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_88",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_89",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_90",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_91",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_92",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_93",
+      "level": "beginner",
+      "interests": [
+        "foundation"
+      ],
+      "activityLevel": 0.7
+    },
+    {
+      "userId": "user_94",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_95",
+      "level": "advanced",
+      "interests": [
+        "scheme",
+        "cohomology",
+        "curve"
+      ],
+      "activityLevel": 0.5
+    },
+    {
+      "userId": "user_96",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_97",
+      "level": "intermediate",
+      "interests": [
+        "foundation",
+        "scheme"
+      ],
+      "activityLevel": 0.6
+    },
+    {
+      "userId": "user_98",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    },
+    {
+      "userId": "user_99",
+      "level": "expert",
+      "interests": [
+        "cohomology",
+        "curve",
+        "advanced"
+      ],
+      "activityLevel": 0.4
+    }
+  ],
+  "theorems": [
+    {
+      "theoremId": "zariski-topology",
+      "difficulty": 2,
+      "category": "foundation"
+    },
+    {
+      "theoremId": "ideal-variety",
+      "difficulty": 2,
+      "category": "foundation"
+    },
+    {
+      "theoremId": "hilbert-basis",
+      "difficulty": 2,
+      "category": "foundation"
+    },
+    {
+      "theoremId": "nullstellensatz",
+      "difficulty": 2,
+      "category": "foundation"
+    },
+    {
+      "theoremId": "noetherian-ring",
+      "difficulty": 2,
+      "category": "foundation"
+    },
+    {
+      "theoremId": "affine-scheme",
+      "difficulty": 4,
+      "category": "scheme"
+    },
+    {
+      "theoremId": "proj-construction",
+      "difficulty": 4,
+      "category": "scheme"
+    },
+    {
+      "theoremId": "sheaf-definition",
+      "difficulty": 4,
+      "category": "scheme"
+    },
+    {
+      "theoremId": "ringed-space",
+      "difficulty": 4,
+      "category": "scheme"
+    },
+    {
+      "theoremId": "scheme-morphism",
+      "difficulty": 4,
+      "category": "scheme"
+    },
+    {
+      "theoremId": "sheaf-cohomology",
+      "difficulty": 6,
+      "category": "cohomology"
+    },
+    {
+      "theoremId": "cech-cohomology",
+      "difficulty": 6,
+      "category": "cohomology"
+    },
+    {
+      "theoremId": "derived-functor",
+      "difficulty": 6,
+      "category": "cohomology"
+    },
+    {
+      "theoremId": "ext-tor",
+      "difficulty": 6,
+      "category": "cohomology"
+    },
+    {
+      "theoremId": "spectral-sequence",
+      "difficulty": 6,
+      "category": "cohomology"
+    },
+    {
+      "theoremId": "riemann-roch",
+      "difficulty": 8,
+      "category": "curve"
+    },
+    {
+      "theoremId": "genus-formula",
+      "difficulty": 8,
+      "category": "curve"
+    },
+    {
+      "theoremId": "canonical-divisor",
+      "difficulty": 8,
+      "category": "curve"
+    },
+    {
+      "theoremId": "weierstrass",
+      "difficulty": 8,
+      "category": "curve"
+    },
+    {
+      "theoremId": "jacobian",
+      "difficulty": 8,
+      "category": "curve"
+    },
+    {
+      "theoremId": "grothendieck-riemann-roch",
+      "difficulty": 10,
+      "category": "advanced"
+    },
+    {
+      "theoremId": "serre-duality",
+      "difficulty": 10,
+      "category": "advanced"
+    },
+    {
+      "theoremId": "hirzebruch-riemann-roch",
+      "difficulty": 10,
+      "category": "advanced"
+    },
+    {
+      "theoremId": "atiyah-singer",
+      "difficulty": 10,
+      "category": "advanced"
+    },
+    {
+      "theoremId": "mumford-tate",
+      "difficulty": 10,
+      "category": "advanced"
+    }
+  ],
+  "interactions": [
+    {
+      "userId": "user_0",
+      "theoremId": "cech-cohomology",
+      "rating": 5,
+      "timestamp": 1789712065583
+    },
+    {
+      "userId": "user_0",
+      "theoremId": "spectral-sequence",
+      "rating": 4.4,
+      "timestamp": 1765890195636
+    },
+    {
+      "userId": "user_1",
+      "theoremId": "zariski-topology",
+      "rating": 4.5,
+      "timestamp": 1783501455500
+    },
+    {
+      "userId": "user_1",
+      "theoremId": "proj-construction",
+      "rating": 5,
+      "timestamp": 1778171551759
+    },
+    {
+      "userId": "user_2",
+      "theoremId": "riemann-roch",
+      "rating": 4.8,
+      "timestamp": 1763153731932
+    },
+    {
+      "userId": "user_3",
+      "theoremId": "noetherian-ring",
+      "rating": 4.3,
+      "timestamp": 1776173309812
+    },
+    {
+      "userId": "user_3",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1767998819922
+    },
+    {
+      "userId": "user_3",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1782169123973
+    },
+    {
+      "userId": "user_4",
+      "theoremId": "spectral-sequence",
+      "rating": 5,
+      "timestamp": 1766765337999
+    },
+    {
+      "userId": "user_4",
+      "theoremId": "proj-construction",
+      "rating": 5,
+      "timestamp": 1785003350743
+    },
+    {
+      "userId": "user_5",
+      "theoremId": "ringed-space",
+      "rating": 4.8,
+      "timestamp": 1774812063467
+    },
+    {
+      "userId": "user_6",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1786599292388
+    },
+    {
+      "userId": "user_6",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1772617075318
+    },
+    {
+      "userId": "user_6",
+      "theoremId": "noetherian-ring",
+      "rating": 4.6,
+      "timestamp": 1771014735166
+    },
+    {
+      "userId": "user_7",
+      "theoremId": "noetherian-ring",
+      "rating": 5,
+      "timestamp": 1780136923615
+    },
+    {
+      "userId": "user_7",
+      "theoremId": "nullstellensatz",
+      "rating": 4.5,
+      "timestamp": 1765405525084
+    },
+    {
+      "userId": "user_8",
+      "theoremId": "mumford-tate",
+      "rating": 4.5,
+      "timestamp": 1786687958191
+    },
+    {
+      "userId": "user_9",
+      "theoremId": "ringed-space",
+      "rating": 5,
+      "timestamp": 1768634152146
+    },
+    {
+      "userId": "user_9",
+      "theoremId": "riemann-roch",
+      "rating": 5,
+      "timestamp": 1779827622716
+    },
+    {
+      "userId": "user_10",
+      "theoremId": "sheaf-definition",
+      "rating": 5,
+      "timestamp": 1784815255038
+    },
+    {
+      "userId": "user_10",
+      "theoremId": "noetherian-ring",
+      "rating": 4.8,
+      "timestamp": 1779500908566
+    },
+    {
+      "userId": "user_11",
+      "theoremId": "ringed-space",
+      "rating": 4.7,
+      "timestamp": 1771349709123
+    },
+    {
+      "userId": "user_11",
+      "theoremId": "hilbert-basis",
+      "rating": 4.5,
+      "timestamp": 1789230618393
+    },
+    {
+      "userId": "user_12",
+      "theoremId": "hilbert-basis",
+      "rating": 4.3,
+      "timestamp": 1770901667311
+    },
+    {
+      "userId": "user_12",
+      "theoremId": "noetherian-ring",
+      "rating": 5,
+      "timestamp": 1787419680253
+    },
+    {
+      "userId": "user_13",
+      "theoremId": "nullstellensatz",
+      "rating": 4.3,
+      "timestamp": 1783432135883
+    },
+    {
+      "userId": "user_14",
+      "theoremId": "cech-cohomology",
+      "rating": 4.7,
+      "timestamp": 1776107724938
+    },
+    {
+      "userId": "user_15",
+      "theoremId": "cech-cohomology",
+      "rating": 4.5,
+      "timestamp": 1772335687159
+    },
+    {
+      "userId": "user_16",
+      "theoremId": "noetherian-ring",
+      "rating": 4.7,
+      "timestamp": 1780449308923
+    },
+    {
+      "userId": "user_17",
+      "theoremId": "riemann-roch",
+      "rating": 4.3,
+      "timestamp": 1791641325222
+    },
+    {
+      "userId": "user_18",
+      "theoremId": "ideal-variety",
+      "rating": 4.8,
+      "timestamp": 1782425153908
+    },
+    {
+      "userId": "user_19",
+      "theoremId": "ringed-space",
+      "rating": 5,
+      "timestamp": 1769511222500
+    },
+    {
+      "userId": "user_19",
+      "theoremId": "zariski-topology",
+      "rating": 4.8,
+      "timestamp": 1792096066692
+    },
+    {
+      "userId": "user_20",
+      "theoremId": "genus-formula",
+      "rating": 4.9,
+      "timestamp": 1785132090704
+    },
+    {
+      "userId": "user_20",
+      "theoremId": "cech-cohomology",
+      "rating": 4.3,
+      "timestamp": 1766002977848
+    },
+    {
+      "userId": "user_21",
+      "theoremId": "ringed-space",
+      "rating": 5,
+      "timestamp": 1780043312141
+    },
+    {
+      "userId": "user_22",
+      "theoremId": "atiyah-singer",
+      "rating": 5,
+      "timestamp": 1770887970883
+    },
+    {
+      "userId": "user_22",
+      "theoremId": "canonical-divisor",
+      "rating": 4.5,
+      "timestamp": 1762293684884
+    },
+    {
+      "userId": "user_23",
+      "theoremId": "noetherian-ring",
+      "rating": 4.8,
+      "timestamp": 1764582241182
+    },
+    {
+      "userId": "user_23",
+      "theoremId": "nullstellensatz",
+      "rating": 4.7,
+      "timestamp": 1765898739064
+    },
+    {
+      "userId": "user_24",
+      "theoremId": "sheaf-definition",
+      "rating": 4.7,
+      "timestamp": 1779324139876
+    },
+    {
+      "userId": "user_25",
+      "theoremId": "weierstrass",
+      "rating": 5,
+      "timestamp": 1764998230186
+    },
+    {
+      "userId": "user_26",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1783160887074
+    },
+    {
+      "userId": "user_26",
+      "theoremId": "weierstrass",
+      "rating": 2.3,
+      "timestamp": 1782084881404
+    },
+    {
+      "userId": "user_27",
+      "theoremId": "genus-formula",
+      "rating": 4.7,
+      "timestamp": 1765012679340
+    },
+    {
+      "userId": "user_28",
+      "theoremId": "ringed-space",
+      "rating": 4.7,
+      "timestamp": 1786836939748
+    },
+    {
+      "userId": "user_29",
+      "theoremId": "weierstrass",
+      "rating": 5,
+      "timestamp": 1788682239636
+    },
+    {
+      "userId": "user_30",
+      "theoremId": "proj-construction",
+      "rating": 5,
+      "timestamp": 1764993306112
+    },
+    {
+      "userId": "user_30",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1777930893510
+    },
+    {
+      "userId": "user_31",
+      "theoremId": "grothendieck-riemann-roch",
+      "rating": 5,
+      "timestamp": 1769782357978
+    },
+    {
+      "userId": "user_31",
+      "theoremId": "mumford-tate",
+      "rating": 5,
+      "timestamp": 1765810681463
+    },
+    {
+      "userId": "user_32",
+      "theoremId": "canonical-divisor",
+      "rating": 5,
+      "timestamp": 1778229079618
+    },
+    {
+      "userId": "user_33",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1778065167592
+    },
+    {
+      "userId": "user_34",
+      "theoremId": "proj-construction",
+      "rating": 4.3,
+      "timestamp": 1787962860193
+    },
+    {
+      "userId": "user_34",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1762975901494
+    },
+    {
+      "userId": "user_35",
+      "theoremId": "riemann-roch",
+      "rating": 5,
+      "timestamp": 1767859561755
+    },
+    {
+      "userId": "user_35",
+      "theoremId": "sheaf-cohomology",
+      "rating": 4.8,
+      "timestamp": 1772652168803
+    },
+    {
+      "userId": "user_36",
+      "theoremId": "ringed-space",
+      "rating": 4.8,
+      "timestamp": 1790050617413
+    },
+    {
+      "userId": "user_36",
+      "theoremId": "zariski-topology",
+      "rating": 4.6,
+      "timestamp": 1786113884478
+    },
+    {
+      "userId": "user_36",
+      "theoremId": "nullstellensatz",
+      "rating": 4.3,
+      "timestamp": 1781523701831
+    },
+    {
+      "userId": "user_37",
+      "theoremId": "sheaf-cohomology",
+      "rating": 5,
+      "timestamp": 1776816178717
+    },
+    {
+      "userId": "user_37",
+      "theoremId": "derived-functor",
+      "rating": 5,
+      "timestamp": 1763714654592
+    },
+    {
+      "userId": "user_38",
+      "theoremId": "genus-formula",
+      "rating": 5,
+      "timestamp": 1793209709465
+    },
+    {
+      "userId": "user_39",
+      "theoremId": "atiyah-singer",
+      "rating": 4.5,
+      "timestamp": 1767331043019
+    },
+    {
+      "userId": "user_40",
+      "theoremId": "noetherian-ring",
+      "rating": 5,
+      "timestamp": 1763693654125
+    },
+    {
+      "userId": "user_40",
+      "theoremId": "nullstellensatz",
+      "rating": 4.3,
+      "timestamp": 1767113900494
+    },
+    {
+      "userId": "user_41",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1779517749437
+    },
+    {
+      "userId": "user_41",
+      "theoremId": "cech-cohomology",
+      "rating": 4.4,
+      "timestamp": 1779595153761
+    },
+    {
+      "userId": "user_42",
+      "theoremId": "mumford-tate",
+      "rating": 4.5,
+      "timestamp": 1777682139423
+    },
+    {
+      "userId": "user_42",
+      "theoremId": "genus-formula",
+      "rating": 5,
+      "timestamp": 1786708749340
+    },
+    {
+      "userId": "user_43",
+      "theoremId": "ext-tor",
+      "rating": 4.7,
+      "timestamp": 1775051095187
+    },
+    {
+      "userId": "user_44",
+      "theoremId": "canonical-divisor",
+      "rating": 5,
+      "timestamp": 1783030404655
+    },
+    {
+      "userId": "user_44",
+      "theoremId": "genus-formula",
+      "rating": 4.4,
+      "timestamp": 1774680511816
+    },
+    {
+      "userId": "user_45",
+      "theoremId": "mumford-tate",
+      "rating": 5,
+      "timestamp": 1771377047446
+    },
+    {
+      "userId": "user_47",
+      "theoremId": "grothendieck-riemann-roch",
+      "rating": 4.4,
+      "timestamp": 1780774086308
+    },
+    {
+      "userId": "user_48",
+      "theoremId": "zariski-topology",
+      "rating": 4.3,
+      "timestamp": 1781541485764
+    },
+    {
+      "userId": "user_48",
+      "theoremId": "sheaf-definition",
+      "rating": 5,
+      "timestamp": 1791704887048
+    },
+    {
+      "userId": "user_49",
+      "theoremId": "serre-duality",
+      "rating": 5,
+      "timestamp": 1784914105867
+    },
+    {
+      "userId": "user_50",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1771551663340
+    },
+    {
+      "userId": "user_50",
+      "theoremId": "noetherian-ring",
+      "rating": 4.5,
+      "timestamp": 1777225952337
+    },
+    {
+      "userId": "user_51",
+      "theoremId": "sheaf-cohomology",
+      "rating": 4.9,
+      "timestamp": 1790500500919
+    },
+    {
+      "userId": "user_51",
+      "theoremId": "genus-formula",
+      "rating": 5,
+      "timestamp": 1776108508849
+    },
+    {
+      "userId": "user_52",
+      "theoremId": "jacobian",
+      "rating": 5,
+      "timestamp": 1765370103826
+    },
+    {
+      "userId": "user_53",
+      "theoremId": "mumford-tate",
+      "rating": 5,
+      "timestamp": 1769170642634
+    },
+    {
+      "userId": "user_54",
+      "theoremId": "nullstellensatz",
+      "rating": 4.5,
+      "timestamp": 1768716330713
+    },
+    {
+      "userId": "user_54",
+      "theoremId": "scheme-morphism",
+      "rating": 5,
+      "timestamp": 1785836708615
+    },
+    {
+      "userId": "user_55",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1791975950831
+    },
+    {
+      "userId": "user_56",
+      "theoremId": "ideal-variety",
+      "rating": 5,
+      "timestamp": 1774054514827
+    },
+    {
+      "userId": "user_57",
+      "theoremId": "canonical-divisor",
+      "rating": 5,
+      "timestamp": 1767776380579
+    },
+    {
+      "userId": "user_58",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1779724945631
+    },
+    {
+      "userId": "user_58",
+      "theoremId": "proj-construction",
+      "rating": 4.9,
+      "timestamp": 1771909402610
+    },
+    {
+      "userId": "user_59",
+      "theoremId": "ringed-space",
+      "rating": 4.3,
+      "timestamp": 1775482850774
+    },
+    {
+      "userId": "user_60",
+      "theoremId": "noetherian-ring",
+      "rating": 4.3,
+      "timestamp": 1783414797762
+    },
+    {
+      "userId": "user_60",
+      "theoremId": "scheme-morphism",
+      "rating": 4.3,
+      "timestamp": 1784332368842
+    },
+    {
+      "userId": "user_60",
+      "theoremId": "sheaf-definition",
+      "rating": 5,
+      "timestamp": 1780102754021
+    },
+    {
+      "userId": "user_61",
+      "theoremId": "hilbert-basis",
+      "rating": 4.7,
+      "timestamp": 1770784178233
+    },
+    {
+      "userId": "user_62",
+      "theoremId": "nullstellensatz",
+      "rating": 4.4,
+      "timestamp": 1762756153318
+    },
+    {
+      "userId": "user_63",
+      "theoremId": "affine-scheme",
+      "rating": 4.6,
+      "timestamp": 1792468914828
+    },
+    {
+      "userId": "user_63",
+      "theoremId": "proj-construction",
+      "rating": 4.8,
+      "timestamp": 1791246247774
+    },
+    {
+      "userId": "user_64",
+      "theoremId": "weierstrass",
+      "rating": 5,
+      "timestamp": 1785459724310
+    },
+    {
+      "userId": "user_65",
+      "theoremId": "ringed-space",
+      "rating": 4.7,
+      "timestamp": 1783418057345
+    },
+    {
+      "userId": "user_66",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1765242696896
+    },
+    {
+      "userId": "user_67",
+      "theoremId": "grothendieck-riemann-roch",
+      "rating": 4.4,
+      "timestamp": 1784736787911
+    },
+    {
+      "userId": "user_67",
+      "theoremId": "genus-formula",
+      "rating": 5,
+      "timestamp": 1780896176430
+    },
+    {
+      "userId": "user_68",
+      "theoremId": "hilbert-basis",
+      "rating": 5,
+      "timestamp": 1773341461684
+    },
+    {
+      "userId": "user_68",
+      "theoremId": "scheme-morphism",
+      "rating": 4.9,
+      "timestamp": 1763042487165
+    },
+    {
+      "userId": "user_69",
+      "theoremId": "hilbert-basis",
+      "rating": 5,
+      "timestamp": 1772801764748
+    },
+    {
+      "userId": "user_69",
+      "theoremId": "zariski-topology",
+      "rating": 4.6,
+      "timestamp": 1775236809634
+    },
+    {
+      "userId": "user_69",
+      "theoremId": "proj-construction",
+      "rating": 4.9,
+      "timestamp": 1770580452017
+    },
+    {
+      "userId": "user_70",
+      "theoremId": "scheme-morphism",
+      "rating": 4.8,
+      "timestamp": 1792821790756
+    },
+    {
+      "userId": "user_70",
+      "theoremId": "noetherian-ring",
+      "rating": 5,
+      "timestamp": 1765861178771
+    },
+    {
+      "userId": "user_71",
+      "theoremId": "spectral-sequence",
+      "rating": 4.3,
+      "timestamp": 1772188831788
+    },
+    {
+      "userId": "user_71",
+      "theoremId": "weierstrass",
+      "rating": 5,
+      "timestamp": 1776296385192
+    },
+    {
+      "userId": "user_72",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1776365260155
+    },
+    {
+      "userId": "user_73",
+      "theoremId": "ext-tor",
+      "rating": 4.4,
+      "timestamp": 1766325577001
+    },
+    {
+      "userId": "user_74",
+      "theoremId": "ringed-space",
+      "rating": 5,
+      "timestamp": 1762140564655
+    },
+    {
+      "userId": "user_75",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1768446586957
+    },
+    {
+      "userId": "user_76",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1766451175313
+    },
+    {
+      "userId": "user_76",
+      "theoremId": "sheaf-definition",
+      "rating": 4.7,
+      "timestamp": 1763591867837
+    },
+    {
+      "userId": "user_77",
+      "theoremId": "grothendieck-riemann-roch",
+      "rating": 5,
+      "timestamp": 1780256552294
+    },
+    {
+      "userId": "user_77",
+      "theoremId": "mumford-tate",
+      "rating": 4.9,
+      "timestamp": 1775400513798
+    },
+    {
+      "userId": "user_78",
+      "theoremId": "proj-construction",
+      "rating": 4.5,
+      "timestamp": 1765720564860
+    },
+    {
+      "userId": "user_79",
+      "theoremId": "ext-tor",
+      "rating": 5,
+      "timestamp": 1765521691499
+    },
+    {
+      "userId": "user_79",
+      "theoremId": "scheme-morphism",
+      "rating": 5,
+      "timestamp": 1793121097358
+    },
+    {
+      "userId": "user_80",
+      "theoremId": "ideal-variety",
+      "rating": 5,
+      "timestamp": 1772832549708
+    },
+    {
+      "userId": "user_80",
+      "theoremId": "nullstellensatz",
+      "rating": 4.9,
+      "timestamp": 1790281753332
+    },
+    {
+      "userId": "user_81",
+      "theoremId": "genus-formula",
+      "rating": 5,
+      "timestamp": 1777186558938
+    },
+    {
+      "userId": "user_82",
+      "theoremId": "sheaf-definition",
+      "rating": 4.8,
+      "timestamp": 1770243597902
+    },
+    {
+      "userId": "user_82",
+      "theoremId": "affine-scheme",
+      "rating": 5,
+      "timestamp": 1790958749120
+    },
+    {
+      "userId": "user_83",
+      "theoremId": "jacobian",
+      "rating": 4.9,
+      "timestamp": 1782044209055
+    },
+    {
+      "userId": "user_84",
+      "theoremId": "jacobian",
+      "rating": 5,
+      "timestamp": 1788603096552
+    },
+    {
+      "userId": "user_85",
+      "theoremId": "proj-construction",
+      "rating": 5,
+      "timestamp": 1780759623895
+    },
+    {
+      "userId": "user_86",
+      "theoremId": "affine-scheme",
+      "rating": 4.5,
+      "timestamp": 1784123944605
+    },
+    {
+      "userId": "user_86",
+      "theoremId": "scheme-morphism",
+      "rating": 4.5,
+      "timestamp": 1764513224638
+    },
+    {
+      "userId": "user_87",
+      "theoremId": "nullstellensatz",
+      "rating": 4.4,
+      "timestamp": 1765645612214
+    },
+    {
+      "userId": "user_87",
+      "theoremId": "hilbert-basis",
+      "rating": 5,
+      "timestamp": 1790483494596
+    },
+    {
+      "userId": "user_87",
+      "theoremId": "sheaf-definition",
+      "rating": 4.8,
+      "timestamp": 1766122094122
+    },
+    {
+      "userId": "user_88",
+      "theoremId": "canonical-divisor",
+      "rating": 5,
+      "timestamp": 1770309217155
+    },
+    {
+      "userId": "user_88",
+      "theoremId": "riemann-roch",
+      "rating": 4.9,
+      "timestamp": 1768098284019
+    },
+    {
+      "userId": "user_89",
+      "theoremId": "ideal-variety",
+      "rating": 4.4,
+      "timestamp": 1779912578252
+    },
+    {
+      "userId": "user_89",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1784068099519
+    },
+    {
+      "userId": "user_90",
+      "theoremId": "hilbert-basis",
+      "rating": 4.4,
+      "timestamp": 1768177769359
+    },
+    {
+      "userId": "user_90",
+      "theoremId": "ideal-variety",
+      "rating": 5,
+      "timestamp": 1785980200065
+    },
+    {
+      "userId": "user_90",
+      "theoremId": "zariski-topology",
+      "rating": 5,
+      "timestamp": 1790686196189
+    },
+    {
+      "userId": "user_91",
+      "theoremId": "hilbert-basis",
+      "rating": 5,
+      "timestamp": 1784371761524
+    },
+    {
+      "userId": "user_92",
+      "theoremId": "ideal-variety",
+      "rating": 5,
+      "timestamp": 1786694088963
+    },
+    {
+      "userId": "user_92",
+      "theoremId": "hilbert-basis",
+      "rating": 5,
+      "timestamp": 1787367794767
+    },
+    {
+      "userId": "user_92",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1771438383390
+    },
+    {
+      "userId": "user_93",
+      "theoremId": "nullstellensatz",
+      "rating": 5,
+      "timestamp": 1782652346832
+    },
+    {
+      "userId": "user_93",
+      "theoremId": "ideal-variety",
+      "rating": 5,
+      "timestamp": 1779762154637
+    },
+    {
+      "userId": "user_94",
+      "theoremId": "genus-formula",
+      "rating": 4.3,
+      "timestamp": 1774431677676
+    },
+    {
+      "userId": "user_95",
+      "theoremId": "cech-cohomology",
+      "rating": 5,
+      "timestamp": 1785321103354
+    },
+    {
+      "userId": "user_95",
+      "theoremId": "ringed-space",
+      "rating": 5,
+      "timestamp": 1788029897664
+    },
+    {
+      "userId": "user_96",
+      "theoremId": "sheaf-cohomology",
+      "rating": 5,
+      "timestamp": 1777635476283
+    },
+    {
+      "userId": "user_97",
+      "theoremId": "sheaf-definition",
+      "rating": 5,
+      "timestamp": 1787655833554
+    },
+    {
+      "userId": "user_97",
+      "theoremId": "affine-scheme",
+      "rating": 4.5,
+      "timestamp": 1771782433405
+    },
+    {
+      "userId": "user_98",
+      "theoremId": "mumford-tate",
+      "rating": 5,
+      "timestamp": 1767726272691
+    },
+    {
+      "userId": "user_99",
+      "theoremId": "sheaf-cohomology",
+      "rating": 4.6,
+      "timestamp": 1778162117086
+    }
+  ],
+  "trainSize": 126,
+  "testSize": 32,
+  "metrics": {
+    "rmse": 0.30632260993038507,
+    "mae": 0.26614141525578117
+  }
+}

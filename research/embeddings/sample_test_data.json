@@ -1,0 +1,37 @@
+{
+  "test_triplets": [
+    ["pythagorean_theorem", "belongs_to", "euclidean_geometry"],
+    ["cauchy_schwarz", "implies", "triangle_inequality"],
+    ["fundamental_theorem_calculus", "requires", "differentiability"],
+    ["mean_value_theorem", "proves", "fundamental_theorem_calculus"],
+    ["taylor_series", "derived_from", "mean_value_theorem"]
+  ],
+  "valid_triplets": [
+    ["triangle_inequality", "defines", "metric_space"],
+    ["pythagorean_theorem", "generalizes_to", "law_of_cosines"],
+    ["cauchy_schwarz", "applies_to", "vector_space"],
+    ["intermediate_value_theorem", "requires", "continuity"],
+    ["differentiability", "implies", "continuity"]
+  ],
+  "negative_triplets": [
+    ["pythagorean_theorem", "requires", "integration"],
+    ["triangle_inequality", "belongs_to", "real_analysis"],
+    ["cauchy_schwarz", "derived_from", "law_of_cosines"],
+    ["fundamental_theorem_calculus", "implies", "euclidean_geometry"],
+    ["mean_value_theorem", "applies_to", "vector_space"]
+  ],
+  "negative_test_triplets": [
+    ["taylor_series", "belongs_to", "euclidean_geometry"],
+    ["law_of_cosines", "requires", "integration"],
+    ["intermediate_value_theorem", "applies_to", "vector_space"],
+    ["continuity", "proves", "pythagorean_theorem"],
+    ["differentiability", "defines", "law_of_cosines"]
+  ],
+  "clusters": [
+    ["pythagorean_theorem", "law_of_cosines", "triangle_inequality"],
+    ["fundamental_theorem_calculus", "mean_value_theorem", "intermediate_value_theorem", "taylor_series"],
+    ["euclidean_geometry", "metric_space", "vector_space", "real_analysis"],
+    ["continuity", "differentiability"],
+    ["integration"]
+  ]
+}

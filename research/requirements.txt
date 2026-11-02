@@ -1,0 +1,15 @@
+# Requirements for AI Proof Techniques Research
+# Formula Nebula Project
+
+# Core deep learning
+torch>=2.0.0
+numpy>=1.24.0
+
+# Optional: For enhanced functionality
+# scipy>=1.10.0
+# matplotlib>=3.7.0
+# networkx>=3.0
+
+# For formal verification integration (future)
+# lean4>=4.0.0
+# z3-solver>=4.12.0

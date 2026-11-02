@@ -1,0 +1,101 @@
+{
+  "nodes": [
+    {"id": "pythagorean_theorem", "label": "Pythagorean Theorem", "type": "theorem"},
+    {"id": "triangle_inequality", "label": "Triangle Inequality", "type": "theorem"},
+    {"id": "cauchy_schwarz", "label": "Cauchy-Schwarz Inequality", "type": "theorem"},
+    {"id": "law_of_cosines", "label": "Law of Cosines", "type": "theorem"},
+    {"id": "fundamental_theorem_calculus", "label": "Fundamental Theorem of Calculus", "type": "theorem"},
+    {"id": "mean_value_theorem", "label": "Mean Value Theorem", "type": "theorem"},
+    {"id": "intermediate_value_theorem", "label": "Intermediate Value Theorem", "type": "theorem"},
+    {"id": "taylor_series", "label": "Taylor Series", "type": "theorem"},
+    {"id": "euclidean_geometry", "label": "Euclidean Geometry", "type": "concept"},
+    {"id": "real_analysis", "label": "Real Analysis", "type": "concept"},
+    {"id": "vector_space", "label": "Vector Space", "type": "concept"},
+    {"id": "metric_space", "label": "Metric Space", "type": "concept"},
+    {"id": "continuity", "label": "Continuity", "type": "property"},
+    {"id": "differentiability", "label": "Differentiability", "type": "property"},
+    {"id": "integration", "label": "Integration", "type": "operation"}
+  ],
+  "edges": [
+    {
+      "source": "pythagorean_theorem",
+      "target": "euclidean_geometry",
+      "relation": "belongs_to"
+    },
+    {
+      "source": "triangle_inequality",
+      "target": "metric_space",
+      "relation": "defines"
+    },
+    {
+      "source": "pythagorean_theorem",
+      "target": "law_of_cosines",
+      "relation": "generalizes_to"
+    },
+    {
+      "source": "cauchy_schwarz",
+      "target": "vector_space",
+      "relation": "applies_to"
+    },
+    {
+      "source": "cauchy_schwarz",
+      "target": "triangle_inequality",
+      "relation": "implies"
+    },
+    {
+      "source": "fundamental_theorem_calculus",
+      "target": "real_analysis",
+      "relation": "belongs_to"
+    },
+    {
+      "source": "fundamental_theorem_calculus",
+      "target": "integration",
+      "relation": "relates"
+    },
+    {
+      "source": "fundamental_theorem_calculus",
+      "target": "differentiability",
+      "relation": "requires"
+    },
+    {
+      "source": "mean_value_theorem",
+      "target": "differentiability",
+      "relation": "requires"
+    },
+    {
+      "source": "mean_value_theorem",
+      "target": "fundamental_theorem_calculus",
+      "relation": "proves"
+    },
+    {
+      "source": "intermediate_value_theorem",
+      "target": "continuity",
+      "relation": "requires"
+    },
+    {
+      "source": "taylor_series",
+      "target": "differentiability",
+      "relation": "requires"
+    },
+    {
+      "source": "taylor_series",
+      "target": "mean_value_theorem",
+      "relation": "derived_from"
+    },
+    {
+      "source": "law_of_cosines",
+      "target": "euclidean_geometry",
+      "relation": "belongs_to"
+    },
+    {
+      "source": "continuity",
+      "target": "metric_space",
+      "relation": "defined_in"
+    },
+    {
+      "source": "differentiability",
+      "target": "continuity",
+      "relation": "implies"
+    }
+  ]
+}
