@@ -180,8 +180,12 @@ export default [
       // ~41.8k phantom errors across 600 files, which made `npm run lint`
       // useless as a signal. Formatting is Prettier's job — see .prettierrc.json.
       'semi': 'off',
-      'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
-      'comma-dangle': ['warn', 'only-multiline'],
+      // Quote style is likewise Prettier's call. Some modules are written
+      // entirely with double quotes (src/mentorship.js: 197 double, 0 single)
+      // and are perfectly consistent internally; a lint warning adds 4k noise
+      // without indicating a defect.
+      'quotes': 'off',
+      'comma-dangle': 'off',
 
       // Disable rules that conflict with our codebase patterns
       'no-inner-declarations': 'off',
@@ -223,11 +227,19 @@ export default [
       'docs/.vitepress/cache/**',
       'docs/node_modules/**',
       // Generated content data. These are very large machine-assembled
-      // datasets; linting them produces no actionable signal and dominates
-      // the runtime.
+      // datasets; linting them produces no actionable signal and dominates the
+      // runtime. What matters for data is shape, duplicate keys and coverage,
+      // which scripts/check-data.mjs, _check-dupe-keys.mjs and
+      // _verify-explanation-rescue.mjs check directly.
       'src/data/*-extra.js',
       'src/data/batch-*.js',
+      'src/data/extra-*.js',
+      'src/data/cross-source-links.js',
       'src/data/proofs/batch-*.js',
+      'src/data/proofs/deep-dive.js',
+      'src/data/proofs/new-*.js',
+      'src/data/proofs/foundation-long*.js',
+      'src/data/proofs/rewrite-*.js',
       'src/data/knowledge.js',
       'src/data/conjectures.js',
     ]
