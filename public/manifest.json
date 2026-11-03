@@ -1,0 +1,74 @@
+{
+  "name": "Formula Nebula - 公式诗云",
+  "short_name": "Formula Nebula",
+  "description": "代数几何知识图谱的三维星云可视化",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "science",
+    "visualization"
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/main-galaxy.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "主星系 - 代数几何定理可视化"
+    },
+    {
+      "src": "/screenshots/conjecture-cluster.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "猜想星团 - 未解决问题"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "主星系",
+      "short_name": "Galaxy",
+      "description": "查看主星系定理",
+      "url": "/designs/nebula-plus/index.html",
+      "icons": [
+        {
+          "src": "/icons/galaxy-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "搜索",
+      "short_name": "Search",
+      "description": "搜索公式和定理",
+      "url": "/?search=true",
+      "icons": [
+        {
+          "src": "/icons/search-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

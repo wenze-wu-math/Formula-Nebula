@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公式诗云 - 快速开始</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .icon {
+            font-size: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #667eea;
+        }
+
+        .timeline-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item span {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .shortcuts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .shortcut-item {
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .shortcut-key {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        .shortcut-desc {
+            color: #555;
+            font-size: 13px;
+        }
+
+        .cta-section {
+            background: #f9f9f9;
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .note {
+            background: #e8f4fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0d47a1;
+            margin-top: 16px;
+        }
+
+        .footer {
+            background: #fafafa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌌 公式诗云</h1>
+            <p>Formula Nebula · 代数几何知识图谱 3D 星云可视化</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⏱️</span>
+                    <span>3 分钟快速开始</span>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Step 1：等待加载</strong>
+                        <span>LaTeX 排版 464 个公式需要 3~6 秒（正常现象）</span>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Step 2：看到星云</strong>
+                        <span>一个旋转的 3D 星系盘 + 球状星团，400+ 彩色公式</span>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Step 3：尝试交互</strong>
+                        <span>拖拽旋转、滚轮缩放、单击查看详情</span>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Step 4：打开设置</strong>
+                        <span>按 S 键打开面板，切换视角/颜色/参数</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⌨️</span>
+                    <span>快速操作</span>
+                </div>
+                <div class="shortcuts">
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">拖</span>
+                        <span class="shortcut-desc">旋转星云</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">滚轮</span>
+                        <span class="shortcut-desc">缩放</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">单击</span>
+                        <span class="shortcut-desc">查看详情</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">S</span>
+                        <span class="shortcut-desc">打开设置</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">Esc</span>
+                        <span class="shortcut-desc">关闭面板</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">搜索框</span>
+                        <span class="shortcut-desc">查找公式</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">💡</span>
+                    <span>新手建议</span>
+                </div>
+                <ol style="margin-left: 20px; color: #555; font-size: 13px; line-height: 1.8;">
+                    <li>先拖拽玩一会，感受 3D 交互</li>
+                    <li>单击一个公式，看它的介绍与关联</li>
+                    <li>打开设置(S) → 取景，切换到"主星系"（只看定理）</li>
+                    <li>搜索 "霍奇" 或 "status:open"，试试查询功能</li>
+                    <li>打开 README.md 了解详细信息（可选）</li>
+                </ol>
+            </div>
+
+            <div class="cta-section">
+                <p style="font-size: 14px; color: #666; margin-bottom: 16px;">
+                    已准备就绪？
+                </p>
+                <button class="cta-button" onclick="goToApp()">
+                    进入星云 →
+                </button>
+                <div class="note">
+                    💾 所有设置会自动保存。刷新页面不会丢失。
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            📖 详见 <code>QUICK-START.md</code> 和 <code>README.md</code> · <a href="https://github.com" style="color: #667eea; text-decoration: none;">GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        function goToApp() {
+            // 重定向到主应用
+            window.location.href = '/';
+            // 或者新开标签页
+            // window.open('/', '_blank');
+        }
+
+        // 按 Enter 也可以进入
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                goToApp();
+            }
+        });
+
+        // 显示版本信息
+        console.log('%c🌌 公式诗云 Formula Nebula', 'color: #667eea; font-size: 16px; font-weight: bold;');
+        console.log('%c快速开始指南已打开。按下面的按钮进入应用。', 'color: #888; font-size: 12px;');
+        console.log('%c或按 Enter 键直接进入。', 'color: #888; font-size: 12px;');
+    </script>
+</body>
+</html>

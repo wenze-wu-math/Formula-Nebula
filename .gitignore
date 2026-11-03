@@ -100,7 +100,13 @@ data/
 tools/
 
 # Public temp assets
-public/
+# NOTE: Vite's `public/` directory is NOT temporary — it is copied verbatim
+# into dist/ and is the source of sw.js, manifest.json and quickstart.html.
+# Leaving this ignored meant the whole PWA (manifest + service worker) was
+# never committed and therefore never deployed. Only genuinely scratch files
+# should be excluded here.
+public/*.tmp
+public/**/*.tmp
 
 # Scripts subdirectories
 scripts/videos/
