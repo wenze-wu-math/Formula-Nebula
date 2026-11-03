@@ -290,7 +290,8 @@ async function main() {
   /** 更新证明 query 与星云 hash，默认 replace；页面跳转可压入一条浏览器历史。 */
   function writeLocationState(proofId = activeProofId, { push = false, trail = proofTrail } = {}) {
     const nextHash = buildHash(scene.selection)
-    let nextSearch = ''
+    // Assigned in both branches below; the initial value was dead.
+    let nextSearch
     try {
       const params = new URLSearchParams(location.search)
       params.delete('p')
@@ -396,8 +397,12 @@ async function main() {
 
   // 浏览器后退/前进或用户手改 hash → 反过来应用（只处理节点，其余字段
   // 变化很罕见且会触发重排，为简洁只同步"选中"这一项）
-  function applyLocationState() {
-    if (location.hash === lastHash && location.search === lastSearch) return
+  //
+  // `force` 供首帧使用：lastHash/lastSearch 在本函数定义之前（初始化早期）
+  // 就被设成了当前地址，所以首帧调用必然命中下面的"没变化"短路，深链
+  // `?p=<id>` 于是永远打不开。
+  function applyLocationState({ force = false } = {}) {
+    if (!force && location.hash === lastHash && location.search === lastSearch) return
     lastHash = location.hash
     lastSearch = location.search
     const st = decodeLocationState(location.search, location.hash)
@@ -427,8 +432,23 @@ async function main() {
     suppressRouteWrite = false
     applyingLocation = false
   }
-  window.addEventListener('hashchange', applyLocationState)
-  window.addEventListener('popstate', applyLocationState)
+  // Listeners must not pass the Event object through: applyLocationState now
+  // destructures an options bag, and an Event has no `force` property — which
+  // happens to be fine, but wrapping keeps the intent explicit.
+  window.addEventListener('hashchange', () => applyLocationState())
+  window.addEventListener('popstate', () => applyLocationState())
+
+  /* 首帧路由：URL 里若带 ?p=<id>（或 #k=<id>），启动时就该直接打开证明页。
+   *
+   * 之前 applyLocationState 只挂在 hashchange/popstate 上，启动时从不调用，
+   * 于是 `/?p=flat-morphism` 打开后停在星云界面——深链只有用户手动改地址栏
+   * （触发事件）才会生效。
+   *
+   * 必须传 force：lastHash/lastSearch 在初始化早期就已是当前地址，
+   * 不绕过"没变化"短路的话首帧调用会在第一行直接 return。
+   * suppressRouteWrite 由函数内部自己开关，不会把首帧状态写回地址栏。 */
+  if (urlState.proof || urlState.node) applyLocationState({ force: true })
+
   /* 首次同步：把从 URL 恢复出来的取景/着色写正。
    *
    * ⚠ 若 URL 里带着要选中的节点（urlState.node），这里**先不写**：

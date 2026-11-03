@@ -19,7 +19,14 @@ async function getTarget() {
     try {
       const res = await fetch(`http://127.0.0.1:${PORT}/json/list`)
       const list = await res.json()
-      const page = list.find((t) => t.type === 'page' && t.webSocketDebuggerUrl)
+      // Pick the page target we actually navigated to. A headless browser can
+// expose several page targets (extension pages, about:blank, ...), so
+// "first page target" is not reliable — it can silently attach to an
+// unrelated tab.
+  const page =
+    list.find((t) => t.type === 'page' && t.webSocketDebuggerUrl && /^https?:\/\/(localhost|127\.0\.0\.1)/.test(t.url || '')) ||
+    list.find((t) => t.type === 'page' && t.webSocketDebuggerUrl && !/^(chrome|edge|about|devtools)/i.test(t.url || '')) ||
+    list.find((t) => t.type === 'page' && t.webSocketDebuggerUrl)
       if (page) return page
     } catch {
       /* browser not up yet */
