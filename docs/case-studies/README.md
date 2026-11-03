@@ -158,7 +158,7 @@ Each published case study includes an explicit participant testimonial (1-3 sent
 - Approved uses documented
 - Original quote included verbatim
 
-[View testimonial library](testimonials-index.md)
+*（见证库 testimonial library 尚未建立。）*
 
 ---
 
@@ -193,7 +193,7 @@ To add a new case study:
    ```
 
 3. **Conduct Interview**
-   - Use interview guide in [CASE-STUDY-FRAMEWORK.md](../CASE-STUDY-FRAMEWORK.md)
+   - Use the interview guide in the project's CASE-STUDY-FRAMEWORK (not yet migrated into this directory)
    - Record and transcribe
    - Extract key quotes and themes
 
@@ -238,7 +238,7 @@ A: If you participated in the user study and would like to be featured, contact 
 
 ## Resources
 
-- **Full Framework**: [CASE-STUDY-FRAMEWORK.md](../CASE-STUDY-FRAMEWORK.md)
+- **Full Framework**: CASE-STUDY-FRAMEWORK.md (not yet migrated into this directory)
 - **User Study Design**: [USER-STUDY.md](../USER-STUDY.md)
 - **Interview Guide**: Section 1.3 of CASE-STUDY-FRAMEWORK.md
 - **Data Dictionary**: [Study metrics explained](../USER-STUDY.md#measurements)

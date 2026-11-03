@@ -587,7 +587,6 @@ gh api graphql -f query='
 - [GitHub Discussions 文档](https://docs.github.com/en/discussions)
 - [社区准则](../../CODE_OF_CONDUCT.md)
 - [贡献指南](../../CONTRIBUTING.md)
-- [版主快速参考](./moderator-quick-ref.md)
 
 ---
 

@@ -502,8 +502,8 @@ git push --force-with-lease origin branch-name
 
 - [完整贡献指南](../CONTRIBUTING.md)
 - [项目 README](../README.md)
-- [技术架构](./ARCHITECTURE.md)
-- [Git 工作流指南](./GIT_WORKFLOW.md)
+- [协作架构](./collaboration-architecture.md)
+- [目录结构说明](../DIRECTORY_STRUCTURE.md)
 
 ### 成长路径
 

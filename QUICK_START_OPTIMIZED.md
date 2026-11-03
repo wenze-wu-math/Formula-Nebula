@@ -251,8 +251,6 @@ await sw.clearCaches()        // 清除
 
 ### 文档
 
-- `OPTIMIZATION_COMPLETE.md` - 完整优化报告 ⭐
-- `FINAL_SUMMARY.md` - 最终总结
 - `OPTIMIZATION_PROGRESS.md` - 进度追踪
 - `OPTIMIZATION_ROADMAP.md` - 完整路线图
 
@@ -464,8 +462,6 @@ lighthouse http://localhost:5176 --view
 
 ### 文档
 
-- [完整优化报告](OPTIMIZATION_COMPLETE.md)
-- [最终总结](FINAL_SUMMARY.md)
 - [优化路线图](OPTIMIZATION_ROADMAP.md)
 - [性能基准](docs/PERFORMANCE.md)
 

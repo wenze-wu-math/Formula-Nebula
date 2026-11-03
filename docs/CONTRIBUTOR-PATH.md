@@ -459,7 +459,7 @@ The Formula Nebula contributor path creates an **inclusive, structured, and reco
 特别感谢这些出色贡献者...
 
 ## 如何成为贡献者
-查看 [CONTRIBUTING.md](CONTRIBUTING.md) 开始您的贡献之旅！
+查看 [CONTRIBUTING.md](../CONTRIBUTING.md) 开始您的贡献之旅！
 ```
 
 ### 3.5 月度认可 · Monthly Recognition

@@ -141,7 +141,7 @@ MAX_MEMORY: 512MB       # 512 megabytes
 ## Useful Links
 
 - [Full Documentation](../CICD.md)
-- [Workflow Details](.github/workflows/README.md)
+- [Workflow Details](workflows/README.md)
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [Docker Hub](https://hub.docker.com/)
 
