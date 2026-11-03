@@ -18,7 +18,7 @@ import { buildSemanticIndex } from './semanticSearch.js'
 // 在 buildGraph() 之后调用
 export function initSemanticSearch(nodes, links) {
   console.time('Build semantic index')
-  buildSemanticIndex(nodes, links)
+  buildSemanticIndex_step4(nodes, links)
   console.timeEnd('Build semantic index')
   console.log('✓ Semantic search initialized')
 }
@@ -307,37 +307,41 @@ export function addAutocomplete(inputElement, onSelect) {
 
 /* ─────────────────────────────────────────────────────────────
  * 步骤 4: 完整集成示例（在 main.js 中）
+ *
+ * 下面这段是一份「照此复制到 src/main.js」的示意代码。它的 import 使用了
+ * _step4 后缀的别名，是为了不与本文件顶部步骤 1 的同名 import 冲突
+ * （原本直接重复 import 会触发 "Identifier 'buildSemanticIndex' has already
+ * been declared" 的语法错误，使整个文件无法被解析）。
  * ───────────────────────────────────────────────────────────── */
-
 // 文件: src/main.js（完整流程）
 
-import { buildGraph, layoutGraph } from './graph.js'
-import { initScene } from './scene.js'
-import { buildSemanticIndex } from './semanticSearch.js'
+import { buildGraph as buildGraph_step4, layoutGraph as layoutGraph_step4 } from './graph.js'
+import { initScene as initScene_step4 } from './scene.js'
+import { buildSemanticIndex as buildSemanticIndex_step4 } from './semanticSearch.js'
 import {
-  createSemanticSearchUI,
-  SEMANTIC_SEARCH_CSS,
+  createSemanticSearchUI as createSemanticSearchUI_step4,
+  SEMANTIC_SEARCH_CSS as SEMANTIC_SEARCH_CSS_step4,
 } from './semanticSearchUI.js'
 
 async function initApp() {
   // ① 构建图谱
   console.time('Build graph')
-  const { nodes, links } = buildGraph()
+  const { nodes, links } = buildGraph_step4()
   console.timeEnd('Build graph')
 
   // ② 布局（需要先烘焙公式纹理）
   console.time('Layout graph')
-  await layoutGraph(nodes, links)
+  await layoutGraph_step4(nodes, links)
   console.timeEnd('Layout graph')
 
   // ③ 初始化场景
   console.time('Init scene')
-  const scene = initScene(nodes, links)
+  const scene = initScene_step4(nodes, links)
   console.timeEnd('Init scene')
 
   // ④ 构建语义索引
   console.time('Build semantic index')
-  buildSemanticIndex(nodes, links)
+  buildSemanticIndex_step4(nodes, links)
   console.timeEnd('Build semantic index')
 
   // ⑤ 注入 CSS
@@ -362,36 +366,40 @@ initApp()
 
 /* ─────────────────────────────────────────────────────────────
  * 步骤 5: 测试与验证
+ *
+ * 下面整段是「在浏览器控制台里逐条敲」的说明，不是要执行的模块代码。
+ * 原本只有中文说明被 // 注释掉，import 与调用行裸露在外，导致
+ * "Identifier 'semanticSearch' has already been declared" 语法错误。
  * ───────────────────────────────────────────────────────────── */
 
 // 在浏览器控制台测试：
 
 // 1. 语义搜索
-import { semanticSearch } from './semanticSearch.js'
-semanticSearch('代数闭包', 10)
+// import { semanticSearch } from './semanticSearch.js'
+// semanticSearch('代数闭包', 10)
 // 应该返回 "代数闭包" "Algebraic Closure" 等
 
 // 2. 同义词扩展
-semanticSearch('态射', 10)
+// semanticSearch('态射', 10)
 // 应该匹配 "态射" "morphism" "map" "arrow" 等
 
 // 3. 混合模式
-import { parseQuery } from './graphQuery.js'
-const filter = parseQuery('family:scheme importance:>0.8')
-semanticSearch('态射', 10, { filterParsed: filter })
+// import { parseQuery } from './graphQuery.js'
+// const filter = parseQuery('family:scheme importance:>0.8')
+// semanticSearch('态射', 10, { filterParsed: filter })
 // 应该只返回 scheme 族 + 重要度 > 0.8 的结果
 
 // 4. 自动补全
-import { getSuggestions } from './semanticSearch.js'
-getSuggestions('代数', 8)
+// import { getSuggestions } from './semanticSearch.js'
+// getSuggestions('代数', 8)
 // 应该返回 "代数闭包" "代数簇" 等
 
 // 5. 概念树
-import { getConceptTreeAPI } from './semanticSearch.js'
-getConceptTreeAPI('nullstellensatz')
+// import { getConceptTreeAPI } from './semanticSearch.js'
+// getConceptTreeAPI('nullstellensatz')
 // 应该返回前置定理和推论
 
 // 6. 索引统计
-import { getIndexStats } from './semanticSearch.js'
-getIndexStats()
+// import { getIndexStats } from './semanticSearch.js'
+// getIndexStats()
 // 应该返回 { totalDocs, vocabSize, avgDocLength, synonymCount }

@@ -78,7 +78,7 @@ export function checkTheoremExists(newTheorem, existingNodes) {
 /**
  * Example 3: Find related theorems by similarity
  */
-export function findRelatedTheorems(targetLat ex, nodes, similarityThreshold = 0.7) {
+export function findRelatedTheorems(targetLatex, nodes, similarityThreshold = 0.7) {
   const results = []
 
   for (const node of nodes) {
