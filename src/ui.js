@@ -631,7 +631,7 @@ export function createUI(graph, cb = {}) {
   /* 底部提示 */
   const stats = graph.stats
   /* 拆成两段：主提示与统计数字用不同颜色，扫读时先看到"能做什么"，
-   * 再看到"这里面有多少东西"。textContent 与原来逐字一致。 */
+   * 再看到"这里面有多少东西"。添加键盘快捷键提示。 */
   hud.appendChild(el('div', { id: 'hint' }, [
     el('span', { class: 'hint-main' }, [UI.hint]),
     el('span', { class: 'hint-sep' }, ['　·　']),
@@ -639,6 +639,10 @@ export function createUI(graph, cb = {}) {
       `主星系 ${stats.galaxyCount} 条定理 / ` +
       `星团 ${stats.conjCount} 条猜想 / 研究者 ${stats.researcherCount} 位 / ` +
       `${stats.linkCount} 条关联`,
+    ]),
+    el('span', { class: 'hint-sep' }, ['　·　']),
+    el('span', { class: 'hint-main', style: 'opacity: 0.7; font-size: 10px' }, [
+      '快捷键: / 搜索 · Ctrl+E 导出 · Esc 关闭',
     ]),
   ]))
 
@@ -1419,11 +1423,43 @@ export function createUI(graph, cb = {}) {
   }
 
   closeBtn.addEventListener('click', hideDetail)
+
+  /* ─────────── Keyboard Shortcuts ─────────── */
   window.addEventListener('keydown', (e) => {
+    // Esc: Close search results or detail panel
     if (e.key === 'Escape') {
       if (results.classList.contains('on')) results.classList.remove('on')
       else if (panel.classList.contains('on')) hideDetail()
     }
+
+    // / or Ctrl+K: Focus search
+    if ((e.key === '/' && !e.ctrlKey && !e.metaKey) ||
+        ((e.ctrlKey || e.metaKey) && e.key === 'k')) {
+      if (document.activeElement !== input && !panel.classList.contains('on')) {
+        e.preventDefault()
+        input.focus()
+        input.select()
+      }
+    }
+
+    // Ctrl+E: Export SVG
+    if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+      e.preventDefault()
+      if (!exportBtn.disabled) exportBtn.click()
+    }
+
+    // Arrow keys in panel: Navigate between related nodes
+    if (panel.classList.contains('on') && currentId) {
+      if (e.key === 'ArrowLeft' && history.length > 0) {
+        e.preventDefault()
+        const prevId = history.pop()
+        const prev = graph.byId.get(prevId)
+        if (prev) showDetail(prev, false)
+      }
+    }
+
+    // Ctrl+F: Find in page (let browser handle it naturally)
+    // No override needed
   })
 
   return {

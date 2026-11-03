@@ -24,9 +24,15 @@ import * as linkTypes from './linkTypes.js'
 import * as progress from './data/progress.js'
 import * as proofRouter from './proofRouter.js'
 import { getProof, getProofCount } from './data/proofs/index.js'
+import { perfMonitor } from './performance.js'
+import { initAccessibility } from './accessibility.js'
 
 async function main() {
   const canvas = document.getElementById('scene')
+
+  // ── 启动性能监控 ──
+  perfMonitor.startPhase('total')
+  perfMonitor.startMeasuring()
 
   // ── 集成 splash screen（如果存在） ──
   const splash = window.__splashControl
@@ -75,6 +81,7 @@ async function main() {
   }
   /* ── 1. 装配图谱（纯数据） ── */
   if (splash) splash.update(15, '构建知识图谱...')
+  perfMonitor.startPhase('buildGraph')
 
   const graph = buildGraph()
   // 证明内容独立存放，按稳定 id 作为渐进增强附加到运行时节点；
@@ -83,6 +90,9 @@ async function main() {
     const proof = getProof(node.id)
     if (proof) node.proof = proof
   }
+
+  perfMonitor.endPhase('buildGraph')
+
   console.log(
     `[公式诗云] ${graph.stats.nodeCount} 个公式 · ` +
     `${graph.stats.linkCount} 条关联 · 平均度数 ${graph.stats.avgDegree} · ` +
@@ -91,6 +101,7 @@ async function main() {
 
   /* ── 2. 界面 ── */
   if (splash) splash.update(20, '初始化界面...')
+  perfMonitor.startPhase('createUI')
 
   let proofView = null
   const ui = createUI(graph, {
@@ -118,13 +129,19 @@ async function main() {
     },
   })
 
+  perfMonitor.endPhase('createUI')
+
   /* ── 3. 场景（先建，让背景星云立刻可见） ── */
   if (splash) splash.update(25, '创建 3D 场景...')
+  perfMonitor.startPhase('createScene')
 
   const scene = createScene(canvas, graph, ui)
 
+  perfMonitor.endPhase('createScene')
+
   /* ── 4. 烘焙公式贴图 ── */
   if (splash) splash.update(30, '渲染数学公式...')
+  perfMonitor.startPhase('bakeFormulas')
 
   const items = graph.nodes.map((n) => ({ id: n.id, latex: n.latex, name: n.name }))
   /* 分阶段计时。全部写进 #diag，理由有两条：
@@ -163,6 +180,9 @@ async function main() {
   const tLayout = performance.now()
   const layoutInfo = layoutGraph(graph, baked)
   mark('layout', tLayout)
+
+  perfMonitor.endPhase('bakeFormulas')
+
   console.log(
     `[公式诗云] 布局完成，平均特征尺寸 ${layoutInfo.avgSize.toFixed(1)}，` +
     `盘面松弛 ${layoutInfo.relaxRounds} 轮`,
@@ -184,10 +204,14 @@ async function main() {
 
   /* ── 6. 建节点 ── */
   if (splash) splash.update(85, '构建星云节点...')
+  perfMonitor.startPhase('buildNodes')
 
   const tNodes = performance.now()
   const built = scene.buildNodes(baked)
   mark('buildNodes', tNodes)
+
+  perfMonitor.endPhase('buildNodes')
+
   console.log(
     `[公式诗云] 成功渲染 ${built} / ${items.length} 个公式` +
     `（主星系 ${graph.stats.galaxyCount} + 猜想星团 ${graph.stats.conjCount}）`,
@@ -511,10 +535,27 @@ async function main() {
   ui.finishLoading()
   scene.start()
 
+  perfMonitor.endPhase('total')
+
   // 隐藏 splash screen
   if (splash) {
     splash.update(95, '完成！')
     setTimeout(() => splash.hide(), 200)
+  }
+
+  // Log performance report to console
+  console.group('🚀 Formula Nebula 启动完成')
+  perfMonitor.logReport()
+  console.groupEnd()
+
+  // Initialize accessibility enhancements
+  initAccessibility()
+
+  // Expose performance API to window for debugging
+  window.__formulaNebula = {
+    perfMonitor,
+    getSummary: () => perfMonitor.getSummary(),
+    getMemory: () => perfMonitor.getMemoryInfo(),
   }
 
   /* ── 9b. 深链里的选中节点 ──
