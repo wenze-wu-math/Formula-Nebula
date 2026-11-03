@@ -1,936 +1,682 @@
-# Formula Nebula Developer API Documentation
+# Formula Nebula API Documentation
 
-Complete technical reference for integrating, extending, and automating Formula Nebula.
+## 概述 | Overview
 
----
+Formula Nebula 提供了一套简洁的 JavaScript API，允许程序化控制可视化、查询数据和集成到其他应用。
 
-## Table of Contents
+Formula Nebula provides a clean JavaScript API for programmatic control of the visualization, data querying, and integration into other applications.
 
-1. [Graph Data Structure](#1-graph-data-structure)
-2. [buildGraph() Function](#2-buildgraph-function)
-3. [Layout Engines](#3-layout-engines)
-4. [window.__design API](#4-window__design-api)
-5. [CDP Automation](#5-cdp-automation)
-6. [Knowledge Base Pipeline](#6-knowledge-base-pipeline)
-7. [Extension Points](#7-extension-points)
-8. [Performance Tuning](#8-performance-tuning)
+## 全局 API | Global API
 
----
+### 访问 | Access
 
-## 1. Graph Data Structure
+```javascript
+// 全局 API 对象
+const api = window.formulaNebula;
 
-The graph is the central data structure representing the algebraic geometry knowledge network.
+// 开发模式下的性能监控
+const perf = window.__perfMonitor;
+```
 
-### 1.1 Node Schema
+## 核心方法 | Core Methods
 
-Every node represents a theorem, conjecture, or researcher:
+### `getNodes()`
 
+获取所有知识节点。
+
+Get all knowledge nodes.
+
+```javascript
+const nodes = api.getNodes();
+console.log(`Total nodes: ${nodes.length}`);
+console.log('First node:', nodes[0]);
+```
+
+**返回值 | Returns:**
+- `LayoutNode[]` - 包含位置和元数据的节点数组
+
+**示例节点结构 | Example Node Structure:**
 ```javascript
 {
-  id: string,              // Unique identifier (e.g., "scheme", "riemann-roch")
-  name: string,            // Display name (Chinese)
-  latex?: string,          // LaTeX formula
-  description?: string,    // Markdown description
-  importance: number,      // 0.0 to 1.0 (derived from connectivity & manual tags)
-  family?: string,         // Knowledge family: "foundation" | "scheme" | "cohomology" | ...
-  
-  // Type flags (mutually exclusive)
-  cluster?: boolean,       // true = conjecture (in cluster structure)
-  researcher?: boolean,    // true = researcher node
-  
-  // Metadata
-  source?: string,         // "stacks" | "nlab" | "mathlib" | "wikipedia" | "manual"
-  tag?: string,            // External stable ID (Stacks tag, arXiv ID, etc.)
-  url?: string,            // Authoritative source URL
-  
-  // Visual (computed by buildGraph)
-  baseColor?: [r,g,b],     // Linear RGB (0-1) before importance modulation
-  degree?: number,         // Total edge count
-}
-```
-
-### 1.2 Link Schema
-
-Links represent mathematical relationships:
-
-```javascript
-{
-  source: string,          // Node ID
-  target: string,          // Node ID
-  type?: string,           // Relationship type (see linkTypes.js)
-  weight?: number,         // 0.0 to 1.0 (importance of this connection)
-  
-  // Optional metadata
-  label?: string,          // Readable description
-  bidirectional?: boolean, // true if relation is symmetric
-}
-```
-
-### 1.3 Knowledge Families
-
-Eight families organized by algebraic geometry subfields:
-
-| Family | Key | Color | Description |
-|--------|-----|-------|-------------|
-| 交换代数与基础 | `foundation` | Blue | Commutative algebra, categories, sheaves |
-| 概形与层 | `scheme` | Purple | Schemes, algebraic spaces |
-| 上同调 | `cohomology` | Green | Cohomology theories |
-| 态射与奇点 | `map` | Orange | Morphisms, singularities |
-| 曲线与曲面 | `curve` | Pink | Curves, surfaces, divisors |
-| 相交与特征类 | `intersect` | Yellow | Intersection theory |
-| 双有理与MMP | `birational` | Cyan | Birational geometry, MMP |
-| 模空间与现代 | `modern` | Red | Moduli spaces, stacks |
-
-Access family metadata:
-
-```javascript
-import { FAMILIES } from './src/data/knowledge.js'
-
-FAMILIES.scheme
-// { name: "概形与层", color: "#8b5cf6", arm: 1, ... }
-```
-
----
-
-## 2. buildGraph() Function
-
-Assembles and normalizes the knowledge graph.
-
-### 2.1 Basic Usage
-
-```javascript
-import { buildGraph } from './src/graph.js'
-
-const graph = buildGraph()
-
-console.log(graph.nodes.length)  // 464+ nodes
-console.log(graph.links.length)  // 1600+ links
-```
-
-### 2.2 Returned Structure
-
-```javascript
-{
-  nodes: Node[],           // All nodes (theorems + conjectures + researchers)
-  links: Link[],           // All edges
-  
-  // Index structures
-  nodeMap: Map<id, Node>,  // Fast lookup by ID
-  adj: Map<id, Set<id>>,   // Adjacency list (undirected)
-  
-  // Statistics
-  maxDegree: number,       // Highest node degree
-  maxImportance: number,   // Always 1.0 (normalized)
-}
-```
-
-### 2.3 Data Pipeline
-
-`buildGraph()` performs these transformations:
-
-1. **Merge sources**: Combines `NODES`, `EXTRA_*`, `STACKS_NODES`, `NLAB_NODES`, `MATHLIB_NODES`, etc.
-2. **Deduplicate**: Removes duplicate IDs (last wins)
-3. **Build edges**: Converts link arrays to indexed structures
-4. **Compute degrees**: Counts connections per node
-5. **Normalize importance**: Rescales to [0, 1] based on degree and manual tags
-6. **Apply colors**: Maps family → base color via equalized palette
-
-### 2.4 Color Normalization
-
-All family colors are perceptually equalized to `GLYPH.familyLightness`:
-
-```javascript
-import { buildEqualizedPalette, hexToLinear } from './src/palette.js'
-
-const rawColors = {
-  foundation: "#3b82f6",
-  scheme: "#8b5cf6",
-  // ...
-}
-
-const equalized = buildEqualizedPalette(rawColors, 0.4)
-// All colors now have same perceptual lightness
-```
-
----
-
-## 3. Layout Engines
-
-Four design variants with distinct layout algorithms.
-
-### 3.1 Atlas (2D Polar Star Map)
-
-**File**: `designs/atlas/layout.js`
-
-**Algorithm**: Deterministic force-directed layout on polar grid
-
-```javascript
-import { buildAtlas } from './designs/atlas/layout.js'
-import { getGraph } from './designs/shared/kb.js'
-
-const graph = getGraph()
-const atlas = buildAtlas(graph, {
-  seed: 20261031,          // RNG seed (default: from constants.js)
-  measure: (text, font) => { /* return width in px */ },
-  resFont: "italic 18px serif",
-})
-
-console.log(atlas.bodies.size)      // Star count
-console.log(atlas.regions.foundation) // Sector boundaries
-```
-
-**Key structures**:
-- **Sectors**: 8 annular regions (1 polar cap + 7 rings)
-- **Bodies**: Stars with `(r, ra)` polar coordinates
-- **Regions**: Convex hull boundaries per family
-- **Constellations**: MST edges for intra-family structure
-
-### 3.2 Map (2D Cartesian Terrain)
-
-**File**: `designs/map/src/world/layout.js`
-
-**Algorithm**: Geo-inspired with terrain elevation
-
-```javascript
-import { buildTerrain } from './designs/map/src/world/layout.js'
-
-const terrain = buildTerrain(graph, {
-  width: 3000,
-  height: 2000,
-  elevationScale: 0.8,
-})
-
-terrain.nations.forEach(nation => {
-  console.log(nation.family, nation.capital, nation.cities.length)
-})
-```
-
-**Key structures**:
-- **Nations**: Knowledge families as geographic regions
-- **Cities**: Theorems with `(x, y)` Cartesian coordinates
-- **Islands**: Conjectures offshore
-- **Harbors**: Researchers on coastlines
-
-### 3.3 Manuscript (Hierarchical Flow)
-
-**File**: `designs/manuscript/layout.js`
-
-**Algorithm**: Tiered cascade with importance-driven Y positioning
-
-```javascript
-import { buildFlow } from './designs/manuscript/layout.js'
-
-const flow = buildFlow(graph, {
-  maxWidth: 1400,
-  rowHeight: 120,
-  tierCount: 5,
-})
-
-flow.tiers.forEach((tier, i) => {
-  console.log(`Tier ${i}: ${tier.items.length} formulas`)
-})
-```
-
-**Key structures**:
-- **Tiers**: Horizontal importance bands
-- **Flows**: Vertical connections between tiers
-- **Clusters**: Family-based grouping within tiers
-
-### 3.4 Nebula (3D Spiral Galaxy)
-
-**File**: `designs/nebula-plus/src/graph.js` + `src/Scene.js`
-
-**Algorithm**: 3D spiral arms with exponential disk radius
-
-```javascript
-// Configured via src/config.js
-{
-  spiral: {
-    arms: 8,               // One per knowledge family
-    armSpread: 0.085,      // Angular spread (radians)
-    twist: 2.6,            // Spiral tightness
-  },
-  nebula: {
-    diskRadius: 550,       // Galaxy radius
-    diskThickness: 80,     // Vertical spread
-  }
-}
-```
-
----
-
-## 4. window.__design API
-
-All four designs expose a unified `window.__design` interface for automation and testing.
-
-### 4.1 Common Properties
-
-```javascript
-window.__design = {
-  ready: boolean,          // true when all assets loaded
-  readyMs: number | null,  // Milliseconds from page load to ready
-  graph: Graph,            // Knowledge graph (read-only)
-  atlas?: Atlas,           // Layout-specific structure (if applicable)
-}
-```
-
-### 4.2 Selection
-
-```javascript
-// Select a node and fly to it
-await window.__design.select("riemann-roch")
-await window.__design.select("riemann-roch", { fly: false }) // No animation
-
-// Deselect
-window.__design.deselect()
-```
-
-### 4.3 Search
-
-```javascript
-// Returns array of matching node IDs
-const hits = window.__design.search("上同调")
-// ["cohomology", "etale-cohomology", ...]
-
-// Structured query (atlas/map/manuscript)
-const hits = window.__design.search("family:cohomology")
-```
-
-### 4.4 View Control
-
-```javascript
-// Get current view
-const view = window.__design.view()
-// { cx, cy, zoom, L, w, h, selected, hover, panelOpen, searchQuery }
-
-// Set view (fly to coordinates)
-await window.__design.setView({
-  cx: 100,
-  cy: -50,
-  L: 2.5,  // Or use zoom: 1.8
-  animate: true
-})
-
-// Set view (fly to node)
-await window.__design.setView({
   id: "scheme",
-  animate: true
-})
-
-// Set view (fit family region)
-await window.__design.setView({
-  family: "cohomology",
-  animate: true
-})
+  name: "概形",
+  en: "Scheme",
+  latex: "\\operatorname{Spec} A",
+  importance: 0.95,
+  family: "scheme",
+  position: { x: 10.5, y: 0.2, z: -8.3 },
+  radius: 25.4,
+  rank: 0.98,
+  size: 8.2,
+  brightness: 1.35
+}
 ```
 
-### 4.5 Statistics
+---
+
+### `getLinks()`
+
+获取所有知识关联。
+
+Get all knowledge links.
 
 ```javascript
-const stats = window.__design.stats()
+const links = api.getLinks();
+console.log(`Total links: ${links.length}`);
+
+// 过滤强关联
+const strongLinks = links.filter(l => l.weight >= 0.8);
 ```
 
-Returns:
+**返回值 | Returns:**
+- `FormulaLink[]` - 关联数组
+
+**示例关联结构 | Example Link Structure:**
+```javascript
+{
+  source: "scheme",
+  target: "spectrum",
+  weight: 0.9,
+  reason: "素谱是概形的底层空间",
+  type: "defines"
+}
+```
+
+---
+
+### `search(query)`
+
+搜索和查询知识节点。
+
+Search and query knowledge nodes.
+
+```javascript
+// 简单搜索
+const results = api.search('霍奇');
+
+// 字段查询
+const openConjectures = api.search('status:open');
+
+// 组合查询
+const important = api.search('importance:>0.9 family:scheme');
+
+// 寻路
+const path = api.search('概形 -> Hodge猜想');
+```
+
+**参数 | Parameters:**
+- `query: string` - 搜索查询字符串
+
+**返回值 | Returns:**
+- `QueryResult` - 包含匹配节点和可能的错误信息
+
+**支持的查询语法 | Supported Query Syntax:**
+
+| Syntax | Description | Example |
+|--------|-------------|---------|
+| 文本搜索 | 在名称/LaTeX中查找 | `霍奇` |
+| 字段查询 | `field:value` | `status:open` |
+| 数值比较 | `field:>value` | `importance:>=0.9` |
+| 布尔组合 | `AND`, `OR`, `-` | `family:scheme -status:proved` |
+| 括号分组 | `(...)` | `(family:curve OR family:surface)` |
+| 寻路 | `A -> B` | `扎里斯基闭集 -> Hodge猜想` |
+
+**支持的字段 | Supported Fields:**
+- `family` - 知识族
+- `status` - 猜想状态
+- `field` - 猜想领域
+- `importance` - 重要度
+- `id`, `name`, `en`, `latex` - 标识符
+
+---
+
+### `findPath(from, to, options?)`
+
+在两个节点间寻找最短路径。
+
+Find the shortest path between two nodes.
+
+```javascript
+// 最低代价路径 (默认)
+const path1 = api.findPath('scheme', 'hodge-conjecture');
+
+// 最少跳数路径
+const path2 = api.findPath('scheme', 'hodge-conjecture', { 
+  weighted: false 
+});
+
+console.log(`Path: ${path1.hops} hops, cost: ${path1.cost.toFixed(3)}`);
+path1.path.forEach((node, i) => {
+  console.log(`${i}. ${node.name}`);
+});
+```
+
+**参数 | Parameters:**
+- `from: string` - 起始节点 ID
+- `to: string` - 目标节点 ID
+- `options?: { weighted?: boolean }` - 选项（默认加权寻路）
+
+**返回值 | Returns:**
+- `PathResult | null` - 路径结果或 null（不可达）
 
 ```javascript
 {
-  // Rendering
-  fps: number,             // Average frame rate
-  frameMs: number,         // Average frame time
-  
-  // Labels (atlas/map/manuscript)
-  visibleLabels?: number,  // Count of formulas on screen
-  overlappingLabels?: number,  // Count of unresolved collisions
-  legibleLabels?: number,  // Count readable without pan/zoom
-  
-  // Layout
-  nodes: number,           // Total node count
-  bodiesOnScreen: number,  // Nodes in viewport
-  layoutMs: number,        // Layout computation time
-  
-  // Performance
-  readyMs: number,         // Time to first interactive
-  draws: number,           // Total frames rendered
-  flying: boolean,         // Camera animation active
-  coasting: boolean,       // Inertia scroll active
-  
-  // Baking (atlas only)
-  bakes: {
-    pending: number,       // Formulas awaiting render
-    done: number,
-    failed: number,
-  }
-}
-```
-
-### 4.6 Benchmarking
-
-```javascript
-// Continuous redraw stress test (atlas/map/manuscript)
-const result = await window.__design.bench(2000)
-// { fps: 59.4, frameMs: 16.8, p95: 18.2, frames: 119 }
-```
-
-### 4.7 Design-Specific Extensions
-
-**Atlas only**:
-```javascript
-window.__design.screenOf("riemann-roch")
-// { x: 450, y: 320, r: 12, visible: true }
-
-window.__design.pick(x, y)
-// { kind: "body", id: "...", sx, sy } | { kind: "link", ... } | null
-
-window.__design.labels()
-// [{ id, text, x, y, w, h, visible }, ...]
-```
-
-**Nebula only**:
-```javascript
-window.__nebula.scene      // THREE.Scene instance
-window.__nebula.camera     // THREE.PerspectiveCamera
-window.__nebula.resetView()
-```
-
----
-
-## 5. CDP Automation
-
-Headless browser control for screenshot, testing, and verification.
-
-### 5.1 Basic Session
-
-**File**: `designs/cdp.mjs`
-
-```javascript
-import { openPage } from './designs/cdp.mjs'
-
-const page = await openPage({
-  url: 'http://localhost:5190/designs/atlas/',
-  width: 1600,
-  height: 1000,
-  wait: 'window.__design && window.__design.ready',
-  waitMs: 45000,
-})
-
-console.log(page.ready)      // true if wait condition met
-console.log(page.errors)     // [{ type, text }]
-console.log(page.logs)       // [{ type, text }]
-
-await page.close()
-```
-
-### 5.2 Interactive Commands
-
-```javascript
-// Execute JavaScript
-const result = await page.eval('window.__design.view()')
-await page.eval('await __design.select("scheme")')
-
-// Take screenshot
-await page.shot('output/atlas-scheme.png')
-
-// Change viewport
-await page.viewport(390, 844)  // Mobile
-
-// Reload
-const ok = await page.reload('window.__design.ready')
-```
-
-### 5.3 Error Collection
-
-CDP automatically captures:
-
-- **Runtime exceptions** (`Runtime.exceptionThrown`)
-- **Console errors** (`console.error`)
-- **Network errors** (HTTP 4xx/5xx, excluding favicon)
-
-```javascript
-page.errors.forEach(err => {
-  console.log(err.type)  // "exception" | "console.error" | "log.error"
-  console.log(err.text)
-})
-```
-
-### 5.4 Browser Locking
-
-CDP enforces **one headless instance at a time** to prevent system overload:
-
-```javascript
-// Automatic: openPage() acquires lock, page.close() releases it
-// Multiple calls queue serially
-```
-
-Manual lock control (advanced):
-
-```javascript
-import { acquireBrowserLock, releaseBrowserLock } from './designs/_browser-lock.mjs'
-
-const lock = await acquireBrowserLock('custom-task')
-try {
-  // Your headless work
-} finally {
-  releaseBrowserLock(lock)
+  path: [node1, node2, ...],  // 节点序列
+  hops: 5,                     // 跳数
+  cost: 0.85                   // 强度代价
 }
 ```
 
 ---
 
-## 6. Knowledge Base Pipeline
+### `focusNode(nodeId)`
 
-How data flows from external sources to the graph.
+聚焦到指定节点，相机移动到该节点并显示详情面板。
 
-### 6.1 Data Sources
-
-| Source | File | Node Count | Link Count | Description |
-|--------|------|------------|------------|-------------|
-| Manual | `src/data/knowledge.js` | 405 | ~800 | Hand-curated Chinese theorems |
-| Stacks Project | `src/data/stacks-extra.js` | ~200 | ~150 | Auto-extracted from Stacks |
-| nLab | `src/data/nlab-extra.js` | ~80 | ~60 | Concept definitions |
-| mathlib | `src/data/mathlib-extra.js` | ~150 | ~100 | Formalized Lean proofs |
-| Wikipedia | `src/data/wikipedia-extra.js` | ~30 | ~20 | Unsolved conjectures |
-| zbMATH | `src/data/researchers-extra.js` | 24 | ~50 | Researcher profiles |
-
-### 6.2 Build Scripts
-
-**Location**: `kb-src/`
-
-#### Fetch Phase
-
-```bash
-# Fetch raw data
-node kb-src/fetch-stacks.mjs        # Scrape Stacks tags
-node kb-src/fetch-nlab.mjs          # Scrape nLab pages
-node kb-src/fetch-mathlib.mjs       # Query Lean API
-node kb-src/fetch-wikipedia.mjs     # Parse Wikipedia lists
-node kb-src/fetch-zbmath.mjs        # Query zbMATH Open API
-```
-
-#### Build Phase
-
-```bash
-# Transform to node/link arrays
-node kb-src/build-nodes.mjs --limit 300     # Generate first 300 Stacks nodes
-node kb-src/build-nlab-nodes.mjs
-node kb-src/build-mathlib-nodes.mjs
-node kb-src/build-wikipedia-nodes.mjs
-node kb-src/build-researchers.mjs
-
-# Cross-source links
-node kb-src/build-cross-links.mjs
-```
-
-#### Verification
-
-```bash
-# Check data integrity
-node kb-src/verify-cross.mjs
-node kb-src/verify-mathlib.mjs
-node kb-src/verify-nlab.mjs
-npm run check-data  # High-level integrity check
-```
-
-### 6.3 Adding a New Node
-
-Manual addition to `src/data/knowledge.js`:
+Focus on a specific node, moving the camera and showing details.
 
 ```javascript
-export const NODES = [
-  // ...existing nodes
-  {
-    id: "my-theorem",
-    name: "我的定理",
-    latex: "\\int_X \\omega = 0",
-    description: "一个重要的结果",
-    importance: 0.75,
-    family: "cohomology",
-    source: "manual",
-  }
-]
+// 通过 ID 聚焦
+api.focusNode('hodge-conjecture');
 
-export const LINKS = [
-  // ...existing links
-  {
-    source: "my-theorem",
-    target: "riemann-roch",
-    type: "generalization",
-    weight: 0.8,
-  }
-]
+// 通过搜索结果聚焦
+const results = api.search('霍奇猜想');
+if (results.nodes.length > 0) {
+  api.focusNode(results.nodes[0].id);
+}
 ```
 
-### 6.4 Custom Data Source
-
-Implement a fetch + build script pair:
-
-1. **Fetch** (`kb-src/fetch-custom.mjs`):
-   ```javascript
-   // Scrape/query external API
-   // Save raw JSON to kb-src/out/custom-raw.json
-   ```
-
-2. **Build** (`kb-src/build-custom.mjs`):
-   ```javascript
-   // Read raw JSON
-   // Transform to { id, name, latex, ... } format
-   // Write src/data/custom-extra.js
-   ```
-
-3. **Import** in `src/graph.js`:
-   ```javascript
-   import { CUSTOM_NODES, CUSTOM_LINKS } from './data/custom-extra.js'
-   const ALL_NODES = [...GALAXY_NODES, ...CUSTOM_NODES]
-   ```
+**参数 | Parameters:**
+- `nodeId: string` - 节点 ID
 
 ---
 
-## 7. Extension Points
+### `export(options)`
 
-### 7.1 Custom Layout Algorithm
+导出当前视图。
 
-Implement the layout interface:
+Export the current view.
 
 ```javascript
-// designs/my-layout/layout.js
-export function buildMyLayout(graph, opts = {}) {
-  const bodies = new Map()
-  
-  graph.nodes.forEach(node => {
-    bodies.set(node.id, {
-      id: node.id,
-      x: /* your X coordinate */,
-      y: /* your Y coordinate */,
-      r: /* visual radius */,
-      node,
-    })
-  })
-  
-  return {
-    bodies,
-    // ...other structures
-    ms: Date.now() - t0,
-  }
+// 导出 SVG
+const svg = await api.export({ format: 'svg' });
+// svg 是 string，可直接保存或显示
+
+// 导出 PNG
+const blob = await api.export({ 
+  format: 'png',
+  width: 1920,
+  height: 1080,
+  quality: 0.9
+});
+// blob 可创建下载链接
+
+// 导出数据 JSON
+const json = await api.export({ format: 'json' });
+// json 是包含所有节点和连接的字符串
+```
+
+**参数 | Parameters:**
+- `options: ExportOptions`
+
+```typescript
+{
+  format: 'svg' | 'png' | 'json',
+  width?: number,      // PNG 宽度
+  height?: number,     // PNG 高度
+  quality?: number,    // PNG 质量 (0-1)
+  background?: boolean // 是否包含背景
 }
 ```
 
-### 7.2 Custom Link Type
+**返回值 | Returns:**
+- `Promise<Blob | string>` - SVG/JSON 返回 string，PNG 返回 Blob
 
-Add to `src/linkTypes.js`:
+---
+
+### `getSettings()`
+
+获取当前设置。
+
+Get current settings.
 
 ```javascript
-export const LINK_TYPES = {
-  // ...existing types
-  'custom-relation': {
-    label: "Custom Relation",
-    color: "#ff6b35",
-    weight: 0.6,
-    bidirectional: false,
-  }
-}
+const settings = api.getSettings();
+console.log('Current shape:', settings.shape);
+console.log('FPS target:', settings.params.spinRate);
 ```
 
-Usage:
+**返回值 | Returns:**
+- `Settings` - 完整的设置对象
 
+---
+
+### `updateSettings(partial)`
+
+更新设置。
+
+Update settings.
+
+```javascript
+// 改变形态
+api.updateSettings({ shape: 'barred' });
+
+// 切换取景
+api.updateSettings({ view: 'cluster' });
+
+// 调整参数
+api.updateSettings({
+  params: {
+    spinRate: 0.05,
+    glowStrength: 0.8
+  }
+});
+
+// 切换显示层
+api.updateSettings({
+  display: {
+    links: 'all',
+    bloom: true
+  }
+});
+
+// 启用引力模式
+api.updateSettings({
+  gravity: {
+    enabled: true,
+    followRatio: 0.98
+  }
+});
+```
+
+**参数 | Parameters:**
+- `partial: Partial<Settings>` - 部分设置对象，只更新提供的字段
+
+---
+
+## 性能监控 API | Performance Monitoring API
+
+### 访问 | Access
+
+```javascript
+const perf = window.__perfMonitor; // 仅开发模式
+// 或
+const perf = api.perfMonitor;
+```
+
+### `getMetrics()`
+
+获取当前性能指标。
+
+Get current performance metrics.
+
+```javascript
+const metrics = perf.getMetrics();
+console.log(`FPS: ${metrics.fps.toFixed(1)}`);
+console.log(`Memory: ${metrics.memory.toFixed(1)} MB`);
+console.log(`Draw calls: ${metrics.drawCalls}`);
+```
+
+**返回值 | Returns:**
 ```javascript
 {
-  source: "node-a",
-  target: "node-b",
-  type: "custom-relation",
+  fps: 60,              // 当前 FPS
+  memory: 245.3,        // 内存使用 (MB)
+  renderTime: 8.5,      // 渲染时间 (ms)
+  formulaRenders: 464,  // 公式渲染次数
+  drawCalls: 12,        // Draw calls
+  triangles: 8940       // 三角形数
 }
 ```
 
-### 7.3 Custom Visual Theme
+### `printReport()`
 
-Override CSS variables (all designs):
+在控制台打印详细性能报告。
 
-```css
-:root {
-  --bg-color: #0a0e27;
-  --fg-color: #e2e8f0;
-  --accent-color: #fbbf24;
-  --link-color: rgba(255, 255, 255, 0.15);
-  /* See designs/shared/style-base.css for full list */
-}
-```
-
-Atlas-specific (star sizes/colors):
+Print detailed performance report to console.
 
 ```javascript
-// designs/atlas/constants.js
-export const GLYPH = {
-  color: "#fbbf24",             // Mono theme color
-  familyLightness: 0.4,         // Equalized perceptual lightness
-  minR: 2,                      // Minimum star radius (px)
-  maxR: 18,                     // Maximum star radius (px)
-  glowIntensity: 0.8,           // Bloom strength
-}
+perf.printReport();
 ```
 
-### 7.4 Custom Search Ranker
+**快捷键 | Shortcut:**
+- `Ctrl+Shift+P` - 在应用中按此键直接打印报告
 
-Override `rankSearch` in atlas/map/manuscript:
+### `start()` / `stop()`
+
+启动/停止性能监控。
+
+Start/stop performance monitoring.
 
 ```javascript
-// designs/atlas/search.js
-export function rankSearch(graph, query) {
-  const hits = []
-  
-  graph.nodes.forEach(node => {
-    const score = /* your ranking logic */
-    if (score > 0) {
-      hits.push({ id: node.id, score })
+perf.start();  // 开始监控
+// ... 运行一段时间 ...
+perf.stop();   // 停止监控
+perf.printReport();  // 打印结果
+```
+
+---
+
+## 事件监听 | Event Listening
+
+Formula Nebula 通过自定义事件发送通知。
+
+Formula Nebula dispatches custom events for notifications.
+
+```javascript
+// 节点点击
+window.addEventListener('nebula:node:click', (e) => {
+  console.log('Node clicked:', e.detail.node);
+});
+
+// 节点悬停
+window.addEventListener('nebula:node:hover', (e) => {
+  console.log('Node hovered:', e.detail.node);
+});
+
+// 设置改变
+window.addEventListener('nebula:settings:change', (e) => {
+  console.log('Settings changed:', e.detail);
+});
+
+// 搜索
+window.addEventListener('nebula:search', (e) => {
+  console.log('Search query:', e.detail.query);
+  console.log('Results:', e.detail.results);
+});
+
+// 导出完成
+window.addEventListener('nebula:export:complete', (e) => {
+  console.log('Export completed:', e.detail.format);
+});
+```
+
+**可用事件 | Available Events:**
+- `nebula:node:click` - 节点被点击
+- `nebula:node:hover` - 鼠标悬停在节点上
+- `nebula:node:unhover` - 鼠标离开节点
+- `nebula:settings:change` - 设置改变
+- `nebula:search` - 执行搜索
+- `nebula:export:start` - 开始导出
+- `nebula:export:complete` - 导出完成
+- `nebula:ready` - 应用初始化完成
+
+---
+
+## URL Deep Linking
+
+应用状态完全编码在 URL 中，支持深度链接。
+
+Application state is fully encoded in the URL for deep linking.
+
+### URL 参数 | URL Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `node` | string | 聚焦的节点 ID |
+| `shape` | string | 星系形态 (spiral/barred/ring/diffuse) |
+| `view` | string | 取景模式 (panorama/galaxy/cluster) |
+| `color` | string | 着色模式 (family/status/field/uniform) |
+| `spin` | number | 星系自转速度 |
+| `glow` | number | 光点强度 |
+| `links` | string | 连线模式 (focus/all/off) |
+| `cluster` | boolean | 显示星团 |
+| `bloom` | boolean | 后处理辉光 |
+
+### 示例 URL | Example URLs
+
+```
+# 聚焦 Hodge 猜想，棒旋形态
+https://example.com/#node=hodge-conjecture&shape=barred
+
+# 猜想星团视图，按状态着色
+https://example.com/#view=cluster&color=status
+
+# 所有连线可见，关闭辉光
+https://example.com/#links=all&bloom=false
+
+# 完整配置
+https://example.com/#node=scheme&shape=ring&view=galaxy&spin=0.03&glow=0.9
+```
+
+### 程序化生成链接 | Programmatic Link Generation
+
+```javascript
+// 构建深度链接
+function buildDeepLink(options) {
+  const params = new URLSearchParams();
+  Object.entries(options).forEach(([key, value]) => {
+    params.set(key, String(value));
+  });
+  return `${window.location.origin}${window.location.pathname}#${params}`;
+}
+
+// 使用
+const link = buildDeepLink({
+  node: 'hodge-conjecture',
+  shape: 'spiral',
+  view: 'panorama',
+  color: 'family'
+});
+
+console.log('Share this link:', link);
+```
+
+---
+
+## 集成示例 | Integration Examples
+
+### 嵌入到网页 | Embed in a Web Page
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Math Portal</title>
+  <style>
+    #nebula-container {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
     }
-  })
-  
-  hits.sort((a, b) => b.score - a.score)
-  return { ids: hits.map(h => h.id), structured: false }
-}
-```
+  </style>
+</head>
+<body>
+  <div id="nebula-container">
+    <!-- Formula Nebula iframe -->
+    <iframe 
+      src="https://your-nebula-instance.com/#view=galaxy"
+      width="100%" 
+      height="100%"
+      frameborder="0">
+    </iframe>
+  </div>
 
----
-
-## 8. Performance Tuning
-
-### 8.1 Key Metrics
-
-Measure via `scripts/probe-perf.mjs`:
-
-```bash
-node scripts/probe-perf.mjs
-```
-
-Reports:
-- **readyMs**: Time to first interactive (target: < 3000ms)
-- **fps**: Average frame rate (target: 55+)
-- **overlappingLabels**: Label collisions (atlas/map/manuscript)
-- **bakes.pending**: Unbaked formulas (atlas only)
-
-### 8.2 Atlas Performance Knobs
-
-**File**: `designs/atlas/constants.js`
-
-```javascript
-// Baking (formula texture generation)
-export const BAKE_BUDGET_MS = 8  // Milliseconds per frame for baking
-
-// Label visibility thresholds
-export const MAG_LABEL_L = [3.2, 2.4, 1.7, 0.9, 0, -1]  // Per magnitude
-
-// Force-directed layout iterations (in layout.js)
-const P = {
-  iter: 320,               // Main force iterations
-  relaxIter: 40,           // Region refinement iterations
-  dsoIter: 200,            // Deep-sky object iterations
-  resIter: 200,            // Researcher label iterations
-}
-```
-
-### 8.3 Map Performance Knobs
-
-**File**: `designs/map/src/world/config.js`
-
-```javascript
-export const WORLD = {
-  width: 3000,             // Terrain width (world units)
-  height: 2000,            // Terrain height
-  tileSize: 64,            // Tile granularity (affects batch count)
-}
-
-export const LABELS = {
-  maxVisible: 120,         // Label budget
-  fadeInMs: 200,           // Label appear animation
-}
-```
-
-### 8.4 Nebula Performance Knobs
-
-**File**: `designs/nebula-plus/src/config.js`
-
-```javascript
-export const PERFORMANCE = {
-  targetFPS: 60,
-  pixelRatio: Math.min(2, devicePixelRatio),  // Cap DPR
-  antialias: true,         // WebGL antialiasing
-}
-
-export const PARTICLES = {
-  count: 0,                // Background dust (disabled for clarity)
-}
-
-export const TEXT = {
-  textMinPx: 8,            // Switch to dot below this screen height
-  textFullPx: 24,          // Full formula above this height
-  dotScale: 5.2,           // Dot size multiplier when far
-}
-```
-
-### 8.5 Common Optimizations
-
-**Reduce label budget**:
-```javascript
-// Atlas: Raise L thresholds to show fewer labels
-export const MAG_LABEL_L = [4.0, 3.0, 2.5, 1.5, 0.5, -0.5]
-```
-
-**Lower DPR**:
-```javascript
-// All designs check devicePixelRatio
-state.dpr = Math.min(1.5, devicePixelRatio)
-```
-
-**Disable bloom**:
-```css
-/* Atlas */
-#atlas-canvas {
-  filter: none;  /* Remove drop-shadow */
-}
-```
-
-**Simplify force layout** (atlas):
-```javascript
-const P = {
-  iter: 200,               // Reduce from 320
-  kRep: 4,                 // Reduce repulsion strength
-}
-```
-
-### 8.6 Profiling
-
-Use browser DevTools Performance panel:
-
-1. Open DevTools → Performance
-2. Start recording
-3. Interact with the visualization
-4. Stop recording
-5. Analyze:
-   - **Main thread**: JS execution (layout, baking)
-   - **GPU**: Rendering (canvas draws, WebGL)
-   - **Frame rate**: Target 60fps (16.67ms per frame)
-
-Look for:
-- Long tasks (> 50ms blocks main thread)
-- Forced layouts (reflow/repaint storms)
-- GC pauses
-
----
-
-## Code Examples
-
-### Example 1: Batch Screenshot All Nodes
-
-```javascript
-import { openPage } from './designs/cdp.mjs'
-import { getGraph } from './designs/shared/kb.js'
-import { mkdirSync } from 'node:fs'
-
-const graph = getGraph()
-const page = await openPage({
-  url: 'http://localhost:5190/designs/atlas/',
-  wait: 'window.__design.ready',
-})
-
-mkdirSync('shots/all', { recursive: true })
-
-for (const node of graph.nodes.slice(0, 10)) {
-  await page.eval(`await __design.select("${node.id}", { fly: true })`)
-  await page.shot(`shots/all/${node.id}.png`)
-}
-
-await page.close()
-```
-
-### Example 2: Custom Query Language
-
-```javascript
-// Extend rankSearch to support "degree:>50"
-export function rankSearch(graph, query) {
-  const degreeMatch = query.match(/degree:>(\d+)/)
-  if (degreeMatch) {
-    const minDegree = parseInt(degreeMatch[1])
-    return {
-      ids: graph.nodes
-        .filter(n => n.degree > minDegree)
-        .sort((a, b) => b.degree - a.degree)
-        .map(n => n.id),
-      structured: true,
+  <script>
+    // 通过 postMessage 与 iframe 通信
+    const iframe = document.querySelector('iframe');
+    
+    // 发送命令
+    function sendCommand(command, data) {
+      iframe.contentWindow.postMessage({
+        type: 'nebula:command',
+        command,
+        data
+      }, '*');
     }
-  }
-  
-  // Fallback to default text search
-  return defaultRankSearch(graph, query)
+
+    // 聚焦节点
+    document.getElementById('focusBtn').addEventListener('click', () => {
+      sendCommand('focusNode', { nodeId: 'hodge-conjecture' });
+    });
+  </script>
+</body>
+</html>
+```
+
+### 自定义主题 | Custom Theme
+
+```javascript
+// 自定义颜色方案
+const customTheme = {
+  background: '#0a0a0a',
+  primary: '#ff6b35',
+  secondary: '#004e89',
+  accent: '#f77f00',
+};
+
+// 通过 CSS 变量应用
+Object.entries(customTheme).forEach(([key, value]) => {
+  document.documentElement.style.setProperty(`--color-${key}`, value);
+});
+```
+
+### React 集成 | React Integration
+
+```jsx
+import { useEffect, useRef, useState } from 'react';
+
+function FormulaNebulaViewer() {
+  const containerRef = useRef(null);
+  const [api, setApi] = useState(null);
+
+  useEffect(() => {
+    // 等待 API 初始化
+    const checkApi = setInterval(() => {
+      if (window.formulaNebula) {
+        setApi(window.formulaNebula);
+        clearInterval(checkApi);
+      }
+    }, 100);
+
+    return () => clearInterval(checkApi);
+  }, []);
+
+  const focusRandom = () => {
+    if (!api) return;
+    const nodes = api.getNodes();
+    const random = nodes[Math.floor(Math.random() * nodes.length)];
+    api.focusNode(random.id);
+  };
+
+  return (
+    <div>
+      <div ref={containerRef} id="nebula-root" />
+      <button onClick={focusRandom}>Random Node</button>
+    </div>
+  );
 }
 ```
 
-### Example 3: Export Layout Coordinates
+---
 
-```javascript
-import { buildAtlas } from './designs/atlas/layout.js'
-import { getGraph } from './designs/shared/kb.js'
-import { writeFileSync } from 'node:fs'
+## 类型定义 | Type Definitions
 
-const graph = getGraph()
-const atlas = buildAtlas(graph)
+完整的 TypeScript 类型定义可在 `src/types/index.d.ts` 找到。
 
-const coords = []
-atlas.bodies.forEach(b => {
-  coords.push({
-    id: b.id,
-    x: b.x,
-    y: b.y,
-    r: b.r,
-    ra: b.ra,
-    family: b.node.family,
-  })
-})
+Full TypeScript type definitions are available in `src/types/index.d.ts`.
 
-writeFileSync('atlas-coords.json', JSON.stringify(coords, null, 2))
+```typescript
+import type {
+  FormulaNode,
+  FormulaLink,
+  Settings,
+  PerformanceMetrics
+} from './src/types';
 ```
 
-### Example 4: Verify All Deep Links
+---
+
+## 浏览器兼容性 | Browser Compatibility
+
+| Browser | Minimum Version |
+|---------|----------------|
+| Chrome | 90+ |
+| Firefox | 88+ |
+| Safari | 14+ |
+| Edge | 90+ |
+
+**Required Features:**
+- WebGL 2.0
+- ES2020+
+- CSS Grid
+- Custom Elements (optional)
+
+---
+
+## 性能建议 | Performance Tips
+
+1. **减少同时显示的连线**
+   ```javascript
+   api.updateSettings({ display: { links: 'focus' } });
+   ```
+
+2. **关闭不需要的后处理**
+   ```javascript
+   api.updateSettings({ display: { bloom: false } });
+   ```
+
+3. **降低自转速度**
+   ```javascript
+   api.updateSettings({ params: { spinRate: 0.01 } });
+   ```
+
+4. **监控性能**
+   ```javascript
+   setInterval(() => {
+     const { fps, memory } = api.perfMonitor.getMetrics();
+     if (fps < 30) console.warn('Low FPS detected');
+   }, 1000);
+   ```
+
+---
+
+## 故障排除 | Troubleshooting
+
+### API 不可用 | API Not Available
 
 ```javascript
-import { openPage } from './designs/cdp.mjs'
+// 等待 API 初始化
+function waitForApi() {
+  return new Promise((resolve) => {
+    if (window.formulaNebula) {
+      resolve(window.formulaNebula);
+    } else {
+      window.addEventListener('nebula:ready', () => {
+        resolve(window.formulaNebula);
+      });
+    }
+  });
+}
 
-const ids = ["scheme", "riemann-roch", "cohomology"]
+// 使用
+const api = await waitForApi();
+```
 
-for (const id of ids) {
-  const page = await openPage({
-    url: `http://localhost:5190/designs/atlas/#n=${id}`,
-    wait: 'window.__design.ready',
-  })
-  
-  const view = await page.eval('window.__design.view()')
-  console.log(id, view.selected === id ? 'PASS' : 'FAIL')
-  
-  await page.close()
+### WebGL 不支持 | WebGL Not Supported
+
+```javascript
+function checkWebGL() {
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl2');
+  return !!gl;
+}
+
+if (!checkWebGL()) {
+  alert('Your browser does not support WebGL 2.0');
 }
 ```
 
 ---
 
-## Additional Resources
+## 更多资源 | More Resources
 
-- **Main README**: `README.md` — Project overview and quick start
-- **Design Specifications**:
-  - `designs/atlas/SPEC.md`
-  - `designs/map/SPEC.md`
-  - `designs/manuscript/SPEC.md`
-  - `designs/nebula-plus/SPEC.md`
-- **Data Pipeline**: `kb-src/README.md`
-- **Verification**: `scripts/README.md` (if exists) or `npm run verify`
-- **Performance Analysis**: `designs/SCALABILITY.md`, `designs/NEBULA-PLUS-PERF.md`
+- [GitHub Repository](https://github.com/wenze-wu-math/Formula-Nebula)
+- [Live Demo](https://your-demo-link.com)
+- [Issue Tracker](https://github.com/wenze-wu-math/Formula-Nebula/issues)
+- [Discussions](https://github.com/wenze-wu-math/Formula-Nebula/discussions)
 
 ---
 
-## Support
-
-For questions or issues:
-
-1. Check existing documentation in `docs/` and `designs/`
-2. Review verification scripts in `scripts/` for usage patterns
-3. Inspect working examples in `designs/verify.mjs`
-
----
-
-**Last Updated**: 2026-11-02  
-**API Version**: 1.0 (aligned with designs verification suite)
+**Last Updated**: 2026-11-03  
+**Version**: 0.1.1

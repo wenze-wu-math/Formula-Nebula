@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussion | 讨论
+    url: https://github.com/wenze-wu-math/Formula-Nebula/discussions
+    about: Ask questions and discuss ideas with the community | 向社区提问和讨论想法
+  - name: 📚 Documentation | 文档
+    url: https://github.com/wenze-wu-math/Formula-Nebula#readme
+    about: Read the project documentation | 阅读项目文档
+  - name: 🔒 Security Issue | 安全问题
+    url: https://github.com/wenze-wu-math/Formula-Nebula/security/advisories/new
+    about: Report a security vulnerability privately | 私下报告安全漏洞

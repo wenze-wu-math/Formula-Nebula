@@ -1,0 +1,58 @@
+name: Performance Monitoring
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly on Monday at 00:00 UTC
+    - cron: '0 0 * * 1'
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build
+
+    - name: Start preview server
+      run: npm run preview &
+      env:
+        CI: true
+
+    - name: Wait for server
+      run: |
+        timeout 60 bash -c 'until curl -f http://localhost:5176 > /dev/null 2>&1; do sleep 2; done'
+
+    - name: Run performance tests
+      run: npm run perf
+
+    - name: Verify KaTeX optimization
+      run: npm run verify:katex || echo "KaTeX verification skipped in CI"
+      continue-on-error: true
+
+    - name: Analyze bundle size
+      run: npm run analyze
+
+    - name: Upload performance report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: performance-report
+        path: |
+          bundle-analysis.json
+          perf-report.json
+        retention-days: 90

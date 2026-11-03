@@ -5,3 +5,105 @@ shots/
 *.log
 .DS_Store
 .vite/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Test outputs
+test-results.json
+eslint-report.json
+*.test.js.snap
+
+# Build artifacts
+*.tsbuildinfo
+
+# OS
+Thumbs.db
+
+# Monitoring and reports
+monitoring/
+*.json.bak
+
+# Temporary documentation (keep only essential docs)
+*_SUMMARY.txt
+*-SUMMARY.txt
+ANALYTICS_DASHBOARD_*.md
+API-DOCUMENTATION-*.md
+CASE-STUDY-*.md
+I18N-*.md
+I18N_*.md
+OPTIMIZATION_*.md
+QUICK-START.md
+QUICKSTART-*.md
+README_REDESIGNED.md
+SEARCH_*.md
+SEO-*.md
+SESSION_SUMMARY.md
+SETTINGS_*.md
+UX-IMPROVEMENTS*.txt
+COMPLETION_REPORT.md
+FINAL_SUMMARY.md
+DEPRECATION-NOTICES.md
+ONBOARDING.md
+RELEASE-NOTES-TEMPLATE.md
+UPGRADE-GUIDE.md
+
+# Temporary JSON files
+*.json.tmp
+all_issues*.json
+filtered_issues.json
+issues.json
+labels.json
+prs.json
+i18n-config.json
+i18n_audit.json
+quickstart.config.js
+.quickstart-summary.json
+MOBILE_AUDIT.json
+TEST_RESULTS.json
+
+# Temporary scripts
+final-test-report.mjs
+run-feature-tests.mjs
+test-runner.mjs
+verify-links.js
+setup.sh
+start.sh
+start.ps1
+
+# Examples and demos (move to docs/examples if needed)
+examples/
+tutorial-interactive.html
+test-katex-optimization.html
+
+# Designs work-in-progress
+designs/landing-page*.html
+designs/settings-panel-demo.html
+designs/SETTINGS-*.md
+
+# Sitemaps (generate dynamically)
+sitemap*.xml
+robots.txt
+
+# Data directory (if contains temp data)
+data/
+
+# Tools (consolidate into scripts/)
+tools/
+
+# Public temp assets
+public/
+
+# Scripts subdirectories
+scripts/videos/
+
+# Claude AI session data
+.claude/

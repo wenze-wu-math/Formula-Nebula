@@ -1,0 +1,13 @@
+# Funding configuration for Formula Nebula
+# 资金支持配置
+
+# GitHub Sponsors
+github: # Add your GitHub username here when ready
+
+# Open Collective
+open_collective: # formula-nebula
+
+# Custom funding links
+custom:
+  - "https://ko-fi.com/formulanebula"  # Example - update with your link
+  - "https://buymeacoffee.com/formulanebula"  # Example - update with your link

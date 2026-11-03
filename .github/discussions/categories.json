@@ -1,0 +1,91 @@
+{
+  "categories": [
+    {
+      "id": "knowledge-research",
+      "name": "📚 知识与研究",
+      "description": "讨论代数几何、知识图谱、数学理论及相关研究话题",
+      "emoji": "📚",
+      "format": "discussion"
+    },
+    {
+      "id": "design-visualization",
+      "name": "🎨 设计与可视化",
+      "description": "讨论星云的视觉设计、交互体验、配色和排版方案",
+      "emoji": "🎨",
+      "format": "discussion"
+    },
+    {
+      "id": "technical-implementation",
+      "name": "💻 技术实现",
+      "description": "讨论代码架构、算法优化、WebGL/Three.js 应用等技术细节",
+      "emoji": "💻",
+      "format": "discussion"
+    },
+    {
+      "id": "feedback-suggestions",
+      "name": "🐛 问题反馈与建议",
+      "description": "报告 bug、提出功能需求、建议改进或性能优化方向",
+      "emoji": "🐛",
+      "format": "discussion"
+    },
+    {
+      "id": "announcements",
+      "name": "🌟 项目公告",
+      "description": "版本发布、重要更新、项目进展和里程碑通知",
+      "emoji": "🌟",
+      "format": "announcement"
+    }
+  ],
+  "labels": [
+    {
+      "name": "good-first-issue",
+      "description": "适合新手的讨论话题",
+      "color": "7057ff"
+    },
+    {
+      "name": "help-wanted",
+      "description": "需要社区成员帮助或参与",
+      "color": "33aa3f"
+    },
+    {
+      "name": "answer-provided",
+      "description": "已有实质性回答或解决方案",
+      "color": "4caf50"
+    },
+    {
+      "name": "needs-attention",
+      "description": "需要版主或核心成员关注",
+      "color": "ff6b6b"
+    },
+    {
+      "name": "duplicate",
+      "description": "重复的讨论",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "wontfix",
+      "description": "暂不计划处理的建议",
+      "color": "e4e669"
+    },
+    {
+      "name": "enhancement",
+      "description": "功能增强建议",
+      "color": "a2eeef"
+    },
+    {
+      "name": "question",
+      "description": "用户提出的问题",
+      "color": "d876e3"
+    },
+    {
+      "name": "documentation",
+      "description": "关于文档的讨论",
+      "color": "0075ca"
+    },
+    {
+      "name": "performance",
+      "description": "性能相关讨论",
+      "color": "b60205"
+    }
+  ]
+}
