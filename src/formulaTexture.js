@@ -23,7 +23,15 @@ import { TeX } from 'mathjax-full/js/input/tex.js'
 import { SVG } from 'mathjax-full/js/output/svg.js'
 import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
-import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages.js'
+// NOTE: mathjax-full ships CommonJS. `import { AllPackages } from '...AllPackages.js'`
+// works in a production rollup build (esbuild/rollup interop), but the Vite DEV
+// server serves that CJS file straight to the browser, which has no such export —
+// the app then dies at startup with:
+//   "does not provide an export named 'AllPackages'"
+// A namespace import (or a default import) resolves correctly under both, because
+// Vite's CJS interop always exposes the module.exports object itself.
+import * as AllPackagesModule from 'mathjax-full/js/input/tex/AllPackages.js'
+const AllPackages = AllPackagesModule.AllPackages ?? AllPackagesModule.default
 
 /* ── 初始化 MathJax（模块级只做一次） ── */
 const adaptor = liteAdaptor()

@@ -111,10 +111,15 @@ export default defineConfig({
       'i18next',
       'i18next-browser-languagedetector',
       'i18next-http-backend',
-    ],
-    // MathJax 排除在外，因为我们使用懒加载
-    exclude: [
-      'mathjax-full',
+      // mathjax-full is CommonJS. It must be pre-bundled by esbuild in dev,
+      // otherwise the dev server serves the raw CJS file to the browser and
+      // `import { AllPackages }` fails — the dev app never boots.
+      'mathjax-full/js/mathjax.js',
+      'mathjax-full/js/input/tex.js',
+      'mathjax-full/js/input/tex/AllPackages.js',
+      'mathjax-full/js/output/svg.js',
+      'mathjax-full/js/adaptors/liteAdaptor.js',
+      'mathjax-full/js/handlers/html.js',
     ],
   },
 })
