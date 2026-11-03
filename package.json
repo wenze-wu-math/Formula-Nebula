@@ -86,10 +86,11 @@
     "ws": "^8.14.2"
   },
   "devDependencies": {
-    "@eslint/js": "^10.14.0",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.6",
     "eslint": "^10.14.0",
     "prettier": "^3.9.10",
+    "terser": "^5.51.2",
     "typescript": "^7.0.2",
     "vite": "^7.3.7"
   }
