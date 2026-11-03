@@ -33,6 +33,14 @@ monitoring/
 *.json.bak
 
 # Temporary documentation (keep only essential docs)
+#
+# NOTE: these patterns were also swallowing long-lived docs that other
+# tracked files link to (UPGRADE-GUIDE.md was referenced 11 times from
+# docs/, DEPRECATION-NOTICES.md 13 times, ANALYTICS_DASHBOARD_README.md 8
+# times, RELEASE-NOTES-TEMPLATE.md is read by scripts/create-release-notes.mjs).
+# That produced broken links in the public repository. The five real docs
+# below are now explicitly un-ignored; the rest of these patterns still
+# apply to genuine one-off session reports.
 *_SUMMARY.txt
 *-SUMMARY.txt
 ANALYTICS_DASHBOARD_*.md
@@ -51,10 +59,13 @@ SETTINGS_*.md
 UX-IMPROVEMENTS*.txt
 COMPLETION_REPORT.md
 FINAL_SUMMARY.md
-DEPRECATION-NOTICES.md
-ONBOARDING.md
-RELEASE-NOTES-TEMPLATE.md
-UPGRADE-GUIDE.md
+
+# Long-lived docs that must stay tracked (see note above)
+!ANALYTICS_DASHBOARD_README.md
+!DEPRECATION-NOTICES.md
+!ONBOARDING.md
+!RELEASE-NOTES-TEMPLATE.md
+!UPGRADE-GUIDE.md
 
 # Temporary JSON files
 *.json.tmp
