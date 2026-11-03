@@ -26,6 +26,9 @@ import * as proofRouter from './proofRouter.js'
 import { getProof, getProofCount } from './data/proofs/index.js'
 import { perfMonitor } from './performance.js'
 import { initAccessibility } from './accessibility.js'
+import { createTutorial } from './tutorial.js'
+import { initMobileOptimizations, showPerformanceWarning, isMobile } from './mobileOptimization.js'
+import { initAnalytics, showUsageInsights } from './analytics.js'
 
 async function main() {
   const canvas = document.getElementById('scene')
@@ -551,12 +554,34 @@ async function main() {
   // Initialize accessibility enhancements
   initAccessibility()
 
+  // Initialize mobile optimizations if on mobile
+  const mobileGestures = initMobileOptimizations(scene, settings)
+  if (mobileGestures || isMobile()) {
+    showPerformanceWarning()
+  }
+
+  // Initialize privacy-friendly analytics
+  const analytics = initAnalytics(scene, ui, settings)
+
+  // Show usage insights for returning users (after 3+ visits)
+  if (analytics.data.visits >= 3) {
+    setTimeout(() => showUsageInsights(analytics), 3000)
+  }
+
+  // Start interactive tutorial for first-time users
+  createTutorial(scene, ui, true)
+
   // Expose performance API to window for debugging
-  window.__formulaNebula = {
+  window.__formulaNebula = window.__formulaNebula || {}
+  Object.assign(window.__formulaNebula, {
     perfMonitor,
     getSummary: () => perfMonitor.getSummary(),
     getMemory: () => perfMonitor.getMemoryInfo(),
-  }
+    graph,
+    scene,
+    settings,
+    mobileGestures,
+  })
 
   /* ── 9b. 深链里的选中节点 ──
    *
