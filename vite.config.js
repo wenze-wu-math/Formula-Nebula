@@ -20,7 +20,18 @@ const DEFAULT_PORT = 5175
  * 两边都能用 NEBULA_PORT 覆盖（脚本可用 URL 覆盖）。 */
 const PREVIEW_PORT = 5176
 
+/* `base` 决定构建产物里资源 URL 的前缀。
+ *
+ * 本地 dev / 根域名部署时必须是 '/'。
+ * 部署到 GitHub Pages 的项目页时，站点在 https://<user>.github.io/<repo>/，
+ * 资源必须带上 '/<repo>/' 前缀，否则 index.html 引用的 /assets/*.js 全部 404。
+ *
+ * 用环境变量 NEBULA_BASE 覆盖，CI 里传 '/Formula-Nebula/' 即可，
+ * 本地无需任何设置（默认 '/'）。 */
+const BASE = process.env.NEBULA_BASE || '/'
+
 export default defineConfig({
+  base: BASE,
   server: {
     port: Number(process.env.NEBULA_PORT) || DEFAULT_PORT,
     host: true,          // 允许局域网/手机访问

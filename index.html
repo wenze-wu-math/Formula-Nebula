@@ -252,9 +252,11 @@
 
   <!-- Service Worker Registration (Production only) -->
   <script>
+    // Resolve against the document base rather than the site root, so the app
+    // also works when deployed under a sub-path (GitHub Pages /Formula-Nebula/).
     if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register(new URL('sw.js', document.baseURI).href)
           .then(reg => console.log('[SW] Registered:', reg.scope))
           .catch(err => console.log('[SW] Registration failed:', err));
       });

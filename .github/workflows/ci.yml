@@ -5,22 +5,105 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+
+# Least privilege by default; the deploy job widens this as needed.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: npm
 
-    - name: Install dependencies
-      run: npm install
+      # `npm ci` (not `install`) so the lockfile is authoritative and builds
+      # are reproducible. It also fails loudly if package.json and
+      # package-lock.json drift apart, which is exactly how the previous
+      # "@eslint/js@^10.14.0 does not exist" breakage went unnoticed.
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build
-      run: npm run build
+      - name: Build
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          set -e
+          test -f dist/index.html || { echo "dist/index.html missing"; exit 1; }
+          # The entry bundle must be referenced by the built HTML; if this ever
+          # stops being true the deployed site would boot to a blank page.
+          grep -q '/assets/index-' dist/index.html || { echo "built HTML does not reference an /assets entry bundle"; exit 1; }
+          echo "dist size (excluding sourcemaps):"
+          du -sh --exclude='*.map' dist
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  # Deploy to GitHub Pages. Runs only on main, and only after Build succeeds.
+  # Requires: Settings -> Pages -> Source = "GitHub Actions".
+  # Until that is enabled the deploy job will fail at the deploy step; the
+  # Build job above still gives a green/red signal on every push.
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # GitHub Pages serves project sites from /<repo>/, so every asset URL
+      # needs that prefix. vite.config.js reads NEBULA_BASE for this.
+      - name: Build for Pages sub-path
+        env:
+          NEBULA_BASE: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
