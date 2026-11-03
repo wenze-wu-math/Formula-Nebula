@@ -21,8 +21,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # fetch-depth: 0 gives the job full history. The duplicate-key control
+      # verifies the detector against a pre-fix commit from history; on a
+      # default depth-1 checkout that commit is unreachable and the check
+      # would silently degrade to its inlined sample. Full history keeps the
+      # real assertion running.
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
