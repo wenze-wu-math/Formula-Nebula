@@ -28,6 +28,12 @@ import { getProof, getProofCount } from './data/proofs/index.js'
 async function main() {
   const canvas = document.getElementById('scene')
 
+  // ── 集成 splash screen（如果存在） ──
+  const splash = window.__splashControl
+  if (splash) {
+    splash.update(10, '加载配置...')
+  }
+
   /* ── 0. 地址栏深链 ──
    *
    * ⚠ 必须在**装配图谱之前**做：形态（shape）决定布局的半径与角度，
@@ -68,6 +74,8 @@ async function main() {
     )
   }
   /* ── 1. 装配图谱（纯数据） ── */
+  if (splash) splash.update(15, '构建知识图谱...')
+
   const graph = buildGraph()
   // 证明内容独立存放，按稳定 id 作为渐进增强附加到运行时节点；
   // 旧数据文件仍然只需提供 summary/detail，three.js 不读取 proof 字段。
@@ -82,6 +90,8 @@ async function main() {
   )
 
   /* ── 2. 界面 ── */
+  if (splash) splash.update(20, '初始化界面...')
+
   let proofView = null
   const ui = createUI(graph, {
     // 详情面板里点"关联知识"里的另一个公式 → 跳过去。
@@ -109,9 +119,13 @@ async function main() {
   })
 
   /* ── 3. 场景（先建，让背景星云立刻可见） ── */
+  if (splash) splash.update(25, '创建 3D 场景...')
+
   const scene = createScene(canvas, graph, ui)
 
   /* ── 4. 烘焙公式贴图 ── */
+  if (splash) splash.update(30, '渲染数学公式...')
+
   const items = graph.nodes.map((n) => ({ id: n.id, latex: n.latex, name: n.name }))
   /* 分阶段计时。全部写进 #diag，理由有两条：
    *   ① 烘焙是本项目**最大的单项成本**（串行 MathJax，几分钟），
@@ -132,6 +146,11 @@ async function main() {
   const tBake = performance.now()
   const baked = await bakeAll(items, (done, total, label) => {
     ui.setProgress(done, total, label)
+    // 同时更新 splash screen (30-70% 区间用于烘焙)
+    if (splash) {
+      const percent = 30 + Math.floor((done / total) * 40)
+      splash.update(percent, `渲染公式 ${done}/${total}`)
+    }
   }, bakeOpts)
   mark('bake', tBake)
 
@@ -139,6 +158,8 @@ async function main() {
    * 必须放在烘焙之后：只有拿到每个公式真实的宽高比，
    * 才能做"面积归一化"，让大小真的由重要度决定，
    * 防重叠的球半径也才知道该取多大。 */
+  if (splash) splash.update(75, '布局知识图谱...')
+
   const tLayout = performance.now()
   const layoutInfo = layoutGraph(graph, baked)
   mark('layout', tLayout)
@@ -162,6 +183,8 @@ async function main() {
   console.log(`[公式诗云] 盘半径 ${diskR.toFixed(0)}，相机距离 ${camDist.toFixed(0)}`)
 
   /* ── 6. 建节点 ── */
+  if (splash) splash.update(85, '构建星云节点...')
+
   const tNodes = performance.now()
   const built = scene.buildNodes(baked)
   mark('buildNodes', tNodes)
@@ -487,6 +510,12 @@ async function main() {
   /* ── 9. 起飞 ── */
   ui.finishLoading()
   scene.start()
+
+  // 隐藏 splash screen
+  if (splash) {
+    splash.update(95, '完成！')
+    setTimeout(() => splash.hide(), 200)
+  }
 
   /* ── 9b. 深链里的选中节点 ──
    *

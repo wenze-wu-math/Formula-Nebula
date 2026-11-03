@@ -1,9 +1,44 @@
 {
   "name": "formula-nebula",
-  "private": true,
-  "version": "0.1.0",
+  "private": false,
+  "version": "0.1.1",
   "type": "module",
-  "description": "公式诗云 · Formula Nebula —— 代数几何知识图谱的三维星云可视化",
+  "description": "🌌 代数几何知识图谱的三维星云可视化 - 405条定理 + 59条猜想，探索数学的结构与美",
+  "keywords": [
+    "mathematics",
+    "algebraic-geometry",
+    "knowledge-graph",
+    "3d-visualization",
+    "webgl",
+    "three.js",
+    "education",
+    "data-visualization",
+    "interactive"
+  ],
+  "author": {
+    "name": "Formula Nebula Team",
+    "email": "formula-nebula@example.com",
+    "url": "https://github.com/wenze-wu-math/Formula-Nebula"
+  },
+  "contributors": [
+    {
+      "name": "wenze-wu-math",
+      "url": "https://github.com/wenze-wu-math"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wenze-wu-math/Formula-Nebula.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wenze-wu-math/Formula-Nebula/issues"
+  },
+  "homepage": "https://formula-nebula.vercel.app",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "quickstart": "node scripts/quickstart.mjs",
     "dev": "vite",
