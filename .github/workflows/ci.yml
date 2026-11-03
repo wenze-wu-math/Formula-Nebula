@@ -80,30 +80,56 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Enabling Pages is a one-time repository setting that cannot be done
+      # from a workflow file. Until it is enabled, `configure-pages` fails and
+      # would paint the whole pipeline red on every push even though the build
+      # is healthy. Probe it first and skip the deploy cleanly if absent.
+      #
+      # To turn it on: Settings -> Pages -> Build and deployment
+      #                -> Source = "GitHub Actions"
+      - name: Check whether Pages is enabled
+        id: pages_check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh api "repos/${{ github.repository }}/pages" >/dev/null 2>&1; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "GitHub Pages is enabled - deploying."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Pages not enabled::Skipping deploy. Enable it in Settings -> Pages -> Source: GitHub Actions."
+          fi
+
       - name: Setup Node.js
+        if: steps.pages_check.outputs.enabled == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           cache: npm
 
       - name: Install dependencies
+        if: steps.pages_check.outputs.enabled == 'true'
         run: npm ci
 
       # GitHub Pages serves project sites from /<repo>/, so every asset URL
       # needs that prefix. vite.config.js reads NEBULA_BASE for this.
       - name: Build for Pages sub-path
+        if: steps.pages_check.outputs.enabled == 'true'
         env:
           NEBULA_BASE: /${{ github.event.repository.name }}/
         run: npm run build
 
       - name: Configure Pages
+        if: steps.pages_check.outputs.enabled == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
+        if: steps.pages_check.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
       - name: Deploy to GitHub Pages
+        if: steps.pages_check.outputs.enabled == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
