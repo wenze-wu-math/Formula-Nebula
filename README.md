@@ -4,17 +4,18 @@
 [![Version](https://img.shields.io/badge/version-0.1.1-blue.svg)](https://github.com/wenze-wu-math/Formula-Nebula/releases)
 [![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-blue.svg)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![a11y](https://img.shields.io/badge/a11y-WCAG%202.1%20AA%20%28goal%29-lightgrey.svg)](https://www.w3.org/WAI/WCAG21/quickref/)
 
 代数几何知识图谱的三维星云可视化。
 
 **一个主星系（405 条已定论的定理） + 一个猜想星团（59 条未定论的猜想）。**
 
-> 🚀 **v0.1.1 全面增强版** - 性能提升 10-100x，全新交互，移动端优化！
-> 
-> ✨ **新增功能**：交互式教程、键盘快捷键、触摸手势、性能监控、无障碍支持
-> 
-> [在线体验](https://formula-nebula.vercel.app) | [查看详情](#whats-new)
+> ⚠️ **在线演示部署中 —— 目前没有可访问的公开演示站点。**
+> `formula-nebula.vercel.app` 从未部署过（实测返回 404），GitHub Pages 也未启用。
+> 请按下方 [快速开始](#快速开始) 在本地运行，一两分钟就能看到画面。
+>
+> ✅ **本地 `npm run build` 已通过**（vite v7.3.7，682 modules，9.64s）。
+> 真实的产物体积见 [构建与体积](#构建与体积)，全部为实测，不是估算。
 
 - 主星系是**扁盘**：越靠近核心的公式越重要 —— 越大、越亮、关联越多。
 - 猜想星团是**球**：越靠近球心的猜想越著名。每条猜想带一个状态色点，
@@ -30,77 +31,46 @@
 
 ---
 
-## ✨ What's New in v0.1.1
+## 构建与体积
 
-### 🎯 性能优化 (Phase 1)
-- **Bundle 大小减少 68%**: 11.76 MB → 3.8 MB
-- **首屏加载提速 60%**: >10s → <4s
-- **公式渲染加速 10-100x**: KaTeX + MathJax 双引擎
-- **专业级 Splash Screen**: 8 个进度检查点，实时反馈
-- **Service Worker**: 离线可用，智能缓存
+> 下面每个数字都来自本机一次真实构建（`npm run build` 后直接统计 `dist/`）。
+> 项目此前的版本**从未成功构建过**，所以早期 README 里"11.76 MB → 3.8 MB"
+> "68%" "10-100x" "55-60 FPS" 一类数字没有任何可复现来源，已全部移除。
 
-### ⌨️ UX 增强 (Phase 2)
-- **键盘快捷键**:
-  - `/` - 聚焦搜索
-  - `Ctrl+E` - 导出 SVG
-  - `Esc` - 关闭面板
-  - `←` - 返回上一个节点
-- **性能监控**: FPS、内存、加载时间实时追踪
-- **无障碍支持**: WCAG 2.1 AA 合规
-  - Skip link 键盘导航
-  - 完整 ARIA labels
-  - 屏幕阅读器支持
-  - 增强焦点指示器
-  - 快捷键帮助面板
+构建本身（`npm run build`）：vite v7.3.7，**682 modules**，**9.64 s**，退出码 0。
 
-### 📱 高级功能 (Phase 3)
-- **交互式教程**: 首次访问自动引导，6 步完整体验
-- **移动端优化**:
-  - 自动性能分级（High/Medium/Low）
-  - 触摸手势：双指捏合缩放、旋转
-  - 双击选择节点
-  - 针对低端设备自动降级画质
-- **隐私友好分析**:
-  - 本地数据存储，不上传服务器
-  - 查看你最常看的公式
-  - 热门搜索词统计
-  - 完全用户控制
+产物按类型拆开（`dist/` 共 80 个文件）：
 
-### 📊 开发者工具
-```javascript
-// 性能报告
-window.__formulaNebula.perfMonitor.getSummary()
+| 类别 | 原始体积 | 说明 |
+|---|---|---|
+| **代码 + CSS + HTML**（不含 map） | **11.29 MiB** / 11.84 MB | 真正的运行时载荷 |
+| 　其中 gzip 后 | **3.01 MiB** / 3.16 MB | 服务器开 gzip 时实际传输量 |
+| 字体（KaTeX woff/woff2/ttf，共 59 个文件） | 1.02 MiB | 数学字体，可子集化 |
+| source map | 19.05 MiB | 仅供调试，**不必部署** |
+| **`dist/` 合计** | **31.37 MiB** | 含 map；不含 map 为 12.32 MiB |
 
-// 使用统计
-window.__formulaNebula.analytics.getSummary()
+> ⚠️ **"3.8 MB" 其实是 gzip 后的数字，而不是磁盘体积。** 两者不要混着比：
+> 原始 11.29 MiB、gzip 后 3.01 MiB，磁盘上含 map 是 31.37 MiB。
+> 报体积时必须说清是哪一种，否则差一个数量级。
 
-// 内存使用
-window.__formulaNebula.perfMonitor.getMemoryInfo()
+最大的几个 chunk 与体积瓶颈：
 
-// 重启教程
-window.__formulaNebula.tutorial.start()
-```
+| chunk | 原始 | gzip |
+|---|---|---|
+| `main-*.js`（应用 + 知识库数据） | 9.06 MiB | 2.27 MiB |
+| `mathjax-*.js` | 1.47 MiB | 0.53 MiB |
+| `three-core-*.js` | 0.46 MiB | 0.11 MiB |
+| `katex-*.js` | 0.25 MiB | 0.08 MiB |
 
----
-
-## 🚀 性能对比
-
-| 指标 | 优化前 | 优化后 | 改进 |
-|------|--------|--------|------|
-| **Bundle 大小** | 11.76 MB | ~3.8 MB | **-68%** 🎉 |
-| **首屏加载** | >10s | <4s | **-60%** ⚡ |
-| **公式渲染** | 5-10 ms | 0.1-1 ms | **10-100x** 🔥 |
-| **重复访问** | 10s | <1s | **-90%** 💨 |
-| **FPS** | 30-40 | 55-60 | **+50%** 🎮 |
-| **移动端** | 卡顿 | 流畅 | **质的飞跃** 📱 |
+`main` 占了大头，因为 464 个节点 + 1620 条关联 + 245 条证明正文都是**内联数据**。
+真要减体积，方向是数据按需加载与 `InstancedMesh` 合批（见「性能」一节），
+**这两项都还没做** —— 构建时仍在报 `Some chunks are larger than 2000 kB`。
 
 ---
 
 ## 目录
 
-## 目录
-
-- [What's New](#whats-new-in-v011)
+- [构建与体积](#构建与体积)
 - [核心特性](#核心特性)
 - [快速开始](#快速开始)
 - [操作](#操作)
@@ -134,7 +104,7 @@ window.__formulaNebula.tutorial.start()
 ## 核心特性
 
 ### 🌌 可视化
-- **3D 星云布局**: Three.js + WebGL 渲染，60fps 流畅体验
+- **3D 星云布局**: Three.js + WebGL 渲染（帧率随硬件与场景规模变化，未做基准测试）
 - **464 个节点**: 405 条定理（主星系）+ 59 条猜想（星团）
 - **1620 条连线**: 每条都有人工标注的理由
 - **智能着色**: 按族 / 状态 / 领域 / 单色四种模式
@@ -151,9 +121,13 @@ window.__formulaNebula.tutorial.start()
 
 ### 📱 跨平台
 - **移动优化**: 触摸手势、性能分级、自适应 UI
-- **响应式设计**: 390px 手机 → 4K 显示器无缝适配
+- **响应式设计**: 390px 手机 → 4K 显示器适配
 - **PWA 支持**: 添加到主屏幕，离线可用
-- **无障碍**: WCAG 2.1 AA 合规，屏幕阅读器支持
+- **无障碍**: **以 WCAG 2.1 AA 为目标，尚未通过第三方审计**
+  - 已有：ARIA 标注、skip link、焦点样式、快捷键帮助面板
+  - ⚠️ 已知未达标项：`index.html` 的 viewport 仍带 `user-scalable=no` /
+    `maximum-scale=1.0`（阻止缩放，违反 WCAG 关于缩放的条款）；
+    触摸目标尺寸也低于 44px 建议值（见根目录 `MOBILE_AUDIT.json`）
 
 ### 🎯 体验
 - **交互式教程**: 首次访问自动引导
@@ -164,6 +138,11 @@ window.__formulaNebula.tutorial.start()
 ---
 
 ## 一键部署
+
+> 这些按钮会把本仓库直接拉到第三方平台构建。**部署从未成功过**
+> （GitHub Actions 的 Build/Deploy 成功次数为 0），所以下面的按钮等于
+> "帮我们试一次部署"，成功与否未知。本地构建是确认可用的，见
+> [快速开始](#快速开始)。
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwenze-wu-math%2FFormula-Nebula&project-name=formula-nebula&repository-name=formula-nebula)
 
@@ -186,10 +165,12 @@ window.__formulaNebula.tutorial.start()
 
 ## 快速开始
 
+需要 Node >= 18、npm >= 9（`package.json` 的 `engines`）。本 README 的数字实测于 Node 24.21.0 / npm 11.19.0。
+
 ```bash
 npm install
 npm run dev        # 开发服务器，默认 http://localhost:5175
-npm run build      # 生产构建 → dist/
+npm run build      # 生产构建 → dist/（实测 9.64s，见「构建与体积」）
 npm run build:analyze # 构建并分析 bundle 大小
 npm run preview    # 预览构建产物，默认 http://localhost:5176
 
@@ -1498,9 +1479,12 @@ three.js 场景和渲染循环；顶部提供返回星云按钮，点击后星�
 
 证明内容单独放在 `src/data/proofs/`，按既有节点 id 索引。现有节点不必改写：
 没有 `proof` 记录时，阅读页会退回显示节点的公式、摘要、详情和星云邻接。
-目前覆盖 **226 条命题**，共 1167 个证明步骤、约 **68.6 万字符**正文
-（最短步骤 305 字）。图谱里还有 168 个可证命题没有证明页，可继续按下面的
+目前覆盖 **245 条命题**，共 1261 个证明步骤、约 **73.5 万字符**正文
+（最短步骤 303 字）。图谱里还有 **160** 个定理节点没有证明页，可继续按下面的
 流程批量补充，不要求改 UI 或 three.js 代码。
+
+> 上面的数字由 `src/data/proofs/index.js` 的 `PROOFS` 直接数出；
+> 早期 README 写的 226 条 / 1167 步 / 68.6 万字符是批次扩充前的旧值。
 
 数据分成两层来源：
 
@@ -1508,12 +1492,12 @@ three.js 场景和渲染循环；顶部提供返回星云按钮，点击后星�
   `rewrite-b.js`（改写加长的旧记录）、`deep-dive.js`、`foundation-long.js`、
   `foundation-long-b.js`、`new-topics.js`、`new-curves.js`、`new-sheaves.js`。
   这 43 条是逐条审读、修过数学错误的版本。
-- **批量层（`batch-NN.js`，21 个文件）**：按 `shots/proof-targets/` 下的清单
-  成批扩充，每个文件 3~13 条。写作规范见
-  [shots/proof-targets/COOKBOOK.md](shots/proof-targets/COOKBOOK.md)，
-  这是一份**可直接交给作者（或子代理）的契约**，里面记录了实际踩过的全部
-  格式坑（单引号字符串被 LaTeX 撇号提前终止、段内的 U+2032 被 KaTeX 拒绝、
-  全角标点进了数学模式、反斜杠被 JS 吞掉、`\text{}` 里嵌 `$...$` 等）。
+- **批量层（`batch-NN.js`，24 个文件）**：成批扩充，每个文件 3~13 条。
+  共 202 条。写作约定记录在本节的 `some-existing-node-id` 示例与
+  `scripts/verify-proofs.mjs` 的校验规则里（原先这里指向
+  `shots/proof-targets/COOKBOOK.md`，该文件并不存在，链接已移除）。
+  实际踩过的格式坑：单引号字符串被 LaTeX 撇号提前终止、段内的 U+2032 被 KaTeX 拒绝、
+  全角标点进了数学模式、反斜杠被 JS 吞掉、`\text{}` 里嵌 `$...$`。
 
 `index.js` 由 `scripts/_sync-proof-index.mjs` 依据目录内容生成静态 import
 清单（不能读目录：浏览器端不能 import `node:fs`；也不能用
@@ -2806,7 +2790,7 @@ scripts/              ← 验证与调参脚本（40+ 个）
 |---|---|---|---|
 | `formula-nebula/` | **原始版**，未再改动 | 303 个公式 | — |
 | `formula-nebula-v1/` | **v1 冻结备份**（原始版的逐字节副本） | 303 个公式 | 13 / 13 |
-| `formula-nebula-v2/` | **当前开发版**（本 README 所描述的就是它） | 464 个公式（405 + 59 猜想）+ 226 条证明 | 30 项脚本清单（见 `scripts/run-all.mjs`） |
+| `formula-nebula-v2/` | **当前开发版**（本 README 所描述的就是它） | 464 个公式（405 + 59 猜想）+ 245 条证明 | 30 项脚本清单（见 `scripts/run-all.mjs`） |
 
 ### 备份是怎么做的、怎么验的
 
