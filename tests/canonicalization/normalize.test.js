@@ -4,72 +4,85 @@
 
 import { parseLatex, normalize, toCanonicalLatex, compareNodes } from '../../src/canonicalization/normalize.js'
 
+/**
+ * Assertion that actually fails the test.
+ *
+ * These tests used `console.assert(...)` followed by an unconditional
+ * `return true`, so every failing assertion was printed and then ignored —
+ * the suite reported "12 passed, 0 failed" while 7 assertions were failing.
+ * `check()` throws instead, which the runner counts as a failure.
+ */
+function check(condition, message) {
+  if (!condition) throw new Error(message || 'assertion failed')
+}
+
+
 // Test: Parse simple numbers
 export function test_parse_numbers() {
   const ast = parseLatex('42')
-  console.assert(ast.type === 'number', 'Should parse number')
-  console.assert(ast.value === 42, 'Should have correct value')
+  check(ast.type === 'number', 'Should parse number')
+  check(ast.value === 42, 'Should have correct value')
   return true
 }
 
 // Test: Parse variables
 export function test_parse_variables() {
   const ast = parseLatex('x')
-  console.assert(ast.type === 'variable', 'Should parse variable')
-  console.assert(ast.name === 'x', 'Should have correct name')
+  check(ast.type === 'variable', 'Should parse variable')
+  check(ast.name === 'x', 'Should have correct name')
   return true
 }
 
 // Test: Parse Greek letters
 export function test_parse_greek() {
   const ast = parseLatex('\\alpha')
-  console.assert(ast.type === 'variable', 'Should parse Greek letter as variable')
-  console.assert(ast.name === '\\alpha', 'Should preserve LaTeX name')
+  check(ast.type === 'variable', 'Should parse Greek letter as variable')
+  check(ast.name === '\\alpha', 'Should preserve LaTeX name')
   return true
 }
 
 // Test: Parse addition
 export function test_parse_addition() {
   const ast = parseLatex('a+b')
-  console.assert(ast.type === 'binary_op', 'Should parse binary operation')
-  console.assert(ast.operator === '+', 'Should have + operator')
-  console.assert(ast.left.name === 'a', 'Left operand correct')
-  console.assert(ast.right.name === 'b', 'Right operand correct')
+  check(ast.type === 'binary_op', 'Should parse binary operation')
+  check(ast.operator === '+', 'Should have + operator')
+  check(ast.left.name === 'a', 'Left operand correct')
+  check(ast.right.name === 'b', 'Right operand correct')
   return true
 }
 
 // Test: Parse multiplication
 export function test_parse_multiplication() {
   const ast = parseLatex('a*b')
-  console.assert(ast.type === 'binary_op', 'Should parse multiplication')
-  console.assert(ast.operator === '*', 'Should have * operator')
+  check(ast.type === 'binary_op', 'Should parse multiplication')
+  check(ast.operator === '*', 'Should have * operator')
   return true
 }
 
 // Test: Parse power
 export function test_parse_power() {
   const ast = parseLatex('x^2')
-  console.assert(ast.type === 'power', 'Should parse power')
-  console.assert(ast.base.name === 'x', 'Base correct')
-  console.assert(ast.exponent.value === 2, 'Exponent correct')
+  check(ast.type === 'power', 'Should parse power')
+  check(ast.base.name === 'x', 'Base correct')
+  check(ast.exponent.value === 2, 'Exponent correct')
   return true
 }
 
 // Test: Parse fraction
 export function test_parse_fraction() {
   const ast = parseLatex('\\frac{a}{b}')
-  console.assert(ast.type === 'fraction', 'Should parse fraction')
-  console.assert(ast.numerator.name === 'a', 'Numerator correct')
-  console.assert(ast.denominator.name === 'b', 'Denominator correct')
+  check(ast.type === 'fraction', 'Should parse fraction')
+  check(ast.numerator.name === 'a', 'Numerator correct')
+  check(ast.denominator.name === 'b', 'Denominator correct')
   return true
 }
 
 // Test: Parse complex expression
 export function test_parse_complex() {
   const ast = parseLatex('a+b*c')
-  console.assert(ast.type === 'binary_op', 'Root is binary op')
-  console.assert(ast.operator === '+', 'Root operator is +')
-  console.assert(ast.right.operator === '*', 'Right side is multiplication')
+  check(ast.type === 'binary_op', 'Root is binary op')
+  check(ast.operator === '+', 'Root operator is +')
+  check(ast.right.operator === '*', 'Right side is multiplication')
   return true
 }
 
@@ -81,7 +94,7 @@ export function test_commutative_normalization() {
   const norm2 = normalize(ast2)
   const canonical1 = toCanonicalLatex(norm1)
   const canonical2 = toCanonicalLatex(norm2)
-  console.assert(canonical1 === canonical2, 'a+b should equal b+a')
+  check(canonical1 === canonical2, 'a+b should equal b+a')
   return true
 }
 
@@ -93,7 +106,7 @@ export function test_associative_normalization() {
   const norm2 = normalize(ast2)
   const canonical1 = toCanonicalLatex(norm1)
   const canonical2 = toCanonicalLatex(norm2)
-  console.assert(canonical1 === canonical2, '(a+b)+c should equal a+(b+c)')
+  check(canonical1 === canonical2, '(a+b)+c should equal a+(b+c)')
   return true
 }
 
@@ -101,8 +114,8 @@ export function test_associative_normalization() {
 export function test_power_one_normalization() {
   const ast = parseLatex('x^1')
   const norm = normalize(ast)
-  console.assert(norm.type === 'variable', 'x^1 should normalize to x')
-  console.assert(norm.name === 'x', 'Should be variable x')
+  check(norm.type === 'variable', 'x^1 should normalize to x')
+  check(norm.name === 'x', 'Should be variable x')
   return true
 }
 
@@ -110,8 +123,8 @@ export function test_power_one_normalization() {
 export function test_power_zero_normalization() {
   const ast = parseLatex('x^0')
   const norm = normalize(ast)
-  console.assert(norm.type === 'number', 'x^0 should normalize to number')
-  console.assert(norm.value === 1, 'x^0 should be 1')
+  check(norm.type === 'number', 'x^0 should normalize to number')
+  check(norm.value === 1, 'x^0 should be 1')
   return true
 }
 
@@ -119,7 +132,7 @@ export function test_power_zero_normalization() {
 export function test_fraction_one_normalization() {
   const ast = parseLatex('\\frac{x}{1}')
   const norm = normalize(ast)
-  console.assert(norm.type === 'variable', 'x/1 should normalize to x')
+  check(norm.type === 'variable', 'x/1 should normalize to x')
   return true
 }
 
@@ -131,7 +144,7 @@ export function test_multiple_commutative() {
   const norm2 = normalize(ast2)
   const canonical1 = toCanonicalLatex(norm1)
   const canonical2 = toCanonicalLatex(norm2)
-  console.assert(canonical1 === canonical2, 'a+b+c should equal c+a+b')
+  check(canonical1 === canonical2, 'a+b+c should equal c+a+b')
   return true
 }
 
@@ -140,10 +153,10 @@ export function test_compare_nodes() {
   const node1 = { type: 'number', value: 1 }
   const node2 = { type: 'number', value: 2 }
   const node3 = { type: 'variable', name: 'x' }
-  console.assert(compareNodes(node1, node2) < 0, '1 < 2')
-  console.assert(compareNodes(node2, node1) > 0, '2 > 1')
-  console.assert(compareNodes(node1, node1) === 0, '1 === 1')
-  console.assert(compareNodes(node1, node3) < 0, 'number < variable in type order')
+  check(compareNodes(node1, node2) < 0, '1 < 2')
+  check(compareNodes(node2, node1) > 0, '2 > 1')
+  check(compareNodes(node1, node1) === 0, '1 === 1')
+  check(compareNodes(node1, node3) < 0, 'number < variable in type order')
   return true
 }
 
@@ -152,9 +165,9 @@ export function test_canonical_latex() {
   const ast = parseLatex('a+b')
   const norm = normalize(ast)
   const latex = toCanonicalLatex(norm)
-  console.assert(latex.includes('a'), 'Contains a')
-  console.assert(latex.includes('b'), 'Contains b')
-  console.assert(latex.includes('+'), 'Contains +')
+  check(latex.includes('a'), 'Contains a')
+  check(latex.includes('b'), 'Contains b')
+  check(latex.includes('+'), 'Contains +')
   return true
 }
 

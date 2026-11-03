@@ -37,14 +37,14 @@ export const NodeType = {
  * @type {Set<string>}
  * @private
  */
-const COMMUTATIVE_OPS = new Set(['+', '\\cdot', '\\times', '\\cap', '\\cup'])
+const COMMUTATIVE_OPS = new Set(['+', '*', '\\cdot', '\\times', '\\cap', '\\cup'])
 
 /**
  * Operators that satisfy the associative property: (a⊕b)⊕c = a⊕(b⊕c)
  * @type {Set<string>}
  * @private
  */
-const ASSOCIATIVE_OPS = new Set(['+', '\\cdot', '\\times', '\\cap', '\\cup'])
+const ASSOCIATIVE_OPS = new Set(['+', '*', '\\cdot', '\\times', '\\cap', '\\cup'])
 
 /**
  * Parse LaTeX expression into an abstract syntax tree
@@ -150,6 +150,7 @@ function parseRelation(t, p) {
   while (p < t.length && t[p].type === 'symbol' && '=<>'.includes(t[p].value)) {
     const op = t[p++].value
     const r = parseAdditive(t, p)
+    p = r.pos
     l = { node: { type: NodeType.RELATION, operator: op, left: l.node, right: r.node }, pos: r.pos }
   }
   return l
@@ -170,6 +171,11 @@ function parseAdditive(t, p) {
   while (p < t.length && t[p].type === 'symbol' && '+-'.includes(t[p].value)) {
     const op = t[p++].value
     const r = parseMultiplicative(t, p)
+    // Advance the cursor to the end of the operand just consumed. Without this
+    // the loop re-tests the first token of the right operand, fails the
+    // operator check, and silently drops every term after the second —
+    // `a+b+c` parsed as `a+b`.
+    p = r.pos
     l = { node: { type: NodeType.BINARY_OP, operator: op, left: l.node, right: r.node }, pos: r.pos }
   }
   return l
@@ -191,10 +197,14 @@ function parseMultiplicative(t, p) {
     if (t[p].type === 'symbol' && '*/'.includes(t[p].value)) {
       const op = t[p++].value
       const r = parsePower(t, p)
+      // Same cursor-advance bug as parseAdditive: without `p = r.pos` every
+      // factor after the second is dropped (`a*b*c` parsed as `a*b`).
+      p = r.pos
       l = { node: { type: NodeType.BINARY_OP, operator: op, left: l.node, right: r.node }, pos: r.pos }
     } else if (t[p].type === 'command' && ['\\cdot', '\\times'].includes(t[p].value)) {
       const op = t[p++].value
       const r = parsePower(t, p)
+      p = r.pos
       l = { node: { type: NodeType.BINARY_OP, operator: op, left: l.node, right: r.node }, pos: r.pos }
     } else break
   }
@@ -335,7 +345,12 @@ function normalizeBinaryOp(node) {
   const right = normalize(node.right)
   const op = node.operator
   if (ASSOCIATIVE_OPS.has(op)) {
-    const operands = flattenAssociative(node, op).map(normalize)
+    // Normalize both sides FIRST, then flatten. `normalize` strips PAREN
+    // wrappers, so flattening the raw node first misses `(a+b)+c`: the raw
+    // left child is a PAREN, not a BINARY_OP, and flattenAssociative stops
+    // there — leaving a nested shape that never matches `a+b+c`.
+    const normalized = { type: NodeType.BINARY_OP, operator: op, left, right }
+    const operands = flattenAssociative(normalized, op)
     if (COMMUTATIVE_OPS.has(op)) operands.sort(compareNodes)
     return reconstructBinaryOp(operands, op)
   }

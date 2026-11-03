@@ -16,6 +16,16 @@ export function compareFormulas(latex1, latex2) {
     const ast1 = parseLatex(latex1)
     const ast2 = parseLatex(latex2)
 
+    // A failed parse yields a null AST. This guard keeps that distinguishable
+    // from a genuine "not equivalent" result.
+    if (!ast1 || !ast2) {
+      return {
+        equivalent: false,
+        error: `could not parse ${!ast1 ? 'left' : 'right'}-hand formula`,
+        similarity: 0
+      }
+    }
+
     const norm1 = normalize(ast1)
     const norm2 = normalize(ast2)
 
