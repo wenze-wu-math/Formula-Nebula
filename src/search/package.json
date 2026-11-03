@@ -1,0 +1,54 @@
+{
+  "name": "@formula-nebula/search",
+  "version": "1.0.0",
+  "description": "Advanced search system for Formula Nebula - featuring full-text search, fuzzy search, query engine, and interactive UI",
+  "type": "module",
+  "main": "./search-ui.js",
+  "exports": {
+    ".": "./search-ui.js",
+    "./index": "./index.js",
+    "./query-engine": "./query-engine.js",
+    "./search-ui": "./search-ui.js",
+    "./styles": "./search-ui.css"
+  },
+  "keywords": [
+    "search",
+    "full-text",
+    "fuzzy",
+    "query",
+    "tfidf",
+    "index",
+    "ui",
+    "formula",
+    "knowledge-graph"
+  ],
+  "author": "Formula Nebula Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formula-nebula/nebula.git",
+    "directory": "src/search"
+  },
+  "bugs": {
+    "url": "https://github.com/formula-nebula/nebula/issues"
+  },
+  "files": [
+    "index.js",
+    "query-engine.js",
+    "search-ui.js",
+    "search-ui.css",
+    "README.md",
+    "IMPLEMENTATION_SUMMARY.md",
+    "example.js",
+    "search.test.js"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "browser": true
+  },
+  "scripts": {
+    "test": "node --input-type=module search.test.js",
+    "demo": "echo 'See example.js for demos'",
+    "docs": "echo 'See README.md for documentation'"
+  }
+}

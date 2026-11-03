@@ -1,0 +1,39 @@
+<svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="logo-glow">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- Logo mark -->
+  <g>
+    <!-- Nebula background -->
+    <circle cx="30" cy="50" r="28" fill="url(#logo-gradient)" opacity="0.2"/>
+    <circle cx="30" cy="50" r="20" fill="url(#logo-gradient)" opacity="0.4" filter="url(#logo-glow)"/>
+    <circle cx="30" cy="50" r="12" fill="url(#logo-gradient)" opacity="0.6"/>
+
+    <!-- Formula elements -->
+    <g stroke="#fbbf24" stroke-width="1.2" fill="none" stroke-linecap="round">
+      <path d="M 22 42 L 26 35 L 30 42"/>
+      <line x1="30" y1="45" x2="30" y2="55"/>
+      <line x1="26" y1="50" x2="34" y2="50"/>
+      <circle cx="30" cy="50" r="3" fill="none"/>
+    </g>
+
+    <!-- Stars -->
+    <g fill="#fbbf24">
+      <circle cx="12" cy="25" r="1"/>
+      <circle cx="48" cy="30" r="1"/>
+      <circle cx="45" cy="65" r="0.8"/>
+    </g>
+  </g>
+
+  <!-- Text branding -->
+  <text x="70" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="url(#logo-gradient)">Formula Nebula</text>
+  <text x="70" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#64748b">Mathematical Discovery Platform</text>
+</svg>

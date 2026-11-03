@@ -1,0 +1,330 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Formula Nebula Case Study Schema",
+  "description": "Standardized structure for case study documentation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier (case_PXXX_timestamp)",
+      "pattern": "^case_P\\d{3}_\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "in-review", "approved", "published", "archived"],
+      "description": "Current workflow status"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When template was created"
+    },
+    "publishedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When case study was published"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version number (semantic versioning)"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 100,
+          "description": "Case study title"
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "URL-friendly slug"
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "One-line summary"
+        },
+        "author": {
+          "type": "string",
+          "description": "Researcher/writer name"
+        },
+        "wordCount": {
+          "type": "integer",
+          "minimum": 800,
+          "maximum": 2000,
+          "description": "Total words in narrative"
+        },
+        "readingTime": {
+          "type": "string",
+          "pattern": "^\\d+ minutes?$",
+          "description": "Estimated reading time"
+        }
+      },
+      "required": ["title", "slug", "subtitle"]
+    },
+    "participantData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^P\\d{3}$",
+          "description": "Study participant ID"
+        },
+        "anonymity": {
+          "type": "string",
+          "enum": ["named", "anonymous", "pseudonym"],
+          "description": "Attribution type"
+        },
+        "name": {
+          "type": "string",
+          "description": "Participant name (if not anonymous)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Job title or student year"
+        },
+        "affiliation": {
+          "type": "string",
+          "description": "Institution or organization"
+        },
+        "background": {
+          "type": "string",
+          "description": "Relevant background and experience"
+        }
+      },
+      "required": ["id", "anonymity"]
+    },
+    "studyMetrics": {
+      "type": "object",
+      "properties": {
+        "comprehensionScores": {
+          "type": "array",
+          "items": {"type": "number", "minimum": 0, "maximum": 5},
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Score for each of 4 proofs (0-5)"
+        },
+        "engagementScores": {
+          "type": "array",
+          "items": {"type": "number", "minimum": 1, "maximum": 7},
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Score for each visualization (1-7)"
+        },
+        "avgComprehension": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "avgEngagement": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "comprehensionGrowth": {
+          "type": "string",
+          "pattern": "^[0-9]+%$",
+          "description": "Percentage improvement"
+        },
+        "engagementGrowth": {
+          "type": "number",
+          "description": "Absolute point increase"
+        },
+        "preferredVisualization": {
+          "type": "string",
+          "enum": ["atlas", "map", "manuscript", "nebula", null]
+        },
+        "dataPoints": {
+          "type": "object",
+          "properties": {
+            "startComprehension": {"type": "number"},
+            "endComprehension": {"type": "number"},
+            "startEngagement": {"type": "number"},
+            "endEngagement": {"type": "number"}
+          }
+        }
+      },
+      "required": ["comprehensionScores", "engagementScores"]
+    },
+    "narrative": {
+      "type": "object",
+      "properties": {
+        "background": {
+          "type": "string",
+          "minLength": 150,
+          "maxLength": 300,
+          "description": "Background story section"
+        },
+        "firstEncounter": {
+          "type": "string",
+          "minLength": 100,
+          "maxLength": 200,
+          "description": "Initial reaction section"
+        },
+        "breakthroughMoment": {
+          "type": "string",
+          "minLength": 150,
+          "maxLength": 300,
+          "description": "Key insight moment"
+        },
+        "progressAndGrowth": {
+          "type": "string",
+          "minLength": 150,
+          "maxLength": 300,
+          "description": "Development over time"
+        },
+        "resultsSection": {
+          "type": "object",
+          "properties": {
+            "quantitative": {
+              "type": "string",
+              "minLength": 75,
+              "maxLength": 200,
+              "description": "Data-driven results"
+            },
+            "qualitative": {
+              "type": "string",
+              "minLength": 100,
+              "maxLength": 200,
+              "description": "Participant perspective"
+            }
+          }
+        },
+        "realWorldImpact": {
+          "type": "string",
+          "minLength": 100,
+          "maxLength": 250,
+          "description": "Broader consequences and future"
+        },
+        "directRecommendation": {
+          "type": "string",
+          "minLength": 50,
+          "maxLength": 200,
+          "description": "Participant recommendation quote"
+        }
+      },
+      "required": ["background", "breakthroughMoment", "resultsSection", "directRecommendation"]
+    },
+    "testimonial": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": ["string", "null"],
+          "description": "Testimonial unique ID"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 50,
+          "maxLength": 300,
+          "description": "Testimonial quote (1-3 sentences)"
+        },
+        "attribution": {
+          "type": "string",
+          "enum": ["named", "anonymous", "pseudonym"]
+        },
+        "approvedUses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["website", "case-study", "marketing", "social-media", "academic"]
+          },
+          "description": "Approved use contexts"
+        }
+      }
+    },
+    "categorization": {
+      "type": "object",
+      "properties": {
+        "targetAudience": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "struggling-students",
+              "high-achieving-students",
+              "visual-learners",
+              "educators",
+              "researchers",
+              "technologists",
+              "administrators"
+            ]
+          },
+          "description": "Relevant audience segments"
+        },
+        "visualization": {
+          "type": "string",
+          "enum": ["atlas", "map", "manuscript", "nebula"]
+        },
+        "improvementType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "comprehension-breakthrough",
+              "comprehension-improvement",
+              "engagement-transformation",
+              "engagement-growth",
+              "efficiency-gain",
+              "confidence-builder",
+              "authentic-voice"
+            ]
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {"type": "string"},
+          "maxItems": 10,
+          "description": "Search and categorization keywords"
+        }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "interviewStatus": {
+          "type": "string",
+          "enum": ["pending", "scheduled", "completed", "no-consent"]
+        },
+        "interviewDate": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "draftStatus": {
+          "type": "string",
+          "enum": ["not-started", "in-progress", "complete", "abandoned"]
+        },
+        "reviewStatus": {
+          "type": "string",
+          "enum": ["not-started", "round-1", "round-2", "approved", "rejected"]
+        },
+        "testimonialStatus": {
+          "type": "string",
+          "enum": ["not-started", "requested", "received", "approved"]
+        },
+        "publicationStatus": {
+          "type": "string",
+          "enum": ["not-started", "scheduled", "published", "archived"]
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Internal notes and reminders"
+    }
+  },
+  "required": [
+    "id",
+    "status",
+    "createdDate",
+    "version",
+    "metadata",
+    "participantData",
+    "studyMetrics",
+    "narrative",
+    "categorization"
+  ]
+}

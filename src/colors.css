@@ -1,0 +1,210 @@
+/* Formula Nebula - Color Scheme */
+/* 配色方案：主色、辅助色、中性色、功能色 */
+
+:root {
+  /* ===== 主色 (Primary Colors) ===== */
+  /* 科技蓝 - 核心品牌色，代表创新、知识、数学 */
+  --color-primary-50: #f0f7ff;
+  --color-primary-100: #e0effe;
+  --color-primary-200: #c7e0fd;
+  --color-primary-300: #a4cafe;
+  --color-primary-400: #7cb3fa;
+  --color-primary-500: #4f9aff;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+
+  /* ===== 辅助色 (Secondary Colors) ===== */
+  /* 紫罗兰 - 代表数学的抽象性和优雅 */
+  --color-secondary-50: #faf5ff;
+  --color-secondary-100: #f3e8ff;
+  --color-secondary-200: #e9d5ff;
+  --color-secondary-300: #d8b4fe;
+  --color-secondary-400: #c084fc;
+  --color-secondary-500: #a855f7;
+  --color-secondary-600: #9333ea;
+  --color-secondary-700: #7e22ce;
+  --color-secondary-800: #6b21a8;
+  --color-secondary-900: #581c87;
+  --color-secondary-950: #3f0f5c;
+
+  /* 青色 - 补充色，增强对比度 */
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --color-accent-200: #a7f3d0;
+  --color-accent-300: #6ee7b7;
+  --color-accent-400: #34d399;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+  --color-accent-700: #047857;
+  --color-accent-800: #065f46;
+  --color-accent-900: #064e3b;
+  --color-accent-950: #022c1d;
+
+  /* ===== 中性色 (Neutral Colors) ===== */
+  /* 深色主题基础 */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712;
+
+  /* ===== 背景色 (Background Colors) ===== */
+  --color-bg-primary: #080b14;     /* 深空蓝 - 主背景 */
+  --color-bg-secondary: #0f1221;   /* 深蓝灰 - 次级背景 */
+  --color-bg-tertiary: #16192a;    /* 暗蓝紫 - 三级背景 */
+  --color-bg-overlay: rgba(8, 11, 20, 0.8);  /* 半透明覆盖 */
+
+  /* ===== 文字色 (Text Colors) ===== */
+  --color-text-primary: #f3f4f6;   /* 主文字 - 浅灰 */
+  --color-text-secondary: #d1d5db; /* 次文字 - 中灰 */
+  --color-text-tertiary: #9ca3af;  /* 三级文字 - 深灰 */
+  --color-text-muted: #6b7280;     /* 弱化文字 - 更深灰 */
+
+  /* ===== 功能色 (Functional Colors) ===== */
+  /* 成功 - 绿色 */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #145231;
+
+  /* 警告 - 黄色 */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+
+  /* 错误 - 红色 */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+
+  /* 信息 - 蓝色 */
+  --color-info-50: #f0f9ff;
+  --color-info-100: #e0f2fe;
+  --color-info-200: #bae6fd;
+  --color-info-300: #7dd3fc;
+  --color-info-400: #38bdf8;
+  --color-info-500: #0ea5e9;
+  --color-info-600: #0284c7;
+  --color-info-700: #0369a1;
+  --color-info-800: #075985;
+  --color-info-900: #0c4a6e;
+
+  /* ===== 边框和分割线 (Border Colors) ===== */
+  --color-border-light: rgba(255, 255, 255, 0.1);   /* 浅边框 */
+  --color-border-default: rgba(255, 255, 255, 0.15); /* 默认边框 */
+  --color-border-strong: rgba(255, 255, 255, 0.2);  /* 强边框 */
+
+  /* ===== 阴影色 (Shadow Colors) ===== */
+  --color-shadow-sm: rgba(0, 0, 0, 0.3);
+  --color-shadow-md: rgba(0, 0, 0, 0.4);
+  --color-shadow-lg: rgba(0, 0, 0, 0.5);
+
+  /* ===== 交互状态 (Interactive States) ===== */
+  --color-hover: rgba(79, 154, 255, 0.15);   /* 悬停色 */
+  --color-active: rgba(79, 154, 255, 0.25);  /* 活跃色 */
+  --color-focus: rgba(79, 154, 255, 0.3);    /* 焦点色 */
+  --color-disabled: rgba(255, 255, 255, 0.4); /* 禁用色 */
+
+  /* ===== 渐变色 (Gradient Colors) ===== */
+  --gradient-primary: linear-gradient(135deg, #4f9aff 0%, #a855f7 100%);
+  --gradient-secondary: linear-gradient(135deg, #7cb3fa 0%, #c084fc 100%);
+  --gradient-accent: linear-gradient(135deg, #4f9aff 0%, #10b981 100%);
+  --gradient-dark: linear-gradient(135deg, #0f1221 0%, #16192a 100%);
+
+  /* ===== 透明度规范 (Opacity Levels) ===== */
+  --opacity-disabled: 0.4;
+  --opacity-hover: 0.8;
+  --opacity-active: 1;
+}
+
+/* 浅色主题支持 (Light Theme Support) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f9fafb;
+    --color-bg-tertiary: #f3f4f6;
+    --color-bg-overlay: rgba(255, 255, 255, 0.8);
+
+    --color-text-primary: #111827;
+    --color-text-secondary: #374151;
+    --color-text-tertiary: #6b7280;
+    --color-text-muted: #9ca3af;
+
+    --color-border-light: rgba(0, 0, 0, 0.05);
+    --color-border-default: rgba(0, 0, 0, 0.1);
+    --color-border-strong: rgba(0, 0, 0, 0.15);
+
+    --color-shadow-sm: rgba(0, 0, 0, 0.1);
+    --color-shadow-md: rgba(0, 0, 0, 0.15);
+    --color-shadow-lg: rgba(0, 0, 0, 0.2);
+
+    --color-hover: rgba(79, 154, 255, 0.08);
+    --color-active: rgba(79, 154, 255, 0.12);
+    --color-focus: rgba(79, 154, 255, 0.15);
+    --color-disabled: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* 快捷变量别名 (Shorthand Variables) */
+:root {
+  /* 主要颜色快捷方式 */
+  --primary: var(--color-primary-500);
+  --primary-dark: var(--color-primary-700);
+  --primary-light: var(--color-primary-300);
+
+  --secondary: var(--color-secondary-500);
+  --secondary-dark: var(--color-secondary-700);
+  --secondary-light: var(--color-secondary-300);
+
+  --accent: var(--color-accent-500);
+  --accent-dark: var(--color-accent-700);
+  --accent-light: var(--color-accent-300);
+
+  /* 背景快捷方式 */
+  --bg: var(--color-bg-primary);
+  --bg-secondary: var(--color-bg-secondary);
+  --bg-tertiary: var(--color-bg-tertiary);
+
+  /* 文字快捷方式 */
+  --text: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+
+  /* 功能颜色快捷方式 */
+  --success: var(--color-success-500);
+  --warning: var(--color-warning-500);
+  --error: var(--color-error-500);
+  --info: var(--color-info-500);
+
+  /* 边框快捷方式 */
+  --border: var(--color-border-default);
+}

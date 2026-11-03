@@ -457,7 +457,6 @@ function formatBytes(bytes, decimals = 2) {
 // ============================================================================
 
 export {
-  initBillingDashboard,
   refreshDashboard,
   destroyDashboard
 };

@@ -103,7 +103,7 @@ function computePageRank(iterations = 20, dampingFactor = 0.85) {
   const n = graph.nodes.length
   const nodeIndex = new Map(graph.nodes.map((node, i) => [node, i]))
   let ranks = new Array(n).fill(1 / n)
-  const newRanks = new Array(n).fill(0)
+  let newRanks = new Array(n).fill(0)
   for (let iter = 0; iter < iterations; iter++) {
     newRanks.fill((1 - dampingFactor) / n)
     graph.links.forEach(link => {
@@ -116,6 +116,7 @@ function computePageRank(iterations = 20, dampingFactor = 0.85) {
   }
   return graph.nodes.map((node, i) => ({ node, rank: ranks[i] })).sort((a, b) => b.rank - a.rank)
 }
+
 
 function drawCentrality() {
   const rankings = computePageRank()

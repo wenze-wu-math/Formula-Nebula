@@ -1,7 +1,11 @@
 /**
  * designs/shared/tex.js — LaTeX → 自包含 SVG（带颜色）。
  *
- * 排版逻辑取自 src/formulaTexture.js 的 latexToSvg()：同一套 MathJax 配置、
+ * **优化策略（v0.1.1）**：
+ *   1. **优先使用 KaTeX** (10-100x faster, 600KB vs 3-4MB)
+ *   2. **MathJax 作为降级** (复杂公式/KaTeX 不支持的特性)
+ *
+ * 排版逻辑取自 src/formulaTexture.js 的 latexToSvg()：同一套配置、
  * 同一个 FONT_SIZE、同样的 ex→px 尺寸修正。区别只有两点：
  *   · 不烘焙成 THREE 纹理（设计稿直接把 SVG 放进 DOM / <img>）
  *   · currentColor 换成调用方给的颜色，而不是固定白色
@@ -9,24 +13,33 @@
  * 用法：
  *   const { svg, widthPx, heightPx } = await tex('\\chi(\\mathcal O_X)', '#ffcf7a')
  *   host.innerHTML = svg
- *
- * mathjax-full 是 CommonJS 包，由 Vite dev server 预打包后才能在浏览器里 import。
  */
 
-import { mathjax } from 'mathjax-full/js/mathjax.js'
-import { TeX } from 'mathjax-full/js/input/tex.js'
-import { SVG } from 'mathjax-full/js/output/svg.js'
-import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
-import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
-import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages.js'
+import katex from 'katex'
 
-/* ── 初始化 MathJax（模块级只做一次，与 formulaTexture.js 相同） ── */
-const adaptor = liteAdaptor()
-RegisterHTMLHandler(adaptor)
+// MathJax 按需加载（仅在 KaTeX 失败时才导入）
+let mathjaxLoaded = false
+let mjDoc = null
 
-const texInput = new TeX({ packages: AllPackages, inlineMath: [['$', '$']] })
-const svgOutput = new SVG({ fontCache: 'local' })   // 字形路径内联，SVG 自包含
-const mjDoc = mathjax.document('', { InputJax: texInput, OutputJax: svgOutput })
+async function ensureMathJax() {
+  if (mathjaxLoaded) return mjDoc
+
+  const { mathjax } = await import('mathjax-full/js/mathjax.js')
+  const { TeX } = await import('mathjax-full/js/input/tex.js')
+  const { SVG } = await import('mathjax-full/js/output/svg.js')
+  const { liteAdaptor } = await import('mathjax-full/js/adaptors/liteAdaptor.js')
+  const { RegisterHTMLHandler } = await import('mathjax-full/js/handlers/html.js')
+  const { AllPackages } = await import('mathjax-full/js/input/tex/AllPackages.js')
+
+  const adaptor = liteAdaptor()
+  RegisterHTMLHandler(adaptor)
+  const texInput = new TeX({ packages: AllPackages, inlineMath: [['$', '$']] })
+  const svgOutput = new SVG({ fontCache: 'local' })
+  mjDoc = mathjax.document('', { InputJax: texInput, OutputJax: svgOutput })
+  mathjaxLoaded = true
+
+  return mjDoc
+}
 
 /** 排版字号（px），与 src/formulaTexture.js 保持一致 */
 export const FONT_SIZE = 64
@@ -51,18 +64,71 @@ function toPx(value, fontSize) {
   return n
 }
 
-/** 同步版本：LaTeX → { svg, widthPx, heightPx }。排版失败直接抛错。 */
-export function texSync(latex, color = '#ffffff') {
-  if (!HEX_RE.test(color)) throw new Error('tex(): color 必须是 hex，例如 #ffcf7a，收到：' + color)
+/**
+ * 尝试使用 KaTeX 渲染（快速路径）
+ * @returns {object|null} - { svg, widthPx, heightPx } 或 null（失败）
+ */
+function tryKatex(latex, color) {
+  try {
+    const html = katex.renderToString(latex, {
+      displayMode: true,
+      throwOnError: true,
+      output: 'html',
+      strict: false,
+      trust: false,
+    })
 
-  const node = mjDoc.convert(String(latex), {
+    // KaTeX 输出的是带样式的 HTML，需要转换为 SVG
+    // 创建临时元素来测量尺寸
+    const tempDiv = document.createElement('div')
+    tempDiv.style.position = 'absolute'
+    tempDiv.style.visibility = 'hidden'
+    tempDiv.style.fontSize = `${FONT_SIZE}px`
+    tempDiv.style.color = color
+    tempDiv.innerHTML = html
+    document.body.appendChild(tempDiv)
+
+    const rect = tempDiv.getBoundingClientRect()
+    const w = rect.width
+    const h = rect.height
+
+    document.body.removeChild(tempDiv)
+
+    if (!w || !h || w <= 0 || h <= 0) return null
+
+    // 将 HTML 包装成 SVG foreignObject
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w.toFixed(2)}" height="${h.toFixed(
+      2
+    )}" viewBox="0 0 ${w} ${h}">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: ${FONT_SIZE}px; color: ${color}">
+      ${html}
+    </div>
+  </foreignObject>
+</svg>`
+
+    return { svg, widthPx: w, heightPx: h, renderer: 'katex' }
+  } catch (err) {
+    // KaTeX 不支持的语法，降级到 MathJax
+    return null
+  }
+}
+
+/**
+ * 使用 MathJax 渲染（降级路径）
+ */
+async function renderWithMathJax(latex, color) {
+  const doc = await ensureMathJax()
+  const { liteAdaptor } = await import('mathjax-full/js/adaptors/liteAdaptor.js')
+  const adaptor = liteAdaptor()
+
+  const node = doc.convert(String(latex), {
     display: true,
     em: FONT_SIZE,
     ex: FONT_SIZE * 0.43,
-    containerWidth: 1e6,   // 给足宽度，避免自动换行
+    containerWidth: 1e6,
   })
 
-  // 必须用 innerHTML：outerHTML 带着 <mjx-container>，不是合法 SVG 根元素
   let svg = adaptor.innerHTML(node)
 
   const svgTag = svg.match(/<svg[^>]*>/)
@@ -77,7 +143,7 @@ export function texSync(latex, color = '#ffffff') {
     if (vb) {
       const p = vb.split(/[\s,]+/).map(Number)
       if (p.length === 4 && p[2] > 0 && p[3] > 0) {
-        const k = FONT_SIZE / 1000   // viewBox 是 1000 units/em
+        const k = FONT_SIZE / 1000
         w = w || p[2] * k
         h = h || p[3] * k
       }
@@ -85,7 +151,6 @@ export function texSync(latex, color = '#ffffff') {
   }
   if (!w || !h) throw new Error('无法确定公式尺寸：' + latex)
 
-  // ex 换成明确的 px，避免 <img> 里 ex 按 16px 字号解析导致缩放错乱
   let fixedTag = tag
     .replace(/width\s*=\s*"[^"]*"/, `width="${w.toFixed(2)}"`)
     .replace(/height\s*=\s*"[^"]*"/, `height="${h.toFixed(2)}"`)
@@ -97,15 +162,53 @@ export function texSync(latex, color = '#ffffff') {
   svg = svg.replace(tag, () => fixedTag)
   svg = svg.replace(/currentColor/g, color)
 
-  return { svg, widthPx: w, heightPx: h }
+  return { svg, widthPx: w, heightPx: h, renderer: 'mathjax' }
+}
+
+/** 同步版本：LaTeX → { svg, widthPx, heightPx }。排版失败直接抛错。 */
+export function texSync(latex, color = '#ffffff') {
+  if (!HEX_RE.test(color)) throw new Error('tex(): color 必须是 hex，例如 #ffcf7a，收到：' + color)
+
+  // 在浏览器环境中，总是使用异步版本
+  throw new Error('texSync 不支持在 KaTeX 优化模式下使用，请使用 async tex()')
 }
 
 /**
- * LaTeX + 颜色 → Promise<{ svg, widthPx, heightPx }>
- * 排版本身是同步的；包成 Promise 是为了让错误统一走 reject，调用方好写。
+ * LaTeX + 颜色 → Promise<{ svg, widthPx, heightPx, renderer }>
+ *
+ * **性能优化流程**：
+ * 1. 尝试 KaTeX（快速路径）
+ * 2. 失败则降级到 MathJax
+ * 3. 返回结果包含 renderer 字段标识使用的渲染器
  */
 export async function tex(latex, color = '#ffffff') {
-  return texSync(latex, color)
+  if (!HEX_RE.test(color)) throw new Error('tex(): color 必须是 hex，例如 #ffcf7a，收到：' + color)
+
+  const startTime = performance.now()
+
+  // 首先尝试 KaTeX（10-100x faster）
+  const katexResult = tryKatex(latex, color)
+  if (katexResult) {
+    const duration = performance.now() - startTime
+
+    // 记录性能（如果监控器可用）
+    if (typeof window !== 'undefined' && window.__perfMonitor) {
+      window.__perfMonitor.recordFormulaRender('katex', duration)
+    }
+
+    return katexResult
+  }
+
+  // KaTeX 失败，降级到 MathJax
+  const result = await renderWithMathJax(latex, color)
+  const duration = performance.now() - startTime
+
+  // 记录性能（如果监控器可用）
+  if (typeof window !== 'undefined' && window.__perfMonitor) {
+    window.__perfMonitor.recordFormulaRender('mathjax', duration)
+  }
+
+  return result
 }
 
 export default tex

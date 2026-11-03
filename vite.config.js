@@ -47,5 +47,74 @@ export default defineConfig({
   build: {
     target: 'es2020',
     chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        // 手动代码分割策略
+        manualChunks: {
+          // 1. Three.js 单独打包（大约 1.2MB）
+          'three-core': ['three'],
+
+          // 2. MathJax 单独打包（懒加载，约 3.5MB）
+          // 注意：由于我们改为动态导入，这个 chunk 只在需要时加载
+          'mathjax': [
+            'mathjax-full/js/mathjax.js',
+            'mathjax-full/js/input/tex.js',
+            'mathjax-full/js/output/svg.js',
+          ],
+
+          // 3. KaTeX 单独打包（约 600KB）
+          'katex': ['katex'],
+
+          // 4. i18n 相关库单独打包
+          'i18n': [
+            'i18next',
+            'i18next-browser-languagedetector',
+            'i18next-http-backend'
+          ],
+
+          // 5. 协作功能单独打包（可选功能）
+          'collaboration': ['ws', 'express'],
+
+          // 6. 支付功能单独打包（可选功能）
+          'billing': ['stripe'],
+        },
+
+        // 为资源文件使用内容哈希命名
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      },
+    },
+
+    // 启用 CSS 代码分割
+    cssCodeSplit: true,
+
+    // 压缩选项
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,  // 生产环境移除 console
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+    },
+
+    // 启用源码映射（便于调试）
+    sourcemap: true,
+  },
+
+  // 优化依赖预构建
+  optimizeDeps: {
+    include: [
+      'katex',
+      'three',
+      'i18next',
+      'i18next-browser-languagedetector',
+      'i18next-http-backend',
+    ],
+    // MathJax 排除在外，因为我们使用懒加载
+    exclude: [
+      'mathjax-full',
+    ],
   },
 })

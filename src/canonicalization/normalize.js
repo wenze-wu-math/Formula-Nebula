@@ -1,56 +1,129 @@
 /**
  * Formula Normalization System
- * Parses LaTeX to canonical AST for semantic comparison
+ *
+ * Parses LaTeX expressions into a canonical abstract syntax tree (AST) representation
+ * for semantic comparison and equivalence checking.
+ *
+ * Key features:
+ * - Tokenization of LaTeX input
+ * - Recursive descent parsing with precedence handling
+ * - AST normalization including associativity and commutativity rules
+ * - Canonical form generation for deterministic comparison
+ *
+ * @module canonicalization/normalize
  */
 
+/**
+ * Abstract Syntax Tree node types
+ * @type {Object.<string, string>}
+ * @constant
+ */
 export const NodeType = {
-  NUMBER: 'number', VARIABLE: 'variable', BINARY_OP: 'binary_op',
-  UNARY_OP: 'unary_op', FUNCTION: 'function', FRACTION: 'fraction',
-  POWER: 'power', SQRT: 'sqrt', RELATION: 'relation',
-  PAREN: 'paren', TEXT: 'text'
+  NUMBER: 'number',           // Numeric literal (e.g., 3.14)
+  VARIABLE: 'variable',       // Variable or symbol (e.g., x, alpha)
+  BINARY_OP: 'binary_op',     // Binary operation (e.g., +, *, \cdot)
+  UNARY_OP: 'unary_op',       // Unary operation (e.g., -, \sqrt)
+  FUNCTION: 'function',       // Function application
+  FRACTION: 'fraction',       // Fraction (\frac)
+  POWER: 'power',             // Exponentiation (^)
+  SQRT: 'sqrt',               // Square root (\sqrt)
+  RELATION: 'relation',       // Relations (=, <, >)
+  PAREN: 'paren',             // Parenthesized expression
+  TEXT: 'text'                // Raw text/command
 }
 
+/**
+ * Operators that satisfy the commutative property: a⊕b = b⊕a
+ * @type {Set<string>}
+ * @private
+ */
 const COMMUTATIVE_OPS = new Set(['+', '\\cdot', '\\times', '\\cap', '\\cup'])
+
+/**
+ * Operators that satisfy the associative property: (a⊕b)⊕c = a⊕(b⊕c)
+ * @type {Set<string>}
+ * @private
+ */
 const ASSOCIATIVE_OPS = new Set(['+', '\\cdot', '\\times', '\\cap', '\\cup'])
 
+/**
+ * Parse LaTeX expression into an abstract syntax tree
+ *
+ * @param {string} latex - LaTeX expression to parse
+ * @returns {Object|null} Root node of the AST, or null if parsing fails
+ *
+ * @example
+ * const ast = parseLatex('x^2 + 2x + 1')
+ * // Returns AST representing the quadratic expression
+ */
 export function parseLatex(latex) {
   const tokens = tokenize(latex)
   const ast = parseExpression(tokens, 0)
   return ast.node
 }
 
+/**
+ * Tokenize LaTeX expression into a stream of tokens
+ *
+ * Recognizes:
+ * - LaTeX commands (\frac, \alpha, etc.)
+ * - Numeric literals (including decimals)
+ * - Variables and identifiers
+ * - Operators and delimiters
+ * - Whitespace (ignored)
+ *
+ * @param {string} latex - Input LaTeX string
+ * @returns {Array<Object>} Array of token objects with {type, value}
+ * @private
+ */
 function tokenize(latex) {
   const tokens = []
   let i = 0
   while (i < latex.length) {
+    // Skip whitespace
     if (/\s/.test(latex[i])) { i++; continue }
+
+    // LaTeX command (\frac, \alpha, etc.)
     if (latex[i] === '\\') {
       let j = i + 1
       while (j < latex.length && /[a-zA-Z]/.test(latex[j])) j++
       tokens.push({ type: 'command', value: latex.slice(i, j) })
       i = j
-    } else if (/\d/.test(latex[i])) {
+    }
+    // Numeric literal (with optional decimal point)
+    else if (/\d/.test(latex[i])) {
       let j = i
       while (j < latex.length && /[\d.]/.test(latex[j])) j++
       tokens.push({ type: 'number', value: latex.slice(i, j) })
       i = j
-    } else if (/[a-zA-Z]/.test(latex[i])) {
+    }
+    // Variable (single letter)
+    else if (/[a-zA-Z]/.test(latex[i])) {
       tokens.push({ type: 'variable', value: latex[i] })
       i++
-    } else if ('+-*/=<>()[]{}|^_'.includes(latex[i])) {
+    }
+    // Operators and delimiters
+    else if ('+-*/=<>()[]{}|^_'.includes(latex[i])) {
       tokens.push({ type: 'symbol', value: latex[i] })
       i++
-    } else {
+    }
+    // Unknown character - skip
+    else {
       i++
     }
   }
   return tokens
 }
 
-// PLACEHOLDER_1
-
-function parseExpression(t, p) { return parseRelation(t, p) }
-
+/**
+ * Parse expression with relation operators (=, <, >)
+ * Lowest precedence level
+ *
+ * @param {Array<Object>} t - Token stream
+ * @param {number} p - Current position in token stream
+ * @returns {Object} {node: AST node, pos: updated position}
+ * @private
+ */
 function parseRelation(t, p) {
   let l = parseAdditive(t, p)
   p = l.pos
@@ -62,6 +135,15 @@ function parseRelation(t, p) {
   return l
 }
 
+/**
+ * Parse additive expressions (+ and -)
+ * Second-lowest precedence level
+ *
+ * @param {Array<Object>} t - Token stream
+ * @param {number} p - Current position in token stream
+ * @returns {Object} {node: AST node, pos: updated position}
+ * @private
+ */
 function parseAdditive(t, p) {
   let l = parseMultiplicative(t, p)
   p = l.pos
@@ -73,6 +155,15 @@ function parseAdditive(t, p) {
   return l
 }
 
+/**
+ * Parse multiplicative expressions (* and / and \cdot)
+ * Higher precedence than addition
+ *
+ * @param {Array<Object>} t - Token stream
+ * @param {number} p - Current position in token stream
+ * @returns {Object} {node: AST node, pos: updated position}
+ * @private
+ */
 function parseMultiplicative(t, p) {
   let l = parsePower(t, p)
   p = l.pos
@@ -90,24 +181,58 @@ function parseMultiplicative(t, p) {
   return l
 }
 
+/**
+ * Parse exponentiation (^)
+ * Right-associative: a^b^c = a^(b^c)
+ * Higher precedence than multiplication
+ *
+ * @param {Array<Object>} t - Token stream
+ * @param {number} p - Current position in token stream
+ * @returns {Object} {node: AST node, pos: updated position}
+ * @private
+ */
 function parsePower(t, p) {
   let base = parsePrimary(t, p)
   p = base.pos
   if (p < t.length && t[p].type === 'symbol' && t[p].value === '^') {
     p++
-    const exp = parsePower(t, p)
+    const exp = parsePower(t, p) // Right-associative recursion
     return { node: { type: NodeType.POWER, base: base.node, exponent: exp.node }, pos: exp.pos }
   }
   return base
 }
 
-// PLACEHOLDER_2
-
+/**
+ * Parse primary expressions (atoms and compounds)
+ *
+ * Handles:
+ * - Numeric literals (integers and decimals)
+ * - Variables and Greek letters
+ * - Parenthesized expressions
+ * - LaTeX commands (\frac, Greek letters, etc.)
+ * - Braced groups
+ *
+ * @param {Array<Object>} t - Token stream
+ * @param {number} p - Current position in token stream
+ * @returns {Object} {node: AST node or null, pos: updated position}
+ * @private
+ */
 function parsePrimary(t, p) {
   if (p >= t.length) return { node: null, pos: p }
+
   const tok = t[p]
-  if (tok.type === 'number') return { node: { type: NodeType.NUMBER, value: parseFloat(tok.value) }, pos: p + 1 }
-  if (tok.type === 'variable') return { node: { type: NodeType.VARIABLE, name: tok.value }, pos: p + 1 }
+
+  // Numeric literal
+  if (tok.type === 'number') {
+    return { node: { type: NodeType.NUMBER, value: parseFloat(tok.value) }, pos: p + 1 }
+  }
+
+  // Variable identifier
+  if (tok.type === 'variable') {
+    return { node: { type: NodeType.VARIABLE, name: tok.value }, pos: p + 1 }
+  }
+
+  // Parenthesized expression
   if (tok.type === 'symbol' && tok.value === '(') {
     p++
     const inner = parseExpression(t, p)
@@ -115,7 +240,13 @@ function parsePrimary(t, p) {
     if (p < t.length && t[p].value === ')') p++
     return { node: { type: NodeType.PAREN, inner: inner.node }, pos: p }
   }
-  if (tok.type === 'command') return parseCommand(t, p)
+
+  // LaTeX command
+  if (tok.type === 'command') {
+    return parseCommand(t, p)
+  }
+
+  // Braced group { ... }
   if (tok.type === 'symbol' && tok.value === '{') {
     p++
     const inner = parseExpression(t, p)
@@ -123,6 +254,7 @@ function parsePrimary(t, p) {
     if (p < t.length && t[p].value === '}') p++
     return inner
   }
+
   return { node: null, pos: p }
 }
 

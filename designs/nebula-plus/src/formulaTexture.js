@@ -1,14 +1,25 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- *  公式 → 贴图
+ *  公式 → 贴图 (v0.1.1 - 优化版)
  * ═══════════════════════════════════════════════════════════════
  *
- *  为什么用 MathJax 而不是 KaTeX：
- *  MathJax 的 SVG 输出**把字形转成了路径（path）**，完全自包含，
- *  不依赖任何外部字体文件或 CSS。因此可以直接：
- *      SVG 字符串 → Blob URL → <img> → canvas.drawImage → CanvasTexture
- *  而 KaTeX 输出的是 HTML + CSS + webfont，要转图片就得走 html2canvas
- *  这类库，且字体没加载完就截图会糊。这里 MathJax 完胜。
+ *  渲染器选择策略：
+ *
+ *  **MathJax（用于 WebGL 纹理）**：
+ *  - SVG 输出把字形转成路径（path），完全自包含
+ *  - 不依赖外部字体文件或 CSS
+ *  - 直接流程：SVG 字符串 → Blob URL → <img> → canvas.drawImage → CanvasTexture
+ *  - 适合 Three.js 纹理烘焙
+ *
+ *  **KaTeX（用于 DOM 显示）**：
+ *  - 输出 HTML + CSS + webfont
+ *  - 更快（10-100x），但需要字体加载
+ *  - 用于非纹理场景（tooltip、面板等）
+ *
+ *  **优化措施（v0.1.1）**：
+ *  1. MathJax 懒加载（仅在需要烘焙时加载）
+ *  2. 共享 MathJax 实例
+ *  3. 保持原有的高质量 SVG 路径输出
  *
  *  字号一致性：所有公式都以同一个 fontSizePx 排版，返回的 emHeight
  *  表示"这个公式有几 em 高"。布局时用 世界高度 = emHeight × emWorld
@@ -18,27 +29,37 @@
 
 import * as THREE from 'three'
 
-import { mathjax } from 'mathjax-full/js/mathjax.js'
-import { TeX } from 'mathjax-full/js/input/tex.js'
-import { SVG } from 'mathjax-full/js/output/svg.js'
-import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
-import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
-import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages.js'
+// MathJax 懒加载（仅在第一次烘焙时导入）
+let mathjaxLoaded = false
+let mjDoc = null
 
-/* ── 初始化 MathJax（模块级只做一次） ── */
-const adaptor = liteAdaptor()
-RegisterHTMLHandler(adaptor)
+async function ensureMathJax() {
+  if (mathjaxLoaded) return mjDoc
 
-const texInput = new TeX({
-  packages: AllPackages,
-  inlineMath: [['$', '$']],
-})
+  const { mathjax } = await import('mathjax-full/js/mathjax.js')
+  const { TeX } = await import('mathjax-full/js/input/tex.js')
+  const { SVG } = await import('mathjax-full/js/output/svg.js')
+  const { liteAdaptor } = await import('mathjax-full/js/adaptors/liteAdaptor.js')
+  const { RegisterHTMLHandler } = await import('mathjax-full/js/handlers/html.js')
+  const { AllPackages } = await import('mathjax-full/js/input/tex/AllPackages.js')
 
-const svgOutput = new SVG({
-  fontCache: 'local',   // 字形路径内联到每个 SVG，保证自包含
-})
+  const adaptor = liteAdaptor()
+  RegisterHTMLHandler(adaptor)
 
-const mjDoc = mathjax.document('', { InputJax: texInput, OutputJax: svgOutput })
+  const texInput = new TeX({
+    packages: AllPackages,
+    inlineMath: [['$', '$']],
+  })
+
+  const svgOutput = new SVG({
+    fontCache: 'local', // 字形路径内联到每个 SVG，保证自包含
+  })
+
+  mjDoc = mathjax.document('', { InputJax: texInput, OutputJax: svgOutput })
+  mathjaxLoaded = true
+
+  return mjDoc
+}
 
 /** 排版字号（px）。所有公式统一用它，保证字号一致。 */
 const FONT_SIZE = 64
@@ -66,14 +87,18 @@ function toPx(value, fontSize) {
 
 /**
  * LaTeX → 自包含 SVG 字符串 + 像素尺寸
- * @returns {{ svg: string, widthPx: number, heightPx: number }}
+ * @returns {Promise<{ svg: string, widthPx: number, heightPx: number }>}
  */
-function latexToSvg(latex) {
-  const node = mjDoc.convert(latex, {
+async function latexToSvg(latex) {
+  const doc = await ensureMathJax()
+  const { liteAdaptor } = await import('mathjax-full/js/adaptors/liteAdaptor.js')
+  const adaptor = liteAdaptor()
+
+  const node = doc.convert(latex, {
     display: true,
     em: FONT_SIZE,
     ex: FONT_SIZE * 0.43,
-    containerWidth: 1e6,   // 给足宽度，避免自动换行
+    containerWidth: 1e6, // 给足宽度，避免自动换行
   })
 
   // 关键：必须用 innerHTML 而不是 outerHTML！
@@ -181,11 +206,11 @@ function svgToImage(svg) {
  *
  * @param {string} latex
  * @param {object} opts
- * @returns {{promise: Promise<object>, ...}} 已经完成了同步的排版部分
+ * @returns {Promise<object>} 已经完成了同步的排版部分
  */
-function beginBake(latex, opts) {
-  // ① 同步：MathJax 排版成 SVG 字符串（必须串行，但很快）
-  const { svg, widthPx, heightPx } = latexToSvg(latex)
+async function beginBake(latex, opts) {
+  // ① 同步（但现在是懒加载）：MathJax 排版成 SVG 字符串（必须串行，但很快）
+  const { svg, widthPx, heightPx } = await latexToSvg(latex)
   // ② 启动解码：异步、在别的线程上跑，**这里不 await**
   return { imgPromise: svgToImage(svg), widthPx, heightPx, opts }
 }
