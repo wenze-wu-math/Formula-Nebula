@@ -116,7 +116,27 @@ function tokenize(latex) {
 }
 
 /**
- * Parse expression with relation operators (=, <, >)
+ * Parse an expression — entry point of the precedence chain
+ *
+ * This is an alias for the lowest-precedence level. It exists so that the
+ * recursive parser has a single, stable name to re-enter at when it parses a
+ * parenthesized or braced sub-expression (e.g. `(x+1)`, `\frac{a}{b}`).
+ *
+ * NOTE: this function was referenced five times below but was never defined,
+ * which made parseLatex() throw `ReferenceError: parseExpression is not
+ * defined` at runtime.
+ *
+ * @param {Array<Object>} t - Token stream
+ * @param {number} p - Current position in token stream
+ * @returns {Object} {node: AST node, pos: updated position}
+ * @private
+ */
+function parseExpression(t, p) {
+  return parseRelation(t, p)
+}
+
+/**
+ * Parse relation expressions (=, <, >)
  * Lowest precedence level
  *
  * @param {Array<Object>} t - Token stream
