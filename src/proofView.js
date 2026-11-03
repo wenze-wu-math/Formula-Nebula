@@ -398,6 +398,16 @@ function createProofView(options = {}) {
       content.appendChild(explanation)
     }
 
+    // 195 nodes carry a second, mechanism-focused paragraph that used to be
+    // silently discarded: the data files declared `explanation:` twice in the
+    // same object literal, so JavaScript kept only the last one. The first is
+    // now stored as `deepExplanation` and rendered here as its own card.
+    if (proof.deepExplanation) {
+      const deep = el('section', { class: 'pv-card' }, [el('h2', {}, ['机制与定位'])])
+      appendTextBlock(deep, proof.deepExplanation)
+      content.appendChild(deep)
+    }
+
     const steps = Array.isArray(proof.steps) ? proof.steps : []
     const proofCard = el('section', { class: 'pv-card' }, [el('h2', {}, ['证明'])])
     if (!steps.length) {
@@ -492,7 +502,10 @@ function createProofView(options = {}) {
           li.appendChild(a)
         } else li.appendChild(document.createTextNode(title))
         const meta = [ref.author, ref.year, ref.doi ? `doi:${ref.doi}` : ''].filter(Boolean).join(' · ')
-        if (meta) li.appendChild(document.createTextNode(`　${meta}`))
+        // A full-width space (U+3000) is used on purpose as the separator before
+        // the reference metadata — it reads correctly in Chinese typesetting.
+        // Spelled out as an escape so it is visible and lint-clean.
+        if (meta) li.appendChild(document.createTextNode(`\u3000${meta}`))
         list.appendChild(li)
       })
       refCard.appendChild(list)

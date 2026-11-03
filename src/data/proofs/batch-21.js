@@ -15,7 +15,7 @@ export const BATCH_21_PROOFS = {
 
   'e-sheafification': {
     statement: "设 X 是带 Grothendieck 拓扑的范畴 $C$，$\\mathrm{PSh}(C)$ 是预层范畴，$\\mathrm{Sh}(C)$ 是层范畴。层化函子 $(-)^+$（或记作 $\\check{}$）是层范畴嵌入 $\\mathrm{Sh}(C)\\hookrightarrow\\mathrm{PSh}(C)$ 的左伴随；对预层 $\\mathcal{F}$，其层化 $\\mathcal{F}^+$ 是使每个映射 $\\mathcal{F}\\to\\mathcal{G}$（$\\mathcal{G}$ 为层）唯一透过 $\\mathcal{F}\\to\\mathcal{F}^+$ 分解的层。关键性质是茎不变：对每个点（或筛对应的几何点）$x$，有 $(\\mathcal{F}^+)_x=\\mathcal{F}_x$。",
-    explanation: "层化像是对预层做一次整体化修补：预层允许局部截面各说各话，层要求局部数据满足相容性后一定拼成整体截面。直接用覆盖的相容族定义层，往往要先做一次掀开再按下，于是标准做法是两次加号构造：第一次把局部相容性压成截面，第二次保证这种截面本身的相容性仍成立。茎不变性保证几何信息（每点的“层芽”）在修补前后完全相同，变的只是开集上的整体截面。左伴随的代数含义是层化保持余极限但不保持极限，这一不对称正是层范畴里纤维积、核等极限要“先取预层版本再层化”的原因。",
+    deepExplanation: "层化像是对预层做一次整体化修补：预层允许局部截面各说各话，层要求局部数据满足相容性后一定拼成整体截面。直接用覆盖的相容族定义层，往往要先做一次掀开再按下，于是标准做法是两次加号构造：第一次把局部相容性压成截面，第二次保证这种截面本身的相容性仍成立。茎不变性保证几何信息（每点的“层芽”）在修补前后完全相同，变的只是开集上的整体截面。左伴随的代数含义是层化保持余极限但不保持极限，这一不对称正是层范畴里纤维积、核等极限要“先取预层版本再层化”的原因。",
     steps: [
       step('plus-construction', "加号构造：沿筛的截面",
         "对预层 $\\mathcal{F}$ 和对象 U，定义 $\\mathcal{F}^+(U)$ 为所有覆盖族 $(U_i)$ 连同相容截面族 $s_i\\in\\mathcal{F}(U_i)$ 的集合，按“加细等价”取商：两个族若有一个公共加细约束到相同值就等同。这一步已经把所有可拼合的局部截面提升为 U 上的元素。对层 $\\mathcal{G}$，任何 $f\\colon\\mathcal{F}\\to\\mathcal{G}$ 沿覆盖逐块作用后由层的粘合公理得到唯一全体映射，这给出自然映射 $\\mathcal{F}\\to\\mathcal{F}^+$ 的同构性证明所需的泛性质，即 $\\mathrm{Hom}(\\mathcal{F}^+,\\mathcal{G})\\cong\\mathrm{Hom}(\\mathcal{F},\\mathcal{G})$。",
@@ -62,7 +62,7 @@ export const BATCH_21_PROOFS = {
 
   'e-local-system': {
     statement: "设 X 连通、局部弧连通且局部单连通，$x_0\\in X$ 是基点，$k$ 是域。秩 r 的局部系 $\\mathcal{L}$（局部常值 $k$-空间层）与表示 $\\rho\\colon\\pi_1(X,x_0)\\to\\mathrm{GL}_r(k)$ 一一对应：沿回路的平行移动给出 $\\rho$，而任意 $\\rho$ 由万有覆盖上等变构造恢复 $\\mathcal{L}$。在导出范畴层面，$H^i(X,\\mathcal{L})\\cong H^i(\\pi_1(X,x_0),V)$，其中 $V=\\mathcal{L}_{x_0}$ 带 $\\rho$ 作用。",
-    explanation: "局部系是最接近“常值”的层，但它允许沿空间扭转，扭转由基本群的单值表示完整记录。牵连的关键对象是茎：固定基点后，茎上的 $\\pi_1$ 作用（平行移动）是局部系的全部信息。反过来给表示，利用万有覆盖是局部系分层化的平坦空间，把表示翻译成覆盖上的等变截面构造即得层。上同调层面的字典把“拓扑空间上的层上同调”变成“群的群上同调”，这是把拓扑问题代数化的标准入口：Galois 表示、模形式的系数、正则奇点微分方程都由此进出。",
+    deepExplanation: "局部系是最接近“常值”的层，但它允许沿空间扭转，扭转由基本群的单值表示完整记录。牵连的关键对象是茎：固定基点后，茎上的 $\\pi_1$ 作用（平行移动）是局部系的全部信息。反过来给表示，利用万有覆盖是局部系分层化的平坦空间，把表示翻译成覆盖上的等变截面构造即得层。上同调层面的字典把“拓扑空间上的层上同调”变成“群的群上同调”，这是把拓扑问题代数化的标准入口：Galois 表示、模形式的系数、正则奇点微分方程都由此进出。",
     steps: [
       step("path-lift-and-monodromy", "沿路径的平行移动",
         "局部系 $\\mathcal{L}$ 在每点有可平凡化开邻域。给定路径 $\\gamma\\colon[0,1]\\to X$，用有限子覆盖链 $\\{\\gamma([t_i,t_{i+1}])\\}$ 上的平凡化把 $\\mathcal{L}_{\\gamma(0)}$ 的向量逐段搬至 $\\mathcal{L}_{\\gamma(1)}$。结果是拓扑的平移幺半群作用：复合路径对应复合线性映射。对同伦的路径，由局部常值性可把同伦在每处不动点附近的平凡化拉开，得到相同搬运结果，于是只依赖同伦类。由此对每条闭路 $\\gamma$ 得 $\\rho(\\gamma)\\in\\mathrm{Aut}(\\mathcal{L}_{x_0})$，且同伦类乘法给出群同态。",
@@ -109,7 +109,7 @@ export const BATCH_21_PROOFS = {
 
   'e-monodromy-weight': {
     statement: "设 $f\\colon X\\to\\Delta$ 是半稳定退化：$f$ 光滑、合且一般纤维是紧 Kähler 流形，$X\\to\\Delta$ 相对维数 n。单值变换 $T\\in\\mathrm{Aut}(H^n(X_t))$ 有 Jordan 分解 $T=T_{ss}T_u$，$T_{ss}$ 半单、$T_u$ 幂单且交换。取 $N=\\log T_u$，则 $N^{k+1}=0$ 对 $k\\le n$（单值定理：$N^{n+1}=0$）。权滤过 $W_\\bullet$ 使 $N(W_i)\\subseteq W_{i-2}$，且在分次对象上 $N^i\\colon\\mathrm{gr}^W_{n+i}\\to\\mathrm{gr}^W_{n-i}$ 是同构（对 $i\\ge0$）。",
-    explanation: "沿退化环路的单值常常不是半单的，这一非半单性正是退化独有的信息：Jordan 分解把 T 拆成可部分（半单）与不可逆的“退化部分”（幂单）。对数把幂单性变成幂零算子 N，退化的整体数据由 N 的幂零指数刻划。权滤过是按 N 的核、像与幂级数搭建的子空间塔：它让 N 成为权滤过的阶 1 算子，并把每个权的分次对象用 N 配对。对 Hodge 结构，权滤过与 Hodge 滤过兼容给出极限混合 Hodge 结构（MHS）。单值定理（Landman–Grothendieck 的经典形式）给出 $N^{n+1}=0$。",
+    deepExplanation: "沿退化环路的单值常常不是半单的，这一非半单性正是退化独有的信息：Jordan 分解把 T 拆成可部分（半单）与不可逆的“退化部分”（幂单）。对数把幂单性变成幂零算子 N，退化的整体数据由 N 的幂零指数刻划。权滤过是按 N 的核、像与幂级数搭建的子空间塔：它让 N 成为权滤过的阶 1 算子，并把每个权的分次对象用 N 配对。对 Hodge 结构，权滤过与 Hodge 滤过兼容给出极限混合 Hodge 结构（MHS）。单值定理（Landman–Grothendieck 的经典形式）给出 $N^{n+1}=0$。",
     steps: [
       step('jordan-decomposition', "Jordan 分解与对数",
         "有限维自同态 T 的 Jordan 分解 $T=D+U$ 中存在唯一的半单部分 D 与幂单部分 U，互相交换。$U$ 幂单，故 $N=\\log U=\\sum_{j\\ge1}(-1)^{j+1}(U-\\mathrm{id})^j/j$ 是有限和且为幂零算子；$T=D\\exp N$。分支的意义：$\\exp$ 把幂零算子拉回到单位元附近的幂单，因而 $N$ 编码 T 在可微方向的行为。对退化族，T 的特征值全是单位根（准单值），$D$ 的对角化版本几乎半单，$N$ 成为“绕圈的代数变分”。若 U 的最小多项式的根恰为 1，则 U-id 幂零，log 的级数自动终止，故无需解析多值问题；这也说明 $N$ 是定义在有理结构上的整系数多项式，不依赖度量选择。",
@@ -156,7 +156,7 @@ export const BATCH_21_PROOFS = {
 
   'e-vanishing-cycle': {
     statement: "设 $f\\colon X\\to C$ 是紧合、光滑的相对维数 n 的态射，$C$ 是曲线，$0\\in C$。令 $j\\colon X^*=f^{-1}(C\\setminus\\{0\\})\\hookrightarrow X$，$i\\colon X_0=f^{-1}(0)\\hookrightarrow X$。邻近轮 $R\\Psi_f\\mathcal{F}=i^*Rj_*\\mathcal{F}$，消没轮 $R\\Phi_f\\mathcal{F}$ 由三角 $\\mathcal{F}\\to R\\Psi_f\\mathcal{F}\\to R\\Phi_f\\mathcal{F}\\to$ 定义（在某些引文中 $R\\Phi_f=\\mathrm{Cone}(\\mathcal{F}\\to R\\Psi_f)(-1)$）。核心性质 $R\\Psi_f\\mathcal{F}$ 是 $X_0$ 上的可构造复形，带自然单值作用 $T$，且对 $\\mathcal{F}$ 的拉回的维数有消没维数公式（Picard–Lefschetz 的消没圈）。",
-    explanation: "邻近轮回答“退化纤维's 邻近”的上同调：把一般纤维拉回退化时刻，沿环路的搬运由单值作用捕获。消没轮则是“之差”：特殊纤维与邻近上同调的差，正是退化解消前的那部分（消没圈的来源）。两个轮在同一对象上耦合，单值作用 $T$ 作用在 $R\\Psi_f$ 上。消没轮公式说明它的支撑落在奇异轨迹，且其逐纤维上同调可由对称形式（消没圈）配对。这些对象在 $l$-进与 Hodge 设置下都可定义，构成局部上同调与单值的标准桥梁。",
+    deepExplanation: "邻近轮回答“退化纤维's 邻近”的上同调：把一般纤维拉回退化时刻，沿环路的搬运由单值作用捕获。消没轮则是“之差”：特殊纤维与邻近上同调的差，正是退化解消前的那部分（消没圈的来源）。两个轮在同一对象上耦合，单值作用 $T$ 作用在 $R\\Psi_f$ 上。消没轮公式说明它的支撑落在奇异轨迹，且其逐纤维上同调可由对称形式（消没圈）配对。这些对象在 $l$-进与 Hodge 设置下都可定义，构成局部上同调与单值的标准桥梁。",
     steps: [
       step('nearby-cycle-functor', "邻近轮与特殊化",
         "由独立三角构造函子 $R\\Psi_f=i^*Rj_*$ 作用于 $D^b_c(X)$ 的对象。几何含义：$Rj_*\\mathcal{F}$ 的纤维在 x 处取自 $\\mathcal{F}$ 沿 $f^{-1}(\\text{小圆盘})$ 的全局截面，再沿 $i^*$ 拉回退化纤维；其结果可构造复形的茎由 $\\mathcal{F}$ 在一般纤维的“邻近”部分重定义。茎计算：$(R\\Psi_f\\mathcal{F})_x=\\varinjlim H^*(U_x\\cap X^*, \\mathcal{F})$，其中 $U_x$ 取包含 x 的任意小邻域。因极限沿退化方向推进，$R\\Psi_f$ 的每个茎同构于恰当一般纤维上的同伦极限，故它在奇异点上“看穿”一般纤维而保留退化前的同伦型；这正是单值信息得以安放的地方。",
@@ -203,7 +203,7 @@ export const BATCH_21_PROOFS = {
 
   'e-nearby-cycle-functor': {
     statement: "设 $f\\colon X\\to C$ 使 $X^*=f^{-1}(C\\setminus\\{0\\})$，$j\\colon X^*\\hookrightarrow X$，$i\\colon X_0\\hookrightarrow X$。特殊化映射 $sp\\colon i^*\\mathcal{F}\\to R\\Psi_f\\mathcal{F}$ 对每个可构造复形 $\\mathcal{F}$ 定义，其锥 $\\mathrm{Cone}(sp)$ 称为邻近轮锥（或有文献称其为 $R\\Phi_f\\mathcal{F}(-1)$）。由此得到三角 $i^*\\mathcal{F}\\to R\\Psi_f\\mathcal{F}\\to R\\Phi_f\\mathcal{F}\\to i^*\\mathcal{F}[1]$，把特殊纤维、邻近纤维与消没部分组织成一个正合连接。",
-    explanation: "特殊化映射是“把一般纤维的截面送到特殊纤维”的自然通道，但它的像在奇异点处往往亏格不全；锥则补全这一差距。把三者并进一个三角，等于用一条短正合的信息条控制在退化族上的全部上同调流动。邻近轮上面的单值作用限制在锥上，使消没部分携带独立的单值。这个框架统一了 Picard–Lefschetz 公式、消没圈配对与极限 Hodge 结构三方向的应用。",
+    deepExplanation: "特殊化映射是“把一般纤维的截面送到特殊纤维”的自然通道，但它的像在奇异点处往往亏格不全；锥则补全这一差距。把三者并进一个三角，等于用一条短正合的信息条控制在退化族上的全部上同调流动。邻近轮上面的单值作用限制在锥上，使消没部分携带独立的单值。这个框架统一了 Picard–Lefschetz 公式、消没圈配对与极限 Hodge 结构三方向的应用。",
     steps: [
       step('specialization-map', "特殊化映射的构造",
         "预层层面有自然变换 $\\mathcal{F}\\to j_*j^*\\mathcal{F}$（把截面看成限制）。在导出范畴中取 $Rj_*$，得 $\\mathcal{F}\\to Rj_*\\mathcal{F}$；沿 $i^*$ 得 $sp\\colon i^*\\mathcal{F}\\to i^*Rj_*\\mathcal{F}=R\\Psi_f\\mathcal{F}$。几何意义：特殊纤维 $X_0$ 上的截面先被看成 $X^*$ 上截面的延拓（通过 j），再取邻近部分。其茎层面即“$U_x\\cap X^*$ 上的整体截面”的归纳取极限。因该极限沿绕零点的圈也有定义，特殊化映射自然带上单值作用的来源；对截面只在特殊纤维上定义的情形，sp 的像记录它在一般纤维方向能够延拓的程度。",
@@ -250,7 +250,7 @@ export const BATCH_21_PROOFS = {
 
   'e-perverse-t-structure': {
     statement: "设 X 是复代数簇（或可分层的拓扑空间），$D^b_c(X)$ 是可构造复形的有界导出范畴。反常 t-结构（或作 perverse t-结构）由 $D^{p\\le0}=\\{F\\in D^b_c: H^j(F)_{\\text{perv}}=0\\ \\forall j>0\\}$ 与 $D^{p\\ge0}=\\{F: H^j(F)_{\\text{perv}}=0\\ \\forall j<0\\}$ 生成，其中滤过按支撑维数：$H^j(F)$ 的支撑维数 ≤ -j。对自对偶版本要求同时成立反滤过条件。其心 $\\mathrm{Perv}(X)$ 的对象称为反常层，包括 $\\mathrm{IC}_L[\\dim X]$。",
-    explanation: "标准 t-结构按上同调次数切分导出范畴，但它在奇异簇上破坏对偶的对称性（上同调次数与支撑维数混在一起）。反常 t-结构改用支撑维数来定“次数”：一个复形的第 j 个可构造上同调层的支撑维数不超过 -j。这样 Verdier 对偶自动把次数与支撑一起对调，反常心自对偶。初中直觉：奇点处冒出高阶上同调被这条支撑条件压下去，留下的正是交上同调。",
+    deepExplanation: "标准 t-结构按上同调次数切分导出范畴，但它在奇异簇上破坏对偶的对称性（上同调次数与支撑维数混在一起）。反常 t-结构改用支撑维数来定“次数”：一个复形的第 j 个可构造上同调层的支撑维数不超过 -j。这样 Verdier 对偶自动把次数与支撑一起对调，反常心自对偶。初中直觉：奇点处冒出高阶上同调被这条支撑条件压下去，留下的正是交上同调。",
     steps: [
       step('stratified-support-condition', "分层支撑条件",
         "对可构造复形 F，可构造性是指存在有限分层 $X=\\coprod S_\\alpha$（每片是光滑的、闭包是有限并）使 F|S_α 是局部常值且为有限型。定义上同调层 $H^j(F)$ 在 S_α 上的支撑：$\\mathrm{supp}(H^j(F))\\cap S_\\alpha$ 的维数 ≤ -j 时称 F 满足 $D^{p\\le0}$。这条条件逐层检验，与“同调次数”平行，但对高阶奇异层剪枝。它把奇异轨迹上的高阶上同调按余维数压下：余维数越高的层允许出现在越晚的次数中，从而在 Verdier 对偶下一次对称。它的用途是给 t-结构设边界，而下一步要验的公理（尤其截断的存在性）正建立在这一支撑约束之上。边界情形不能含糊：若分层不是有限多个光滑片，或 F|S_α 不是局部常值，则“支撑维数”无定义，该条件退化为空；若把 ≤ 放宽为等号，则自对偶性会随偶奇次数断裂。",
@@ -297,7 +297,7 @@ export const BATCH_21_PROOFS = {
 
   'e-decomposition-theorem': {
     statement: "设 $f\\colon X\\to Y$ 是紧合态射，X、Y 是复代数簇，X 光滑。则对每个半单纯可构造成分 $\\mathcal{K}$（如 $\\mathbb{Q}_X[l]$），有分解 $Rf_*\\mathcal{K}\\cong\\bigoplus_{p}\\left({}^p\\mathcal{H}^p(Rf_*\\mathcal{K})\\right)[-p]$，其中每项 ${}^p\\mathcal{H}^p$ 是反常层。特别地若 $\\mathcal{K}$ 是下列之一：常数层、交上同调复形，则 $Rf_*$ 分解为反常层的直和，每一项都是半单的（即若干 $\\mathrm{IC}_{Y_\\beta}[L_\\beta]$ 的直和）。",
-    explanation: "分解定理断言一个紧合推前在导出范畴中分裂，即使源与目标都奇异；分裂项是反常层。这在几何上表示退化或奇异的信息被按“消没轮+中间扩张”重新分配。其半单性来源于单值的半单纯定理与 Hodge 结构的纯性，因此对一般系数并不成立。对光滑 X，$Rf_*\\mathbb{Q}_X$ 分解为 $\\mathrm{IC}$ 的平移直和，是重言之最深刻的形式：$Rf_*$ 的图像信息全部落在交上同调层的定量展开里。",
+    deepExplanation: "分解定理断言一个紧合推前在导出范畴中分裂，即使源与目标都奇异；分裂项是反常层。这在几何上表示退化或奇异的信息被按“消没轮+中间扩张”重新分配。其半单性来源于单值的半单纯定理与 Hodge 结构的纯性，因此对一般系数并不成立。对光滑 X，$Rf_*\\mathbb{Q}_X$ 分解为 $\\mathrm{IC}$ 的平移直和，是重言之最深刻的形式：$Rf_*$ 的图像信息全部落在交上同调层的定量展开里。",
     steps: [
       step('semisimplicity-input', "输入：单值半单性与 Hodge 纯性",
         "单值半单性定理（Grothendieck、Deligne）断言：对紧合 f、光滑 X 与可构造成分 $\\mathcal{K}$，$Rf_*\\mathcal{K}$ 带权滤过且其单值表示半单。Hodge 结构的纯性提供权滤过的光滑性：$\\mathrm{gr}^W_m(Rf_*\\mathcal{K})$ 是纯权 m 的 Hodge 结构，故其上的单值表示由 Hodge 理论约化为半单的。这两条在分解定理的证明中提供“扩展=0”的基础，是把任意推前压成直和的纯化工具。使用它们要核对两条假设：f 紧合（否则 $Rf_*$ 不保持纯性）、$\\mathcal{K}$ 半单纯（成分是常系数）。若把系数换成非半单的可构造复形，则扩展项可能非零，分解定理的整体断言立刻失效；半单性是前提而不是结论。",
@@ -344,7 +344,7 @@ export const BATCH_21_PROOFS = {
 
   'e-intersection-cohomology': {
     statement: "设 X 是可分层的奇异复簇（PL 空间），配备分层 S。Goresky–MacPherson 定义允许链条件：对 PL 链 c，$|c|\\cap S_\\alpha$ 的维数 ≤ $\\mathrm{codim}\\,S_\\alpha - k + c$（下界）且 $\\partial c$ 也满足，其中 $c$ 是余代数参数（常用 $IH$ 的中间值）。由此构造相交链复形，其上同调 $IH^k(X)$ 满足 Poincaré 对偶、Künneth 与硬 Lefschetz，且在正则开子集处与普通上同调一致。BBD 重述：$IH^k(X)=H^k(X,\\mathrm{IC}_X)$。",
-    explanation: "对奇异簇，普通链可以“贴”在奇点上导致对偶失败。Goresky–MacPherson 的想法是只允许与每片奇异层相交得“足够低维”的链，从而把奇点造成的多余链排除。Análisis：允许链条件本质上是一个维数预算，它让链在中维穿过奇异轨迹时不被算作完整的同调类。得到的 $IH$ 自动满足对偶，且在光滑部分与 H 一致。现代观点把 $IH^k$ 重新解释为交上同调复形 $\\mathrm{IC}_X$ 的超上同调，后者是反常层范畴的简单对象。",
+    deepExplanation: "对奇异簇，普通链可以“贴”在奇点上导致对偶失败。Goresky–MacPherson 的想法是只允许与每片奇异层相交得“足够低维”的链，从而把奇点造成的多余链排除。Análisis：允许链条件本质上是一个维数预算，它让链在中维穿过奇异轨迹时不被算作完整的同调类。得到的 $IH$ 自动满足对偶，且在光滑部分与 H 一致。现代观点把 $IH^k$ 重新解释为交上同调复形 $\\mathrm{IC}_X$ 的超上同调，后者是反常层范畴的简单对象。",
     steps: [
       step('pl-chains-and-strata', "PL 链与分层",
         "取 X 的子复形分解成 PL 覆盖，给每个奇异层 S_α 指定余维数 $d_\\alpha=\\dim X-\\dim S_\\alpha$。对 k-链 c，令 $c_\\alpha=c\\cap S_\\alpha$（链与片的交），要求 $\\dim c_\\alpha \\le d_\\alpha - k + c$（$c$ 为允许码）。同时要求边界 $\\partial c$ 的每层交满足 $\\dim\\partial c_\\alpha\\le d_\\alpha - k + c -1$ 等对应条件。这样的 c 组成允许链子复形，其在每片上的受控维数保证整体对偶：允许码 c 的取法正是“垂直于奇异层方向”的余维数限制，它使得边界运算在允许链内封闭。这一步的输出（允许链复形及其分层数据）直接决定下一步的 IC 复形：上同调层在每个 S_α 上的秩由允许链的局部模型算出。若允许码取得过小（逼近中间值以下），链复形退化为普通链复形，$IH$ 与 $H^*$ 重合而失去对奇点的分辨力。",
@@ -391,7 +391,7 @@ export const BATCH_21_PROOFS = {
 
   'e-d-module-direct-image': {
     statement: "设 $f\\colon X\\to Y$ 是复代数流形间态射。D-模的直接像（积分）$\\int_f\\mathcal{M}=Rf_*(\\mathcal{D}_{Y\\leftarrow X}\\otimes^L_{\\mathcal{D}_X}\\mathcal{M})$，其中 $\\mathcal{D}_{Y\\leftarrow X}=\\mathcal{O}_X\\otimes_{f^{-1}\\mathcal{O}_Y}f^{-1}\\mathcal{D}_Y$ 是转移模。若定义在适当的导出范畴中，这给出 $D^b(\\mathcal{D}_X)\\to D^b(\\mathcal{D}_Y)$ 的函子，且与 de Rham 函子 $\\mathrm{DR}$ 交换：$\\mathrm{DR}_Y(\\int_f\\mathcal{M})\\cong Rf_*\\mathrm{DR}_X(\\mathcal{M})$（在 $\\mathcal{M}$ 拟凝聚及 f 有限型条件下）。",
-    explanation: "D-模的积分是把“沿纤维取积分”代数化：转移模把 Y 上的算子搬上 X，张量后再沿 $f$ 推前，得到 Y 上新的方程组。分析上这对应“施瓦茨核”式的积分算子，而 de Rham 兼容性把这层翻译精确化：解析解层的积分就是代数张量的推前。右模公式 $\\int_f\\mathcal{N}=Rf_!(\\mathcal{N}$ 的对偶者)给出对偶分支。对非交换环，张量必须取导出版本以免丢失环结构。",
+    deepExplanation: "D-模的积分是把“沿纤维取积分”代数化：转移模把 Y 上的算子搬上 X，张量后再沿 $f$ 推前，得到 Y 上新的方程组。分析上这对应“施瓦茨核”式的积分算子，而 de Rham 兼容性把这层翻译精确化：解析解层的积分就是代数张量的推前。右模公式 $\\int_f\\mathcal{N}=Rf_!(\\mathcal{N}$ 的对偶者)给出对偶分支。对非交换环，张量必须取导出版本以免丢失环结构。",
     steps: [
       step('transfer-module', "转移模与张量",
         "$\\mathcal{D}_{Y\\leftarrow X}$ 是 $(f^{-1}\\mathcal{D}_Y,\\mathcal{D}_X)$-双模：左作用来自 $\\mathcal{O}_X\\otimes f^{-1}\\mathcal{D}_Y$，右作用来自 $\\mathcal{D}_X$。对 $\\mathcal{D}_X$-模 $\\mathcal{M}$，$\\mathcal{D}_{Y\\leftarrow X}\\otimes_{\\mathcal{D}_X}\\mathcal{M}$ 是 $f^{-1}\\mathcal{D}_Y$-模（从而 $\\mathcal{D}_Y$-预层沿 Y 的图层）。必须取 $\\otimes^L$：$\\mathcal{D}_X$ 非交换且 $\\mathcal{D}_{Y\\leftarrow X}$ 不右平坦（X→Y 非光滑时）。导出张量保留 Tor 项，是积分的正确术语。",
@@ -438,7 +438,7 @@ export const BATCH_21_PROOFS = {
 
   'e-riemann-hilbert': {
     statement: "经典（Riemann–Hilbert）：$\\mathbb{P}^1$（或光滑曲线）上带正则奇点的线性常微分方程对应局部系（即 $\\pi_1$ 的表示），其解空间给出单值表示。高维（Kashiwara–Mebkhout）：对复光滑代数簇 X，$\\mathrm{DR}\\colon D^b_{\\text{rh}}(\\mathcal{D}_X)\\to D^b_c(X)$ 是范畴等价，其拟逆 $\\mathrm{Sol}$ 把可构造复形送到解模。",
-    explanation: "一维时，方程的解沿回路变化给出单值矩阵，方程由这些矩阵决定（黎曼问题）。高维版本把“方程”换成“正则全纯 D-模”，把“解”换成“解层复形 DR”。Kashiwara 与 Mebkhout 独立证明该对应是等价。它统一微分方程（分析）与可构造拓扑（几何）：单值、消没、反常层都在对应下保持。正则性假设不可或缺：非正则方程的解在远离奇点处增长过快，不能成局部系。",
+    deepExplanation: "一维时，方程的解沿回路变化给出单值矩阵，方程由这些矩阵决定（黎曼问题）。高维版本把“方程”换成“正则全纯 D-模”，把“解”换成“解层复形 DR”。Kashiwara 与 Mebkhout 独立证明该对应是等价。它统一微分方程（分析）与可构造拓扑（几何）：单值、消没、反常层都在对应下保持。正则性假设不可或缺：非正则方程的解在远离奇点处增长过快，不能成局部系。",
     steps: [
       step('classical-1d', "一维经典：方程与局部系",
         "对 $\\mathbb{P}^1$ 上 $y^{(n)}+a_1y^{(n-1)}+\\ldots+a_ny=0$，正则奇点在集合 S 处有充分条件：$a_i$ 在 S 外解析且在 S 处 $a_i$ 有 $\\le i$ 阶极点（Fuchs 条件）。解空间在 $\\mathbb{C}\\setminus S$ 上是局部系（$\\pi_1$ 表示），单值矩阵是正则例行计算的输出。Riemann 存在性问题：给定单值表示构造方程；Deligne 用 holonomic 起算证明可解。方程沿 S 的回路逐圈搬运解，单值矩阵与奇点处的指数之差对应；两个方程同构当且仅当它们的单值表示共轭，这正是“解空间决定方程”在经典层面的含义。失效模式要写清：非正则奇点（如 $x^2y'+y=0$ 在 $0$ 处）的解有本质奇性，单值矩阵不再是全部不变量，Stokes 矩阵成为必要补充，故“方程 ⇔ 局部系”只在正则情形成立。",
@@ -485,7 +485,7 @@ export const BATCH_21_PROOFS = {
 
   'e-holonomic-d-module': {
     statement: "设 M 是光滑复簇 X 上的拟凝聚 $\\mathcal{D}_X$-模。其特征簇 $\\mathrm{char}(M)$ 是余切丛 $T^*X$ 中的闭子簇，Bernstein 不等式 $\\dim\\mathrm{char}(M)\\ge\\dim X$ 成立。若等号成立，称 M 为全纯（holonomic）。全纯模的范畴是 Abel 范畴，其对象有有限长度（Jordan–Hölder 列）；且 $\\mathrm{char}$ 在推前、拉回、对偶、张量下按维数规律变化。",
-    explanation: "特征簇把 M 在“相空间”（余切丛）中的支撑位置信息打包。Bernstein 不等式保证条件有形响的方：最极端（等号）的全纯模对应“最小支撑”，即局方程刚够解出生成元。全纯模具有极好的代数性质：Abel、Noether、有限长、且与可构造层配对（DR 可构造）。它是 D-模理论的工作引擎。",
+    deepExplanation: "特征簇把 M 在“相空间”（余切丛）中的支撑位置信息打包。Bernstein 不等式保证条件有形响的方：最极端（等号）的全纯模对应“最小支撑”，即局方程刚够解出生成元。全纯模具有极好的代数性质：Abel、Noether、有限长、且与可构造层配对（DR 可构造）。它是 D-模理论的工作引擎。",
     steps: [
       step('char-and-graph', "特征簇的定义与例子",
         "取 $\\mathcal{D}_X$ 的按阶滤过，M 的相容滤过 $M_\\bullet$，定义 $\\mathrm{char}(M)=\\mathrm{Supp}(\\mathrm{gr} M_{\\bullet})$ 作为 $T^*X$ 的子簇。例子：(1) $\\mathcal{O}_X$ 的特征簇是零截面 $T^*_X X$，维数 $\\dim X$；(2) 沿 $\\delta$ 的模 $\\delta_*\\mathcal{O}$ 的特征簇是 $T^*_{X}Y\\times$ 层类，维数也 $\\dim X$；(3) $\\mathcal{D}_X/\\mathcal{D}_X\\partial_{x_1}$ 的特征簇含坐标超平面，维数 $\\dim X+1$ 等等。特征簇在滤过选择下不变。",
@@ -532,7 +532,7 @@ export const BATCH_21_PROOFS = {
 
   'e-spectral-sequence-degeneration': {
     statement: "谱序列 $(E_r,d_r)$ 收敛到 $H^*$。若对所有 $r\\ge r_0$ 有 $d_r=0$（在 $E_{r_0}$ 上），则 $E_{r_0}\\cong E_{\\infty}$ 且 $H^*$ 有滤过 $F$ 使 $\\mathrm{gr}_F H^*\\cong E_{\\infty}$。退化在 $E_1$（或 $E_2$）的情形最常见：如 Hodge–de Rham 谱序列在紧 Kähler 流形上于 $E_1$ 退化。",
-    explanation: "谱序列的技术难点在于何时给出明确结论：只有退化时 $E_2\\cong E_\\infty$，上同调的分次块才是谱序列直接读出。判断退化的通用手段是维数估计：某页非零维数之和不超过总上同调维数且都可达。Hodge 理论的退化由纯性/权论或 $dd^c$ 引理保证。",
+    deepExplanation: "谱序列的技术难点在于何时给出明确结论：只有退化时 $E_2\\cong E_\\infty$，上同调的分次块才是谱序列直接读出。判断退化的通用手段是维数估计：某页非零维数之和不超过总上同调维数且都可达。Hodge 理论的退化由纯性/权论或 $dd^c$ 引理保证。",
     steps: [
       step('spectral-sequence-basics', "谱序列的组成与收敛",
         "谱序列是双分次对象 $(E_r^{p,q},d_r)$，$d_r\\colon E_r^{p,q}\\to E_r^{p+r,q-r+1}$，$d_r^2=0$，$E_{r+1}=H(E_r,d_r)$。有界情形下对 r 足够大 $E_r=E_{r+1}=\\ldots=E_{\\infty}$；收敛 $E_2^{p,q}\\Rightarrow H^{p+q}$ 表示 $H^*$ 带升滤过 $F^p=H^{-p}$ 使 $\\mathrm{gr}^p_FH^{p+q}=E_{\\infty}^{p,q}$。退化 $d_r=0$ 对 $r\\ge2$ 时 $E_2^{p,q}\\cong\\mathrm{gr}^pH^{p+q}$。",
@@ -579,7 +579,7 @@ export const BATCH_21_PROOFS = {
 
   'e-hodge-to-de-rham': {
     statement: "对紧流形 X，de Rham 复形 $\\Omega_X^\\bullet$ 带 Hodge 滤过 $F^p\\Omega=\\sigma_{\\ge p}\\Omega$，其谱序列 $E_1^{p,q}=H^q(X,\\Omega_X^p)\\Rightarrow H^{p+q}_{dR}(X)$。对紧 Kähler 流形该谱序列在 $E_1$ 退化：$H^{p+q}_{dR}=\\oplus_{p+q=n}H^q(X,\\Omega^p)$，即 Hodge 分解 $H^n=\\oplus H^{p,q}$。",
-    explanation: "de Rham 复形把微分形式按次数给出天然滤过，谱序列逐次逼近整体上同调。光滑情形各项是杜·洛梯度上同调 $H^q(X,\\Omega^p)$。紧 Kähler 的 $dd^c$ 引理使退化在 $E_1$：每个同调类有调和代表，调和形式闭且共闭给出 Hodge 型分解。非紧或非 Kähler 则该谱序列一般不退化。",
+    deepExplanation: "de Rham 复形把微分形式按次数给出天然滤过，谱序列逐次逼近整体上同调。光滑情形各项是杜·洛梯度上同调 $H^q(X,\\Omega^p)$。紧 Kähler 的 $dd^c$ 引理使退化在 $E_1$：每个同调类有调和代表，调和形式闭且共闭给出 Hodge 型分解。非紧或非 Kähler 则该谱序列一般不退化。",
     steps: [
       step('filtration-and-E1', "滤过与 $E_1$ 项",
         "滤过 $F^p\\Omega=\\Omega^{\\ge p}$（次数 ≥p 的微分形式）。行滤过谱序列 $E_0^{p,q}=\\Gamma(X,\\Omega^{p+q})/F^{p+1}$，$d_0$ 是外微分，$E_1^{p,q}=H^q_{dR}(X,\\Omega^p_{\\text{cl}}/\\ldots)$ 合约化到 $H^q(X,\\Omega^p_X)$（由 Dolbeault 定理 $H^q(X,\\Omega^p)\\cong H^{p,q}_{\\bar\\partial}$）。这一识别使 $E_1$ 项变成纯 Hodge 数。若 X 不是复流形而是抽象可微流形，Hodge 滤过没有定义，$E_1$ 项也没有 Dolbeault 解释，谱序列只能按普通滤过读取。",

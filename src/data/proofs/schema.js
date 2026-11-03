@@ -10,7 +10,8 @@
  *   consequences?: string[],          // node ids that use/are derived from this result
  *   references?: [{ title, author?, year?, url?, doi? }],
  *   history?: string,
- *   explanation?: string,
+ *   explanation?: string,             // 直观解释：为什么这件事重要、直觉上该怎么想
+ *   deepExplanation?: string,         // 机制与定位：把 steps 收束成因果链，并说明它在理论中的位置
  *   examples?: [{ title, body }],
  *   remarks?: string[],
  *   corollaries?: [{ title, body, uses? }],
