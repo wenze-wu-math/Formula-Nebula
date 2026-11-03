@@ -37,6 +37,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Data integrity: node/link counts and field coverage. Cheap and catches
+      # accidental corruption of the generated knowledge-graph datasets.
+      - name: Check data integrity
+        run: node scripts/check-data.mjs
+
+      - name: Check for duplicate object keys in data
+        run: node scripts/_check-dupe-keys.mjs
+
+      # The control runs the same detector against pre-fix sources from git
+      # history and asserts it still finds the known duplicates. Without it a
+      # "0 duplicates" result would be meaningless.
+      - name: Verify duplicate-key detector still detects
+        run: node scripts/_check-dupe-keys-control.mjs
+
+      - name: Verify rescued proof explanations survive
+        run: node scripts/_verify-explanation-rescue.mjs
+
+      # Real assertions: these throw on failure instead of printing via
+      # console.assert. Runs on plain node, no test framework needed.
+      - name: Run canonicalization tests
+        run: node tests/canonicalization/run-tests.js
+
       - name: Build
         run: npm run build
 
