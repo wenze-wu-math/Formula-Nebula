@@ -88,7 +88,6 @@ export default [
         Audio: 'readonly',
         AudioContext: 'readonly',
         Element: 'readonly',
-        HTMLElement: 'readonly',
         HTMLCanvasElement: 'readonly',
         HTMLInputElement: 'readonly',
         HTMLTextAreaElement: 'readonly',

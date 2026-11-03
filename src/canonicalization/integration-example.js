@@ -6,6 +6,9 @@
  */
 
 import { compareFormulas, groupEquivalentFormulas, buildCanonicalIndex } from './compare.js'
+// parseLatex() is used below (in the parse-error scan) but was never imported,
+// so that code path threw "ReferenceError: parseLatex is not defined".
+import { parseLatex } from './normalize.js'
 
 /**
  * Example 1: Find duplicate theorems in knowledge graph
