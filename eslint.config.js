@@ -186,6 +186,13 @@ export default [
       // Disable rules that conflict with our codebase patterns
       'no-inner-declarations': 'off',
       'no-prototype-builtins': 'off',
+
+      // U+3000 (ideographic space) is used deliberately as a separator in
+      // Chinese typesetting, e.g. el('span', {}, ['　·　']) in ui.js and in
+      // comment alignment. All 62 hits were this character, none were
+      // accidental NBSP/zero-width imports. Allow it in code, but still flag
+      // it inside string literals is not useful here, so turn it off.
+      'no-irregular-whitespace': ['error', { skipStrings: true, skipComments: true, skipRegExps: true, skipTemplates: true }],
     }
   },
   {

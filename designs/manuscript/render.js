@@ -115,9 +115,14 @@ export function draw() {
   // 检查是否有翻页动画
   const hasFlip = drawPageFlip(ctx, state, pageFlipState)
 
+  // Hoisted out of the `if (!hasFlip)` block below: the text/item culling loop
+  // further down also calls hit(..., vp). While a page-flip animation was
+  // running, `vp` was block-scoped to that if-branch, so `hit(it.box, vp)`
+  // threw "ReferenceError: vp is not defined" and aborted the whole frame.
+  const vp = worldViewport()
+
   if (!hasFlip) {
     // 正常绘制所有页面
-    const vp = worldViewport()
     for (const p of L.pages) {
       if (!hit(p, vp)) continue
       const [sx, sy] = w2s(p.x, p.y)
