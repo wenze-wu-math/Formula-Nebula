@@ -479,6 +479,59 @@ async function boot() {
   ui = mountUI(document.getElementById('ui'), actions)
   ui.setProgress('展卷', 0.02)
 
+  /* ── 版面容量上限 ──
+   *
+   * 这本"手稿"的设计是**一册可读的书**：8 章对应 8 个知识族。它最初的基线
+   * 是 488 个条目（README: "items 488 ... missing 0, overlaps 0, outOfPage 0"）。
+   *
+   * 后来知识库长到 4306 个节点，而 buildLayout 没有任何容量上限，于是它
+   * 试图把全部 4306 个条目塞进固定页数。实测：
+   *     outOfPage 2133   一半条目被排到纸面之外
+   *     overlaps    50   文字互相压住
+   * 页面上一堆文字糊在页边外。
+   *
+   * 一本书本来也不该收录整个数据库，它收的是**重要的那些**。这里按
+   * importance 取前 N 个，并保证每个族至少留若干代表，避免小族被整体挤掉。
+   * 未入选的节点仍可通过搜索定位。
+   */
+  const MANUSCRIPT_MAX_ENTRIES = 300
+
+  function fitGraphToBook(graph) {
+    const all = graph.nodes || []
+    if (all.length <= MANUSCRIPT_MAX_ENTRIES) return graph
+
+    const byImp = [...all].sort((a, b) => (b.importance ?? 0) - (a.importance ?? 0))
+    const keep = new Set(byImp.slice(0, MANUSCRIPT_MAX_ENTRIES).map((n) => n.id))
+
+    const perFamily = new Map()
+    for (const n of all) {
+      const f = n.family ?? 'unknown'
+      if (!perFamily.has(f)) perFamily.set(f, [])
+      perFamily.get(f).push(n)
+    }
+    for (const [, members] of perFamily) {
+      const already = members.filter((n) => keep.has(n.id)).length
+      const want = Math.min(members.length, Math.max(already, 12))
+      if (already >= want) continue
+      const extra = members
+        .filter((n) => !keep.has(n.id))
+        .sort((a, b) => (b.importance ?? 0) - (a.importance ?? 0))
+        .slice(0, want - already)
+      for (const n of extra) keep.add(n.id)
+    }
+
+    const nodes = all.filter((n) => keep.has(n.id))
+    const links = (graph.links || []).filter((l) => {
+      const s = l.source?.id ?? l.source
+      const t = l.target?.id ?? l.target
+      return keep.has(s) && keep.has(t)
+    })
+    return { ...graph, nodes, links }
+  }
+
+  const bookGraph = fitGraphToBook(state.graph)
+  mark('fit')
+
   // 系统字体也要等：canvas 量宽时若字体未就绪，会按回退字体量，排版就错了
   try {
     await Promise.race([
@@ -492,18 +545,22 @@ async function boot() {
    * 这是 README「缓存去留」一节的复现开关（有缓存 vs 无缓存的 bootMs 对比），
    * 也是缓存过期时的应急手段：加这个参数页面照常可用，只是首屏慢。 */
   const noCache = new URLSearchParams(location.search).has('nocache')
-  state.dims = await computeDims(state.graph.nodes, (done, total) => {
+  state.dims = await computeDims(bookGraph.nodes, (done, total) => {
     ui.setProgress('量取公式', 0.05 + 0.75 * (done / Math.max(1, total)))
     bus.emit('progress', { phase: 'dims', done, total })
   }, noCache ? { shipped: false } : {})
   mark('dims')
   ui.setProgress('排版', 0.82)
   bus.emit('progress', { phase: 'layout', done: 0, total: 1 })
-  state.layout = buildLayout(state.graph, state.dims, measure)
+  state.layout = buildLayout(bookGraph, state.dims, measure)
   mark('layout')
   phases.measure = { ...measureStat, ms: Math.round(measureStat.ms) }
   let check
-  try { check = checkLayout(state.layout, state.graph) } catch (e) { check = { missing: [], overlaps: [], outOfPage: [], error: String(e) } }
+  // The self-check must be given the SAME graph the layout was built from.
+  // Passing state.graph (all 4306 nodes) made it report every node that is
+  // legitimately not in the book as "missing" — 3758 false positives that
+  // buried the real signal.
+  try { check = checkLayout(state.layout, bookGraph) } catch (e) { check = { missing: [], overlaps: [], outOfPage: [], error: String(e) } }
   window.__design.layoutCheck = check
   if (check.missing?.length || check.overlaps?.length || check.outOfPage?.length || check.error) {
     console.warn('[layout] 自检未通过', { missing: check.missing?.length, overlaps: check.overlaps?.length, outOfPage: check.outOfPage?.length, error: check.error })
