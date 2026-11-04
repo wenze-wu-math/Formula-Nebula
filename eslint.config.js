@@ -226,6 +226,18 @@ export default [
       'docs/.vitepress/dist/**',
       'docs/.vitepress/cache/**',
       'docs/node_modules/**',
+      // One-off migration/scratch scripts left in the tree. They already ran,
+      // nothing imports them, and they are not maintained. Excluded from lint
+      // rather than deleted so the history stays auditable.
+      '_tmp-*.mjs',
+      '_batch*.js',
+      'backup/**',
+      'designs/atlas/layout.v*.js',
+      'designs/atlas/layout.recovered.js',
+      'designs/atlas/layout.step1.js',
+      'designs/*/layout.v*.js',
+      '**/*.recovered.js',
+      '**/layout.step*.js',
       // Generated content data. These are very large machine-assembled
       // datasets; linting them produces no actionable signal and dominates the
       // runtime. What matters for data is shape, duplicate keys and coverage,

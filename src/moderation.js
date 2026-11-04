@@ -34,7 +34,9 @@ const MODERATION_CONFIG = {
   // Auto-moderation patterns
   toxicPatterns: [
     // Profanity and offensive language
-    /\b(f[u\*]+ck|sh[i\*]+t|b[i\*]+tch|d[a\*]+mn|h[e\*]+ll)\b/gi,
+    // Inside a character class '*' needs no escape; the backslashes were
+    // redundant (no-useless-escape) and made the intent harder to read.
+    /\b(f[u*]+ck|sh[i*]+t|b[i*]+tch|d[a*]+mn|h[e*]+ll)\b/gi,
     // Personal attacks
     /\b(idiot|stupid|moron|dumb|loser|garbage)\b/gi,
     // Spam indicators
