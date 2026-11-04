@@ -200,6 +200,20 @@ export default [
     }
   },
   {
+    // Prototype pages under designs/ are plain classic <script src> bundles:
+    // they share state through window globals rather than ES imports. Each
+    // entry below is assigned by one file and read by another, so declare it
+    // rather than pretending it is an undefined variable.
+    files: ['designs/collaboration/**/*.js'],
+    languageOptions: {
+      globals: {
+        // assigned in review.js (window.reviewWorkflow = ...), read by
+        // review-dashboard.js and example-usage.js
+        reviewWorkflow: 'readonly',
+      },
+    },
+  },
+  {
     // Node.js scripts
     files: ['scripts/**/*.mjs', 'scripts/**/*.js', '*.config.js', '*.config.mjs'],
     languageOptions: {

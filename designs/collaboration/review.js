@@ -456,6 +456,15 @@ class ReviewWorkflow {
 // Export singleton instance
 const reviewWorkflow = new ReviewWorkflow();
 
+// Loaded as a CLASSIC script tag (see review-dashboard.html), not as an ES
+// module. In a classic script a top-level const does NOT become a window
+// property, so review-dashboard.js, which references the bare identifier
+// reviewWorkflow, threw "ReferenceError: reviewWorkflow is not defined" on
+// every call. Publish it explicitly; the CommonJS export below still works.
+if (typeof window !== 'undefined') {
+  window.reviewWorkflow = reviewWorkflow;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = reviewWorkflow;
 }
