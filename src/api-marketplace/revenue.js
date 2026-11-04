@@ -36,7 +36,7 @@ export class RevenueManager {
     const period = this.getPeriodKey(timestamp);
     const recordKey = `usage:${period}:${apiId}`;
 
-    let periodData = this.storage.get(recordKey) || {
+    const periodData = this.storage.get(recordKey) || {
       apiId,
       publisherId,
       period,

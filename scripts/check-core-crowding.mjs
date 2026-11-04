@@ -47,7 +47,7 @@ function relaxPositions(nodes, radii, rInner, freedom) {
         const b = ns[j], rb = Math.max(b.w, b.h) * 0.5 * SPACING
         const minD = (ra + rb) * ALLOW
         let dx = b.x - a.x, dz = b.z - a.z
-        let d2 = dx * dx + dz * dz
+        const d2 = dx * dx + dz * dz
         if (d2 >= minD * minD) continue
         let d = Math.sqrt(d2)
         if (d < 1e-6) { dx = (i % 7) - 3; dz = (j % 5) - 2; d = Math.hypot(dx, dz) || 1e-3 }

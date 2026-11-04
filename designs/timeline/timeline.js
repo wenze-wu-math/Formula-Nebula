@@ -33,7 +33,7 @@ let selectedNode = null
 let transform = { x: 0, y: 0, scale: 1 }
 let isDragging = false
 let dragStart = { x: 0, y: 0 }
-let filters = { theorems: true, conjectures: true }
+const filters = { theorems: true, conjectures: true }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', init)

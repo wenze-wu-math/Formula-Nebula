@@ -216,7 +216,7 @@ class LinkPredictor {
     const concat = [...embI, ...embJ]
 
     // First layer
-    let h = []
+    const h = []
     for (let j = 0; j < 64; j++) {
       let val = this.b1[j]
       for (let i = 0; i < concat.length; i++) {
@@ -226,7 +226,7 @@ class LinkPredictor {
     }
 
     // Second layer
-    let h2 = []
+    const h2 = []
     for (let j = 0; j < 32; j++) {
       let val = this.b2[j]
       for (let i = 0; i < h.length; i++) {

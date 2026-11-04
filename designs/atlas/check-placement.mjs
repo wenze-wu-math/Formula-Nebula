@@ -116,7 +116,7 @@ const order = bodies.slice().sort((a, b) => b.imp - a.imp || (a.id < b.id ? -1 :
 const placed = []
 let triedCount = 0
 let bakeNeeded = null
-let lastTier = null
+const lastTier = null
 for (const c0 of order) {
   const c = { ...c0, w: c0.w * OVERVIEW_SCALE, h: c0.h * OVERVIEW_SCALE, px: c0.px * OVERVIEW_SCALE }
   // 总览放宽：labelL > 0 的只在还没够数时补位

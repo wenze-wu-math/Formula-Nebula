@@ -36,7 +36,7 @@ function generateReleaseNotes(version) {
 
   const template = readFileSync(TEMPLATE_PATH, 'utf8');
 
-  let content = template
+  const content = template
     // 填充版本信息
     .replace(/`v0\.x\.y`/g, `\`${version}\``)
     .replace(/YYYY-MM-DD/g, now)

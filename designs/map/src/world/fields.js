@@ -262,7 +262,7 @@ export function buildTerritory(g, cities, nFam, noise, P) {
 
   // 去掉没有城市的碎岛（只要分量里没有任何城市就删；比"面积 < 1500"更干净：领土永远跟着城市走）
   const cityV = cities.map((c) => nearestVertex(g, c.x, c.y))
-  let lc = components(g, (k) => land[k] === 1)
+  const lc = components(g, (k) => land[k] === 1)
   const hasCity = new Uint8Array(lc.count)
   for (const v of cityV) if (lc.comp[v] >= 0) hasCity[lc.comp[v]] = 1
   for (let k = 0; k < N; k++) if (land[k] && !hasCity[lc.comp[k]]) { land[k] = 0; if (L[k] > -0.01) L[k] = -0.01 }

@@ -28,7 +28,7 @@ ok(searchNodes(g, 'status:(open').length === 0, "语法错误 'status:(open' 返
 ok(isAdvancedQuery('-family:scheme') && isAdvancedQuery('a OR b') && !isAdvancedQuery('p-adic Hodge'), 'isAdvancedQuery 判定')
 
 // 3) 每个节点都能用 name 搜到（前 5）
-let miss = []
+const miss = []
 for (const n of g.nodes) {
   const r = searchNodes(g, n.name, { limit: 5 })
   if (!r.some((x) => x.id === n.id)) miss.push(`${n.id}(${n.name})`)

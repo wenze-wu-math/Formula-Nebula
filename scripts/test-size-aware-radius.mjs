@@ -34,7 +34,7 @@ const TILT = 40 * Math.PI / 180, MARGIN = 1.10
 function sizesFor(n) {
   const ss = SIZEMIN + Math.pow(n.rank, SIZECURVE) * (SIZEMAX - SIZEMIN)
   const area = (BASE * ss) ** 2
-  let W = Math.sqrt(area * n.aspect), H = Math.sqrt(area / n.aspect)
+  const W = Math.sqrt(area * n.aspect), H = Math.sqrt(area / n.aspect)
   const k = Math.min(1, MAXW / W, MAXH / H)
   return { W: W * k, H: H * k }
 }

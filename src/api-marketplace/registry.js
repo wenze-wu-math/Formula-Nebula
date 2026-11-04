@@ -145,7 +145,7 @@ export class APIRegistry {
    */
   async getSubscriberCount(apiId) {
     // Count unique consumers with active keys for this API
-    let count = 0;
+    const count = 0;
     const consumers = new Set();
 
     for (const [key, value] of this.storage.entries()) {

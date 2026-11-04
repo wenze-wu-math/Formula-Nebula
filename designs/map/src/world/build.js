@@ -239,7 +239,7 @@ export async function buildWorld(graph, opts = { raster: true }) {
   )
 
   // Compute distance field to coast+islands (will be updated after islands are ready)
-  let distAll = polylineDistance(g, coastRings.map((r) => ({ pts: r, closed: true })))
+  const distAll = polylineDistance(g, coastRings.map((r) => ({ pts: r, closed: true })))
   for (let k = 0; k < g.N; k++) if (land[k]) distAll[k] = 0
 
   // Wait for islands to complete
@@ -275,7 +275,7 @@ export async function buildWorld(graph, opts = { raster: true }) {
 
   ms.ports = now() - tI - ms.dist - ms.ripples
   /* ── fitBounds：大陆 + 岛 + 港口 + 40 ── */
-  let fb = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity }
+  const fb = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity }
   const grow = (x0, y0, x1, y1) => { fb.x0 = Math.min(fb.x0, x0); fb.y0 = Math.min(fb.y0, y0); fb.x1 = Math.max(fb.x1, x1); fb.y1 = Math.max(fb.y1, y1) }
   for (const r of coastRings) { const b = bboxOf(r); grow(b.x0, b.y0, b.x1, b.y1) }
   for (const p of islands) { const b = bboxOf(p.ring); grow(b.x0, b.y0, b.x1, b.y1) }

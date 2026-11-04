@@ -25,7 +25,7 @@ export class EnhancedDocumentationGenerator {
    * Generate comprehensive Markdown documentation
    */
   generateMarkdownDocs(endpoints) {
-    let markdown = `# Formula Nebula API Documentation
+    const markdown = `# Formula Nebula API Documentation
 
 **Version:** ${this.apiVersion}
 

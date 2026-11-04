@@ -509,7 +509,7 @@ export function exportSVG(graph, opts = {}) {
       /* 猜想节点画成**空心环**：三维里它是球状星团（另一类对象），
        * 平面图上"实心点 / 空心环"是最省笔墨的区分方式，
        * 而且环天生适合按 status 上色（颜色落在描边上更醒目）。 */
-      let ring = statusColors && n.status && statusColors[n.status]
+      const ring = statusColors && n.status && statusColors[n.status]
         ? statusColors[n.status]
         : null
       const ringColor = ring ? cssColor(ring) : fill

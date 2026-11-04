@@ -113,7 +113,7 @@ for (const r of all) {
   console.log(`          ${r.desc || '（无描述）'}`)
 }
 
-/* eslint-disable-next-line */
+ 
 fs.writeFileSync('.research/github-scan.json', JSON.stringify(all.map((r) => ({ ...r, cats: [...r.cats] })), null, 2), 'utf8')
 fs.writeFileSync('.research/github-scan.txt', all.map((r) =>
   `${r.stars}\t${r.full}\t${[...r.cats].join('/')}\t${r.lang}\t${r.push}\t${r.desc}`).join('\n'), 'utf8')

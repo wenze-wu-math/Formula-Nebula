@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 const p = 'src/data/proofs/batch-08.js'
-let lines = readFileSync(p, 'utf8').split('\n')
+const lines = readFileSync(p, 'utf8').split('\n')
 for (let i = 0; i < lines.length; i++) {
   let line = lines[i]
   // 数组元素/调用参数： 行首（缩进后）直接是 ’

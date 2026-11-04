@@ -435,7 +435,7 @@ export class CodeExampleManager {
    */
   async run(example) {
     try {
-      // eslint-disable-next-line no-eval
+       
       const result = await eval(example.code);
       console.log('Code execution result:', result);
       return result;

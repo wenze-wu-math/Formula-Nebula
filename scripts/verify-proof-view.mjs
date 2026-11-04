@@ -99,7 +99,7 @@ try {
   writeFileSync('shots/proof-qa/deep-link.png', Buffer.from(screenshot.data, 'base64'))
   ok(true, '已生成证明页视觉 QA 截图', 'shots/proof-qa/deep-link.png')
 
-  let state = await cdp.eval(`
+  const state = await cdp.eval(`
     const n = window.__nebula
     return {
       proof: n.proofView.currentId,

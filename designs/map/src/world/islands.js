@@ -202,7 +202,7 @@ export function placePorts(graph, ctx) {
     if (!moved) break
   }
   // 校验与修正：符号离岸 8–14、不落在岛上、港口两两 ≥ 22（跨海湾的弦距也算）；不满足就沿岸挪
-  let out = ports.map((p) => ({ p, ...geom(p) }))
+  const out = ports.map((p) => ({ p, ...geom(p) }))
   for (let round = 0; round < 80; round++) {
     let bad = false
     for (let i = 0; i < out.length; i++) {

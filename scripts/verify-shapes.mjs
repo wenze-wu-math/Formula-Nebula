@@ -166,7 +166,7 @@ for (const id of SHAPE_IDS) {
    * 有旋臂时，这个"去缠绕后的角"会聚成 arms 个尖峰；无旋臂时仍是均匀的。
    */
   const arms = SHAPES[id].arms
-  let spiralChi = 0
+  const spiralChi = 0
   /* ── 旋臂结构的判据：逐臂圆集中度 R，不是分桶 χ²、也不是折叠后的 R₄ ──
    *
    * 这一段我错了三次，三次都记下来，因为每次的错法都很典型。

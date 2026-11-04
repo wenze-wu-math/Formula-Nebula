@@ -554,7 +554,7 @@ export function spectralLayout(graph, opts = {}) {
   const eigenvectors = [];
 
   for (let ev = 0; ev < dimensions; ev++) {
-    let v = new Float64Array(n);
+    const v = new Float64Array(n);
     // Random initialization
     for (let i = 0; i < n; i++) {
       v[i] = Math.random() - 0.5;

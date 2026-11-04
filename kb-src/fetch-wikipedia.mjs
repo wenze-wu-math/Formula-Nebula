@@ -185,7 +185,7 @@ for (const b of blocks) {
     }
 
     /* 去掉陈述开头残留的右括号/逗号（说明是在词中间切开的） */
-    let st = statement.replace(/^[)\],;:]+\s*/, '').trim()
+    const st = statement.replace(/^[)\],;:]+\s*/, '').trim()
     if (st.length < 25) continue
     statement = st
     /* 排除指向人物页的条目（例如 [[W. Hugh Woodin|Woodin]] → 人物传记） */

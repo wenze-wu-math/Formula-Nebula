@@ -102,7 +102,7 @@ function extractFromLean(path, src) {
   return out
 }
 
-let all = []
+const all = []
 for (const [path, v] of files) {
   const items = extractFromLean(path, v.text)
   all.push(...items)

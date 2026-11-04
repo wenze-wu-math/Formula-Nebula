@@ -411,7 +411,7 @@ function onHashChange() {
 
 /* ───────── 帧循环 ───────── */
 let lastViewKey = ''
-let frameTimes = []          // 最近绘制帧的时间戳（算 fps）
+const frameTimes = []          // 最近绘制帧的时间戳（算 fps）
 let pendingSince = 0         // 因"视口内公式未烘焙完"而持续重画的起点；超过 4s 不再为此空转
 let drawErrors = 0
 let lastFrameMs = 0

@@ -149,7 +149,7 @@ export function createCartouche(root, { graph, world, onChange }) {
   let stored = null
   try { stored = localStorage.getItem(LS_KEY) } catch { /* 隐私模式 */ }
   let open = stored != null ? stored === '1' : !(window.innerHeight < 760 || window.innerWidth < 760)
-  let listeners = []
+  const listeners = []
   function setOpen(v, persist = false) {
     open = !!v
     legend.hidden = !open

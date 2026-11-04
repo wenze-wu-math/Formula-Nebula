@@ -603,7 +603,7 @@ export class OptimalPathFinder {
    */
   reconstructPath(cameFrom, current, gScore, userProfile) {
     const path = [current]
-    let totalCost = gScore.get(current) || 0
+    const totalCost = gScore.get(current) || 0
 
     while (cameFrom.has(current)) {
       current = cameFrom.get(current)

@@ -74,9 +74,7 @@ function untangle(boxes) {
       const cut = (ox <= oy ? ox : oy) / 2 + 0.05
       if (ox <= oy) {
         if (a.x + a.w / 2 <= b.x + b.w / 2) { a.w -= cut; b.x += cut; b.w -= cut } else { b.w -= cut; a.x += cut; a.w -= cut }
-      } else {
-        if (a.y + a.h / 2 <= b.y + b.h / 2) { a.h -= cut; b.y += cut; b.h -= cut } else { b.h -= cut; a.y += cut; a.h -= cut }
-      }
+      } else if (a.y + a.h / 2 <= b.y + b.h / 2) { a.h -= cut; b.y += cut; b.h -= cut } else { b.h -= cut; a.y += cut; a.h -= cut }
     }
   }
 }

@@ -35,7 +35,7 @@ export function encodeProofLink(id, options = {}) {
   if (!proof) return ''
 
   const o = options && typeof options === 'object' ? options : {}
-  let pathname = typeof o.pathname === 'string' ? o.pathname : ''
+  const pathname = typeof o.pathname === 'string' ? o.pathname : ''
   let query = typeof o.query === 'string' ? o.query : ''
   let hash = typeof o.hash === 'string' ? o.hash : ''
 

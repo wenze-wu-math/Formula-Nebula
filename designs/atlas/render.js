@@ -50,7 +50,7 @@ let resTick = new Map() // 研究者 id → {ux, uy, mx, my}（单位向量 + �
 let regionPaths = null  // family → Path2D（世界坐标）
 let noise = null        // {canvas, pattern, ctx}
 let hourW = null        // 100px 字号下各时数字宽度，及 'h' 宽
-let perf = { sceneMs: 0, overlayMs: 0, layers: {} }
+const perf = { sceneMs: 0, overlayMs: 0, layers: {} }
 let lt = 0
 /** 分层计时（调试用，每帧十来次 performance.now，开销可忽略）：记录自上次打点以来的耗时 */
 function mark(name) { const t = performance.now(); perf.layers[name] = Math.round((t - lt) * 1000) / 1000; lt = t }

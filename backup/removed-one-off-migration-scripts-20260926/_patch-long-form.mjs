@@ -685,7 +685,7 @@ for (const [id, patch] of Object.entries(P)) {
 // 在当前源文件中已是正确形态（\deg、\Omega、\operatorname），无需改动；
 // 这里只做校验，若将来有人再次改坏能立刻报错。
 // 原文里反斜杠以 JS 转义形式存成两个字符 \\ ，故校验串也用双反斜杠。
-let out = line.join('\n')
+const out = line.join('\n')
 for (const needle of [
   '\\\\ell(D)-\\\\ell(K-D)=\\\\deg D+1-g$',
   '2g_X-2=n(2g_Y-2)+\\\\deg R$',

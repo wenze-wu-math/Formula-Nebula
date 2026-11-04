@@ -57,7 +57,7 @@ function literalKeys(src, exportName) {
   if (i < 0) return null
   // 从 { 开始做一次括号配对，取出对象字面量
   let depth = 0
-  let start = src.indexOf('{', i)
+  const start = src.indexOf('{', i)
   for (let j = start; j < src.length; j++) {
     if (src[j] === '{') depth++
     else if (src[j] === '}') {
@@ -364,7 +364,7 @@ const conjSrc = readFileSync(join(ROOT, 'src/data/conjectures.js'), 'utf8')
 const realIds = [...conjSrc.matchAll(/id:\s*'([^']+)'/g)].map((m) => m[1])
 assert(realIds.length > 40, `从 conjectures.js 读到 ${realIds.length} 个真实 id`)
 
-let realBad = []
+const realBad = []
 for (const id of realIds) {
   const h = encodeState({ node: id, view: 'cluster', coloring: 'status' })
   const d = decodeState(h)

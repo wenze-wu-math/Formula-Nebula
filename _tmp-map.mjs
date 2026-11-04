@@ -11,7 +11,7 @@ for (const f of readdirSync(bdir).filter(n => /^gap-.*\.md$/.test(n))) {
 const batches = {}
 for (const f of readdirSync(pdir).filter(n => /^batch-.*\.js$/.test(n))) {
   const txt = readFileSync(`${pdir}/${f}`, 'utf8')
-  batches[f] = [...txt.matchAll(/^  '([^']+)': \{$/gm)].map(m => m[1])
+  batches[f] = [...txt.matchAll(/^ {2}'([^']+)': \{$/gm)].map(m => m[1])
 }
 for (const [bf, keys] of Object.entries(batches)) {
   let best = '', bestN = -1

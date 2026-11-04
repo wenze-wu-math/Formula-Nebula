@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 const p = 'src/data/proofs/batch-08.js'
-let lines = readFileSync(p, 'utf8').split('\n')
+const lines = readFileSync(p, 'utf8').split('\n')
 const fields = ['title','body','statement','explanation','conclusion','history','author','url','doi','uses']
 let n = 0
 for (let i = 0; i < lines.length; i++) {

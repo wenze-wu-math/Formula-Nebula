@@ -32,7 +32,7 @@ const TANV = Math.tan(VFOV * Math.PI / 360)
 function sizesFor(n) {
   const ss = SIZEMIN + Math.pow(n.rank, SIZECURVE) * (SIZEMAX - SIZEMIN)
   const area = (BASE * ss) ** 2
-  let W = Math.sqrt(area * n.aspect), H = Math.sqrt(area / n.aspect)
+  const W = Math.sqrt(area * n.aspect), H = Math.sqrt(area / n.aspect)
   const k = Math.min(1, MAXW / W, MAXH / H)
   return { W: W * k, H: H * k }
 }

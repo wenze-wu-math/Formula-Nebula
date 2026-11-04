@@ -34,7 +34,7 @@ const t0 = Date.now()
 const graph = buildGraph()
 
 // 尝试加载旧缓存用于增量构建
-let oldCache = new Map()
+const oldCache = new Map()
 const oldFile = fileURLToPath(new URL('./' + CACHE_FILE, import.meta.url))
 if (existsSync(oldFile)) {
   try {

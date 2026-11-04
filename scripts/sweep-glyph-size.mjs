@@ -27,8 +27,8 @@ const MAXW = 54, MAXH = 12
 function sizesFor(n, scale) {
   const sizeScale = SIZEMIN + Math.pow(n.rank, SIZECURVE) * (SIZEMAX - SIZEMIN)
   const area = (BASE * scale * sizeScale) ** 2
-  let W = Math.sqrt(area * n.aspect)
-  let H = Math.sqrt(area / n.aspect)
+  const W = Math.sqrt(area * n.aspect)
+  const H = Math.sqrt(area / n.aspect)
   // 上限也要跟着缩放，否则放大后所有长公式都被同一个 maxWidth 截断，
   // 反而失去"重要度决定大小"的层次
   const k = Math.min(1, (MAXW * scale) / W, (MAXH * scale) / H)
@@ -69,7 +69,7 @@ function relaxPositions(nodes, radii, rInner, freedom, scale) {
         const b = ns[j], rb = Math.max(b.w, b.h) * 0.5 * SPACING
         const minD = (ra + rb) * ALLOW
         let dx = b.x - a.x, dz = b.z - a.z
-        let d2 = dx * dx + dz * dz
+        const d2 = dx * dx + dz * dz
         if (d2 >= minD * minD) continue
         let d = Math.sqrt(d2)
         if (d < 1e-6) { dx = (i % 7) - 3; dz = (j % 5) - 2; d = Math.hypot(dx, dz) || 1e-3 }

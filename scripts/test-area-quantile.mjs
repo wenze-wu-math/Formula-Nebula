@@ -37,7 +37,7 @@ const RANK = new Map(raw.map((n) => [n.id, n.rank]))
 function sizesFor(n, sizeBoost = 1.0, maxW = MAXW, maxH = MAXH) {
   const ss = SIZEMIN + Math.pow(n.rank, SIZECURVE) * (SIZEMAX - SIZEMIN)
   const area = (BASE * sizeBoost * ss) ** 2
-  let W = Math.sqrt(area * n.aspect), H = Math.sqrt(area / n.aspect)
+  const W = Math.sqrt(area * n.aspect), H = Math.sqrt(area / n.aspect)
   const k = Math.min(1, maxW / W, maxH / H)
   return { W: W * k, H: H * k }
 }

@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 const p = 'src/data/proofs/batch-08.js'
-let lines = readFileSync(p, 'utf8').split('\n')
+const lines = readFileSync(p, 'utf8').split('\n')
 let n = 0
 for (let i = 0; i < lines.length; i++) {
   if (lines[i].includes('Gorenstein（') && lines[i].includes('维数，等价地每个局部环是 CM')) {

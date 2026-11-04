@@ -222,7 +222,7 @@ function parseMultiplicative(t, p) {
  * @private
  */
 function parsePower(t, p) {
-  let base = parsePrimary(t, p)
+  const base = parsePrimary(t, p)
   p = base.pos
   if (p < t.length && t[p].type === 'symbol' && t[p].value === '^') {
     p++

@@ -35,7 +35,7 @@ import {
  * State Management
  * ═══════════════════════════════════════════════════════════════ */
 
-let currentUser = 'user_demo'
+const currentUser = 'user_demo'
 let currentGroup = null
 let whiteboardCanvas = null
 let whiteboardCtx = null
