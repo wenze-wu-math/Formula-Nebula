@@ -128,10 +128,29 @@ function spearman(a, b) {
   return 1 - (6 * s) / (n * (n * n - 1))
 }
 
+/* This script compares the CURRENT data against an older checkout (v1) to see
+ * whether adding formulas pushed the existing ones outward. The v1 baseline is
+ * a local directory that is NOT part of this repository, so the script can only
+ * run on a machine that still has it.
+ *
+ * Previously it just failed with "读不到数据" — which made it look like a real
+ * data problem when the actual cause was "this machine has no v1 checkout".
+ * Now it says so explicitly and exits 0 (skip), so it can sit in a CI-ish
+ * pipeline without pretending the project is broken. */
+if (!fs.existsSync(V1)) {
+  console.log(`SKIP: v1 baseline not found at ${V1}`)
+  console.log('      This check compares current data against an older checkout to')
+  console.log('      confirm existing formulas were not displaced. Point V1 at one to run it:')
+  console.log('        V1=/path/to/formula-nebula-v1 node scripts/check-radius-shift.mjs')
+  process.exit(0)
+}
+
 const v1 = await load(V1)
 const v2 = await load(V2)
 if (v1.size === 0 || v2.size === 0) {
-  console.error('读不到数据。用 V1=... V2=... 指定版本目录。')
+  // v1 exists but has no readable data — that IS worth failing on.
+  console.error(`读不到数据。v1=${V1} v2=${V2}`)
+  console.error('用 V1=... 指定 v1 版本目录。')
   process.exit(1)
 }
 const r1 = computeRanks(v1), r2 = computeRanks(v2)
