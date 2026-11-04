@@ -189,7 +189,9 @@ export class SearchUI {
     const optimized = this.queryEngine.optimizeQuery(query)
     const parsed = this.queryEngine.parseQuery(optimized)
 
-    let results = []
+    // Assigned in both branches of the if/else below; the empty-array
+    // initialiser was dead.
+    let results
 
     // 如果有过滤条件，先执行过滤
     if (parsed.filters.length > 0) {
@@ -264,11 +266,12 @@ export class SearchUI {
           case 'endsWith':
             return String(value).toLowerCase().endsWith(String(filter.value).toLowerCase())
 
-          case 'in':
+          case 'in': {
             const values = String(filter.value)
               .split(',')
               .map(v => v.trim().toLowerCase())
             return values.includes(String(value).toLowerCase())
+          }
 
           default:
             return true

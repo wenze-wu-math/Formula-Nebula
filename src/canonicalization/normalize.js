@@ -280,8 +280,8 @@ function parsePrimary(t, p) {
   if (tok.type === 'symbol' && tok.value === '{') {
     p++
     const inner = parseExpression(t, p)
-    p = inner.pos
-    if (p < t.length && t[p].value === '}') p++
+    // The closing brace is consumed by the caller's position tracking, so the
+    // previous 'p++' here was dead code (the returned pos is inner.pos).
     return inner
   }
 
@@ -402,20 +402,23 @@ export function compareNodes(a, b) {
       return a.value - b.value
     case NodeType.VARIABLE:
       return a.name.localeCompare(b.name)
-    case NodeType.BINARY_OP:
+    case NodeType.BINARY_OP: {
       const opCmp = a.operator.localeCompare(b.operator)
       if (opCmp !== 0) return opCmp
       const leftCmp = compareNodes(a.left, b.left)
       if (leftCmp !== 0) return leftCmp
       return compareNodes(a.right, b.right)
-    case NodeType.POWER:
+    }
+    case NodeType.POWER: {
       const baseCmp = compareNodes(a.base, b.base)
       if (baseCmp !== 0) return baseCmp
       return compareNodes(a.exponent, b.exponent)
-    case NodeType.FRACTION:
+    }
+    case NodeType.FRACTION: {
       const numCmp = compareNodes(a.numerator, b.numerator)
       if (numCmp !== 0) return numCmp
       return compareNodes(a.denominator, b.denominator)
+    }
     default:
       return 0
   }
@@ -430,9 +433,10 @@ export function toCanonicalLatex(node) {
       return node.name
     case NodeType.TEXT:
       return node.value
-    case NodeType.BINARY_OP:
+    case NodeType.BINARY_OP: {
       const op = node.operator === '*' ? '\\cdot' : node.operator
       return `${toCanonicalLatex(node.left)}${op}${toCanonicalLatex(node.right)}`
+    }
     case NodeType.POWER:
       return `{${toCanonicalLatex(node.base)}}^{${toCanonicalLatex(node.exponent)}}`
     case NodeType.FRACTION:

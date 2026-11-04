@@ -68,21 +68,24 @@ function computeSimilarity(node1, node2) {
     case 'variable':
       return node1.name === node2.name ? 1.0 : 0.3
 
-    case 'binary_op':
+    case 'binary_op': {
       if (node1.operator !== node2.operator) return 0.4
       const leftSim = computeSimilarity(node1.left, node2.left)
       const rightSim = computeSimilarity(node1.right, node2.right)
       return 0.3 + 0.35 * leftSim + 0.35 * rightSim
+    }
 
-    case 'power':
+    case 'power': {
       const baseSim = computeSimilarity(node1.base, node2.base)
       const expSim = computeSimilarity(node1.exponent, node2.exponent)
       return 0.3 + 0.4 * baseSim + 0.3 * expSim
+    }
 
-    case 'fraction':
+    case 'fraction': {
       const numSim = computeSimilarity(node1.numerator, node2.numerator)
       const denSim = computeSimilarity(node1.denominator, node2.denominator)
       return 0.3 + 0.35 * numSim + 0.35 * denSim
+    }
 
     default:
       return 0.5

@@ -304,50 +304,58 @@ export function CheckLimits(userId, resource, requested = null) {
 
   // Check based on resource type
   switch (resource) {
-    case 'storage':
+    case 'storage': {
       if (quotas.storageBytes === -1) return true; // Unlimited
       const requestedStorage = requested || usage.storageUsed || 0;
       return requestedStorage <= quotas.storageBytes;
+      }
 
-    case 'collections':
+    case 'collections': {
       if (quotas.collections === -1) return true; // Unlimited
       const currentCollections = usage.collections || 0;
       const requestedCollections = requested !== null ? requested : currentCollections + 1;
       return requestedCollections <= quotas.collections;
+      }
 
-    case 'privateCollections':
+    case 'privateCollections': {
       if (quotas.privateCollections === -1) return true; // Unlimited
       const currentPrivate = usage.privateCollections || 0;
       const requestedPrivate = requested !== null ? requested : currentPrivate + 1;
       return requestedPrivate <= quotas.privateCollections;
+      }
 
-    case 'collaborators':
+    case 'collaborators': {
       if (quotas.collaborators === -1) return true; // Unlimited
       const currentCollaborators = usage.collaborators || 0;
       const requestedCollaborators = requested !== null ? requested : currentCollaborators + 1;
       return requestedCollaborators <= quotas.collaborators;
+      }
 
-    case 'apiCalls':
+    case 'apiCalls': {
       if (quotas.apiCallsPerDay === -1) return true; // Unlimited
       const currentApiCalls = usage.apiCallsToday || 0;
       return currentApiCalls < quotas.apiCallsPerDay;
+      }
 
-    case 'fileUpload':
+    case 'fileUpload': {
       if (limits.maxFileUploadSize === -1) return true; // Unlimited
       const fileSize = requested || 0;
       return fileSize <= limits.maxFileUploadSize;
+      }
 
-    case 'annotations':
+    case 'annotations': {
       if (limits.maxAnnotations === -1) return true; // Unlimited
       const currentAnnotations = usage.annotations || 0;
       const requestedAnnotations = requested !== null ? requested : currentAnnotations + 1;
       return requestedAnnotations <= limits.maxAnnotations;
+      }
 
-    case 'sharedLinks':
+    case 'sharedLinks': {
       if (limits.maxSharedLinks === -1) return true; // Unlimited
       const currentLinks = usage.sharedLinks || 0;
       const requestedLinks = requested !== null ? requested : currentLinks + 1;
       return requestedLinks <= limits.maxSharedLinks;
+      }
 
     default:
       console.warn(`Unknown resource type: ${resource}`);
