@@ -50,7 +50,7 @@
     "format": "prettier --write \"**/*.{js,mjs,json,md,css,html}\"",
     "format:check": "prettier --check \"**/*.{js,mjs,json,md,css,html}\"",
     "quality": "node scripts/quality-check.mjs",
-    "test": "node tests/canonicalization/run-tests.js && node tests/routing/run-tests.js && node tests/export/latex-escape.test.mjs",
+    "test": "node tests/canonicalization/run-tests.js && node tests/routing/run-tests.js && node tests/export/latex-escape.test.mjs && node tests/api-keys/permission-match.test.mjs",
     "test:routing": "node tests/routing/run-tests.js",
     "test:dupes": "node scripts/_check-dupe-keys.mjs && node scripts/_check-dupe-keys-control.mjs",
     "test:proofs": "node scripts/_verify-explanation-rescue.mjs",

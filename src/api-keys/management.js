@@ -428,8 +428,25 @@ export class APIKeyValidator {
       if (pattern === '*') return true;
       if (pattern === endpoint) return true;
 
-      // Wildcard matching
-      const regex = new RegExp('^' + pattern.replace('*', '.*') + '$');
+      // Wildcard matching.
+      //
+      // The pattern is operator-supplied data and must be treated as a LITERAL
+      // with '*' as the only wildcard. Building `new RegExp('^' + pattern...)`
+      // directly let any regex metacharacter through, which was both a
+      // correctness bug and a denial-of-service vector:
+      //
+      //   pattern "a.b"   matched "axb"      (dot became "any char")
+      //   pattern "(a|b)" was treated as an alternation group
+      //   pattern "(a+)+b" took 414ms on 24 chars (catastrophic backtracking;
+      //                   it grows exponentially with endpoint length)
+      //
+      // Escape every regex metacharacter EXCEPT '*', which stays the wildcard.
+      // Escaping '*' too would turn it into a literal asterisk and break the
+      // wildcard syntax that the rest of this method relies on.
+      // The character class below is deliberately the standard escape set
+      // minus '*':  \ . + ? ^ $ { } ( ) | [ ]
+      const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp('^' + escaped.replace(/\*/g, '.*') + '$');
       return regex.test(endpoint);
     });
   }
