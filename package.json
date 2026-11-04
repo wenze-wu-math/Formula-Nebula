@@ -56,7 +56,7 @@
     "test:proofs": "node scripts/_verify-explanation-rescue.mjs",
     "test:pure": "node scripts/verify-url-state.mjs && node scripts/verify-graph-query.mjs && node scripts/verify-export.mjs && node scripts/verify-link-types.mjs && node scripts/verify-proofs.mjs && node scripts/_check-proof-file.mjs",
     "test:radius-shift": "node scripts/check-radius-shift.mjs",
-    "ci": "npm run check-data && npm run test:dupes && npm run test:proofs && npm run test:pure && npm test && npm run build && npm run verify:assets",
+    "ci": "npm run check-data && npm run test:dupes && npm run test:proofs && npm run test:pure && npm test && npm run build && npm run verify:assets && npm run verify:readme",
     "verify": "node scripts/run-all.mjs",
     "verify:proofs": "node scripts/verify-proofs.mjs",
     "verify:katex": "node verify-katex-optimization.mjs",
@@ -82,7 +82,8 @@
     "capacity-report": "npm run load-test:simulate && npm run capacity-plan",
     "verify:assets": "node scripts/verify-assets.mjs",
     "health": "node scripts/health.mjs",
-    "loop": "npm run health && npm run ci"
+    "loop": "npm run health && npm run ci",
+    "verify:readme": "node scripts/verify-readme-claims.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",

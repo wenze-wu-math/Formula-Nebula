@@ -15,9 +15,14 @@ const TUTORIAL_KEY = 'formula-nebula-tutorial-completed'
 const TUTORIAL_VERSION = '1.0'
 
 export class Tutorial {
-  constructor(scene, ui) {
+  constructor(scene, ui, stats = null) {
     this.scene = scene
     this.ui = ui
+    // Live counts, passed in from main.js (graph.stats). Previously the intro
+    // step hard-coded "405 theorems / 59 conjectures", which is the size of the
+    // curated core dataset — not what the app actually renders. A first-time
+    // user was told 405 while looking at 3630 points.
+    this.stats = stats || null
     this.currentStep = 0
     this.steps = []
     this.overlay = null
@@ -68,7 +73,14 @@ export class Tutorial {
     this.steps = [
       {
         title: '欢迎来到公式星云 🌌',
-        content: '这是一个代数几何知识图谱的3D可视化。<br><br>405条定理构成主星系，59条猜想形成星团。每个公式的位置、大小和连线都承载着数学的结构。',
+        // Numbers come from live graph stats (see constructor). Falls back to
+        // generic wording rather than to stale hard-coded figures.
+        content:
+          '这是一个代数几何知识图谱的 3D 可视化。<br><br>' +
+          (this.stats
+            ? `${this.stats.galaxyCount} 条定理构成主星系，${this.stats.conjCount} 条猜想形成星团。` +
+              '每个公式的位置、大小和连线都承载着数学的结构。'
+            : '定理构成主星系，未解决的猜想形成星团。每个公式的位置、大小和连线都承载着数学的结构。'),
         target: null,
         action: null,
       },
@@ -409,8 +421,8 @@ export class Tutorial {
 /**
  * Create and optionally start tutorial
  */
-export function createTutorial(scene, ui, autoStart = true) {
-  const tutorial = new Tutorial(scene, ui)
+export function createTutorial(scene, ui, autoStart = true, stats = null) {
+  const tutorial = new Tutorial(scene, ui, stats)
 
   if (autoStart && tutorial.shouldShow()) {
     // Wait a bit for the scene to be fully ready

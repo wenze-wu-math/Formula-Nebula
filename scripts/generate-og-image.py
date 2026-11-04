@@ -99,7 +99,9 @@ def main():
     d.text((x0, 246), "Formula Nebula", font=sub_font, fill=(167, 139, 250))
     d.text((x0, 300), "代数几何知识图谱的三维星云可视化", font=sub_font, fill=DIM)
 
-    stats = [("405", "定理"), ("59", "猜想"), ("1620", "关联")]
+    # These must match what the app actually renders (graph.stats), not the
+    # curated 405/59/1620 core — see scripts/verify-readme-claims.mjs.
+    stats = [("3630", "定理"), ("607", "猜想"), ("8747", "关联")]
     sx = x0
     for num, label in stats:
         d.text((sx, 428), num, font=stat_font, fill=(165, 180, 252))

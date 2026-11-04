@@ -588,8 +588,9 @@ async function main() {
     setTimeout(() => showUsageInsights(analytics), 3000)
   }
 
-  // Start interactive tutorial for first-time users
-  createTutorial(scene, ui, true)
+  // Start interactive tutorial for first-time users.
+  // Pass live stats so the intro text quotes what is actually on screen.
+  createTutorial(scene, ui, true, graph.stats)
 
   // Expose performance API to window for debugging
   window.__formulaNebula = window.__formulaNebula || {}
