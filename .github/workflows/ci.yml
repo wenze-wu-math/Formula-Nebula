@@ -74,6 +74,12 @@ jobs:
       - name: Run pure-Node verifiers
         run: npm run test:pure
 
+      # Dependabot opens PRs for vulnerable dependencies, but a direct push can
+      # still reintroduce one. Fail the build if `npm audit` finds a moderate
+      # or worse advisory in any dependency.
+      - name: Audit dependencies
+        run: npm run audit
+
       - name: Build
         run: npm run build
 

@@ -21,8 +21,10 @@ Currently supported versions with security updates:
 We take security vulnerabilities seriously. If you discover a security issue, please follow these steps:
 
 1. **DO NOT** open a public GitHub issue
-2. Send a detailed report to the project maintainer via:
-   - GitHub Security Advisories (preferred)
+2. Report privately, using **either** of these (the first is preferred — it
+   keeps the discussion in one place and lets us publish an advisory):
+   - **[Report a vulnerability](https://github.com/wenze-wu-math/Formula-Nebula/security/advisories/new)**
+     (GitHub private vulnerability reporting — enabled on this repository)
    - Direct email to the maintainer listed in package.json
 3. Include:
    - Description of the vulnerability
@@ -40,8 +42,9 @@ We take security vulnerabilities seriously. If you discover a security issue, pl
 我们认真对待安全漏洞。如果您发现安全问题，请遵循以下步骤：
 
 1. **请勿**公开提交 GitHub issue
-2. 通过以下方式向项目维护者发送详细报告：
-   - GitHub Security Advisories（推荐）
+2. 私下报告，以下任一方式均可（**推荐第一种**：讨论集中在一处，也便于我们发布安全公告）：
+   - **[报告漏洞](https://github.com/wenze-wu-math/Formula-Nebula/security/advisories/new)**
+     （GitHub 私密漏洞报告，本仓库已启用）
    - 直接发送邮件给 package.json 中列出的维护者
 3. 包含以下信息：
    - 漏洞描述

@@ -56,7 +56,7 @@
     "test:proofs": "node scripts/_verify-explanation-rescue.mjs",
     "test:pure": "node scripts/verify-url-state.mjs && node scripts/verify-graph-query.mjs && node scripts/verify-export.mjs && node scripts/verify-link-types.mjs && node scripts/verify-proofs.mjs && node scripts/_check-proof-file.mjs",
     "test:radius-shift": "node scripts/check-radius-shift.mjs",
-    "ci": "npm run check-data && npm run test:dupes && npm run test:proofs && npm run test:pure && npm test && npm run build && npm run verify:assets && npm run verify:readme",
+    "ci": "npm run check-data && npm run audit && npm run test:dupes && npm run test:proofs && npm run test:pure && npm test && npm run build && npm run verify:assets && npm run verify:readme",
     "verify": "node scripts/run-all.mjs",
     "verify:proofs": "node scripts/verify-proofs.mjs",
     "verify:katex": "node verify-katex-optimization.mjs",
@@ -89,7 +89,8 @@
     "dev:designs": "vite --config vite.designs.config.mjs",
     "verify:designs:depth": "node scripts/verify-designs-depth.mjs",
     "verify:manuscript": "node scripts/verify-manuscript-deeplink.mjs",
-    "verify:live": "node scripts/verify-live-site.mjs"
+    "verify:live": "node scripts/verify-live-site.mjs",
+    "audit": "npm audit --audit-level=moderate"
   },
   "dependencies": {
     "express": "^4.21.2",

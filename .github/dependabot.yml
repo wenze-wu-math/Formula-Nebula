@@ -1,0 +1,63 @@
+# Dependabot configuration
+#
+# Alerts are now enabled on the repository, which tells you when a dependency
+# has a known vulnerability. This file goes one step further: it opens a pull
+# request with the fix, so a green "0 vulnerabilities" state is maintained
+# rather than rediscovered by hand each time.
+#
+# Scope is deliberately narrow. This project ships a static site built by Vite;
+# the only dependencies that reach a user's browser are the ones bundled into
+# dist/. Everything else (eslint, prettier, typescript, @types) is build-time
+# tooling that never leaves the machine. Both are still worth keeping current,
+# but grouping keeps the noise down.
+
+version: 2
+
+updates:
+  # Runtime dependencies — these end up inside dist/ and are served to users.
+  # Grouped into one PR per week so a batch of patch bumps arrives together.
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - runtime
+    commit-message:
+      prefix: 'deps'
+      include: scope
+    groups:
+      runtime-minor-patch:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    # Major bumps of the rendering stack are reviewed by hand: three.js and
+    # katex majors have historically changed APIs the app relies on, and a
+    # silent major bump would break the scene without failing any test.
+    ignore:
+      - dependency-name: three
+        update-types: ['version-update:semver-major']
+      - dependency-name: katex
+        update-types: ['version-update:semver-major']
+      - dependency-name: mathjax-full
+        update-types: ['version-update:semver-major']
+
+  # GitHub Actions used by the workflows. Pinning these matters more than it
+  # looks: a compromised or deprecated action runs with repository tokens.
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+      - ci
+    commit-message:
+      prefix: 'ci'
+      include: scope
