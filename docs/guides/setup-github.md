@@ -104,7 +104,7 @@ git remote set-url origin git@github.com:wenze-wu-math/Formula-Nebula.git
 
 [![GitHub Stars](https://img.shields.io/github/stars/wenze-wu-math/Formula-Nebula?style=social)](https://github.com/wenze-wu-math/Formula-Nebula)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](../../CONTRIBUTING.md)
 [![Build Status](https://img.shields.io/badge/build-passing-success.svg)]()
 
 代数几何知识图谱的四维可视化系统

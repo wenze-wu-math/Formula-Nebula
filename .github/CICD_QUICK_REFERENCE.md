@@ -140,7 +140,7 @@ MAX_MEMORY: 512MB       # 512 megabytes
 
 ## Useful Links
 
-- [Full Documentation](../CICD.md)
+- [Full Documentation](../docs/guides/CICD.md)
 - [Workflow Details](workflows/README.md)
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [Docker Hub](https://hub.docker.com/)
@@ -194,5 +194,5 @@ gh run download <run-id> -n security-audit-xxx
 ## Support
 
 **Issues:** Label with `ci/cd`
-**Docs:** [CICD.md](../CICD.md)
+**Docs:** [CICD.md](../docs/guides/CICD.md)
 **Slack:** #ci-cd channel (if configured)

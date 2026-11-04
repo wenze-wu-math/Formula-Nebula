@@ -154,7 +154,7 @@ git push
 [![GitHub Stars](https://img.shields.io/github/stars/wenze-wu-math/Formula-Nebula?style=social)](https://github.com/wenze-wu-math/Formula-Nebula)
 [![GitHub Forks](https://img.shields.io/github/forks/wenze-wu-math/Formula-Nebula?style=social)](https://github.com/wenze-wu-math/Formula-Nebula/fork)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](../../CONTRIBUTING.md)
 ```
 
 ---

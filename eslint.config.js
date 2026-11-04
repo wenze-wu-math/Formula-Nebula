@@ -236,6 +236,10 @@ export default [
       'designs/*/vendor/**',
       'data/**/*.json',
       '.github/**',
+      // Archived historical material (see docs/archive/README.md). Kept in the
+      // repo for provenance, not maintained, and intentionally left in the
+      // shape it had when it was written.
+      'docs/archive/**',
       // VitePress build output — bundled/transpiled artifacts, not sources.
       'docs/.vitepress/dist/**',
       'docs/.vitepress/cache/**',
