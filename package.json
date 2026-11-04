@@ -56,7 +56,7 @@
     "test:proofs": "node scripts/_verify-explanation-rescue.mjs",
     "test:pure": "node scripts/verify-url-state.mjs && node scripts/verify-graph-query.mjs && node scripts/verify-export.mjs && node scripts/verify-link-types.mjs && node scripts/verify-proofs.mjs && node scripts/_check-proof-file.mjs",
     "test:radius-shift": "node scripts/check-radius-shift.mjs",
-    "ci": "npm run check-data && npm run test:dupes && npm run test:proofs && npm run test:pure && npm test && npm run build",
+    "ci": "npm run check-data && npm run test:dupes && npm run test:proofs && npm run test:pure && npm test && npm run build && npm run verify:assets",
     "verify": "node scripts/run-all.mjs",
     "verify:proofs": "node scripts/verify-proofs.mjs",
     "verify:katex": "node verify-katex-optimization.mjs",
@@ -79,7 +79,8 @@
     "load-test:stress": "k6 run -e STAGE=stress scripts/load-test.js",
     "load-test:simulate": "node scripts/simulate-load-test.mjs",
     "capacity-plan": "node scripts/capacity-plan.mjs",
-    "capacity-report": "npm run load-test:simulate && npm run capacity-plan"
+    "capacity-report": "npm run load-test:simulate && npm run capacity-plan",
+    "verify:assets": "node scripts/verify-assets.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",

@@ -87,6 +87,13 @@ jobs:
           echo "dist size (excluding sourcemaps):"
           du -sh --exclude='*.map' dist
 
+      # Every asset referenced by index.html and manifest.json must actually
+      # exist in dist/. A missing icon or og:image does not break the build —
+      # the browser just shows a blank tile, or a shared link renders empty —
+      # so the failure is invisible unless something checks for it.
+      - name: Verify referenced assets exist
+        run: npm run verify:assets
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:

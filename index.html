@@ -23,9 +23,13 @@
   <meta property="twitter:description" content="405条定理 + 59条猜想，在3D星云中探索数学的结构与美">
   <meta property="twitter:image" content="/og-image.jpg">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="alternate icon" href="/favicon.ico">
+  <!-- Favicon — relative so it also resolves under a sub-path deploy
+       (GitHub Pages serves this from /<repo>/, where "/favicon.svg" 404s). -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Web app manifest. Was never linked from the page, so browsers never
+       discovered it and "Add to Home Screen" fell back to a generic tile. -->
+  <link rel="manifest" href="manifest.json">
 
   <!-- Title -->
   <title>Formula Nebula - 公式诗云 · 代数几何知识星云</title>
