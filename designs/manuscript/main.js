@@ -336,7 +336,8 @@ export const actions = {
   async copyLink() {
     flushHash()
     const url = location.href
-    let ok = false
+    // Assigned on every path below; the `= false` initialiser was dead.
+    let ok
     try { await navigator.clipboard.writeText(url); ok = true } catch {
       try {
         const ta = document.createElement('textarea')

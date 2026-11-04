@@ -87,7 +87,8 @@
     "verify:designs": "node scripts/verify-designs.mjs",
     "verify:gallery": "node scripts/verify-gallery.mjs",
     "dev:designs": "vite --config vite.designs.config.mjs",
-    "verify:designs:depth": "node scripts/verify-designs-depth.mjs"
+    "verify:designs:depth": "node scripts/verify-designs-depth.mjs",
+    "verify:manuscript": "node scripts/verify-manuscript-deeplink.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",
