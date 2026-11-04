@@ -796,12 +796,40 @@ export class LaTeXExporter {
     URL.revokeObjectURL(url)
   }
 
+  /**
+   * Escape plain text for safe inclusion in a LaTeX document.
+   *
+   * This must be a SINGLE pass over the input. A chain of .replace() calls
+   * cannot express it correctly: every replacement string introduces
+   * backslashes and braces (\textbackslash{}, \{, \%), so any later .replace()
+   * in the chain re-processes characters that an earlier one just produced.
+   *
+   * The original code did exactly that and emitted broken LaTeX:
+   *   "back\slash" -> back\textbackslash\{\}slash   (braces escaped again)
+   *   "a_b"        -> a\textbackslash{}_b           (the prefix got mangled)
+   *
+   * A single character-by-character pass is the only formulation where the
+   * output of one substitution can never be seen by another.
+   *
+   * Note: this is LaTeX escaping, not HTML escaping. The result goes into a
+   * .tex file the user downloads; it is never inserted into the DOM.
+   */
   escape(text) {
-    return String(text)
-      .replace(/\\/g, '\\textbackslash{}')
-      .replace(/[&%$#_{}]/g, '\\$&')
-      .replace(/~/g, '\\textasciitilde{}')
-      .replace(/\^/g, '\\textasciicircum{}')
+    const map = {
+      '\\': '\\textbackslash{}',
+      '&': '\\&',
+      '%': '\\%',
+      $: '\\$',
+      '#': '\\#',
+      _: '\\_',
+      '{': '\\{',
+      '}': '\\}',
+      '~': '\\textasciitilde{}',
+      '^': '\\textasciicircum{}',
+    }
+    let out = ''
+    for (const ch of String(text)) out += map[ch] ?? ch
+    return out
   }
 
   cleanMath(text) {
