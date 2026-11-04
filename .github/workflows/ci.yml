@@ -63,8 +63,16 @@ jobs:
 
       # Real assertions: these throw on failure instead of printing via
       # console.assert. Runs on plain node, no test framework needed.
-      - name: Run canonicalization tests
-        run: node tests/canonicalization/run-tests.js
+      - name: Run unit tests
+        run: npm test
+
+      # The project's own pure-Node verifiers: 412 assertions covering
+      # deep-link encoding, the query language, SVG export, the relation
+      # classifier, proof data validity and layout invariants. They need no
+      # browser and take ~3s, but were previously unreachable in CI (only via
+      # 'npm run verify', which also spins up a browser).
+      - name: Run pure-Node verifiers
+        run: npm run test:pure
 
       - name: Build
         run: npm run build
