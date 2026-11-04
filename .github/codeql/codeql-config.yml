@@ -1,0 +1,45 @@
+# CodeQL configuration
+#
+# Scope decision, not a blanket suppression.
+#
+# The repository ships two very different kinds of JavaScript:
+#
+#   1. The application (src/, and the browser-facing parts of designs/).
+#      This is what users run. CodeQL must keep scanning it at full strength —
+#      and it has already paid off: alert #45 (regex injection in
+#      src/api-keys/management.js) was a genuine ReDoS + mis-match bug, now
+#      fixed, and alert #48 led to a real double-escaping defect in the LaTeX
+#      exporter.
+#
+#   2. One-off data tooling (scripts/, kb-src/). These are scraping and
+#      audit scripts that were run once while assembling the knowledge base.
+#      They are not bundled, not served, and not executed at runtime.
+#
+# For category 2 the "bad HTML filtering regexp" / "incomplete multi-character
+# sanitization" / "double escaping" families fire on `html.replace(/<[^>]+>/g,
+# ' ')` — the standard way to strip tags from a fetched page. The finding is
+# technically true, but the risk model does not apply: the input is a fixed
+# upstream page (nLab, Wikipedia, the Stacks Project), never user input, and
+# the output goes into a build-time data file rather than the DOM. Fixing them
+# would mean adding a real HTML parser to scripts that are already finished,
+# changing nothing about what users receive.
+#
+# So those specific paths are excluded below. Everything else — including
+# src/, designs/, tests/ and the workflows themselves — stays in scope.
+#
+# If one of these scripts is ever promoted into the application, delete the
+# corresponding path from this file.
+
+name: "Formula Nebula CodeQL"
+
+paths-ignore:
+  # One-off scraping / audit scripts. See rationale above.
+  - scripts
+  - kb-src
+  # Historical material kept for provenance, never executed.
+  - docs/archive
+  # Vendored third-party code and build output.
+  - node_modules
+  - dist
+  - docs/.vitepress/dist
+  - public/vendor
