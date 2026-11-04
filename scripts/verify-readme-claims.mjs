@@ -108,6 +108,26 @@ if (badgeMatch) {
   check(`CI badge targets an existing workflow (${badgeMatch[1]})`, fs.existsSync(wf))
 }
 
+// ── every self-hosted URL in the README must actually resolve ──────────────
+// The README advertises the live site. A link to a path Pages does not deploy
+// (for example /designs/, which is not in dist/) is worse than no link: the
+// reader clicks it and lands on a 404. Verify each one over the network.
+const SITE = 'https://wenze-wu-math.github.io/Formula-Nebula'
+const ownUrls = [
+  ...new Set(
+    [...readme.matchAll(/https:\/\/wenze-wu-math\.github\.io\/Formula-Nebula[^\s)\]]*/g)].map((m) => m[0])
+  ),
+]
+for (const u of ownUrls) {
+  const label = u.replace(SITE, '') || '/'
+  try {
+    const res = await fetch(u, { method: 'GET', redirect: 'follow' })
+    check(`live URL resolves: ${label}`, res.ok, `HTTP ${res.status}`)
+  } catch (err) {
+    check(`live URL resolves: ${label}`, false, err.message)
+  }
+}
+
 // ── length budget ──────────────────────────────────────────────────────────
 const lines = readme.split('\n').length
 check('README stays under 160 lines', lines <= 160, `${lines} lines`)

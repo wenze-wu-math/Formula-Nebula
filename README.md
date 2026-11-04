@@ -11,7 +11,9 @@
 [![CI](https://github.com/wenze-wu-math/Formula-Nebula/actions/workflows/ci.yml/badge.svg)](https://github.com/wenze-wu-math/Formula-Nebula/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-[快速开始](#快速开始) · [它是什么](#它是什么) · [截图](#看看它长什么样) · [参与贡献](CONTRIBUTING.md)
+### [🌌 在线体验 → wenze-wu-math.github.io/Formula-Nebula](https://wenze-wu-math.github.io/Formula-Nebula/)
+
+[快速开始](#快速开始) · [它是什么](#它是什么) · [九种方案](#不止一个-3d-星云) · [参与贡献](CONTRIBUTING.md)
 
 </div>
 
@@ -94,6 +96,9 @@ npm run ci           # 完整检查：数据完整性 + 67 项断言 + 412 项�
 
 > 这些方案需要由 Vite 提供（它们 `import 'three'` 等裸模块），所以用
 > `npm run dev:designs` 启动，而不是直接双击 HTML 文件打开。
+>
+> **线上只部署主应用**（在线体验那个链接）。九个方案合计 24 MB，且依赖
+> Vite 的模块解析，不适合放进静态托管产物 —— 想看它们请本地运行。
 
 ## 你能做什么
 
