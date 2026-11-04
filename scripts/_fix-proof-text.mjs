@@ -28,7 +28,11 @@ const BAD_TEXT = /[\u2018\u2019\u3001-\u303F\uFF00-\uFFEF\u00C0-\u024F\u1E00-\u1
 const NESTED = /\text\{[^{}]*\$[^{}]*\$[^{}]*\}/
 
 function segments(value) {
-  const re = /\$\$([\s\S]*?)\$\$|\\[([\s\S]*?)\\]|\\(([\s\S]*?)\\)|\$([^$\n]+)\$/g
+  // Matches the four math delimiters this project uses: $$...$$, \[...\], \(...\), $...$
+  // NOTE: the literal backslash before a bracket must itself be escaped
+  // (\\[ not \[), otherwise the regex engine reads `[` as the start of a
+  // character class and the whole expression fails to parse.
+  const re = /\$\$([\s\S]*?)\$\$|\\\[([\s\S]*?)\\\]|\\\(([\s\S]*?)\\\)|\$([^$\n]+)\$/g
   const out = []
   let m
   while ((m = re.exec(String(value)))) out.push(m[1] ?? m[2] ?? m[3] ?? m[4] ?? '')

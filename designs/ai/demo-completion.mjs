@@ -56,7 +56,7 @@ predictions.slice(0, 10).forEach(pred => {
   const exp = ExplainPrediction(pred)
   console.log(`\n${'─'.repeat(70)}`)
   console.log(`Rank #${pred.rank}: ${pred.source} → ${pred.target}`)
-  console.log(${'─'.repeat(70)})
+  console.log(`${'─'.repeat(70)}`)
   console.log(`Relationship: ${pred.predictedType}`)
   console.log(`Confidence: ${(pred.confidence * 100).toFixed(1)}%`)
   console.log(`Composite Score: ${pred.rankScore.toFixed(4)}`)

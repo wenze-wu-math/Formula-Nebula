@@ -16,6 +16,13 @@ import {
   ExportReadingList
 } from '../../kb-src/summarize-papers.mjs'
 
+// ES modules only allow import/export at the top level. These were declared
+// inside testCache(), which is a syntax error that made the whole file
+// unparseable — so none of these integration tests could ever run.
+import { existsSync, readdirSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 console.log('╔═══════════════════════════════════════════════════════════╗')
 console.log('║  Paper Summarization System - Integration Tests           ║')
 console.log('╚═══════════════════════════════════════════════════════════╝\n')
@@ -167,9 +174,6 @@ function testCache() {
   console.log('\n[Test 5] Cache Verification')
   console.log('─'.repeat(60))
 
-  import { existsSync, readdirSync } from 'node:fs'
-  import { join, dirname } from 'node:path'
-  import { fileURLToPath } from 'node:url'
 
   const HERE = dirname(fileURLToPath(import.meta.url))
   const cacheDir = join(HERE, '..', '..', 'kb-src', 'out', 'papers-cache')
