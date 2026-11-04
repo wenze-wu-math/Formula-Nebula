@@ -364,24 +364,21 @@
   </div>
 
   <script type="module">
-    // Load theorem list
+    // The canonical source of theorem data is the shared knowledge graph
+    // (designs/shared/kb.js), which the other design prototypes already use.
+    // This page previously fetched /kb-src/out/theorems-list.json — a build
+    // artifact that does not exist in a fresh clone. Worse, the Vite dev server
+    // answers unknown paths with index.html, so `response.ok` was true and
+    // JSON.parse then choked on "<!DOCTYPE html".
     async function loadTheorems() {
       try {
-        // In production, this would load from the knowledge graph
-        const response = await fetch('/kb-src/out/theorems-list.json').catch(() => null)
-
-        if (!response || !response.ok) {
-          // Fallback: hardcoded list of key theorems
-          return [
-            { id: 'nullstellensatz', name: 'Hilbert Nullstellensatz' },
-            { id: 'riemann-roch', name: 'Riemann-Roch Theorem' },
-            { id: 'grothendieck-riemann-roch', name: 'Grothendieck-Riemann-Roch' },
-            { id: 'serre-duality', name: 'Serre Duality' },
-            { id: 'chow-lemma', name: 'Chow Lemma' },
-          ]
-        }
-
-        return await response.json()
+        const { getGraph } = await import('../shared/kb.js')
+        const graph = getGraph()
+        return graph.nodes
+          .filter((n) => !n.cluster && !n.researcher)
+          .map((n) => ({ id: n.id, name: n.en || n.name || n.id }))
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .slice(0, 300)
       } catch (e) {
         console.error('Failed to load theorems:', e)
         return []

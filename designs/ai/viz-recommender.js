@@ -98,7 +98,7 @@ function computeDegrees(graph) {
   }
 
   // Count edges
-  for (const edge of graph.edges) {
+  for (const edge of graph.links) {
     const src = degrees.get(edge.src)
     const tgt = degrees.get(edge.tgt)
     if (src) src.out++
@@ -128,7 +128,7 @@ function kHopNeighborhood(graph, nodeId, k = 2) {
   for (let i = 0; i < k; i++) {
     const nextFrontier = new Set()
 
-    for (const edge of graph.edges) {
+    for (const edge of graph.links) {
       if (frontier.has(edge.src) && !visited.has(edge.tgt)) {
         nextFrontier.add(edge.tgt)
         visited.add(edge.tgt)
@@ -161,7 +161,7 @@ function clusteringCoefficient(graph, nodeId = null) {
     if (neighbors.size < 2) return 0
 
     let edgeCount = 0
-    for (const edge of graph.edges) {
+    for (const edge of graph.links) {
       if (neighbors.has(edge.src) && neighbors.has(edge.tgt)) {
         edgeCount++
       }
@@ -210,7 +210,7 @@ function pathMetrics(graph, nodeId) {
     const current = queue[head++]
     const currentDist = distances.get(current)
 
-    for (const edge of graph.edges) {
+    for (const edge of graph.links) {
       const neighbor = edge.src === current ? edge.tgt :
                        edge.tgt === current ? edge.src : null
 
@@ -437,7 +437,7 @@ export function AutoHighlightConnections(theoremId) {
   }
 
   // Find all edges connected to this node
-  const connectedEdges = graph.edges.filter(e =>
+  const connectedEdges = graph.links.filter(e =>
     e.src === theoremId || e.tgt === theoremId
   )
 
@@ -589,7 +589,7 @@ function findShortestPath(graph, startId, endId) {
     const current = path[path.length - 1]
 
     // Find neighbors
-    for (const edge of graph.edges) {
+    for (const edge of graph.links) {
       const neighbor = edge.src === current ? edge.tgt :
                        edge.tgt === current ? edge.src : null
 
@@ -773,7 +773,7 @@ export function GetRecommenderStats() {
 
   return {
     totalNodes: graph.nodes.length,
-    totalEdges: graph.edges.length,
+    totalEdges: graph.links.length,
     avgDegree,
     avgClustering,
     hasTemporalInfo: hasTemporal,

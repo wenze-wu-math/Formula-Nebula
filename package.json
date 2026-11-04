@@ -83,7 +83,10 @@
     "verify:assets": "node scripts/verify-assets.mjs",
     "health": "node scripts/health.mjs",
     "loop": "npm run health && npm run ci",
-    "verify:readme": "node scripts/verify-readme-claims.mjs"
+    "verify:readme": "node scripts/verify-readme-claims.mjs",
+    "verify:designs": "node scripts/verify-designs.mjs",
+    "verify:gallery": "node scripts/verify-gallery.mjs",
+    "dev:designs": "vite --config vite.designs.config.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",
