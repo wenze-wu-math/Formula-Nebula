@@ -1440,11 +1440,13 @@ export function createScene(canvas, graph, ui) {
   return {
     renderer,
     scene,
-    camera,
     controls,
     links,          // 关联连线：highlight(id) 只显示该公式的关联（main.js 的 onClose 要用）
-    nodeGroup,      // 会整体自转的组：测试脚本算世界坐标时要用它的 matrixWorld
     buildNodes,
+    // NOTE: `camera` and `nodeGroup` are deliberately not listed as shorthand
+    // properties here — they are exposed below as getters (`get camera()` /
+    // `get nodeGroup()`). Listing them here too made the object literal carry
+    // duplicate keys; the getter silently won, so the shorthand was dead code.
 
     /**
      * 连线悬停的瞄准探针（只给验证脚本用）。

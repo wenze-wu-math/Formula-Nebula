@@ -786,7 +786,13 @@ export const LINKS = {
 
 /* ─────────────────── 背景星云 / 星尘 ─────────────────── */
 export const NEBULA = {
-  enabled: true,
+  // NOTE: this object used to declare `enabled: true` here and then a second
+  // `enabled: false` further down. The later key silently won, so the
+  // documented "background particle" master switch was dead: flipping this
+  // line changed nothing. The effective value was, and remains, false — the
+  // background particle layer is off by design (see the long note below).
+  // Kept as a single declaration so the switch actually works.
+  enabled: false,
 
   // 漩涡星系粒子。旋臂数与缠绕度**必须与 LAYOUT 保持一致**，
   // 否则背景星云和公式会各转各的臂，看起来像两套漩涡叠在一起。
@@ -803,8 +809,9 @@ export const NEBULA = {
    * 保留 enabled 开关与全部参数：想恢复背景粒子时把 enabled 改回 true 即可，
    * 但**必须同时**把 arms/spin/armSpread 对齐到 8/2.6/0.085 ——
    * 这三个值原来还是 4 条臂那一套（4/5.2/0.42），与公式层不同步。
+   *
+   * （enabled 已上移到本对象开头，只保留一处声明；此处不再重复。）
    */
-  enabled: false,
   particleCount: 30000,
   particleRadius: 700,     // 要明显大于 LAYOUT.radiusOuter(175)，星云才包得住公式层
   arms: 8,                 // 与 LAYOUT 的旋臂数一致（修正 1：4 → 8）
