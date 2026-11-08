@@ -110,8 +110,17 @@ export default defineConfig({
       },
     },
 
-    // 启用源码映射（便于调试）
-    sourcemap: true,
+    // 源码映射。
+    //
+    // 之前是 `true`：构建会生成 8 个 .map（合计 19 MB）并留在 dist/ 里。
+    // GitHub Pages 只部署 dist/，而 Pages 不对 .map 做任何访问限制 —— 任何
+    // 人都能直接下载它们，等于把完整源码公开（连注释、TODO、内部路径一起），
+    // 同时白占流量配额。对一个以"可验证"为卖点的项目，这不该是默认行为。
+    //
+    // 默认关闭。确实需要调试线上构建时显式打开：
+    //   NEBULA_SOURCEMAP=1 npm run build
+    // 注意 .map 会再次进入 dist/，此时**不要**部署那一次构建产物。
+    sourcemap: process.env.NEBULA_SOURCEMAP === '1',
   },
 
   // 优化依赖预构建

@@ -106,31 +106,58 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
 
 ## 三、当前的已知债务
 
-按上面的优先级整理，下一轮从这里挑。
+以 `docs/EVOLUTION-GOAL.md` 的 G1–G10 为准，跑 `npm run score` 看实时进度。
+下面是各项的当前状态与卡点，**按建议顺序排列**。
 
-### P2 · 静默失效（最值得做）
+### 已完成
 
-- [ ] **`src/components/` 与 `src/semanticSearchIntegration.example.js` 的 `no-undef`**（9 处）
-  这些文件引用了从不存在的 `showNodePanel`、`RealtimeService`、`UserDashboard`。
-  它们不在应用入口的依赖链上，所以不影响构建——但也意味着**这些代码从来没运行过**。
-  要么接进应用，要么明确标记为未使用并归档。
+- [x] **G1 · source map 不公开部署**（2026-11-08）
+  `vite.config.js` 原本写死 `sourcemap: true`，构建产出 8 个 `.map`（19 MB）
+  留在 `dist/`，Pages 直接公开可下载 = 完整源码泄露。
+  改为默认关闭，需要调试线上构建时显式 `NEBULA_SOURCEMAP=1 npm run build`。
+  负向对照：开启后 `score` 的 G1 变 PASS→FAIL，关闭后恢复。
 
-- [ ] **`designs/` 下几个原型站的完整性**
-  `designs/atlas`、`designs/map`、`designs/nebula-plus` 是独立的设计原型，
-  各自有 `index.html`。没人验证过它们现在还能打开。
+- [x] **lint 错误清零**（2026-11-08，51 → 0）
+  修掉的都是真缺陷：`linkTypes.js` 重复键、`scene.js` 重复键、
+  `generate-changelog.mjs` 用 JS 不支持的 `\Z`、5 处 catch 丢弃原始错误、
+  `components/`+`services/` 无法加载、`semanticSearchIntegration` 的
+  `showNodePanel` 未定义。
 
-### P4 · 可维护性
+- [x] **`no-undef` 9 处**（原 P2 第一项）
+  已修：统一 ES 导出、补缺失 import、`showNodePanel` 改为宿主注入。
 
-- [ ] **lint 仍有 53 个错误**（主要是 `no-useless-assignment` 27 个）
-  跑 `npm run lint 2>&1 | grep error` 看具体位置。多数是机械可修的。
+- [x] **`designs/` 九方案完整性**
+  已逐个真机验证，并留下 `verify:designs` / `verify:gallery` /
+  `verify:designs:depth` / `verify:manuscript` 四个检查器。
 
-- [ ] **`tests/` 覆盖仍然薄**
-  只有 canonicalization（28）、routing（12）、latex-escape（12）、
-  api-keys（15）。而 `src/` 有 21 个子模块。
+### 未完成
+
+- [ ] **G2 · 负向对照文档**
+  需要 `docs/NEGATIVE-CONTROLS.md`，为每个 `verify:*` / `check-*` 脚本
+  记录「故意破坏什么 → 报什么错 → 恢复」。目前只有零星几个做过。
+
+- [ ] **G5 · 数据按需加载**（最大的那块）
+  `src/graph.js` 静态 import 全部 15 个数据批次（6.0 MB 源码），
+  主包 9.1 MB 里 82% 是数据。要改成「同步核心 + 异步补齐」，
+  但 `buildGraph()` 是同步纯函数且被大量测试依赖，属结构性改动。
+
+- [ ] **G3 / G4 · 主包体积**（2312 KB gzip，目标 1500 / 1000）
+  依赖 G5。数据不下线，体积降不下来。
+
+- [ ] **G6 / G7 · 首屏烘焙与 TTI**
+  需要先造 `firstVisible` 测量。现在 `splash` 要等全部 4306 个公式烘焙完
+  才消失，但**没有可信的计时数据**，所以 G6/G7 在 score 里报 TODO 而非 PASS。
+
+- [ ] **G8 / G9 · 核心单测**
+  `src/graph.js`（产出 4306 节点）和 `src/layout.js`（星云布局）零单测。
+  目前靠 `check-*.mjs` 手工脚本兜底，不在 CI 里。
+
+- [ ] **G10 · lint warnings 389 → ≤200**
+  绝大多数是 `no-unused-vars`，集中在库形态模块。
 
 ### P5 · 功能（暂时别碰）
 
-ROADMAP.md 里有时间轴模式、多层级缩放等计划。**等 P0–P4 清空了再说。**
+ROADMAP.md 里有时间轴模式、多层级缩放等计划。**等 G1–G10 全绿再说。**
 
 ---
 
