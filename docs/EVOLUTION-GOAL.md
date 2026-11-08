@@ -63,8 +63,13 @@
 - [ ] **G8 · `src/graph.js` 有单元测试**
   它产出 4306 节点 / 8747 关联，是全局最重要的纯函数，目前零单测。
 
-- [ ] **G9 · `src/layout.js` 有单元测试**
-  星云布局（旋臂、半径、去重叠）全靠 `check-*.mjs` 手工脚本兜，不在 CI。
+- [ ] **G9 · 星云布局有单元测试**
+  原表述写的是 `src/layout.js`，**但该文件不存在** —— 布局实际是
+  `src/graph.js` 里的 `layoutGraph(graph, baked)`（graph.js:437）。
+  目标本意（"布局要有单测"）不变，验收点改为：存在测试文件真的
+  import 并调用 `layoutGraph`，且覆盖盘面/球体/确定性等几何不变量。
+  `scripts/score.mjs` 的 G9 已改为按此判定。
+  星云布局（旋臂、半径、去重叠）此前全靠 `check-*.mjs` 手工脚本兜，不在 CI。
 
 - [ ] **G10 · lint warnings ≤ 200**
   现状 389。多数是 `no-unused-vars`，属可清理项。

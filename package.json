@@ -56,7 +56,7 @@
     "test:proofs": "node scripts/_verify-explanation-rescue.mjs",
     "test:pure": "node scripts/verify-url-state.mjs && node scripts/verify-graph-query.mjs && node scripts/verify-export.mjs && node scripts/verify-link-types.mjs && node scripts/verify-proofs.mjs && node scripts/_check-proof-file.mjs",
     "test:radius-shift": "node scripts/check-radius-shift.mjs",
-    "ci": "npm run check-data && npm run audit && npm run test:dupes && npm run test:proofs && npm run test:pure && npm run test:graph && npm test && npm run build && npm run verify:assets && npm run verify:readme",
+    "ci": "npm run check-data && npm run audit && npm run test:dupes && npm run test:proofs && npm run test:pure && npm run test:graph && npm run test:layout && npm test && npm run build && npm run verify:assets && npm run verify:readme",
     "verify": "node scripts/run-all.mjs",
     "verify:proofs": "node scripts/verify-proofs.mjs",
     "verify:katex": "node verify-katex-optimization.mjs",
@@ -93,7 +93,8 @@
     "audit": "npm audit --audit-level=moderate",
     "score": "node scripts/score.mjs",
     "verify:final": "node scripts/verify-final.mjs",
-    "test:graph": "node tests/graph/unit.test.mjs"
+    "test:graph": "node tests/graph/unit.test.mjs",
+    "test:layout": "node tests/layout/unit.test.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",

@@ -268,9 +268,35 @@ async function visitOnce(url, { waitSplash = true, waitMs = 180000 } = {}) {
 
 // ── main ───────────────────────────────────────────────────────────────────
 const watchdog = setTimeout(() => {
-  console.error(`\n✗ 硬超时（${HARD_TIMEOUT_MS / 60000} 分钟）— 立即清理退出`)
+  console.error(`\n✗ 硬超时（${HARD_TIMEOUT_MS / 60000} 分钟）— 强制清理后退出`)
+  // killAll() only covers children we spawned. A timed-out run can leave a
+  // browser subprocess that has been re-parented and is no longer in that
+  // list, so sweep by name as well. This matters: a leaked headless browser
+  // holds a WebGL context and keeps a core busy, which is exactly the
+  // resource leak this script exists to prevent.
   killAll()
-  setTimeout(() => process.exit(1), 800)
+  try {
+    if (process.platform === 'win32') {
+      execFileSync(
+        'powershell',
+        [
+          '-NoProfile',
+          '-Command',
+          "Get-CimInstance Win32_Process -Filter \"Name='msedge.exe'\" | Where-Object { $_.CommandLine -like '*--headless*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }",
+        ],
+        { stdio: 'ignore', timeout: 15000 }
+      )
+    }
+  } catch {
+    /* best effort */
+  }
+  // Give the OS a moment to actually reap them before we exit, otherwise the
+  // residual check below reports a phantom leak.
+  setTimeout(() => {
+    const left = leftoverHeadless()
+    if (left > 0) console.error(`  ! 超时清理后仍残留 ${left} 个无头进程`)
+    process.exit(1)
+  }, 2500)
 }, HARD_TIMEOUT_MS)
 
 // Assigned once at the end; no initial value is ever read.

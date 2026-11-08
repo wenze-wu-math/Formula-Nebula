@@ -221,10 +221,12 @@ record('G7', 'TTI ≤ 15 秒', 'TODO', '依赖 G6 的可信测量，当前无可
 
 // ── G8 / G9 · core module unit tests ───────────────────────────────────────
 {
-  // "Has a unit test" must mean: a test file exists that actually imports the
-  // module under test. Checking only the filename is too weak — a file called
-  // graph.test.mjs that never touches graph.js would score a false PASS.
-  const importsModule = (relPath) => {
+  // G9 originally pointed at src/layout.js, which does not exist — the layout
+  // is `layoutGraph()` inside src/graph.js. Judging by "a test file imports the
+  // module" is too weak here, because tests/graph/unit.test.mjs would satisfy
+  // it for G8 and G9 simultaneously without ever touching the layout. So G9
+  // additionally requires that the test actually calls layoutGraph().
+  const testFilesImporting = (relPath) => {
     const dir = path.join(ROOT, 'tests')
     if (!fs.existsSync(dir)) return null
     const wanted = relPath.replace(/\\/g, '/')
@@ -235,10 +237,8 @@ record('G7', 'TTI ≤ 15 秒', 'TODO', '依赖 G6 的可信测量，当前无可
         if (e.isDirectory()) walk(p)
         else if (/\.(mjs|js)$/.test(e.name)) {
           const body = fs.readFileSync(p, 'utf8')
-          // Match any import that resolves to the module, regardless of how
-          // many ../ segments the author used.
           if (body.includes(`src/${wanted}`) || body.includes(`/${wanted}`)) {
-            hits.push(path.relative(ROOT, p).replace(/\\/g, '/'))
+            hits.push({ file: p, body })
           }
         }
       }
@@ -247,17 +247,22 @@ record('G7', 'TTI ≤ 15 秒', 'TODO', '依赖 G6 的可信测量，当前无可
     return hits
   }
 
-  for (const [id, label, rel] of [
-    ['G8', 'src/graph.js 有单元测试', 'graph.js'],
-    ['G9', 'src/layout.js 有单元测试', 'layout.js'],
+  for (const [id, label, rel, mustCall] of [
+    ['G8', 'src/graph.js 有单元测试', 'graph.js', 'buildGraph'],
+    ['G9', '星云布局(layoutGraph)有单元测试', 'graph.js', 'layoutGraph'],
   ]) {
-    const hits = importsModule(rel)
+    const hits = testFilesImporting(rel)
     if (hits === null) {
       record(id, label, 'FAIL', 'tests/ 目录不存在')
     } else if (hits.length === 0) {
       record(id, label, 'FAIL', `没有任何测试 import src/${rel}`)
     } else {
-      record(id, label, 'PASS', hits[0] + (hits.length > 1 ? ` 等 ${hits.length} 个` : ''))
+      const calling = hits.filter((h) => h.body.includes(mustCall))
+      if (calling.length === 0) {
+        record(id, label, 'FAIL', `测试 import 了 src/${rel} 但从未调用 ${mustCall}()`)
+      } else {
+        record(id, label, 'PASS', path.relative(ROOT, calling[0].file).replace(/\\/g, '/'))
+      }
     }
   }
 }
