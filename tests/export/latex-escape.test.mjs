@@ -17,12 +17,12 @@ const SRC = path.join(ROOT, 'src', 'proof-explorer.js')
 
 // Pull the escape() method out of the class text so we test the real code.
 const source = fs.readFileSync(SRC, 'utf8')
-const match = source.match(/\n  escape\(text\) \{[\s\S]*?\n  \}\n/)
+const match = source.match(/\n {2}escape\(text\) \{[\s\S]*?\n {2}\}\n/)
 if (!match) {
   console.error('could not locate escape() in src/proof-explorer.js')
   process.exit(1)
 }
-const escape = new Function(`${match[0].replace(/^\n  escape/, 'function escape')}; return escape;`)()
+const escape = new Function(`${match[0].replace(/^\n {2}escape/, 'function escape')}; return escape;`)()
 
 let passed = 0
 let failed = 0

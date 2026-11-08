@@ -378,7 +378,7 @@ function finishBench(now) {
  *  到点后首帧一画完就算就绪——公式之后继续渐进浮现。放在 pumpBakes 之前，免得一次长排版把就绪推迟一帧。 */
 function checkReady(now) {
   if (state.ready || !firstDrawn) return
-  let pending = 0
+  let pending
   try { pending = labelStats().pendingBakes || 0 } catch { pending = 0 }
   if (pending === 0 || now >= Math.min(T0 + 2500, 2600)) {
     state.ready = true

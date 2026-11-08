@@ -155,7 +155,7 @@ class SQLiteAdapter {
 
       console.log(`SQLite connected: ${dbPath}`);
     } catch (err) {
-      throw new Error(`SQLite connection failed: ${err.message}`);
+      throw new Error(`SQLite connection failed: ${err.message}`, { cause: err });
     }
   }
 
@@ -216,7 +216,7 @@ class PostgreSQLAdapter {
 
       console.log(`PostgreSQL connected: ${this.config.database}`);
     } catch (err) {
-      throw new Error(`PostgreSQL connection failed: ${err.message}`);
+      throw new Error(`PostgreSQL connection failed: ${err.message}`, { cause: err });
     }
   }
 
@@ -227,7 +227,7 @@ class PostgreSQLAdapter {
       const result = await this.pool.query(sql, params);
       return result.rows;
     } catch (err) {
-      throw new Error(`Query failed: ${err.message}`);
+      throw new Error(`Query failed: ${err.message}`, { cause: err });
     }
   }
 
@@ -263,7 +263,7 @@ class MongoDBAdapter {
 
       console.log(`MongoDB connected: ${this.config.database || 'formula_nebula'}`);
     } catch (err) {
-      throw new Error(`MongoDB connection failed: ${err.message}`);
+      throw new Error(`MongoDB connection failed: ${err.message}`, { cause: err });
     }
   }
 
@@ -333,7 +333,7 @@ class RedisAdapter {
 
       console.log(`Redis connected: ${this.config.host || 'localhost'}:${this.config.port || 6379}`);
     } catch (err) {
-      throw new Error(`Redis connection failed: ${err.message}`);
+      throw new Error(`Redis connection failed: ${err.message}`, { cause: err });
     }
   }
 

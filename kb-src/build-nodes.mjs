@@ -122,7 +122,7 @@ function extractLatex(statement) {
     const s = m[1].replace(/\s+/g, ' ').trim()
     if (/\\xymatrix|\\ar\[/.test(s)) continue
     /* 必须含数学符号，否则可能是一句被 $ 包起来的自然语言 */
-    if (!/[\\^_=<>+\-]/.test(s)) continue
+    if (!/[\\^_=<>+-]/.test(s)) continue
     /* 排除"散文片段"：这些是作者用 $...$ 包起来的正文强调，不是公式。
      * 判据（任一条命中即排除）：
      *   · 含 `\ref{` / `\cite{`（是引用，不是公式）
@@ -130,7 +130,7 @@ function extractLatex(statement) {
      *   · 含 3 个连续英文单词，且数学符号少于 3 个
      * 已知会漏网的例子：`has {\it property` / `satisfies a set theoretic condition` */
     if (/\\ref\{|\\cite\{|\{\\it\b|\\emph\{/.test(s)) continue
-    const mathChars = (s.match(/[\\^_{}=<>+\-]/g) || []).length
+    const mathChars = (s.match(/[\\^_{}=<>+-]/g) || []).length
     const wordRuns = (s.match(/[A-Za-z]{3,}\s+[A-Za-z]{3,}\s+[A-Za-z]{3,}/g) || []).length
     if (wordRuns > 0 && mathChars < 3) continue
     /* 纯英文单词拼成的（无任何反斜杠/运算符组合）也排除 */

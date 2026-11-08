@@ -3,7 +3,7 @@
  * Handles API calls for dashboard data, notifications, and user information
  */
 
-class DashboardDataService {
+export class DashboardDataService {
   constructor(options = {}) {
     this.baseUrl = options.baseUrl || '/api';
     this.timeout = options.timeout || 30000;

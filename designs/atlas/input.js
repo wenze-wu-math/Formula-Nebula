@@ -57,7 +57,7 @@ function segDist(px, py, ax, ay, bx, by) {
  */
 export function pick(sx, sy, o = {}) {
   if (!Number.isFinite(sx) || !Number.isFinite(sy)) return null
-  let lab = null
+  let lab
   try { lab = hitLabel(sx, sy) } catch { lab = null }
   if (lab) return lab
   const { atlas, view, w, h, L } = state

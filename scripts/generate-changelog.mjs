@@ -107,7 +107,7 @@ function formatCategory(label, entries, emoji = '') {
   entries.forEach(entry => {
     // 清理提交消息
     const cleanSubject = entry.subject
-      .replace(/^(feat|fix|perf|refactor|docs|style|test|chore)(\!)?:\s*/, '')
+      .replace(/^(feat|fix|perf|refactor|docs|style|test|chore)(!)?:\s*/, '')
       .trim();
 
     md += `- **${cleanSubject}** — [\`${entry.hash}\`](https://github.com/user/repo/commit/${entry.hash})\n`;
@@ -153,8 +153,13 @@ function generateUnreleasedSection(commits) {
 function updateChangelog(newSection) {
   const changelog = readFileSync(CHANGELOG_PATH, 'utf8');
 
-  // 找到 "## 未发布" 部分
-  const unreleasePattern = /## 未发布\n\n([\s\S]*?)(?=\n---\n## |\Z)/;
+  // 找到 "## 未发布" 部分。
+  //
+  // 这里原本写的是 (?=\n---\n## |\Z) —— 但 JavaScript 的正则**没有 \Z**，
+  // 它被当成字面字母 Z 处理。后果是：只有当"未发布"段落后面跟着一个字母 Z
+  // 时才会匹配，否则整段抓不到，脚本永远走 "找不到未发布部分" 的失败分支。
+  // 正确的"到文末"写法是 $（配合下面的 m 标志：$ = 行尾；这里用 (?![\s\S]) 表示绝对结尾）。
+  const unreleasePattern = /## 未发布\n\n([\s\S]*?)(?=\n---\n## |(?![\s\S]))/;
   const match = changelog.match(unreleasePattern);
 
   if (!match) {

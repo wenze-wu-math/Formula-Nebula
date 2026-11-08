@@ -525,7 +525,6 @@ export function typeStats(links) {
     regexAmbiguousRate: total ? ambiguous / total : 0,
     /** 真正该被宣传的：有多少条边的类型是**写在数据里的**（人工判定过） */
     explicitRate: total ? explicit / total : 0,
-    explicit,
     /** 判定为 related 的条数：这些理由没有陈述出具体关系
      *  （纯名词短语），是**诚实的归类**而不是"判定失败"。 */
     relatedCount: byType[RELATED.id] || 0,

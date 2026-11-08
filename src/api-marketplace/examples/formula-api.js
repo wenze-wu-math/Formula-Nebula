@@ -157,7 +157,7 @@ async function evaluateFormula(data, context) {
       variables
     };
   } catch (error) {
-    throw new Error(`Evaluation failed: ${error.message}`);
+    throw new Error(`Evaluation failed: ${error.message}`, { cause: error });
   }
 }
 

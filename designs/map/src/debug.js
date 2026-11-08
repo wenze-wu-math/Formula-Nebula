@@ -60,7 +60,7 @@ export function installDebug(d) {
   function stats() {
     const pl = d.getPlacement() || { items: [], areas: [], stats: {} }
     const items = pl.items || []
-    let overlapping = 0
+    let overlapping
     try { overlapping = labeler.countOverlaps(pl) } catch (e) { overlapping = -1; console.warn('[map] countOverlaps 出错', e) }
     const p = state.perf
     const s = sOf()

@@ -3,7 +3,7 @@
  * Handles WebSocket connections for live dashboard updates
  */
 
-class RealtimeService {
+export class RealtimeService {
   constructor(options = {}) {
     this.wsUrl = options.wsUrl || this.getWebSocketUrl();
     this.reconnectAttempts = options.reconnectAttempts || 5;

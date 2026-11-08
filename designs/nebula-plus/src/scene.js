@@ -1578,10 +1578,12 @@ export function createScene(canvas, graph, ui) {
   return {
     renderer,
     scene,
-    camera,
+    // camera / nodeGroup are exposed via getters further down in this object
+    // (see `get camera()` and `get nodeGroup()`). Declaring them here as
+    // shorthand too produced duplicate keys, where one silently shadowed the
+    // other depending on evaluation order.
     controls,
     links,          // 关联连线：highlight(id) 只显示该公式的关联（main.js 的 onClose 要用）
-    nodeGroup,      // 会整体自转的组：测试脚本算世界坐标时要用它的 matrixWorld
     buildNodes,
 
     /**

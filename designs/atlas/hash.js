@@ -28,7 +28,7 @@ export function decodeHash(str, hasId = () => true) {
     if (k === 'n' && !('node' in out)) {
       let id = ''
       try { id = decodeURIComponent(v) } catch { continue }   // 截断的 %E0%A4 之类
-      let ok = false
+      let ok
       try { ok = !!id && !!hasId(id) } catch { ok = false }
       if (ok) out.node = id
     } else if (k === 'v' && !('view' in out)) {

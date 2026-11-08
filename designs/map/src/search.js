@@ -89,7 +89,7 @@ export function searchNodes(graph, q, { limit = Infinity } = {}) {
     if (pq.error) return []
     out = []
     for (const n of graph.nodes) {
-      let ok = false
+      let ok
       try { ok = pq.test(n) } catch { ok = false }
       if (ok) out.push({ id: n.id, score: typeof n.importance === 'number' ? n.importance : 0 })
     }

@@ -220,7 +220,7 @@ function pickLatex(sig) {
 
   /* 1) 剥掉类型类约束 [ ... ]（可能嵌套，逐层剥） */
   for (let i = 0; i < 6; i++) {
-    const next = s.replace(/\[[^\[\]]*\]/g, ' ')
+    const next = s.replace(/\[[^[\]]*\]/g, ' ')
     if (next === s) break
     s = next
   }

@@ -3,7 +3,10 @@
  * Displays user statistics, activity, and recent work
  */
 
-class UserDashboard {
+import { RealtimeService } from '../services/realtimeService.js';
+import { DashboardDataService } from '../services/dashboardService.js';
+
+export class UserDashboard {
   constructor(options = {}) {
     this.container = options.container || null;
     this.userId = options.userId || null;

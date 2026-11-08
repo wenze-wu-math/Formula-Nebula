@@ -1,6 +1,13 @@
 /**
  * dashboard-example.js - Usage example for UserDashboard component
+ *
+ * This file is illustrative: it shows how to mount UserDashboard, not a module
+ * the app imports. It previously referenced `UserDashboard` without importing
+ * it, so none of the examples could run. `getCurrentUserId` and the other
+ * helpers are defined further down in "Utility Functions".
  */
+
+import { UserDashboard } from './UserDashboard.js';
 
 // Example 1: Basic Dashboard Initialization
 function initializeDashboard() {

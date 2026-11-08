@@ -15,6 +15,39 @@
 
 import { buildSemanticIndex } from './semanticSearch.js'
 
+/* ── 宿主依赖注入 ──
+ *
+ * 这个文件是**集成示例**，不是应用的一部分。示例里的回调需要两个只有
+ * 宿主（main.js / ui.js）才提供的动作：
+ *
+ *   · scene.focusOnNode(node)   —— 由 createScene() 返回的 scene 提供
+ *   · showNodePanel(node)       —— 详情面板，原本属于 ui.js
+ *
+ * 此前 showNodePanel 在全文被直接引用却从未定义或导入，所以任何一处
+ * 调用都会抛 ReferenceError；enhanceExistingSearch() 又漏掉了 scene 参数，
+ * 导致它内部的回调连 scene 都取不到。
+ *
+ * 现在改为显式注入：调用方通过 setHostActions() 提供这两个动作。未注入时
+ * 给出一次性的控制台警告而不是崩溃 —— 示例代码被单独跑时也能看懂发生了什么。
+ */
+let hostShowNodePanel = null
+
+/** 供宿主注入详情面板函数。示例启用前调用一次即可。 */
+export function setHostActions({ showNodePanel } = {}) {
+  hostShowNodePanel = typeof showNodePanel === 'function' ? showNodePanel : null
+}
+
+function showNodePanel(node) {
+  if (hostShowNodePanel) return hostShowNodePanel(node)
+  if (!showNodePanel.warned) {
+    showNodePanel.warned = true
+    console.warn(
+      '[semantic-search example] showNodePanel 未注入，详情面板不会打开。' +
+        ' 调用 setHostActions({ showNodePanel }) 启用。'
+    )
+  }
+}
+
 // 在 buildGraph() 之后调用
 export function initSemanticSearch(nodes, links) {
   console.time('Build semantic index')
@@ -94,7 +127,7 @@ export function addSemanticSearch(container, scene, nodes) {
 }
 
 // ④ 方案 C: 增强现有搜索（保留界面，替换后端）
-export function enhanceExistingSearch(inputElement, resultsElement, nodes) {
+export function enhanceExistingSearch(inputElement, resultsElement, nodes, scene) {
   inputElement.addEventListener('input', async (e) => {
     const query = e.target.value.trim()
     if (query.length < 2) {
