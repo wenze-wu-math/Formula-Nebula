@@ -150,7 +150,7 @@ function targetView(t) {
   const { w, h, zoom0 } = state
   const panel = curPanel(), vr = visibleRect(w, h, panel)
   const vcx = vr.x + vr.w / 2, vcy = vr.y + vr.h / 2
-  let v = null
+  let v
   if (t.id != null) {
     const b = atlas.bodies.get(t.id)
     if (!b) return null
@@ -475,7 +475,7 @@ window.__design = {
     await afterDraw()
   },
   stats() {
-    let ls = {}
+    let ls
     try { ls = labelStats() || {} } catch { ls = {} }
     const P = makeProjector(state.view, state.w, state.h)
     let onScreen = 0

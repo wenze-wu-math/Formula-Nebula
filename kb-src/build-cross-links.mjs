@@ -129,7 +129,7 @@ for (const m of mathlib) {
     const cur = bCount.get(t.id) || 0
     if (cur >= B_CAP) continue
     const isGeneric = GENERIC.has(t.k)
-    let hit = false
+    let hit
     if (isGeneric) {
       /* 通用词：必须是某个段的**完整**匹配 */
       hit = segNorm.some((seg) => seg === t.k)

@@ -120,8 +120,18 @@ CI/CD 工作流、Issue 模板和 GitHub 特定配置。
 | `package.json` | Dependencies and npm scripts | 依赖项和 npm 脚本 |
 | `vite.config.js` | Build configuration | 构建配置 |
 | `src/main.js` | Application entry point | 应用程序入口 |
-| `src/data/nodes.js` | 405 theorem nodes | 405 个定理节点 |
-| `src/data/cluster.js` | 59 conjecture nodes | 59 个猜想节点 |
+| `src/data/knowledge.js` | Hand-written core: 405 theorems + researchers | 手写核心：405 定理 + 研究者 |
+| `src/data/conjectures.js` | Hand-written core: 59 conjectures | 手写核心：59 猜想 |
+| `src/data/*-extra.js` | Auto-assembled batches (stacks / nlab / mathlib / wikipedia / unsolved) | 自动组装批次 |
+
+> The two hand-written files above are the curated core (`npm run check-data`
+> validates them). The app renders **4306 nodes / 8747 links** in total, because
+> `buildGraph()` adds the auto-assembled batches and researcher nodes on top.
+> The authoritative runtime numbers are in `graph.stats`.
+>
+> 上面两个手写文件是人工整理的核心集（`npm run check-data` 校验的对象）。
+> 应用实际渲染的是 **4306 节点 / 8747 关联**，因为 `buildGraph()` 还叠加了
+> 自动组装的批次与研究者节点。以 `graph.stats` 为准。
 
 ## 🚫 Excluded from Git | Git 排除项
 

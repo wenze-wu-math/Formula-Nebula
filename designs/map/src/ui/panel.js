@@ -135,7 +135,7 @@ export function createPanel(root, { graph, world, onChange }) {
     bandGlyph.textContent = ''
     bandGlyph.append(placeGlyph(place, 18))
     bandText.textContent = ''
-    let l1 = '', l2 = ''
+    let l1, l2
     if (place.kind === 'city') {
       l1 = `${COUNTRY_NAMES[place.country]?.zh || place.country} · ${TIER_NAMES[place.tier] ?? ''}`
       l2 = `${COUNTRY_NAMES[place.country]?.latin || ''}${FAMILIES[place.country] ? ' · 知识族「' + FAMILIES[place.country].name + '」' : ''}`

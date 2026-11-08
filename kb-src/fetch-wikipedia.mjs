@@ -161,7 +161,7 @@ for (const b of blocks) {
      *   情况 B：`[[Name]] statement`   → 取链接后
      *   情况 C：链接名被拆开/跨行     → 取整行去标记（残片会在这里被检出）
      */
-    let statement = ''
+    let statement
     const colonMatch = /^\s*:\s*(.+)$/.exec(afterLink)
     if (colonMatch) {
       statement = cleanWikitext(colonMatch[1])

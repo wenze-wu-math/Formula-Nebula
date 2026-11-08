@@ -97,7 +97,7 @@ async function testAtlas() {
     global.gc?.()
     const mem0 = process.memoryUsage().heapUsed
     const t0 = performance.now()
-    let atlas = null
+    let atlas
     try {
       atlas = buildAtlas(g, { measure, resFont: 'italic 12.5px serif' })
     } catch (e) {

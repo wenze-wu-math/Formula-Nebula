@@ -83,6 +83,10 @@
 - `knowledge.js` — 405 定理 + 24 研究者 + 手写关联
 - `conjectures.js` — 59 猜想
 
+> 手写核心 = 405 定理 + 59 猜想 + 24 研究者（`npm run check-data` 校验的就是这份）。
+> 再加上下面的自动生成批次，`buildGraph()` 最终产出 **4306 节点 / 8747 关联**，
+> 这才是应用实际渲染的规模。以 `graph.stats` 为准。
+
 自动生成：
 - `stacks-extra.js` — 2,200 定理（2.6MB）
 - `nlab-extra.js` — 538 概念（1.1MB）

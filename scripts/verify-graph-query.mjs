@@ -594,11 +594,6 @@ for (const [a, b] of PAIRS) {
   }
   if (walk) walkOk++
 
-  // links 数组也要对得上：长度是 hops，且每条都真的把两端连起来
-  const linksOk = okFound && r.links.length === r.hops &&
-    r.links.every((l, i) => l.key === linkBetween(r.path[i], r.path[i + 1])?.key)
-  if (!linksOk && okFound) walk = false
-
   console.log(`  ${(nameOf(a) + ' → ' + nameOf(b)).padEnd(44)} ` +
     `${okFound ? r.hops : '未找到'}`)
   if (!okFound) console.log(`      原因：${r.reason}`)

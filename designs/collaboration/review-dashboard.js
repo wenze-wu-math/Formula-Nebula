@@ -434,8 +434,8 @@ class ReviewDashboard {
     `;
 
     changes.forEach(change => {
-      let className = '';
-      let prefix = '';
+      let className;
+      let prefix;
       if (change.type === 'addition') {
         className = 'diff-addition';
         prefix = '+ ';

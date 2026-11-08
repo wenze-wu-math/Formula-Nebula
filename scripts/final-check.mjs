@@ -57,7 +57,7 @@ async function show(label, titles, q) {
     await sleep(1500)
   }
   for (const t of titles) {
-    let txt = ''
+    let txt
     try { txt = await extract(t) } catch (e) { console.log(`\n  [${t}] 抓取失败 ${e.message}`); continue }
     console.log(`\n  ── "${t}"  (${txt.length} 字符) ──`)
     if (!txt) { console.log('     （无正文）'); await sleep(1200); continue }

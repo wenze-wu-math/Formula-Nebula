@@ -438,7 +438,7 @@ ok(xml.depth === 0, '扫描结束时标签栈为空', `depth = ${xml.depth}`)
    * 存在一个真解析器（@xmldom/xmldom），有的话就拿它交叉验证一遍：
    * 两个独立实现都判合法，良构性才算真的立住了。
    * 没有就跳过 —— 这不是新增依赖，只是"顺手多用一次已经有东西"。 */
-  let realParser = null
+  let realParser
   try {
     realParser = await import('@xmldom/xmldom')
   } catch {

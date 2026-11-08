@@ -65,7 +65,7 @@ const allArxiv = new Set()
 
 for (const [id, title, key] of PAGES) {
   console.log(`\n${'='.repeat(78)}\n### ${id}  ← ${title}\n${'='.repeat(78)}`)
-  let wt = ''
+  let wt
   try { wt = await wikitext(title) } catch (e) { console.log('  抓取失败: ' + e.message); continue }
   writeFileSync(path.join(OUT, `wikitext-${id}.txt`), wt, 'utf8')
 

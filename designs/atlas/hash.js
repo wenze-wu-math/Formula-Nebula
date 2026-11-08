@@ -17,7 +17,7 @@ const num = (s) => (NUM.test(s) ? Number(s) : NaN)
  */
 export function decodeHash(str, hasId = () => true) {
   const out = {}
-  let s = ''
+  let s
   try { s = String(str ?? '') } catch { return out }
   s = s.replace(/^#+/, '')
   if (!s || s.length > 2048) return out
@@ -26,13 +26,13 @@ export function decodeHash(str, hasId = () => true) {
     if (i <= 0) continue
     const k = part.slice(0, i), v = part.slice(i + 1)
     if (k === 'n' && !('node' in out)) {
-      let id = ''
+      let id
       try { id = decodeURIComponent(v) } catch { continue }   // 截断的 %E0%A4 之类
       let ok
       try { ok = !!id && !!hasId(id) } catch { ok = false }
       if (ok) out.node = id
     } else if (k === 'v' && !('view' in out)) {
-      let raw = v
+      let raw
       try { raw = decodeURIComponent(v) } catch { continue }
       const xs = raw.split(',')
       if (xs.length !== 3) continue

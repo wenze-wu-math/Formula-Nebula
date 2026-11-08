@@ -274,8 +274,8 @@ function renderActivity(activity) {
   const time = formatTimeAgo(activity.timestamp)
   const user = activity.user
 
-  let activityText = ''
-  let activityIcon = ''
+  let activityText
+  let activityIcon
 
   switch (activity.type) {
     case ACTIVITY_TYPES.PROOF_VIEWED:

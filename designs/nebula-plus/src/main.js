@@ -288,7 +288,7 @@ async function main() {
   /** 更新证明 query 与星云 hash，默认 replace；页面跳转可压入一条浏览器历史。 */
   function writeLocationState(proofId = activeProofId, { push = false, trail = proofTrail } = {}) {
     const nextHash = buildHash(scene.selection)
-    let nextSearch = ''
+    let nextSearch
     try {
       const params = new URLSearchParams(location.search)
       params.delete('p')

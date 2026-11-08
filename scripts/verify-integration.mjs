@@ -122,7 +122,7 @@ async function launch(tag, url) {
     `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, url,
   ], { stdio: 'ignore' })
 
-  let cdp = null
+  let cdp
   try {
     cdp = await connect()
   } catch (e) {

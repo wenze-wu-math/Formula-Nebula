@@ -586,7 +586,7 @@ export class CurriculumBuilder {
    */
   enrichPath(path, difficulty, user) {
     return path.map((theoremId, index) => {
-      let reason = ''
+      let reason
       if (index === 0) {
         reason = 'Starting theorem'
       } else if (index === path.length - 1) {
