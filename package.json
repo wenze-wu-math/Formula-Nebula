@@ -82,7 +82,7 @@
     "capacity-report": "npm run load-test:simulate && npm run capacity-plan",
     "verify:assets": "node scripts/verify-assets.mjs",
     "health": "node scripts/health.mjs",
-    "loop": "npm run health && npm run ci",
+    "loop": "npm run score && npm run ci",
     "verify:readme": "node scripts/verify-readme-claims.mjs",
     "verify:designs": "node scripts/verify-designs.mjs",
     "verify:gallery": "node scripts/verify-gallery.mjs",
@@ -90,7 +90,9 @@
     "verify:designs:depth": "node scripts/verify-designs-depth.mjs",
     "verify:manuscript": "node scripts/verify-manuscript-deeplink.mjs",
     "verify:live": "node scripts/verify-live-site.mjs",
-    "audit": "npm audit --audit-level=moderate"
+    "audit": "npm audit --audit-level=moderate",
+    "score": "node scripts/score.mjs",
+    "verify:final": "node scripts/verify-final.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",
