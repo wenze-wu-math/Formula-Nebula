@@ -148,9 +148,16 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
   需要先造 `firstVisible` 测量。现在 `splash` 要等全部 4306 个公式烘焙完
   才消失，但**没有可信的计时数据**，所以 G6/G7 在 score 里报 TODO 而非 PASS。
 
-- [ ] **G8 / G9 · 核心单测**
-  `src/graph.js`（产出 4306 节点）和 `src/layout.js`（星云布局）零单测。
-  目前靠 `check-*.mjs` 手工脚本兜底，不在 CI 里。
+- [x] **G8 / G9 · 核心单测**（2026-11-09）
+  `tests/graph/unit.test.mjs`（14 断言）：节点唯一性、byId 一致性、每条
+  link 端点在图上、无自环、权重有限、impRange/conjRange 非退化、stats 与
+  数组一致、确定性、applyColor 契约。
+  `tests/layout/unit.test.mjs`（8 断言）：位置有限性、尺寸为正、星系是扁盘
+  （R/maxY=3.6）、星团是球（须绕自身质心量）、半径不超 budget、确定性、
+  rank 与 importance 单调（0% 反转）。
+  两者都已进 `npm run ci`。
+  ⚠ G9 原表述写的是 `src/layout.js`，**该文件不存在** —— 布局实际是
+  `src/graph.js` 里的 `layoutGraph()`。目标和 score 判定都已改正。
 
 - [ ] **G10 · lint warnings 389 → ≤200**
   绝大多数是 `no-unused-vars`，集中在库形态模块。
