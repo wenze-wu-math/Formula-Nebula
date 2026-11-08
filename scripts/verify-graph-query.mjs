@@ -578,6 +578,7 @@ check(missingPairIds.length === 0, '测试用的节点 id 全部真实存在',
 
 let pairsFound = 0
 let walkOk = 0
+let linksMismatchReported = false
 console.log('  起点 → 终点                                        跳数')
 console.log('  ' + '─'.repeat(58))
 for (const [a, b] of PAIRS) {
@@ -585,11 +586,46 @@ for (const [a, b] of PAIRS) {
   const okFound = r.found === true
   if (okFound) pairsFound++
 
-  // 路径必须是一条**真的走得通**的路：相邻两跳都得是图上真实存在的一条边
+  // 路径必须是一条**真的走得通**的路：相邻两跳都得是图上真实存在的一条边。
+  //
+  // 这里还必须校验 links 与 path 的对齐：hops 条边对应 hops 个 link，且每条
+  // link 的端点就是对应的两跳。此前的写法漏了这一项，但下面那条 check 的
+  // 描述文字里却写着"links 与 path 对齐" —— 断言说得比它实际检查的多，
+  // 属于**假绿**：即使 links 完全错乱（典型 bug 是回溯时用了错的 key），
+  // 这条断言依然会通过。加权路径的检查（weightedWalkOk）本来就有这一项，
+  // 未加权这边补上，两边一致。
   let walk = okFound && r.path[0] === a && r.path[r.path.length - 1] === b
   if (walk) {
     for (let i = 1; i < r.path.length; i++) {
       if (!linkBetween(r.path[i - 1], r.path[i])) { walk = false; break }
+    }
+  }
+  if (walk) {
+    if (!Array.isArray(r.links) || r.links.length !== r.hops) {
+      walk = false
+      if (!linksMismatchReported) {
+        linksMismatchReported = true
+        console.log(`      links 数量不符：links=${r.links?.length} hops=${r.hops}`)
+      }
+    } else {
+      // 每条 link 必须连接 path 上相邻的两个节点（顺序不限）。
+      for (let i = 1; i < r.path.length; i++) {
+        const from = r.path[i - 1]
+        const to = r.path[i]
+        const link = r.links[i - 1]
+        const ends = [
+          link?.source?.id ?? link?.source,
+          link?.target?.id ?? link?.target,
+        ]
+        if (!ends.includes(from) || !ends.includes(to)) {
+          walk = false
+          if (!linksMismatchReported) {
+            linksMismatchReported = true
+            console.log(`      第 ${i} 条 link 未连接 ${from} → ${to}`)
+          }
+          break
+        }
+      }
     }
   }
   if (walk) walkOk++
