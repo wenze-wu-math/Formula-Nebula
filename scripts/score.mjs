@@ -221,22 +221,45 @@ record('G7', 'TTI ≤ 15 秒', 'TODO', '依赖 G6 的可信测量，当前无可
 
 // ── G8 / G9 · core module unit tests ───────────────────────────────────────
 {
-  const hasTest = (name) => {
+  // "Has a unit test" must mean: a test file exists that actually imports the
+  // module under test. Checking only the filename is too weak — a file called
+  // graph.test.mjs that never touches graph.js would score a false PASS.
+  const importsModule = (relPath) => {
     const dir = path.join(ROOT, 'tests')
-    if (!fs.existsSync(dir)) return false
-    let found = false
+    if (!fs.existsSync(dir)) return null
+    const wanted = relPath.replace(/\\/g, '/')
+    const hits = []
     const walk = (d) => {
       for (const e of fs.readdirSync(d, { withFileTypes: true })) {
         const p = path.join(d, e.name)
         if (e.isDirectory()) walk(p)
-        else if (e.name.includes(name)) found = true
+        else if (/\.(mjs|js)$/.test(e.name)) {
+          const body = fs.readFileSync(p, 'utf8')
+          // Match any import that resolves to the module, regardless of how
+          // many ../ segments the author used.
+          if (body.includes(`src/${wanted}`) || body.includes(`/${wanted}`)) {
+            hits.push(path.relative(ROOT, p).replace(/\\/g, '/'))
+          }
+        }
       }
     }
     walk(dir)
-    return found
+    return hits
   }
-  record('G8', 'src/graph.js 有单元测试', hasTest('graph') ? 'PASS' : 'FAIL', hasTest('graph') ? '找到测试文件' : 'tests/ 下无 graph 测试')
-  record('G9', 'src/layout.js 有单元测试', hasTest('layout') ? 'PASS' : 'FAIL', hasTest('layout') ? '找到测试文件' : 'tests/ 下无 layout 测试')
+
+  for (const [id, label, rel] of [
+    ['G8', 'src/graph.js 有单元测试', 'graph.js'],
+    ['G9', 'src/layout.js 有单元测试', 'layout.js'],
+  ]) {
+    const hits = importsModule(rel)
+    if (hits === null) {
+      record(id, label, 'FAIL', 'tests/ 目录不存在')
+    } else if (hits.length === 0) {
+      record(id, label, 'FAIL', `没有任何测试 import src/${rel}`)
+    } else {
+      record(id, label, 'PASS', hits[0] + (hits.length > 1 ? ` 等 ${hits.length} 个` : ''))
+    }
+  }
 }
 
 // ── G10 · lint warnings ────────────────────────────────────────────────────
