@@ -205,9 +205,36 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
   `nlb-coherent-sheaf`、`ml-hasringhomproperty`、`cn-hodge`、`cn-collatz`、
   `tensor-right-exact`），这些只存在于数据里。
 
-- [x] **G3 · 主包 gzip ≤ 1500 KB**（已达成：2313 → **1265 KB**）
-- [ ] **G4 · 主包 gzip ≤ 1000 KB**（现 1265 KB）
-  依赖证明数据外置（见上）。
+- [x] **G3 · 主包 gzip ≤ 1500 KB**（已达成：2313 → **163 KB**）
+- [x] **G4 · 主包 gzip ≤ 1000 KB**（已达成：**163 KB**）
+- [x] **G5 · 数据按需加载**（已达成，第 11 轮）
+
+  第 11 轮把最后一块搬走：**证明数据**。`src/data/proofs` 3.3 MB 源码曾被
+  `main.js` 静态 import，并在启动时把 245 条长篇证明全部挂到节点上 ——
+  而这些内容只在用户点开某个定理的证明页时才需要。
+
+  现在改为首次打开证明页时 fetch `public/data/proofs.json`（1.8 MB JSON），
+  之后缓存。
+
+  两个实现要点：
+  · `proofView.open()` **保持同步**。它被 URL 深链、面包屑、键盘导航等十几处
+    调用，改成 async 会波及全部。改为先渲染「加载中」骨架，数据到位后
+    原地重渲染同一节点，并用 `current.id` 守卫，避免抢掉用户已经跳去的页面。
+  · `window.__nebula.proofData` 新增 `loadProofs()`。原来的 `getProof()` 在
+    数据加载前返回空 —— 验证脚本若不先 await 就会看到 0 条，误判成数据丢失。
+
+  实测：主包 **3714 → 558 KB（raw）**，**1265 → 163 KB（gzip）**。
+
+  新增检查器 `npm run verify:proof-view`：验证 `?p=` 深链真的渲染出证明卡片、
+  数据真的加载、目标证明存在。这是一条**全新的失败路径** —— `verify:boot`
+  只查知识图谱，而证明数据现在走的是独立通道。
+
+  负向对照有个值得记的细节：删 `public/data/proofs.json` **不会**让检查器失败，
+  因为 `npm run build` 在构建前会重新生成它 —— 破坏被自动修复了。要删的是
+  **构建产物** `dist/data/proofs.json`：那才会让 2 项断言失败。
+  另外「证明页渲染出内容卡片」在数据缺失时**仍然通过**（有 3 张骨架卡片），
+  真正抓住问题的是「证明数据条数」与「深链证明存在」这两条。
+
 
 - [ ] **G6 / G7 · 首屏烘焙与 TTI**（尺子已造，目标未达成）
   **尺子已完成**（2026-11-09，`npm run measure:first-paint`）。
