@@ -111,6 +111,34 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
 
 ### 已完成
 
+- [x] **致命启动崩溃（低性能设备）+ 生产静默**（2026-11-09）
+  `src/mobileOptimization.js` 调用 `settings.setState({...})`，但 settings 上
+  **没有 setState**（它的 API 是 setShape / setTweak / setColorMode /
+  toggleDisplay / setGravity / applyState …）。
+
+  这行在 `initMobileOptimizations()` 里，而它由 `main()` 第 578 行**同步**调用。
+  一旦抛错，`main()` 直接中断，后面全部不执行 —— 包括
+  `window.__nebula` / `window.__formulaNebula` 的暴露、教程、URL 同步、
+  可达性增强。用户只看到 splash 消失后一片空白。
+
+  只在低性能设备触发：条件是 `recommended.bloom === false`，而
+  `bloom: tier === 'high'`。桌面端通常是 high 所以跳过；移动端**和所有无头
+  浏览器**都是 low，必然命中。canvas 在更早建场景时已挂上，所以
+  `verify:final` 那种"画布存在就算通过"的判据完全看不见它。
+
+  更难发现的是：`vite.config.js` 的 `drop_console: true` 连同
+  `pure_funcs: [log, info, debug]` 把 `console.error` 也删了 —— 于是
+  `main().catch(err => console.error('启动失败', err))` 被压成空函数体，
+  生产环境**连证据都不留**。
+
+  修法：改用真实 API `settings.toggleDisplay('bloom')`（带保护）；
+  terser 只 drop `console.log`，保留 error/warn。
+  新增 `scripts/verify-app-boot.mjs`（`npm run verify:boot`），判据从
+  "画布存在"改成"`window.__nebula` 已暴露且图已装配"。
+  负向对照：恢复旧写法后新检查器报 3 项失败而**画布仍 PASS**；
+  修好 console 后再注入，额外报出 `启动失败 TypeError: a.setState is not
+  a function`（4 项失败）。线上站点已验证 7/7 通过。
+
 - [x] **G1 · source map 不公开部署**（2026-11-08）
   `vite.config.js` 原本写死 `sourcemap: true`，构建产出 8 个 `.map`（19 MB）
   留在 `dist/`，Pages 直接公开可下载 = 完整源码泄露。

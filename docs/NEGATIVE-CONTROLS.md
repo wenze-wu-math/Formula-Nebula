@@ -146,6 +146,22 @@ G2 按本文覆盖度计分：脚本名出现在文中才算覆盖，`TODO` 不�
 > 注意 (b) 只让**本地**那半失败，线上那半仍全绿——说明它确实分别检查两个
 > 目标，不是"一处挂了就说全挂"，也不是"一处过了就说全过"。
 
+
+### verify:boot
+
+| | |
+|---|---|
+| 破坏方式 | 把 `src/mobileOptimization.js` 里正确的 `settings.toggleDisplay('bloom')` 换回原来的 `settings.setState({...})`（该方法不存在） |
+| 期望 | 启动中断被发现，非零退出 |
+| 实际 | `✗ window.__nebula 已暴露` / `✗ window.__formulaNebula 已暴露` / `✗ 图已装配` / `✗ 无 console.error — [公式诗云] 启动失败 TypeError: a.setState is not a function`，3→4 项失败，exit 1 |
+| 恢复 | 换回 toggleDisplay → 7/7 通过，exit 0 |
+
+> 这个负向对照有额外价值：**画布检查在破坏后依然 PASS**。也就是说
+> `verify:final` 那种"canvas 存在即通过"的判据对本 bug 完全无效 ——
+> 新检查器改用「`window.__nebula` 已暴露」正是为了补上这个缺口。
+> 另外，破坏时能报出具体错误信息，是因为同时修掉了 `drop_console: true`
+> 把 `console.error` 一并删除的问题（此前错误完全静默）。
+
 ---
 
 ## 待补（0 / 11）
