@@ -98,7 +98,8 @@
     "verify:boot": "node scripts/verify-app-boot.mjs",
     "measure:first-paint": "node scripts/measure-first-paint.mjs",
     "check:data-json": "node scripts/build-data-json.mjs --check",
-    "verify:proof-view": "node scripts/verify-proof-view.mjs"
+    "verify:proof-view": "node scripts/verify-proof-view.mjs",
+    "verify:full-scene": "node scripts/verify-full-scene.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",

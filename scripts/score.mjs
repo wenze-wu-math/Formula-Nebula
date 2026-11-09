@@ -260,7 +260,36 @@ function lintCounts() {
 }
 
 // ── G7 · TTI ───────────────────────────────────────────────────────────────
-record('G7', 'TTI ≤ 15 秒', 'TODO', '依赖 G6 的可信测量，当前无可比基线')
+// TTI 用 `__firstUsableAt`（splash 开始淡出、画布亮出）作为代理指标：
+// 它是"用户可以开始看/操作"的时刻，比 FCP（量的是 splash）有意义。
+//
+// 与 G6 的关系：G6 要求首帧明显早于烘焙完成，G7 要求首帧本身够快。
+// 两者可以同时不满足（比如首帧 80s、烘焙 90s：G6 过、G7 不过），
+// 所以必须分开判定，不能用 G6 的结论代替 G7。
+{
+  const base = read('docs/perf-baseline.json')
+  if (!base) {
+    record('G7', 'TTI ≤ 15 秒', 'TODO', '无测量基线：先跑 npm run measure:first-paint')
+  } else {
+    let b = null
+    try {
+      b = JSON.parse(base)
+    } catch {
+      b = null
+    }
+    if (!b || typeof b.firstVisibleMs !== 'number') {
+      record('G7', 'TTI ≤ 15 秒', 'TODO', '基线缺少 firstVisibleMs')
+    } else {
+      const sec = b.firstVisibleMs / 1000
+      record(
+        'G7',
+        'TTI ≤ 15 秒',
+        sec <= 15 ? 'PASS' : 'FAIL',
+        `首帧 ${sec.toFixed(1)}s（目标 ≤ 15s）`
+      )
+    }
+  }
+}
 
 // ── G8 / G9 · core module unit tests ───────────────────────────────────────
 {

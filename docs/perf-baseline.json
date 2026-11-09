@@ -1,0 +1,11 @@
+{
+  "measuredAt": "2026-11-09T09:12:12.021Z",
+  "target": "http://localhost:5797/",
+  "firstVisibleMs": 30874,
+  "fullBakeMs": 122374,
+  "gapMs": -91500,
+  "nodeCount": 4306,
+  "method": "in-app timestamps: __bakeDoneAt (all formulas baked) / __firstUsableAt (splash starts fading)",
+  "_note": "这份基线要入库：G6/G7 的判定直接读它，缺了会退回 TODO。但它**是特定环境下的测量**，不是普适常数 —— 无头 Chromium + swiftshader 软件渲染、无 GPU、Windows。真实带 GPU 的浏览器会明显更快。所以它适合用来证明「首帧不再等全部烘焙」这个结构性事实（差 91.5 秒），不适合当作绝对性能承诺。换机器复核请重跑 npm run measure:first-paint。",
+  "_reproduce": "npm run build && node scripts/measure-first-paint.mjs"
+}

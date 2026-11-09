@@ -179,24 +179,106 @@ async function main() {
   if (Number.isFinite(laParam) && laParam >= 1) bakeOpts.lookahead = laParam
 
   const tBake = performance.now()
-  const baked = await bakeAll(items, (done, total, label) => {
-    ui.setProgress(done, total, label)
-    // 同时更新 splash screen (30-70% 区间用于烘焙)
+
+  /* ═══════════════ G6：两阶段烘焙 ═══════════════
+   *
+   * 问题：4306 个公式全量烘焙实测 81 秒，且 `await` 阻塞首屏 ——
+   * 用户在这段时间里只看到一个进度条。
+   *
+   * 但「首屏可读」并不需要全部 4306 个。先烘一批**最重要的**，布局出图，
+   * 用户马上就能开始看；剩下的在后台继续补。
+   *
+   * 为什么必须先烘一批再布局（而不能先布局）：
+   *   `runRelax` 按 `n.width` 把节点推开 —— 位置直接依赖真实宽高比。
+   *   用估算宽高比布局，等真实贴图到了位置就全错了。所以布局必须等到
+   *   有一批真实尺寸可用。这也解释了为什么不能"先出图后布局"。
+   *
+   * 为什么这批是「按 importance 排序的前 N 个」而不是「视野内的」：
+   *   布局之前还没有任何屏幕坐标，"视野内"无从判断。importance 高的节点
+   *   分布在盘心与主旋臂，正是首屏最容易看到的部分，也符合这个项目
+   *   「越中心越重要」的核心语义。
+   *
+   * 剩余的节点会在首帧之后继续烘焙，然后**就地替换**已成为真实尺寸的
+   * 贴图（见后面的 scheduleRestBake）。
+   */
+  const FIRST_BATCH = (() => {
+    // 可由 URL 覆盖，便于做对照实验；默认 240（约占总数的 5.6%）。
+    const q = Number(new URLSearchParams(location.search).get('firstBatch'))
+    return Number.isFinite(q) && q >= 1 ? q : 240
+  })()
+
+  // 按 importance 降序取前 N 个先烘；其余保持原顺序留给后台。
+  const itemsByImportance = [...items].sort((a, b) => {
+    const na = graph.byId.get(a.id)
+    const nb = graph.byId.get(b.id)
+    return (nb?.importance ?? 0) - (na?.importance ?? 0)
+  })
+  const firstItems = itemsByImportance.slice(0, Math.min(FIRST_BATCH, items.length))
+  const restItems = itemsByImportance.slice(firstItems.length)
+  const firstIds = new Set(firstItems.map((it) => it.id))
+
+  if (splash) splash.update(30, `渲染核心公式 1/${Math.ceil(items.length / FIRST_BATCH)}...`)
+
+  const bakedFirst = await bakeAll(firstItems, (done, total) => {
+    ui.setProgress(done, total, '核心公式')
     if (splash) {
-      const percent = 30 + Math.floor((done / total) * 40)
-      splash.update(percent, `渲染公式 ${done}/${total}`)
+      const percent = 30 + Math.floor((done / total) * 20)
+      splash.update(percent, `渲染核心公式 ${done}/${total}`)
     }
   }, bakeOpts)
-  mark('bake', tBake)
 
-  // G6 测量点：全部 4306 个公式烘焙完成的时刻。
-  // 与 __firstUsableAt 一起，构成"首帧是否在等全部烘焙"的判据。
+  // 首阶段产物并入总表。之后后台补的会按 id 覆盖进来。
+  const baked = bakedFirst
+  mark('bakeFirst', tBake)
+
   try {
-    window.__bakeDoneAt = Math.round(performance.now())
     window.__bootMarks = window.__bootMarks || {}
-    window.__bootMarks.bake = window.__bakeDoneAt
+    window.__bootMarks.bakeFirst = Math.round(performance.now())
+    window.__bakeFirstDoneAt = Math.round(performance.now())
   } catch {
     /* ignore */
+  }
+
+  /* 剩余公式在首帧之后继续烘焙。
+   *
+   * 刻意**不**用 await：它必须让出主线程，先让布局/建节点/出图跑完。
+   * 每完成一个就替换对应节点的贴图尺寸，并触发一次增量重建。
+   */
+  function scheduleRestBake() {
+    if (!restItems.length) {
+      try {
+        window.__bakeDoneAt = Math.round(performance.now())
+        window.__bootMarks.bake = window.__bakeDoneAt
+      } catch {
+        /* ignore */
+      }
+      return
+    }
+    bakeAll(restItems, (done, total) => {
+      // 后台烘焙用底部状态条提示，不挡视野
+      ui.setProgress(done, total, '后台渲染')
+    }, bakeOpts)
+      .then((rest) => {
+        // 合并：首阶段 + 剩余，构成完整的 id -> 贴图映射
+        for (const [id, v] of rest) baked.set(id, v)
+        try {
+          window.__bakeDoneAt = Math.round(performance.now())
+          window.__bootMarks = window.__bootMarks || {}
+          window.__bootMarks.bake = window.__bakeDoneAt
+        } catch {
+          /* ignore */
+        }
+        // 用完整贴图重新布局并重建精灵，让后补的节点尺寸与位置正确
+        try {
+          layoutGraph(graph, baked)
+          scene.rebuildNodes(baked)
+        } catch (e) {
+          console.warn('[公式诗云] 后台补全后重建失败（不影响已出图的场景）', e)
+        }
+      })
+      .catch((e) => {
+        console.warn('[公式诗云] 后台烘焙失败，场景停留在核心公式版本', e)
+      })
   }
 
   /* ── 5. 布局 ──
@@ -620,7 +702,13 @@ async function main() {
       } catch {
         /* 无 window 时忽略（Node 侧不会走到这里） */
       }
+      // 首帧已经出来了 —— 现在才启动剩余公式的后台烘焙。
+      // 放在这里而不是更早，是为了确保后台任务不跟首帧抢主线程。
+      scheduleRestBake()
     }, 200)
+  } else {
+    // 没有 splash（例如被外部禁用）时也要启动后台补全，否则永远只有核心公式
+    scheduleRestBake()
   }
 
   // Log performance report to console
