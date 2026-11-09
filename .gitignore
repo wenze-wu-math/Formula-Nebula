@@ -124,3 +124,6 @@ scripts/videos/
 
 # Claude AI session data
 .claude/
+
+# 性能测量输出：取决于机器与当时负载，不该入库
+docs/perf-baseline.json

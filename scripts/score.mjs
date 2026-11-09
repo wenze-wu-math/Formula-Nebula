@@ -217,16 +217,40 @@ function lintCounts() {
 }
 
 // ── G6 · first frame bakes only what is visible ────────────────────────────
+// ── G6 · first frame must not wait for the full bake ──────────────────────
 {
-  // Needs a real browser and a timing hook. Until one exists, TODO.
-  const main = read('src/main.js') || ''
-  const hasFirstVisible = /firstVisible|visibleBakes|onlyVisible/.test(main)
-  record(
-    'G6',
-    '首屏只烘焙可见公式',
-    'TODO',
-    hasFirstVisible ? '代码里出现了相关符号，但尚无自动测量' : '尚无 firstVisible 指标，先造尺子'
-  )
+  // 判据基于实测（docs/perf-baseline.json，由 npm run measure:first-paint 生成），
+  // 而不是"代码里出现了某个变量名"这种自欺式的检查。
+  //
+  // 达标条件：首帧（splash 消失）明显早于烘焙结束，即
+  //     fullBakeMs - firstVisibleMs >= 5000
+  // 也就是说，用户看到内容时，至少还有 5 秒的烘焙工作留在后面跑。
+  // 如果两者相差无几，说明首帧仍在等全部烘焙 —— 那正是要解决的问题本身。
+  const base = read('docs/perf-baseline.json')
+  if (!base) {
+    record('G6', '首屏只烘焙可见公式', 'TODO', '无测量基线：先跑 npm run measure:first-paint（约 1–4 分钟）')
+  } else {
+    let b
+    try {
+      b = JSON.parse(base)
+    } catch {
+      b = null
+    }
+    if (!b || typeof b.fullBakeMs !== 'number' || typeof b.firstVisibleMs !== 'number') {
+      record('G6', '首屏只烘焙可见公式', 'TODO', '基线文件缺少 firstVisibleMs / fullBakeMs')
+    } else {
+      const gap = b.fullBakeMs - b.firstVisibleMs
+      const pass = gap >= 5000
+      record(
+        'G6',
+        '首屏只烘焙可见公式',
+        pass ? 'PASS' : 'FAIL',
+        pass
+          ? `首帧 ${(b.firstVisibleMs / 1000).toFixed(1)}s，烘焙 ${(b.fullBakeMs / 1000).toFixed(1)}s，差 ${(gap / 1000).toFixed(1)}s`
+          : `首帧 ${(b.firstVisibleMs / 1000).toFixed(1)}s 几乎等于烘焙完成 ${(b.fullBakeMs / 1000).toFixed(1)}s（差 ${(gap / 1000).toFixed(1)}s）——首帧仍在等全部烘焙`
+      )
+    }
+  }
 }
 
 // ── G7 · TTI ───────────────────────────────────────────────────────────────

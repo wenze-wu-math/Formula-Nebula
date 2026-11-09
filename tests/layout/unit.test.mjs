@@ -65,7 +65,7 @@ function fakeBaked(nodes) {
   return m
 }
 
-let graph = buildGraph()
+const graph = buildGraph()
 layoutGraph(graph, fakeBaked(graph.nodes))
 
 const isFinitePos = (n) =>

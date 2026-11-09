@@ -95,7 +95,8 @@
     "verify:final": "node scripts/verify-final.mjs",
     "test:graph": "node tests/graph/unit.test.mjs",
     "test:layout": "node tests/layout/unit.test.mjs",
-    "verify:boot": "node scripts/verify-app-boot.mjs"
+    "verify:boot": "node scripts/verify-app-boot.mjs",
+    "measure:first-paint": "node scripts/measure-first-paint.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",
