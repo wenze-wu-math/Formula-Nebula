@@ -199,9 +199,45 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
 - [ ] **G3 / G4 · 主包体积**（2312 KB gzip，目标 1500 / 1000）
   依赖 G5。数据不下线，体积降不下来。
 
-- [ ] **G6 / G7 · 首屏烘焙与 TTI**
-  需要先造 `firstVisible` 测量。现在 `splash` 要等全部 4306 个公式烘焙完
-  才消失，但**没有可信的计时数据**，所以 G6/G7 在 score 里报 TODO 而非 PASS。
+- [ ] **G6 / G7 · 首屏烘焙与 TTI**（尺子已造，目标未达成）
+  **尺子已完成**（2026-11-09，`npm run measure:first-paint`）。
+  实测（本地 preview、无头、无 GPU）：
+
+  ```
+  first-contentful-paint   2.0 s   ← 这是 splash 本身，不是星云
+  全部烘焙完成 (__nebula)  38.5 s
+  splash 真正隐藏          未捕获
+  ```
+
+  **根因已确认**（读 main.js 即可看到）：
+
+  ```
+  L167  await bakeAll(items, ...)      ← 阻塞 38–230 秒
+  L181  splash.update(75, '布局知识图谱...')
+  ...
+  L566  splash.hide()
+  L644  window.__nebula = { ... }
+  ```
+
+  L167 之后的所有代码都在 `await` 后面，所以**在 4306 个公式全部排版完之前，
+  屏幕上什么都出不来**。这正是 G6 要改的东西，也是为什么前几轮"测 splash 消失"
+  总是和"烘焙完成"落在同一时刻。
+
+  测量过程中**否定掉两个不成立的判据**，记在这里避免重犯：
+  · `getComputedStyle(#splash).display` —— 始终观察不到。`__nebula` 在 L644
+    同步赋值，而 `splash.hide()` 在 L566 只是**调度**（200ms + 300ms 淡出 +
+    500ms 才设 display:none）。但仅凭这个时序解释并不完全吻合，所以放弃，
+    而不是基于一个说不通的猜测继续。
+  · `PerformancePaintTiming.first-contentful-paint` —— 数据稳定，但它量的是
+    **splash**（index.html 里的静态元素），不是星云。拿它当"首帧可见"会凭空
+    造出 52 秒的假改进。已明确剔除，且在工具输出里标注了这个陷阱。
+
+  保留的判据：`window.__nebula` 出现 = 全部烘焙完成（可靠）。
+  `docs/perf-baseline.json` 已加入 .gitignore —— 它取决于机器与负载，
+  必须重测，不能从历史里trust。
+
+  **下一步**：G6 的真正实现是让 L167 的 `await` 不再阻塞首屏 ——
+  先烘焙视野内的公式并出图，其余在后台补。这会改动启动流程，需专门一轮。
 
 - [x] **G8 / G9 · 核心单测**（2026-11-09）
   `tests/graph/unit.test.mjs`（14 断言）：节点唯一性、byId 一致性、每条
