@@ -95,7 +95,7 @@ try {
   kids.push(
     spawn(
       browser,
-      ['--headless=new', '--disable-gpu', '--no-first-run', '--disable-extensions', '--window-size=1600,1000', '--no-sandbox', `--remote-debugging-port=${CDP_PORT}`, `--user-data-dir=${profile}`, 'about:blank'],
+      ['--headless=new', '--use-gl=swiftshader', '--enable-unsafe-swiftshader', '--no-first-run', '--disable-extensions', '--window-size=1600,1000', '--no-sandbox', `--remote-debugging-port=${CDP_PORT}`, `--user-data-dir=${profile}`, 'about:blank'],
       { stdio: 'ignore', detached: process.platform !== 'win32' }
     )
   )

@@ -112,7 +112,7 @@ try {
       browser,
       [
         '--headless=new',
-        '--disable-gpu',
+        '--use-gl=swiftshader', '--enable-unsafe-swiftshader',
         '--no-first-run',
         '--disable-extensions',
         '--window-size=1440,1000',

@@ -165,7 +165,7 @@ try {
       browser,
       [
         '--headless=new',
-        '--disable-gpu',
+        '--use-gl=swiftshader', '--enable-unsafe-swiftshader',
         '--no-first-run',
         '--no-default-browser-check',
         '--disable-extensions',
