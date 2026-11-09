@@ -252,7 +252,24 @@ export function initMobileOptimizations(scene, settings) {
 
   if (recommended.bloom === false) {
     console.log('  - Disabling bloom effect for performance')
-    settings.setState({ display: { ...settings.state.display, bloom: false } })
+    // 这里原本调用 settings.setState({ display: {...} })，但 settings 上
+    // **没有 setState 这个方法**（它提供的是 setShape / setTweak /
+    // setColorMode / toggleDisplay / setGravity ...）。于是这一行在低性能
+    // 设备上必然抛 TypeError: settings.setState is not a function。
+    //
+    // 后果远比"bloom 没关掉"严重：initMobileOptimizations() 是在 main()
+    // 里第 578 行同步调用的，异常向上冒泡直接中断 main()，导致它后面所有
+    // 初始化都不再执行 —— 包括 window.__nebula / __formulaNebula 的暴露。
+    // 而生产构建开了 terser 的 drop_console，把 main().catch 里的
+    // console.error 也一并删掉了，所以整个失败**完全静默**：用户只看到
+    // splash 消失后一片空白。
+    //
+    // 正确写法：切到 bloom 关闭即可（toggleDisplay 是翻转语义，所以仅在
+    // 当前为开时才翻）。用可选链兜底，避免任何一次设置 API 变动再次把
+    // 整个启动流程带下去。
+    if (settings?.state?.display?.bloom !== false && typeof settings?.toggleDisplay === 'function') {
+      settings.toggleDisplay('bloom')
+    }
   }
 
   // Reduce pixel ratio on low-end devices

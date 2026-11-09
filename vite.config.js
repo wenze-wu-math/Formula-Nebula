@@ -104,9 +104,20 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,  // 生产环境移除 console
+        // 只删「调试噪音」，**保留 error / warn**。
+        //
+        // 之前是 drop_console: true + pure_funcs 列了 log/info/debug —— 看似
+        // 等价，实际把 console.error 和 console.warn 也一并干掉了。后果不是
+        // 少了几行日志，而是**故障完全静默**：
+        //
+        //   main() 末尾的 `main().catch(err => console.error('启动失败', err))`
+        //   被压成了空函数体。当 mobileOptimization 真的抛 TypeError 时，用户
+        //   只看到 splash 消失后一片空白，控制台里什么都没有，无从排查。
+        //   这个 bug 在线上存在了不知多久，正是因为这条配置把证据删了。
+        //
+        // 现在显式只 drop console.log。任何失败都会留下痕迹。
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        pure_funcs: ['console.log'],
       },
     },
 
