@@ -105,11 +105,11 @@
     "express": "^4.21.2",
     "i18next": "^23.7.6",
     "i18next-browser-languagedetector": "^7.2.1",
-    "i18next-http-backend": "^4.0.9",
+    "i18next-http-backend": "^4.0.10",
     "katex": "^0.19.1",
     "mathjax-full": "^3.2.2",
     "stripe": "^17.5.0",
-    "three": "^0.180.0",
+    "three": "^0.187.0",
     "ws": "^8.14.2"
   },
   "devDependencies": {
