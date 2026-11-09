@@ -3,7 +3,7 @@
  * Compare formulas for semantic equivalence
  */
 
-import { parseLatex, normalize, toCanonicalLatex, compareNodes } from './normalize.js'
+import { parseLatex, normalize, toCanonicalLatex } from './normalize.js'
 
 /**
  * Compare two LaTeX formulas for semantic equivalence

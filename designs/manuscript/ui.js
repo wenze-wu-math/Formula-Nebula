@@ -15,7 +15,7 @@
 import { state, bus, visibleRect } from './state.js'
 import { PALETTE, FONTS, CHROME, CHAPTERS, CHAPTER_BY_KEY, FRONT, COLOPHON, lodLevel, statusGlyph, FIELD_SEAL, TEX_EM } from './constants.js'
 import { inlineMd } from '../shared/md.js'
-import { isLegible, itemScreenRect } from './render.js'
+import { itemScreenRect } from './render.js'
 import { svgUrlFor } from './formulas.js'
 import { buildPanelContent, locatorOf } from './panel.js'
 import { buildLegend } from './ui-legend.js'

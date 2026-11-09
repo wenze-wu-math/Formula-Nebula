@@ -11,7 +11,7 @@
  * 这属于"结构性关联"，权重必须低于真实引用边（0.15-0.25），
  * 并在 label 里标明来源，避免被误读成"此人证明了这个定理"。
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 

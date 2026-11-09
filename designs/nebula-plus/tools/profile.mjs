@@ -15,7 +15,6 @@
  * 硬边的特征是 maxJump 出现在**最外一格**且 edgeRatio 远大于 1。
  */
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
 
 const argv = process.argv.slice(2)
 const file = argv[0]

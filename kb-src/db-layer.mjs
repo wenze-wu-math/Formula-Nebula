@@ -4,7 +4,7 @@
  * Provides unified interface for queries, caching, and migrations
  */
 
-import { readFile, writeFile, mkdir } from 'fs/promises';
+import { mkdir } from 'fs/promises'
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 

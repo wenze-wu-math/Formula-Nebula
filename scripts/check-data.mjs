@@ -2,7 +2,7 @@
  * 校验扩展知识库：id 唯一、latex 无重复、连线两端存在、权重合法。
  * 用法: node scripts/check-data.mjs
  */
-import { readFileSync, readdirSync } from 'node:fs'
+import { readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 

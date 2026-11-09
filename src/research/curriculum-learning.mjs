@@ -15,7 +15,7 @@
  * research-grade curriculum optimization.
  */
 
-import { PrerequisiteResolver, SuitabilityRanker } from '../learningPath.js'
+import { PrerequisiteResolver } from '../learningPath.js'
 
 // ============================================================================
 // 1. PREREQUISITE GRAPH EXTRACTOR

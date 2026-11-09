@@ -4,7 +4,6 @@
  */
 
 import fs from 'fs/promises';
-import { existsSync } from 'fs';
 import { execSync } from 'child_process';
 
 console.log('='.repeat(70));

@@ -18,7 +18,6 @@
  */
 import { writeFileSync, mkdirSync } from 'node:fs'
 import path from 'node:path'
-import { pathToFileURL } from 'node:url'
 
 if (!process.env.HTTPS_PROXY && !process.env.https_proxy) {
   console.error('需要代理：HTTPS_PROXY=http://127.0.0.1:7890  NODE_USE_ENV_PROXY=1')

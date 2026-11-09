@@ -6,7 +6,6 @@
 
 import { initDB, ENGINE } from './db-layer.mjs';
 import { initializeSchema } from './db-schema.mjs';
-import { getEngineConfig } from './db-config.mjs';
 import { rmdir, mkdir } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';

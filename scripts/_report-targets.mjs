@@ -6,7 +6,7 @@
  *
  * 用法：node scripts/_report-targets.mjs [--missing-only]
  */
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { PROOFS } from '../src/data/proofs/index.js'
 
 const missingOnly = process.argv.includes('--missing-only')

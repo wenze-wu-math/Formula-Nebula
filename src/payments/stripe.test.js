@@ -4,7 +4,7 @@
  * Comprehensive test suite for Stripe payment integration
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeAll, afterAll } from '@jest/globals'
 import {
   CustomerManager,
   SubscriptionManager,

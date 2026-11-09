@@ -7,7 +7,6 @@
  */
 
 import fs from 'fs/promises';
-import { execSync } from 'child_process';
 import path from 'path';
 
 const results = {

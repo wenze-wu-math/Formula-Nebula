@@ -7,9 +7,8 @@
  * 所有手写小标签（丝线数字、关系名、屏幕外箭头的计数）都先用 fitsFree 检查不与本帧可读字相交再画，
  * 并登记为可读标签 —— overlappingLabels 因而对它们也保持 0。
  */
-import { PALETTE, LINK_STROKE, THREADS_FADE, AMBIENT_FADE, LINK_LABEL_MIN_Z } from './constants.js'
-import { typeLabel } from '../shared/kb.js'
-import { pencilCurve, pencilCubic, inkEllipse, arrowHead, bezPoint, seedOf } from './pencil.js'
+import { PALETTE, LINK_STROKE, THREADS_FADE, AMBIENT_FADE } from './constants.js'
+import { pencilCurve, seedOf } from './pencil.js'
 import { clamp, smoothstep, font, addLabel, fitsFree } from './render-text.js'
 
 const ARC_FROM_FORMULA = 52      // 弧区右缘 = 公式左缘 − (行号区 40 + 间距 12)，与 layout 的 Arc.x 一致

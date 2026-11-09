@@ -13,9 +13,9 @@
  */
 
 import { buildAtlas as buildAtlasOriginal } from './layout.js'
-import { hashStr, makeRng, polarToWorld, worldToPolar, normRa, raDelta } from './geo.js'
-import { FAMILY_ORDER, POLE_FAMILY, RING_ORDER, MAG_CUTS } from './constants.js'
-import { R_DISK, BAND_W } from './runtime.js'
+import { hashStr, makeRng, polarToWorld } from './geo.js'
+import { POLE_FAMILY } from './constants.js'
+import { R_DISK } from './runtime.js'
 
 const TAU = Math.PI * 2
 const DEG = Math.PI / 180

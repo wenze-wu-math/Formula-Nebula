@@ -3,7 +3,7 @@
  * Creates core tables/collections for knowledge graph
  */
 
-import { SQL_SCHEMA, MONGO_SCHEMA } from '../db-schema.mjs';
+import { SQL_SCHEMA } from '../db-schema.mjs'
 
 export const version = '001';
 export const name = 'initial_schema';

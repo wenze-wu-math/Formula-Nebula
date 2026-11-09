@@ -18,7 +18,7 @@
  * 注意：本会话的 web_search / web_fetch 工具坏了，这里是直接用 Node fetch
  * 走系统代理（HTTPS_PROXY=127.0.0.1:7890 + NODE_USE_ENV_PROXY=1）。
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import path from 'node:path'
 
 if (!process.env.HTTPS_PROXY && !process.env.https_proxy) {

@@ -4,7 +4,7 @@
  */
 
 import { buildGraph } from '../shared/kb.js'
-import { PretrainGNN, PredictLinks, RankSuggestions, GenerateVisualization, ExplainPrediction, DemoWorkflow } from './graph-completion.js'
+import { ExplainPrediction, DemoWorkflow } from './graph-completion.js'
 import { writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'

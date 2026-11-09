@@ -5,7 +5,7 @@
  *   $env:URL="http://localhost:5176/"; node scripts/verify-galaxy.mjs
  */
 import { spawn } from 'node:child_process'
-import { mkdtempSync, existsSync } from 'node:fs'
+import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { requireChrome } from './_chrome.mjs'

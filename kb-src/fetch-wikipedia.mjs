@@ -18,7 +18,7 @@
  * 用法：
  *   node kb-src/fetch-wikipedia.mjs
  */
-import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs'
+import { writeFileSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 

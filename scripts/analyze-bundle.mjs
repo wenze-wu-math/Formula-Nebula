@@ -6,7 +6,7 @@
  * 分析构建后的 bundle 大小和组成
  */
 
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs'
+import { readdirSync, statSync, existsSync } from 'fs'
 import { join, relative } from 'path'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'

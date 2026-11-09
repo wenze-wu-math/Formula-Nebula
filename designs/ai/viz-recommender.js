@@ -7,7 +7,7 @@
  * important connections.
  */
 
-import { getGraph, FAMILIES, LINK_TYPES, typeColor } from '../shared/kb.js'
+import { getGraph, typeColor } from '../shared/kb.js'
 
 /* ═══════════════════════════════════════════════════════════════
  * Visualization Types & Characteristics

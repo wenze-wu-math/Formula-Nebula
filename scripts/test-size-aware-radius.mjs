@@ -18,7 +18,7 @@
  *
  * 用法: node scripts/test-size-aware-radius.mjs
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const raw = JSON.parse(readFileSync(resolve('scripts', '.node-layout.json'), 'utf8'))

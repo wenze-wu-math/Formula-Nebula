@@ -12,8 +12,8 @@ import { bakeAll } from './formulaTexture.js'
 import { createUI } from './ui.js'
 import { createScene } from './scene.js'
 import { createProofView } from './proofView.js'
-import { GLYPH, LAYOUT, SHAPES, TWEAKABLE } from './config.js'
-import { settings, DISPLAY, DEFAULTS } from './settings.js'
+import { GLYPH, LAYOUT, SHAPES } from './config.js'
+import { settings, DEFAULTS } from './settings.js'
 import { createSettingsPanel } from './settingsPanel.js'
 import {
   decodeLocationState, decodeState, encodeState, mergeState, stateToHashInput, hashEquals,
