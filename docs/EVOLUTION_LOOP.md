@@ -314,6 +314,32 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
   · `sceneStart()` 单独吃 7.7 秒，尚未分析。
   · 这两项都要求改启动流程（先画可见内容、其余后台补），需要专门一轮。
 
+  ---
+
+  **第 13 轮：试过提高烘焙流水线深度，失败并回滚**
+
+  想法是用现有的 `?lookahead=N` 参数缩短烘焙。基准只看 `__bakeDoneAt`，
+  数字很漂亮（32 比 8 快一倍），于是改成默认 32 —— 然后 `verify:boot` 报：
+
+  ```
+  ✗ window.__nebula 已暴露（main() 完整执行）
+  ✗ 图已装配
+  ```
+
+  **应用根本没启动完成。** 16 也一样。已全部回滚，8 是硬上限。
+
+  两个必须记住的教训：
+
+  1. **性能基准必须同时断言"应用真的可用"。** 只测 `__bakeDoneAt` 不够 ——
+     它在 `await bakeAll()` 之后、`main()` 结束之前就写入，启动可以在那之后
+     才失败。漂亮的数字掩盖了功能损坏，这和第 7 轮 `settings.setState` 是
+     同一类错误。`verify:boot` 现在是任何启动改动的必过项。
+  2. 原因不是内存（单张 canvas 仅 5 KB），更可能是**并发纹理上传打到
+     GPU/驱动上限** —— 无头无 GPU 环境下同时创建超过 8 个 WebGL 纹理就会
+     失败，而 `bakeAll` 自己吞掉了错误，所以没有异常冒出来。
+
+  详细记录见 `docs/BAKE-PIPELINE-NOTES.md`。
+
 - [x] **G8 / G9 · 核心单测**（2026-11-09）
   `tests/graph/unit.test.mjs`（14 断言）：节点唯一性、byId 一致性、每条
   link 端点在图上、无自环、权重有限、impRange/conjRange 非退化、stats 与
