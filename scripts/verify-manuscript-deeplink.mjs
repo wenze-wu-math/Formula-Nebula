@@ -166,7 +166,12 @@ try {
   })()`)
   check(
     '#n=<id> selects that node',
-    !!sel && (sel.selected === probe.id || sel.url.includes(encodeURIComponent(probe.id)) || sel.url.includes(probe.id)),
+    // The assertion must be about the SELECTION, not about the URL. The old
+    // version also accepted `sel.url.includes(probe.id)`, which is always true
+    // here because we navigated to a URL containing that id — so the check
+    // passed even when parseHash() was sabotaged and nothing got selected.
+    // Caught by the negative control, which is exactly what it is for.
+    !!sel && sel.selected === probe.id,
     JSON.stringify(sel)
   )
 

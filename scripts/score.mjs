@@ -161,12 +161,25 @@ function lintCounts() {
   if (!doc) {
     record('G2', '每个 verify 脚本有负向对照', 'TODO', 'docs/NEGATIVE-CONTROLS.md 不存在')
   } else {
-    const missing = verifiers.filter((v) => !doc.includes(v))
+    // Only count entries under "## 已完成". A script merely NAMED somewhere in
+    // the file is not covered — the first draft of the doc listed two scripts
+    // under "待补" (to-do) and this check happily scored them as done, which is
+    // the same false-green this project keeps hunting.
+    const doneStart = doc.indexOf('## 已完成')
+    const todoStart = doc.indexOf('## 待补')
+    let doneSection = ''
+    if (doneStart !== -1) {
+      doneSection = doc.slice(doneStart, todoStart === -1 ? undefined : todoStart)
+    }
+    // Require the script name to appear as a heading-ish entry in that section.
+    const missing = verifiers.filter((v) => !doneSection.includes(v))
     record(
       'G2',
       '每个 verify 脚本有负向对照',
       missing.length === 0 ? 'PASS' : 'FAIL',
-      missing.length === 0 ? `已覆盖 ${verifiers.length} 个` : `缺 ${missing.length} 个：${missing.slice(0, 4).join(', ')}`
+      missing.length === 0
+        ? `已完成段覆盖 ${verifiers.length} 个`
+        : `缺 ${missing.length} 个：${missing.slice(0, 4).join(', ')}`
     )
   }
 }

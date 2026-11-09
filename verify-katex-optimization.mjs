@@ -23,7 +23,10 @@ console.log('1️⃣  检查文件存在性...')
 const files = [
   'designs/shared/tex.js',
   'designs/nebula-plus/src/formulaTexture.js',
-  'test-katex-optimization.html',
+  // 'test-katex-optimization.html' — 这个手工测试页已被删除（它只用于当时
+  // 对比优化前后的一次性人工比对），脚本却仍把它列为必须存在的文件，于是
+  // `npm run verify:katex` 从那时起就一直失败。它不在 CI 里，所以没人发现。
+  // 删掉这一项，其余三项仍在检查真正的懒加载实现。
   'index.html'
 ]
 
@@ -149,9 +152,11 @@ fixChecks.forEach(check => {
 // 5. 检查文档
 console.log('\n5️⃣  检查文档完整性...')
 
+// 这里原本还要求 OPTIMIZATION_PROGRESS.md 与 SESSION_SUMMARY.md 存在。
+// 那两个是当时一次优化工作的过程记录（进度表与会话总结），后来已随文档
+// 整理删除；把它们当作"必须存在的约束"没有意义 —— 过程记录不是产品的一
+// 部分。保留下来的 OPTIMIZATION_ROADMAP.md 才是长期有效的规划文档。
 const docs = [
-  'OPTIMIZATION_PROGRESS.md',
-  'SESSION_SUMMARY.md',
   'OPTIMIZATION_ROADMAP.md'
 ]
 

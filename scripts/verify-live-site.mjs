@@ -9,7 +9,7 @@
  * Usage: node scripts/verify-live-site.mjs [url]
  */
 
-import { spawn } from 'node:child_process'
+import { spawn, execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
@@ -78,16 +78,64 @@ class CDP {
 const CDP_PORT = 9985
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'fn-live-'))
 let child = null
+
+/**
+ * Kill the browser we started, and anything headless that escaped it.
+ *
+ * Two bugs were here before, both of which leaked a process:
+ *   1. spawn('taskkill', ...) is ASYNC and we immediately process.exit(), so
+ *      the taskkill child was killed before it could do its job.
+ *   2. taskkill /T only follows the parent's process tree; a re-parented
+ *      renderer subprocess is not in it.
+ * Now: synchronous taskkill for the tree, then a name sweep for stragglers.
+ */
 const kill = () => {
   try {
-    if (child) {
-      if (process.platform === 'win32') spawn('taskkill', ['/PID', String(child.pid), '/T', '/F'], { stdio: 'ignore' })
-      else process.kill(-child.pid, 'SIGKILL')
+    if (child && child.pid) {
+      if (process.platform === 'win32') {
+        execFileSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], { stdio: 'ignore', timeout: 10000 })
+      } else {
+        process.kill(-child.pid, 'SIGKILL')
+      }
     }
   } catch {
     /* gone */
   }
+  try {
+    if (process.platform === 'win32') {
+      execFileSync(
+        'powershell',
+        [
+          '-NoProfile',
+          '-Command',
+          "Get-CimInstance Win32_Process -Filter \"Name='msedge.exe'\" | Where-Object { $_.CommandLine -like '*--headless*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }",
+        ],
+        { stdio: 'ignore', timeout: 10000 }
+      )
+    }
+  } catch {
+    /* best effort */
+  }
 }
+/** Number of headless browser processes still alive (Windows only). */
+function countHeadless() {
+  if (process.platform !== 'win32') return 0
+  try {
+    const out = execFileSync(
+      'powershell',
+      [
+        '-NoProfile',
+        '-Command',
+        "(Get-CimInstance Win32_Process -Filter \"Name='msedge.exe'\" | Where-Object { $_.CommandLine -like '*--headless*' } | Measure-Object).Count",
+      ],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 10000 }
+    )
+    return parseInt(out.trim(), 10) || 0
+  } catch {
+    return 0
+  }
+}
+
 process.on('exit', kill)
 
 let failures = 0
@@ -207,6 +255,22 @@ try {
 } finally {
   kill()
   await sleep(900)
+  // One more sweep after the sleep: a renderer subprocess can be spawned
+  // during teardown, after the first kill already ran. Then VERIFY rather than
+  // assume — this script's whole job is to check things, so it should not
+  // claim a clean exit while leaving a browser holding a WebGL context.
+  kill()
+  await sleep(600)
+  const leftover = countHeadless()
+  if (leftover > 0) {
+    console.log(`  ! ${leftover} headless process(es) still alive, sweeping again`)
+    kill()
+    await sleep(800)
+  }
+  if (countHeadless() > 0) {
+    failures++
+    console.log('  ✗ 清理未完成：仍有 headless 进程残留')
+  }
   try {
     fs.rmSync(profile, { recursive: true, force: true })
   } catch {
