@@ -174,30 +174,40 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
   另修 `score.mjs` 的 G2 判定：原来看「文档里有没有提到脚本名」，导致
   写在「待补」段的也算完成。现只统计「已完成」段。
 
-- [ ] **G5 · 数据按需加载**（机制已就绪，**尚未接入启动流程**）
-  `src/graph.js` 静态 import 全部 17 个数据批次（5.96 MB 源码），
-  主包 9.1 MB 里 82% 是数据。手写核心只占 **0.22 MB（3.6%）**，收益明确。
+- [ ] **G5 · 数据按需加载**（第 10 轮：知识数据已外置，**证明数据仍内联**）
+  `src/graph.js` 原本静态 import 17 个数据批次（5.96 MB 源码），主包 9.3 MB
+  里 82% 是数据。
 
-  **已完成**（2026-11-09，第 5 轮）：
-  · `buildGraph(source = null)` 接受显式数据源 —— 默认行为与之前逐位一致，
-    既有调用方与 14 条单测全部不受影响。
-  · `buildGraphAsync()` 返回 `{ core, ready, progress }`：核心图立即可用，
-    各批次并发加载后合并。
-  · **已验证与同步构建完全等价**：4306 节点 / 8747 连线 / stats 相同，
-    且**节点顺序也相同**。顺序这条需要一个修正：按到达顺序合并会产生
-    不同的节点顺序，而那会经由 rank 与布局渗进渲染结果，导致「渐进构建」
-    与「一次性构建」画出微妙不同的星云。最后一步改为按权威顺序重建。
-  · 构建产物仍是 9.1 MB 主包 —— 因为 `main.js` 仍走同步 `buildGraph()`，
-    静态 import 仍被并进主 chunk。
+  **第 10 轮已完成**：知识数据搬到 `public/data/*.json`。
+  · `scripts/build-data-json.mjs` 从 `src/data/*.js` 生成 JSON；源 .js 仍是
+    唯一事实来源，JSON 是构建产物。
+  · `graph.js` 不再 import 数据，改为 `setGraphData()` 注入；未注入时
+    `buildGraph()` 抛出**明确错误**而不是静默返回空图（空图像数据问题，极难查）。
+  · 保持 `buildGraph()` 同步：全项目 20+ 个同步调用点（ui.js、
+    proof-explorer.js、各 check/verify 脚本、单测）一个都没改。
+  · **浏览器与 Node 两条加载路径分成两个文件**：`dataLoader.js`（fetch）与
+    `dataLoaderNode.js`（静态 import）。第一次尝试把两者放同一文件，Vite
+    顺着 Node 路径的 import 把 6 MB 数据又打回主包，整个改动白做 —— 分开才是
+    真正的隔离。
+  · 结构标记（cluster / researcher）改为**生成 JSON 时**写入，依据是"这个
+    节点来自哪个导出数组"，比按字段猜（比如有 status 就是猜想）可靠。
 
-  **没做完的部分（下一轮）**：接入 `main.js`。障碍是启动链要求**全量**图——
-  `bakeAll()` 要给每个节点烘焙纹理，`layoutGraph()` 要布局整个盘面。
-  改成「先画核心、随后重建」是对启动流程的真重构，不是改一行开关。
-  在长回合末尾仓促做这件事、又没有时间认真验证浏览器路径，正是把能跑的
-  应用改坏的标准方式。留给专门的一轮。
+  实测：主包 **9279 KB → 3714 KB（raw）**，**2313 KB → 1265 KB（gzip）**。
+  线上已验证：4306 节点 / 8747 连线在 GitHub Pages 子路径下正常 fetch。
 
-- [ ] **G3 / G4 · 主包体积**（2312 KB gzip，目标 1500 / 1000）
-  依赖 G5。数据不下线，体积降不下来。
+  **G5 仍未达标**：主包里还剩 `wikipedia`（48 节点）与 `proofs`（3.3 MB）。
+  后者是主体 —— `main.js` 静态 import `./data/proofs/index.js`，而证明只在
+  打开证明页时才需要。下一轮处理它，预计能把主包压到 1000 KB gzip 以下。
+
+  顺带修正了 G5 的**检查器本身**：它原来用 `/nLab|Wikipedia|unsolved/i`
+  探测内联数据，而那些词也出现在注释、模块路径和 UI 文案里，导致数据真的
+  外置之后仍报 FAIL（假阳）。改为探测具体节点 id（`stx-01bh`、
+  `nlb-coherent-sheaf`、`ml-hasringhomproperty`、`cn-hodge`、`cn-collatz`、
+  `tensor-right-exact`），这些只存在于数据里。
+
+- [x] **G3 · 主包 gzip ≤ 1500 KB**（已达成：2313 → **1265 KB**）
+- [ ] **G4 · 主包 gzip ≤ 1000 KB**（现 1265 KB）
+  依赖证明数据外置（见上）。
 
 - [ ] **G6 / G7 · 首屏烘焙与 TTI**（尺子已造，目标未达成）
   **尺子已完成**（2026-11-09，`npm run measure:first-paint`）。
