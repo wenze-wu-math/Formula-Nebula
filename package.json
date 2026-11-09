@@ -104,7 +104,7 @@
     "i18next-http-backend": "^4.0.9",
     "katex": "^0.19.1",
     "mathjax-full": "^3.2.2",
-    "stripe": "^17.5.0",
+    "stripe": "^23.1.0",
     "three": "^0.180.0",
     "ws": "^8.14.2"
   },
