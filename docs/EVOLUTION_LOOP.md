@@ -403,3 +403,39 @@ ROADMAP.md 里有时间轴模式、多层级缩放等计划。**等 G1–G10 全
 ---
 
 _最后更新：见 git log 中本文档的最近一次提交。_
+
+---
+
+## 附：无头浏览器必须用 swiftshader，不能用 --disable-gpu
+
+第 13 轮发现，第 14 轮修掉。
+
+所有浏览器验证脚本连续多轮都在报：
+
+```
+THREE.WebGLProgram: Shader Error 0 - VALIDATE_STATUS false
+```
+
+应用本身**从来没有受影响** —— `verify:boot` 一直显示 `__nebula` 已暴露、
+4306 节点装配正常。但「无 console 错误」这条断言每次都失败，于是
+`verify:boot` 与 `verify:final` 永远拿不到干净结果。
+
+**一个永远红的检查器比没有检查器更糟**：它会训练你忽略它。第 7 轮那个
+`settings.setState` 的真实 bug 能潜伏那么久，正是因为当时没有任何检查器
+在发出可信的信号。
+
+根因：`--disable-gpu` 会让 Chromium 退回一个残缺的 WebGL 后端，着色器编译失败。
+
+改法：
+
+```
+--use-gl=swiftshader --enable-unsafe-swiftshader
+```
+
+实测对照：旧参数 → 1 个 console error，断言失败；换 swiftshader →
+0 个 console error，`verify:boot` 7/7 通过。
+
+已应用到全部 10 个驱动浏览器的脚本，让它们共用同一套渲染设置、不会各自漂移：
+`verify-app-boot`、`verify-final`、`verify-live-site`、`verify-designs`、
+`verify-designs-depth`、`verify-gallery`、`verify-manuscript-deeplink`、
+`verify-proof-view`、`measure-first-paint`、`capture-screenshots`。
