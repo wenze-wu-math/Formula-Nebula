@@ -189,6 +189,16 @@ async function main() {
   }, bakeOpts)
   mark('bake', tBake)
 
+  // G6 测量点：全部 4306 个公式烘焙完成的时刻。
+  // 与 __firstUsableAt 一起，构成"首帧是否在等全部烘焙"的判据。
+  try {
+    window.__bakeDoneAt = Math.round(performance.now())
+    window.__bootMarks = window.__bootMarks || {}
+    window.__bootMarks.bake = window.__bakeDoneAt
+  } catch {
+    /* ignore */
+  }
+
   /* ── 5. 布局 ──
    * 必须放在烘焙之后：只有拿到每个公式真实的宽高比，
    * 才能做"面积归一化"，让大小真的由重要度决定，
@@ -197,6 +207,7 @@ async function main() {
 
   const tLayout = performance.now()
   const layoutInfo = layoutGraph(graph, baked)
+  try { window.__bootMarks = window.__bootMarks || {}; window.__bootMarks.layout = Math.round(performance.now()) } catch { /* ignore */ }
   mark('layout', tLayout)
 
   perfMonitor.endPhase('bakeFormulas')
@@ -226,6 +237,7 @@ async function main() {
 
   const tNodes = performance.now()
   const built = scene.buildNodes(baked)
+  try { window.__bootMarks = window.__bootMarks || {}; window.__bootMarks.buildNodes = Math.round(performance.now()) } catch { /* ignore */ }
   mark('buildNodes', tNodes)
 
   perfMonitor.endPhase('buildNodes')
@@ -578,14 +590,37 @@ async function main() {
 
   /* ── 9. 起飞 ── */
   ui.finishLoading()
+  try { window.__bootMarks = window.__bootMarks || {}; window.__bootMarks.finishLoading = Math.round(performance.now()) } catch { /* ignore */ }
   scene.start()
+  try {
+    window.__bootMarks = window.__bootMarks || {}
+    window.__bootMarks.sceneStart = Math.round(performance.now())
+  } catch {
+    /* ignore */
+  }
 
   perfMonitor.endPhase('total')
 
   // 隐藏 splash screen
   if (splash) {
     splash.update(95, '完成！')
-    setTimeout(() => splash.hide(), 200)
+    setTimeout(() => {
+      splash.hide()
+      // ── G6 的测量点 ──
+      //
+      // 这是"用户第一次真正看到星云"的时刻：splash 开始淡出、背后的画布
+      // 亮出来。必须在这里记，不能靠外部探测 —— 前几轮用 CDP 轮询
+      // getComputedStyle(#splash).display，反复测不到，因为 hide() 自身还有
+      // 300ms + 500ms 两层 setTimeout 才把 display 设为 none，而探测脚本
+      // 往往在更早的 __nebula 出现时就 break 了。
+      //
+      // 在应用内部记录则没有这个时序问题：这一行执行时就是首帧可见的时刻。
+      try {
+        window.__firstUsableAt = Math.round(performance.now())
+      } catch {
+        /* 无 window 时忽略（Node 侧不会走到这里） */
+      }
+    }, 200)
   }
 
   // Log performance report to console
