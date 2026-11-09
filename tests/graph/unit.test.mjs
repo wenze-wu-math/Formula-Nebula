@@ -33,6 +33,10 @@ const assert = (cond, msg) => {
 }
 
 const { buildGraph, applyColor } = await import('../../src/graph.js')
+// 数据已从静态 import 迁到 public/data/*.json（见 src/dataLoaderNode.js）。
+// Node 下用 loadDataForNode() 走源 .js，保证与浏览器同一份数据。
+const { loadDataForNode } = await import('../../src/dataLoaderNode.js')
+await loadDataForNode()
 
 let graph
 try {

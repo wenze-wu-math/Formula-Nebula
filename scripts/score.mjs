@@ -83,23 +83,26 @@ function mainBundleContainsExtraData() {
   if (!js) return null
   const text = fs.readFileSync(path.join(dir, js.f), 'utf8')
 
-  // Bundling erases module paths (`./data/stacks-extra.js` does not survive),
-  // so searching for the filename is useless — it reports PASS even when every
-  // byte of data is inlined. Probe for actual data content instead: node titles
-  // that exist only in the auto-assembled batches.
+  // 判据必须是**真实数据内容**，不能是关键词。
+  //
+  // 第一版用 /nLab|Wikipedia|unsolved/i 之类做探针，结果数据已经外置到
+  // public/data/*.json 之后它仍然报"内联"——因为那些词也出现在代码注释、
+  // 模块路径和 UI 文案里。这种探针既会假阳（数据已移走仍报 FAIL），
+  // 也会假阴（数据内联但词不出现）。两种错误都让指标失去意义。
+  //
+  // 现在改为探测**具体节点 id**：这些字符串只存在于数据里，不可能出现在
+  // 代码中。取各批次的一条代表，任一出现即说明该批数据仍被并进主包。
   const probes = [
-    ['mathlib-batch', /Formalized|Mathlib|theorem\s+\w+\s*:\s*∀/],
-    ['stacks-batch', /Stacks Project|stacksproject|Tag \d{4}/i],
-    ['nlab-batch', /nLab|ncatlab/i],
-    ['wikipedia-batch', /Wikipedia|wikipedia\.org/i],
-    ['unsolved-batch', /unsolved|open problem/i],
+    ['stacks-batch', 'stx-01bh'],
+    ['nlab-batch', 'nlb-coherent-sheaf'],
+    ['mathlib-batch', 'ml-hasringhomproperty'],
+    ['unsolved-batch', 'cn-hodge'],
+    ['wikipedia-batch', 'cn-collatz'],
+    ['proofs-batch', 'tensor-right-exact'],
   ]
-  const found = probes.filter(([, re]) => re.test(text)).map(([name]) => name)
+  const found = probes.filter(([, id]) => text.includes(id)).map(([name]) => name)
 
-  // Size is the blunt but honest signal: the curated core alone is ~200 KB of
-  // source. A multi-megabyte main chunk means the batches are still inlined.
-  const inlined = js.size > 1_500_000
-  return { file: js.f, sizeBytes: js.size, found, inlined }
+  return { file: js.f, sizeBytes: js.size, found }
 }
 
 function lintCounts() {
@@ -204,14 +207,17 @@ function lintCounts() {
     record('G5', '数据按需加载', 'TODO', 'dist/ 不存在')
   } else {
     const mb = (m.sizeBytes / 1024 / 1024).toFixed(1)
-    const pass = !m.inlined && m.found.length === 0
+    // 只看真实节点 id 是否出现。体积不再单独作为判据：主包里还有证明数据
+    // 等尚未外置的内容，"体积大"不等于"这些批次被内联"，把两件事混在一个
+    // 目标里会让判定受另一个目标影响。
+    const pass = m.found.length === 0
     record(
       'G5',
       '数据按需加载',
       pass ? 'PASS' : 'FAIL',
       pass
-        ? '主包不含数据批次'
-        : `主包 ${mb} MB，检测到内联数据（${m.found.join(', ') || '体积超标'}）`
+        ? `主包 ${mb} MB，不含任何批次数据（已外置到 public/data/）`
+        : `主包 ${mb} MB，仍内联：${m.found.join(', ')}`
     )
   }
 }

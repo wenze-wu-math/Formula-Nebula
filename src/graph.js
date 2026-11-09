@@ -20,81 +20,62 @@
 
 import * as THREE from 'three'
 import { LAYOUT, GLYPH, MOTION, SHAPES, CLUSTER, RESEARCHERS } from './config.js'
-import { NODES, LINKS, FAMILIES } from './data/knowledge.js'
-import { EXTRA_A_NODES, EXTRA_A_LINKS } from './data/extra-a.js'
-import { EXTRA_B_NODES, EXTRA_B_LINKS } from './data/extra-b.js'
-import { EXTRA_C_NODES, EXTRA_C_LINKS } from './data/extra-c.js'
-import { EXTRA_D_NODES, EXTRA_D_LINKS } from './data/extra-d.js'
-import { EXTRA_E_NODES, EXTRA_E_LINKS } from './data/extra-e.js'
-import { EXTRA_F_NODES, EXTRA_F_LINKS } from './data/extra-f.js'
-import { EXTRA_G_NODES, EXTRA_G_LINKS } from './data/extra-g.js'
-import { EXTRA_H_NODES, EXTRA_H_LINKS } from './data/extra-h.js'
+import { FAMILIES } from './data/knowledge.js'
 import {
-  CONJECTURE_NODES, CONJECTURE_LINKS,
   CONJECTURE_STATUS, CONJECTURE_FIELDS,
 } from './data/conjectures.js'
 import {
-  RESEARCHER_AREAS, RESEARCHER_NODES, RESEARCHER_LINKS,
+  RESEARCHER_AREAS,
 } from './data/researchers.js'
-/* zbMATH Open API 自动抽取的数学家档案（生成物，见 kb-src/README）。
- * 手写的 24 条叙述性档案在 researchers.js，两者互补：
- * 手写条目有 focus/detail/代表作品，zbMATH 条目有可复核的 MSC 分布与获奖记录。 */
-import { RESEARCHER_EXTRA_NODES } from './data/researchers-extra.js'
-import { RESEARCHER_EXTRA_LINKS } from './data/researchers-extra-links.js'
-/* nLab 抓取的**概念**条目（生成物）。与 Stacks 的定理层互补：
- * Stacks 回答"这个结论成立吗"，nLab 回答"这个术语什么意思"。 */
-import { NLAB_NODES, NLAB_LINKS } from './data/nlab-extra.js'
-/* Lean mathlib4 抽取的**形式化**定理（生成物）。
- * 这是知识库的第三个维度：正确性由 Lean 内核保证，不依赖人类共识。
- * 注意：latex 字段是 Lean 类型签名，不是 LaTeX 排版。 */
-import { MATHLIB_NODES, MATHLIB_LINKS } from './data/mathlib-extra.js'
-/* Wikipedia 未解决列表采集的猜想（生成物）。
- * 与 UnsolvedMath 互补：UnsolvedMath 有难度分级做主线，
- * Wikipedia 别名更全、一句话陈述更清楚，用来补漏。 */
-import { WIKI_NODES, WIKI_LINKS } from './data/wikipedia-extra.js'
-/* 三个知识源之间的跨源关联（生成物）。
- * 把 Stacks 定理 / nLab 概念 / mathlib 形式化定理接起来，
- * 否则它们在星云上是三块互不相连的星区。 */
-import { CROSS_SOURCE_LINKS } from './data/cross-source-links.js'
 import { buildEqualizedPalette, hexToLinear } from './palette.js'
 import {
   resolveLinkType, typeColor, heroThreshold, typeStats, LINK_TYPES, RELATED,
 } from './linkTypes.js'
-/* Stacks Project 自动抽取的补充节点（生成物，见 kb-src/README）。
- * 用独立文件而不是塞进 knowledge.js：生成物与手写内容分离，
- * 重新生成时不会覆盖人工撰写的条目。 */
-import { STACKS_NODES, STACKS_LINKS } from './data/stacks-extra.js'
-/* UnsolvedMath 数据集抽取的补充猜想（生成物，已与 conjectures.js 去重）。 */
-import { UNSOLVED_NODES, UNSOLVED_LINKS } from './data/unsolved-extra.js'
+/* ═══════════════ 数据来源（运行时注入） ═══════════════
+ *
+ * 这里**不再**静态 import 知识数据。原因：那 15 个批次合计约 6 MB 源码，
+ * 静态 import 会把它们全部并进主 chunk —— 访客为了看到第一帧，得先下载
+ * 并解析整个数据库（实测主包 9.3 MB，其中 82% 是数据）。
+ *
+ * 现在数据以 JSON 形式放在 public/data/（由 scripts/build-data-json.mjs
+ * 从 src/data/*.js 生成，源 .js 仍是唯一事实来源），运行时由调用方加载后
+ * 注入。`buildGraph()` 保持**同步**契约不变：它只是从注入的数据构建。
+ *
+ * 为什么保留"注入"而不是把 buildGraph 改成 async：
+ * 全项目有 20 多个同步调用点（ui.js、proof-explorer.js、各种 check/verify
+ * 脚本、单测）。把核心函数改成 async 会波及全部，风险远大于收益。
+ *
+ * 未注入时的兜底：`ensureSyncData()` 走 node 环境的静态 import（仅用于
+ * 测试与构建期脚本），浏览器里若未注入则给出明确错误而不是静默空图。
+ */
+let INJECTED = null // { nodes, links, conjIds, researcherIds } | null
 
-/** 主星系的知识来源。分文件是为了让内容好维护，也方便按主题增删。 */
-const GALAXY_NODES = [
-  ...NODES,
-  ...EXTRA_A_NODES, ...EXTRA_B_NODES, ...EXTRA_C_NODES, ...EXTRA_D_NODES,
-  ...EXTRA_E_NODES, ...EXTRA_F_NODES, ...EXTRA_G_NODES, ...EXTRA_H_NODES,
-  ...STACKS_NODES,
-  ...NLAB_NODES,
-  ...MATHLIB_NODES,
-]
-const GALAXY_LINKS = [
-  ...LINKS,
-  ...EXTRA_A_LINKS, ...EXTRA_B_LINKS, ...EXTRA_C_LINKS, ...EXTRA_D_LINKS,
-  ...EXTRA_E_LINKS, ...EXTRA_F_LINKS, ...EXTRA_G_LINKS, ...EXTRA_H_LINKS,
-  ...STACKS_LINKS,
-  ...NLAB_LINKS,
-  ...MATHLIB_LINKS,
-]
+/**
+ * 注入完整数据集。
+ * @param {{nodes: Array, links: Array}} data
+ */
+export function setGraphData(data) {
+  if (!data || !Array.isArray(data.nodes) || !Array.isArray(data.links)) {
+    throw new Error('setGraphData: 需要 { nodes: Array, links: Array }')
+  }
+  INJECTED = data
+  return INJECTED
+}
 
-/** 猜想星团的 id 集合 —— 用来在装配时判定一个节点属于哪个结构。
- * 含手写的 59 条 + UnsolvedMath 补的批次；两者走同一套渲染与面板逻辑。 */
-const CONJECTURE_IDS = new Set([...CONJECTURE_NODES, ...UNSOLVED_NODES, ...WIKI_NODES].map((n) => n.id))
+/** 当前是否已注入数据（供启动流程判断） */
+export function hasGraphData() {
+  return INJECTED !== null
+}
 
-/** 研究者星团的 id 集合 —— 第三个结构，表示知识图谱上的活动主体 */
-const RESEARCHER_IDS = new Set([...RESEARCHER_NODES, ...RESEARCHER_EXTRA_NODES].map((n) => n.id))
-
-/** 全体节点/关联（三个结构合并后交给同一套渲染管线） */
-const ALL_NODES = [...GALAXY_NODES, ...CONJECTURE_NODES, ...UNSOLVED_NODES, ...WIKI_NODES, ...RESEARCHER_NODES, ...RESEARCHER_EXTRA_NODES]
-const ALL_LINKS = [...GALAXY_LINKS, ...CONJECTURE_LINKS, ...UNSOLVED_LINKS, ...WIKI_LINKS, ...RESEARCHER_LINKS, ...RESEARCHER_EXTRA_LINKS, ...CROSS_SOURCE_LINKS]
+/** 从注入的数据集派生出的分类集合。
+ *
+ * INJECTED 为 null 时这些是空集合 —— buildGraph() 会明确报错而不是
+ * 静默返回一张空图（空图会让上层以为是数据问题，极难排查）。 */
+function deriveFromInjected() {
+  const nodes = INJECTED ? INJECTED.nodes : []
+  const links = INJECTED ? INJECTED.links : []
+  return { nodes, links }
+}
 
 /* ───────────── 族色调色板 ─────────────
  *
@@ -169,18 +150,26 @@ function gauss3(a, b, c) {
  * @returns {{nodes: Array, links: Array, byId: Map, stats: object}}
  */
 export function buildGraph() {
+  if (!INJECTED) {
+    throw new Error(
+      'buildGraph: 数据尚未注入。浏览器里请先 await loadGraphData() 再构建；' +
+        'Node 下（测试/脚本）请用 tests 或脚本里的 loadDataForNode() 辅助函数。'
+    )
+  }
+
   /* ── 1. 规范化节点 ── */
   const byId = new Map()
   const nodes = []
 
-  for (const raw of ALL_NODES) {
+  for (const raw of INJECTED.nodes) {
     if (byId.has(raw.id)) {
       console.warn('[graph] 重复 id，已跳过:', raw.id)
       continue
     }
 
-    const isConj = CONJECTURE_IDS.has(raw.id)
-    const isResearcher = RESEARCHER_IDS.has(raw.id)
+    // 结构归属由数据自带（生成 JSON 时已打好），不再靠运行时建 ID 全集。
+    const isConj = !!raw.cluster
+    const isResearcher = !!raw.researcher
 
     const n = {
       ...raw,
@@ -229,7 +218,7 @@ export function buildGraph() {
   const seen = new Set()
   const links = []
 
-  for (const [a, b, w = 0.5, label = '', explicitType] of ALL_LINKS) {
+  for (const [a, b, w = 0.5, label = '', explicitType] of INJECTED.links) {
     if (!byId.has(a) || !byId.has(b)) {
       console.warn('[graph] 忽略悬空关联:', a, '→', b)
       continue

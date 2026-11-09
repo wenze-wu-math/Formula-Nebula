@@ -31,6 +31,8 @@ const check = (name, ok, detail = '') => {
 const { pathToFileURL } = await import('node:url')
 const asUrl = (p) => pathToFileURL(p).href
 const { buildGraph } = await import(asUrl(path.join(ROOT, 'src', 'graph.js')))
+const { loadDataForNode } = await import(asUrl(path.join(ROOT, 'src', 'dataLoaderNode.js')))
+await loadDataForNode()
 const graph = buildGraph()
 const stats = graph.stats
 

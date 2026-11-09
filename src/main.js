@@ -8,6 +8,7 @@
 
 import './style.css'
 import { buildGraph, layoutGraph } from './graph.js'
+import { loadGraphData } from './dataLoader.js'
 import { bakeAll } from './formulaTexture.js'
 import { createUI } from './ui.js'
 import { createScene } from './scene.js'
@@ -83,6 +84,18 @@ async function main() {
     )
   }
   /* ── 1. 装配图谱（纯数据） ── */
+  // 数据现在放在 public/data/*.json，先加载再构建。
+  //
+  // 之前是 `const graph = buildGraph()` 一句话 —— 因为数据被静态 import 进了
+  // 主 chunk，不加载完脚本就没有数据。改成 fetch 之后多了一次显式等待，
+  // 但换来的是：那 ~6 MB 不再阻塞脚本本身的下载与执行。
+  //
+  // buildGraph() 仍然是同步的（20 多个调用点不受影响），只是必须先注入数据。
+  if (splash) splash.update(12, '加载知识数据...')
+  await loadGraphData((done, total, id) => {
+    if (splash) splash.update(12 + Math.floor((done / total) * 8), `加载知识数据 ${done}/${total}（${id}）`)
+  })
+
   if (splash) splash.update(15, '构建知识图谱...')
   perfMonitor.startPhase('buildGraph')
 

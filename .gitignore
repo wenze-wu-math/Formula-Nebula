@@ -105,7 +105,11 @@ sitemap*.xml
 robots.txt
 
 # Data directory (if contains temp data)
-data/
+# 注意：这条原本是 `data/`，会匹配任意层级的 data 目录 —— 包括 public/data/，
+# 而后者是**必须入库的**：它由 scripts/build-data-json.mjs 从 src/data/*.js
+# 生成，GitHub Pages 直接部署 public/ 下的静态资源，JSON 不在仓库里就 404。
+# 收紧为只匹配仓库根目录的 data/。
+/data/
 
 # Tools (consolidate into scripts/)
 tools/

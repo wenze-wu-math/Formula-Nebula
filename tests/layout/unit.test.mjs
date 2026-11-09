@@ -33,6 +33,8 @@ const assert = (cond, msg) => {
 }
 
 const { buildGraph, layoutGraph } = await import('../../src/graph.js')
+const { loadDataForNode } = await import('../../src/dataLoaderNode.js')
+await loadDataForNode()
 const { LAYOUT } = await import('../../src/config.js')
 
 /**

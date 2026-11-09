@@ -25,6 +25,8 @@ console.log(`读入 ${sizes.length} 个节点的真实宽高比`)
 
 // 动态 import：config.js 与 graph.js 都是 ESM
 const { buildGraph, layoutGraph } = await import('../src/graph.js')
+const { loadDataForNode } = await import('../src/dataLoaderNode.js')
+await loadDataForNode()
 const { SHAPES, SHAPE_IDS, LAYOUT } = await import('../src/config.js')
 
 /* 数据集的全量节点列表 —— fakeBaked() 用它判断快照缺了哪些。
