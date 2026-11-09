@@ -423,7 +423,21 @@ export function applyColor(n) {
  * @param {object} graph  buildGraph() 的产物
  * @param {Map<string, object>} baked  id → { aspect, emWidth, emHeight, ... }
  */
-export function layoutGraph(graph, baked) {
+/**
+ * @param {object} graph  buildGraph() 的产物
+ * @param {Map} baked     id -> 烘焙产物（贴图尺寸）
+ * @param {{fast?: boolean}} [opts]
+ *   fast=true 时**跳过松弛**，只做解析布局。
+ *
+ *   这是为 G7（TTI ≤ 15s）加的：松弛 `runRelax` 是 O(n² × iters)，
+ *   在无头软件渲染下实测占掉首帧路径 30 秒。而解析布局本身只要 22ms。
+ *
+ *   代价是重叠变多、半径次序略松（实测 rank/radius Spearman 从 −0.967
+ *   降到 −0.907）—— 对**首帧**可以接受：先让用户看到星云，等后台补全
+ *   之后会再用完整模式重排一次。**不要**在最终布局上用 fast。
+ */
+export function layoutGraph(graph, baked, opts = {}) {
+  const FAST = opts.fast === true
   const { nodes } = graph
   const galaxyNodes = nodes.filter((n) => !n.cluster && !n.researcher)
   const conjNodes = nodes.filter((n) => n.cluster)
@@ -470,13 +484,13 @@ export function layoutGraph(graph, baked) {
   const avgSize = cnt ? sumChar / cnt : 8
 
   /* ── 2a. 主星系：盘面定位 ── */
-  const galaxyRelax = layoutGalaxy(galaxyNodes)
+  const galaxyRelax = layoutGalaxy(galaxyNodes, FAST)
 
   /* ── 2b. 猜想星团：球面定位 ── */
-  const conjRelax = layoutCluster(conjNodes)
+  const conjRelax = layoutCluster(conjNodes, FAST)
 
   /* ── 2c. 研究者星团：同款球面定位，但按研究者领域表分组 ── */
-  const researcherRelax = layoutResearcherCluster(researcherNodes)
+  const researcherRelax = layoutResearcherCluster(researcherNodes, FAST)
 
   /* ── 3. 回写极坐标 / 运动参数（三个结构共用） ──
    * ⚠ 星团节点的"极坐标"是**球坐标**，语义与盘面不同：
@@ -516,7 +530,7 @@ export function layoutGraph(graph, baked) {
  * 主星系的盘面定位（原 layoutGraph 的 2~3 步，抽出来以便与星团并列）。
  * 语义见下方各段注释：半径由重要度分位决定，方位角由形态决定。
  */
-function layoutGalaxy(nodes) {
+function layoutGalaxy(nodes, fast = false) {
   if (!nodes.length) return 0
 
   const R_OUT = LAYOUT.radiusOuter
@@ -618,7 +632,9 @@ function layoutGalaxy(nodes) {
    * "越中心越重要"的语义就被毁掉（实测半径相关性从 −0.82 掉到 0.06）。
    * 所以：排斥只作用在 x-z 平面上，之后把节点重新投回它自己的半径圆环上，
    * y（盘面厚度）完全不参与松弛 —— 薄盘和重要度层级都能保住。 */
-  return relaxInPlane(nodes, SHAPE)
+  // fast 模式跳过松弛（G7：首帧路径要快）。解析布局已经把 pos 设好了，
+  // 少了推挤只是更重叠，不影响正确性。
+  return fast ? 0 : relaxInPlane(nodes, SHAPE)
 }
 
 /**
@@ -649,15 +665,15 @@ function layoutGalaxy(nodes) {
  *    [r(1−f), r(1+f)]。与主星系一样，半径带是乘性的（越靠球心越紧），
  *    所以"越靠球心越重要"不会被松弛抹平。
  */
-function layoutCluster(nodes) {
-  return layoutSphere(nodes, CLUSTER, Object.keys(CONJECTURE_FIELDS))
+function layoutCluster(nodes, fast = false) {
+  return layoutSphere(nodes, CLUSTER, Object.keys(CONJECTURE_FIELDS), fast)
 }
 
-function layoutResearcherCluster(nodes) {
-  return layoutSphere(nodes, RESEARCHERS, Object.keys(RESEARCHER_AREAS))
+function layoutResearcherCluster(nodes, fast = false) {
+  return layoutSphere(nodes, RESEARCHERS, Object.keys(RESEARCHER_AREAS), fast)
 }
 
-function layoutSphere(nodes, C, FIELDS) {
+function layoutSphere(nodes, C, FIELDS, fast = false) {
   if (!nodes.length) return 0
 
   const R_CL = C.radius
@@ -758,7 +774,7 @@ function layoutSphere(nodes, C, FIELDS) {
     }
   })
 
-  return relaxOnSphere(nodes, cx, cy, cz, R_CL)
+  return fast ? 0 : relaxOnSphere(nodes, cx, cy, cz, R_CL)
 }
 
 /**

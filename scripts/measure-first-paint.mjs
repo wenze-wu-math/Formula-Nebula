@@ -171,7 +171,9 @@ try {
   const marksRaw = await ev('JSON.stringify(window.__bootMarks || {})')
   try {
     const m = JSON.parse(marksRaw || '{}')
-    const order = ['bake', 'layout', 'buildNodes', 'finishLoading', 'sceneStart']
+    // bakeFirst 是两阶段烘焙的首阶段完成时刻；bake 是**全部**烘焙完成
+    // （含后台补全），它落在首帧之后，不能放进这条递增链里当作"首帧前的阶段"。
+    const order = ['bakeFirst', 'layout', 'buildNodes', 'finishLoading', 'sceneStart']
     let prev = 0
     for (const k of order) {
       if (m[k] == null) continue

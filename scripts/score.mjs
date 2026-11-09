@@ -271,7 +271,7 @@ function lintCounts() {
   if (!base) {
     record('G7', 'TTI ≤ 15 秒', 'TODO', '无测量基线：先跑 npm run measure:first-paint')
   } else {
-    let b = null
+    let b
     try {
       b = JSON.parse(base)
     } catch {
