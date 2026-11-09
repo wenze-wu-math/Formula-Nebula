@@ -132,9 +132,19 @@ node scripts/_e2e-controls.mjs http://localhost:5413 9400
 
 ### 未完成
 
-- [ ] **G2 · 负向对照文档**
-  需要 `docs/NEGATIVE-CONTROLS.md`，为每个 `verify:*` / `check-*` 脚本
-  记录「故意破坏什么 → 报什么错 → 恢复」。目前只有零星几个做过。
+- [x] **G2 · 负向对照文档**（2026-11-09）
+  `docs/NEGATIVE-CONTROLS.md` 已覆盖全部 11 个 `verify:*` / `check-*` 脚本，
+  每个都记录了「故意破坏什么 → 实际报什么错 → 恢复后是否重新变绿」。
+  这项工作本身抓出三个真缺陷：
+  · `verify:manuscript` 的 `#n=` 断言是**假绿**（`|| url.includes(id)` 恒真），
+    破坏深链解析后它仍报 ✓；已收紧为只认 `selected === id`。
+  · `verify:live` **每次运行都泄漏一个无头浏览器**：`spawn('taskkill')` 是异步的，
+    紧接着 `process.exit()` 把它一起杀了；且 `/T` 只跟随父进程树。
+    改为同步执行 + 按名扫杀，并在 `finally` 里**验证**残留数而不是假设。
+  · `verify:katex` **一直失败**：它要求三个早已删除的文件存在（不在 CI 里，
+    所以没人发现）。删掉过时条目后恢复通过。
+  另修 `score.mjs` 的 G2 判定：原来看「文档里有没有提到脚本名」，导致
+  写在「待补」段的也算完成。现只统计「已完成」段。
 
 - [ ] **G5 · 数据按需加载**（最大的那块）
   `src/graph.js` 静态 import 全部 15 个数据批次（6.0 MB 源码），
