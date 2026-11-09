@@ -293,6 +293,10 @@ function createProofView(options = {}) {
     onGalaxy: options.onGalaxy,
     onHide: options.onHide,
     onShow: options.onShow,
+    // 按需加载单条证明。证明数据不再在启动时全量附加到节点上
+    // （245 条长篇证明 = 3.3 MB 源码，占主包 gzip 的绝大部分），
+    // 改由宿主在首次打开证明页时提供。返回 Promise<proof|null>。
+    loadProof: options.loadProof,
   }
 
   function resolve(value) {
@@ -372,11 +376,20 @@ function createProofView(options = {}) {
     return crumb
   }
 
-  function renderNode(node) {
+  function renderNode(node, opts = {}) {
     clearPage()
     const proof = node.proof && typeof node.proof === 'object' ? node.proof : {}
     const crumb = renderBreadcrumb(node)
     if (crumb) content.appendChild(crumb)
+
+    // 证明数据尚未到位时（首次打开需 fetch proofs.json），先给一行明确提示，
+    // 而不是让用户以为这个定理没有证明。
+    if (opts.loading) {
+      content.appendChild(
+        el('p', { class: 'pv-empty' }, ['证明内容加载中…'])
+      )
+      return
+    }
 
     const kicker = el('div', { class: 'pv-kicker' })
     if (node.kind) kicker.appendChild(el('span', { class: 'pv-chip', style: 'color:#9fd0ff' }, [node.kind]))
@@ -637,6 +650,48 @@ function createProofView(options = {}) {
     if (!node) {
       emit('error', { id: typeof value === 'string' ? value : null, reason: 'unknown-node' })
       return false
+    }
+    // 证明数据是按需加载的（见 dataLoader.js 的 loadProofs）。
+    // 首次打开证明页时，先显示一个「加载中」而不是空白页，异步取回后重渲染。
+    // 关键点：**不能**在这里同步等待 —— open() 是同步 API，被 URL 深链、
+    // 面包屑、键盘导航等十几处调用，改成 async 会波及全部调用方。
+    if (!node.proof && typeof callbacks.loadProof === 'function') {
+      const pending = callbacks.loadProof(node.id)
+      if (pending && typeof pending.then === 'function') {
+        // 先渲染一次骨架（无 proof 内容），数据到位后原地重渲染同一节点。
+        const previous = current
+        if (options.pushHistory !== false && previous && previous.id !== node.id) history.push(previous.id)
+        current = node
+        const nameEl = root.querySelector('.pv-head-name')
+        const enEl = root.querySelector('.pv-head-en')
+        if (nameEl) nameEl.textContent = node.name || node.id
+        if (enEl) enEl.textContent = node.en || node.id
+        renderNode(node, { loading: true })
+        setVisible(true)
+        page.scrollTop = 0
+        pending
+          .then((proof) => {
+            if (proof) node.proof = proof
+            // 只有用户还停在这个节点时才重渲染，避免抢掉他已经跳去的页面
+            if (current && current.id === node.id) renderNode(node)
+          })
+          .catch((e) => {
+            console.warn('[proofView] 证明数据加载失败：', e.message)
+            if (current && current.id === node.id) renderNode(node)
+          })
+        if (options.notify !== false) {
+          const detail = {
+            node,
+            from: previous?.id || null,
+            pushHistory: options.pushHistory !== false && !!previous && previous.id !== node.id,
+            navigationType: options.navigationType || 'open',
+          }
+          callbacks.onNavigate?.(node.id, detail)
+          emit('open', { id: node.id, ...detail })
+        }
+        callbacks.onShow?.(node.id, node)
+        return true
+      }
     }
     const previous = current
     if (options.pushHistory !== false && previous && previous.id !== node.id) history.push(previous.id)

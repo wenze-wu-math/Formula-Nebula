@@ -49,7 +49,7 @@ export async function loadGraphData(onProgress) {
       try {
         res = await fetch(url)
       } catch (e) {
-        throw new Error(`加载 ${file} 失败：${e.message}（${url}）`)
+        throw new Error(`加载 ${file} 失败：${e.message}（${url}）`, { cause: e })
       }
       if (!res.ok) {
         throw new Error(`加载 ${file} 失败：HTTP ${res.status}（${url}）`)
@@ -77,4 +77,50 @@ export async function loadGraphData(onProgress) {
   const data = { nodes, links }
   setGraphData(data)
   return data
+}
+
+/* ── 证明数据：单独按需加载 ──
+ *
+ * 245 条长篇证明（JSON 约 1.8 MB）与知识图谱的加载时机**不同**：
+ * 图谱是首屏必须的，证明只在用户点开某个定理的证明页时才需要。
+ * 之前它们由 main.js 静态 import，导致首屏无条件下载并解析 3.3 MB 源码 ——
+ * 那是主包 gzip 1265 KB 里的主要剩余部分。
+ *
+ * 现在只在第一次真正要看证明时加载一次，之后缓存复用。
+ */
+let proofsPromise = null
+let proofsCache = null
+
+/**
+ * 确保证明数据已加载。
+ * @returns {Promise<Record<string, object>>} id -> 证明对象
+ */
+export function loadProofs() {
+  if (proofsCache) return Promise.resolve(proofsCache)
+  if (!proofsPromise) {
+    proofsPromise = (async () => {
+      const url = new URL('proofs.json', dataBase()).href
+      const res = await fetch(url)
+      if (!res.ok) throw new Error(`加载 proofs.json 失败：HTTP ${res.status}`)
+      const json = await res.json()
+      proofsCache = json.proofs || {}
+      return proofsCache
+    })().catch((e) => {
+      // 失败后允许重试，否则一次网络抖动会让证明页永久不可用
+      proofsPromise = null
+      throw e
+    })
+  }
+  return proofsPromise
+}
+
+/** 同步取已加载的证明；未加载时返回 null（调用方应先 await loadProofs()）。 */
+export function getLoadedProof(nodeId) {
+  if (!proofsCache) return null
+  return proofsCache[nodeId] ?? null
+}
+
+/** 已加载的证明条数（未加载时为 0）。 */
+export function getLoadedProofCount() {
+  return proofsCache ? Object.keys(proofsCache).length : 0
 }

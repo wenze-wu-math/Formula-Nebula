@@ -92,11 +92,32 @@ const GROUPS = [
     note: '跨源关联',
     modules: [['cross-source-links.js', ['CROSS_SOURCE_LINKS']]],
   },
+  {
+    // 证明数据单独一个文件（约 1.8 MB JSON），因为它的加载时机与知识图谱
+    // **不同**：知识图谱是首屏必须的，证明只在用户点开某个定理的证明页时
+    // 才需要。放在一起会强迫首屏下载它 —— 那正是 245 条长篇证明造成的
+    // 3.3 MB 静态 import 问题。
+    file: 'proofs.json',
+    note: '245 条长篇证明（按需加载，首屏不需要）',
+    proofModule: 'proofs/index.js',
+    modules: [],
+  },
 ]
 
 const dataDir = path.join(ROOT, 'src', 'data')
 
 async function buildGroup(group) {
+  // 证明数据是「id -> 证明对象」的映射，不是节点/连线数组，
+  // 走单独的分支，避免把两套结构硬塞进同一个循环。
+  if (group.proofModule) {
+    const url = pathToFileURL(path.join(dataDir, group.proofModule)).href
+    const mod = await import(url)
+    if (!mod.PROOFS || typeof mod.PROOFS !== 'object') {
+      throw new Error(`${group.proofModule} 没有导出 PROOFS`)
+    }
+    return { proofs: mod.PROOFS }
+  }
+
   const nodes = []
   const links = []
   for (const [modFile, exportNames] of group.modules) {
@@ -105,7 +126,7 @@ async function buildGroup(group) {
     try {
       mod = await import(url)
     } catch (e) {
-      throw new Error(`导入 ${modFile} 失败：${e.message}`)
+      throw new Error(`导入 ${modFile} 失败：${e.message}`, { cause: e })
     }
     for (const name of exportNames) {
       const val = mod[name]
@@ -146,12 +167,21 @@ const summary = []
 
 for (const g of GROUPS) {
   const data = await buildGroup(g)
-  const payload = {
-    _note: g.note,
-    nodeCount: data.nodes.length,
-    linkCount: data.links.length,
-    nodes: data.nodes,
-    links: data.links,
+  let payload
+  if (data.proofs) {
+    payload = {
+      _note: g.note,
+      proofCount: Object.keys(data.proofs).length,
+      proofs: data.proofs,
+    }
+  } else {
+    payload = {
+      _note: g.note,
+      nodeCount: data.nodes.length,
+      linkCount: data.links.length,
+      nodes: data.nodes,
+      links: data.links,
+    }
   }
   const json = JSON.stringify(payload)
   const outPath = path.join(OUT_DIR, g.file)
@@ -166,7 +196,11 @@ for (const g of GROUPS) {
     }
   } else {
     fs.writeFileSync(outPath, json, 'utf8')
-    summary.push([g.file, data.nodes.length, data.links.length, json.length])
+    if (data.proofs) {
+      summary.push([g.file, 0, 0, json.length, Object.keys(data.proofs).length])
+    } else {
+      summary.push([g.file, data.nodes.length, data.links.length, json.length, 0])
+    }
   }
 }
 
@@ -183,10 +217,11 @@ console.log('\n═══ 已生成 public/data/ ═══')
 let totalNodes = 0
 let totalLinks = 0
 let totalBytes = 0
-for (const [f, n, l, b] of summary) {
+for (const [f, n, l, b, p] of summary) {
   totalNodes += n
   totalLinks += l
   totalBytes += b
-  console.log(`  ${f.padEnd(18)} ${String(n).padStart(5)} 节点  ${String(l).padStart(5)} 连线  ${(b / 1024).toFixed(0)} KB`)
+  const label = p ? `${String(p).padStart(5)} 证明` : `${String(n).padStart(5)} 节点`
+  console.log(`  ${f.padEnd(18)} ${label}  ${String(l).padStart(5)} 连线  ${(b / 1024).toFixed(0)} KB`)
 }
 console.log(`  ${'合计'.padEnd(16)} ${String(totalNodes).padStart(5)} 节点  ${String(totalLinks).padStart(5)} 连线  ${(totalBytes / 1024 / 1024).toFixed(2)} MB`)

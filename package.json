@@ -97,7 +97,8 @@
     "test:layout": "node tests/layout/unit.test.mjs",
     "verify:boot": "node scripts/verify-app-boot.mjs",
     "measure:first-paint": "node scripts/measure-first-paint.mjs",
-    "check:data-json": "node scripts/build-data-json.mjs --check"
+    "check:data-json": "node scripts/build-data-json.mjs --check",
+    "verify:proof-view": "node scripts/verify-proof-view.mjs"
   },
   "dependencies": {
     "express": "^4.21.2",

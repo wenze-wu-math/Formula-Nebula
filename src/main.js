@@ -8,7 +8,7 @@
 
 import './style.css'
 import { buildGraph, layoutGraph } from './graph.js'
-import { loadGraphData } from './dataLoader.js'
+import { loadGraphData, loadProofs, getLoadedProof, getLoadedProofCount } from './dataLoader.js'
 import { bakeAll } from './formulaTexture.js'
 import { createUI } from './ui.js'
 import { createScene } from './scene.js'
@@ -24,7 +24,6 @@ import * as graphQuery from './graphQuery.js'
 import * as linkTypes from './linkTypes.js'
 import * as progress from './data/progress.js'
 import * as proofRouter from './proofRouter.js'
-import { getProof, getProofCount } from './data/proofs/index.js'
 import { perfMonitor } from './performance.js'
 import { initAccessibility } from './accessibility.js'
 import { createTutorial } from './tutorial.js'
@@ -100,12 +99,15 @@ async function main() {
   perfMonitor.startPhase('buildGraph')
 
   const graph = buildGraph()
-  // 证明内容独立存放，按稳定 id 作为渐进增强附加到运行时节点；
-  // 旧数据文件仍然只需提供 summary/detail，three.js 不读取 proof 字段。
-  for (const node of graph.nodes) {
-    const proof = getProof(node.id)
-    if (proof) node.proof = proof
-  }
+  // 证明内容**不再在启动时附加**。
+  //
+  // 原来这里对所有 4306 个节点调 getProof()，把 245 条长篇证明一次性挂到
+  // 节点上 —— 这要求 main.js 静态 import 整个 proofs 目录（3.3 MB 源码），
+  // 于是首屏无条件下载并解析它们，而绝大多数访客根本不会打开证明页。
+  //
+  // 现在证明数据改为首次打开证明页时 fetch（见 dataLoader.js 的 loadProofs），
+  // 节点上的 proof 字段由 proofView 在渲染前按需填充。见 proofView.js 的
+  // renderNode / openWithProof。
 
   perfMonitor.endPhase('buildGraph')
 
@@ -398,6 +400,13 @@ async function main() {
       proofTrail = []
       writeLocationState(null, { trail: [] })
     },
+    /* 证明数据按需加载：首次打开证明页时才 fetch proofs.json，
+     * 之后从缓存取。返回 Promise<proof|null>，proofView 会在数据到位后
+     * 自动重渲染同一节点。 */
+    async loadProof(id) {
+      const proofs = await loadProofs()
+      return proofs[id] ?? null
+    },
   })
   proofView.mount()
 
@@ -656,7 +665,13 @@ async function main() {
   // 调试用：控制台里可以直接访问
   window.__nebula = {
     graph, scene, ui, proofView, baked, settings, panel, rebuildLayout,
-    proofData: { getProof, getProofCount },
+    proofData: {
+      // 证明数据现在是按需加载的：这两个函数在数据加载前返回空，加载后
+      // 才给出真实值。验证脚本若需要完整证明，应先 await loadProofs()。
+      getProof: (id) => getLoadedProof(id),
+      getProofCount: () => getLoadedProofCount(),
+      loadProofs,
+    },
     url: { decodeState, encodeState, stateToHashInput, hashEquals, syncUrl, buildHash },
     /* 纯函数模块也挂上来：验证脚本要在**真实页面**里调用它们，
      * 以证明它们不只是"能在 Node 里跑"，而是真的被构建进来了。
