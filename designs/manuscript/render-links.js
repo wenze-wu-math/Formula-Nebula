@@ -11,7 +11,7 @@ import { PALETTE, LINK_STROKE, THREADS_FADE, AMBIENT_FADE } from './constants.js
 import { pencilCurve, seedOf } from './pencil.js'
 import { clamp, smoothstep, font, addLabel, fitsFree } from './render-text.js'
 
-const ARC_FROM_FORMULA = 52      // 弧区右缘 = 公式左缘 − (行号区 40 + 间距 12)，与 layout 的 Arc.x 一致
+const _ARC_FROM_FORMULA = 52      // 弧区右缘 = 公式左缘 − (行号区 40 + 间距 12)，与 layout 的 Arc.x 一致
 
 /* ───────── 3. 章际丝线 ───────── */
 export function drawThreads(F, threads) {

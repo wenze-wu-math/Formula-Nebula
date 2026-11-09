@@ -748,12 +748,12 @@ class AlertManager {
     return checks;
   }
 
-  _calculateErrorRate(metrics) {
+  _calculateErrorRate(_metrics) {
     // Placeholder - would calculate from actual metrics
     return 0;
   }
 
-  _calculateP95ResponseTime(metrics) {
+  _calculateP95ResponseTime(_metrics) {
     // Placeholder - would calculate from histogram
     return 0;
   }

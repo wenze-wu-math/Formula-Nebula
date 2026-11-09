@@ -16,12 +16,12 @@ import { check, group, sleep } from 'k6';
 import { Rate, Trend, Counter } from 'k6/metrics';
 
 // Custom metrics
-const renderErrors = new Rate('render_errors');
+const _renderErrors = new Rate('render_errors');
 const renderTime = new Trend('render_time');
 const wsConnections = new Counter('ws_connections');
 const wsMessages = new Counter('ws_messages');
-const jsHeapSize = new Trend('js_heap_size');
-const fps = new Trend('fps');
+const _jsHeapSize = new Trend('js_heap_size');
+const _fps = new Trend('fps');
 
 // Environment config
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:5173';
@@ -150,7 +150,7 @@ function casualBrowser(data) {
     });
 
     // Load data files
-    const dataFiles = http.batch([
+    const _dataFiles = http.batch([
       ['GET', `${data.baseUrl}/src/data/knowledge.js`],
       ['GET', `${data.baseUrl}/src/data/conjectures.js`],
     ]);
@@ -179,7 +179,7 @@ function activeExplorer(data) {
     check(mainPage, { 'loaded': (r) => r.status === 200 });
 
     // Load all assets
-    const assets = http.batch([
+    const _assets = http.batch([
       ['GET', `${data.baseUrl}/src/main.js`],
       ['GET', `${data.baseUrl}/src/graph.js`],
       ['GET', `${data.baseUrl}/src/scene.js`],

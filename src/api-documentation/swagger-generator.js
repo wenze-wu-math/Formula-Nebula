@@ -24,7 +24,7 @@ export class SwaggerGenerator {
   /**
    * Generate complete Swagger/OpenAPI specification
    */
-  generate(endpoints, options = {}) {
+  generate(endpoints, _options = {}) {
     const spec = {
       openapi: '3.0.0',
       info: {

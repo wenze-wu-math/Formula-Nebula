@@ -453,7 +453,7 @@ export function createAutoModBadge(text) {
 
 // ===== Private Helper Functions =====
 
-function _createHeader(state) {
+function _createHeader(_state) {
   const header = document.createElement('div');
   header.style.cssText = `
     background: white;
@@ -599,7 +599,7 @@ function _createOverviewView() {
   return view;
 }
 
-function _createFlagsView(state) {
+function _createFlagsView(_state) {
   const view = document.createElement('div');
   view.style.cssText = `
     background: white;

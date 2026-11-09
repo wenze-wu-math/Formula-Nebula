@@ -683,7 +683,7 @@ export function CreateMentoringPlan(pair) {
 /**
  * 生成学习阶段
  */
-function generateLearningPhases(focusAreas, durationWeeks, currentLevel) {
+function generateLearningPhases(focusAreas, durationWeeks, _currentLevel) {
   const phases = [];
 
   // 第一阶段: 基础建立 (1/3 时间)
@@ -749,7 +749,7 @@ function generateLearningPhases(focusAreas, durationWeeks, currentLevel) {
 /**
  * 生成资源列表
  */
-function generateResourceList(focusAreas, mentorExpertise) {
+function generateResourceList(focusAreas, _mentorExpertise) {
   const resources = {
     books: [],
     papers: [],
@@ -1046,7 +1046,7 @@ function generateProgressRecommendations(stats, healthScore, delayedMilestones) 
 /**
  * 生成进度时间线
  */
-function generateProgressTimeline(milestones, plan) {
+function generateProgressTimeline(milestones, _plan) {
   return milestones.map(m => ({
     week: m.targetWeek,
     title: m.title,
@@ -1124,7 +1124,7 @@ export function SendMentoringUpdate(pair, update) {
   }
 
   // 验证发送者
-  const validSenders = [mentorship.mentorId, mentorship.menteeId, "mentor", "mentee"];
+  const _validSenders = [mentorship.mentorId, mentorship.menteeId, "mentor", "mentee"];
   const senderRole = sender === mentorship.mentorId || sender === "mentor" ? "mentor" : "mentee";
 
   // 创建更新记录

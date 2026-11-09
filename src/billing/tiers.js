@@ -475,7 +475,7 @@ export function getUsageSummary(userId) {
 /**
  * Generate warnings for approaching limits
  */
-function generateUsageWarnings(usage, quotas, limits) {
+function generateUsageWarnings(usage, quotas, _limits) {
   const warnings = [];
   const threshold = 0.8; // 80% usage warning
 

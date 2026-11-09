@@ -15,7 +15,7 @@ import os from 'node:os'
 import path from 'node:path'
 
 const URL_TO_TEST = process.argv[2] || 'https://wenze-wu-math.github.io/Formula-Nebula/'
-const ROOT = path.resolve(import.meta.dirname, '..')
+const _ROOT = path.resolve(import.meta.dirname, '..')
 
 const BROWSERS = [
   process.env.NEBULA_BROWSER,

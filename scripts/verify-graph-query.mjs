@@ -976,7 +976,7 @@ for (let d = 0; d <= maxHub; d++) {
 }
 console.log(`    可达 ${hubDist.size} / ${nodes.length} 个节点`)
 
-const hubEcc = Math.max(...hubDist.values())
+const _hubEcc = Math.max(...hubDist.values())
 check(hubDist.size === nodes.length, `枢纽出发可达全部 ${nodes.length} 个节点`,
   `${hubDist.size}`)
 

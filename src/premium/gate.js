@@ -318,7 +318,7 @@ export const PremiumExamples = {
 };
 
 // Mock API functions (remove in production)
-function searchAPI(query) {
+function searchAPI(_query) {
   return new Promise(resolve => setTimeout(() => resolve({ results: [] }), 100));
 }
 

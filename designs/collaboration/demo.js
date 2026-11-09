@@ -582,7 +582,7 @@ function drawPath(path) {
   whiteboardCtx.stroke()
 }
 
-function drawObject(obj) {
+function drawObject(_obj) {
   if (!whiteboardCtx) return
 
   // Implement object rendering (text, shapes, etc.)

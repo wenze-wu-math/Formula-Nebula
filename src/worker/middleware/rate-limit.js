@@ -111,7 +111,7 @@ export class RateLimitMiddleware {
     }
   }
 
-  rateLimitResponse(request, env) {
+  rateLimitResponse(_request, _env) {
     const retryAfter = this.windowSeconds;
 
     return new Response(

@@ -22,7 +22,7 @@ export class CollabServer extends EventEmitter {
   start() {
     this.wss = new WebSocketServer({ port: this.port });
 
-    this.wss.on('connection', (ws, req) => {
+    this.wss.on('connection', (ws, _req) => {
       const clientId = this.generateClientId();
       console.log(`[Server] New connection: ${clientId}`);
 

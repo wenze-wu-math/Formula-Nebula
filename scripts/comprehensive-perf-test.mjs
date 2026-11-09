@@ -208,8 +208,8 @@ console.log('\n\n🎯 OVERALL PERFORMANCE SCORES\n');
 
 // Simulated Lighthouse scores based on budget compliance
 const jsMetrics = budget.budgets.bundleSize.metrics.totalJavaScript;
-const lcp = budget.budgets.loadTime.metrics.largestContentfulPaint;
-const cls = budget.budgets.loadTime.metrics.cumulativeLayoutShift;
+const _lcp = budget.budgets.loadTime.metrics.largestContentfulPaint;
+const _cls = budget.budgets.loadTime.metrics.cumulativeLayoutShift;
 
 // Calculate performance score (0-100)
 let performanceScore = 100;

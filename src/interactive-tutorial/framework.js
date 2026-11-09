@@ -539,14 +539,14 @@ export class AnimationDemoManager {
   /**
    * 创建过渡动画
    */
-  createTransition(fromValue, toValue, duration = 1000) {
+  createTransition(fromValue, toValue, _duration = 1000) {
     return [{ opacity: fromValue }, { opacity: toValue }];
   }
 
   /**
    * 创建旋转动画
    */
-  createRotation(degrees, duration = 1000) {
+  createRotation(degrees, _duration = 1000) {
     return [
       { transform: 'rotate(0deg)' },
       { transform: `rotate(${degrees}deg)` },
@@ -556,7 +556,7 @@ export class AnimationDemoManager {
   /**
    * 创建缩放动画
    */
-  createScale(fromScale, toScale, duration = 1000) {
+  createScale(fromScale, toScale, _duration = 1000) {
     return [
       { transform: `scale(${fromScale})` },
       { transform: `scale(${toScale})` },
@@ -566,7 +566,7 @@ export class AnimationDemoManager {
   /**
    * 创建移动动画
    */
-  createTranslate(fromX, fromY, toX, toY, duration = 1000) {
+  createTranslate(fromX, fromY, toX, toY, _duration = 1000) {
     return [
       { transform: `translate(${fromX}, ${fromY})` },
       { transform: `translate(${toX}, ${toY})` },
@@ -744,7 +744,7 @@ export class TutorialContextBuilder {
           };
 
           const interval = setInterval(check, 100);
-          const timeout = setTimeout(() => {
+          const _timeout = setTimeout(() => {
             clearInterval(interval);
             config.onTimeout?.();
           }, config.timeout);

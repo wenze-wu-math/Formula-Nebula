@@ -195,7 +195,7 @@ function addCORSHeaders(response, request) {
 /**
  * Special routes for worker management
  */
-export async function handleSpecialRoute(request, env, ctx) {
+export async function handleSpecialRoute(request, env, _ctx) {
   const url = new URL(request.url);
 
   // Analytics dashboard endpoint

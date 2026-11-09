@@ -100,7 +100,7 @@ function tracePolyline(ctx, S, off, dx, dy) {
 }
 
 /** 一遍主笔 + 一遍石墨（alpha×0.5、偏移 0.4px） */
-function graphite(ctx, S, off, width, alpha) {
+function graphite(ctx, S, off, width, _alpha) {
   const a0 = ctx.globalAlpha
   ctx.lineWidth = width
   tracePolyline(ctx, S, off, 0, 0)

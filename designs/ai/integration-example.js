@@ -74,7 +74,7 @@ async function handleTheoremSelection(node, assistant) {
 /**
  * Panel UI integration
  */
-export function renderProofPanel(nodeId) {
+export function renderProofPanel(_nodeId) {
   const assistant = getProofAssistant()
   const session = assistant.getActiveSession()
 
@@ -191,7 +191,7 @@ function renderSteps(steps, session) {
 /**
  * Render action buttons
  */
-function renderActions(session, assistant) {
+function renderActions(session, _assistant) {
   const buttons = []
 
   if (session.currentProof) {

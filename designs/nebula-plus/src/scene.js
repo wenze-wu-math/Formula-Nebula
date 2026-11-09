@@ -1110,7 +1110,7 @@ export function createScene(canvas, graph, ui) {
   let elapsed = 0
 
   // 复用临时对象，避免每帧产生垃圾
-  const tmpColor = new THREE.Color()
+  const _tmpColor = new THREE.Color()
   const camPos = new THREE.Vector3()
   const worldV = new THREE.Vector3()
   const _qInv = new THREE.Quaternion()          // 抵消父级自转用

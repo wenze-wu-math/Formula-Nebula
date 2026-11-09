@@ -306,7 +306,7 @@ export class UserDashboard {
           <span class="status-badge status-${collab.status}">${collab.status}</span>
         </div>
         <div class="collaboration-members">
-          ${collab.members.slice(0, 3).map((member, i) => `
+          ${collab.members.slice(0, 3).map((member, _i) => `
             <div class="member-avatar" title="${this.escapeHtml(member.name)}">
               <img src="${this.escapeHtml(member.avatar)}" alt="${this.escapeHtml(member.name)}">
             </div>

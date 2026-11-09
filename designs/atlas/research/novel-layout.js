@@ -15,7 +15,7 @@
  */
 
 const TAU = Math.PI * 2;
-const DEG = Math.PI / 180;
+const _DEG = Math.PI / 180;
 
 // ============================================================================
 // 1. HYPERBOLIC GEOMETRY LAYOUT (Poincaré Disk Model)
@@ -49,7 +49,7 @@ export function hyperbolicLayout(graph, opts = {}) {
 
   const nodes = graph.nodes;
   const edges = graph.links;
-  const n = nodes.length;
+  const _n = nodes.length;
 
   // Build adjacency list
   const adj = new Map(nodes.map(node => [node.id, []]));
@@ -250,7 +250,7 @@ function buildHierarchyTree(graph) {
   return { parent, positions, root: nodes[0]?.id };
 }
 
-function findHierarchicalPath(s, t, hierarchy) {
+function findHierarchicalPath(s, t, _hierarchy) {
   // Simplified: return direct path (full LCA implementation would go here)
   return [s, t];
 }
@@ -804,7 +804,7 @@ function detectCommunities(graph) {
   const community = new Map(nodes.map((n, i) => [n.id, i]));
 
   // Modularity optimization (simplified, single pass)
-  const totalWeight = edges.reduce((sum, e) => sum + (e.weight || 1), 0) * 2;
+  const _totalWeight = edges.reduce((sum, e) => sum + (e.weight || 1), 0) * 2;
 
   for (let pass = 0; pass < 3; pass++) {
     let improved = false;

@@ -59,7 +59,7 @@ function initializeDashboardWithConfig() {
 }
 
 // Example 3: Handling Dashboard Events
-function setupDashboardEventHandlers(dashboard) {
+function setupDashboardEventHandlers(_dashboard) {
   // Listen for view formula events
   window.addEventListener('view-formula', (e) => {
     const { formulaId } = e.detail;
@@ -170,12 +170,12 @@ class DashboardSyncManager {
     });
 
     // Sync when workspaces are created
-    window.addEventListener('workspace-created', (e) => {
+    window.addEventListener('workspace-created', (_e) => {
       this.dashboard.loadDashboardData();
     });
 
     // Sync when collaborations change
-    window.addEventListener('collaboration-updated', (e) => {
+    window.addEventListener('collaboration-updated', (_e) => {
       this.dashboard.loadDashboardData();
     });
   }
@@ -223,7 +223,7 @@ function customizeDashboardTheme(dashboard, theme) {
 }
 
 // Example 9: Performance Optimization
-function optimizeDashboardPerformance(dashboard) {
+function optimizeDashboardPerformance(_dashboard) {
   // Implement virtual scrolling for long lists
   const activityList = document.querySelector('.activity-list');
   if (activityList && activityList.children.length > 10) {

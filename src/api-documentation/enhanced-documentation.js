@@ -339,7 +339,7 @@ client.discoverFormulas({ query: 'fibonacci', limit: 10 })
   generateCodeExamples(endpoints) {
     const examples = {};
 
-    endpoints.forEach((endpoint, index) => {
+    endpoints.forEach((endpoint, _index) => {
       const key = `${endpoint.method}_${endpoint.path}`.replace(/[{}/:]/g, '_');
 
       examples[key] = {

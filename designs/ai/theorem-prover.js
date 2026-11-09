@@ -319,7 +319,7 @@ function generateDirectProofSteps(theorem, similarTheorems) {
 /**
  * Generate induction steps
  */
-function generateInductionSteps(theorem) {
+function generateInductionSteps(_theorem) {
   return [
     { type: 'base', content: 'Prove base case' },
     { type: 'inductive_hypothesis', content: 'Assume for n' },
@@ -331,7 +331,7 @@ function generateInductionSteps(theorem) {
 /**
  * Generate contradiction steps
  */
-function generateContradictionSteps(theorem) {
+function generateContradictionSteps(_theorem) {
   return [
     { type: 'assume_negation', content: 'Assume the negation' },
     { type: 'derive', content: 'Derive consequences' },
@@ -343,7 +343,7 @@ function generateContradictionSteps(theorem) {
 /**
  * Generate contrapositive steps
  */
-function generateContrapositiveSteps(theorem) {
+function generateContrapositiveSteps(_theorem) {
   return [
     { type: 'restate', content: 'Restate as contrapositive' },
     { type: 'assume', content: 'Assume negation of conclusion' },
@@ -355,7 +355,7 @@ function generateContrapositiveSteps(theorem) {
 /**
  * Generate case analysis steps
  */
-function generateCaseSteps(theorem) {
+function generateCaseSteps(_theorem) {
   return [
     { type: 'split', content: 'Split into exhaustive cases' },
     { type: 'case_1', content: 'Prove case 1' },
@@ -367,7 +367,7 @@ function generateCaseSteps(theorem) {
 /**
  * Generate construction steps
  */
-function generateConstructionSteps(theorem) {
+function generateConstructionSteps(_theorem) {
   return [
     { type: 'define', content: 'Define the construction' },
     { type: 'verify', content: 'Verify properties' },

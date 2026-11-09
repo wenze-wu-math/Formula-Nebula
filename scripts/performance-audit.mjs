@@ -37,6 +37,6 @@ console.log(`  Total: ${results.buildMetrics.totalSize} kB (gzip: ${results.buil
 
 // 2. Analyze bundle composition
 console.log('\\n[Audit] Analyzing bundle composition...');
-const srcFiles = execSync('find ./src -type f \\( -name "*.js" -o -name "*.css" \\) | wc -l', { encoding: 'utf-8' }).trim();
-const dataFiles = execSync('find ./src/data -type f -name "*.js" | wc -l', { encoding: 'utf-8' }).trim();
-const designFiles = execSync('find ./designs -type f -name "*.html" 2>/dev/null | wc -l || echo 0', { encoding: 'utf-8' }).trim();
+const _srcFiles = execSync('find ./src -type f \\( -name "*.js" -o -name "*.css" \\) | wc -l', { encoding: 'utf-8' }).trim();
+const _dataFiles = execSync('find ./src/data -type f -name "*.js" | wc -l', { encoding: 'utf-8' }).trim();
+const _designFiles = execSync('find ./designs -type f -name "*.html" 2>/dev/null | wc -l || echo 0', { encoding: 'utf-8' }).trim();

@@ -636,7 +636,7 @@ export class CompletenessIndicator {
     return Math.round(score)
   }
 
-  createDetailsPanel(proof, score) {
+  createDetailsPanel(proof, _score) {
     const panel = document.createElement('details')
     panel.style.cssText = 'width: 100%; margin-top: 10px;'
 
@@ -1005,7 +1005,7 @@ export class ProofFlowAnimator {
     ctx.fillRect(0, 0, width, height)
 
     // Update and draw particles
-    this.particles.forEach((p, i) => {
+    this.particles.forEach((p, _i) => {
       p.x += p.vx
       p.y += p.vy
 

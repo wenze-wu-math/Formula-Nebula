@@ -239,7 +239,7 @@ ${results.bundleAnalysis.dependencies.dev.map(d => `- \`${d}\``).join('\n')}
 
 ## 2. Top 10 Bottlenecks
 
-${results.bottlenecks.map((b, i) => `### ${b.rank}. [${b.severity}] ${b.category}
+${results.bottlenecks.map((b, _i) => `### ${b.rank}. [${b.severity}] ${b.category}
 
 **Issue:** ${b.issue}
 
@@ -253,7 +253,7 @@ ${results.bottlenecks.map((b, i) => `### ${b.rank}. [${b.severity}] ${b.category
 
 ## 3. Performance Recommendations (Priority Order)
 
-${results.recommendations.map((r, i) => `### ${r.priority}. ${r.title}
+${results.recommendations.map((r, _i) => `### ${r.priority}. ${r.title}
 
 - **Impact:** ${r.impact}
 - **Effort:** ${r.effort}

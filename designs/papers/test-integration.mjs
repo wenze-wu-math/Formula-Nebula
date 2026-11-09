@@ -29,7 +29,7 @@ console.log('╚═════════════════════�
 
 // Test configuration
 const TEST_THEOREM = 'nullstellensatz'
-const TEST_QUERY = 'algebraic geometry schemes'
+const _TEST_QUERY = 'algebraic geometry schemes'
 
 // Test 1: FetchRelatedPapers
 async function testFetchPapers() {
@@ -207,7 +207,7 @@ async function runAllTests() {
   }
 
   // Test 2: Summarize
-  const summary = await testSummarizePaper(papers)
+  const _summary = await testSummarizePaper(papers)
 
   // Test 3: Extract citations (no API call)
   testExtractCitations()

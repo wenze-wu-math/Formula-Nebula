@@ -29,7 +29,7 @@
  */
 const LEGIBLE_PX = 9
 
-export function createDesignApi({ graph, scene, settings, baked, ui }) {
+export function createDesignApi({ graph, scene, settings, baked, _ui }) {
   const api = {
     ready: false,
     readyMs: null,

@@ -103,7 +103,7 @@ export class DDoSProtectionMiddleware {
     }
   }
 
-  calculateThreatScore(request, ctx) {
+  calculateThreatScore(request, _ctx) {
     let score = 0;
     const url = new URL(request.url);
     const userAgent = request.headers.get('User-Agent') || '';
@@ -223,7 +223,7 @@ export class DDoSProtectionMiddleware {
     );
   }
 
-  challengeResponse(request) {
+  challengeResponse(_request) {
     // Simple JavaScript challenge
     const challenge = `
 <!DOCTYPE html>

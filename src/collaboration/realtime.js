@@ -437,7 +437,7 @@ export class RealtimeCollaboration extends EventEmitter {
    */
   getAllComments() {
     const allComments = [];
-    this.commentThreads.forEach((comments, lineId) => {
+    this.commentThreads.forEach((comments, _lineId) => {
       allComments.push(...comments);
     });
     return allComments;

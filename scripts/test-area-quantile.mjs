@@ -32,7 +32,7 @@ const SPACING = 1.16, ALLOW = 0.86, ITERS = 80
 const VIEW_W = 1568, VIEW_H = 698, VFOV = 55
 const TILT = 40 * Math.PI / 180, MARGIN = 1.10
 
-const RANK = new Map(raw.map((n) => [n.id, n.rank]))
+const _RANK = new Map(raw.map((n) => [n.id, n.rank]))
 
 function sizesFor(n, sizeBoost = 1.0, maxW = MAXW, maxH = MAXH) {
   const ss = SIZEMIN + Math.pow(n.rank, SIZECURVE) * (SIZEMAX - SIZEMIN)

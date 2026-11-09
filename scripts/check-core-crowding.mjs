@@ -109,6 +109,6 @@ for (const c of CFGS) {
   const idx = fracs.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,3)
   const worst = idx.filter(([v])=>v>0.5).map(([v,i])=>ns[i].id+'('+v.toFixed(2)+')').join(' ')
   const maxR = Math.max(...ns.map(n=>Math.hypot(n.x,n.z)))
-  const pxMed = (5.1*365/maxR).toFixed(1)
+  const _pxMed = (5.1*365/maxR).toFixed(1)
   console.log(`  ${c.tag.padEnd(20)}  ${pct.toFixed(1).padStart(5)}%     ${q(0.5).toFixed(3)}   ${q(0.9).toFixed(3)}   ${sorted[sorted.length-1].toFixed(3)}   ${worst||'-'}`)
 }

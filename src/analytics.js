@@ -157,7 +157,7 @@ export class Analytics {
   /**
    * Track export
    */
-  trackExport(format = 'svg') {
+  trackExport(_format = 'svg') {
     this.data.exports++
     this.data.features.export++
     this.session.interactions++
@@ -286,7 +286,7 @@ export function getAnalytics() {
 /**
  * Initialize analytics tracking
  */
-export function initAnalytics(scene, ui, settings) {
+export function initAnalytics(scene, ui, _settings) {
   const analytics = getAnalytics()
 
   // Track initial visit

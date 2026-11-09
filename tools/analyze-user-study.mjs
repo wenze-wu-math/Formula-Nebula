@@ -115,12 +115,12 @@ class Statistics {
     );
 
     // Sum of Squares Subjects (SSS)
-    const SSS = k * subjectMeans.reduce((sum, mean) =>
+    const _SSS = k * subjectMeans.reduce((sum, mean) =>
       sum + Math.pow(mean - grandMean, 2), 0
     );
 
     // Sum of Squares Total (SST)
-    const SST = allValues.reduce((sum, val) =>
+    const _SST = allValues.reduce((sum, val) =>
       sum + Math.pow(val - grandMean, 2), 0
     );
 
@@ -137,7 +137,7 @@ class Statistics {
     const dfB = k - 1;
     const dfS = n - 1;
     const dfE = dfB * dfS;
-    const dfT = n * k - 1;
+    const _dfT = n * k - 1;
 
     // Mean Squares
     const MSB = SSB / dfB;
@@ -167,7 +167,7 @@ class Statistics {
   }
 
   // Simplified F-critical value (for α=0.05)
-  static fCriticalValue(df1, df2, alpha) {
+  static fCriticalValue(df1, df2, _alpha) {
     // Simplified lookup table for α=0.05
     // For df1=3 (4 conditions - 1), various df2
     const table = {

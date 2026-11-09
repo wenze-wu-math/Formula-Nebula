@@ -46,7 +46,7 @@ async function publishCoreAPIs(marketplace) {
  * Express/HTTP server integration
  */
 export function createAPIMiddleware(marketplace) {
-  return async (req, res, next) => {
+  return async (req, res, _next) => {
     // Parse API request from HTTP request
     const apiRequest = {
       apiId: req.params.apiId || req.query.apiId,

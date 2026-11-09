@@ -67,7 +67,7 @@ export class QuotaTracker {
   /**
    * Record quota usage
    */
-  async recordUsage(keyId, quotas) {
+  async recordUsage(keyId, _quotas) {
     const usage = await this.getUsage(keyId);
     const now = Date.now();
 

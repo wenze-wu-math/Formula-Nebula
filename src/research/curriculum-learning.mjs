@@ -601,7 +601,7 @@ export class OptimalPathFinder {
   /**
    * Reconstruct path from A* search
    */
-  reconstructPath(cameFrom, current, gScore, userProfile) {
+  reconstructPath(cameFrom, current, gScore, _userProfile) {
     const path = [current]
     const totalCost = gScore.get(current) || 0
 
@@ -902,7 +902,7 @@ export class DifficultyAdjuster {
   /**
    * Get current flow state from adaptation history
    */
-  getFlowState(userProfile) {
+  getFlowState(_userProfile) {
     if (this.adaptationHistory.length === 0) return 'balanced'
     const latest = this.adaptationHistory[this.adaptationHistory.length - 1]
     return latest.flowMetrics.flowState

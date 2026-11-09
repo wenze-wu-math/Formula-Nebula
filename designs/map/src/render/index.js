@@ -25,7 +25,7 @@ import { symbolRadius } from '../rules.js'
 const MASK_SELECT = 'rgba(251,248,241,.55)'
 const MASK_SEARCH = 'rgba(251,248,241,.35)'
 
-export function createRenderer(canvas, { world, graph, labeler }) {
+export function createRenderer(canvas, { world, _graph, labeler }) {
   const ctx = canvas.getContext('2d')
   let size = { w: 1, h: 1, dpr: 1 }
 

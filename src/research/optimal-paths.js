@@ -132,7 +132,7 @@ export class MultiObjectiveOptimizer {
   /**
    * Estimate retention rate (0-1, higher is better)
    */
-  estimateRetention(path, userProfile) {
+  estimateRetention(path, _userProfile) {
     // Retention decreases with:
     // - Too many steps (cognitive overload)
     // - Large difficulty jumps
@@ -368,7 +368,7 @@ export class HumanBaselineEvaluator {
   /**
    * Compare a single algorithm path to human path
    */
-  comparePathToHuman(algorithmPath, humanBaseline, metrics) {
+  comparePathToHuman(algorithmPath, humanBaseline, _metrics) {
     const comparison = {}
 
     // Path length comparison
@@ -724,7 +724,7 @@ export class LearningOutcomePredictor {
   /**
    * Compute confidence in predictions
    */
-  computeConfidence(features) {
+  computeConfidence(_features) {
     // Higher confidence with more historical data and typical features
     const dataConfidence = Math.min(this.historicalData.length / 100, 0.5)
     const featureConfidence = 0.5 // Would depend on feature coverage
@@ -735,7 +735,7 @@ export class LearningOutcomePredictor {
   /**
    * Compute prerequisite coverage for specific learner
    */
-  computePrerequisiteCoverageForLearner(path, learnerProfile) {
+  computePrerequisiteCoverageForLearner(_path, _learnerProfile) {
     // Placeholder - would check against learner's mastered theorems
     return 0.7
   }

@@ -618,7 +618,7 @@ export class PrerequisiteAwareScheduler extends SpacedRepetitionScheduler {
     const schedule = []
     let currentDay = 0
 
-    curriculumPath.forEach((item, index) => {
+    curriculumPath.forEach((item, _index) => {
       const theoremId = item.theoremId
 
       // Initial learning: review on day 0, 1, 6

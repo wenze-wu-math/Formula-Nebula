@@ -368,7 +368,7 @@ export class PremiumModal {
 
     // Billing cycle toggle
     this.modal.querySelectorAll('.toggle-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', (_e) => {
         this.modal.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.billingCycle = btn.dataset.cycle;
@@ -378,7 +378,7 @@ export class PremiumModal {
 
     // CTA buttons
     this.modal.querySelectorAll('[data-action="upgrade"]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', (_e) => {
         const tier = btn.dataset.tier;
         this.handleUpgrade(tier);
       });
@@ -386,7 +386,7 @@ export class PremiumModal {
 
     // Contact sales
     this.modal.querySelectorAll('[data-action="contact-sales"]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', (_e) => {
         const plan = btn.dataset.plan;
         this.handleContactSales(plan);
       });
@@ -459,7 +459,7 @@ export class PremiumModal {
 
     // Reattach CTA listeners
     grid.querySelectorAll('[data-action="upgrade"]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', (_e) => {
         const tier = btn.dataset.tier;
         this.handleUpgrade(tier);
       });

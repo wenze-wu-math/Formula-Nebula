@@ -126,7 +126,7 @@ export function drawOrnament(F, o) {
 }
 
 /** 卷首图例的示例图元（文字在 layout.texts 里） */
-export function drawLegend(F, e, statusOf) {
+export function drawLegend(F, e, _statusOf) {
   const ctx = F.ctx, z = F.z
   const r = e.rect
   const x = r.x * z + F.tx, y = r.y * z + F.ty, w = r.w * z, h = r.h * z

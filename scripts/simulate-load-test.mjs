@@ -54,7 +54,7 @@ function generateLoadTestResults() {
 
   // Render performance
   const baseRenderTime = 1200; // ms for initial render
-  const renderVariance = 800;
+  const _renderVariance = 800;
   const renderTime95 = baseRenderTime + (maxVUs / 1000) * 100;
 
   // WebSocket metrics

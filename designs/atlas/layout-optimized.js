@@ -18,7 +18,7 @@ import { POLE_FAMILY } from './constants.js'
 import { R_DISK } from './runtime.js'
 
 const TAU = Math.PI * 2
-const DEG = Math.PI / 180
+const _DEG = Math.PI / 180
 
 // ═══════════════════════════ Barnes-Hut Tree ═══════════════════════════
 /**

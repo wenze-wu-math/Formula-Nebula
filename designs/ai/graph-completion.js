@@ -572,7 +572,7 @@ export function ExplainPrediction(pred) {
   return explanation
 }
 
-function explainPrediction(model, i, j, pred) {
+function explainPrediction(model, i, j, _pred) {
   const { embeddings, nodeIds, graph } = model
   const { byId } = graph
 

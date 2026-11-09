@@ -184,7 +184,7 @@ function drawParchmentTexture(ctx, bm, vw, z) {
 }
 
 /** 手绘线条效果：通过添加微抖动模拟手绘波浪线 */
-function drawHandDrawnPath(ctx, path, z, intensity = 0.3) {
+function drawHandDrawnPath(ctx, path, z, _intensity = 0.3) {
   // 在高缩放级别时添加手绘感（低缩放时保持平滑）
   if (z < 0.5) {
     ctx.stroke(path)

@@ -108,7 +108,7 @@ function analyzeBottlenecks(data) {
   // WebSocket capacity
   const wsConnections = data.metrics.ws_connections?.values.count || 0;
   const wsMessages = data.metrics.ws_messages?.values.count || 0;
-  const avgMsgPerConn = wsConnections > 0 ? wsMessages / wsConnections : 0;
+  const _avgMsgPerConn = wsConnections > 0 ? wsMessages / wsConnections : 0;
 
   if (wsConnections > 10000) {
     bottlenecks.push({
@@ -170,7 +170,7 @@ function estimateMemoryUsage(data) {
 /**
  * Calculate required capacity
  */
-function calculateCapacity(data, bottlenecks) {
+function calculateCapacity(data, _bottlenecks) {
   const httpReqs = data.metrics.http_reqs?.values.count || 0;
   const duration = data.state.testRunDurationMs / 1000; // seconds
   const rps = httpReqs / duration; // requests per second
@@ -374,7 +374,7 @@ function estimateCosts(capacity) {
 /**
  * Generate recommendations
  */
-function generateRecommendations(bottlenecks, capacity) {
+function generateRecommendations(bottlenecks, _capacity) {
   const recommendations = {
     immediate: [],
     shortTerm: [],

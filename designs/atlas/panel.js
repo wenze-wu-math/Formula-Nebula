@@ -42,7 +42,7 @@ function md(tag, cls, text) {
   e.append(...inlineMd(text ?? ''))
   return e
 }
-const familyName = (f) => (FAMILIES[f] ? FAMILIES[f].name : '')
+const _familyName = (f) => (FAMILIES[f] ? FAMILIES[f].name : '')
 /** "上同调座"：族名 + 座（星座命名法） */
 const constellationName = (f) => (FAMILIES[f] ? FAMILIES[f].name + '座' : '')
 /** 只接受 http / https 链接；其他协议（javascript: 等）一律视为无链接 */

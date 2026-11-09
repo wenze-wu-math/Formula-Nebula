@@ -16,7 +16,7 @@
 import { openPage } from '../cdp.mjs'
 
 const TAU = Math.PI * 2
-const DEG = Math.PI / 180
+const _DEG = Math.PI / 180
 
 /**
  * Compute angular sector (0-11) for a given angle in radians.

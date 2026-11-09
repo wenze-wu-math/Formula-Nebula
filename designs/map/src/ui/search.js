@@ -69,7 +69,9 @@ export function createSearch(root, { graph, world, onToggleLegend, onToggleRegis
   let items = []        // 当前下拉里可选的 {id, el}
   let active = -1
   let timer = 0
-  let lastQ = ''
+  // 这里原本有一个 `lastQ` 变量：只在 refresh() 里赋一次值，从未被读取，
+  // 属于纯粹的死状态（改名成 _lastQ 只会把警告藏起来，不一致仍然存在）。
+  // 直接删除，而不是加下划线前缀。
 
   function openList() {
     if (list.hidden) { list.hidden = false; input.setAttribute('aria-expanded', 'true'); onChange() }
@@ -87,7 +89,6 @@ export function createSearch(root, { graph, world, onToggleLegend, onToggleRegis
 
   function refresh() {
     const q = input.value.trim()
-    lastQ = q
     if (!q) { closeList(); return }
     let res = []
     try { res = actions.suggest(q, 12) } catch (e) { console.warn('[map/ui] suggest 出错', e) }

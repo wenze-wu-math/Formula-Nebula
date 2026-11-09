@@ -138,7 +138,7 @@ canvas.addEventListener('pointermove', (e) => {
   for (const p of world.places) { const [x, y] = f.toScreen(p.x, p.y); const d = Math.hypot(x - sx, y - sy); if (d < bd) { bd = d; best = p.id } }
   if (best !== state.hover.id) { state.hover = { ...state.hover, id: best, sx, sy }; bus.emit('hover', { id: best, sx, sy }) }
 })
-canvas.addEventListener('click', (e) => {
+canvas.addEventListener('click', (_e) => {
   if (state.hover.id) actions.select(state.hover.id); else actions.deselect()
 })
 

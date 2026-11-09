@@ -248,7 +248,7 @@ export async function loadGraphWithMonitoring(dataSource) {
 }
 
 // Placeholder for actual implementation
-async function loadGraphData(source) {
+async function loadGraphData(_source) {
   // Your actual graph loading code here
   return { nodes: [], links: [] };
 }
@@ -367,7 +367,7 @@ export async function searchWithMonitoring(query, type = 'text') {
 }
 
 // Placeholder for actual implementation
-async function performSearch(query, type) {
+async function performSearch(_query, _type) {
   // Your actual search code here
   return [];
 }
@@ -521,15 +521,15 @@ export async function exampleUsage() {
   }
 
   // In your HTTP handler
-  const monitoredHandler = httpMonitoringMiddleware(async (req, res) => {
+  const _monitoredHandler = httpMonitoringMiddleware(async (_req, _res) => {
     // Your handler code
   });
 
   // In your search function
-  const results = await searchWithMonitoring('Riemann Hypothesis', 'semantic');
+  const _results = await searchWithMonitoring('Riemann Hypothesis', 'semantic');
 
   // In your graph loading
-  const graph = await loadGraphWithMonitoring('algebraic-geometry.json');
+  const _graph = await loadGraphWithMonitoring('algebraic-geometry.json');
 
   // Custom metric
   globalMetrics.recordError('custom_error', 'warning');

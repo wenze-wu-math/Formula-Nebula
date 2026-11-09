@@ -72,7 +72,7 @@ const ANCHORS = ['E', 'W', 'NE', 'NW', 'SE', 'SW', 'N', 'S']
  * 曾试过"总览态把位图缩到 0.9"来减少外推（check-final2.mjs），但那需要 setBakeScale
  * + 缩放跨档时重烘全部条目，风险高而收益小（只把最大外推从 96 降到 48），已弃用。 */
 const ANCHOR_PUSH = [0, 16, 32, 48, 64, 80, 96]
-const OVERVIEW_L = 0.2              // L 低于此值算"总览态"
+const _OVERVIEW_L = 0.2              // L 低于此值算"总览态"
 /* 总览补位窗口的下限（2026-11-01 新增）。
  *
  * 为什么需要一个**下限**：补位档（越级公式）用 skipL 绕过 L 判断，
@@ -82,9 +82,9 @@ const OVERVIEW_L = 0.2              // L 低于此值算"总览态"
  *
  * 补位只应在"总览这幅图"上补足可读性，一旦用户主动缩小（离开总览），
  * 就该让它退出。取 -0.45 ≈ 缩到 73%，是"总览"与"缩小浏览"的分界。 */
-const OVERVIEW_L_FLOOR = -0.45
+const _OVERVIEW_L_FLOOR = -0.45
 const OVERVIEW_ADMIT_L = 1.3        // 总览态额外参选的 labelL 上限
-const OVERVIEW_TARGET = 40          // 总览态的目标可读公式数（任务硬指标）
+const _OVERVIEW_TARGET = 40          // 总览态的目标可读公式数（任务硬指标）
 
 /* ───────── 模块状态 ───────── */
 let atlasRef = null
@@ -296,7 +296,7 @@ function anchorBox(a, bx, by, r, W, H, e = 0) {
     default: return [bx - W / 2, by + r + g, 'c']
   }
 }
-const anchorOrder = (prev) => (prev && ANCHORS.includes(prev) ? [prev, ...ANCHORS.filter((a) => a !== prev)] : ANCHORS)
+const _anchorOrder = (prev) => (prev && ANCHORS.includes(prev) ? [prev, ...ANCHORS.filter((a) => a !== prev)] : ANCHORS)
 
 /**
  * 锚点尝试顺序。

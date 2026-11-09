@@ -91,7 +91,7 @@ export function createSemanticSearchUI(container, onResultSelect) {
 
   const input = wrapper.querySelector('.search-input')
   const suggestionsBox = wrapper.querySelector('.search-suggestions')
-  const synonymsBox = wrapper.querySelector('.search-synonyms')
+  const _synonymsBox = wrapper.querySelector('.search-synonyms')
   const resultsBox = wrapper.querySelector('.search-results')
   const statsBox = wrapper.querySelector('.search-stats')
   const clearBtn = wrapper.querySelector('.search-clear-btn')

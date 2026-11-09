@@ -85,7 +85,7 @@ async function testAtlas() {
     return
   }
   /* 量测函数：atlas 需要文字测量，Node 下没有 canvas —— 用近似宽度 */
-  const measure = (text, font) => ({
+  const measure = (text, _font) => ({
     w: String(text).length * 7.2,
     h: 14,
   })

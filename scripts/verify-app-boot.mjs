@@ -38,7 +38,7 @@ if (!browser) {
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
-const PORT = 5783
+const _PORT = 5783
 const CDPP = 9783
 const prof = fs.mkdtempSync(path.join(os.tmpdir(), 'bootchk-'))
 

@@ -6,7 +6,7 @@
 
 // Configuration
 const API_BASE = '/api';
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_your_key_here'; // Replace with actual key
+const _STRIPE_PUBLISHABLE_KEY = 'pk_test_your_key_here'; // Replace with actual key
 
 // State
 let currentUser = null;
@@ -215,7 +215,7 @@ function renderPlans() {
 /**
  * Select a plan
  */
-async function selectPlan(planId, price) {
+async function selectPlan(planId, _price) {
   if (!currentUser) {
     showError('Please log in to select a plan');
     return;

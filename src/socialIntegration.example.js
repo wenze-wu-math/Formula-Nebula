@@ -66,7 +66,7 @@ function addSocialHubButton() {
   const badges = getUserBadges(getCurrentUserId())
   if (badges.length > 0) {
     const lastChecked = localStorage.getItem('social:lastBadgeCheck')
-    const newBadges = badges.filter(b => {
+    const newBadges = badges.filter(_b => {
       const earnedTime = new Date(profile.joinedAt).getTime() // Simplified
       const checkTime = lastChecked ? new Date(lastChecked).getTime() : 0
       return earnedTime > checkTime

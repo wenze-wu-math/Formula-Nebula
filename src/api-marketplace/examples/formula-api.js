@@ -128,7 +128,7 @@ export async function createFormulaAPI(marketplace) {
 
 // Endpoint handlers
 
-async function evaluateFormula(data, context) {
+async function evaluateFormula(data, _context) {
   const { expression, variables = {} } = data;
 
   if (!expression) {
@@ -161,7 +161,7 @@ async function evaluateFormula(data, context) {
   }
 }
 
-async function parseFormula(data, context) {
+async function parseFormula(data, _context) {
   const { expression } = data;
 
   if (!expression) {
@@ -178,7 +178,7 @@ async function parseFormula(data, context) {
   };
 }
 
-async function simplifyFormula(data, context) {
+async function simplifyFormula(data, _context) {
   const { expression } = data;
 
   if (!expression) {
@@ -206,7 +206,7 @@ async function simplifyFormula(data, context) {
   };
 }
 
-async function calculateDerivative(data, context) {
+async function calculateDerivative(data, _context) {
   const { expression, variable = 'x' } = data;
 
   if (!expression) {
@@ -224,7 +224,7 @@ async function calculateDerivative(data, context) {
   };
 }
 
-async function convertNotation(data, context) {
+async function convertNotation(data, _context) {
   const { expression, from = 'ascii', to = 'latex' } = data;
 
   if (!expression) {

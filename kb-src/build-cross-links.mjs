@@ -36,7 +36,7 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
 
 const g = buildGraph()
-const byId = new Map(g.nodes.map((n) => [n.id, n]))
+const _byId = new Map(g.nodes.map((n) => [n.id, n]))
 
 const stacks = g.nodes.filter((n) => n.id.startsWith('stx-'))
 const nlab = g.nodes.filter((n) => n.id.startsWith('nlb-'))

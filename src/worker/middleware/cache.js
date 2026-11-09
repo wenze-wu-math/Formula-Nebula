@@ -13,7 +13,7 @@ export class CacheMiddleware {
     ]);
   }
 
-  async handle(request, env, ctx) {
+  async handle(request, _env, _ctx) {
     const url = new URL(request.url);
 
     // Skip caching for API requests or non-GET methods

@@ -46,7 +46,7 @@ if (!allFilesExist) {
 console.log('\n2️⃣  检查代码特征...')
 
 // 2. 检查 tex.js 是否包含懒加载代码
-const texJs = readFileSync(join(__dirname, 'designs/shared/tex.js'), 'utf-8')
+const _texJs = readFileSync(join(__dirname, 'designs/shared/tex.js'), 'utf-8')
 
 const checks = [
   {

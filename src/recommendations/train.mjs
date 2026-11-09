@@ -36,7 +36,7 @@ function generateSimulatedData(config = {}) {
   const theoremDifficulty = {};
 
   // Assign difficulty scores
-  Object.entries(theoremCategories).forEach(([category, theorems], catIdx) => {
+  Object.entries(theoremCategories).forEach(([_category, theorems], catIdx) => {
     theorems.forEach(theorem => {
       theoremDifficulty[theorem] = (catIdx + 1) * 2; // 2-10 difficulty
     });

@@ -68,7 +68,7 @@ export function createNebula() {
   }
   const rnd = makeRng(987654321)
   // 近似高斯（Irwin–Hall），与 graph.js 的臂偏差用同一种分布
-  const gauss = () => rnd() + rnd() + rnd() - 1.5
+  const _gauss = () => rnd() + rnd() + rnd() - 1.5
 
   const R = NEBULA.particleRadius
 

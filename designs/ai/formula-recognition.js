@@ -127,7 +127,7 @@ async function recognizeWithMathpix(base64Image) {
 /**
  * TensorFlow.js fallback (mock implementation - requires trained model)
  */
-async function recognizeWithTensorFlow(imageData) {
+async function recognizeWithTensorFlow(_imageData) {
   // This would use a trained model like Im2LaTeX or similar
   // For now, return a placeholder that indicates the need for model training
 
@@ -537,7 +537,7 @@ function extractKeywords(latex) {
   return words.map(w => w.replace(/^\\(?:text|mathrm|operatorname)\{|\}$/g, '').toLowerCase())
 }
 
-function explainSimilarity(inputLatex, node, similarity) {
+function explainSimilarity(inputLatex, node, _similarity) {
   const reasons = []
 
   const inputTokens = tokenizeLatex(normalizeLatex(inputLatex))

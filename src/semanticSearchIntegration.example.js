@@ -74,7 +74,7 @@ import {
 import { semanticSearch } from './semanticSearch.js'
 
 // ① 注入 CSS（在 initUI 函数的开头）
-export function initUI(scene, nodes, links) {
+export function initUI(_scene, _nodes, _links) {
   // 现有代码...
 
   // 注入语义搜索样式
@@ -384,7 +384,7 @@ async function initApp() {
 
   // ⑥ 创建搜索 UI
   const searchContainer = document.querySelector('#search-wrapper')
-  const searchUI = createSemanticSearchUI(searchContainer, (nodeId) => {
+  const _searchUI = createSemanticSearchUI(searchContainer, (nodeId) => {
     const node = nodes.find((n) => n.id === nodeId)
     if (node) {
       scene.focusOnNode(node)

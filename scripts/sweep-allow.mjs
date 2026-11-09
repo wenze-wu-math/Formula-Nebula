@@ -44,7 +44,7 @@ function assignRadii(nodes, R, rIn, hFrac) {
   const a0 = A(rIn), a1 = A(R)
   const inv = (t) => { let lo = rIn, hi = R * 4; for (let i = 0; i < 50; i++) { const m = (lo + hi) / 2; if (A(m) < t) lo = m; else hi = m } return (lo + hi) / 2 }
   const order = [...nodes].sort((a, b) => b.rank - a.rank)
-  const N = order.length
+  const _N = order.length
   const out = new Map()
   // 面积分位：大公式多占份额，核心不再超载
   const areas = order.map((n) => { const s = SIZES.get(n.id); return s.W * s.H })

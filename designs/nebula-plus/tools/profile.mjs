@@ -93,7 +93,7 @@ console.log(`  单调不增=${mono}  （柔光剖面应单调不增且无孤立�
  *   硬边 = 最大跳变出现在**最外一格**，且该跳变 ≥ 内侧平均落差的 3 倍，
  *          同时最外一格之后立刻掉到背景级（< 内侧首格的一半）。
  * 这个判据不依赖"看起来"，只依赖数字。 */
-const lastJump = absD.length ? absD[absD.length - 1] : 0
+const _lastJump = absD.length ? absD[absD.length - 1] : 0
 const hardEdge = absD.length > 3 &&
   maxAt === absD.length - 1 &&
   (edgeRatio === null ? false : edgeRatio >= 3) &&

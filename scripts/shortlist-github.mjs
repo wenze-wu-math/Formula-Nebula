@@ -16,7 +16,7 @@ import fs from 'node:fs'
 
 const all = JSON.parse(fs.readFileSync('.research/github-scan.json', 'utf8'))
 const NOISE = /propaganda|政治|dictatorship|书籍|book list|x86|bare.metal|kernel|hackintosh|interview|leetcode|roadmap|awesome|cheatsheet|covid|blockchain|crypto|trading|stock|game|shooter|pet|portfolio website|blog platform|ecommerce/i
-const DROP_LANG = /^(MATLAB|Jupyter Notebook|C\+\+|Rust|Python|Haskell|Go|Java|C#)$/
+const _DROP_LANG = /^(MATLAB|Jupyter Notebook|C\+\+|Rust|Python|Haskell|Go|Java|C#)$/
 
 const keep = all.filter((r) => {
   if (NOISE.test(r.desc || '')) return false

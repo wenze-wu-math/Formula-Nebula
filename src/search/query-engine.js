@@ -10,7 +10,7 @@
  */
 
 export class QueryEngine {
-  constructor(options = {}) {
+  constructor(_options = {}) {
     this.operators = {
       AND: 'AND',
       OR: 'OR',

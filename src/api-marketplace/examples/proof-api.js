@@ -114,7 +114,7 @@ export async function createProofAPI(marketplace) {
   return api;
 }
 
-async function verifyProof(data, context) {
+async function verifyProof(data, _context) {
   const { theorem, proof } = data;
 
   if (!theorem || !proof) {
@@ -170,7 +170,7 @@ async function verifyProof(data, context) {
   };
 }
 
-async function suggestStrategy(data, context) {
+async function suggestStrategy(data, _context) {
   const { theorem, context: mathContext = 'general' } = data;
 
   if (!theorem) {
@@ -249,7 +249,7 @@ async function suggestStrategy(data, context) {
   };
 }
 
-async function formatProof(data, context) {
+async function formatProof(data, _context) {
   const { proof, format = 'latex' } = data;
 
   if (!proof || !proof.steps) {
@@ -269,7 +269,7 @@ async function formatProof(data, context) {
     formatted += '\\end{proof}';
   } else if (format === 'html') {
     formatted = '<div class="proof">\n';
-    proof.steps.forEach((step, i) => {
+    proof.steps.forEach((step, _i) => {
       formatted += `  <p class="proof-step">${escapeHtml(step)}</p>\n`;
     });
     formatted += '</div>';
@@ -289,7 +289,7 @@ async function formatProof(data, context) {
   };
 }
 
-async function checkLogic(data, context) {
+async function checkLogic(data, _context) {
   const { premises, conclusion } = data;
 
   if (!premises || !conclusion) {
@@ -297,7 +297,7 @@ async function checkLogic(data, context) {
   }
 
   // Simple logical rule matching
-  const premiseText = premises.join(' ');
+  const _premiseText = premises.join(' ');
   let valid = false;
   let rule = 'unknown';
   let explanation = '';

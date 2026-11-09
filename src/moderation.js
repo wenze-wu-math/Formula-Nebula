@@ -479,7 +479,7 @@ export function GetContentStatus(itemId) {
   const flags = Array.from(moderationStore.flags.values())
     .filter(f => f.itemId === itemId);
 
-  const latestAction = actions[actions.length - 1];
+  const _latestAction = actions[actions.length - 1];
 
   let status = 'active';
   if (flags.some(f => f.resolution === 'deleted')) {
@@ -634,7 +634,7 @@ function _calculateAverageResolutionTime() {
 
   if (resolvedFlags.length === 0) return 0;
 
-  const totalTime = resolvedFlags.reduce((sum, flag) => {
+  const totalTime = resolvedFlags.reduce((sum, _flag) => {
     // Estimate resolution time (would need actual resolution timestamp in production)
     return sum + 3600000; // 1 hour placeholder
   }, 0);

@@ -59,7 +59,7 @@ function generateReleaseNotes(version) {
 /**
  * 从 package.json 推断上个版本号
  */
-function getPrevVersion(current) {
+function getPrevVersion(_current) {
   try {
     const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
     const ver = pkg.version;

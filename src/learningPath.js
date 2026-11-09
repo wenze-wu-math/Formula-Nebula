@@ -584,7 +584,7 @@ export class CurriculumBuilder {
   /**
    * Enrich path with reasons and metadata
    */
-  enrichPath(path, difficulty, user) {
+  enrichPath(path, _difficulty, _user) {
     return path.map((theoremId, index) => {
       let reason
       if (index === 0) {

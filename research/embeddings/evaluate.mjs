@@ -14,7 +14,7 @@
 import fs from 'fs';
 import { createRequire } from 'module';
 
-const require = createRequire(import.meta.url);
+const _require = createRequire(import.meta.url);
 
 // ============================================================================
 // Utility Functions
@@ -194,7 +194,7 @@ class LinkPredictionEvaluator {
    * Evaluate link prediction on test set
    * Metrics: MRR (Mean Reciprocal Rank), Hits@K
    */
-  evaluateLinkPrediction(testTriplets, k = 10) {
+  evaluateLinkPrediction(testTriplets, _k = 10) {
     let totalReciprocalRank = 0;
     let hitsAt1 = 0;
     let hitsAt3 = 0;
@@ -407,7 +407,7 @@ class ClusteringEvaluator {
    * Evaluate embedding quality using silhouette score
    * (simplified version)
    */
-  calculateSilhouetteScore(clusters) {
+  calculateSilhouetteScore(_clusters) {
     // Implementation of silhouette coefficient
     // Measures how similar an entity is to its own cluster vs other clusters
     // Range: [-1, 1], higher is better

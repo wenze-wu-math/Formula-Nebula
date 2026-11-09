@@ -351,7 +351,7 @@ export function initMobileOptimizations(scene, settings) {
     const gestures = new TouchGestureHandler(canvas)
 
     // Pinch to zoom
-    gestures.onPinch = (scale, center) => {
+    gestures.onPinch = (scale, _center) => {
       if (scene.controls && scene.controls.dolly) {
         const delta = scale > 1 ? -0.1 : 0.1
         scene.controls.dolly(delta)

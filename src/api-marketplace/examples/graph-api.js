@@ -136,7 +136,7 @@ const mockGraph = {
   ]
 };
 
-async function searchGraph(data, context) {
+async function searchGraph(data, _context) {
   const { query, limit = 10 } = data;
 
   if (!query) {
@@ -169,7 +169,7 @@ async function searchGraph(data, context) {
   };
 }
 
-async function findPath(data, context) {
+async function findPath(data, _context) {
   const { from, to } = data;
 
   if (!from || !to) {
@@ -223,7 +223,7 @@ async function findPath(data, context) {
   };
 }
 
-async function getNeighbors(data, context) {
+async function getNeighbors(data, _context) {
   const { conceptId, depth = 1 } = data;
 
   if (!conceptId) {
@@ -253,7 +253,7 @@ async function getNeighbors(data, context) {
   };
 }
 
-async function getSubgraph(data, context) {
+async function getSubgraph(data, _context) {
   const { concepts, depth = 2 } = data;
 
   if (!concepts || concepts.length === 0) {

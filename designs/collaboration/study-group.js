@@ -720,7 +720,7 @@ export function GetActivityFeed(groupId, limit = 20) {
  * Helper Functions
  * ═══════════════════════════════════════════════════════════════ */
 
-function selectProblemType(node) {
+function selectProblemType(_node) {
   const types = ['multiple-choice', 'true-false', 'connection', 'application']
   const weights = [0.4, 0.2, 0.2, 0.2]
 
